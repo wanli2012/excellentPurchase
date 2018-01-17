@@ -8,6 +8,8 @@
 
 #import "LBEatAndDrinkViewController.h"
 #import "SPPageMenu.h"
+#import "LBEat_CateViewController.h"
+#import "LBEat_ActivityViewController.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -134,7 +136,7 @@
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {
-        _controllerClassNames = [NSMutableArray arrayWithObjects:@"UIViewController",@"UIViewController",@"UIViewController",@"UIViewController",@"UIViewController", nil];
+        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBEat_CateViewController",@"UIViewController",@"UIViewController",@"LBEat_ActivityViewController",@"UIViewController", nil];
     }
     
     return _controllerClassNames;

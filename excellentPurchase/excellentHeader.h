@@ -26,6 +26,16 @@
  */
 #define bottomScale   240 / 750.0
 
+/**
+吃喝玩乐-精品推荐图片比例
+ */
+#define EatrecommendScle   93 / 113.0
+
+/**
+ 吃喝玩乐-cell的高度
+ */
+#define EatCellH   120.0
+
 /**宽度比例*/
 #define CZH_ScaleWidth(__VA_ARGS__)  ([UIScreen mainScreen].bounds.size.width/375)*(__VA_ARGS__)
 
