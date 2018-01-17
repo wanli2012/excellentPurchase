@@ -1,0 +1,50 @@
+//
+//  PrefixHeader.pch
+//  excellentPurchase
+//
+//  Created by 四川三君科技有限公司 on 2018/1/9.
+//  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+#import "excellentHeader.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <Masonry/Masonry.h>
+#import "SDCycleScrollView.h"
+#import "scaleHeader.h"
+#import "UIView+Extension.h"
+
+#endif
+
+#define UIColorFromRGB(rgbValue) UIColorFromRGBA(rgbValue, 1.0)
+#define NTES_USE_CLEAR_BAR - (BOOL)useClearBar{return YES;}
+#define NTES_FORBID_INTERACTIVE_POP - (BOOL)forbidInteractivePop{return YES;}
+#define UIScreenWidth                              [UIScreen mainScreen].bounds.size.width
+#define UIScreenHeight                             [UIScreen mainScreen].bounds.size.height
+#define UISreenWidthScale   UIScreenWidth / 320
+
+#define MAIN_COLOR YYSRGBColor(250, 78, 83 , 1.0) //主调色
+
+//适配iphonex导航栏
+#define SafeAreaTopHeight (UIScreenHeight == 812.0 ? 88 : 64)
+/// 底部宏，吃一见长一智吧，别写数字了
+#define SafeAreaBottomHeight (UIScreenHeight == 812.0 ? 34 : 0)
+
+#define  adjustsScrollViewInsets_NO(scrollView,vc)\
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+if ([UIScrollView instancesRespondToSelector:NSSelectorFromString(@"setContentInsetAdjustmentBehavior:")]) {\
+[scrollView   performSelector:NSSelectorFromString(@"setContentInsetAdjustmentBehavior:") withObject:@(2)];\
+} else {\
+vc.automaticallyAdjustsScrollViewInsets = NO;\
+}\
+_Pragma("clang diagnostic pop") \
+} while (0)
+
+#endif /* PrefixHeader_pch */

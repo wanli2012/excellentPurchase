@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBBankCardListTableViewCell" rowHeight="57" id="KGk-i7-Jjw" customClass="LBBankCardListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="451" height="128.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4E-18-4wV">
+                        <rect key="frame" x="10" y="0.0" width="431" height="128.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="工商银行背景" translatesAutoresizingMaskIntoConstraints="NO" id="6UV-RI-Xoh">
+                                <rect key="frame" x="0.0" y="0.0" width="431" height="128.5"/>
+                            </imageView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjU-dB-I3Q">
+                                <rect key="frame" x="20" y="43.5" width="42" height="42"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="工商银行图标" translatesAutoresizingMaskIntoConstraints="NO" id="jgq-IM-Qqe">
+                                        <rect key="frame" x="4" y="4" width="34" height="34"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="19"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="jgq-IM-Qqe" secondAttribute="trailing" constant="4" id="39s-3p-7dg"/>
+                                    <constraint firstItem="jgq-IM-Qqe" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="leading" constant="4" id="M0i-bm-uY9"/>
+                                    <constraint firstAttribute="height" constant="42" id="TXX-Sh-5el"/>
+                                    <constraint firstAttribute="width" constant="42" id="Z4t-xx-Mx5"/>
+                                    <constraint firstItem="jgq-IM-Qqe" firstAttribute="top" secondItem="qjU-dB-I3Q" secondAttribute="top" constant="4" id="ae5-AF-CrP"/>
+                                    <constraint firstAttribute="bottom" secondItem="jgq-IM-Qqe" secondAttribute="bottom" constant="4" id="rjh-lS-yr5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="21"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工商银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slU-Yj-K8Z">
+                                <rect key="frame" x="72" y="33.5" width="61.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="储蓄卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-eA-w2L">
+                                <rect key="frame" x="72" y="56.5" width="37" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123456" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ud-QF-bQK">
+                                <rect key="frame" x="72" y="81" width="53" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H1y-eA-w2L" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="trailing" constant="10" id="0J6-Az-VDs"/>
+                            <constraint firstItem="qjU-dB-I3Q" firstAttribute="leading" secondItem="m4E-18-4wV" secondAttribute="leading" constant="20" id="7w2-74-IMh"/>
+                            <constraint firstItem="qjU-dB-I3Q" firstAttribute="centerY" secondItem="m4E-18-4wV" secondAttribute="centerY" id="8my-II-HtA"/>
+                            <constraint firstItem="slU-Yj-K8Z" firstAttribute="top" secondItem="qjU-dB-I3Q" secondAttribute="top" constant="-10" id="9az-ae-FgM"/>
+                            <constraint firstItem="8ud-QF-bQK" firstAttribute="top" secondItem="H1y-eA-w2L" secondAttribute="bottom" constant="10" id="HFB-Cm-cyk"/>
+                            <constraint firstAttribute="bottom" secondItem="6UV-RI-Xoh" secondAttribute="bottom" id="JUz-G1-Uer"/>
+                            <constraint firstAttribute="trailing" secondItem="6UV-RI-Xoh" secondAttribute="trailing" id="LjI-ir-Obg"/>
+                            <constraint firstItem="H1y-eA-w2L" firstAttribute="top" secondItem="slU-Yj-K8Z" secondAttribute="bottom" constant="5" id="U56-jz-Rr2"/>
+                            <constraint firstItem="8ud-QF-bQK" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="trailing" constant="10" id="brS-29-yXp"/>
+                            <constraint firstItem="slU-Yj-K8Z" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="trailing" constant="10" id="mSx-2D-egr"/>
+                            <constraint firstItem="6UV-RI-Xoh" firstAttribute="top" secondItem="m4E-18-4wV" secondAttribute="top" id="nfj-aT-OcM"/>
+                            <constraint firstItem="6UV-RI-Xoh" firstAttribute="leading" secondItem="m4E-18-4wV" secondAttribute="leading" id="ySc-py-3Pf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="m4E-18-4wV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YA1-jC-YrU"/>
+                    <constraint firstAttribute="bottom" secondItem="m4E-18-4wV" secondAttribute="bottom" id="YLT-6Y-XCS"/>
+                    <constraint firstItem="m4E-18-4wV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ffP-Q4-bfL"/>
+                    <constraint firstAttribute="trailing" secondItem="m4E-18-4wV" secondAttribute="trailing" constant="10" id="sXa-Lj-oX0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="0.5" y="-84.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="工商银行图标" width="27" height="27"/>
+        <image name="工商银行背景" width="115" height="127"/>
+    </resources>
+</document>

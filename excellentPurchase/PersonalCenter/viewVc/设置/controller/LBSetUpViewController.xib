@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBSetUpViewController">
+            <connections>
+                <outlet property="exitBt" destination="Vu3-4N-Ycj" id="RGu-pj-xwA"/>
+                <outlet property="tableview" destination="rxL-jw-YyK" id="Iiz-J9-9sL"/>
+                <outlet property="versionLb" destination="3KU-Rc-dJh" id="AKy-x3-1nU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rxL-jw-YyK">
+                    <rect key="frame" x="0.0" y="1" width="375" height="602"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="ukJ-Ri-pSo">
+                        <rect key="frame" x="0.0" y="828" width="375" height="250"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vu3-4N-Ycj">
+                                <rect key="frame" x="30" y="100" width="315" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hfM-jw-IcE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="退出登录">
+                                    <color key="titleColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本：1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KU-Rc-dJh">
+                                <rect key="frame" x="133.5" y="170" width="108.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.42348030209541321" green="0.42355769872665405" blue="0.42347544431686401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3KU-Rc-dJh" firstAttribute="centerX" secondItem="Vu3-4N-Ycj" secondAttribute="centerX" id="8NG-Fk-a6u"/>
+                            <constraint firstItem="Vu3-4N-Ycj" firstAttribute="leading" secondItem="ukJ-Ri-pSo" secondAttribute="leading" constant="30" id="LXE-gd-jet"/>
+                            <constraint firstAttribute="trailing" secondItem="Vu3-4N-Ycj" secondAttribute="trailing" constant="30" id="eie-ZQ-bLs"/>
+                            <constraint firstItem="Vu3-4N-Ycj" firstAttribute="centerY" secondItem="ukJ-Ri-pSo" secondAttribute="centerY" id="hZt-8t-7Ct"/>
+                            <constraint firstItem="3KU-Rc-dJh" firstAttribute="top" secondItem="Vu3-4N-Ycj" secondAttribute="bottom" constant="20" id="qK6-1q-bXN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Sca-X2-pvB"/>
+                        <outlet property="delegate" destination="-1" id="WeX-jj-NRH"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="rxL-jw-YyK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="1" id="C7U-H3-g5t"/>
+                <constraint firstItem="rxL-jw-YyK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Cnf-qf-JTM"/>
+                <constraint firstAttribute="trailing" secondItem="rxL-jw-YyK" secondAttribute="trailing" id="X8c-5H-GNw"/>
+                <constraint firstAttribute="bottom" secondItem="rxL-jw-YyK" secondAttribute="bottom" id="dUw-jx-LW7"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+        </view>
+    </objects>
+</document>
