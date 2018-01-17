@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GLIntegralHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2z2-Ij-bOe">
+                    <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eat-headerBackground" translatesAutoresizingMaskIntoConstraints="NO" id="q45-3G-JJn">
+                            <rect key="frame" x="47" y="0.0" width="193" height="59"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精品推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBT-iJ-b7K">
+                            <rect key="frame" x="109" y="19" width="69.5" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="wBT-iJ-b7K" firstAttribute="centerY" secondItem="2z2-Ij-bOe" secondAttribute="centerY" id="Ap7-rz-guP"/>
+                        <constraint firstItem="q45-3G-JJn" firstAttribute="top" secondItem="2z2-Ij-bOe" secondAttribute="top" id="F2M-fl-JR8"/>
+                        <constraint firstAttribute="bottom" secondItem="q45-3G-JJn" secondAttribute="bottom" id="LeJ-ht-fHr"/>
+                        <constraint firstItem="wBT-iJ-b7K" firstAttribute="centerX" secondItem="2z2-Ij-bOe" secondAttribute="centerX" id="Rmk-zI-vKb"/>
+                        <constraint firstItem="q45-3G-JJn" firstAttribute="centerX" secondItem="2z2-Ij-bOe" secondAttribute="centerX" id="vSw-Co-fa1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2z2-Ij-bOe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Be-mx-dIl"/>
+                <constraint firstAttribute="trailing" secondItem="2z2-Ij-bOe" secondAttribute="trailing" id="G91-N6-mb8"/>
+                <constraint firstItem="2z2-Ij-bOe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IIO-zW-uMY"/>
+                <constraint firstAttribute="bottom" secondItem="2z2-Ij-bOe" secondAttribute="bottom" id="OKq-5x-S0Z"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="64.5" y="-104.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="eat-headerBackground" width="193" height="26"/>
+    </resources>
+</document>
