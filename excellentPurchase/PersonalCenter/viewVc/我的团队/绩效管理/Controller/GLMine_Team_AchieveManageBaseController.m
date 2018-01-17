@@ -1,29 +1,29 @@
 //
-//  LBSendRedPackRecoderBasevc.m
+//  GLMine_Team_AchieveManageBaseController.m
 //  excellentPurchase
 //
-//  Created by 四川三君科技有限公司 on 2018/1/11.
+//  Created by 龚磊 on 2018/1/17.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "LBSendRedPackRecoderBasevc.h"
+#import "GLMine_Team_AchieveManageBaseController.h"
 
-NSNotificationName const ChildScrollViewDidScrollNSNotification = @"ChildScrollViewDidScrollNSNotification";
-NSNotificationName const ChildScrollViewRefreshStateNSNotification = @"ChildScrollViewRefreshStateNSNotification";
+NSNotificationName const GLMine_Team_ChildScrollViewDidScrollNSNotification = @"GLMine_Team_ChildScrollViewDidScrollNSNotification";
+NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification = @"GLMine_Team_ChildScrollViewRefreshStateNSNotification";
 
-@interface LBSendRedPackRecoderBasevc ()
-
+@interface GLMine_Team_AchieveManageBaseController ()
 
 @end
 
-@implementation LBSendRedPackRecoderBasevc
+@implementation GLMine_Team_AchieveManageBaseController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     adjustsScrollViewInsets_NO(self.tableView, self);
     //self.rowCount = 20;
-
+    
     [self.view addSubview:self.tableView];
     self.scrollView = self.tableView;
 }
@@ -57,7 +57,7 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotification = @"ChildScro
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetDifference = scrollView.contentOffset.y - self.lastContentOffset.y;
     // 滚动时发出通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:ChildScrollViewDidScrollNSNotification object:nil userInfo:@{@"scrollingScrollView":scrollView,@"offsetDifference":@(offsetDifference)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewDidScrollNSNotification object:nil userInfo:@{@"scrollingScrollView":scrollView,@"offsetDifference":@(offsetDifference)}];
     self.lastContentOffset = scrollView.contentOffset;
 }
 

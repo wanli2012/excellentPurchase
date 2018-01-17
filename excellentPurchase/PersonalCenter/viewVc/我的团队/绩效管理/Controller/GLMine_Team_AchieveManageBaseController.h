@@ -1,21 +1,21 @@
 //
-//  LBSendRedPackRecoderBasevc.h
+//  GLMine_Team_AchieveManageBaseController.h
 //  excellentPurchase
 //
-//  Created by 四川三君科技有限公司 on 2018/1/11.
+//  Created by 龚磊 on 2018/1/17.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "LBSendRedPackHeaderV.h"
 
 #define isIPhoneX kScreenH==812
-#define kScrollViewBeginTopInset 210
+#define kScrollViewBeginTopInset 300
 
-UIKIT_EXTERN NSNotificationName const ChildScrollViewDidScrollNSNotification;
-UIKIT_EXTERN NSNotificationName const ChildScrollViewRefreshStateNSNotification;
+UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewDidScrollNSNotification;
+UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification;
 
-@interface LBSendRedPackRecoderBasevc : UIViewController
+
+@interface GLMine_Team_AchieveManageBaseController : UIViewController
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -26,6 +26,5 @@ UIKIT_EXTERN NSNotificationName const ChildScrollViewRefreshStateNSNotification;
 @property (nonatomic, assign) BOOL refreshState;
 
 @property (nonatomic, strong) UITableView *tableView;
-
 
 @end

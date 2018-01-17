@@ -32,5 +32,7 @@
 /**高度比例*/
 #define CZH_ScaleHeight(__VA_ARGS__)  ([UIScreen mainScreen].bounds.size.height/667)*(__VA_ARGS__)
 
+/**占位图*/
+#define PlaceHolder @"shijiyougou"
 
 #endif /* excellentHeader_h */

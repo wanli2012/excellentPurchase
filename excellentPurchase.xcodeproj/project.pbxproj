@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */; };
+		4A79EDCE200EE469001F28D1 /* GLMine_TeamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDCC200EE469001F28D1 /* GLMine_TeamController.xib */; };
+		4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDD0200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m */; };
+		4A79EDD3200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD1200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib */; };
+		4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD4200EF424001F28D1 /* MyTeam.xcassets */; };
+		4A79EDD9200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDD7200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m */; };
+		4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD8200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib */; };
+		4A79EDDE200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDDD200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m */; };
+		4A79EDF3200F1F6C001F28D1 /* GLIdentifySelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDED200F1F6C001F28D1 /* GLIdentifySelectCell.m */; };
+		4A79EDF4200F1F6C001F28D1 /* GLIdentifySelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDEE200F1F6C001F28D1 /* GLIdentifySelectCell.xib */; };
+		4A79EDF5200F1F6C001F28D1 /* GLIdentifySelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDF1200F1F6C001F28D1 /* GLIdentifySelectController.m */; };
+		4A79EDF6200F1F6C001F28D1 /* GLIdentifySelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDF2200F1F6C001F28D1 /* GLIdentifySelectController.xib */; };
+		4A79EDF9200F1F81001F28D1 /* GLIdentifySelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDF8200F1F81001F28D1 /* GLIdentifySelectModel.m */; };
+		4A79EDFD200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDFB200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m */; };
+		4A79EDFE200F28A3001F28D1 /* GLMine_Team_AchievementManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDFC200F28A3001F28D1 /* GLMine_Team_AchievementManageController.xib */; };
+		4A79EE02200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE00200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m */; };
+		4A79EE03200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE01200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib */; };
+		4A79EE07200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE05200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.m */; };
+		4A79EE0C200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE0A200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.m */; };
+		4A79EE10200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE0F200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m */; };
+		4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE11200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib */; };
+		4A79EE16200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */; };
+		4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */; };
 		633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
@@ -223,6 +246,42 @@
 
 /* Begin PBXFileReference section */
 		343311FE7A0113A0A6DDC8C3 /* Pods-excellentPurchase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.release.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.release.xcconfig"; sourceTree = "<group>"; };
+		4A79EDCA200EE469001F28D1 /* GLMine_TeamController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_TeamController.h; sourceTree = "<group>"; };
+		4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_TeamController.m; sourceTree = "<group>"; };
+		4A79EDCC200EE469001F28D1 /* GLMine_TeamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_TeamController.xib; sourceTree = "<group>"; };
+		4A79EDCF200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_TeamAchievementController.h; sourceTree = "<group>"; };
+		4A79EDD0200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_TeamAchievementController.m; sourceTree = "<group>"; };
+		4A79EDD1200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_TeamAchievementController.xib; sourceTree = "<group>"; };
+		4A79EDD4200EF424001F28D1 /* MyTeam.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MyTeam.xcassets; sourceTree = "<group>"; };
+		4A79EDD6200EF5F0001F28D1 /* GLMine_TeamAchievementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_TeamAchievementCell.h; sourceTree = "<group>"; };
+		4A79EDD7200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_TeamAchievementCell.m; sourceTree = "<group>"; };
+		4A79EDD8200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_TeamAchievementCell.xib; sourceTree = "<group>"; };
+		4A79EDDC200EFE9A001F28D1 /* GLMine_TeamAchievementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_TeamAchievementModel.h; sourceTree = "<group>"; };
+		4A79EDDD200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_TeamAchievementModel.m; sourceTree = "<group>"; };
+		4A79EDEC200F1F6C001F28D1 /* GLIdentifySelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIdentifySelectCell.h; sourceTree = "<group>"; };
+		4A79EDED200F1F6C001F28D1 /* GLIdentifySelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIdentifySelectCell.m; sourceTree = "<group>"; };
+		4A79EDEE200F1F6C001F28D1 /* GLIdentifySelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIdentifySelectCell.xib; sourceTree = "<group>"; };
+		4A79EDF0200F1F6C001F28D1 /* GLIdentifySelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIdentifySelectController.h; sourceTree = "<group>"; };
+		4A79EDF1200F1F6C001F28D1 /* GLIdentifySelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIdentifySelectController.m; sourceTree = "<group>"; };
+		4A79EDF2200F1F6C001F28D1 /* GLIdentifySelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIdentifySelectController.xib; sourceTree = "<group>"; };
+		4A79EDF7200F1F81001F28D1 /* GLIdentifySelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLIdentifySelectModel.h; sourceTree = "<group>"; };
+		4A79EDF8200F1F81001F28D1 /* GLIdentifySelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLIdentifySelectModel.m; sourceTree = "<group>"; };
+		4A79EDFA200F28A3001F28D1 /* GLMine_Team_AchievementManageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchievementManageController.h; sourceTree = "<group>"; };
+		4A79EDFB200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchievementManageController.m; sourceTree = "<group>"; };
+		4A79EDFC200F28A3001F28D1 /* GLMine_Team_AchievementManageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_AchievementManageController.xib; sourceTree = "<group>"; };
+		4A79EDFF200F3463001F28D1 /* GLMine_Team_AchieveManageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveManageCell.h; sourceTree = "<group>"; };
+		4A79EE00200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveManageCell.m; sourceTree = "<group>"; };
+		4A79EE01200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_AchieveManageCell.xib; sourceTree = "<group>"; };
+		4A79EE04200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveDoneController.h; sourceTree = "<group>"; };
+		4A79EE05200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveDoneController.m; sourceTree = "<group>"; };
+		4A79EE09200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveNotDoneController.h; sourceTree = "<group>"; };
+		4A79EE0A200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveNotDoneController.m; sourceTree = "<group>"; };
+		4A79EE0E200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveManageHeader.h; sourceTree = "<group>"; };
+		4A79EE0F200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveManageHeader.m; sourceTree = "<group>"; };
+		4A79EE11200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_AchieveManageHeader.xib; sourceTree = "<group>"; };
+		4A79EE13200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveManageBaseController.h; sourceTree = "<group>"; };
+		4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveManageBaseController.m; sourceTree = "<group>"; };
+		4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_AchieveManageBaseController.xib; sourceTree = "<group>"; };
 		7783D9C11A5F2A3CA8CB596F /* Pods-excellentPurchase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.debug.xcconfig"; sourceTree = "<group>"; };
 		9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_excellentPurchase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -561,6 +620,223 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A79EDB7200EE390001F28D1 /* 我的团队 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDC4200EE390001F28D1 /* 我的团队首页 */,
+				4A79EDB8200EE390001F28D1 /* 团队业绩 */,
+				4A79EDC7200EE390001F28D1 /* 绩效管理 */,
+				4A79EDBB200EE390001F28D1 /* 团队成员 */,
+				4A79EDBE200EE390001F28D1 /* 开通创客 */,
+				4A79EDC1200EE390001F28D1 /* 开通商户 */,
+			);
+			path = "我的团队";
+			sourceTree = "<group>";
+		};
+		4A79EDB8200EE390001F28D1 /* 团队业绩 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDB9200EE390001F28D1 /* Controller */,
+				4A79EDBA200EE390001F28D1 /* View */,
+				4A79EDDB200EFE83001F28D1 /* Model */,
+			);
+			path = "团队业绩";
+			sourceTree = "<group>";
+		};
+		4A79EDB9200EE390001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDCF200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.h */,
+				4A79EDD0200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m */,
+				4A79EDD1200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A79EDBA200EE390001F28D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDD6200EF5F0001F28D1 /* GLMine_TeamAchievementCell.h */,
+				4A79EDD7200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m */,
+				4A79EDD8200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A79EDBB200EE390001F28D1 /* 团队成员 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDBC200EE390001F28D1 /* Controller */,
+				4A79EDBD200EE390001F28D1 /* View */,
+			);
+			path = "团队成员";
+			sourceTree = "<group>";
+		};
+		4A79EDBC200EE390001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A79EDBD200EE390001F28D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A79EDBE200EE390001F28D1 /* 开通创客 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDBF200EE390001F28D1 /* Controller */,
+				4A79EDC0200EE390001F28D1 /* View */,
+			);
+			path = "开通创客";
+			sourceTree = "<group>";
+		};
+		4A79EDBF200EE390001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A79EDC0200EE390001F28D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A79EDC1200EE390001F28D1 /* 开通商户 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDC2200EE390001F28D1 /* Controller */,
+				4A79EDC3200EE390001F28D1 /* View */,
+			);
+			path = "开通商户";
+			sourceTree = "<group>";
+		};
+		4A79EDC2200EE390001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A79EDC3200EE390001F28D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A79EDC4200EE390001F28D1 /* 我的团队首页 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDC5200EE390001F28D1 /* Controller */,
+			);
+			path = "我的团队首页";
+			sourceTree = "<group>";
+		};
+		4A79EDC5200EE390001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDCA200EE469001F28D1 /* GLMine_TeamController.h */,
+				4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */,
+				4A79EDCC200EE469001F28D1 /* GLMine_TeamController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A79EDC7200EE390001F28D1 /* 绩效管理 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDC8200EE390001F28D1 /* Controller */,
+				4A79EDC9200EE390001F28D1 /* View */,
+			);
+			path = "绩效管理";
+			sourceTree = "<group>";
+		};
+		4A79EDC8200EE390001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDFA200F28A3001F28D1 /* GLMine_Team_AchievementManageController.h */,
+				4A79EDFB200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m */,
+				4A79EDFC200F28A3001F28D1 /* GLMine_Team_AchievementManageController.xib */,
+				4A79EE04200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.h */,
+				4A79EE05200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.m */,
+				4A79EE09200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.h */,
+				4A79EE0A200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.m */,
+				4A79EE13200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.h */,
+				4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */,
+				4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A79EDC9200EE390001F28D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDFF200F3463001F28D1 /* GLMine_Team_AchieveManageCell.h */,
+				4A79EE00200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m */,
+				4A79EE01200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib */,
+				4A79EE0E200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.h */,
+				4A79EE0F200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m */,
+				4A79EE11200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A79EDDB200EFE83001F28D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDDC200EFE9A001F28D1 /* GLMine_TeamAchievementModel.h */,
+				4A79EDDD200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A79EDDF200F1DAF001F28D1 /* 身份选择 */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDEF200F1F6C001F28D1 /* Controller */,
+				4A79EDEA200F1F6B001F28D1 /* Model */,
+				4A79EDEB200F1F6C001F28D1 /* View */,
+			);
+			path = "身份选择";
+			sourceTree = "<group>";
+		};
+		4A79EDEA200F1F6B001F28D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDF7200F1F81001F28D1 /* GLIdentifySelectModel.h */,
+				4A79EDF8200F1F81001F28D1 /* GLIdentifySelectModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A79EDEB200F1F6C001F28D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDEC200F1F6C001F28D1 /* GLIdentifySelectCell.h */,
+				4A79EDED200F1F6C001F28D1 /* GLIdentifySelectCell.m */,
+				4A79EDEE200F1F6C001F28D1 /* GLIdentifySelectCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A79EDEF200F1F6C001F28D1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A79EDF0200F1F6C001F28D1 /* GLIdentifySelectController.h */,
+				4A79EDF1200F1F6C001F28D1 /* GLIdentifySelectController.m */,
+				4A79EDF2200F1F6C001F28D1 /* GLIdentifySelectController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A5B2457F2950DB08109A6D3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +1048,8 @@
 				F9713751200602150033F38B /* 我的二维码 */,
 				F971374B2005FF040033F38B /* 修改用户名 */,
 				F97137432005FB020033F38B /* 完善个人信息 */,
+				4A79EDB7200EE390001F28D1 /* 我的团队 */,
+				4A79EDDF200F1DAF001F28D1 /* 身份选择 */,
 				F95072E9200492DA0026D28F /* LBPersonCenterViewController.h */,
 				F95072EA200492DA0026D28F /* LBPersonCenterViewController.m */,
 				F95072EB200492DA0026D28F /* LBPersonCenterViewController.xib */,
@@ -1410,6 +1688,7 @@
 				F97137492005FD910033F38B /* personCenter.xcassets */,
 				F99C727B20099E4200E996FD /* taotaoShop.xcassets */,
 				F9633D7E200C3E00001B545A /* Mine.xcassets */,
+				4A79EDD4200EF424001F28D1 /* MyTeam.xcassets */,
 				F94D250D200E0A0200381E2A /* eatDrink.xcassets */,
 				F9712CDD200474100015037A /* like.caf */,
 				F971372F2005D9680033F38B /* activity.gif */,
@@ -1633,6 +1912,7 @@
 				F95072F6200493050026D28F /* LBTmallViewController.xib in Resources */,
 				F9633D92200C7061001B545A /* LBMineDataCollectionViewCell.xib in Resources */,
 				F9713769200608CA0033F38B /* LBAccountManagementViewController.xib in Resources */,
+				4A79EDCE200EE469001F28D1 /* GLMine_TeamController.xib in Resources */,
 				F95FD421200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.xib in Resources */,
 				F94D250C200E01F800381E2A /* LBUploadIdentityPictureViewController.xib in Resources */,
 				F955D140200890F5001EEC81 /* LBFindSecondPassWordViewController.xib in Resources */,
@@ -1642,10 +1922,13 @@
 				F955D14F2008968E001EEC81 /* LBResetNewPhoneViewController.xib in Resources */,
 				F955D17D2008A7BA001EEC81 /* LBBankCardListTableViewCell.xib in Resources */,
 				F9340A1B2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.xib in Resources */,
+				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				F968C3452007554400971F11 /* LBSendRedPackMenu.xib in Resources */,
+				4A79EDF4200F1F6C001F28D1 /* GLIdentifySelectCell.xib in Resources */,
 				F9340A4E200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.xib in Resources */,
 				F95B532F200CA23E00A81954 /* LBProductDetailViewController.xib in Resources */,
+				4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */,
 				F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */,
 				F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */,
 				F95B5354200CBB3200A81954 /* LBTaoTaoProductInofoTableViewCell.xib in Resources */,
@@ -1662,6 +1945,8 @@
 				F9340A43200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.xib in Resources */,
 				F968C31C2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.xib in Resources */,
 				F968C33B2007510C00971F11 /* LBSendRedPackRecoderViewController.xib in Resources */,
+				4A79EDF6200F1F6C001F28D1 /* GLIdentifySelectController.xib in Resources */,
+				4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */,
 				F95FD42A200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.xib in Resources */,
 				F97137502005FF280033F38B /* LBModifyingUsernameViewController.xib in Resources */,
 				F955D1822008AEFD001EEC81 /* LBAddBankCardViewController.xib in Resources */,
@@ -1670,6 +1955,7 @@
 				F97137422005F6D10033F38B /* LBForgetSecretViewController.xib in Resources */,
 				F955D11D20087C82001EEC81 /* LBChangePasswordViewController.xib in Resources */,
 				F93409FA2009CFDD0002DBB8 /* LBTmallChildredViewController.xib in Resources */,
+				4A79EDFE200F28A3001F28D1 /* GLMine_Team_AchievementManageController.xib in Resources */,
 				F95072FC2004A7620026D28F /* GLNearby_ClassifyHeaderView.xib in Resources */,
 				F9712CDE200474100015037A /* like.caf in Resources */,
 				F97137382005DFF90033F38B /* LoginRegister.xcassets in Resources */,
@@ -1684,6 +1970,7 @@
 				F95073172004CC830026D28F /* LBImmediateRushBuyCell.xib in Resources */,
 				F95B5359200CC38D00A81954 /* LBCommentHeaderTableViewCell.xib in Resources */,
 				F971377320060A040033F38B /* LBAccountManagementTableViewCell.xib in Resources */,
+				4A79EE03200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib in Resources */,
 				F97137562006025F0033F38B /* GLRecommendController.xib in Resources */,
 				F955D13320088CA6001EEC81 /* LBSwitchAccountViewController.xib in Resources */,
 				F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */,
@@ -1691,6 +1978,7 @@
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
 				F95072DE200492840026D28F /* LBEatAndDrinkViewController.xib in Resources */,
 				F9340A0E2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.xib in Resources */,
+				4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */,
 				F955D10D200853F6001EEC81 /* LBAboutUsViewController.xib in Resources */,
 				F9633D8D200C6698001B545A /* 消息提醒.gif in Resources */,
 				F968C35E200765BE00971F11 /* LBSendRedPackRecoderBasevc.xib in Resources */,
@@ -1706,6 +1994,7 @@
 				F955D15420089C94001EEC81 /* LBResetBindBankViewController.xib in Resources */,
 				F9340A3A200A200A0002DBB8 /* LBFiltrateProductViewController.xib in Resources */,
 				F955D10520084AF9001EEC81 /* LBSetUpTableViewCell.xib in Resources */,
+				4A79EDD3200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib in Resources */,
 				F9340A1A2009E7A90002DBB8 /* LBIntegralGoodsOneCollectionViewCell.xib in Resources */,
 				F955D12E20088C97001EEC81 /* LBSwitchAccountTableViewCell.xib in Resources */,
 				F968C3172007347600971F11 /* LBVoucherCenterRecoderViewController.xib in Resources */,
@@ -1793,10 +2082,13 @@
 				F9340A44200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.m in Sources */,
 				F955D16D2008A1B1001EEC81 /* HCBasePopupViewController.m in Sources */,
 				F968C31120072C0300971F11 /* LBVoucherCenterViewController.m in Sources */,
+				4A79EE02200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m in Sources */,
 				F95073212004D9DD0026D28F /* UIButton+SetEdgeInsets.m in Sources */,
 				F955D10420084AF9001EEC81 /* LBSetUpTableViewCell.m in Sources */,
+				4A79EE0C200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.m in Sources */,
 				F95B535D200CD16200A81954 /* LBCommentListsTableViewCell.m in Sources */,
 				F950730D2004C0240026D28F /* XBTextLoopView.m in Sources */,
+				4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */,
 				F955D12D20088C97001EEC81 /* LBSwitchAccountTableViewCell.m in Sources */,
 				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
 				F95072ED200492DA0026D28F /* LBPersonCenterViewController.m in Sources */,
@@ -1808,6 +2100,7 @@
 				F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */,
 				F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */,
 				F955D11720086166001EEC81 /* LBAccountSecurityViewController.m in Sources */,
+				4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */,
 				F955D11C20087C82001EEC81 /* LBChangePasswordViewController.m in Sources */,
 				F971375C200604770033F38B /* LBMineCenterAddAdreassViewController.m in Sources */,
 				F97137412005F6D10033F38B /* LBForgetSecretViewController.m in Sources */,
@@ -1817,6 +2110,7 @@
 				F9340A39200A200A0002DBB8 /* LBFiltrateProductViewController.m in Sources */,
 				F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */,
 				F9633D91200C7061001B545A /* LBMineDataCollectionViewCell.m in Sources */,
+				4A79EE10200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m in Sources */,
 				F95FD420200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.m in Sources */,
 				F95B5348200CAA0000A81954 /* PopoverViewCell.m in Sources */,
 				F968C32320073B2500971F11 /* LBDonationViewController.m in Sources */,
@@ -1830,6 +2124,7 @@
 				F968C33E200751B800971F11 /* LBSendRedPackHeaderV.m in Sources */,
 				F955D16E2008A1B1001EEC81 /* HCBottomPopupAction.m in Sources */,
 				F955D1772008A788001EEC81 /* LBBankCardListViewController.m in Sources */,
+				4A79EDF5200F1F6C001F28D1 /* GLIdentifySelectController.m in Sources */,
 				F97137472005FB410033F38B /* LBImprovePersonalInformationViewController.m in Sources */,
 				F95073112004C2700026D28F /* LBHorseGroupTableViewCell.m in Sources */,
 				F9340A34200A086A0002DBB8 /* LBShowProductListCollectionViewCell.m in Sources */,
@@ -1840,8 +2135,10 @@
 				F95B5358200CC38D00A81954 /* LBCommentHeaderTableViewCell.m in Sources */,
 				F971373C2005EE740033F38B /* LBRegisterViewController.m in Sources */,
 				F955D1812008AEFD001EEC81 /* LBAddBankCardViewController.m in Sources */,
+				4A79EE16200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m in Sources */,
 				F955D14E2008968E001EEC81 /* LBResetNewPhoneViewController.m in Sources */,
 				F968C31B2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.m in Sources */,
+				4A79EDF3200F1F6C001F28D1 /* GLIdentifySelectCell.m in Sources */,
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,
@@ -1850,7 +2147,9 @@
 				F955D13F200890F5001EEC81 /* LBFindSecondPassWordViewController.m in Sources */,
 				F94D250B200E01F800381E2A /* LBUploadIdentityPictureViewController.m in Sources */,
 				F95FD425200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m in Sources */,
+				4A79EDFD200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m in Sources */,
 				F95FD42B200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m in Sources */,
+				4A79EE07200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.m in Sources */,
 				F95B534D200CB16B00A81954 /* LBTaoTaoProductDeailHeaderView.m in Sources */,
 				F9340A2F2009F8830002DBB8 /* LBTmallProductListViewController.m in Sources */,
 				F9340A132009E5ED0002DBB8 /* LBintegralGoodsAciticityTableViewCell.m in Sources */,
@@ -1868,9 +2167,11 @@
 				F95FD43D200DDFD500F6C523 /* LBCommentListsView.m in Sources */,
 				F95073062004BB110026D28F /* LBHorseRaceLampCell.m in Sources */,
 				F95072F5200493050026D28F /* LBTmallViewController.m in Sources */,
+				4A79EDD9200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m in Sources */,
 				F95B5319200C83ED00A81954 /* LBMineTableViewCell.m in Sources */,
 				F968C359200758D800971F11 /* LBSendRedPackRecoderReciveVc.m in Sources */,
 				F968C3432007553500971F11 /* LBSendRedPackMenu.m in Sources */,
+				4A79EDF9200F1F81001F28D1 /* GLIdentifySelectModel.m in Sources */,
 				F95B5346200CAA0000A81954 /* PopoverAction.m in Sources */,
 				F97137352005DF690033F38B /* LBLoginViewController.m in Sources */,
 				F950730A2004BDD20026D28F /* LBHorseRaceLampModel.m in Sources */,
@@ -1880,6 +2181,7 @@
 				F97137552006025F0033F38B /* GLRecommendController.m in Sources */,
 				F9713768200608CA0033F38B /* LBAccountManagementViewController.m in Sources */,
 				F9712C91200460040015037A /* main.m in Sources */,
+				4A79EDDE200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m in Sources */,
 				F95072E5200492AB0026D28F /* LBFinancialCenterViewController.m in Sources */,
 				F9633D8B200C629A001B545A /* CCPScrollView.m in Sources */,
 				F95072D5200492430026D28F /* LBHomeViewController.m in Sources */,

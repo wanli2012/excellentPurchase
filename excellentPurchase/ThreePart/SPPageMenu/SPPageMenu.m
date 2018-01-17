@@ -523,7 +523,7 @@
     _itemTitleFont = [UIFont systemFontOfSize:16];
     _selectedItemTitleColor = [UIColor redColor];
     _unSelectedItemTitleColor = [UIColor blackColor];
-    _trackerHeight = 3;
+    _trackerHeight = 2;
     _contentInset = UIEdgeInsetsZero;
     _selectedItemIndex = 0;
     _showFuntionButton = NO;

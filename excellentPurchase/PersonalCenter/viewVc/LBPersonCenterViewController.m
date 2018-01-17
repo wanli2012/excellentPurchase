@@ -10,6 +10,7 @@
 #import "LBMineHeaderView.h"
 #import "CCPScrollView.h"
 #import "LBMineTableViewCell.h"
+#import "GLMine_TeamController.h"
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
@@ -27,6 +28,8 @@
  */
 @property (strong , nonatomic)NSMutableArray *imageArr;
 @property (strong , nonatomic)NSMutableArray *titleArr;
+
+@property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
 
 @end
 
@@ -58,6 +61,18 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     return 50;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *vcstr = self.userVcArr[indexPath.row];
+    Class classvc = NSClassFromString(vcstr);
+    UIViewController *vc = [[classvc alloc]init];
+    
+    self.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LBMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -70,7 +85,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat yOffset = scrollView.contentOffset.y;
+//    CGFloat yOffset = scrollView.contentOffset.y;
     
     
 }
@@ -97,5 +112,20 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     }
     return _headerView;
 }
-
+-(NSMutableArray*)userVcArr{
+    
+    if (!_userVcArr) {
+        _userVcArr=[NSMutableArray arrayWithObjects:
+                    @"GLMine_TeamController",
+                    @"GLMine_TeamController",
+                    @"GLMine_TeamController",
+                    @"GLMine_TeamController",
+                    @"GLMine_TeamController",
+                    @"GLMine_TeamController",
+                    @"GLMine_TeamController",nil];
+        
+    }
+    
+    return _userVcArr;
+}
 @end
