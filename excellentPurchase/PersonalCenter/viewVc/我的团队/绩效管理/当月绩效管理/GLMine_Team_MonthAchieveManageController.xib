@@ -144,7 +144,10 @@
                                             <rect key="frame" x="95.5" y="0.0" width="269.5" height="50"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="uT3-B2-UDY"/>
+                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWZ-og-EtB">
                                             <rect key="frame" x="0.0" y="49" width="375" height="1"/>

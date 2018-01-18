@@ -110,10 +110,10 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IvI-uL-k3D">
-                    <rect key="frame" x="301" y="15" width="80" height="20"/>
+                    <rect key="frame" x="301" y="15" width="80" height="25"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置布置绩效" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdH-Mf-UCb">
-                            <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="25"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -123,7 +123,7 @@
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="KdH-Mf-UCb" secondAttribute="bottom" id="32V-CB-HL8"/>
-                        <constraint firstAttribute="height" constant="20" id="6Hp-Us-DCV"/>
+                        <constraint firstAttribute="height" constant="25" id="6Hp-Us-DCV"/>
                         <constraint firstItem="KdH-Mf-UCb" firstAttribute="top" secondItem="IvI-uL-k3D" secondAttribute="top" id="8gc-uc-VqA"/>
                         <constraint firstItem="KdH-Mf-UCb" firstAttribute="leading" secondItem="IvI-uL-k3D" secondAttribute="leading" id="8wA-i2-sMa"/>
                         <constraint firstAttribute="trailing" secondItem="KdH-Mf-UCb" secondAttribute="trailing" id="Dvs-rm-CaY"/>
@@ -131,7 +131,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="10"/>
+                            <real key="value" value="12.5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>

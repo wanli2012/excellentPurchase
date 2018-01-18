@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GLMine_Team_HistoryHeader">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="110"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择所要查询的记录时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rF4-S3-Qzp">
+                    <rect key="frame" x="89.5" y="32" width="159.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIq-Hd-yeB">
+                    <rect key="frame" x="117.5" y="58" width="104" height="25"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018年8月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXY-ue-W25">
+                            <rect key="frame" x="5" y="0.0" width="79" height="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.19607843137254902" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyTeam_多边形1" translatesAutoresizingMaskIntoConstraints="NO" id="DDA-av-fi3">
+                            <rect key="frame" x="89" y="7.5" width="15" height="10"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="3bd-BV-y3d"/>
+                                <constraint firstAttribute="height" constant="10" id="EOh-wQ-Myf"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="9Kn-2t-ciY"/>
+                        <constraint firstItem="DDA-av-fi3" firstAttribute="centerY" secondItem="aIq-Hd-yeB" secondAttribute="centerY" id="BIF-8b-LAu"/>
+                        <constraint firstItem="TXY-ue-W25" firstAttribute="leading" secondItem="aIq-Hd-yeB" secondAttribute="leading" constant="5" id="VhO-NB-Lyc"/>
+                        <constraint firstAttribute="bottom" secondItem="TXY-ue-W25" secondAttribute="bottom" id="Zoz-Wv-pjf"/>
+                        <constraint firstAttribute="trailing" secondItem="DDA-av-fi3" secondAttribute="trailing" id="kqO-H0-XqU"/>
+                        <constraint firstItem="TXY-ue-W25" firstAttribute="top" secondItem="aIq-Hd-yeB" secondAttribute="top" id="xTM-XB-YGd"/>
+                        <constraint firstItem="DDA-av-fi3" firstAttribute="leading" secondItem="TXY-ue-W25" secondAttribute="trailing" constant="5" id="yfl-P0-fVd"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="fD7-HT-PCB" appends="YES" id="BsC-9J-12n"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqt-tp-nQ1">
+                    <rect key="frame" x="0.0" y="100" width="338" height="10"/>
+                    <color key="backgroundColor" red="0.96068006753921509" green="0.96084433794021606" blue="0.96066969633102417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="bJu-MZ-WM5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dqt-tp-nQ1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="32V-cD-dMM"/>
+                <constraint firstAttribute="trailing" secondItem="dqt-tp-nQ1" secondAttribute="trailing" id="Frj-b1-dFf"/>
+                <constraint firstItem="aIq-Hd-yeB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="L4y-5b-s60"/>
+                <constraint firstItem="rF4-S3-Qzp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LGJ-Gu-SVF"/>
+                <constraint firstItem="rF4-S3-Qzp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-15" id="jR3-vT-enR"/>
+                <constraint firstAttribute="bottom" secondItem="dqt-tp-nQ1" secondAttribute="bottom" id="kjZ-9D-4Pk"/>
+                <constraint firstItem="aIq-Hd-yeB" firstAttribute="top" secondItem="rF4-S3-Qzp" secondAttribute="bottom" constant="10" id="lVz-fj-rQF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="22" y="-69"/>
+        </view>
+        <tapGestureRecognizer id="fD7-HT-PCB" userLabel="时间选择">
+            <connections>
+                <action selector="dateChoose:" destination="iN0-l3-epB" id="jFl-W0-oAm"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="MyTeam_多边形1" width="15" height="10"/>
+    </resources>
+</document>

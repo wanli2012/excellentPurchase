@@ -20,14 +20,18 @@
     [super awakeFromNib];
 
 }
+
 - (void)setModel:(GLIdentifySelectModel *)model{
     _model = model;
     self.titleLabel.text = model.title;
-    if (model.isSelected ) {
+    if (model.isSelected) {
         self.backgroundColor = YYSRGBColor(245, 245, 245, 1);
     }else{
         self.backgroundColor = [UIColor whiteColor];
     }
 }
+
+
+
 
 @end

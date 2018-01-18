@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define isIPhoneX kScreenH==812
-//#define kGLMine_TeamScrollViewBeginTopInset 300
+
 
 UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewDidScrollNSNotification;
 UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification;
