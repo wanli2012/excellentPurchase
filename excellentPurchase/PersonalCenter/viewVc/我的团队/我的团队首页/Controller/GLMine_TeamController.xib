@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -220,7 +219,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.96078431369999995" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="yhK-IW-bi0" firstAttribute="top" secondItem="FA7-Dc-FXF" secondAttribute="top" constant="15" id="2wQ-Aq-6Hl"/>
                                         <constraint firstAttribute="trailing" secondItem="83l-Yh-Lvx" secondAttribute="trailing" id="3GF-Nr-0In"/>
@@ -350,7 +349,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="NwJ-0F-Kyv" secondAttribute="trailing" id="GHS-rc-LZn"/>
                                 <constraint firstItem="NwJ-0F-Kyv" firstAttribute="leading" secondItem="yxt-D0-7IF" secondAttribute="leading" id="UdW-uu-Taw"/>
@@ -363,6 +362,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="yxt-D0-7IF" firstAttribute="top" secondItem="yXM-og-KwC" secondAttribute="top" id="I2A-5K-Irh"/>
                         <constraint firstItem="yxt-D0-7IF" firstAttribute="leading" secondItem="yXM-og-KwC" secondAttribute="leading" id="IFD-KA-oJ8"/>
@@ -372,7 +372,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="yXM-og-KwC" secondAttribute="bottom" id="BaI-UP-JCZ"/>
                 <constraint firstAttribute="trailing" secondItem="yXM-og-KwC" secondAttribute="trailing" id="CFM-ft-tl6"/>

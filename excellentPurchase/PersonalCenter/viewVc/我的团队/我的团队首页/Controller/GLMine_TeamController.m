@@ -29,6 +29,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"我的团队";
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.picImageV.layer.cornerRadius = self.picImageV.height / 2;
     

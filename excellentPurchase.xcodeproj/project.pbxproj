@@ -2082,11 +2082,7 @@
 				F95072F6200493050026D28F /* LBTmallViewController.xib in Resources */,
 				F9633D92200C7061001B545A /* LBMineDataCollectionViewCell.xib in Resources */,
 				F9713769200608CA0033F38B /* LBAccountManagementViewController.xib in Resources */,
-<<<<<<< HEAD
-				4A79EDCE200EE469001F28D1 /* GLMine_TeamController.xib in Resources */,
-=======
-				F97E6065200F1D4500C9C4E7 /* LBEat_ActivityViewController.xib in Resources */,
->>>>>>> d4652ce3c7521eb7588c24a59a327b341004dd78
+
 				F95FD421200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.xib in Resources */,
 				F94D250C200E01F800381E2A /* LBUploadIdentityPictureViewController.xib in Resources */,
 				F955D140200890F5001EEC81 /* LBFindSecondPassWordViewController.xib in Resources */,
@@ -2101,11 +2097,7 @@
 				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				F968C3452007554400971F11 /* LBSendRedPackMenu.xib in Resources */,
-<<<<<<< HEAD
-				4A79EDF4200F1F6C001F28D1 /* GLIdentifySelectCell.xib in Resources */,
-=======
-				F97E6053200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.xib in Resources */,
->>>>>>> d4652ce3c7521eb7588c24a59a327b341004dd78
+
 				F9340A4E200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.xib in Resources */,
 				F95B532F200CA23E00A81954 /* LBProductDetailViewController.xib in Resources */,
 				4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */,
@@ -2328,11 +2320,7 @@
 				F955D14E2008968E001EEC81 /* LBResetNewPhoneViewController.m in Sources */,
 				F97E6064200F1D4500C9C4E7 /* LBEat_ActivityViewController.m in Sources */,
 				F968C31B2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.m in Sources */,
-<<<<<<< HEAD
-				4A79EDF3200F1F6C001F28D1 /* GLIdentifySelectCell.m in Sources */,
-=======
-				F97E6052200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m in Sources */,
->>>>>>> d4652ce3c7521eb7588c24a59a327b341004dd78
+
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,

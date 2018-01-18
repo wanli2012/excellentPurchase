@@ -67,7 +67,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
     
-    self.hidesBottomBarWhenPushed=YES;
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
     
