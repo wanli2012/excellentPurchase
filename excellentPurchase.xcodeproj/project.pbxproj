@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0B13E82010301F00AC3334 /* GLMine_TeamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13E72010301F00AC3334 /* GLMine_TeamController.xib */; };
+		4A0B13EA2010305300AC3334 /* LBBurstingWithPopularityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13E92010305200AC3334 /* LBBurstingWithPopularityTableViewCell.xib */; };
+		4A0B13EC201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13EB201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib */; };
+		4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13ED201030EC00AC3334 /* GLNearby_classifyCell.xib */; };
 		4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */; };
-		4A79EDCE200EE469001F28D1 /* GLMine_TeamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDCC200EE469001F28D1 /* GLMine_TeamController.xib */; };
 		4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDD0200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m */; };
 		4A79EDD3200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD1200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib */; };
 		4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD4200EF424001F28D1 /* MyTeam.xcassets */; };
 		4A79EDD9200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDD7200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m */; };
 		4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD8200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib */; };
 		4A79EDDE200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDDD200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m */; };
-		4A79EDF3200F1F6C001F28D1 /* GLIdentifySelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDED200F1F6C001F28D1 /* GLIdentifySelectCell.m */; };
-		4A79EDF4200F1F6C001F28D1 /* GLIdentifySelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDEE200F1F6C001F28D1 /* GLIdentifySelectCell.xib */; };
 		4A79EDF5200F1F6C001F28D1 /* GLIdentifySelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDF1200F1F6C001F28D1 /* GLIdentifySelectController.m */; };
 		4A79EDF6200F1F6C001F28D1 /* GLIdentifySelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDF2200F1F6C001F28D1 /* GLIdentifySelectController.xib */; };
 		4A79EDF9200F1F81001F28D1 /* GLIdentifySelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDF8200F1F81001F28D1 /* GLIdentifySelectModel.m */; };
@@ -235,14 +236,9 @@
 		F97E6048200EEBD400C9C4E7 /* GLIntegralHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E6045200EEBD200C9C4E7 /* GLIntegralHeaderView.xib */; };
 		F97E6049200EEBD400C9C4E7 /* GLIntegralHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6047200EEBD400C9C4E7 /* GLIntegralHeaderView.m */; };
 		F97E604D200EEE6000C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E604A200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.m */; };
-		F97E604E200EEE6000C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E604C200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.xib */; };
-		F97E6052200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6050200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m */; };
-		F97E6053200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E6051200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.xib */; };
-		F97E6057200EF18900C9C4E7 /* GLNearby_classifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E6054200EF18800C9C4E7 /* GLNearby_classifyCell.xib */; };
 		F97E6058200EF18900C9C4E7 /* GLNearby_classifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6056200EF18900C9C4E7 /* GLNearby_classifyCell.m */; };
 		F97E605C200EF1DB00C9C4E7 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E605B200EF1DB00C9C4E7 /* XHStarRateView.m */; };
 		F97E6064200F1D4500C9C4E7 /* LBEat_ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6062200F1D4500C9C4E7 /* LBEat_ActivityViewController.m */; };
-		F97E6065200F1D4500C9C4E7 /* LBEat_ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E6063200F1D4500C9C4E7 /* LBEat_ActivityViewController.xib */; };
 		F97E6068200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6067200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m */; };
 		F97E606C200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E606A200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m */; };
 		F97E606D200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E606B200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib */; };
@@ -268,9 +264,12 @@
 
 /* Begin PBXFileReference section */
 		343311FE7A0113A0A6DDC8C3 /* Pods-excellentPurchase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.release.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.release.xcconfig"; sourceTree = "<group>"; };
+		4A0B13E72010301F00AC3334 /* GLMine_TeamController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_TeamController.xib; sourceTree = "<group>"; };
+		4A0B13E92010305200AC3334 /* LBBurstingWithPopularityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityTableViewCell.xib; sourceTree = "<group>"; };
+		4A0B13EB201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A0B13ED201030EC00AC3334 /* GLNearby_classifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_classifyCell.xib; sourceTree = "<group>"; };
 		4A79EDCA200EE469001F28D1 /* GLMine_TeamController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_TeamController.h; sourceTree = "<group>"; };
 		4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_TeamController.m; sourceTree = "<group>"; };
-		4A79EDCC200EE469001F28D1 /* GLMine_TeamController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_TeamController.xib; sourceTree = "<group>"; };
 		4A79EDCF200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_TeamAchievementController.h; sourceTree = "<group>"; };
 		4A79EDD0200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_TeamAchievementController.m; sourceTree = "<group>"; };
 		4A79EDD1200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_TeamAchievementController.xib; sourceTree = "<group>"; };
@@ -632,11 +631,8 @@
 		F97E6047200EEBD400C9C4E7 /* GLIntegralHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIntegralHeaderView.m; sourceTree = "<group>"; };
 		F97E604A200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBurstingWithPopularityCollectionViewCell.m; sourceTree = "<group>"; };
 		F97E604B200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBurstingWithPopularityCollectionViewCell.h; sourceTree = "<group>"; };
-		F97E604C200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityCollectionViewCell.xib; sourceTree = "<group>"; };
 		F97E604F200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBurstingWithPopularityTableViewCell.h; sourceTree = "<group>"; };
 		F97E6050200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBurstingWithPopularityTableViewCell.m; sourceTree = "<group>"; };
-		F97E6051200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityTableViewCell.xib; sourceTree = "<group>"; };
-		F97E6054200EF18800C9C4E7 /* GLNearby_classifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_classifyCell.xib; sourceTree = "<group>"; };
 		F97E6055200EF18800C9C4E7 /* GLNearby_classifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_classifyCell.h; sourceTree = "<group>"; };
 		F97E6056200EF18900C9C4E7 /* GLNearby_classifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_classifyCell.m; sourceTree = "<group>"; };
 		F97E605A200EF1DB00C9C4E7 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
@@ -805,7 +801,7 @@
 			children = (
 				4A79EDCA200EE469001F28D1 /* GLMine_TeamController.h */,
 				4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */,
-				4A79EDCC200EE469001F28D1 /* GLMine_TeamController.xib */,
+				4A0B13E72010301F00AC3334 /* GLMine_TeamController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1896,13 +1892,13 @@
 				F97E6045200EEBD200C9C4E7 /* GLIntegralHeaderView.xib */,
 				F97E604B200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.h */,
 				F97E604A200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.m */,
-				F97E604C200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.xib */,
+				4A0B13EB201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib */,
 				F97E604F200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.h */,
 				F97E6050200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m */,
-				F97E6051200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.xib */,
+				4A0B13E92010305200AC3334 /* LBBurstingWithPopularityTableViewCell.xib */,
 				F97E6055200EF18800C9C4E7 /* GLNearby_classifyCell.h */,
 				F97E6056200EF18900C9C4E7 /* GLNearby_classifyCell.m */,
-				F97E6054200EF18800C9C4E7 /* GLNearby_classifyCell.xib */,
+				4A0B13ED201030EC00AC3334 /* GLNearby_classifyCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2080,9 +2076,10 @@
 				F9712C8B200460040015037A /* Assets.xcassets in Resources */,
 				F95073022004A9590026D28F /* LBNearby_classifyItemView.xib in Resources */,
 				F95072F6200493050026D28F /* LBTmallViewController.xib in Resources */,
+				4A0B13EC201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib in Resources */,
 				F9633D92200C7061001B545A /* LBMineDataCollectionViewCell.xib in Resources */,
 				F9713769200608CA0033F38B /* LBAccountManagementViewController.xib in Resources */,
-
+				4A0B13E82010301F00AC3334 /* GLMine_TeamController.xib in Resources */,
 				F95FD421200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.xib in Resources */,
 				F94D250C200E01F800381E2A /* LBUploadIdentityPictureViewController.xib in Resources */,
 				F955D140200890F5001EEC81 /* LBFindSecondPassWordViewController.xib in Resources */,
@@ -2097,7 +2094,6 @@
 				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				F968C3452007554400971F11 /* LBSendRedPackMenu.xib in Resources */,
-
 				F9340A4E200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.xib in Resources */,
 				F95B532F200CA23E00A81954 /* LBProductDetailViewController.xib in Resources */,
 				4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */,
@@ -2134,7 +2130,6 @@
 				F955D1782008A788001EEC81 /* LBBankCardListViewController.xib in Resources */,
 				F968C358200758D800971F11 /* LBSendRedPackRecoderReciveVc.xib in Resources */,
 				F971375B200604770033F38B /* LBMineCenterAddAdreassViewController.xib in Resources */,
-				F97E604E200EEE6000C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.xib in Resources */,
 				F971373D2005EE740033F38B /* LBRegisterViewController.xib in Resources */,
 				F968C32920073F9200971F11 /* LBDonationRecoderViewController.xib in Resources */,
 				F95072F820049C6C0026D28F /* Home.xcassets in Resources */,
@@ -2146,10 +2141,11 @@
 				4A79EE03200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib in Resources */,
 				F97137562006025F0033F38B /* GLRecommendController.xib in Resources */,
 				F955D13320088CA6001EEC81 /* LBSwitchAccountViewController.xib in Resources */,
-				F97E6057200EF18900C9C4E7 /* GLNearby_classifyCell.xib in Resources */,
 				F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */,
 				F95B535E200CD16200A81954 /* LBCommentListsTableViewCell.xib in Resources */,
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
+				4A0B13EA2010305300AC3334 /* LBBurstingWithPopularityTableViewCell.xib in Resources */,
+				4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */,
 				F95072DE200492840026D28F /* LBEatAndDrinkViewController.xib in Resources */,
 				F9340A0E2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.xib in Resources */,
 				4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */,
@@ -2320,7 +2316,6 @@
 				F955D14E2008968E001EEC81 /* LBResetNewPhoneViewController.m in Sources */,
 				F97E6064200F1D4500C9C4E7 /* LBEat_ActivityViewController.m in Sources */,
 				F968C31B2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.m in Sources */,
-
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,
