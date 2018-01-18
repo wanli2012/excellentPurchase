@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4A0B13E82010301F00AC3334 /* GLMine_TeamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13E72010301F00AC3334 /* GLMine_TeamController.xib */; };
-		4A0B13EA2010305300AC3334 /* LBBurstingWithPopularityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13E92010305200AC3334 /* LBBurstingWithPopularityTableViewCell.xib */; };
 		4A0B13EC201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13EB201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib */; };
 		4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0B13ED201030EC00AC3334 /* GLNearby_classifyCell.xib */; };
 		4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */; };
@@ -153,6 +152,9 @@
 		F95FD436200DC2C300F6C523 /* StandardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD430200DC2C300F6C523 /* StandardsView.m */; };
 		F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD434200DC2C300F6C523 /* ThrowLineTool.m */; };
 		F95FD43D200DDFD500F6C523 /* LBCommentListsView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD43C200DDFD500F6C523 /* LBCommentListsView.m */; };
+		F95FE0B22010328700F39919 /* LBBurstingWithPopularityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FE0B02010328700F39919 /* LBBurstingWithPopularityTableViewCell.m */; };
+		F95FE0B32010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95FE0B12010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib */; };
+		F95FE0B5201032DE00F39919 /* LBEat_ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95FE0B4201032DE00F39919 /* LBEat_ActivityViewController.xib */; };
 		F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9633D7E200C3E00001B545A /* Mine.xcassets */; };
 		F9633D82200C42C2001B545A /* LBMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9633D81200C42C2001B545A /* LBMineHeaderView.m */; };
 		F9633D84200C42D3001B545A /* LBMineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9633D83200C42D3001B545A /* LBMineHeaderView.xib */; };
@@ -265,7 +267,6 @@
 /* Begin PBXFileReference section */
 		343311FE7A0113A0A6DDC8C3 /* Pods-excellentPurchase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.release.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.release.xcconfig"; sourceTree = "<group>"; };
 		4A0B13E72010301F00AC3334 /* GLMine_TeamController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_TeamController.xib; sourceTree = "<group>"; };
-		4A0B13E92010305200AC3334 /* LBBurstingWithPopularityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityTableViewCell.xib; sourceTree = "<group>"; };
 		4A0B13EB201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityCollectionViewCell.xib; sourceTree = "<group>"; };
 		4A0B13ED201030EC00AC3334 /* GLNearby_classifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_classifyCell.xib; sourceTree = "<group>"; };
 		4A79EDCA200EE469001F28D1 /* GLMine_TeamController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_TeamController.h; sourceTree = "<group>"; };
@@ -498,6 +499,10 @@
 		F95FD434200DC2C300F6C523 /* ThrowLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThrowLineTool.m; sourceTree = "<group>"; };
 		F95FD43B200DDFD500F6C523 /* LBCommentListsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBCommentListsView.h; sourceTree = "<group>"; };
 		F95FD43C200DDFD500F6C523 /* LBCommentListsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBCommentListsView.m; sourceTree = "<group>"; };
+		F95FE0AF2010328700F39919 /* LBBurstingWithPopularityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBurstingWithPopularityTableViewCell.h; sourceTree = "<group>"; };
+		F95FE0B02010328700F39919 /* LBBurstingWithPopularityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBurstingWithPopularityTableViewCell.m; sourceTree = "<group>"; };
+		F95FE0B12010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBurstingWithPopularityTableViewCell.xib; sourceTree = "<group>"; };
+		F95FE0B4201032DE00F39919 /* LBEat_ActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_ActivityViewController.xib; sourceTree = "<group>"; };
 		F9633D7E200C3E00001B545A /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		F9633D80200C42C2001B545A /* LBMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineHeaderView.h; sourceTree = "<group>"; };
 		F9633D81200C42C2001B545A /* LBMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineHeaderView.m; sourceTree = "<group>"; };
@@ -631,15 +636,12 @@
 		F97E6047200EEBD400C9C4E7 /* GLIntegralHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIntegralHeaderView.m; sourceTree = "<group>"; };
 		F97E604A200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBurstingWithPopularityCollectionViewCell.m; sourceTree = "<group>"; };
 		F97E604B200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBurstingWithPopularityCollectionViewCell.h; sourceTree = "<group>"; };
-		F97E604F200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBurstingWithPopularityTableViewCell.h; sourceTree = "<group>"; };
-		F97E6050200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBurstingWithPopularityTableViewCell.m; sourceTree = "<group>"; };
 		F97E6055200EF18800C9C4E7 /* GLNearby_classifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_classifyCell.h; sourceTree = "<group>"; };
 		F97E6056200EF18900C9C4E7 /* GLNearby_classifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_classifyCell.m; sourceTree = "<group>"; };
 		F97E605A200EF1DB00C9C4E7 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		F97E605B200EF1DB00C9C4E7 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		F97E6061200F1D4500C9C4E7 /* LBEat_ActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_ActivityViewController.h; sourceTree = "<group>"; };
 		F97E6062200F1D4500C9C4E7 /* LBEat_ActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_ActivityViewController.m; sourceTree = "<group>"; };
-		F97E6063200F1D4500C9C4E7 /* LBEat_ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_ActivityViewController.xib; sourceTree = "<group>"; };
 		F97E6066200F1F2900C9C4E7 /* LBEat_ActivityFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_ActivityFooterView.h; sourceTree = "<group>"; };
 		F97E6067200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_ActivityFooterView.m; sourceTree = "<group>"; };
 		F97E6069200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_Activity_TgasTableViewCell.h; sourceTree = "<group>"; };
@@ -1893,9 +1895,9 @@
 				F97E604B200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.h */,
 				F97E604A200EEE5F00C9C4E7 /* LBBurstingWithPopularityCollectionViewCell.m */,
 				4A0B13EB201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib */,
-				F97E604F200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.h */,
-				F97E6050200EF08A00C9C4E7 /* LBBurstingWithPopularityTableViewCell.m */,
-				4A0B13E92010305200AC3334 /* LBBurstingWithPopularityTableViewCell.xib */,
+				F95FE0AF2010328700F39919 /* LBBurstingWithPopularityTableViewCell.h */,
+				F95FE0B02010328700F39919 /* LBBurstingWithPopularityTableViewCell.m */,
+				F95FE0B12010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib */,
 				F97E6055200EF18800C9C4E7 /* GLNearby_classifyCell.h */,
 				F97E6056200EF18900C9C4E7 /* GLNearby_classifyCell.m */,
 				4A0B13ED201030EC00AC3334 /* GLNearby_classifyCell.xib */,
@@ -1937,7 +1939,7 @@
 			children = (
 				F97E6061200F1D4500C9C4E7 /* LBEat_ActivityViewController.h */,
 				F97E6062200F1D4500C9C4E7 /* LBEat_ActivityViewController.m */,
-				F97E6063200F1D4500C9C4E7 /* LBEat_ActivityViewController.xib */,
+				F95FE0B4201032DE00F39919 /* LBEat_ActivityViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2076,6 +2078,7 @@
 				F9712C8B200460040015037A /* Assets.xcassets in Resources */,
 				F95073022004A9590026D28F /* LBNearby_classifyItemView.xib in Resources */,
 				F95072F6200493050026D28F /* LBTmallViewController.xib in Resources */,
+				F95FE0B5201032DE00F39919 /* LBEat_ActivityViewController.xib in Resources */,
 				4A0B13EC201030DA00AC3334 /* LBBurstingWithPopularityCollectionViewCell.xib in Resources */,
 				F9633D92200C7061001B545A /* LBMineDataCollectionViewCell.xib in Resources */,
 				F9713769200608CA0033F38B /* LBAccountManagementViewController.xib in Resources */,
@@ -2144,8 +2147,8 @@
 				F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */,
 				F95B535E200CD16200A81954 /* LBCommentListsTableViewCell.xib in Resources */,
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
-				4A0B13EA2010305300AC3334 /* LBBurstingWithPopularityTableViewCell.xib in Resources */,
 				4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */,
+				F95FE0B32010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib in Resources */,
 				F95072DE200492840026D28F /* LBEatAndDrinkViewController.xib in Resources */,
 				F9340A0E2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.xib in Resources */,
 				4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */,
@@ -2289,6 +2292,7 @@
 				F95B5348200CAA0000A81954 /* PopoverViewCell.m in Sources */,
 				F968C32320073B2500971F11 /* LBDonationViewController.m in Sources */,
 				F95B5353200CBB3200A81954 /* LBTaoTaoProductInofoTableViewCell.m in Sources */,
+				F95FE0B22010328700F39919 /* LBBurstingWithPopularityTableViewCell.m in Sources */,
 				F95B532E200CA23E00A81954 /* LBProductDetailViewController.m in Sources */,
 				F955D15820089CDB001EEC81 /* LBResetBindBankTableViewCell.m in Sources */,
 				F968C35D200765BE00971F11 /* LBSendRedPackRecoderBasevc.m in Sources */,
