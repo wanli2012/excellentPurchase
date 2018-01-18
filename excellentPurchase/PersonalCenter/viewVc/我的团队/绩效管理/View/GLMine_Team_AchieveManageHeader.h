@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GLMine_Team_AchieveManageHeaderDelegate <NSObject>
+
+- (void)setAchieveMent;
+
+@end
+
 @interface GLMine_Team_AchieveManageHeader : UIView
+
+@property (nonatomic, weak)id <GLMine_Team_AchieveManageHeaderDelegate> delegate;
 
 @end

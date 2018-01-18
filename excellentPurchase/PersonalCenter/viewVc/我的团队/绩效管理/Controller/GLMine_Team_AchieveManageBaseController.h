@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define isIPhoneX kScreenH==812
-#define kScrollViewBeginTopInset 300
+//#define kGLMine_TeamScrollViewBeginTopInset 300
 
 UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewDidScrollNSNotification;
 UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification;
@@ -26,5 +26,7 @@ UIKIT_EXTERN NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSN
 @property (nonatomic, assign) BOOL refreshState;
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, assign)NSInteger scrollViewBeginTopInset;
 
 @end

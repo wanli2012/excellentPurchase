@@ -50,7 +50,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pk7-eh-dkE">
                                         <rect key="frame" x="186.5" y="0.0" width="1" height="57.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="8HJ-cU-Wbf"/>
                                         </constraints>
@@ -70,18 +70,40 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当月布置绩效" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WP4-1H-p2r">
+                                        <rect key="frame" x="188" y="0.0" width="186.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="r8s-e2-VBS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="100000.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF1-uN-Kkt">
+                                        <rect key="frame" x="188" y="20" width="186.5" height="37.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Pk7-eh-dkE" firstAttribute="centerX" secondItem="ik6-pX-c66" secondAttribute="centerX" id="1zx-C2-cJG"/>
                                     <constraint firstItem="Pk7-eh-dkE" firstAttribute="leading" secondItem="5WI-Xw-821" secondAttribute="trailing" id="55j-kt-KZj"/>
                                     <constraint firstItem="Pk7-eh-dkE" firstAttribute="top" secondItem="ik6-pX-c66" secondAttribute="top" id="72X-yo-fd2"/>
+                                    <constraint firstAttribute="trailing" secondItem="wF1-uN-Kkt" secondAttribute="trailing" id="9hB-fg-TCu"/>
                                     <constraint firstItem="Pk7-eh-dkE" firstAttribute="leading" secondItem="pFo-qV-Nw9" secondAttribute="trailing" id="BVM-fO-iE6"/>
+                                    <constraint firstItem="wF1-uN-Kkt" firstAttribute="top" secondItem="WP4-1H-p2r" secondAttribute="bottom" id="FIm-ox-mQt"/>
+                                    <constraint firstItem="WP4-1H-p2r" firstAttribute="leading" secondItem="Pk7-eh-dkE" secondAttribute="trailing" id="Fco-El-mQf"/>
+                                    <constraint firstAttribute="trailing" secondItem="WP4-1H-p2r" secondAttribute="trailing" id="Li0-e2-lEg"/>
                                     <constraint firstItem="pFo-qV-Nw9" firstAttribute="top" secondItem="5WI-Xw-821" secondAttribute="bottom" id="XFa-o4-wDw"/>
+                                    <constraint firstItem="wF1-uN-Kkt" firstAttribute="leading" secondItem="Pk7-eh-dkE" secondAttribute="trailing" id="Yte-Wl-YRt"/>
+                                    <constraint firstAttribute="bottom" secondItem="wF1-uN-Kkt" secondAttribute="bottom" id="amY-5M-sJG"/>
                                     <constraint firstItem="pFo-qV-Nw9" firstAttribute="leading" secondItem="ik6-pX-c66" secondAttribute="leading" id="njh-Zy-qAC"/>
                                     <constraint firstItem="5WI-Xw-821" firstAttribute="top" secondItem="ik6-pX-c66" secondAttribute="top" id="npz-AN-KNm"/>
                                     <constraint firstAttribute="bottom" secondItem="Pk7-eh-dkE" secondAttribute="bottom" id="oKh-Wj-EEj"/>
                                     <constraint firstItem="5WI-Xw-821" firstAttribute="leading" secondItem="ik6-pX-c66" secondAttribute="leading" id="yHZ-zm-DdZ"/>
+                                    <constraint firstItem="WP4-1H-p2r" firstAttribute="top" secondItem="ik6-pX-c66" secondAttribute="top" id="yyZ-Cg-AkZ"/>
                                     <constraint firstAttribute="bottom" secondItem="pFo-qV-Nw9" secondAttribute="bottom" id="zek-hj-Ekp"/>
                                 </constraints>
                             </view>
@@ -92,6 +114,35 @@
                                     <constraint firstAttribute="height" constant="10" id="lyH-Th-SPh"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9W-4C-AJf">
+                                <rect key="frame" x="285" y="15" width="80" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置布置绩效" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCj-JH-Yt4">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99798554182052612" green="0.40301090478897095" blue="0.40229737758636475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8Du-kO-d2b"/>
+                                    <constraint firstAttribute="width" constant="80" id="PNH-QP-LSq"/>
+                                    <constraint firstItem="NCj-JH-Yt4" firstAttribute="top" secondItem="v9W-4C-AJf" secondAttribute="top" id="aaM-PF-nrG"/>
+                                    <constraint firstAttribute="trailing" secondItem="NCj-JH-Yt4" secondAttribute="trailing" id="fN1-dk-a5O"/>
+                                    <constraint firstAttribute="bottom" secondItem="NCj-JH-Yt4" secondAttribute="bottom" id="hOj-WJ-GsR"/>
+                                    <constraint firstItem="NCj-JH-Yt4" firstAttribute="leading" secondItem="v9W-4C-AJf" secondAttribute="leading" id="yf9-Er-XAc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BHh-d5-E2d" appends="YES" id="CCe-rp-Sji"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -99,9 +150,11 @@
                             <constraint firstItem="uKd-Aw-gMs" firstAttribute="top" secondItem="ik6-pX-c66" secondAttribute="bottom" id="0qE-Ba-TOo"/>
                             <constraint firstAttribute="trailing" secondItem="ik6-pX-c66" secondAttribute="trailing" id="1JX-A4-Pc0"/>
                             <constraint firstAttribute="trailing" secondItem="uKd-Aw-gMs" secondAttribute="trailing" id="Fpk-G0-sAh"/>
+                            <constraint firstAttribute="trailing" secondItem="v9W-4C-AJf" secondAttribute="trailing" constant="10" id="L9M-PV-Goj"/>
                             <constraint firstItem="ik6-pX-c66" firstAttribute="leading" secondItem="99f-PA-a8N" secondAttribute="leading" id="Ndq-nz-gZX"/>
                             <constraint firstItem="ik6-pX-c66" firstAttribute="top" secondItem="BxN-rJ-Gi4" secondAttribute="bottom" constant="25" id="RVD-fY-FfP"/>
                             <constraint firstItem="uKd-Aw-gMs" firstAttribute="leading" secondItem="99f-PA-a8N" secondAttribute="leading" id="RbR-6s-3Br"/>
+                            <constraint firstItem="v9W-4C-AJf" firstAttribute="top" secondItem="B37-Hk-eWs" secondAttribute="top" id="dYK-L5-PSW"/>
                             <constraint firstItem="BxN-rJ-Gi4" firstAttribute="centerX" secondItem="B37-Hk-eWs" secondAttribute="centerX" id="iLJ-Bp-9QW"/>
                             <constraint firstItem="B37-Hk-eWs" firstAttribute="centerX" secondItem="99f-PA-a8N" secondAttribute="centerX" id="iSp-sT-1ku"/>
                             <constraint firstAttribute="bottom" secondItem="uKd-Aw-gMs" secondAttribute="bottom" id="jSA-v5-wTz"/>
@@ -120,7 +173,8 @@
                 <constraint firstItem="pMN-K3-7AC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gtB-3R-eWd"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="34.5" y="54.5"/>
+            <point key="canvasLocation" x="55" y="44"/>
         </view>
+        <tapGestureRecognizer id="BHh-d5-E2d" userLabel="设置布置绩效"/>
     </objects>
 </document>

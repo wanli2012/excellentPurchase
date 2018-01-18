@@ -7,18 +7,18 @@
 //
 
 #import "GLMine_Team_AchievementManageController.h"
-//#import "LBSendRedPackHeaderV.h"
 #import "GLMine_Team_AchieveManageHeader.h"
-//#import "LBSendRedPackMenu.h"
 #import "GLMine_Team_AchieveDoneController.h"
 #import "GLMine_Team_AchieveNotDoneController.h"
-#import "LBSendRedPackRecoderBasevc.h"
 #import "SPPageMenu.h"
+
+#import "GLMine_Team_MonthAchieveManageController.h"//当月绩效设置
 
 #define kHeaderViewH 240  //headerview的高度
 #define kPageMenuH 60 //菜单的高度
+#define kGLMine_TeamScrollViewBeginTopInset 300 //菜单的高度
 
-@interface GLMine_Team_AchievementManageController ()<UIScrollViewDelegate,SPPageMenuDelegate>
+@interface GLMine_Team_AchievementManageController ()<UIScrollViewDelegate,SPPageMenuDelegate,GLMine_Team_AchieveManageHeaderDelegate>
 
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -57,15 +57,30 @@
     // 添加悬浮菜单
     [self.view addSubview:self.pageMenu];
     
-    // 添加4个子控制器
-    [self addChildViewController:[[GLMine_Team_AchieveDoneController alloc] init]];
-    [self addChildViewController:[[GLMine_Team_AchieveNotDoneController alloc] init]];
+    // 添加子控制器
+    GLMine_Team_AchieveDoneController *doneVC = [[GLMine_Team_AchieveDoneController alloc] init];
+    GLMine_Team_AchieveNotDoneController *notDoneVC = [[GLMine_Team_AchieveNotDoneController alloc] init];
+    
+    doneVC.scrollViewBeginTopInset = kGLMine_TeamScrollViewBeginTopInset;
+    notDoneVC.scrollViewBeginTopInset = kGLMine_TeamScrollViewBeginTopInset;
+    
+    [self addChildViewController:doneVC];
+    [self addChildViewController:notDoneVC];
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
     
     // 监听子控制器发出的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subScrollViewDidScroll:) name:GLMine_Team_ChildScrollViewDidScrollNSNotification  object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshState:) name:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil];
+    
+}
+
+#pragma mark - 设置布置绩效
+- (void)setAchieveMent{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_MonthAchieveManageController *setVC = [[GLMine_Team_MonthAchieveManageController alloc] init];
+    [self.navigationController pushViewController:setVC animated:YES];
     
 }
 
@@ -81,17 +96,23 @@
     CGFloat distanceY;
     
     // 取出的scrollingScrollView并非是唯一的，当有多个子控制器上的scrollView同时滑动时都会发出通知来到这个方法，所以要过滤
-    LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
-    
+    GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+
+//    // 如果已经加载过，就不再加载
+//    if ([baseVc isViewLoaded]) return;
+//
+//    // 来到这里必然是第一次加载控制器的view，这个属性是为了防止下面的偏移量的改变导致走scrollViewDidScroll
+//    baseVc.isFirstViewLoaded = YES;
+
     if (scrollingScrollView == baseVc.scrollView && baseVc.isFirstViewLoaded == NO) {
         
         // 让悬浮菜单跟随scrollView滑动
         CGRect pageMenuFrame = self.pageMenu.frame;
         if (pageMenuFrame.origin.y >= SafeAreaTopHeight) {
             // 往上移
-            if (offsetDifference > 0 && scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset > 0) {
+            if (offsetDifference > 0 && scrollingScrollView.contentOffset.y+kGLMine_TeamScrollViewBeginTopInset > 0) {
                 
-                if (((scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset+self.pageMenu.frame.origin.y)>=kHeaderViewH) || scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset < 0) {
+                if (((scrollingScrollView.contentOffset.y+kGLMine_TeamScrollViewBeginTopInset+self.pageMenu.frame.origin.y)>=kHeaderViewH) || scrollingScrollView.contentOffset.y+kGLMine_TeamScrollViewBeginTopInset < 0) {
                     // 悬浮菜单的y值等于当前正在滑动且显示在屏幕范围内的的scrollView的contentOffset.y的改变量(这是最难的点)
                     pageMenuFrame.origin.y += -offsetDifference;
                     if (pageMenuFrame.origin.y <= SafeAreaTopHeight) {
@@ -99,8 +120,8 @@
                     }
                 }
             } else { // 往下移
-                if ((scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset+self.pageMenu.frame.origin.y)<kHeaderViewH+ SafeAreaTopHeight) {
-                    pageMenuFrame.origin.y = -scrollingScrollView.contentOffset.y-kScrollViewBeginTopInset+kHeaderViewH+ SafeAreaTopHeight;
+                if ((scrollingScrollView.contentOffset.y+kGLMine_TeamScrollViewBeginTopInset+self.pageMenu.frame.origin.y)<kHeaderViewH+ SafeAreaTopHeight) {
+                    pageMenuFrame.origin.y = -scrollingScrollView.contentOffset.y-kGLMine_TeamScrollViewBeginTopInset+kHeaderViewH+ SafeAreaTopHeight;
                     if (pageMenuFrame.origin.y >= kHeaderViewH + SafeAreaTopHeight) {
                         pageMenuFrame.origin.y = kHeaderViewH + SafeAreaTopHeight;
                     }
@@ -126,7 +147,7 @@
 }
 
 - (void)followScrollingScrollView:(UIScrollView *)scrollingScrollView distanceY:(CGFloat)distanceY{
-    LBSendRedPackRecoderBasevc *baseVc = nil;
+    GLMine_Team_AchieveManageBaseController *baseVc = nil;
     for (int i = 0; i < self.childViewControllers.count; i++) {
         baseVc = self.childViewControllers[i];
         if (baseVc.scrollView == scrollingScrollView) {
@@ -147,10 +168,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
         if (baseVc.scrollView.contentSize.height < UIScreenHeight && [baseVc isViewLoaded]) {
-            [baseVc.scrollView setContentOffset:CGPointMake(0, -kScrollViewBeginTopInset) animated:YES];
+            [baseVc.scrollView setContentOffset:CGPointMake(0, -kGLMine_TeamScrollViewBeginTopInset) animated:YES];
         }
     });
 }
@@ -160,10 +183,10 @@
  */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
-    LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (baseVc.scrollView.contentSize.height < UIScreenHeight && [baseVc isViewLoaded]) {
-            [baseVc.scrollView setContentOffset:CGPointMake(0, -kScrollViewBeginTopInset) animated:YES];
+            [baseVc.scrollView setContentOffset:CGPointMake(0, -kGLMine_TeamScrollViewBeginTopInset) animated:YES];
         }
     });
 }
@@ -178,7 +201,7 @@
         [self.scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width * toIndex, 0) animated:YES];
     }
 
-    LBSendRedPackRecoderBasevc *targetViewController = self.childViewControllers[toIndex];
+    GLMine_Team_AchieveManageBaseController *targetViewController = self.childViewControllers[toIndex];
     // 如果已经加载过，就不再加载
     if ([targetViewController isViewLoaded]) return;
 
@@ -188,9 +211,9 @@
     targetViewController.view.frame = CGRectMake(UIScreenWidth*toIndex, 0, UIScreenWidth, UIScreenHeight);
     UIScrollView *s = targetViewController.scrollView;
     CGPoint contentOffset = s.contentOffset;
-    contentOffset.y = -self.headerView.frame.origin.y-kScrollViewBeginTopInset;
-    if (contentOffset.y + kScrollViewBeginTopInset >= kHeaderViewH) {
-        contentOffset.y = kHeaderViewH-kScrollViewBeginTopInset;
+    contentOffset.y = -self.headerView.frame.origin.y-kGLMine_TeamScrollViewBeginTopInset;
+    if (contentOffset.y + kGLMine_TeamScrollViewBeginTopInset >= kHeaderViewH) {
+        contentOffset.y = kHeaderViewH-kGLMine_TeamScrollViewBeginTopInset;
     }
     s.contentOffset = contentOffset;
     [self.scrollView addSubview:targetViewController.view];
@@ -205,11 +228,11 @@
         CGFloat distanceY = currenrPoint.y - self.lastPoint.y;
         self.lastPoint = currenrPoint;
 
-        LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+        GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
         CGPoint offset = baseVc.scrollView.contentOffset;
         offset.y += -distanceY;
-        if (offset.y <= -kScrollViewBeginTopInset) {
-            offset.y = -kScrollViewBeginTopInset;
+        if (offset.y <= -kGLMine_TeamScrollViewBeginTopInset) {
+            offset.y = -kGLMine_TeamScrollViewBeginTopInset;
         }
         baseVc.scrollView.contentOffset = offset;
     } else {
@@ -252,7 +275,7 @@
     
     if (!_headerView) {
         _headerView = [[GLMine_Team_AchieveManageHeader alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, kHeaderViewH)];
-        
+        _headerView.delegate = self;
     }
     return _headerView;
 }

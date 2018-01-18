@@ -22,7 +22,7 @@ NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification =
     [super viewDidLoad];
     
     adjustsScrollViewInsets_NO(self.tableView, self);
-    //self.rowCount = 20;
+//    self.rowCount = 20;
     
     [self.view addSubview:self.tableView];
     self.scrollView = self.tableView;
@@ -66,8 +66,8 @@ NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification =
     
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight-SafeAreaBottomHeight-SafeAreaTopHeight) style:UITableViewStylePlain];
-        _tableView.contentInset = UIEdgeInsetsMake(kScrollViewBeginTopInset, 0, 0, 0);
-        _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kScrollViewBeginTopInset, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(self.scrollViewBeginTopInset, 0, 0, 0);
+        _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.scrollViewBeginTopInset, 0, 0, 0);
         _tableView.tableFooterView = [UIView new];
         
     }

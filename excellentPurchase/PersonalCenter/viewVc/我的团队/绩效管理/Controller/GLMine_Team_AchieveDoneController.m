@@ -21,6 +21,7 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     adjustsScrollViewInsets_NO(self.scrollView, self);
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
