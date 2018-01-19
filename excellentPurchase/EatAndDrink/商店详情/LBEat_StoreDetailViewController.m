@@ -13,12 +13,13 @@
 #import "LBEat_storeDetailInfodiscountTableViewCell.h"
 #import "LBEat_storeDetailInfomationHeaderView.h"
 #import "LBEat_storeDetailInfomationTableViewCell.h"
+#import "LBEat_StoreCommentsViewController.h"
 
 static NSString *eat_storeDetailInfodiscountTableViewCell = @"LBEat_storeDetailInfodiscountTableViewCell";
 static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfoOtherTableViewCell";
 static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInfomationTableViewCell";
 
-@interface LBEat_StoreDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBEat_StoreDetailViewController ()<UITableViewDelegate,UITableViewDataSource,LBEat_storeDetailInfomationdelegete>
 
 @property (strong , nonatomic)UIButton *collectionButton;
 @property (strong , nonatomic)UIButton *messageButton;
@@ -50,6 +51,16 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
     [self.tableview registerNib:[UINib nibWithNibName:eat_storeDetailInfoOtherTableViewCell bundle:nil] forCellReuseIdentifier:eat_storeDetailInfoOtherTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:eat_storeDetailInfomationTableViewCell bundle:nil] forCellReuseIdentifier:eat_storeDetailInfomationTableViewCell];
 
+}
+
+/**
+ 点击评论
+ */
+-(void)tapgesturecomments{
+    self.hidesBottomBarWhenPushed = YES;
+    LBEat_StoreCommentsViewController *vc = [[LBEat_StoreCommentsViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
@@ -90,6 +101,7 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
     if (indexPath.section == 0) {
         LBEat_storeDetailInfomationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:eat_storeDetailInfomationTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
         return cell;
     }else if (indexPath.section == 1){
         LBEat_storeDetailInfodiscountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:eat_storeDetailInfodiscountTableViewCell forIndexPath:indexPath];

@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *starView;
 @property (strong, nonatomic) XHStarRateView *starRateView;
+@property (weak, nonatomic) IBOutlet UIView *commentView;//评论view
 
 @end
 
@@ -28,8 +29,12 @@
     _starRateView.currentScore = 3.0;
     [self.starView addSubview:_starRateView];
     
+    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesturecomments)];
+    [self.commentView addGestureRecognizer:tapgesture];
 }
 
-
+-(void)tapgesturecomments{
+    [self.delegate tapgesturecomments];
+}
 
 @end

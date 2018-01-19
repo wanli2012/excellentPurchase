@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LBEat_storeDetailInfomationdelegete<NSObject>
+
+-(void)tapgesturecomments;
+
+@end
+
 @interface LBEat_storeDetailInfomationTableViewCell : UITableViewCell
+
+@property (nonatomic, assign)id<LBEat_storeDetailInfomationdelegete> delegate;
 
 @end
