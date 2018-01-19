@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KjG-6c-q6K">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部分类" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2T-PY-2Kg">
+                            <rect key="frame" x="158.5" y="21" width="57.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bK-Nl-kO7">
+                            <rect key="frame" x="325" y="9" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="dvQ-8R-5oJ"/>
+                                <constraint firstAttribute="width" constant="40" id="hzx-GZ-leM"/>
+                            </constraints>
+                            <state key="normal" image="eat-classify-cancel"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="8bK-Nl-kO7" secondAttribute="trailing" constant="10" id="FOQ-vz-TEQ"/>
+                        <constraint firstItem="D2T-PY-2Kg" firstAttribute="centerX" secondItem="KjG-6c-q6K" secondAttribute="centerX" id="IU6-7j-B4H"/>
+                        <constraint firstItem="8bK-Nl-kO7" firstAttribute="centerY" secondItem="KjG-6c-q6K" secondAttribute="centerY" id="PFj-wF-QRS"/>
+                        <constraint firstItem="D2T-PY-2Kg" firstAttribute="centerY" secondItem="KjG-6c-q6K" secondAttribute="centerY" id="nYb-gE-9WI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KjG-6c-q6K" secondAttribute="trailing" id="0wH-gn-yag"/>
+                <constraint firstItem="KjG-6c-q6K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1XP-9M-39q"/>
+                <constraint firstAttribute="bottom" secondItem="KjG-6c-q6K" secondAttribute="bottom" constant="1" id="Zuc-JC-o7M"/>
+                <constraint firstItem="KjG-6c-q6K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bpI-BP-jqd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="25.5" y="52"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="eat-classify-cancel" width="15" height="15"/>
+    </resources>
+</document>

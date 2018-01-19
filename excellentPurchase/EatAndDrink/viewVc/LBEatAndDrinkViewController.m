@@ -10,6 +10,8 @@
 #import "SPPageMenu.h"
 #import "LBEat_CateViewController.h"
 #import "LBEat_ActivityViewController.h"
+#import "LBEat_WholeClassifyView.h"
+#import "LBEat_StoreClassifyViewController.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -112,7 +114,15 @@
 }
 #pragma mark - functionbutton点击的代理方法
 - (void)pageMenu:(SPPageMenu *)pageMenu functionButtonClicked:(UIButton *)functionButton {
-  
+    
+    __weak typeof(self) weaks = self;
+    [LBEat_WholeClassifyView showWholeClassifyViewBlock:^(NSInteger section) {
+        weaks.hidesBottomBarWhenPushed = YES;
+        LBEat_StoreClassifyViewController *vc = [[LBEat_StoreClassifyViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        weaks.hidesBottomBarWhenPushed = NO;
+    }];
+    
 }
 
 -(NSArray*)menuArr{

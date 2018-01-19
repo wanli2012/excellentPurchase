@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snA-5z-7Zh">
-                        <rect key="frame" x="0.0" y="0.0" width="124" height="42.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="114" height="42.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="领取优惠卷立减20元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2w-bl-giH">
-                                <rect key="frame" x="10" y="0.0" width="104" height="42.5"/>
+                                <rect key="frame" x="5" y="0.0" width="104" height="42.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="xg0-nR-c7p"/>
                                 </constraints>
@@ -35,14 +35,9 @@
                         <constraints>
                             <constraint firstItem="O2w-bl-giH" firstAttribute="top" secondItem="snA-5z-7Zh" secondAttribute="top" id="Aeg-m3-U25"/>
                             <constraint firstAttribute="bottom" secondItem="O2w-bl-giH" secondAttribute="bottom" id="D5T-qe-Eeq"/>
-                            <constraint firstAttribute="trailing" secondItem="O2w-bl-giH" secondAttribute="trailing" constant="10" id="UIQ-m6-15L"/>
-                            <constraint firstItem="O2w-bl-giH" firstAttribute="leading" secondItem="snA-5z-7Zh" secondAttribute="leading" constant="10" id="vjJ-H4-y8t"/>
+                            <constraint firstAttribute="trailing" secondItem="O2w-bl-giH" secondAttribute="trailing" constant="5" id="UIQ-m6-15L"/>
+                            <constraint firstItem="O2w-bl-giH" firstAttribute="leading" secondItem="snA-5z-7Zh" secondAttribute="leading" constant="5" id="vjJ-H4-y8t"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="3"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
