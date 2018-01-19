@@ -11,16 +11,13 @@
 
 @interface GLMine_Team_HistoryDateChooseView()<FinishPickView>
 {
-    UIButton *btn;
     NSString *currentDate;
     UIView *_topView;
 }
 
-///内容视图
-//@property (strong, nonatomic)UIView *containView;
 ///选择回调
 @property (nonatomic, copy) void (^dateBlock)(NSString *date);
-//@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 
 @end
 
@@ -35,8 +32,6 @@
     
     GLMine_Team_HistoryDateChooseView *_view = [[GLMine_Team_HistoryDateChooseView alloc] init];
     _view.dateBlock = dateBlock;
-    
-//    [_view setPicker];//获取数据
 
     [_view showView];//展示视图
     
@@ -75,23 +70,27 @@
         [_topView addSubview:selectView];
         
         UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        leftBtn.frame = CGRectMake(10, 0, 50, selectViewHeight);
+        leftBtn.frame = CGRectMake(10, 0, 80, selectViewHeight);
         [leftBtn setTitle:@"取消" forState:UIControlStateNormal];
-        [leftBtn setTitleColor:[[UIColor alloc] initWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0] forState:UIControlStateNormal];
+        leftBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [leftBtn setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
+        leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [leftBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [selectView addSubview:leftBtn];
         
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightBtn.frame = CGRectMake(self.frame.size.width-60, 0, 50, selectViewHeight);
+        rightBtn.frame = CGRectMake(self.frame.size.width-80, 0, 80, selectViewHeight);
         [rightBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [rightBtn setTitleColor:[[UIColor alloc] initWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0] forState:UIControlStateNormal];
+        rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        rightBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [rightBtn setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
         [rightBtn addTarget:self action:@selector(okBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [selectView addSubview:rightBtn];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 50, 0, 100, selectViewHeight)];
         label.text = @"历史记录";
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor darkGrayColor];
+        label.textColor = LBHexadecimalColor(0x333333);
         label.font = [UIFont systemFontOfSize:16];
         [selectView addSubview:label];
         
@@ -105,6 +104,9 @@
     [self addSubview:_topView];
 }
 
+/**
+ 展示该view
+ */
 - (void)showView {
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
@@ -118,6 +120,9 @@
     }];
 }
 
+/**
+ 确定按钮事件
+ */
 -(void)okBtnClick{
 
     [self dismiss];
@@ -127,31 +132,28 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    [formatter setDateFormat:@"YYYY-MM"];
+    [formatter setDateFormat:@"YYYY年MM月"];
     NSString *DateTime = [formatter stringFromDate:date];
     //判断 进来时currentDate是否==nil 如果是空 赋值当前时间 如果不是就拿从currentDate获取到的值进行赋值
-    if (currentDate==nil) {
-        [btn setTitle:DateTime forState:UIControlStateNormal];
+    if (currentDate == nil) {
+        self.dateBlock(DateTime);
+        
     }else{
-        [btn setTitle:currentDate forState:UIControlStateNormal];
+        self.dateBlock(currentDate);
+
     }
     
 }
-
+/**
+ 取消按钮事件
+ */
 -(void)cancleBtnClick{
     
     [self dismiss];
 }
-
-#pragma mark - FinishPickView
-- (void)didFinishPickView:(NSDate *)date
-{
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy-MM";
-    NSString *dateString = [fmt stringFromDate:date];
-    // NSLog(@"%@", dateString);
-    currentDate = dateString;
-}
+/**
+ view消失事件
+ */
 - (void)dismiss{
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -162,55 +164,16 @@
     }];
     
 }
+#pragma mark - FinishPickView
+- (void)didFinishPickView:(NSDate *)date
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy年MM月";
+    NSString *dateString = [fmt stringFromDate:date];
+    
+    currentDate = dateString;
+}
 
-/**
- 设置picker属性
- */
-//- (void)setPicker{
-//
-////    UIDatePicker
-////    self.datePicker;
-//
-//    [self.datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
-//}
-//
-//- (void)dateChanged:(UIDatePicker *)datePicker{
-//
-//    NSDate *date = datePicker.date;
-//
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    //设置格式：zzz表示时区
-//    [dateFormatter setDateFormat:@"yyyy-MM"];
-//    //NSDate转NSString
-//    NSString *dateStr = [dateFormatter stringFromDate:date];
-//
-//    self.dateBlock(dateStr);
-//
-//}
-
-//
-//- (IBAction)cancel:(id)sender {
-//    [self dismiss];
-//}
-
-//- (instancetype)init{
-//    self = [super init];
-//    if (self) {
-//        self = [[NSBundle mainBundle]loadNibNamed:@"GLMine_Team_HistoryDateChooseView" owner:self options:nil].firstObject;
-//        self.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight);
-//        self.autoresizingMask = UIViewAutoresizingNone;
-//
-//
-//        [self initInyerface];
-//    }
-//    return self;
-//}
-//
-//-(void)initInyerface{
-//    [self setNeedsLayout];
-//    [self layoutIfNeeded];
-//
-//}
 
 
 @end

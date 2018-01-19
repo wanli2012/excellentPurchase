@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_Team_UploadLicenseController">
+            <connections>
+                <outlet property="imageV" destination="VdU-IK-Obl" id="NfT-ec-PQn"/>
+                <outlet property="placeHolderImageV" destination="FWa-VE-Mlt" id="7Oe-kE-myq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCv-dq-OtO">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLL-cb-M0J">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload-identity-picture" translatesAutoresizingMaskIntoConstraints="NO" id="FWa-VE-Mlt">
+                                    <rect key="frame" x="166" y="118" width="42" height="37"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="42" id="QDf-m5-jwl"/>
+                                        <constraint firstAttribute="height" constant="37" id="mPq-W7-4yJ"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VdU-IK-Obl">
+                                    <rect key="frame" x="60" y="50" width="254" height="172.5"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="VdU-IK-Obl" secondAttribute="height" multiplier="500:340" id="QqE-k0-gyc"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderUIWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="kVW-GX-KW3" appends="YES" id="prw-UD-uc7"/>
+                                    </connections>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击拍照上传" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIU-6D-CSF">
+                                    <rect key="frame" x="144" y="232.5" width="86" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="VdU-IK-Obl" firstAttribute="centerX" secondItem="lLL-cb-M0J" secondAttribute="centerX" id="Baj-ql-l1y"/>
+                                <constraint firstItem="FWa-VE-Mlt" firstAttribute="centerY" secondItem="VdU-IK-Obl" secondAttribute="centerY" id="V3w-RX-llM"/>
+                                <constraint firstItem="VdU-IK-Obl" firstAttribute="leading" secondItem="lLL-cb-M0J" secondAttribute="leading" constant="60" id="Wcv-rf-HnY"/>
+                                <constraint firstItem="IIU-6D-CSF" firstAttribute="top" secondItem="VdU-IK-Obl" secondAttribute="bottom" constant="10" id="a18-u5-6E6"/>
+                                <constraint firstItem="FWa-VE-Mlt" firstAttribute="centerX" secondItem="VdU-IK-Obl" secondAttribute="centerX" id="gTL-Zf-acL"/>
+                                <constraint firstItem="IIU-6D-CSF" firstAttribute="centerX" secondItem="lLL-cb-M0J" secondAttribute="centerX" id="hSK-W4-kcf"/>
+                                <constraint firstItem="VdU-IK-Obl" firstAttribute="top" secondItem="lLL-cb-M0J" secondAttribute="top" constant="50" id="m7E-IP-nfH"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="lLL-cb-M0J" secondAttribute="bottom" id="7nr-xj-lOO"/>
+                        <constraint firstItem="lLL-cb-M0J" firstAttribute="top" secondItem="yCv-dq-OtO" secondAttribute="top" id="eYS-2g-uk6"/>
+                        <constraint firstAttribute="trailing" secondItem="lLL-cb-M0J" secondAttribute="trailing" id="np6-kz-BFn"/>
+                        <constraint firstItem="lLL-cb-M0J" firstAttribute="centerY" secondItem="yCv-dq-OtO" secondAttribute="centerY" id="tDC-uO-LWG"/>
+                        <constraint firstItem="lLL-cb-M0J" firstAttribute="leading" secondItem="yCv-dq-OtO" secondAttribute="leading" id="vvR-xe-owv"/>
+                        <constraint firstItem="lLL-cb-M0J" firstAttribute="centerX" secondItem="yCv-dq-OtO" secondAttribute="centerX" id="yN1-dT-2bg"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="yCv-dq-OtO" secondAttribute="bottom" id="DID-iE-A89"/>
+                <constraint firstItem="yCv-dq-OtO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kmx-KA-AWm"/>
+                <constraint firstAttribute="trailing" secondItem="yCv-dq-OtO" secondAttribute="trailing" id="Lq2-7P-1N3"/>
+                <constraint firstItem="yCv-dq-OtO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mO9-vb-roQ"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+        <tapGestureRecognizer id="kVW-GX-KW3" userLabel="拍照颗照片选取">
+            <connections>
+                <action selector="choosePicType:" destination="-1" id="78M-Di-KNU"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="upload-identity-picture" width="42" height="37"/>
+    </resources>
+</document>

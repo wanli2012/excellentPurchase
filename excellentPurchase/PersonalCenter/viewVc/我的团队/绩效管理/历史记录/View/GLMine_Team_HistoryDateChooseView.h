@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//typedef NSDate *(^dateChooseBlock)(void);
-
 @interface GLMine_Team_HistoryDateChooseView : UIView
-
-//@property (nonatomic, copy)dateChooseBlock block;
 
 + (instancetype)showDateChooseViewWith:(void(^)(NSString *dateStr))dateBlock;
 

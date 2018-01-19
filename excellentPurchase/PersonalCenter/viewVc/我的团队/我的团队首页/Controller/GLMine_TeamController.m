@@ -10,6 +10,9 @@
 #import "GLMine_Team_TeamAchievementController.h"
 #import "GLMine_Team_AchievementManageController.h"
 #import "LBSendRedPackRecoderViewController.h"
+#import "GLMine_Team_OpenMakerController.h"
+#import "GLMine_Team_MembersController.h"
+#import "GLMine_Team_OpenSellerController.h"
 
 @interface GLMine_TeamController ()
 
@@ -59,20 +62,26 @@
 
 #pragma mark - 开通创客
 - (IBAction)openGuest:(id)sender {
-    NSLog(@"绩效管理");
+   
     self.hidesBottomBarWhenPushed = YES;
-    LBSendRedPackRecoderViewController *achieveVC = [[LBSendRedPackRecoderViewController alloc] init];
-    [self.navigationController pushViewController:achieveVC animated:YES];
+    GLMine_Team_OpenMakerController *openVC = [[GLMine_Team_OpenMakerController alloc] init];
+    [self.navigationController pushViewController:openVC animated:YES];
 }
 
 #pragma mark - 团队成员
 - (IBAction)teamMember:(id)sender {
-    NSLog(@"团队成员");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_MembersController *vc = [[GLMine_Team_MembersController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 开通商户
 - (IBAction)openBusiness:(id)sender {
-    NSLog(@"开通商户");
+
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_OpenSellerController *vc = [[GLMine_Team_OpenSellerController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
