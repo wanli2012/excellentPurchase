@@ -43,7 +43,7 @@
         model.isSelected = YES;
     }
     
-    cell.model = self.models[indexPath.row];
+    cell.model = model;
     cell.selectionStyle = 0;
     
     return cell;

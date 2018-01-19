@@ -109,6 +109,32 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IvI-uL-k3D">
+                    <rect key="frame" x="301" y="15" width="80" height="25"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置布置绩效" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdH-Mf-UCb">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.99798554179999999" green="0.40301090480000001" blue="0.40229737760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="KdH-Mf-UCb" secondAttribute="bottom" id="32V-CB-HL8"/>
+                        <constraint firstAttribute="height" constant="25" id="6Hp-Us-DCV"/>
+                        <constraint firstItem="KdH-Mf-UCb" firstAttribute="top" secondItem="IvI-uL-k3D" secondAttribute="top" id="8gc-uc-VqA"/>
+                        <constraint firstItem="KdH-Mf-UCb" firstAttribute="leading" secondItem="IvI-uL-k3D" secondAttribute="leading" id="8wA-i2-sMa"/>
+                        <constraint firstAttribute="trailing" secondItem="KdH-Mf-UCb" secondAttribute="trailing" id="Dvs-rm-CaY"/>
+                        <constraint firstAttribute="width" constant="80" id="lky-yf-1yh"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <real key="value" value="12.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -119,14 +145,19 @@
                 <constraint firstItem="NDl-ql-J5X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TRa-PG-Vra"/>
                 <constraint firstAttribute="bottom" secondItem="NDl-ql-J5X" secondAttribute="bottom" id="USj-yN-9UO"/>
                 <constraint firstItem="z7i-bA-kES" firstAttribute="top" secondItem="5NS-ic-eGB" secondAttribute="bottom" constant="25" id="XnB-eg-ePz"/>
+                <constraint firstItem="IvI-uL-k3D" firstAttribute="top" secondItem="eGp-QT-6J1" secondAttribute="top" id="aRl-DC-6aH"/>
                 <constraint firstItem="NDl-ql-J5X" firstAttribute="top" secondItem="z7i-bA-kES" secondAttribute="bottom" id="azD-op-XlV"/>
                 <constraint firstItem="eGp-QT-6J1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jrA-OU-d5H"/>
+                <constraint firstAttribute="trailing" secondItem="IvI-uL-k3D" secondAttribute="trailing" constant="10" id="rmv-eO-Ls2"/>
                 <constraint firstItem="z7i-bA-kES" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tcv-Op-DHN"/>
                 <constraint firstItem="k4e-Pt-NOR" firstAttribute="centerX" secondItem="eGp-QT-6J1" secondAttribute="centerX" id="u3y-nD-eCK"/>
                 <constraint firstItem="k4e-Pt-NOR" firstAttribute="top" secondItem="eGp-QT-6J1" secondAttribute="bottom" constant="10" id="ymz-8F-Ci0"/>
                 <constraint firstItem="5NS-ic-eGB" firstAttribute="centerX" secondItem="eGp-QT-6J1" secondAttribute="centerX" id="z8p-Jj-W3e"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="setView" destination="IvI-uL-k3D" id="Haj-hc-SF4"/>
+            </connections>
             <point key="canvasLocation" x="56.5" y="-150"/>
         </view>
     </objects>

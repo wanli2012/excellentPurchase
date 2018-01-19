@@ -18,6 +18,7 @@
 #import "SDCycleScrollView.h"
 #import "scaleHeader.h"
 #import "UIView+Extension.h"
+#import "UIButton+SetEdgeInsets.h"
 
 #endif
 

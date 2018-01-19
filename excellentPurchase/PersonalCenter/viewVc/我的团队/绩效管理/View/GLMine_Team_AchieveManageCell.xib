@@ -76,10 +76,10 @@
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jBy-0A-4NG">
-                        <rect key="frame" x="228" y="21" width="80" height="15"/>
+                        <rect key="frame" x="238" y="18.5" width="70" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高级创客" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FR-49-wKT">
-                                <rect key="frame" x="0.0" y="0.0" width="80" height="14.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="70" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -87,11 +87,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="0mj-19-vyL"/>
+                            <constraint firstAttribute="height" constant="20" id="0mj-19-vyL"/>
                             <constraint firstAttribute="trailing" secondItem="6FR-49-wKT" secondAttribute="trailing" id="I9d-8M-SlC"/>
                             <constraint firstAttribute="bottom" secondItem="6FR-49-wKT" secondAttribute="bottom" id="RUM-Iu-cdf"/>
                             <constraint firstItem="6FR-49-wKT" firstAttribute="top" secondItem="jBy-0A-4NG" secondAttribute="top" id="jpo-7e-2Ff"/>
-                            <constraint firstAttribute="width" constant="80" id="qgx-DC-jhE"/>
+                            <constraint firstAttribute="width" constant="70" id="qgx-DC-jhE"/>
                             <constraint firstItem="6FR-49-wKT" firstAttribute="leading" secondItem="jBy-0A-4NG" secondAttribute="leading" id="z2d-Xu-fBE"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

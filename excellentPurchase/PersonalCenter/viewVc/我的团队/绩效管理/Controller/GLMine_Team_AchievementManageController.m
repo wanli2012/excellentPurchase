@@ -7,32 +7,31 @@
 //
 
 #import "GLMine_Team_AchievementManageController.h"
-//#import "LBSendRedPackHeaderV.h"
 #import "GLMine_Team_AchieveManageHeader.h"
-//#import "LBSendRedPackMenu.h"
 #import "GLMine_Team_AchieveDoneController.h"
 #import "GLMine_Team_AchieveNotDoneController.h"
-#import "LBSendRedPackRecoderBasevc.h"
 #import "SPPageMenu.h"
 
-#define kHeaderViewH 240  //headerview的高度
-#define kPageMenuH 60 //菜单的高度
+#import "GLMine_Team_MonthAchieveManageController.h"//当月绩效设置
+#import "GLMine_Team_HistoryRecordController.h"//历史记录
 
-@interface GLMine_Team_AchievementManageController ()<UIScrollViewDelegate,SPPageMenuDelegate>
 
-//@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface GLMine_Team_AchievementManageController ()<UIScrollViewDelegate,SPPageMenuDelegate,GLMine_Team_AchieveManageHeaderDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 //头部视图
 @property (nonatomic, strong) GLMine_Team_AchieveManageHeader *headerView;
-//菜单
-//@property (nonatomic, strong) LBSendRedPackMenu *pageMenu;
+//@property (nonatomic, strong)GLMine_Team_HistoryHeader *historyHeader;
 
 @property (nonatomic, strong) SPPageMenu *pageMenu;
 
 @property (nonatomic, assign) CGFloat lastPageMenuY;
 
 @property (nonatomic, assign) CGPoint lastPoint;
+
+@property (nonatomic, assign)CGFloat kHeaderViewH;
+@property (nonatomic, assign)CGFloat kPageMenuH;
+@property (nonatomic, assign)CGFloat kGLMine_TeamScrollViewBeginTopInset;
 
 @end
 
@@ -41,12 +40,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.kHeaderViewH = 240;
+    self.kPageMenuH = 60;
+    self.kGLMine_TeamScrollViewBeginTopInset = self.kHeaderViewH + self.kPageMenuH;
+    
     adjustsScrollViewInsets_NO(self.scrollView, self);
-    self.navigationController.navigationBar.hidden = NO;
     
-    self.navigationItem.title = @"绩效管理";
+    self.lastPageMenuY = self.kHeaderViewH + SafeAreaTopHeight;
     
-    self.lastPageMenuY = kHeaderViewH + SafeAreaTopHeight;
+    //导航栏设置  右键添加
+    [self setNav];
     
     // 添加一个全屏的scrollView
     [self.view addSubview:self.scrollView];
@@ -57,9 +60,15 @@
     // 添加悬浮菜单
     [self.view addSubview:self.pageMenu];
     
-    // 添加4个子控制器
-    [self addChildViewController:[[GLMine_Team_AchieveDoneController alloc] init]];
-    [self addChildViewController:[[GLMine_Team_AchieveNotDoneController alloc] init]];
+    // 添加子控制器
+    GLMine_Team_AchieveDoneController *doneVC = [[GLMine_Team_AchieveDoneController alloc] init];
+    GLMine_Team_AchieveNotDoneController *notDoneVC = [[GLMine_Team_AchieveNotDoneController alloc] init];
+    
+    doneVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
+    notDoneVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
+    
+    [self addChildViewController:doneVC];
+    [self addChildViewController:notDoneVC];
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
     
@@ -69,8 +78,50 @@
     
 }
 
-#pragma mark - 通知
+#pragma mark - 导航栏设置
+- (void)setNav{
+    
+    self.navigationItem.title = @"绩效管理";
+    self.navigationController.navigationBar.hidden = NO;
+    
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
+    
+    [button setTitle:@"历史记录" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(historyRecord) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    
+    
+}
 
+#pragma mark - 历史记录
+/**
+ 历史记录
+ */
+- (void)historyRecord {
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_HistoryRecordController *recordVC = [[GLMine_Team_HistoryRecordController alloc] init];
+    [self.navigationController pushViewController:recordVC animated:YES];
+}
+
+#pragma mark - 设置布置绩效
+- (void)setAchieveMent{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_MonthAchieveManageController *setVC = [[GLMine_Team_MonthAchieveManageController alloc] init];
+    [self.navigationController pushViewController:setVC animated:YES];
+    
+}
+#pragma mark - 日期选择
+- (void)dateChoose{
+    NSLog(@"日期选择");
+}
+
+#pragma mark - 通知
 // 子控制器上的scrollView已经滑动的代理方法所发出的通知(核心)
 - (void)subScrollViewDidScroll:(NSNotification *)noti {
     
@@ -81,7 +132,7 @@
     CGFloat distanceY;
     
     // 取出的scrollingScrollView并非是唯一的，当有多个子控制器上的scrollView同时滑动时都会发出通知来到这个方法，所以要过滤
-    LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
     
     if (scrollingScrollView == baseVc.scrollView && baseVc.isFirstViewLoaded == NO) {
         
@@ -89,9 +140,9 @@
         CGRect pageMenuFrame = self.pageMenu.frame;
         if (pageMenuFrame.origin.y >= SafeAreaTopHeight) {
             // 往上移
-            if (offsetDifference > 0 && scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset > 0) {
+            if (offsetDifference > 0 && scrollingScrollView.contentOffset.y+self.kGLMine_TeamScrollViewBeginTopInset > 0) {
                 
-                if (((scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset+self.pageMenu.frame.origin.y)>=kHeaderViewH) || scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset < 0) {
+                if (((scrollingScrollView.contentOffset.y+self.kGLMine_TeamScrollViewBeginTopInset+self.pageMenu.frame.origin.y)>=self.kHeaderViewH) || scrollingScrollView.contentOffset.y+self.kGLMine_TeamScrollViewBeginTopInset < 0) {
                     // 悬浮菜单的y值等于当前正在滑动且显示在屏幕范围内的的scrollView的contentOffset.y的改变量(这是最难的点)
                     pageMenuFrame.origin.y += -offsetDifference;
                     if (pageMenuFrame.origin.y <= SafeAreaTopHeight) {
@@ -99,10 +150,10 @@
                     }
                 }
             } else { // 往下移
-                if ((scrollingScrollView.contentOffset.y+kScrollViewBeginTopInset+self.pageMenu.frame.origin.y)<kHeaderViewH+ SafeAreaTopHeight) {
-                    pageMenuFrame.origin.y = -scrollingScrollView.contentOffset.y-kScrollViewBeginTopInset+kHeaderViewH+ SafeAreaTopHeight;
-                    if (pageMenuFrame.origin.y >= kHeaderViewH + SafeAreaTopHeight) {
-                        pageMenuFrame.origin.y = kHeaderViewH + SafeAreaTopHeight;
+                if ((scrollingScrollView.contentOffset.y+self.kGLMine_TeamScrollViewBeginTopInset+self.pageMenu.frame.origin.y)<self.kHeaderViewH+ SafeAreaTopHeight) {
+                    pageMenuFrame.origin.y = -scrollingScrollView.contentOffset.y-self.kGLMine_TeamScrollViewBeginTopInset+self.kHeaderViewH+ SafeAreaTopHeight;
+                    if (pageMenuFrame.origin.y >= self.kHeaderViewH + SafeAreaTopHeight) {
+                        pageMenuFrame.origin.y = self.kHeaderViewH + SafeAreaTopHeight;
                     }
                 }
             }
@@ -110,7 +161,7 @@
         self.pageMenu.frame = pageMenuFrame;
         
         CGRect headerFrame = self.headerView.frame;
-        headerFrame.origin.y = self.pageMenu.frame.origin.y-kHeaderViewH;
+        headerFrame.origin.y = self.pageMenu.frame.origin.y-self.kHeaderViewH;
         self.headerView.frame = headerFrame;
         
         // 记录悬浮菜单的y值改变量
@@ -120,13 +171,13 @@
         // 让其余控制器的scrollView跟随当前正在滑动的scrollView滑动
         [self followScrollingScrollView:scrollingScrollView distanceY:distanceY];
         
-        [self changeColorWithOffsetY:-self.pageMenu.frame.origin.y+kHeaderViewH];
+        [self changeColorWithOffsetY:-self.pageMenu.frame.origin.y+self.kHeaderViewH];
     }
     baseVc.isFirstViewLoaded = NO;
 }
 
 - (void)followScrollingScrollView:(UIScrollView *)scrollingScrollView distanceY:(CGFloat)distanceY{
-    LBSendRedPackRecoderBasevc *baseVc = nil;
+    GLMine_Team_AchieveManageBaseController *baseVc = nil;
     for (int i = 0; i < self.childViewControllers.count; i++) {
         baseVc = self.childViewControllers[i];
         if (baseVc.scrollView == scrollingScrollView) {
@@ -147,10 +198,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
         if (baseVc.scrollView.contentSize.height < UIScreenHeight && [baseVc isViewLoaded]) {
-            [baseVc.scrollView setContentOffset:CGPointMake(0, -kScrollViewBeginTopInset) animated:YES];
+            [baseVc.scrollView setContentOffset:CGPointMake(0, -self.kGLMine_TeamScrollViewBeginTopInset) animated:YES];
         }
     });
 }
@@ -160,15 +213,16 @@
  */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
-    LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+    GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (baseVc.scrollView.contentSize.height < UIScreenHeight && [baseVc isViewLoaded]) {
-            [baseVc.scrollView setContentOffset:CGPointMake(0, -kScrollViewBeginTopInset) animated:YES];
+            [baseVc.scrollView setContentOffset:CGPointMake(0, -self.kGLMine_TeamScrollViewBeginTopInset) animated:YES];
         }
     });
 }
 
 #pragma mark - SPPageMenuDelegate
+
 - (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
     if (!self.childViewControllers.count) { return;}
     // 如果上一次点击的button下标与当前点击的buton下标之差大于等于2,说明跨界面移动了,此时不动画.
@@ -177,20 +231,20 @@
     } else {
         [self.scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width * toIndex, 0) animated:YES];
     }
-
-    LBSendRedPackRecoderBasevc *targetViewController = self.childViewControllers[toIndex];
+    
+    GLMine_Team_AchieveManageBaseController *targetViewController = self.childViewControllers[toIndex];
     // 如果已经加载过，就不再加载
     if ([targetViewController isViewLoaded]) return;
-
+    
     // 来到这里必然是第一次加载控制器的view，这个属性是为了防止下面的偏移量的改变导致走scrollViewDidScroll
     targetViewController.isFirstViewLoaded = YES;
-
+    
     targetViewController.view.frame = CGRectMake(UIScreenWidth*toIndex, 0, UIScreenWidth, UIScreenHeight);
     UIScrollView *s = targetViewController.scrollView;
     CGPoint contentOffset = s.contentOffset;
-    contentOffset.y = -self.headerView.frame.origin.y-kScrollViewBeginTopInset;
-    if (contentOffset.y + kScrollViewBeginTopInset >= kHeaderViewH) {
-        contentOffset.y = kHeaderViewH-kScrollViewBeginTopInset;
+    contentOffset.y = -self.headerView.frame.origin.y-self.kGLMine_TeamScrollViewBeginTopInset;
+    if (contentOffset.y + self.kGLMine_TeamScrollViewBeginTopInset >= self.kHeaderViewH) {
+        contentOffset.y = self.kHeaderViewH-self.kGLMine_TeamScrollViewBeginTopInset;
     }
     s.contentOffset = contentOffset;
     [self.scrollView addSubview:targetViewController.view];
@@ -199,24 +253,24 @@
 
 - (void)panGestureRecognizerAction:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
-
+        
     } else if (pan.state == UIGestureRecognizerStateChanged) {
         CGPoint currenrPoint = [pan translationInView:pan.view];
         CGFloat distanceY = currenrPoint.y - self.lastPoint.y;
         self.lastPoint = currenrPoint;
-
-        LBSendRedPackRecoderBasevc *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
+        
+        GLMine_Team_AchieveManageBaseController *baseVc = self.childViewControllers[self.pageMenu.selectedItemIndex];
         CGPoint offset = baseVc.scrollView.contentOffset;
         offset.y += -distanceY;
-        if (offset.y <= -kScrollViewBeginTopInset) {
-            offset.y = -kScrollViewBeginTopInset;
+        if (offset.y <= -self.kGLMine_TeamScrollViewBeginTopInset) {
+            offset.y = -self.kGLMine_TeamScrollViewBeginTopInset;
         }
         baseVc.scrollView.contentOffset = offset;
     } else {
         [pan setTranslation:CGPointZero inView:pan.view];
         self.lastPoint = CGPointZero;
     }
-
+    
 }
 
 - (void)changeColorWithOffsetY:(CGFloat)offsetY {
@@ -238,21 +292,11 @@
     return _scrollView;
 }
 
-//- (LBSendRedPackMenu *)pageMenu {
-//
-//    if (!_pageMenu) {
-//        _pageMenu = [[LBSendRedPackMenu alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, kPageMenuH)];
-//        _pageMenu.delegate = self;
-//
-//    }
-//    return _pageMenu;
-//}
-
 - (GLMine_Team_AchieveManageHeader *)headerView {
     
     if (!_headerView) {
-        _headerView = [[GLMine_Team_AchieveManageHeader alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, kHeaderViewH)];
-        
+        _headerView = [[GLMine_Team_AchieveManageHeader alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, _kHeaderViewH)];
+        _headerView.delegate = self;
     }
     return _headerView;
 }
@@ -260,7 +304,7 @@
 - (SPPageMenu *)pageMenu {
     
     if (!_pageMenu) {
-        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
+        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, _kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
         [_pageMenu setItems:@[@"下属绩效已完成",@"下属绩效未完成"] selectedItemIndex:0];
         _pageMenu.delegate = self;
         _pageMenu.itemTitleFont = [UIFont systemFontOfSize:17];
@@ -269,7 +313,7 @@
         _pageMenu.tracker.backgroundColor = [UIColor redColor];
         _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
         _pageMenu.bridgeScrollView = self.scrollView;
-        _pageMenu.closeTrackerFollowingMode = NO;
+        //        _pageMenu.closeTrackerFollowingMode = NO;
         
         
     }

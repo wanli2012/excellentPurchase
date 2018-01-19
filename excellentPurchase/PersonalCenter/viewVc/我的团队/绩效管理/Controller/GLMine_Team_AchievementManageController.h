@@ -10,4 +10,7 @@
 
 @interface GLMine_Team_AchievementManageController : UIViewController
 
+
+//@property (nonatomic, assign)NSInteger type;//1:历史记录  0:绩效管理
+
 @end
