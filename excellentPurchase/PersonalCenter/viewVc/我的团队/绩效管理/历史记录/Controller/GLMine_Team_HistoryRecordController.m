@@ -95,7 +95,7 @@
     
 //    [dateV show];
     [GLMine_Team_HistoryDateChooseView showDateChooseViewWith:^(NSString *dateStr) {
-        
+        self.headerView.dateLabel.text = dateStr;
     }];
 }
 

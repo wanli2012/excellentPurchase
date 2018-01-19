@@ -73,6 +73,9 @@
                 <constraint firstItem="aIq-Hd-yeB" firstAttribute="top" secondItem="rF4-S3-Qzp" secondAttribute="bottom" constant="10" id="lVz-fj-rQF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dateLabel" destination="TXY-ue-W25" id="HrT-vg-cGH"/>
+            </connections>
             <point key="canvasLocation" x="22" y="-69"/>
         </view>
         <tapGestureRecognizer id="fD7-HT-PCB" userLabel="时间选择">

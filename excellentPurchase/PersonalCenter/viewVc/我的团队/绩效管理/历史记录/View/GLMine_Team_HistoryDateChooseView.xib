@@ -16,19 +16,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZ7-QQ-Dk4">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POk-Au-LDj">
                     <rect key="frame" x="0.0" y="397" width="375" height="270"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMs-xr-VkY">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMs-xr-VkY">
                             <rect key="frame" x="0.0" y="0.0" width="125" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="wGg-QV-PaM"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="取消">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -36,17 +33,18 @@
                                 <action selector="cancel:" destination="iN0-l3-epB" eventType="touchUpInside" id="8vv-Ma-6fP"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2q-Sx-jQx">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2q-Sx-jQx">
                             <rect key="frame" x="249.5" y="0.0" width="125.5" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="zC2-fA-OJ9"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                             <state key="normal" title="确定">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ETZ-wA-aVd">
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="ETZ-wA-aVd">
                             <rect key="frame" x="0.0" y="40" width="375" height="230"/>
                             <date key="date" timeIntervalSinceReferenceDate="537972687.18700302">
                                 <!--2018-01-18 12:51:27 +0000-->
@@ -80,20 +78,23 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="EZ7-QQ-Dk4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7C9-t0-vic"/>
-                <constraint firstAttribute="bottom" secondItem="EZ7-QQ-Dk4" secondAttribute="bottom" id="8NL-nZ-W6b"/>
-                <constraint firstAttribute="trailing" secondItem="EZ7-QQ-Dk4" secondAttribute="trailing" id="93I-Ks-8vz"/>
                 <constraint firstItem="POk-Au-LDj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BBd-P7-T0B"/>
                 <constraint firstAttribute="bottom" secondItem="POk-Au-LDj" secondAttribute="bottom" id="DdQ-yv-1fo"/>
                 <constraint firstAttribute="trailing" secondItem="POk-Au-LDj" secondAttribute="trailing" id="KVG-Au-gnz"/>
-                <constraint firstItem="EZ7-QQ-Dk4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rdr-O6-SeH"/>
             </constraints>
             <connections>
                 <outlet property="containView" destination="POk-Au-LDj" id="FGu-n3-RId"/>
-                <outlet property="maskV" destination="EZ7-QQ-Dk4" id="0YR-uF-6LK"/>
+                <outlet property="datePicker" destination="ETZ-wA-aVd" id="XBd-iM-TNP"/>
+                <outletCollection property="gestureRecognizers" destination="vKn-ql-4hD" appends="YES" id="elK-ct-Kda"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="vKn-ql-4hD" userLabel="隐藏">
+            <connections>
+                <action selector="cancel:" destination="iN0-l3-epB" id="KdQ-rF-5X6"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

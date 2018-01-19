@@ -45,6 +45,7 @@
 		4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE11200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib */; };
 		4A79EE16200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */; };
 		4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */; };
+		4A9E188D2011A36400E1EC05 /* FullTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E188C2011A36400E1EC05 /* FullTimeView.m */; };
 		633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
@@ -359,6 +360,8 @@
 		4A79EE13200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveManageBaseController.h; sourceTree = "<group>"; };
 		4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveManageBaseController.m; sourceTree = "<group>"; };
 		4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_AchieveManageBaseController.xib; sourceTree = "<group>"; };
+		4A9E188B2011A36300E1EC05 /* FullTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullTimeView.h; sourceTree = "<group>"; };
+		4A9E188C2011A36400E1EC05 /* FullTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullTimeView.m; sourceTree = "<group>"; };
 		7783D9C11A5F2A3CA8CB596F /* Pods-excellentPurchase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.debug.xcconfig"; sourceTree = "<group>"; };
 		9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_excellentPurchase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -848,6 +851,8 @@
 				4A54139B2010AD77008A2FBD /* GLMine_Team_HistoryHeader.h */,
 				4A54139C2010AD77008A2FBD /* GLMine_Team_HistoryHeader.m */,
 				4A54139E2010ADA9008A2FBD /* GLMine_Team_HistoryHeader.xib */,
+				4A9E188B2011A36300E1EC05 /* FullTimeView.h */,
+				4A9E188C2011A36400E1EC05 /* FullTimeView.m */,
 				4A5413A52010CEB8008A2FBD /* GLMine_Team_HistoryDateChooseView.h */,
 				4A5413A62010CEB8008A2FBD /* GLMine_Team_HistoryDateChooseView.m */,
 				4A5413A82010CF3C008A2FBD /* GLMine_Team_HistoryDateChooseView.xib */,
@@ -2648,6 +2653,7 @@
 				F9633D82200C42C2001B545A /* LBMineHeaderView.m in Sources */,
 				F9340A1D2009E7A90002DBB8 /* LBIntegralGoodsOneCollectionViewCell.m in Sources */,
 				F97E6037200EE68100C9C4E7 /* JYImageCache.m in Sources */,
+				4A9E188D2011A36400E1EC05 /* FullTimeView.m in Sources */,
 				F9340A212009F0B10002DBB8 /* GLIntegralGoodsOneCell.m in Sources */,
 				F95073242004DA4A0026D28F /* UIView+Extension.m in Sources */,
 				F95FD43D200DDFD500F6C523 /* LBCommentListsView.m in Sources */,
