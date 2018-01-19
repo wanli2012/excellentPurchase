@@ -14,6 +14,6 @@ typedef NSDate *(^dateChooseBlock)(void);
 
 @property (nonatomic, copy)dateChooseBlock block;
 
-+ (GLMine_Team_HistoryDateChooseView *)show;
++ (instancetype)showDateChooseViewWith:(void(^)(NSString *dateStr))dateBlock;
 
 @end

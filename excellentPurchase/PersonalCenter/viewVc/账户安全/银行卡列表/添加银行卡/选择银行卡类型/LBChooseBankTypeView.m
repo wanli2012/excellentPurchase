@@ -55,8 +55,8 @@
 -(void)getData{
     self.bankTypeArray = @[@"a",@"b"];
     
-    
 }
+
 - (void)showView {
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
@@ -67,6 +67,7 @@
         self.containView.y = UIScreenHeight - self.containView.height;
     }];
 }
+
 - (void)hideView {
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -77,8 +78,6 @@
     }];
     
 }
-
-
 
 -(void)lb_setView{
     self.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight);

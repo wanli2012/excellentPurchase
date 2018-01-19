@@ -86,7 +86,6 @@
     self.navigationItem.title = @"绩效管理";
     self.navigationController.navigationBar.hidden = NO;
 
-    
 }
 
 #pragma mark - 日期选择
@@ -95,6 +94,9 @@
 //    GLMine_Team_HistoryDateChooseView *dateV = [[GLMine_Team_HistoryDateChooseView alloc] init];
     
 //    [dateV show];
+    [GLMine_Team_HistoryDateChooseView showDateChooseViewWith:^(NSString *dateStr) {
+        
+    }];
 }
 
 #pragma mark - 通知

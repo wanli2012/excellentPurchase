@@ -18,7 +18,7 @@
             <subviews>
                 <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZ7-QQ-Dk4">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POk-Au-LDj">
                     <rect key="frame" x="0.0" y="397" width="375" height="270"/>
@@ -32,6 +32,9 @@
                             <state key="normal" title="取消">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="cancel:" destination="iN0-l3-epB" eventType="touchUpInside" id="8vv-Ma-6fP"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2q-Sx-jQx">
                             <rect key="frame" x="249.5" y="0.0" width="125.5" height="40"/>
@@ -87,6 +90,7 @@
                 <constraint firstItem="EZ7-QQ-Dk4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rdr-O6-SeH"/>
             </constraints>
             <connections>
+                <outlet property="containView" destination="POk-Au-LDj" id="FGu-n3-RId"/>
                 <outlet property="maskV" destination="EZ7-QQ-Dk4" id="0YR-uF-6LK"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
