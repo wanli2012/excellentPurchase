@@ -13,6 +13,8 @@
 #import "LBBurstingWithPopularityTableViewCell.h"
 #import "GLNearby_classifyCell.h"
 #import "LBEat_ActivityFooterView.h"
+#import "LBEat_StoreDetailViewController.h"
+#import "LBEatAndDrinkViewController.h"
 
 static NSString *burstingWithPopularityTableViewCell = @"LBBurstingWithPopularityTableViewCell";
 static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
@@ -93,8 +95,10 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 }
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
+    [self viewController].hidesBottomBarWhenPushed = YES;
+    LBEat_StoreDetailViewController *vc = [[LBEat_StoreDetailViewController alloc]init];
+    [[self viewController].navigationController pushViewController:vc animated:YES];
+     [self viewController].hidesBottomBarWhenPushed = NO;
 }
 
 - (void)addCarouselView1{
@@ -115,6 +119,21 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     //开始轮播
     [_carouselView startCarouselWithArray:imageArray];
     
+}
+/**
+ *  获取父视图的控制器
+ *
+ *  @return 父视图的控制器
+ */
+- (LBEatAndDrinkViewController *)viewController
+{
+    for (UIView* next = [self.view superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[LBEatAndDrinkViewController class]]) {
+            return (LBEatAndDrinkViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 @end
