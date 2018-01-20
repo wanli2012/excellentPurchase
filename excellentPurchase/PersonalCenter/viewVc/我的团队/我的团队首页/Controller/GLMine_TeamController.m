@@ -7,12 +7,11 @@
 //
 
 #import "GLMine_TeamController.h"
-#import "GLMine_Team_TeamAchievementController.h"
-#import "GLMine_Team_AchievementManageController.h"
-#import "LBSendRedPackRecoderViewController.h"
-#import "GLMine_Team_OpenMakerController.h"
-#import "GLMine_Team_MembersController.h"
-#import "GLMine_Team_OpenSellerController.h"
+#import "GLMine_Team_TeamAchievementController.h"//团队业绩
+#import "GLMine_Team_AchievementManageController.h"//绩效管理
+#import "GLMine_Team_OpenMakerController.h"//开通创客
+#import "GLMine_Team_MembersController.h"//团队成员
+#import "GLMine_Team_OpenSellerController.h"//开通商家
 
 @interface GLMine_TeamController ()
 

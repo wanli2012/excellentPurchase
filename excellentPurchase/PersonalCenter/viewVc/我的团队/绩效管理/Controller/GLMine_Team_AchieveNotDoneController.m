@@ -8,7 +8,8 @@
 
 #import "GLMine_Team_AchieveNotDoneController.h"
 #import "GLMine_Team_AchieveManageCell.h"
-#import "GLMine_Team_UnderLingAchieveController.h"
+
+#import "GLMine_Team_UnderLingAchieveController.h"//下属绩效列表
 
 @interface GLMine_Team_AchieveNotDoneController ()<UITableViewDataSource,UITableViewDelegate>
 
