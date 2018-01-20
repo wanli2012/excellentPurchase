@@ -228,6 +228,15 @@
 		F96971DC2011905600966E26 /* LBEat_StoreCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971DA2011905600966E26 /* LBEat_StoreCommentsViewController.m */; };
 		F96971DD2011905600966E26 /* LBEat_StoreCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96971DB2011905600966E26 /* LBEat_StoreCommentsViewController.xib */; };
 		F96971E0201195E000966E26 /* LBEat_StoreCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */; };
+		F96971E42011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971E22011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.m */; };
+		F96971E52011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96971E32011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.xib */; };
+		F96971E82011C1C500966E26 /* LBEat_StoreCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971E72011C1C500966E26 /* LBEat_StoreCommentFooterView.m */; };
+		F96971EC2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971EA2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.m */; };
+		F96971ED2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96971EB2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.xib */; };
+		F96971F02011CAFD00966E26 /* LB_EatCommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971EF2011CAFD00966E26 /* LB_EatCommentFrameModel.m */; };
+		F96971F32011CB5C00966E26 /* LB_Eat'commentDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971F22011CB5C00966E26 /* LB_Eat'commentDataModel.m */; };
+		F96971F62011DD1100966E26 /* LB_Eat_commentOneDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971F52011DD1100966E26 /* LB_Eat_commentOneDataModel.m */; };
+		F96971FB2011E67400966E26 /* FMLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971F92011E67400966E26 /* FMLinkLabel.m */; };
 		F9712C83200460030015037A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C82200460030015037A /* AppDelegate.m */; };
 		F9712C86200460040015037A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C85200460040015037A /* ViewController.m */; };
 		F9712C89200460040015037A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9712C87200460040015037A /* Main.storyboard */; };
@@ -282,6 +291,21 @@
 		F97E6068200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6067200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m */; };
 		F97E606C200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E606A200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m */; };
 		F97E606D200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E606B200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib */; };
+		F97F5F732011F5DD00C74683 /* XHInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F722011F5DD00C74683 /* XHInputView.m */; };
+		F97F5F772012075C00C74683 /* LBEat_StoreCommentsdetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F752012075C00C74683 /* LBEat_StoreCommentsdetailViewController.m */; };
+		F97F5F782012075C00C74683 /* LBEat_StoreCommentsdetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F5F762012075C00C74683 /* LBEat_StoreCommentsdetailViewController.xib */; };
+		F97F5F7C20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F7A20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.m */; };
+		F97F5F7D20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F5F7B20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.xib */; };
+		F97F5F92201216B200C74683 /* EasyShowAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F81201216B200C74683 /* EasyShowAlertView.m */; };
+		F97F5F93201216B200C74683 /* EasyShowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F83201216B200C74683 /* EasyShowLabel.m */; };
+		F97F5F94201216B200C74683 /* EasyShowLodingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F85201216B200C74683 /* EasyShowLodingView.m */; };
+		F97F5F95201216B200C74683 /* EasyShowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F87201216B200C74683 /* EasyShowOptions.m */; };
+		F97F5F96201216B200C74683 /* EasyShowTextBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F89201216B200C74683 /* EasyShowTextBgView.m */; };
+		F97F5F97201216B200C74683 /* EasyShowTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F8B201216B200C74683 /* EasyShowTextView.m */; };
+		F97F5F98201216B200C74683 /* EasyShowTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F8D201216B200C74683 /* EasyShowTypes.m */; };
+		F97F5F99201216B200C74683 /* EasyShowUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F8F201216B200C74683 /* EasyShowUtils.m */; };
+		F97F5F9A201216B200C74683 /* UIView+EasyShowExt.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F5F91201216B200C74683 /* UIView+EasyShowExt.m */; };
+		F97F5F9C201216CD00C74683 /* loading.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F97F5F9B201216CD00C74683 /* loading.xcassets */; };
 		F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C727B20099E4200E996FD /* taotaoShop.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -652,6 +676,22 @@
 		F96971DB2011905600966E26 /* LBEat_StoreCommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_StoreCommentsViewController.xib; sourceTree = "<group>"; };
 		F96971DE201195E000966E26 /* LBEat_StoreCommentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentHeaderView.h; sourceTree = "<group>"; };
 		F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentHeaderView.m; sourceTree = "<group>"; };
+		F96971E12011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsTableViewCell.h; sourceTree = "<group>"; };
+		F96971E22011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsTableViewCell.m; sourceTree = "<group>"; };
+		F96971E32011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_StoreCommentsTableViewCell.xib; sourceTree = "<group>"; };
+		F96971E62011C1C500966E26 /* LBEat_StoreCommentFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentFooterView.h; sourceTree = "<group>"; };
+		F96971E72011C1C500966E26 /* LBEat_StoreCommentFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentFooterView.m; sourceTree = "<group>"; };
+		F96971E92011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreMoreCommentsTableViewCell.h; sourceTree = "<group>"; };
+		F96971EA2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreMoreCommentsTableViewCell.m; sourceTree = "<group>"; };
+		F96971EB2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_StoreMoreCommentsTableViewCell.xib; sourceTree = "<group>"; };
+		F96971EE2011CAFD00966E26 /* LB_EatCommentFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LB_EatCommentFrameModel.h; sourceTree = "<group>"; };
+		F96971EF2011CAFD00966E26 /* LB_EatCommentFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LB_EatCommentFrameModel.m; sourceTree = "<group>"; };
+		F96971F12011CB5C00966E26 /* LB_Eat'commentDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LB_Eat'commentDataModel.h"; sourceTree = "<group>"; };
+		F96971F22011CB5C00966E26 /* LB_Eat'commentDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LB_Eat'commentDataModel.m"; sourceTree = "<group>"; };
+		F96971F42011DD1100966E26 /* LB_Eat_commentOneDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LB_Eat_commentOneDataModel.h; sourceTree = "<group>"; };
+		F96971F52011DD1100966E26 /* LB_Eat_commentOneDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LB_Eat_commentOneDataModel.m; sourceTree = "<group>"; };
+		F96971F82011E67400966E26 /* FMLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMLinkLabel.h; sourceTree = "<group>"; };
+		F96971F92011E67400966E26 /* FMLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMLinkLabel.m; sourceTree = "<group>"; };
 		F9712C7E200460030015037A /* excellentPurchase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excellentPurchase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9712C81200460030015037A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F9712C82200460030015037A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -743,6 +783,34 @@
 		F97E6069200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_Activity_TgasTableViewCell.h; sourceTree = "<group>"; };
 		F97E606A200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_Activity_TgasTableViewCell.m; sourceTree = "<group>"; };
 		F97E606B200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_Activity_TgasTableViewCell.xib; sourceTree = "<group>"; };
+		F97F5F712011F5DC00C74683 /* XHInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHInputView.h; sourceTree = "<group>"; };
+		F97F5F722011F5DD00C74683 /* XHInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHInputView.m; sourceTree = "<group>"; };
+		F97F5F742012075C00C74683 /* LBEat_StoreCommentsdetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsdetailViewController.h; sourceTree = "<group>"; };
+		F97F5F752012075C00C74683 /* LBEat_StoreCommentsdetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsdetailViewController.m; sourceTree = "<group>"; };
+		F97F5F762012075C00C74683 /* LBEat_StoreCommentsdetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_StoreCommentsdetailViewController.xib; sourceTree = "<group>"; };
+		F97F5F7920120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoredetailCommentsTableViewCell.h; sourceTree = "<group>"; };
+		F97F5F7A20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoredetailCommentsTableViewCell.m; sourceTree = "<group>"; };
+		F97F5F7B20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_StoredetailCommentsTableViewCell.xib; sourceTree = "<group>"; };
+		F97F5F7F201216B200C74683 /* EasyShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShow.h; sourceTree = "<group>"; };
+		F97F5F80201216B200C74683 /* EasyShowAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowAlertView.h; sourceTree = "<group>"; };
+		F97F5F81201216B200C74683 /* EasyShowAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowAlertView.m; sourceTree = "<group>"; };
+		F97F5F82201216B200C74683 /* EasyShowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowLabel.h; sourceTree = "<group>"; };
+		F97F5F83201216B200C74683 /* EasyShowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowLabel.m; sourceTree = "<group>"; };
+		F97F5F84201216B200C74683 /* EasyShowLodingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowLodingView.h; sourceTree = "<group>"; };
+		F97F5F85201216B200C74683 /* EasyShowLodingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowLodingView.m; sourceTree = "<group>"; };
+		F97F5F86201216B200C74683 /* EasyShowOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowOptions.h; sourceTree = "<group>"; };
+		F97F5F87201216B200C74683 /* EasyShowOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowOptions.m; sourceTree = "<group>"; };
+		F97F5F88201216B200C74683 /* EasyShowTextBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowTextBgView.h; sourceTree = "<group>"; };
+		F97F5F89201216B200C74683 /* EasyShowTextBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowTextBgView.m; sourceTree = "<group>"; };
+		F97F5F8A201216B200C74683 /* EasyShowTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowTextView.h; sourceTree = "<group>"; };
+		F97F5F8B201216B200C74683 /* EasyShowTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowTextView.m; sourceTree = "<group>"; };
+		F97F5F8C201216B200C74683 /* EasyShowTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowTypes.h; sourceTree = "<group>"; };
+		F97F5F8D201216B200C74683 /* EasyShowTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowTypes.m; sourceTree = "<group>"; };
+		F97F5F8E201216B200C74683 /* EasyShowUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyShowUtils.h; sourceTree = "<group>"; };
+		F97F5F8F201216B200C74683 /* EasyShowUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyShowUtils.m; sourceTree = "<group>"; };
+		F97F5F90201216B200C74683 /* UIView+EasyShowExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EasyShowExt.h"; sourceTree = "<group>"; };
+		F97F5F91201216B200C74683 /* UIView+EasyShowExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EasyShowExt.m"; sourceTree = "<group>"; };
+		F97F5F9B201216CD00C74683 /* loading.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = loading.xcassets; sourceTree = "<group>"; };
 		F99C727B20099E4200E996FD /* taotaoShop.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = taotaoShop.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1095,6 +1163,9 @@
 		F93409F12009CF560002DBB8 /* ThreePart */ = {
 			isa = PBXGroup;
 			children = (
+				F97F5F7E201216B200C74683 /* EasyShowView */,
+				F96971FC2011ECB800966E26 /* 评论弹出框 */,
+				F96971F72011E67400966E26 /* FMLabel */,
 				F97E6059200EF1DB00C9C4E7 /* XHStarRateView */,
 				F97E6024200EE68000C9C4E7 /* JYCarousel */,
 				F95FD42C200DC2C300F6C523 /* Standard */,
@@ -1888,6 +1959,9 @@
 				F96971D92011905600966E26 /* LBEat_StoreCommentsViewController.h */,
 				F96971DA2011905600966E26 /* LBEat_StoreCommentsViewController.m */,
 				F96971DB2011905600966E26 /* LBEat_StoreCommentsViewController.xib */,
+				F97F5F742012075C00C74683 /* LBEat_StoreCommentsdetailViewController.h */,
+				F97F5F752012075C00C74683 /* LBEat_StoreCommentsdetailViewController.m */,
+				F97F5F762012075C00C74683 /* LBEat_StoreCommentsdetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1895,6 +1969,12 @@
 		F96971D72011901500966E26 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F96971EE2011CAFD00966E26 /* LB_EatCommentFrameModel.h */,
+				F96971EF2011CAFD00966E26 /* LB_EatCommentFrameModel.m */,
+				F96971F12011CB5C00966E26 /* LB_Eat'commentDataModel.h */,
+				F96971F22011CB5C00966E26 /* LB_Eat'commentDataModel.m */,
+				F96971F42011DD1100966E26 /* LB_Eat_commentOneDataModel.h */,
+				F96971F52011DD1100966E26 /* LB_Eat_commentOneDataModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1904,8 +1984,37 @@
 			children = (
 				F96971DE201195E000966E26 /* LBEat_StoreCommentHeaderView.h */,
 				F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */,
+				F96971E12011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.h */,
+				F96971E22011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.m */,
+				F96971E32011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.xib */,
+				F96971E62011C1C500966E26 /* LBEat_StoreCommentFooterView.h */,
+				F96971E72011C1C500966E26 /* LBEat_StoreCommentFooterView.m */,
+				F96971E92011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.h */,
+				F96971EA2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.m */,
+				F96971EB2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.xib */,
+				F97F5F7920120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.h */,
+				F97F5F7A20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.m */,
+				F97F5F7B20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		F96971F72011E67400966E26 /* FMLabel */ = {
+			isa = PBXGroup;
+			children = (
+				F96971F82011E67400966E26 /* FMLinkLabel.h */,
+				F96971F92011E67400966E26 /* FMLinkLabel.m */,
+			);
+			path = FMLabel;
+			sourceTree = "<group>";
+		};
+		F96971FC2011ECB800966E26 /* 评论弹出框 */ = {
+			isa = PBXGroup;
+			children = (
+				F97F5F712011F5DC00C74683 /* XHInputView.h */,
+				F97F5F722011F5DD00C74683 /* XHInputView.m */,
+			);
+			path = "评论弹出框";
 			sourceTree = "<group>";
 		};
 		F9712C75200460030015037A = {
@@ -2057,6 +2166,7 @@
 				F9633D7E200C3E00001B545A /* Mine.xcassets */,
 				4A79EDD4200EF424001F28D1 /* MyTeam.xcassets */,
 				F94D250D200E0A0200381E2A /* eatDrink.xcassets */,
+				F97F5F9B201216CD00C74683 /* loading.xcassets */,
 				F9712CDD200474100015037A /* like.caf */,
 				F971372F2005D9680033F38B /* activity.gif */,
 				F9633D8C200C6698001B545A /* 消息提醒.gif */,
@@ -2269,6 +2379,32 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		F97F5F7E201216B200C74683 /* EasyShowView */ = {
+			isa = PBXGroup;
+			children = (
+				F97F5F7F201216B200C74683 /* EasyShow.h */,
+				F97F5F80201216B200C74683 /* EasyShowAlertView.h */,
+				F97F5F81201216B200C74683 /* EasyShowAlertView.m */,
+				F97F5F82201216B200C74683 /* EasyShowLabel.h */,
+				F97F5F83201216B200C74683 /* EasyShowLabel.m */,
+				F97F5F84201216B200C74683 /* EasyShowLodingView.h */,
+				F97F5F85201216B200C74683 /* EasyShowLodingView.m */,
+				F97F5F86201216B200C74683 /* EasyShowOptions.h */,
+				F97F5F87201216B200C74683 /* EasyShowOptions.m */,
+				F97F5F88201216B200C74683 /* EasyShowTextBgView.h */,
+				F97F5F89201216B200C74683 /* EasyShowTextBgView.m */,
+				F97F5F8A201216B200C74683 /* EasyShowTextView.h */,
+				F97F5F8B201216B200C74683 /* EasyShowTextView.m */,
+				F97F5F8C201216B200C74683 /* EasyShowTypes.h */,
+				F97F5F8D201216B200C74683 /* EasyShowTypes.m */,
+				F97F5F8E201216B200C74683 /* EasyShowUtils.h */,
+				F97F5F8F201216B200C74683 /* EasyShowUtils.m */,
+				F97F5F90201216B200C74683 /* UIView+EasyShowExt.h */,
+				F97F5F91201216B200C74683 /* UIView+EasyShowExt.m */,
+			);
+			path = EasyShowView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2384,6 +2520,7 @@
 				F955D14A20089676001EEC81 /* LBResetOldPhoneViewController.xib in Resources */,
 				F9712C8B200460040015037A /* Assets.xcassets in Resources */,
 				F95073022004A9590026D28F /* LBNearby_classifyItemView.xib in Resources */,
+				F97F5F9C201216CD00C74683 /* loading.xcassets in Resources */,
 				F95072F6200493050026D28F /* LBTmallViewController.xib in Resources */,
 				F96971C82011849A00966E26 /* LBEat_storeDetailInfomationTableViewCell.xib in Resources */,
 				F95FE0B5201032DE00F39919 /* LBEat_ActivityViewController.xib in Resources */,
@@ -2410,6 +2547,7 @@
 				F9340A4E200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.xib in Resources */,
 				F95B532F200CA23E00A81954 /* LBProductDetailViewController.xib in Resources */,
 				4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */,
+				F97F5F782012075C00C74683 /* LBEat_StoreCommentsdetailViewController.xib in Resources */,
 				F96971DD2011905600966E26 /* LBEat_StoreCommentsViewController.xib in Resources */,
 				F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */,
 				F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */,
@@ -2417,6 +2555,7 @@
 				F97E6044200EEAE900C9C4E7 /* LBEat_CateViewController.xib in Resources */,
 				F955D15920089CDB001EEC81 /* LBResetBindBankTableViewCell.xib in Resources */,
 				F97137362005DF690033F38B /* LBLoginViewController.xib in Resources */,
+				F97F5F7D20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.xib in Resources */,
 				F95B5363200CD39200A81954 /* LBCheckMoreCommentsTableViewCell.xib in Resources */,
 				F95072D6200492430026D28F /* LBHomeViewController.xib in Resources */,
 				F9340A122009E5ED0002DBB8 /* LBintegralGoodsAciticityTableViewCell.xib in Resources */,
@@ -2454,6 +2593,7 @@
 				F968C32920073F9200971F11 /* LBDonationRecoderViewController.xib in Resources */,
 				F95072F820049C6C0026D28F /* Home.xcassets in Resources */,
 				F9340A3F200A22000002DBB8 /* LBFilterMallShopCollectionViewCell.xib in Resources */,
+				F96971E52011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.xib in Resources */,
 				F97137302005D9680033F38B /* activity.gif in Resources */,
 				F95073172004CC830026D28F /* LBImmediateRushBuyCell.xib in Resources */,
 				F95B5359200CC38D00A81954 /* LBCommentHeaderTableViewCell.xib in Resources */,
@@ -2491,6 +2631,7 @@
 				F9340A1A2009E7A90002DBB8 /* LBIntegralGoodsOneCollectionViewCell.xib in Resources */,
 				F955D12E20088C97001EEC81 /* LBSwitchAccountTableViewCell.xib in Resources */,
 				4A0B13F42010827E00AC3334 /* GLMine_Team_MonthAchieveManageController.xib in Resources */,
+				F96971ED2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.xib in Resources */,
 				F968C3172007347600971F11 /* LBVoucherCenterRecoderViewController.xib in Resources */,
 				F9633D84200C42D3001B545A /* LBMineHeaderView.xib in Resources */,
 				F9340A35200A086A0002DBB8 /* LBShowProductListCollectionViewCell.xib in Resources */,
@@ -2573,6 +2714,7 @@
 				F9712CD72004671F0015037A /* BaseNavigationViewController.m in Sources */,
 				F968C335200744F800971F11 /* LBDonationTableViewCell.m in Sources */,
 				F97E605C200EF1DB00C9C4E7 /* XHStarRateView.m in Sources */,
+				F96971F02011CAFD00966E26 /* LB_EatCommentFrameModel.m in Sources */,
 				F968C308200701B300971F11 /* LBSendRedPackViewController.m in Sources */,
 				F9340A0D2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.m in Sources */,
 				F9340A44200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.m in Sources */,
@@ -2580,20 +2722,25 @@
 				F96971DC2011905600966E26 /* LBEat_StoreCommentsViewController.m in Sources */,
 				F968C31120072C0300971F11 /* LBVoucherCenterViewController.m in Sources */,
 				4A79EE02200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m in Sources */,
+				F97F5F97201216B200C74683 /* EasyShowTextView.m in Sources */,
 				F95073212004D9DD0026D28F /* UIButton+SetEdgeInsets.m in Sources */,
 				F955D10420084AF9001EEC81 /* LBSetUpTableViewCell.m in Sources */,
 				4A79EE0C200F3B45001F28D1 /* GLMine_Team_AchieveNotDoneController.m in Sources */,
+				F97F5F93201216B200C74683 /* EasyShowLabel.m in Sources */,
 				4A0B13F32010827E00AC3334 /* GLMine_Team_MonthAchieveManageController.m in Sources */,
 				F95B535D200CD16200A81954 /* LBCommentListsTableViewCell.m in Sources */,
+				F96971E82011C1C500966E26 /* LBEat_StoreCommentFooterView.m in Sources */,
 				F950730D2004C0240026D28F /* XBTextLoopView.m in Sources */,
 				4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */,
 				F955D12D20088C97001EEC81 /* LBSwitchAccountTableViewCell.m in Sources */,
+				F97F5F98201216B200C74683 /* EasyShowTypes.m in Sources */,
 				F97E6049200EEBD400C9C4E7 /* GLIntegralHeaderView.m in Sources */,
 				F96971C52011849A00966E26 /* LBEat_storeDetailInfomationHeaderView.m in Sources */,
 				F96971D22011849A00966E26 /* LJCollectionViewFlowLayout.m in Sources */,
 				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
 				F95072ED200492DA0026D28F /* LBPersonCenterViewController.m in Sources */,
 				F96971D42011849A00966E26 /* UIViewController+Dealloc.m in Sources */,
+				F96971F62011DD1100966E26 /* LB_Eat_commentOneDataModel.m in Sources */,
 				F95B532A200CA1FC00A81954 /* DLNavigationTabBar.m in Sources */,
 				F95B5362200CD39200A81954 /* LBCheckMoreCommentsTableViewCell.m in Sources */,
 				F955D15320089C94001EEC81 /* LBResetBindBankViewController.m in Sources */,
@@ -2606,6 +2753,7 @@
 				F97E606C200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m in Sources */,
 				4A0B140C2010927E00AC3334 /* GLMine_Team_AccountChooseModel.m in Sources */,
 				F955D11720086166001EEC81 /* LBAccountSecurityViewController.m in Sources */,
+				F97F5F95201216B200C74683 /* EasyShowOptions.m in Sources */,
 				4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */,
 				F955D11C20087C82001EEC81 /* LBChangePasswordViewController.m in Sources */,
 				F971375C200604770033F38B /* LBMineCenterAddAdreassViewController.m in Sources */,
@@ -2625,8 +2773,11 @@
 				F95B5348200CAA0000A81954 /* PopoverViewCell.m in Sources */,
 				F968C32320073B2500971F11 /* LBDonationViewController.m in Sources */,
 				4A54138F2010A01A008A2FBD /* GLIdentifySelectModel.m in Sources */,
+				F97F5F96201216B200C74683 /* EasyShowTextBgView.m in Sources */,
 				F95B5353200CBB3200A81954 /* LBTaoTaoProductInofoTableViewCell.m in Sources */,
 				4A0B140620108F0700AC3334 /* GLMine_Team_AccountChooseCell.m in Sources */,
+				F97F5F7C20120D6D00C74683 /* LBEat_StoredetailCommentsTableViewCell.m in Sources */,
+				F97F5F732011F5DD00C74683 /* XHInputView.m in Sources */,
 				F95FE0B22010328700F39919 /* LBBurstingWithPopularityTableViewCell.m in Sources */,
 				F95B532E200CA23E00A81954 /* LBProductDetailViewController.m in Sources */,
 				F955D15820089CDB001EEC81 /* LBResetBindBankTableViewCell.m in Sources */,
@@ -2636,10 +2787,13 @@
 				F955D1932008CABC001EEC81 /* LBChooseBankTypeView.m in Sources */,
 				F968C33A2007510C00971F11 /* LBSendRedPackRecoderViewController.m in Sources */,
 				F968C33E200751B800971F11 /* LBSendRedPackHeaderV.m in Sources */,
+				F96971F32011CB5C00966E26 /* LB_Eat'commentDataModel.m in Sources */,
+				F97F5F92201216B200C74683 /* EasyShowAlertView.m in Sources */,
 				F955D16E2008A1B1001EEC81 /* HCBottomPopupAction.m in Sources */,
 				F96971C12011849A00966E26 /* LBEat_StoreDetailViewController.m in Sources */,
 				F955D1772008A788001EEC81 /* LBBankCardListViewController.m in Sources */,
 				4A0B140120108E8200AC3334 /* GLMine_Team_AccountChooseController.m in Sources */,
+				F97F5F94201216B200C74683 /* EasyShowLodingView.m in Sources */,
 				F96971D02011849A00966E26 /* LBEat_WholeClassifyView.m in Sources */,
 				4A79EDF5200F1F6C001F28D1 /* GLIdentifySelectController.m in Sources */,
 				F97137472005FB410033F38B /* LBImprovePersonalInformationViewController.m in Sources */,
@@ -2659,8 +2813,10 @@
 				F96971CD2011849A00966E26 /* CollectionViewCell.m in Sources */,
 				F955D14E2008968E001EEC81 /* LBResetNewPhoneViewController.m in Sources */,
 				F97E6064200F1D4500C9C4E7 /* LBEat_ActivityViewController.m in Sources */,
+				F96971FB2011E67400966E26 /* FMLinkLabel.m in Sources */,
 				F968C31B2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.m in Sources */,
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
+				F96971E42011BEC900966E26 /* LBEat_StoreCommentsTableViewCell.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,
 				F95FD435200DC2C300F6C523 /* StandardModel.m in Sources */,
@@ -2691,6 +2847,7 @@
 				F9340A212009F0B10002DBB8 /* GLIntegralGoodsOneCell.m in Sources */,
 				F95073242004DA4A0026D28F /* UIView+Extension.m in Sources */,
 				F95FD43D200DDFD500F6C523 /* LBCommentListsView.m in Sources */,
+				F96971EC2011C3A200966E26 /* LBEat_StoreMoreCommentsTableViewCell.m in Sources */,
 				F97E6043200EEAE900C9C4E7 /* LBEat_CateViewController.m in Sources */,
 				F95073062004BB110026D28F /* LBHorseRaceLampCell.m in Sources */,
 				4A5413A72010CEB8008A2FBD /* GLMine_Team_HistoryDateChooseView.m in Sources */,
@@ -2717,7 +2874,10 @@
 				F9712C83200460030015037A /* AppDelegate.m in Sources */,
 				4A5413A32010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m in Sources */,
 				F95072FD2004A7620026D28F /* GLNearby_ClassifyHeaderView.m in Sources */,
+				F97F5F9A201216B200C74683 /* UIView+EasyShowExt.m in Sources */,
+				F97F5F99201216B200C74683 /* EasyShowUtils.m in Sources */,
 				F9340A1C2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.m in Sources */,
+				F97F5F772012075C00C74683 /* LBEat_StoreCommentsdetailViewController.m in Sources */,
 				F950731B2004CD230026D28F /* LBImmediateRushBuyCollectionViewCell.m in Sources */,
 				F96971C72011849A00966E26 /* LBEat_storeDetailInfomationTableViewCell.m in Sources */,
 				F96971CE2011849A00966E26 /* CollectionViewHeaderView.m in Sources */,

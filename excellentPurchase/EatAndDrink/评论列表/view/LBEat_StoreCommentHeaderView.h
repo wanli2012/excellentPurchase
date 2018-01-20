@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LB_EatCommentFrameModel.h"
+
+
 
 @interface LBEat_StoreCommentHeaderView : UITableViewHeaderFooterView
 
+@property(nonatomic,strong)LB_EatCommentFrameModel *HomeInvestModel;
+
+@property (copy , nonatomic)void(^showComments)(NSInteger section);
+
+@property (copy , nonatomic)void(^pushCommentsListVc)();
+
+@property (assign , nonatomic)NSInteger section;
 
 @end

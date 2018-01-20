@@ -8,6 +8,7 @@
 
 #import "LBEat_StoreCommentHeaderView.h"
 #import "XHStarRateView.h"
+#import "LB_Eat'commentDataModel.h"
 
 @interface LBEat_StoreCommentHeaderView()
 
@@ -21,6 +22,10 @@
 
 @property (strong , nonatomic)UILabel *contentLb;//内容
 
+@property (strong , nonatomic)UILabel *timeLb;//时间
+
+@property (strong , nonatomic)UIButton *replayBt;//回复按钮
+
 @end
 
 @implementation LBEat_StoreCommentHeaderView
@@ -28,9 +33,23 @@
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
         [self initInterFace];//初始化界面
     }
     return self;
+}
+
+-(void)setHomeInvestModel:(LB_EatCommentFrameModel *)HomeInvestModel{
+    _HomeInvestModel = HomeInvestModel;
+    self.contentLb.text = _HomeInvestModel.HomeInvestModel.content;
+}
+
+-(void)tapgestureSelf{
+    self.pushCommentsListVc();
+}
+
+-(void)showComment{
+    self.showComments(self.section);
 }
 
 -(void)initInterFace{
@@ -39,6 +58,8 @@
     [self addSubview:self.nameLb];
     [self addSubview:self.identifyLb];
     [self addSubview:self.contentLb];
+    [self addSubview:self.timeLb];
+    [self addSubview:self.replayBt];
     
     [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -56,15 +77,29 @@
         
     }];
     
-    [self.identifyLb mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.trailing.equalTo(self).offset(-10);
         make.leading.equalTo(self.headimage.mas_trailing).offset(10);
-        make.top.equalTo(self.nameLb.mas_bottom).offset(10);
+        make.top.equalTo(self.identifyLb.mas_bottom).offset(13);
+        
+    }];
+    [self.timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.leading.equalTo(self.headimage.mas_trailing).offset(10);
+        make.top.equalTo(self.contentLb.mas_bottom).offset(13);
         
     }];
     
+    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.trailing.equalTo(self).offset(-10);
+        make.centerY.equalTo(self.timeLb);
+        
+    }];
     
+    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureSelf)];
+    [self addGestureRecognizer:tapgesture];
     
 }
 
@@ -91,14 +126,22 @@
 -(UILabel*)contentLb{
     if (!_contentLb) {
         _contentLb = [[UILabel alloc]init];
-        _contentLb.text = @"你的间距的时刻打打闹闹数学课面对山明水秀开心时刻";
+        _contentLb.text = @"你的间距的时刻打打闹闹数学课面对山明";
         _contentLb.textColor = LBHexadecimalColor(0x333333);
         _contentLb.font = [UIFont systemFontOfSize:14];
         _contentLb.numberOfLines = 0;
     }
     return _contentLb;
 }
-
+-(UILabel*)timeLb{
+    if (!_timeLb) {
+        _timeLb = [[UILabel alloc]init];
+        _timeLb.text = @"1分钟";
+        _timeLb.textColor = LBHexadecimalColor(0x999999);
+        _timeLb.font = [UIFont systemFontOfSize:10];
+    }
+    return _timeLb;
+}
 
 -(UIImageView*)headimage{
     if (!_headimage) {
@@ -107,6 +150,18 @@
         _headimage.layer.cornerRadius = 20;
     }
     return _headimage;
+}
+
+-(UIButton*)replayBt{
+    if (!_replayBt) {
+        _replayBt = [[UIButton alloc]init];
+        _replayBt.bounds = CGRectMake(0, 0, 35, 25);
+        _replayBt.backgroundColor = [UIColor whiteColor];
+        [_replayBt setImage:[UIImage imageNamed:@"eat-pinglun"] forState:UIControlStateNormal];
+        [_replayBt addTarget:self action:@selector(showComment) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _replayBt;
 }
 
 -(XHStarRateView*)starRateView{
