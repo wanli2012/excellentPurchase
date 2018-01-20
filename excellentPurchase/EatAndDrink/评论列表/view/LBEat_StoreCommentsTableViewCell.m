@@ -7,7 +7,7 @@
 //
 
 #import "LBEat_StoreCommentsTableViewCell.h"
-#import "FMLinkLabel.h"
+
 
 @interface LBEat_StoreCommentsTableViewCell()
 @property (weak, nonatomic) IBOutlet UILabel *contentLb;
