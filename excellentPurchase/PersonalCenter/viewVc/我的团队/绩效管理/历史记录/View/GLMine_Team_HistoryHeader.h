@@ -17,5 +17,6 @@
 @interface GLMine_Team_HistoryHeader : UIView
 
 @property (nonatomic, weak)id <GLMine_Team_HistoryHeaderDelegate>delegate;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

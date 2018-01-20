@@ -8,6 +8,7 @@
 
 #import "GLMine_Team_AchieveNotDoneController.h"
 #import "GLMine_Team_AchieveManageCell.h"
+#import "GLMine_Team_UnderLingAchieveController.h"
 
 @interface GLMine_Team_AchieveNotDoneController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -66,6 +67,11 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     GLMine_Team_AchieveManageCell *cell = [tableView dequeueReusableCellWithIdentifier:donationTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

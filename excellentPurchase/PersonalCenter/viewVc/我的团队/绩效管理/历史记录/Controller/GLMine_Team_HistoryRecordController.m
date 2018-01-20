@@ -44,7 +44,6 @@
     self.kPageMenuH = 60;
     self.kGLMine_TeamScrollViewBeginTopInset = self.kHeaderViewH + self.kPageMenuH;
     
-    
     adjustsScrollViewInsets_NO(self.scrollView, self);
     
     self.lastPageMenuY = self.kHeaderViewH + SafeAreaTopHeight;
@@ -90,11 +89,14 @@
 
 #pragma mark - 日期选择
 - (void)dateChoose{
-    
-//    GLMine_Team_HistoryDateChooseView *dateV = [[GLMine_Team_HistoryDateChooseView alloc] init];
-    
-//    [dateV show];
+
+   __block typeof(self) weakSelf = self;
     [GLMine_Team_HistoryDateChooseView showDateChooseViewWith:^(NSString *dateStr) {
+        
+        weakSelf.headerView.dateLabel.text = dateStr;
+        
+        ///查询方法
+        
         
     }];
 }
