@@ -324,6 +324,15 @@
 		F9713769200608CA0033F38B /* LBAccountManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9713767200608CA0033F38B /* LBAccountManagementViewController.xib */; };
 		F971377220060A040033F38B /* LBAccountManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F971377020060A040033F38B /* LBAccountManagementTableViewCell.m */; };
 		F971377320060A040033F38B /* LBAccountManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F971377120060A040033F38B /* LBAccountManagementTableViewCell.xib */; };
+		F97CDC6B2015767F0036B8E0 /* LBFinancialCenterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CDC652015767E0036B8E0 /* LBFinancialCenterHeaderView.xib */; };
+		F97CDC6C2015767F0036B8E0 /* LBFinancialCenterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC672015767E0036B8E0 /* LBFinancialCenterHeaderView.m */; };
+		F97CDC6D2015767F0036B8E0 /* LBFinancialCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC692015767F0036B8E0 /* LBFinancialCenterTableViewCell.m */; };
+		F97CDC6E2015767F0036B8E0 /* LBFinancialCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CDC6A2015767F0036B8E0 /* LBFinancialCenterTableViewCell.xib */; };
+		F97CDC78201576A20036B8E0 /* LBFinancialCenterBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC6F201576A10036B8E0 /* LBFinancialCenterBaseViewController.m */; };
+		F97CDC79201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CDC70201576A10036B8E0 /* LBFinancialCenterMarketvalueViewController.xib */; };
+		F97CDC7A201576A20036B8E0 /* LBFinancialCenterSaleRecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC71201576A10036B8E0 /* LBFinancialCenterSaleRecoderViewController.m */; };
+		F97CDC7B201576A20036B8E0 /* LBFinancialCenterExchangeRecodervc.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC74201576A10036B8E0 /* LBFinancialCenterExchangeRecodervc.m */; };
+		F97CDC7C201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC77201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.m */; };
 		F97E6035200EE68100C9C4E7 /* JYCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6026200EE68000C9C4E7 /* JYCarousel.m */; };
 		F97E6036200EE68100C9C4E7 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6028200EE68000C9C4E7 /* JYConfiguration.m */; };
 		F97E6037200EE68100C9C4E7 /* JYImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E602A200EE68000C9C4E7 /* JYImageCache.m */; };
@@ -871,6 +880,21 @@
 		F971376F20060A040033F38B /* LBAccountManagementTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBAccountManagementTableViewCell.h; sourceTree = "<group>"; };
 		F971377020060A040033F38B /* LBAccountManagementTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBAccountManagementTableViewCell.m; sourceTree = "<group>"; };
 		F971377120060A040033F38B /* LBAccountManagementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBAccountManagementTableViewCell.xib; sourceTree = "<group>"; };
+		F97CDC652015767E0036B8E0 /* LBFinancialCenterHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFinancialCenterHeaderView.xib; sourceTree = "<group>"; };
+		F97CDC662015767E0036B8E0 /* LBFinancialCenterHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterHeaderView.h; sourceTree = "<group>"; };
+		F97CDC672015767E0036B8E0 /* LBFinancialCenterHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterHeaderView.m; sourceTree = "<group>"; };
+		F97CDC682015767E0036B8E0 /* LBFinancialCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterTableViewCell.h; sourceTree = "<group>"; };
+		F97CDC692015767F0036B8E0 /* LBFinancialCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterTableViewCell.m; sourceTree = "<group>"; };
+		F97CDC6A2015767F0036B8E0 /* LBFinancialCenterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFinancialCenterTableViewCell.xib; sourceTree = "<group>"; };
+		F97CDC6F201576A10036B8E0 /* LBFinancialCenterBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterBaseViewController.m; sourceTree = "<group>"; };
+		F97CDC70201576A10036B8E0 /* LBFinancialCenterMarketvalueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFinancialCenterMarketvalueViewController.xib; sourceTree = "<group>"; };
+		F97CDC71201576A10036B8E0 /* LBFinancialCenterSaleRecoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterSaleRecoderViewController.m; sourceTree = "<group>"; };
+		F97CDC72201576A10036B8E0 /* LBFinancialCenterBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterBaseViewController.h; sourceTree = "<group>"; };
+		F97CDC73201576A10036B8E0 /* LBFinancialCenterExchangeRecodervc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterExchangeRecodervc.h; sourceTree = "<group>"; };
+		F97CDC74201576A10036B8E0 /* LBFinancialCenterExchangeRecodervc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterExchangeRecodervc.m; sourceTree = "<group>"; };
+		F97CDC75201576A20036B8E0 /* LBFinancialCenterSaleRecoderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterSaleRecoderViewController.h; sourceTree = "<group>"; };
+		F97CDC76201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterMarketvalueViewController.h; sourceTree = "<group>"; };
+		F97CDC77201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterMarketvalueViewController.m; sourceTree = "<group>"; };
 		F97E6025200EE68000C9C4E7 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
 		F97E6026200EE68000C9C4E7 /* JYCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCarousel.m; sourceTree = "<group>"; };
 		F97E6027200EE68000C9C4E7 /* JYConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYConfiguration.h; sourceTree = "<group>"; };
@@ -1946,6 +1970,15 @@
 				F95072E0200492AB0026D28F /* LBFinancialCenterViewController.h */,
 				F95072E1200492AB0026D28F /* LBFinancialCenterViewController.m */,
 				F95072E2200492AB0026D28F /* LBFinancialCenterViewController.xib */,
+				F97CDC72201576A10036B8E0 /* LBFinancialCenterBaseViewController.h */,
+				F97CDC6F201576A10036B8E0 /* LBFinancialCenterBaseViewController.m */,
+				F97CDC73201576A10036B8E0 /* LBFinancialCenterExchangeRecodervc.h */,
+				F97CDC74201576A10036B8E0 /* LBFinancialCenterExchangeRecodervc.m */,
+				F97CDC76201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.h */,
+				F97CDC77201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.m */,
+				F97CDC70201576A10036B8E0 /* LBFinancialCenterMarketvalueViewController.xib */,
+				F97CDC75201576A20036B8E0 /* LBFinancialCenterSaleRecoderViewController.h */,
+				F97CDC71201576A10036B8E0 /* LBFinancialCenterSaleRecoderViewController.m */,
 			);
 			path = viewVc;
 			sourceTree = "<group>";
@@ -1960,6 +1993,12 @@
 		F95072E4200492AB0026D28F /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F97CDC662015767E0036B8E0 /* LBFinancialCenterHeaderView.h */,
+				F97CDC672015767E0036B8E0 /* LBFinancialCenterHeaderView.m */,
+				F97CDC652015767E0036B8E0 /* LBFinancialCenterHeaderView.xib */,
+				F97CDC682015767E0036B8E0 /* LBFinancialCenterTableViewCell.h */,
+				F97CDC692015767F0036B8E0 /* LBFinancialCenterTableViewCell.m */,
+				F97CDC6A2015767F0036B8E0 /* LBFinancialCenterTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3093,6 +3132,7 @@
 			files = (
 				F971374A2005FD910033F38B /* personCenter.xcassets in Resources */,
 				F9712C8E200460040015037A /* LaunchScreen.storyboard in Resources */,
+				F97CDC6E2015767F0036B8E0 /* LBFinancialCenterTableViewCell.xib in Resources */,
 				F955D14A20089676001EEC81 /* LBResetOldPhoneViewController.xib in Resources */,
 				4A20E9A6201322F300E091EA /* GLMine_Message_TrendsController.xib in Resources */,
 				F9712C8B200460040015037A /* Assets.xcassets in Resources */,
@@ -3138,6 +3178,7 @@
 				4AFC0E9720157182004518F4 /* LBEat_StoreCommentsViewController.xib in Resources */,
 				F955D15920089CDB001EEC81 /* LBResetBindBankTableViewCell.xib in Resources */,
 				F97137362005DF690033F38B /* LBLoginViewController.xib in Resources */,
+				F97CDC6B2015767F0036B8E0 /* LBFinancialCenterHeaderView.xib in Resources */,
 				F95B5363200CD39200A81954 /* LBCheckMoreCommentsTableViewCell.xib in Resources */,
 				F95072D6200492430026D28F /* LBHomeViewController.xib in Resources */,
 				F9340A122009E5ED0002DBB8 /* LBintegralGoodsAciticityTableViewCell.xib in Resources */,
@@ -3150,6 +3191,7 @@
 				F955D11820086166001EEC81 /* LBAccountSecurityViewController.xib in Resources */,
 				F9340A43200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.xib in Resources */,
 				F968C31C2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.xib in Resources */,
+				F97CDC79201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.xib in Resources */,
 				4A0B1409201091EC00AC3334 /* GLMine_Team_AccountChooseController.xib in Resources */,
 				F968C33B2007510C00971F11 /* LBSendRedPackRecoderViewController.xib in Resources */,
 				4A79EDF6200F1F6C001F28D1 /* GLIdentifySelectController.xib in Resources */,
@@ -3313,6 +3355,7 @@
 				F9340A0D2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.m in Sources */,
 				F9340A44200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.m in Sources */,
 				4A20E97C2012E04E00E091EA /* GLMine_MessageController.m in Sources */,
+				F97CDC7B201576A20036B8E0 /* LBFinancialCenterExchangeRecodervc.m in Sources */,
 				F955D16D2008A1B1001EEC81 /* HCBasePopupViewController.m in Sources */,
 				4A20E98F2012EA0500E091EA /* GLMine_Message_LogisticsModel.m in Sources */,
 				F968C31120072C0300971F11 /* LBVoucherCenterViewController.m in Sources */,
@@ -3404,6 +3447,7 @@
 				F971374F2005FF280033F38B /* LBModifyingUsernameViewController.m in Sources */,
 				4AFC0EA8201573AF004518F4 /* LB_Eat'commentDataModel.m in Sources */,
 				F968C3162007347600971F11 /* LBVoucherCenterRecoderViewController.m in Sources */,
+				F97CDC7A201576A20036B8E0 /* LBFinancialCenterSaleRecoderViewController.m in Sources */,
 				F96971C32011849A00966E26 /* LBEat_storeDetailInfodiscountTableViewCell.m in Sources */,
 				F95B5358200CC38D00A81954 /* LBCommentHeaderTableViewCell.m in Sources */,
 				F971373C2005EE740033F38B /* LBRegisterViewController.m in Sources */,
@@ -3430,6 +3474,7 @@
 				F94D250B200E01F800381E2A /* LBUploadIdentityPictureViewController.m in Sources */,
 				F97E6058200EF18900C9C4E7 /* GLNearby_classifyCell.m in Sources */,
 				F95FD425200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m in Sources */,
+				F97CDC7C201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.m in Sources */,
 				4A79EDFD200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m in Sources */,
 				F95FD42B200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m in Sources */,
 				4A9E18962011C50D00E1EC05 /* predicateModel.m in Sources */,
@@ -3446,6 +3491,7 @@
 				F9340A262009F5220002DBB8 /* LBIntegralGoodsTwoCollectionViewCell.m in Sources */,
 				F9633D87200C4D78001B545A /* CALayer+LBBorderLayer.m in Sources */,
 				F971377220060A040033F38B /* LBAccountManagementTableViewCell.m in Sources */,
+				F97CDC78201576A20036B8E0 /* LBFinancialCenterBaseViewController.m in Sources */,
 				F955D0FF20084AD7001EEC81 /* LBSetUpViewController.m in Sources */,
 				F968C356200758D800971F11 /* LBSendRedPackRecoderSendVc.m in Sources */,
 				4A20E9D5201335B500E091EA /* GLMine_ShoppingCartController.m in Sources */,
@@ -3475,6 +3521,7 @@
 				F950730A2004BDD20026D28F /* LBHorseRaceLampModel.m in Sources */,
 				F95FD436200DC2C300F6C523 /* StandardsView.m in Sources */,
 				F955D17C2008A7BA001EEC81 /* LBBankCardListTableViewCell.m in Sources */,
+				F97CDC6C2015767F0036B8E0 /* LBFinancialCenterHeaderView.m in Sources */,
 				F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */,
 				F97137552006025F0033F38B /* GLRecommendController.m in Sources */,
 				F9713768200608CA0033F38B /* LBAccountManagementViewController.m in Sources */,
@@ -3484,6 +3531,7 @@
 				4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */,
 				F9633D8B200C629A001B545A /* CCPScrollView.m in Sources */,
 				F95072D5200492430026D28F /* LBHomeViewController.m in Sources */,
+				F97CDC6D2015767F0036B8E0 /* LBFinancialCenterTableViewCell.m in Sources */,
 				F9712C83200460030015037A /* AppDelegate.m in Sources */,
 				4A5413A32010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m in Sources */,
 				4A9E18E02012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m in Sources */,
