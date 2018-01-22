@@ -99,6 +99,15 @@
 		4A9E18DC201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18DA201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m */; };
 		4A9E18DD201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9E18DB201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib */; };
 		4A9E18E02012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18DF2012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m */; };
+		4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */; };
+		4AFC0E9720157182004518F4 /* LBEat_StoreCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */; };
+		4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9920157229004518F4 /* LBEat_StoreCommentFooterView.m */; };
+		4AFC0E9E2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9C2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.m */; };
+		4AFC0E9F2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9D2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.xib */; };
+		4AFC0EA220157387004518F4 /* LB_Eat_commentOneDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EA020157386004518F4 /* LB_Eat_commentOneDataModel.m */; };
+		4AFC0EA7201573AF004518F4 /* LB_EatCommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EA5201573AF004518F4 /* LB_EatCommentFrameModel.m */; };
+		4AFC0EA8201573AF004518F4 /* LB_Eat'commentDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EA6201573AF004518F4 /* LB_Eat'commentDataModel.m */; };
+		4AFC0EAC2015740E004518F4 /* XHInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EAB2015740E004518F4 /* XHInputView.m */; };
 		633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
@@ -279,8 +288,6 @@
 		F96971D22011849A00966E26 /* LJCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971BC2011849A00966E26 /* LJCollectionViewFlowLayout.m */; };
 		F96971D32011849A00966E26 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971BE2011849A00966E26 /* NSObject+Property.m */; };
 		F96971D42011849A00966E26 /* UIViewController+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971C02011849A00966E26 /* UIViewController+Dealloc.m */; };
-		F96971DC2011905600966E26 /* LBEat_StoreCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971DA2011905600966E26 /* LBEat_StoreCommentsViewController.m */; };
-		F96971DD2011905600966E26 /* LBEat_StoreCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96971DB2011905600966E26 /* LBEat_StoreCommentsViewController.xib */; };
 		F96971E0201195E000966E26 /* LBEat_StoreCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */; };
 		F9712C83200460030015037A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C82200460030015037A /* AppDelegate.m */; };
 		F9712C86200460040015037A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C85200460040015037A /* ViewController.m */; };
@@ -505,6 +512,22 @@
 		4A9E18DB201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_UnderlingAchieveCell.xib; sourceTree = "<group>"; };
 		4A9E18DE2012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_UnderlingAchieveModel.h; sourceTree = "<group>"; };
 		4A9E18DF2012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_UnderlingAchieveModel.m; sourceTree = "<group>"; };
+		4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsViewController.m; sourceTree = "<group>"; };
+		4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_StoreCommentsViewController.xib; sourceTree = "<group>"; };
+		4AFC0E9520157182004518F4 /* LBEat_StoreCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsViewController.h; sourceTree = "<group>"; };
+		4AFC0E9820157229004518F4 /* LBEat_StoreCommentFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentFooterView.h; sourceTree = "<group>"; };
+		4AFC0E9920157229004518F4 /* LBEat_StoreCommentFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentFooterView.m; sourceTree = "<group>"; };
+		4AFC0E9B2015732D004518F4 /* LBEat_StoreCommentsdetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsdetailViewController.h; sourceTree = "<group>"; };
+		4AFC0E9C2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsdetailViewController.m; sourceTree = "<group>"; };
+		4AFC0E9D2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_StoreCommentsdetailViewController.xib; sourceTree = "<group>"; };
+		4AFC0EA020157386004518F4 /* LB_Eat_commentOneDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LB_Eat_commentOneDataModel.m; sourceTree = "<group>"; };
+		4AFC0EA120157387004518F4 /* LB_Eat_commentOneDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LB_Eat_commentOneDataModel.h; sourceTree = "<group>"; };
+		4AFC0EA3201573AF004518F4 /* LB_Eat'commentDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LB_Eat'commentDataModel.h"; sourceTree = "<group>"; };
+		4AFC0EA4201573AF004518F4 /* LB_EatCommentFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LB_EatCommentFrameModel.h; sourceTree = "<group>"; };
+		4AFC0EA5201573AF004518F4 /* LB_EatCommentFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LB_EatCommentFrameModel.m; sourceTree = "<group>"; };
+		4AFC0EA6201573AF004518F4 /* LB_Eat'commentDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LB_Eat'commentDataModel.m"; sourceTree = "<group>"; };
+		4AFC0EAA2015740E004518F4 /* XHInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHInputView.h; sourceTree = "<group>"; };
+		4AFC0EAB2015740E004518F4 /* XHInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHInputView.m; sourceTree = "<group>"; };
 		7783D9C11A5F2A3CA8CB596F /* Pods-excellentPurchase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.debug.xcconfig"; sourceTree = "<group>"; };
 		9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_excellentPurchase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -790,9 +813,6 @@
 		F96971BE2011849A00966E26 /* NSObject+Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Property.m"; sourceTree = "<group>"; };
 		F96971BF2011849A00966E26 /* UIViewController+Dealloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Dealloc.h"; sourceTree = "<group>"; };
 		F96971C02011849A00966E26 /* UIViewController+Dealloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Dealloc.m"; sourceTree = "<group>"; };
-		F96971D92011905600966E26 /* LBEat_StoreCommentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsViewController.h; sourceTree = "<group>"; };
-		F96971DA2011905600966E26 /* LBEat_StoreCommentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsViewController.m; sourceTree = "<group>"; };
-		F96971DB2011905600966E26 /* LBEat_StoreCommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_StoreCommentsViewController.xib; sourceTree = "<group>"; };
 		F96971DE201195E000966E26 /* LBEat_StoreCommentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentHeaderView.h; sourceTree = "<group>"; };
 		F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentHeaderView.m; sourceTree = "<group>"; };
 		F9712C7E200460030015037A /* excellentPurchase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excellentPurchase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1752,6 +1772,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4AFC0EA92015740E004518F4 /* 评论弹出框 */ = {
+			isa = PBXGroup;
+			children = (
+				4AFC0EAA2015740E004518F4 /* XHInputView.h */,
+				4AFC0EAB2015740E004518F4 /* XHInputView.m */,
+			);
+			path = "评论弹出框";
+			sourceTree = "<group>";
+		};
 		A5B2457F2950DB08109A6D3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1764,6 +1793,7 @@
 		F93409F12009CF560002DBB8 /* ThreePart */ = {
 			isa = PBXGroup;
 			children = (
+				4AFC0EA92015740E004518F4 /* 评论弹出框 */,
 				F97E6059200EF1DB00C9C4E7 /* XHStarRateView */,
 				F97E6024200EE68000C9C4E7 /* JYCarousel */,
 				F95FD42C200DC2C300F6C523 /* Standard */,
@@ -2556,9 +2586,12 @@
 		F96971D62011901400966E26 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				F96971D92011905600966E26 /* LBEat_StoreCommentsViewController.h */,
-				F96971DA2011905600966E26 /* LBEat_StoreCommentsViewController.m */,
-				F96971DB2011905600966E26 /* LBEat_StoreCommentsViewController.xib */,
+				4AFC0E9520157182004518F4 /* LBEat_StoreCommentsViewController.h */,
+				4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */,
+				4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */,
+				4AFC0E9B2015732D004518F4 /* LBEat_StoreCommentsdetailViewController.h */,
+				4AFC0E9C2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.m */,
+				4AFC0E9D2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2566,6 +2599,12 @@
 		F96971D72011901500966E26 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				4AFC0EA120157387004518F4 /* LB_Eat_commentOneDataModel.h */,
+				4AFC0EA020157386004518F4 /* LB_Eat_commentOneDataModel.m */,
+				4AFC0EA3201573AF004518F4 /* LB_Eat'commentDataModel.h */,
+				4AFC0EA6201573AF004518F4 /* LB_Eat'commentDataModel.m */,
+				4AFC0EA4201573AF004518F4 /* LB_EatCommentFrameModel.h */,
+				4AFC0EA5201573AF004518F4 /* LB_EatCommentFrameModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2575,6 +2614,8 @@
 			children = (
 				F96971DE201195E000966E26 /* LBEat_StoreCommentHeaderView.h */,
 				F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */,
+				4AFC0E9820157229004518F4 /* LBEat_StoreCommentFooterView.h */,
+				4AFC0E9920157229004518F4 /* LBEat_StoreCommentFooterView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3089,12 +3130,12 @@
 				F95B532F200CA23E00A81954 /* LBProductDetailViewController.xib in Resources */,
 				4A79EDD5200EF424001F28D1 /* MyTeam.xcassets in Resources */,
 				4A20E9992013094700E091EA /* GLMine_Message_PropertyCell.xib in Resources */,
-				F96971DD2011905600966E26 /* LBEat_StoreCommentsViewController.xib in Resources */,
 				4A20E9AB2013235E00E091EA /* GLMine_Message_TrendsCell.xib in Resources */,
 				F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */,
 				F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */,
 				F95B5354200CBB3200A81954 /* LBTaoTaoProductInofoTableViewCell.xib in Resources */,
 				F97E6044200EEAE900C9C4E7 /* LBEat_CateViewController.xib in Resources */,
+				4AFC0E9720157182004518F4 /* LBEat_StoreCommentsViewController.xib in Resources */,
 				F955D15920089CDB001EEC81 /* LBResetBindBankTableViewCell.xib in Resources */,
 				F97137362005DF690033F38B /* LBLoginViewController.xib in Resources */,
 				F95B5363200CD39200A81954 /* LBCheckMoreCommentsTableViewCell.xib in Resources */,
@@ -3154,6 +3195,7 @@
 				4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */,
 				F95FE0B32010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib in Resources */,
 				F95072DE200492840026D28F /* LBEatAndDrinkViewController.xib in Resources */,
+				4AFC0E9F2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.xib in Resources */,
 				F9340A0E2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.xib in Resources */,
 				4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */,
 				F955D10D200853F6001EEC81 /* LBAboutUsViewController.xib in Resources */,
@@ -3273,7 +3315,6 @@
 				4A20E97C2012E04E00E091EA /* GLMine_MessageController.m in Sources */,
 				F955D16D2008A1B1001EEC81 /* HCBasePopupViewController.m in Sources */,
 				4A20E98F2012EA0500E091EA /* GLMine_Message_LogisticsModel.m in Sources */,
-				F96971DC2011905600966E26 /* LBEat_StoreCommentsViewController.m in Sources */,
 				F968C31120072C0300971F11 /* LBVoucherCenterViewController.m in Sources */,
 				4A20E98B2012E61900E091EA /* GLMine_Message_LogisticsCell.m in Sources */,
 				4A79EE02200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m in Sources */,
@@ -3292,6 +3333,7 @@
 				F96971D22011849A00966E26 /* LJCollectionViewFlowLayout.m in Sources */,
 				4A20E9862012E4C600E091EA /* GLMine_Message_LogisticsController.m in Sources */,
 				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
+				4AFC0E9E2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.m in Sources */,
 				4A9E18C02011EAC000E1EC05 /* GLMine_Team_OpenSellerController.m in Sources */,
 				F95072ED200492DA0026D28F /* LBPersonCenterViewController.m in Sources */,
 				F96971D42011849A00966E26 /* UIViewController+Dealloc.m in Sources */,
@@ -3301,6 +3343,7 @@
 				4A9E18992011C51B00E1EC05 /* formattime.m in Sources */,
 				F955D15320089C94001EEC81 /* LBResetBindBankViewController.m in Sources */,
 				F96971D12011849A00966E26 /* LeftTableViewCell.m in Sources */,
+				4AFC0EA7201573AF004518F4 /* LB_EatCommentFrameModel.m in Sources */,
 				F955D14920089676001EEC81 /* LBResetOldPhoneViewController.m in Sources */,
 				F95B5347200CAA0000A81954 /* PopoverView.m in Sources */,
 				F96971D32011849A00966E26 /* NSObject+Property.m in Sources */,
@@ -3359,6 +3402,7 @@
 				F95073012004A9590026D28F /* LBNearby_classifyItemView.m in Sources */,
 				F955D16F2008A1B1001EEC81 /* HCBottomPopupViewController.m in Sources */,
 				F971374F2005FF280033F38B /* LBModifyingUsernameViewController.m in Sources */,
+				4AFC0EA8201573AF004518F4 /* LB_Eat'commentDataModel.m in Sources */,
 				F968C3162007347600971F11 /* LBVoucherCenterRecoderViewController.m in Sources */,
 				F96971C32011849A00966E26 /* LBEat_storeDetailInfodiscountTableViewCell.m in Sources */,
 				F95B5358200CC38D00A81954 /* LBCommentHeaderTableViewCell.m in Sources */,
@@ -3380,6 +3424,7 @@
 				F955D13F200890F5001EEC81 /* LBFindSecondPassWordViewController.m in Sources */,
 				F97E6035200EE68100C9C4E7 /* JYCarousel.m in Sources */,
 				4A20E95E2012DAAB00E091EA /* GLMine_Team_UnderlingDetailController.m in Sources */,
+				4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */,
 				4A9E18C62011F45100E1EC05 /* GLMine_Team_UploadLicenseController.m in Sources */,
 				F97E6036200EE68100C9C4E7 /* JYConfiguration.m in Sources */,
 				F94D250B200E01F800381E2A /* LBUploadIdentityPictureViewController.m in Sources */,
@@ -3394,6 +3439,7 @@
 				F9340A2F2009F8830002DBB8 /* LBTmallProductListViewController.m in Sources */,
 				F9340A132009E5ED0002DBB8 /* LBintegralGoodsAciticityTableViewCell.m in Sources */,
 				4A20E99D2013165600E091EA /* GLMine_Message_PropertyListController.m in Sources */,
+				4AFC0EA220157387004518F4 /* LB_Eat_commentOneDataModel.m in Sources */,
 				4A20E9A5201322F300E091EA /* GLMine_Message_TrendsController.m in Sources */,
 				F955D13A20088F4F001EEC81 /* LBChangeSecondaryPasswordVc.m in Sources */,
 				F955D13220088CA6001EEC81 /* LBSwitchAccountViewController.m in Sources */,
@@ -3435,6 +3481,7 @@
 				F9712C91200460040015037A /* main.m in Sources */,
 				4A79EDDE200EFE9A001F28D1 /* GLMine_TeamAchievementModel.m in Sources */,
 				F95072E5200492AB0026D28F /* LBFinancialCenterViewController.m in Sources */,
+				4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */,
 				F9633D8B200C629A001B545A /* CCPScrollView.m in Sources */,
 				F95072D5200492430026D28F /* LBHomeViewController.m in Sources */,
 				F9712C83200460030015037A /* AppDelegate.m in Sources */,
@@ -3447,6 +3494,7 @@
 				F96971C72011849A00966E26 /* LBEat_storeDetailInfomationTableViewCell.m in Sources */,
 				4A9E18AF2011D36F00E1EC05 /* GLMine_Team_MemberListController.m in Sources */,
 				F96971CE2011849A00966E26 /* CollectionViewHeaderView.m in Sources */,
+				4AFC0EAC2015740E004518F4 /* XHInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
