@@ -13,6 +13,8 @@
 #import "LBFinancialCenterMarketvalueViewController.h"
 #import "LBFinancialCenterSaleRecoderViewController.h"
 #import "LBFinancialCenterExchangeRecodervc.h"
+#import "LBFinancialCenetrSaleViewController.h"
+#import "LBFinancialExchangeViewController.h"
 
 #define kHeaderViewH (196 + SafeAreaTopHeight) //headerview的高度
 #define kPageMenuH 60 //菜单的高度
@@ -60,6 +62,27 @@
     // 监听子控制器发出的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subScrollViewDidScroll:) name:ChildScrollViewDidScrollNSNotificationFinancial  object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshState:) name:ChildScrollViewRefreshStateNSNotificationFinancial object:nil];
+}
+
+/**
+ 出售
+ */
+-(void)financialSaleEvent{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBFinancialCenetrSaleViewController *vc = [[LBFinancialCenetrSaleViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+/**
+ 兑换
+ */
+-(void)financialExchangeEvent{
+    self.hidesBottomBarWhenPushed = YES;
+    LBFinancialExchangeViewController *vc = [[LBFinancialExchangeViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - 通知
@@ -238,6 +261,8 @@
         _headerView = [[NSBundle mainBundle]loadNibNamed:@"LBFinancialCenterHeaderView" owner:self options:nil].firstObject;
         _headerView.frame = CGRectMake(0, 0, UIScreenWidth, kHeaderViewH);
         _headerView.autoresizingMask = 0;
+        [_headerView.saleBt addTarget:self action:@selector(financialSaleEvent) forControlEvents:UIControlEventTouchUpInside];
+         [_headerView.exchangeBt addTarget:self action:@selector(financialExchangeEvent) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headerView;
 }

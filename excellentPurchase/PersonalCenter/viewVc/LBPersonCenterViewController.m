@@ -14,6 +14,7 @@
 #import "LBSetUpViewController.h"//设置
 #import "GLMine_TeamController.h"//我的团队
 #import "GLMine_MessageController.h"//消息中心
+#import "LBMineOrderManagerViewController.h"//订单管理
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
