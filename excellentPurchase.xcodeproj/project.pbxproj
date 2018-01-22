@@ -220,6 +220,16 @@
 		F961BD422012F28E006D34DE /* EasyShowUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD352012F28D006D34DE /* EasyShowUtils.m */; };
 		F961BD432012F28E006D34DE /* UIView+EasyShowExt.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD372012F28D006D34DE /* UIView+EasyShowExt.m */; };
 		F961BD442012F28E006D34DE /* XHInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD3A2012F28E006D34DE /* XHInputView.m */; };
+		F961BD4720131F2A006D34DE /* LBFinancialCenterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD4620131F2A006D34DE /* LBFinancialCenterHeaderView.m */; };
+		F961BD4920131F4B006D34DE /* LBFinancialCenterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F961BD4820131F4B006D34DE /* LBFinancialCenterHeaderView.xib */; };
+		F961BD4B201322A3006D34DE /* financial.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F961BD4A201322A3006D34DE /* financial.xcassets */; };
+		F961BD5120132C2F006D34DE /* LBFinancialCenterBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD5020132C2F006D34DE /* LBFinancialCenterBaseViewController.m */; };
+		F961BD5520132D04006D34DE /* LBFinancialCenterMarketvalueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD5320132D04006D34DE /* LBFinancialCenterMarketvalueViewController.m */; };
+		F961BD5620132D04006D34DE /* LBFinancialCenterMarketvalueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F961BD5420132D04006D34DE /* LBFinancialCenterMarketvalueViewController.xib */; };
+		F961BD5920132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD5820132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.m */; };
+		F961BD5C20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD5B20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.m */; };
+		F961BD6020133C4F006D34DE /* LBFinancialCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F961BD5E20133C4F006D34DE /* LBFinancialCenterTableViewCell.m */; };
+		F961BD6120133C4F006D34DE /* LBFinancialCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F961BD5F20133C4F006D34DE /* LBFinancialCenterTableViewCell.xib */; };
 		F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9633D7E200C3E00001B545A /* Mine.xcassets */; };
 		F9633D82200C42C2001B545A /* LBMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9633D81200C42C2001B545A /* LBMineHeaderView.m */; };
 		F9633D84200C42D3001B545A /* LBMineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9633D83200C42D3001B545A /* LBMineHeaderView.xib */; };
@@ -697,6 +707,22 @@
 		F961BD372012F28D006D34DE /* UIView+EasyShowExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EasyShowExt.m"; sourceTree = "<group>"; };
 		F961BD392012F28E006D34DE /* XHInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHInputView.h; sourceTree = "<group>"; };
 		F961BD3A2012F28E006D34DE /* XHInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHInputView.m; sourceTree = "<group>"; };
+		F961BD4520131F2A006D34DE /* LBFinancialCenterHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterHeaderView.h; sourceTree = "<group>"; };
+		F961BD4620131F2A006D34DE /* LBFinancialCenterHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterHeaderView.m; sourceTree = "<group>"; };
+		F961BD4820131F4B006D34DE /* LBFinancialCenterHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFinancialCenterHeaderView.xib; sourceTree = "<group>"; };
+		F961BD4A201322A3006D34DE /* financial.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = financial.xcassets; sourceTree = "<group>"; };
+		F961BD4F20132C2F006D34DE /* LBFinancialCenterBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterBaseViewController.h; sourceTree = "<group>"; };
+		F961BD5020132C2F006D34DE /* LBFinancialCenterBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterBaseViewController.m; sourceTree = "<group>"; };
+		F961BD5220132D04006D34DE /* LBFinancialCenterMarketvalueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterMarketvalueViewController.h; sourceTree = "<group>"; };
+		F961BD5320132D04006D34DE /* LBFinancialCenterMarketvalueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterMarketvalueViewController.m; sourceTree = "<group>"; };
+		F961BD5420132D04006D34DE /* LBFinancialCenterMarketvalueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFinancialCenterMarketvalueViewController.xib; sourceTree = "<group>"; };
+		F961BD5720132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterSaleRecoderViewController.h; sourceTree = "<group>"; };
+		F961BD5820132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterSaleRecoderViewController.m; sourceTree = "<group>"; };
+		F961BD5A20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterExchangeRecodervc.h; sourceTree = "<group>"; };
+		F961BD5B20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterExchangeRecodervc.m; sourceTree = "<group>"; };
+		F961BD5D20133C4F006D34DE /* LBFinancialCenterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterTableViewCell.h; sourceTree = "<group>"; };
+		F961BD5E20133C4F006D34DE /* LBFinancialCenterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterTableViewCell.m; sourceTree = "<group>"; };
+		F961BD5F20133C4F006D34DE /* LBFinancialCenterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFinancialCenterTableViewCell.xib; sourceTree = "<group>"; };
 		F9633D7E200C3E00001B545A /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		F9633D80200C42C2001B545A /* LBMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineHeaderView.h; sourceTree = "<group>"; };
 		F9633D81200C42C2001B545A /* LBMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineHeaderView.m; sourceTree = "<group>"; };
@@ -1526,6 +1552,15 @@
 				F95072E0200492AB0026D28F /* LBFinancialCenterViewController.h */,
 				F95072E1200492AB0026D28F /* LBFinancialCenterViewController.m */,
 				F95072E2200492AB0026D28F /* LBFinancialCenterViewController.xib */,
+				F961BD4F20132C2F006D34DE /* LBFinancialCenterBaseViewController.h */,
+				F961BD5020132C2F006D34DE /* LBFinancialCenterBaseViewController.m */,
+				F961BD5220132D04006D34DE /* LBFinancialCenterMarketvalueViewController.h */,
+				F961BD5320132D04006D34DE /* LBFinancialCenterMarketvalueViewController.m */,
+				F961BD5420132D04006D34DE /* LBFinancialCenterMarketvalueViewController.xib */,
+				F961BD5720132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.h */,
+				F961BD5820132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.m */,
+				F961BD5A20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.h */,
+				F961BD5B20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.m */,
 			);
 			path = viewVc;
 			sourceTree = "<group>";
@@ -1540,6 +1575,12 @@
 		F95072E4200492AB0026D28F /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F961BD4520131F2A006D34DE /* LBFinancialCenterHeaderView.h */,
+				F961BD4620131F2A006D34DE /* LBFinancialCenterHeaderView.m */,
+				F961BD4820131F4B006D34DE /* LBFinancialCenterHeaderView.xib */,
+				F961BD5D20133C4F006D34DE /* LBFinancialCenterTableViewCell.h */,
+				F961BD5E20133C4F006D34DE /* LBFinancialCenterTableViewCell.m */,
+				F961BD5F20133C4F006D34DE /* LBFinancialCenterTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2392,6 +2433,7 @@
 				F9633D7E200C3E00001B545A /* Mine.xcassets */,
 				4A79EDD4200EF424001F28D1 /* MyTeam.xcassets */,
 				F94D250D200E0A0200381E2A /* eatDrink.xcassets */,
+				F961BD4A201322A3006D34DE /* financial.xcassets */,
 				F9712CDD200474100015037A /* like.caf */,
 				F971372F2005D9680033F38B /* activity.gif */,
 				F9633D8C200C6698001B545A /* 消息提醒.gif */,
@@ -2713,6 +2755,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F961BD4920131F4B006D34DE /* LBFinancialCenterHeaderView.xib in Resources */,
 				F971374A2005FD910033F38B /* personCenter.xcassets in Resources */,
 				F9712C8E200460040015037A /* LaunchScreen.storyboard in Resources */,
 				F955D14A20089676001EEC81 /* LBResetOldPhoneViewController.xib in Resources */,
@@ -2742,6 +2785,7 @@
 				F955D17D2008A7BA001EEC81 /* LBBankCardListTableViewCell.xib in Resources */,
 				F9340A1B2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.xib in Resources */,
 				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
+				F961BD4B201322A3006D34DE /* financial.xcassets in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				F968C3452007554400971F11 /* LBSendRedPackMenu.xib in Resources */,
 				F9340A4E200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.xib in Resources */,
@@ -2769,6 +2813,7 @@
 				4A79EDF6200F1F6C001F28D1 /* GLIdentifySelectController.xib in Resources */,
 				4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */,
 				F95FD42A200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.xib in Resources */,
+				F961BD6120133C4F006D34DE /* LBFinancialCenterTableViewCell.xib in Resources */,
 				F97137502005FF280033F38B /* LBModifyingUsernameViewController.xib in Resources */,
 				F955D1822008AEFD001EEC81 /* LBAddBankCardViewController.xib in Resources */,
 				F968C336200744F800971F11 /* LBDonationTableViewCell.xib in Resources */,
@@ -2802,6 +2847,7 @@
 				F955D13320088CA6001EEC81 /* LBSwitchAccountViewController.xib in Resources */,
 				F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */,
 				4A9E18D82012105900E1EC05 /* GLMine_Team_UnderLingAchieveController.xib in Resources */,
+				F961BD5620132D04006D34DE /* LBFinancialCenterMarketvalueViewController.xib in Resources */,
 				F95B535E200CD16200A81954 /* LBCommentListsTableViewCell.xib in Resources */,
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
 				4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */,
@@ -2938,6 +2984,7 @@
 				F961BD1A2012F229006D34DE /* LB_Eat_commentOneDataModel.m in Sources */,
 				F950730D2004C0240026D28F /* XBTextLoopView.m in Sources */,
 				4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */,
+				F961BD4720131F2A006D34DE /* LBFinancialCenterHeaderView.m in Sources */,
 				4A9E18DC201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m in Sources */,
 				F961BD3D2012F28E006D34DE /* EasyShowLodingView.m in Sources */,
 				F955D12D20088C97001EEC81 /* LBSwitchAccountTableViewCell.m in Sources */,
@@ -2968,6 +3015,7 @@
 				4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */,
 				F955D11C20087C82001EEC81 /* LBChangePasswordViewController.m in Sources */,
 				F971375C200604770033F38B /* LBMineCenterAddAdreassViewController.m in Sources */,
+				F961BD5C20132DEF006D34DE /* LBFinancialCenterExchangeRecodervc.m in Sources */,
 				F97137412005F6D10033F38B /* LBForgetSecretViewController.m in Sources */,
 				F968C32820073F9200971F11 /* LBDonationRecoderViewController.m in Sources */,
 				4A54139D2010AD77008A2FBD /* GLMine_Team_HistoryHeader.m in Sources */,
@@ -3023,6 +3071,7 @@
 				F97E603B200EE68100C9C4E7 /* JYWeakTimer.m in Sources */,
 				F955D1812008AEFD001EEC81 /* LBAddBankCardViewController.m in Sources */,
 				4A79EE16200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m in Sources */,
+				F961BD5120132C2F006D34DE /* LBFinancialCenterBaseViewController.m in Sources */,
 				F96971CD2011849A00966E26 /* CollectionViewCell.m in Sources */,
 				F955D14E2008968E001EEC81 /* LBResetNewPhoneViewController.m in Sources */,
 				F97E6064200F1D4500C9C4E7 /* LBEat_ActivityViewController.m in Sources */,
@@ -3030,14 +3079,17 @@
 				F961BD1B2012F229006D34DE /* LB_EatCommentFrameModel.m in Sources */,
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
 				4A9E18CC201202EF00E1EC05 /* GLMine_Team_MemberDataController.m in Sources */,
+				F961BD5920132D8D006D34DE /* LBFinancialCenterSaleRecoderViewController.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F961BD442012F28E006D34DE /* XHInputView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,
 				F95FD435200DC2C300F6C523 /* StandardModel.m in Sources */,
 				F9340A3E200A22000002DBB8 /* LBFilterMallShopCollectionViewCell.m in Sources */,
+				F961BD5520132D04006D34DE /* LBFinancialCenterMarketvalueViewController.m in Sources */,
 				F955D13F200890F5001EEC81 /* LBFindSecondPassWordViewController.m in Sources */,
 				F97E6035200EE68100C9C4E7 /* JYCarousel.m in Sources */,
 				4A9E18C62011F45100E1EC05 /* GLMine_Team_UploadLicenseController.m in Sources */,
+				F961BD6020133C4F006D34DE /* LBFinancialCenterTableViewCell.m in Sources */,
 				F97E6036200EE68100C9C4E7 /* JYConfiguration.m in Sources */,
 				F94D250B200E01F800381E2A /* LBUploadIdentityPictureViewController.m in Sources */,
 				F97E6058200EF18900C9C4E7 /* GLNearby_classifyCell.m in Sources */,
