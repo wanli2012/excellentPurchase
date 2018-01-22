@@ -108,6 +108,9 @@
 		4AFC0EA7201573AF004518F4 /* LB_EatCommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EA5201573AF004518F4 /* LB_EatCommentFrameModel.m */; };
 		4AFC0EA8201573AF004518F4 /* LB_Eat'commentDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EA6201573AF004518F4 /* LB_Eat'commentDataModel.m */; };
 		4AFC0EAC2015740E004518F4 /* XHInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EAB2015740E004518F4 /* XHInputView.m */; };
+		4AFC0EB0201581C7004518F4 /* GLMine_ShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EAE201581C7004518F4 /* GLMine_ShoppingCartCell.m */; };
+		4AFC0EB1201581C7004518F4 /* GLMine_ShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0EAF201581C7004518F4 /* GLMine_ShoppingCartCell.xib */; };
+		4AFC0EB420158B67004518F4 /* GLMine_ShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EB320158B67004518F4 /* GLMine_ShoppingCartModel.m */; };
 		633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
@@ -550,6 +553,11 @@
 		4AFC0EA6201573AF004518F4 /* LB_Eat'commentDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LB_Eat'commentDataModel.m"; sourceTree = "<group>"; };
 		4AFC0EAA2015740E004518F4 /* XHInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHInputView.h; sourceTree = "<group>"; };
 		4AFC0EAB2015740E004518F4 /* XHInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHInputView.m; sourceTree = "<group>"; };
+		4AFC0EAD201581C7004518F4 /* GLMine_ShoppingCartCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_ShoppingCartCell.h; sourceTree = "<group>"; };
+		4AFC0EAE201581C7004518F4 /* GLMine_ShoppingCartCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_ShoppingCartCell.m; sourceTree = "<group>"; };
+		4AFC0EAF201581C7004518F4 /* GLMine_ShoppingCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_ShoppingCartCell.xib; sourceTree = "<group>"; };
+		4AFC0EB220158B67004518F4 /* GLMine_ShoppingCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_ShoppingCartModel.h; sourceTree = "<group>"; };
+		4AFC0EB320158B67004518F4 /* GLMine_ShoppingCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_ShoppingCartModel.m; sourceTree = "<group>"; };
 		7783D9C11A5F2A3CA8CB596F /* Pods-excellentPurchase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.debug.xcconfig"; sourceTree = "<group>"; };
 		9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_excellentPurchase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -1445,6 +1453,8 @@
 		4A20E9D02013357500E091EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AFC0EB220158B67004518F4 /* GLMine_ShoppingCartModel.h */,
+				4AFC0EB320158B67004518F4 /* GLMine_ShoppingCartModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1452,6 +1462,9 @@
 		4A20E9D12013357500E091EA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4AFC0EAD201581C7004518F4 /* GLMine_ShoppingCartCell.h */,
+				4AFC0EAE201581C7004518F4 /* GLMine_ShoppingCartCell.m */,
+				4AFC0EAF201581C7004518F4 /* GLMine_ShoppingCartCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3330,6 +3343,7 @@
 				F95073172004CC830026D28F /* LBImmediateRushBuyCell.xib in Resources */,
 				F95B5359200CC38D00A81954 /* LBCommentHeaderTableViewCell.xib in Resources */,
 				F96971C22011849A00966E26 /* LBEat_StoreDetailViewController.xib in Resources */,
+				4AFC0EB1201581C7004518F4 /* GLMine_ShoppingCartCell.xib in Resources */,
 				F971377320060A040033F38B /* LBAccountManagementTableViewCell.xib in Resources */,
 				4A79EE03200F3463001F28D1 /* GLMine_Team_AchieveManageCell.xib in Resources */,
 				F97137562006025F0033F38B /* GLRecommendController.xib in Resources */,
@@ -3569,6 +3583,7 @@
 				F97E6064200F1D4500C9C4E7 /* LBEat_ActivityViewController.m in Sources */,
 				F968C31B2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.m in Sources */,
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
+				4AFC0EB420158B67004518F4 /* GLMine_ShoppingCartModel.m in Sources */,
 				4A9E18CC201202EF00E1EC05 /* GLMine_Team_MemberDataController.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,
@@ -3633,6 +3648,7 @@
 				F955D17C2008A7BA001EEC81 /* LBBankCardListTableViewCell.m in Sources */,
 				F97CDC6C2015767F0036B8E0 /* LBFinancialCenterHeaderView.m in Sources */,
 				F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */,
+				4AFC0EB0201581C7004518F4 /* GLMine_ShoppingCartCell.m in Sources */,
 				F97137552006025F0033F38B /* GLRecommendController.m in Sources */,
 				F9713768200608CA0033F38B /* LBAccountManagementViewController.m in Sources */,
 				F9712C91200460040015037A /* main.m in Sources */,
