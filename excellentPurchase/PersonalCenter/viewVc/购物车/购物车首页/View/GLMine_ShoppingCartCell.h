@@ -11,7 +11,9 @@
 
 @protocol GLMine_ShoppingCartCellDelegate <NSObject>
 
-- (void)changeStatus:(NSInteger)index;
+- (void)changeStatus:(NSInteger)index andSection:(NSInteger)section;
+
+- (void)changeNum:(NSInteger)index andSection:(NSInteger)section andIsAdd:(BOOL)isAdd;
 
 @end
 
@@ -22,6 +24,9 @@
 
 @property (nonatomic, weak)id <GLMine_ShoppingCartCellDelegate> delegate;
 
-@property (nonatomic, assign)NSInteger index;
+@property (weak, nonatomic) IBOutlet UITextField *amountTF;//编辑数量
+
+@property (nonatomic, assign)NSInteger section;//组 下标
+@property (nonatomic, assign)NSInteger index;//cell 行 下标
 
 @end

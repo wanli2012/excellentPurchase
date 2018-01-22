@@ -13,7 +13,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_ShoppingCartController">
             <connections>
                 <outlet property="clearBtn" destination="0lT-am-Nai" id="1IF-9U-gyo"/>
+                <outlet property="clearView" destination="Jxq-Xe-hzx" id="p9i-Xk-asg"/>
+                <outlet property="editView" destination="eAi-7w-Ndy" id="7ew-ix-CBG"/>
+                <outlet property="signImageV" destination="atM-SJ-O9k" id="XaC-t2-Rs2"/>
+                <outlet property="signImageV2" destination="IIY-kn-zLy" id="OG5-JC-dCa"/>
                 <outlet property="tableView" destination="WEO-2Z-wT3" id="7I8-yR-g2h"/>
+                <outlet property="totalPriceLabel" destination="vRg-vn-wUb" id="ZCS-6U-p2X"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,16 +27,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WEO-2Z-wT3">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="453"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="WEO-2Z-wT3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Swd-I2-O00"/>
                         <outlet property="delegate" destination="-1" id="JRH-0x-jje"/>
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxq-Xe-hzx" userLabel="clearView">
-                    <rect key="frame" x="0.0" y="453" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="553" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lT-am-Nai">
                             <rect key="frame" x="295" y="0.0" width="80" height="50"/>
@@ -40,7 +45,7 @@
                                 <constraint firstAttribute="width" constant="80" id="b5X-0a-Clo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="结算(2)">
+                            <state key="normal" title="结算(0)">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -86,7 +91,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥1187.90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRg-vn-wUb">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRg-vn-wUb">
                                     <rect key="frame" x="50.5" y="10" width="154.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,7 +131,7 @@
                         <constraint firstItem="0lT-am-Nai" firstAttribute="leading" secondItem="KVT-tk-UhZ" secondAttribute="trailing" id="joc-eB-f3s"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAi-7w-Ndy" userLabel="editView">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAi-7w-Ndy" userLabel="editView">
                     <rect key="frame" x="0.0" y="553" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-9Z-qsE">
@@ -204,7 +209,7 @@
                 <constraint firstAttribute="trailing" secondItem="eAi-7w-Ndy" secondAttribute="trailing" id="CzH-SP-KRZ"/>
                 <constraint firstItem="eAi-7w-Ndy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GPN-qL-dRw"/>
                 <constraint firstAttribute="trailing" secondItem="Jxq-Xe-hzx" secondAttribute="trailing" id="SrY-Ah-XFN"/>
-                <constraint firstAttribute="bottom" secondItem="Jxq-Xe-hzx" secondAttribute="bottom" constant="100" id="Zrx-rj-6NJ"/>
+                <constraint firstAttribute="bottom" secondItem="Jxq-Xe-hzx" secondAttribute="bottom" id="Zrx-rj-6NJ"/>
                 <constraint firstItem="Jxq-Xe-hzx" firstAttribute="top" secondItem="WEO-2Z-wT3" secondAttribute="bottom" id="k9m-AY-Dev"/>
                 <constraint firstItem="Jxq-Xe-hzx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vYK-Bg-WCr"/>
                 <constraint firstItem="WEO-2Z-wT3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="w1D-8o-Xhn"/>

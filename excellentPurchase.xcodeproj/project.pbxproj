@@ -111,6 +111,12 @@
 		4AFC0EB0201581C7004518F4 /* GLMine_ShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EAE201581C7004518F4 /* GLMine_ShoppingCartCell.m */; };
 		4AFC0EB1201581C7004518F4 /* GLMine_ShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0EAF201581C7004518F4 /* GLMine_ShoppingCartCell.xib */; };
 		4AFC0EB420158B67004518F4 /* GLMine_ShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EB320158B67004518F4 /* GLMine_ShoppingCartModel.m */; };
+		4AFC0EB72015D0B8004518F4 /* GLMine_ShoppingCartHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EB62015D0B8004518F4 /* GLMine_ShoppingCartHeader.m */; };
+		4AFC0EB92015D4C4004518F4 /* GLMine_ShoppingCartHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0EB82015D4C4004518F4 /* GLMine_ShoppingCartHeader.xib */; };
+		4AFC0EBD2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EBB2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.m */; };
+		4AFC0EBE2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0EBC2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.xib */; };
+		4AFC0EC22015E637004518F4 /* GLMine_CartGuessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0EC02015E637004518F4 /* GLMine_CartGuessCell.m */; };
+		4AFC0EC32015E637004518F4 /* GLMine_CartGuessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0EC12015E637004518F4 /* GLMine_CartGuessCell.xib */; };
 		633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
@@ -558,6 +564,15 @@
 		4AFC0EAF201581C7004518F4 /* GLMine_ShoppingCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_ShoppingCartCell.xib; sourceTree = "<group>"; };
 		4AFC0EB220158B67004518F4 /* GLMine_ShoppingCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_ShoppingCartModel.h; sourceTree = "<group>"; };
 		4AFC0EB320158B67004518F4 /* GLMine_ShoppingCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_ShoppingCartModel.m; sourceTree = "<group>"; };
+		4AFC0EB52015D0B8004518F4 /* GLMine_ShoppingCartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_ShoppingCartHeader.h; sourceTree = "<group>"; };
+		4AFC0EB62015D0B8004518F4 /* GLMine_ShoppingCartHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_ShoppingCartHeader.m; sourceTree = "<group>"; };
+		4AFC0EB82015D4C4004518F4 /* GLMine_ShoppingCartHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_ShoppingCartHeader.xib; sourceTree = "<group>"; };
+		4AFC0EBA2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_ShoppingCartGuessCell.h; sourceTree = "<group>"; };
+		4AFC0EBB2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_ShoppingCartGuessCell.m; sourceTree = "<group>"; };
+		4AFC0EBC2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_ShoppingCartGuessCell.xib; sourceTree = "<group>"; };
+		4AFC0EBF2015E637004518F4 /* GLMine_CartGuessCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_CartGuessCell.h; sourceTree = "<group>"; };
+		4AFC0EC02015E637004518F4 /* GLMine_CartGuessCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_CartGuessCell.m; sourceTree = "<group>"; };
+		4AFC0EC12015E637004518F4 /* GLMine_CartGuessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_CartGuessCell.xib; sourceTree = "<group>"; };
 		7783D9C11A5F2A3CA8CB596F /* Pods-excellentPurchase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-excellentPurchase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-excellentPurchase/Pods-excellentPurchase.debug.xcconfig"; sourceTree = "<group>"; };
 		9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_excellentPurchase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -1465,6 +1480,15 @@
 				4AFC0EAD201581C7004518F4 /* GLMine_ShoppingCartCell.h */,
 				4AFC0EAE201581C7004518F4 /* GLMine_ShoppingCartCell.m */,
 				4AFC0EAF201581C7004518F4 /* GLMine_ShoppingCartCell.xib */,
+				4AFC0EBA2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.h */,
+				4AFC0EBB2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.m */,
+				4AFC0EBC2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.xib */,
+				4AFC0EBF2015E637004518F4 /* GLMine_CartGuessCell.h */,
+				4AFC0EC02015E637004518F4 /* GLMine_CartGuessCell.m */,
+				4AFC0EC12015E637004518F4 /* GLMine_CartGuessCell.xib */,
+				4AFC0EB52015D0B8004518F4 /* GLMine_ShoppingCartHeader.h */,
+				4AFC0EB62015D0B8004518F4 /* GLMine_ShoppingCartHeader.m */,
+				4AFC0EB82015D4C4004518F4 /* GLMine_ShoppingCartHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3258,6 +3282,7 @@
 				F9713769200608CA0033F38B /* LBAccountManagementViewController.xib in Resources */,
 				F97CDC96201593B30036B8E0 /* LBEat_StoreMoreCommentsTableViewCell.xib in Resources */,
 				4A0B13E82010301F00AC3334 /* GLMine_TeamController.xib in Resources */,
+				4AFC0EB92015D4C4004518F4 /* GLMine_ShoppingCartHeader.xib in Resources */,
 				F95FD421200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.xib in Resources */,
 				4A20E99E2013165600E091EA /* GLMine_Message_PropertyListController.xib in Resources */,
 				F94D250C200E01F800381E2A /* LBUploadIdentityPictureViewController.xib in Resources */,
@@ -3318,6 +3343,7 @@
 				F968C336200744F800971F11 /* LBDonationTableViewCell.xib in Resources */,
 				F955D13B20088F4F001EEC81 /* LBChangeSecondaryPasswordVc.xib in Resources */,
 				F96971CF2011849A00966E26 /* LBEat_WhloeClassifyHeaderView.xib in Resources */,
+				4AFC0EC32015E637004518F4 /* GLMine_CartGuessCell.xib in Resources */,
 				F97137422005F6D10033F38B /* LBForgetSecretViewController.xib in Resources */,
 				F955D11D20087C82001EEC81 /* LBChangePasswordViewController.xib in Resources */,
 				F97CDC8A201591BE0036B8E0 /* LBFinancialExchangeViewController.xib in Resources */,
@@ -3371,6 +3397,7 @@
 				F96971C42011849A00966E26 /* LBEat_storeDetailInfodiscountTableViewCell.xib in Resources */,
 				F96971CC2011849A00966E26 /* LBEat_StoreClassifyViewController.xib in Resources */,
 				4A20E97D2012E04E00E091EA /* GLMine_MessageController.xib in Resources */,
+				4AFC0EBE2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.xib in Resources */,
 				F9712C89200460040015037A /* Main.storyboard in Resources */,
 				F95072EE200492DA0026D28F /* LBPersonCenterViewController.xib in Resources */,
 				4A9E18C72011F45100E1EC05 /* GLMine_Team_UploadLicenseController.xib in Resources */,
@@ -3529,6 +3556,7 @@
 				F9340A39200A200A0002DBB8 /* LBFiltrateProductViewController.m in Sources */,
 				F97E603C200EE68100C9C4E7 /* UIImageView+JYImageViewManager.m in Sources */,
 				F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */,
+				4AFC0EB72015D0B8004518F4 /* GLMine_ShoppingCartHeader.m in Sources */,
 				F96971C92011849A00966E26 /* LBEat_storeDetailInfoOtherTableViewCell.m in Sources */,
 				F9633D91200C7061001B545A /* LBMineDataCollectionViewCell.m in Sources */,
 				4A79EE10200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m in Sources */,
@@ -3547,6 +3575,7 @@
 				F955D15820089CDB001EEC81 /* LBResetBindBankTableViewCell.m in Sources */,
 				F97CDC97201593B30036B8E0 /* LBEat_StoreCommentsTableViewCell.m in Sources */,
 				F968C35D200765BE00971F11 /* LBSendRedPackRecoderBasevc.m in Sources */,
+				4AFC0EC22015E637004518F4 /* GLMine_CartGuessCell.m in Sources */,
 				F95072DD200492840026D28F /* LBEatAndDrinkViewController.m in Sources */,
 				F97E6038200EE68100C9C4E7 /* JYImageDownloader.m in Sources */,
 				F955D1932008CABC001EEC81 /* LBChooseBankTypeView.m in Sources */,
@@ -3567,6 +3596,7 @@
 				F95073012004A9590026D28F /* LBNearby_classifyItemView.m in Sources */,
 				F955D16F2008A1B1001EEC81 /* HCBottomPopupViewController.m in Sources */,
 				F971374F2005FF280033F38B /* LBModifyingUsernameViewController.m in Sources */,
+				4AFC0EBD2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.m in Sources */,
 				F97CDC99201593B30036B8E0 /* LBEat_StoredetailCommentsTableViewCell.m in Sources */,
 				4AFC0EA8201573AF004518F4 /* LB_Eat'commentDataModel.m in Sources */,
 				F968C3162007347600971F11 /* LBVoucherCenterRecoderViewController.m in Sources */,

@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpE-nG-HnX">
@@ -69,7 +69,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="KGk-i7-Jjw" id="m8w-1s-8QC"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,17 +83,23 @@
                                     <constraint firstAttribute="trailing" secondItem="sxc-jj-nkA" secondAttribute="trailing" constant="2" id="yua-at-9Og"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnw-FU-VAr">
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnw-FU-VAr">
                                 <rect key="frame" x="113" y="0.0" width="37" height="25"/>
                                 <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="changeNum:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Va-e7-QhQ"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hvu-Oi-G47">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hvu-Oi-G47">
                                 <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
                                 <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="-"/>
+                                <connections>
+                                    <action selector="changeNum:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="I8f-wB-KWm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -176,6 +185,7 @@
                 <outlet property="goodsNameLabel" destination="glW-gE-PFv" id="hzt-Sw-WAq"/>
                 <outlet property="numberChangeView" destination="mQQ-s6-sPT" id="07Q-0y-6Zq"/>
                 <outlet property="picImageV" destination="ivU-Ql-DBd" id="HcZ-Oe-VC0"/>
+                <outlet property="picImageVWidth" destination="K3s-8s-NHd" id="JYD-vY-gfZ"/>
                 <outlet property="priceLabel" destination="L0G-AJ-bcK" id="TUj-y2-Odj"/>
                 <outlet property="rebateLabel" destination="HfY-XP-nHR" id="thq-g5-Kvc"/>
                 <outlet property="selectView" destination="kpE-nG-HnX" id="FD9-xo-vun"/>
