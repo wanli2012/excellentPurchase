@@ -7,6 +7,7 @@
 //
 
 #import "LBMineOrderManagerViewController.h"
+#import "LBMineOrderMainViewController.h"
 
 @interface LBMineOrderManagerViewController ()
 
@@ -16,8 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.title = @" 订单管理";
     
 }
 
@@ -27,6 +28,11 @@
  @param sender <#sender description#>
  */
 - (IBAction)tapgestureTmallOders:(UITapGestureRecognizer *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineOrderMainViewController *vc =[[LBMineOrderMainViewController alloc]init];
+    vc.titilestr = @"淘淘订单";
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
