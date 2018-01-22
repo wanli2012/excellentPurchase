@@ -34,6 +34,7 @@
 - (IBAction)submit:(id)sender {
     NSLog(@"提交");
 }
+
 #pragma mark - 身份选择
 - (IBAction)IdentityChoose:(id)sender {
     

@@ -10,7 +10,10 @@
 #import "LBMineHeaderView.h"
 #import "CCPScrollView.h"
 #import "LBMineTableViewCell.h"
-#import "GLMine_TeamController.h"
+
+#import "LBSetUpViewController.h"//设置
+#import "GLMine_TeamController.h"//我的团队
+#import "GLMine_MessageController.h"//消息中心
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
@@ -112,6 +115,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     }
     return _headerView;
 }
+
 -(NSMutableArray*)userVcArr{
     
     if (!_userVcArr) {
@@ -121,8 +125,8 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                     @"GLMine_TeamController",
                     @"GLMine_TeamController",
                     @"GLMine_TeamController",
-                    @"GLMine_TeamController",
-                    @"GLMine_TeamController",nil];
+                    @"LBSetUpViewController",
+                    @"GLMine_MessageController",nil];
         
     }
     

@@ -1,17 +1,16 @@
 //
-//  GLMine_Team_TeamAchievementController.m
+//  GLMine_Team_UnderlingDetailController.m
 //  excellentPurchase
 //
-//  Created by 龚磊 on 2018/1/17.
+//  Created by 龚磊 on 2018/1/19.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_Team_TeamAchievementController.h"
+#import "GLMine_Team_UnderlingDetailController.h"
 #import "GLMine_TeamAchievementCell.h"
 #import "GLIdentifySelectController.h"
-#import "GLMine_Team_UnderlingDetailController.h"//下属绩效
 
-@interface GLMine_Team_TeamAchievementController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLMine_Team_UnderlingDetailController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -21,13 +20,13 @@
 
 @property (nonatomic, strong)UIButton *rightBtn;
 
-@end
+@end 
 
-@implementation GLMine_Team_TeamAchievementController
+@implementation GLMine_Team_UnderlingDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+   
     [self setNav];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_TeamAchievementCell" bundle:nil] forCellReuseIdentifier:@"GLMine_TeamAchievementCell"];
@@ -38,7 +37,7 @@
  导航栏设置
  */
 - (void)setNav{
-    self.navigationItem.title = @"团队业绩";
+    self.navigationItem.title = @"下属业绩";
     
     UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
@@ -56,7 +55,7 @@
  筛选
  */
 - (void)filter{
-  
+    
     self.hidesBottomBarWhenPushed = YES;
     GLIdentifySelectController *idSelectVC = [[GLIdentifySelectController alloc] init];
     idSelectVC.selectIndex = [self.group_id integerValue];
@@ -70,7 +69,6 @@
     
     [self.navigationController pushViewController:idSelectVC animated:YES];
 }
-
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
@@ -100,6 +98,7 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
+        
         for (int i = 0; i < 10 ; i ++) {
             GLMine_TeamAchievementModel *model = [[GLMine_TeamAchievementModel alloc] init];
             model.name = [NSString stringWithFormat:@"磊哥%zd",i];
@@ -109,6 +108,7 @@
             model.type = [NSString stringWithFormat:@"%zd",i%3];
             [_models addObject:model];
         }
+        
     }
     return _models;
 }

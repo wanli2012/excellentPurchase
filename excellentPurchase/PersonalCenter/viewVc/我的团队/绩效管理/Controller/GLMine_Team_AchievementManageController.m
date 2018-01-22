@@ -8,8 +8,8 @@
 
 #import "GLMine_Team_AchievementManageController.h"
 #import "GLMine_Team_AchieveManageHeader.h"
-#import "GLMine_Team_AchieveDoneController.h"
-#import "GLMine_Team_AchieveNotDoneController.h"
+#import "GLMine_Team_AchieveDoneController.h"//下属完成业绩
+#import "GLMine_Team_AchieveNotDoneController.h"//下属未完成业绩
 #import "SPPageMenu.h"
 
 #import "GLMine_Team_MonthAchieveManageController.h"//当月绩效设置
