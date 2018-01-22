@@ -11,6 +11,7 @@
 #import "CCPScrollView.h"
 #import "LBMineTableViewCell.h"
 
+#import "GLMine_ShoppingCartController.h"//购物车
 #import "LBSetUpViewController.h"//设置
 #import "GLMine_TeamController.h"//我的团队
 #import "GLMine_MessageController.h"//消息中心
@@ -120,7 +121,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"GLMine_TeamController",
+                    @"GLMine_ShoppingCartController",
                     @"GLMine_TeamController",
                     @"GLMine_TeamController",
                     @"GLMine_TeamController",
