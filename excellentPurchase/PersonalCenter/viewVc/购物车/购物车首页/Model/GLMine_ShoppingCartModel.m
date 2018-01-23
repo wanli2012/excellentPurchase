@@ -11,3 +11,10 @@
 @implementation GLMine_ShoppingCartModel
 
 @end
+
+@implementation GLMine_ShoppingCartDataModel
+//+ (NSDictionary *)mj_ objectClassInArray{
+//    return @{ @"goodsArr" : @"GLMine_ShoppingCartModel"
+//              };
+@end
+

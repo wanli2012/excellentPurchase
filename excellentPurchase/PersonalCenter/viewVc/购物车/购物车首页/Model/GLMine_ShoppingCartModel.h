@@ -20,7 +20,20 @@
 @property (nonatomic, copy)NSString *coupon;//购物券
 
 @property (nonatomic, assign)BOOL isSelected;//是否被选中
-
 @property (nonatomic, assign)BOOL isDone;//是否是完成状态 yes:完成  NO:编辑状态
+@property (nonatomic, assign)NSInteger index;//cell下标
+@property (nonatomic, assign)NSInteger section;//组 下标
+
+@property (nonatomic, assign)BOOL isDel;//删除标志
+
+@end
+
+@interface GLMine_ShoppingCartDataModel : NSObject
+
+@property (nonatomic, copy)NSString *shopName;//商店名
+@property (nonatomic, copy)NSArray<GLMine_ShoppingCartModel *> *goodsArr;//商品数组
+@property (nonatomic, assign)BOOL shopIsSelected;//是否被选中
+//@property (nonatomic, assign)BOOL shopIsDone;//是否是完成状态 yes:完成  NO:编辑状态
+@property (nonatomic, assign)NSInteger shopSection;//header下标
 
 @end
