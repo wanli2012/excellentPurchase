@@ -292,6 +292,16 @@
 		F96971D32011849A00966E26 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971BE2011849A00966E26 /* NSObject+Property.m */; };
 		F96971D42011849A00966E26 /* UIViewController+Dealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971C02011849A00966E26 /* UIViewController+Dealloc.m */; };
 		F96971E0201195E000966E26 /* LBEat_StoreCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */; };
+		F96D80F52016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F96D80F32016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.m */; };
+		F96D80F62016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D80F42016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.xib */; };
+		F96D80FB2016DBC200D155C2 /* LBMineSureOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96D80F92016DBC200D155C2 /* LBMineSureOrdersViewController.m */; };
+		F96D80FC2016DBC200D155C2 /* LBMineSureOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D80FA2016DBC200D155C2 /* LBMineSureOrdersViewController.xib */; };
+		F96D81042016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F96D80FE2016EEB300D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m */; };
+		F96D81052016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F96D81002016EEB400D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.m */; };
+		F96D81062016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D81022016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib */; };
+		F96D81072016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D81032016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.xib */; };
+		F96D810B2016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96D81082016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.m */; };
+		F96D810C2016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D81092016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.xib */; };
 		F9712C83200460030015037A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C82200460030015037A /* AppDelegate.m */; };
 		F9712C86200460040015037A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C85200460040015037A /* ViewController.m */; };
 		F9712C89200460040015037A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9712C87200460040015037A /* Main.storyboard */; };
@@ -872,6 +882,21 @@
 		F96971C02011849A00966E26 /* UIViewController+Dealloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Dealloc.m"; sourceTree = "<group>"; };
 		F96971DE201195E000966E26 /* LBEat_StoreCommentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentHeaderView.h; sourceTree = "<group>"; };
 		F96971DF201195E000966E26 /* LBEat_StoreCommentHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentHeaderView.m; sourceTree = "<group>"; };
+		F96D80F22016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineSureOrdermessageTableViewCell.h; sourceTree = "<group>"; };
+		F96D80F32016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineSureOrdermessageTableViewCell.m; sourceTree = "<group>"; };
+		F96D80F42016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineSureOrdermessageTableViewCell.xib; sourceTree = "<group>"; };
+		F96D80F82016DBC200D155C2 /* LBMineSureOrdersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineSureOrdersViewController.h; sourceTree = "<group>"; };
+		F96D80F92016DBC200D155C2 /* LBMineSureOrdersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineSureOrdersViewController.m; sourceTree = "<group>"; };
+		F96D80FA2016DBC200D155C2 /* LBMineSureOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineSureOrdersViewController.xib; sourceTree = "<group>"; };
+		F96D80FE2016EEB300D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterFlyNoticeDetailOneTableViewCell.m; sourceTree = "<group>"; };
+		F96D80FF2016EEB300D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterFlyNoticeDetailTableViewCell.h; sourceTree = "<group>"; };
+		F96D81002016EEB400D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterFlyNoticeDetailTableViewCell.m; sourceTree = "<group>"; };
+		F96D81012016EEB400D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterFlyNoticeDetailOneTableViewCell.h; sourceTree = "<group>"; };
+		F96D81022016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterFlyNoticeDetailOneTableViewCell.xib; sourceTree = "<group>"; };
+		F96D81032016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterFlyNoticeDetailTableViewCell.xib; sourceTree = "<group>"; };
+		F96D81082016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterFlyNoticeDetailViewController.m; sourceTree = "<group>"; };
+		F96D81092016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterFlyNoticeDetailViewController.xib; sourceTree = "<group>"; };
+		F96D810A2016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterFlyNoticeDetailViewController.h; sourceTree = "<group>"; };
 		F9712C7E200460030015037A /* excellentPurchase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excellentPurchase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9712C81200460030015037A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F9712C82200460030015037A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -2783,6 +2808,40 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		F96D80F72016DBA000D155C2 /* 确认订单 */ = {
+			isa = PBXGroup;
+			children = (
+				F96D80F82016DBC200D155C2 /* LBMineSureOrdersViewController.h */,
+				F96D80F92016DBC200D155C2 /* LBMineSureOrdersViewController.m */,
+				F96D80FA2016DBC200D155C2 /* LBMineSureOrdersViewController.xib */,
+				F96D810D2016FD2100D155C2 /* view */,
+			);
+			path = "确认订单";
+			sourceTree = "<group>";
+		};
+		F96D80FD2016E5A900D155C2 /* 物流信息 */ = {
+			isa = PBXGroup;
+			children = (
+				F96D810A2016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.h */,
+				F96D81082016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.m */,
+				F96D81092016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.xib */,
+				F96D81012016EEB400D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.h */,
+				F96D80FE2016EEB300D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m */,
+				F96D81022016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib */,
+				F96D80FF2016EEB300D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.h */,
+				F96D81002016EEB400D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.m */,
+				F96D81032016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.xib */,
+			);
+			path = "物流信息";
+			sourceTree = "<group>";
+		};
+		F96D810D2016FD2100D155C2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		F9712C75200460030015037A = {
 			isa = PBXGroup;
 			children = (
@@ -3071,6 +3130,8 @@
 				F97CDC9C2015AC1D0036B8E0 /* model */,
 				F97CDC9D2015AC1D0036B8E0 /* view */,
 				F97CDCC72015F36D0036B8E0 /* 订单详情 */,
+				F96D80F72016DBA000D155C2 /* 确认订单 */,
+				F96D80FD2016E5A900D155C2 /* 物流信息 */,
 			);
 			path = "订单管理";
 			sourceTree = "<group>";
@@ -3148,6 +3209,9 @@
 				F97CDCE92015FD180036B8E0 /* LBMineOrderNumbersTableViewCell.h */,
 				F97CDCEA2015FD180036B8E0 /* LBMineOrderNumbersTableViewCell.m */,
 				F97CDCEB2015FD180036B8E0 /* LBMineOrderNumbersTableViewCell.xib */,
+				F96D80F22016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.h */,
+				F96D80F32016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.m */,
+				F96D80F42016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3421,11 +3485,14 @@
 				F955D14F2008968E001EEC81 /* LBResetNewPhoneViewController.xib in Resources */,
 				F97CDCB62015B2E00036B8E0 /* LBMineOrderCanceledViewController.xib in Resources */,
 				F955D17D2008A7BA001EEC81 /* LBBankCardListTableViewCell.xib in Resources */,
+				F96D80F62016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.xib in Resources */,
 				F97CDCED2015FD180036B8E0 /* LBMineOrderNumbersTableViewCell.xib in Resources */,
 				F9340A1B2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.xib in Resources */,
 				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				4A20E9BD20132D1700E091EA /* GLMine_Message_InteractCell.xib in Resources */,
+				F96D81072016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.xib in Resources */,
+				F96D80FC2016DBC200D155C2 /* LBMineSureOrdersViewController.xib in Resources */,
 				F97CDCD92015F91C0036B8E0 /* LBMineOrderDetailproductsTableViewCell.xib in Resources */,
 				F968C3452007554400971F11 /* LBSendRedPackMenu.xib in Resources */,
 				F9340A4E200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.xib in Resources */,
@@ -3456,6 +3523,7 @@
 				F9340A43200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.xib in Resources */,
 				F97CDC94201593B30036B8E0 /* LBEat_StoreCommentsTableViewCell.xib in Resources */,
 				F968C31C2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.xib in Resources */,
+				F96D81062016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */,
 				F97CDC79201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.xib in Resources */,
 				4A0B1409201091EC00AC3334 /* GLMine_Team_AccountChooseController.xib in Resources */,
 				F968C33B2007510C00971F11 /* LBSendRedPackRecoderViewController.xib in Resources */,
@@ -3540,6 +3608,7 @@
 				F9340A1A2009E7A90002DBB8 /* LBIntegralGoodsOneCollectionViewCell.xib in Resources */,
 				F955D12E20088C97001EEC81 /* LBSwitchAccountTableViewCell.xib in Resources */,
 				F97CDC8420158CEE0036B8E0 /* financial.xcassets in Resources */,
+				F96D810C2016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.xib in Resources */,
 				4A0B13F42010827E00AC3334 /* GLMine_Team_MonthAchieveManageController.xib in Resources */,
 				F968C3172007347600971F11 /* LBVoucherCenterRecoderViewController.xib in Resources */,
 				4A9E18CF201208CE00E1EC05 /* GLMine_Team_MemberDataController.xib in Resources */,
@@ -3676,6 +3745,7 @@
 				F97E606C200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m in Sources */,
 				4A9E18A62011CAED00E1EC05 /* UIView+CZHExtension.m in Sources */,
 				4A0B140C2010927E00AC3334 /* GLMine_Team_AccountChooseModel.m in Sources */,
+				F96D80F52016DA4500D155C2 /* LBMineSureOrdermessageTableViewCell.m in Sources */,
 				F955D11720086166001EEC81 /* LBAccountSecurityViewController.m in Sources */,
 				4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */,
 				F955D11C20087C82001EEC81 /* LBChangePasswordViewController.m in Sources */,
@@ -3687,6 +3757,7 @@
 				F955D10C200853F6001EEC81 /* LBAboutUsViewController.m in Sources */,
 				F96971E0201195E000966E26 /* LBEat_StoreCommentHeaderView.m in Sources */,
 				F9340A39200A200A0002DBB8 /* LBFiltrateProductViewController.m in Sources */,
+				F96D80FB2016DBC200D155C2 /* LBMineSureOrdersViewController.m in Sources */,
 				F97E603C200EE68100C9C4E7 /* UIImageView+JYImageViewManager.m in Sources */,
 				F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */,
 				F96971C92011849A00966E26 /* LBEat_storeDetailInfoOtherTableViewCell.m in Sources */,
@@ -3749,6 +3820,7 @@
 				F968C31B2007348E00971F11 /* LBVoucherCenterRecoderTableViewCell.m in Sources */,
 				F968C32C200741CE00971F11 /* LBDonationListView.m in Sources */,
 				4AFC0EB420158B67004518F4 /* GLMine_ShoppingCartModel.m in Sources */,
+				F96D810B2016EED300D155C2 /* LBMineCenterFlyNoticeDetailViewController.m in Sources */,
 				4A9E18CC201202EF00E1EC05 /* GLMine_Team_MemberDataController.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
 				F9712CD62004671F0015037A /* BasetabbarViewController.m in Sources */,
@@ -3769,6 +3841,7 @@
 				4A9E18962011C50D00E1EC05 /* predicateModel.m in Sources */,
 				4A20E9B720132CB100E091EA /* GLMine_Message_InteractController.m in Sources */,
 				4A79EE07200F3B20001F28D1 /* GLMine_Team_AchieveDoneController.m in Sources */,
+				F96D81042016EEB500D155C2 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m in Sources */,
 				F95B534D200CB16B00A81954 /* LBTaoTaoProductDeailHeaderView.m in Sources */,
 				F9340A2F2009F8830002DBB8 /* LBTmallProductListViewController.m in Sources */,
 				F9340A132009E5ED0002DBB8 /* LBintegralGoodsAciticityTableViewCell.m in Sources */,
@@ -3826,6 +3899,7 @@
 				4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */,
 				F9633D8B200C629A001B545A /* CCPScrollView.m in Sources */,
 				F95072D5200492430026D28F /* LBHomeViewController.m in Sources */,
+				F96D81052016EEB500D155C2 /* LBMineCenterFlyNoticeDetailTableViewCell.m in Sources */,
 				F97CDC6D2015767F0036B8E0 /* LBFinancialCenterTableViewCell.m in Sources */,
 				F9712C83200460030015037A /* AppDelegate.m in Sources */,
 				4A5413A32010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m in Sources */,

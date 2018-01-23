@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="324" height="132"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="324" height="131.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pV-mT-Mpo">
@@ -40,12 +40,6 @@
                                     <constraint firstAttribute="width" constant="15" id="qBU-lx-Xca"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货地址：市场将送出呃呃测定出 v 味道 v" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmn-Be-H30">
-                                <rect key="frame" x="30" y="43" width="284" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oreder-line" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-6B-l3g">
                                 <rect key="frame" x="0.0" y="76.5" width="324" height="5"/>
                                 <constraints>
@@ -78,6 +72,19 @@
                                     <constraint firstAttribute="height" constant="50" id="qKr-YY-vym"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Jdh-t9-Wmg">
+                                <rect key="frame" x="301" y="44.5" width="13" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="13" id="UWc-SL-iW9"/>
+                                    <constraint firstAttribute="width" constant="13" id="Vxe-yR-MNr"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货地址：市场将送出呃呃" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmn-Be-H30">
+                                <rect key="frame" x="30" y="43" width="256" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -87,8 +94,10 @@
                             <constraint firstItem="kWm-Go-7dT" firstAttribute="top" secondItem="IMO-6B-l3g" secondAttribute="bottom" id="7OE-2H-cog"/>
                             <constraint firstItem="eLN-k7-E8D" firstAttribute="leading" secondItem="8pV-mT-Mpo" secondAttribute="leading" constant="30" id="8hW-KO-Bka"/>
                             <constraint firstItem="c5H-Uu-KIh" firstAttribute="leading" secondItem="8pV-mT-Mpo" secondAttribute="leading" constant="10" id="A9D-Zu-lJ8"/>
-                            <constraint firstAttribute="trailing" secondItem="Bmn-Be-H30" secondAttribute="trailing" constant="10" id="Fcw-j7-sgf"/>
+                            <constraint firstItem="Jdh-t9-Wmg" firstAttribute="centerY" secondItem="Bmn-Be-H30" secondAttribute="centerY" id="B17-vH-kT8"/>
+                            <constraint firstItem="Jdh-t9-Wmg" firstAttribute="leading" secondItem="Bmn-Be-H30" secondAttribute="trailing" constant="15" id="BCs-CI-PW3"/>
                             <constraint firstItem="IMO-6B-l3g" firstAttribute="leading" secondItem="8pV-mT-Mpo" secondAttribute="leading" id="Hsm-Ne-1Ak"/>
+                            <constraint firstAttribute="trailing" secondItem="Jdh-t9-Wmg" secondAttribute="trailing" constant="10" id="Jbd-QM-EYl"/>
                             <constraint firstItem="Bmn-Be-H30" firstAttribute="leading" secondItem="eLN-k7-E8D" secondAttribute="leading" id="Kws-Lm-g9Z"/>
                             <constraint firstItem="eLN-k7-E8D" firstAttribute="top" secondItem="8pV-mT-Mpo" secondAttribute="top" constant="15" id="Qwa-Jg-r7l"/>
                             <constraint firstItem="kWm-Go-7dT" firstAttribute="leading" secondItem="8pV-mT-Mpo" secondAttribute="leading" id="ShN-YL-Kz5"/>
@@ -109,11 +118,17 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <connections>
+                <outlet property="adressConstrait" destination="BCs-CI-PW3" id="NKc-l4-rsi"/>
+                <outlet property="rightImgeW" destination="Vxe-yR-MNr" id="7QJ-wA-Gpm"/>
+                <outlet property="rightimge" destination="Jdh-t9-Wmg" id="NhU-og-5Z8"/>
+            </connections>
             <point key="canvasLocation" x="29" y="94"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="eat-location" width="11" height="13"/>
         <image name="oreder-line" width="375" height="5"/>
+        <image name="rightArrow" width="6" height="11"/>
     </resources>
 </document>

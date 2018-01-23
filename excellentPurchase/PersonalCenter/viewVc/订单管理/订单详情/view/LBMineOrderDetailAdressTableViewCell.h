@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMineOrderDetailAdressTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *rightimge;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adressConstrait;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImgeW;
 
 @end

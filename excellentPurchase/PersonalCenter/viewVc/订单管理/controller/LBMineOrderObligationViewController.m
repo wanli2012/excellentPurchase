@@ -12,6 +12,7 @@
 #import "LBMineOrdersHeaderView.h"
 #import "LBMineOrdersFooterView.h"
 #import "LBMineOrderDetailViewController.h"
+#import "LBMineSureOrdersViewController.h"
 
 static NSString *mineOrdersHeaderViewTableViewCell = @"LBMineOrdersHeaderViewTableViewCell";
 
@@ -115,8 +116,7 @@ static NSString *mineOrdersHeaderViewTableViewCell = @"LBMineOrdersHeaderViewTab
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     self.hidesBottomBarWhenPushed = YES;
-    LBMineOrderDetailViewController *vc = [[LBMineOrderDetailViewController alloc]init];
-    vc.typeindex = 1;
+    LBMineSureOrdersViewController *vc = [[LBMineSureOrdersViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
