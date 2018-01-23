@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="KGk-i7-Jjw" customClass="GLMine_ManagementCell">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="74"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="322" height="73.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udk-m7-egE">
+                        <rect key="frame" x="0.0" y="72.5" width="322" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="gsP-QZ-8wv"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="线下订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2O-NB-e5j">
+                        <rect key="frame" x="10" y="28.5" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-Hy-Ymq">
+                        <rect key="frame" x="306" y="30" width="6" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="9IZ-WS-XcG"/>
+                            <constraint firstAttribute="width" constant="6" id="gZb-Fm-LVY"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="udk-m7-egE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Jmj-wU-bbu"/>
+                    <constraint firstItem="mEs-Hy-Ymq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Nny-Yh-YjY"/>
+                    <constraint firstAttribute="bottom" secondItem="udk-m7-egE" secondAttribute="bottom" id="QLb-b2-8H0"/>
+                    <constraint firstAttribute="trailing" secondItem="udk-m7-egE" secondAttribute="trailing" id="WEA-OJ-Maa"/>
+                    <constraint firstAttribute="trailing" secondItem="mEs-Hy-Ymq" secondAttribute="trailing" constant="10" id="teq-yi-NZ7"/>
+                    <constraint firstItem="w2O-NB-e5j" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tzi-X1-gAg"/>
+                    <constraint firstItem="w2O-NB-e5j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="vNm-Jy-Fks"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="35" y="69"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="rightArrow" width="6" height="11"/>
+    </resources>
+</document>
