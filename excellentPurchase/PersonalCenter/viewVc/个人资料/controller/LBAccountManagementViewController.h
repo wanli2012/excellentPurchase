@@ -10,4 +10,6 @@
 
 @interface LBAccountManagementViewController : UIViewController
 
+@property (nonatomic, assign)NSInteger type;//1:有右箭头 0:无右箭头
+
 @end

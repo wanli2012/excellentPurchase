@@ -84,7 +84,7 @@
                         <constraint firstAttribute="trailing" secondItem="Hw9-mh-y3l" secondAttribute="trailing" id="t4w-7y-AXz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Csk-ma-0Ie">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Csk-ma-0Ie" userLabel="topView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine-Header-Background" translatesAutoresizingMaskIntoConstraints="NO" id="Xgo-YI-jrI">
@@ -217,6 +217,7 @@
                 <outlet property="colletionView" destination="Gre-Jk-tjZ" id="f2o-n7-OEQ"/>
                 <outlet property="dataView" destination="Hw9-mh-y3l" id="gZT-lF-pd8"/>
                 <outlet property="noticeView" destination="6OG-KV-QPj" id="53F-Ha-BaU"/>
+                <outlet property="topView" destination="Csk-ma-0Ie" id="XmW-vW-hs5"/>
             </connections>
             <point key="canvasLocation" x="24" y="52"/>
         </view>

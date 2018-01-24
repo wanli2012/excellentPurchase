@@ -16,6 +16,9 @@
 //切换账号
 - (void)changeAccountEvent;
 
+//跳转到个人信息
+- (void)toMyInfomation;
+
 @end
 
 @interface LBMineHeaderView : UIView

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^LBModifyingUsernameBlock)(NSString *name);
+
 @interface LBModifyingUsernameViewController : UIViewController
+
+@property (nonatomic, copy)LBModifyingUsernameBlock block;
 
 @end

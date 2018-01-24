@@ -24,6 +24,9 @@ UICollectionViewDataSource,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *dataView;
 
+@property (weak, nonatomic) IBOutlet UIView *topView;//个人信息 view
+
+
 @property (strong, nonatomic)CCPScrollView *ccpView;//跑马灯view
 
 @property (weak, nonatomic) IBOutlet UIImageView *alertImage;
@@ -45,11 +48,17 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
     
 }
 
+/**
+ 初始化 界面
+ */
 -(void)initInerface{
     
     [self.changeBt horizontalCenterTitleAndImage:3];
     [self.ccpView removeFromSuperview];
     [self.noticeView addSubview:self.ccpView];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toMyInfomation)];
+    [self.topView addGestureRecognizer:tap];
     
     _ccpView.titleArray = [NSArray arrayWithObjects:@"iPhone6s上线32G内存手机你怎么看？",@"亲爱的朋友们2016年还有100天就要过去了,2017年您准备好了吗?",@"今年双11您预算了几个月的工资？",@"高德与百度互掐，你更看好哪方？", nil];
     
@@ -58,7 +67,6 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
     _ccpView.titleColor = [UIColor blackColor];
     
     _ccpView.BGColor = [UIColor whiteColor];
-    
     
     [_ccpView clickTitleLabel:^(NSInteger index,NSString *titleString) {
         
@@ -90,6 +98,14 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
     
 }
 
+/**
+ 跳转到我的个人信息
+ */
+- (void)toMyInfomation{
+    if ([self.delegate respondsToSelector:@selector(toMyInfomation)]) {
+        [self.delegate toMyInfomation];
+    }
+}
 #pragma mark - UICollectionViewDelegate
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

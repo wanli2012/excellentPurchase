@@ -11,6 +11,8 @@
 #import "CCPScrollView.h"
 #import "LBMineTableViewCell.h"
 
+#import "LBAccountManagementViewController.h"//个人资料
+
 #import "GLMine_ShoppingCartController.h"//购物车
 #import "LBSetUpViewController.h"//设置
 #import "GLMine_TeamController.h"//我的团队
@@ -62,7 +64,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
 #pragma mark - LBMineHeaderViewDelegate
 /**
- 跳转到我的资产
+ 跳转到 我的资产
  */
 - (void)toMyProperty{
     
@@ -79,6 +81,16 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     NSLog(@" 切换账号");
 }
 
+/**
+ 跳转到 个人信息 界面
+ */
+- (void)toMyInfomation{
+
+    self.hidesBottomBarWhenPushed = YES;
+    LBAccountManagementViewController *vc = [[LBAccountManagementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
 
 #pragma mark - UITableViewDelegate
 

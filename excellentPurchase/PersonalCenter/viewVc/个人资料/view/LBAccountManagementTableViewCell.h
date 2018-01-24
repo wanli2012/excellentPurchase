@@ -10,4 +10,10 @@
 
 @interface LBAccountManagementTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;//左边的title
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;//右边的值
+@property (weak, nonatomic) IBOutlet UIImageView *imageV;//图片
+
+@property (nonatomic, assign)NSInteger type;//1:有右箭头 0:无右箭头
+
 @end
