@@ -15,31 +15,24 @@
             <rect key="frame" x="0.0" y="0.0" width="353" height="83"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="353" height="83"/>
+                <rect key="frame" x="0.0" y="0.0" width="353" height="82.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-dv-KJB">
-                        <rect key="frame" x="0.0" y="0.0" width="353" height="82.5"/>
+                        <rect key="frame" x="0.0" y="10" width="353" height="71.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="让利" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U01-2V-ojh">
-                                <rect key="frame" x="10" y="34" width="288" height="16"/>
+                                <rect key="frame" x="10" y="28.5" width="288" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0积分" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6r-rm-16L">
-                                <rect key="frame" x="308" y="34" width="35" height="16"/>
+                                <rect key="frame" x="308" y="28.5" width="35" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.99401646850000003" green="0.40313595530000002" blue="0.39819234609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-1e-xlv">
-                                <rect key="frame" x="0.0" y="81.5" width="353" height="1"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="1Sa-vM-7M0"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -48,19 +41,17 @@
                             <constraint firstItem="U01-2V-ojh" firstAttribute="leading" secondItem="uiE-dv-KJB" secondAttribute="leading" constant="10" id="DQw-Jq-QnA"/>
                             <constraint firstItem="U01-2V-ojh" firstAttribute="centerY" secondItem="uiE-dv-KJB" secondAttribute="centerY" id="Ivp-U3-4ap"/>
                             <constraint firstItem="u6r-rm-16L" firstAttribute="leading" secondItem="U01-2V-ojh" secondAttribute="trailing" constant="10" id="R5C-up-5OW"/>
-                            <constraint firstAttribute="bottom" secondItem="NcX-1e-xlv" secondAttribute="bottom" id="coh-IJ-J1z"/>
-                            <constraint firstAttribute="trailing" secondItem="NcX-1e-xlv" secondAttribute="trailing" id="cxU-lJ-1CU"/>
-                            <constraint firstItem="NcX-1e-xlv" firstAttribute="leading" secondItem="uiE-dv-KJB" secondAttribute="leading" id="ng7-bq-gTz"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="uiE-dv-KJB" secondAttribute="trailing" id="ZDI-68-bfM"/>
-                    <constraint firstAttribute="bottom" secondItem="uiE-dv-KJB" secondAttribute="bottom" id="ba8-rD-Ony"/>
+                    <constraint firstAttribute="bottom" secondItem="uiE-dv-KJB" secondAttribute="bottom" constant="1" id="ba8-rD-Ony"/>
                     <constraint firstItem="uiE-dv-KJB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="g1q-6b-jfl"/>
-                    <constraint firstItem="uiE-dv-KJB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tuw-56-MQV"/>
+                    <constraint firstItem="uiE-dv-KJB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="m59-yj-5qg"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="titileLb" destination="U01-2V-ojh" id="knf-qU-bEh"/>
                 <outlet property="valueLb" destination="u6r-rm-16L" id="JiB-bs-ut6"/>

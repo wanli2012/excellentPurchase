@@ -28,6 +28,7 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.13)
+  - pop (1.0.10)
   - Reachability (3.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MJExtension
+  - pop (~> 1.0.8)
   - Reachability (>= 3.2)
   - ReactiveCocoa (~> 2.5)
   - SDCycleScrollView (~> 1.66)
@@ -74,6 +76,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDCycleScrollView: f821215226f6146a35470721a9d6e83ec5cfb04b
@@ -84,6 +87,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: 276dc7c0cc70da9ee354046474b405d87ef81c89
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 50fbbebbb24c801d1d2dd5ab4761c55f0d1c1ae6
+PODFILE CHECKSUM: 161c730803fe99069ba34c5248015623957d5704
 
 COCOAPODS: 1.2.0

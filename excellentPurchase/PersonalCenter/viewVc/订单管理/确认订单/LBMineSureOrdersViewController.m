@@ -13,6 +13,8 @@
 #import "LBMineOrderDetailpdiscountsTableViewCell.h"
 #import "LBMineSureOrdermessageTableViewCell.h"
 #import "LBMineOrderNumbersTableViewCell.h"
+#import "LBMineOrderDetailPriceTableViewCell.h"
+#import "LBMineOrdersDetailHeaderView.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -20,34 +22,25 @@ static NSString *mineOrderDetailprateTableViewCell = @"LBMineOrderDetailprateTab
 static NSString *mineOrderDetailpdiscountsTableViewCell = @"LBMineOrderDetailpdiscountsTableViewCell";
 static NSString *mineSureOrdermessageTableViewCell = @"LBMineSureOrdermessageTableViewCell";
 static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCell";
+static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTableViewCell";
 
 @interface LBMineSureOrdersViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) NSArray *titileArr;
+@property (strong, nonatomic) NSArray *productArr;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewoneTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTwoTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewThreeTop;
 
 @end
 
 @implementation LBMineSureOrdersViewController
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barTintColor = MAIN_COLOR;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
-    
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registertableviewcell];//注册cell
     self.navigationItem.title = @"确认订单";
-    
-    
 }
 
 -(void)registertableviewcell{
@@ -57,40 +50,21 @@ static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCe
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailpdiscountsTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailpdiscountsTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:mineSureOrdermessageTableViewCell bundle:nil] forCellReuseIdentifier:mineSureOrdermessageTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderNumbersTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderNumbersTableViewCell];
+    [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailPriceTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailPriceTableViewCell];
     
-    //    返回按钮
-    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 70, 40)];
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//左对齐
-    [button setImage:[UIImage imageNamed:@"return-w"] forState:UIControlStateNormal];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(10, -5, 10, 65)];
-    button.backgroundColor=[UIColor clearColor];
-    [button addTarget:self action:@selector(popself) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
-    self.navigationItem.leftBarButtonItem = ba;
-    
-}
-
--(void)popself{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 5; //返回值是多少既有几个分区
+    return 3; //返回值是多少既有几个分区
 }
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //分别设置每个分组上面显示的单元格个数
     if (section == 0) {
         return 1;
-    }else if (section == 1){
-        return 2;
-    }else if (section == 2){
-        return 1;
-    }else if (section == 3){
-        return self.titileArr.count;
-    }else if (section == 4){
-        return 1;
+    }else{
+        return 5 + self.productArr.count;
     }
     return 0;
 }
@@ -98,18 +72,20 @@ static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCe
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        tableView.estimatedRowHeight = 70;
+        tableView.estimatedRowHeight = 80;
         tableView.rowHeight = UITableViewAutomaticDimension;
         return UITableViewAutomaticDimension;
-    }else if (indexPath.section == 1){
-        return 90;
-    }else if (indexPath.section == 2){
-        return 50;
-    }else if (indexPath.section == 3){
-       
-        return 50;
-    }else if (indexPath.section == 4){
-        return 100;
+    }else{
+        if (indexPath.row >= 0 && indexPath.row < self.productArr.count) {
+            return 90;
+        }else if ((indexPath.row >= self.productArr.count) && (indexPath.row < self.productArr.count + 2)){
+            return 60;
+        }else if ((indexPath.row >= self.productArr.count+2) && (indexPath.row < self.productArr.count + 4)){
+            return 50;
+        }else if (indexPath.row == self.productArr.count+4){
+            
+            return 60;
+        }
     }
     return 0;
     
@@ -121,29 +97,33 @@ static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCe
     if (indexPath.section == 0) {
         LBMineOrderDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailAdressTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.rightimge.hidden = YES;
+        cell.rightImgeW.constant = 0;
+        cell.adressConstrait.constant = 0;
         return cell;
-    }else if (indexPath.section == 1){
-        LBMineOrderDetailproductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailproductsTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else if (indexPath.section == 2){
-        LBMineOrderDetailprateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailprateTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titileLb.text = @"让利";
-        cell.valueLb.textColor = MAIN_COLOR;
-        return cell;
-    }else if (indexPath.section == 3){
-        
-        LBMineOrderDetailprateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailprateTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titileLb.text = self.titileArr[indexPath.row];
-        cell.valueLb.textColor = LBHexadecimalColor(0x333333);
-        return cell;
-        
-    }else if (indexPath.section == 4){
-        LBMineSureOrdermessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineSureOrdermessageTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    }else{
+        if (indexPath.row >= 0 && indexPath.row < self.productArr.count) {
+            LBMineOrderDetailproductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailproductsTableViewCell forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }else if ((indexPath.row >= self.productArr.count) && (indexPath.row < self.productArr.count + 2)){
+            LBMineOrderDetailprateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailprateTableViewCell forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.titileLb.text = @"让利";
+            cell.valueLb.textColor = MAIN_COLOR;
+            return cell;
+        }else if ((indexPath.row >= self.productArr.count+2) && (indexPath.row < self.productArr.count + 4)){
+    
+            LBMineOrderDetailPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailPriceTableViewCell forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            //            cell.titileLb.text = self.titileArr[indexPath.row];
+            //            cell.valueLb.textColor = LBHexadecimalColor(0x333333);
+            return cell;
+        }else if (indexPath.row == self.productArr.count+4){
+            LBMineSureOrdermessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineSureOrdermessageTableViewCell forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
     }
     
     return [[UITableViewCell alloc]init];
@@ -154,20 +134,26 @@ static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCe
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-    label.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    return label;
+    if (section != 0) {
+        NSString *ID = @"mineOrdersDetailHeaderView";
+        LBMineOrdersDetailHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:ID];
+        if (!headerview) {
+            headerview = [[LBMineOrdersDetailHeaderView alloc]initWithReuseIdentifier:ID];
+        }
+        
+        return headerview;
+    }
+    
+    return nil;
     
 }
 
 #pragma mark - 重写----设置标题和标注的高度
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return 0.000001;
-    }else if (section == 1){
-        return 1;
-    }else {
-        return 10;
+        return 0.00001f;;
+    }else{
+        return 50;
     }
     return 0;
 }
@@ -182,7 +168,7 @@ static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCe
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     
-    
+   
 }
 
 -(NSArray*)titileArr{
@@ -192,5 +178,11 @@ static NSString *mineOrderNumbersTableViewCell = @"LBMineOrderNumbersTableViewCe
     return _titileArr;
 }
 
+-(NSArray*)productArr{
+    if (!_productArr) {
+        _productArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"优券抵扣", nil];
+    }
+    return _productArr;
+}
 
 @end
