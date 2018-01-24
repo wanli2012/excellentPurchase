@@ -10,4 +10,6 @@
 
 @interface GLMine_PaySucessController : UIViewController
 
+@property (nonatomic, assign)NSInteger type;//类型:1:成功  2:失败
+
 @end

@@ -132,7 +132,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([self.delegate respondsToSelector:@selector(toMyProperty)]) {
+        [self.delegate toMyProperty];
+    }
+}
 //#pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {

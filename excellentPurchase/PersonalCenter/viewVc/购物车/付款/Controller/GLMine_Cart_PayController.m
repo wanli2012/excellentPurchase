@@ -10,6 +10,8 @@
 #import "GLMine_Cart_PayCell.h"
 #import "GLMine_Cart_PayModel.h"
 
+#import "GLMine_PaySucessController.h"//付款状态
+
 @interface GLMine_Cart_PayController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,8 +30,21 @@
     
 }
 
+/**
+ 去付款
+ */
+- (IBAction)toPay:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_PaySucessController *vc = [[GLMine_PaySucessController alloc] init];
+    vc.type = 1;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     return self.models.count;
 }
 
@@ -62,6 +77,7 @@
     }
     
     [tableView reloadData];
+    
 }
 
 #pragma mark - 懒加载

@@ -16,11 +16,12 @@
 #import "GLMine_TeamController.h"//我的团队
 #import "GLMine_MessageController.h"//消息中心
 #import "LBMineOrderManagerViewController.h"//订单管理
+#import "GLMine_PropertyController.h"//我的资产
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
 
-@interface LBPersonCenterViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LBPersonCenterViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,LBMineHeaderViewDelegate>
 /**
  头部视图
  */
@@ -52,11 +53,23 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     [super viewDidLoad];
 
     self.tableview.tableHeaderView = self.headerView;
+    self.headerView.delegate = self;
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:mineTableViewCell bundle:nil] forCellReuseIdentifier:mineTableViewCell];
     
 }
 
+/**
+ 跳转到我的资产
+ */
+- (void)toMyProperty{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_PropertyController *propertyVC = [[GLMine_PropertyController alloc] init];
+    [self.navigationController pushViewController:propertyVC animated:YES];
+}
+
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.titleArr.count;
@@ -122,7 +135,6 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"",
                     @"GLMine_ShoppingCartController",
                     @"LBMineOrderManagerViewController",
                     @"GLMine_TeamController",

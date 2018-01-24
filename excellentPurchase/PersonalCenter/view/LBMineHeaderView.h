@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LBMineHeaderViewDelegate <NSObject>
+
+- (void)toMyProperty;
+
+@end
+
 @interface LBMineHeaderView : UIView
 
-
-
+@property (nonatomic, weak)id <LBMineHeaderViewDelegate> delegate;
 
 @end

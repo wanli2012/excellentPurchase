@@ -85,6 +85,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toPay:" destination="-1" eventType="touchUpInside" id="BVm-eb-QUl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95664197206497192" green="0.96078699827194214" blue="0.96479767560958862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
