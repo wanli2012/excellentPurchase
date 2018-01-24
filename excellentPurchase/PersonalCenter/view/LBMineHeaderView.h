@@ -10,12 +10,19 @@
 
 @protocol LBMineHeaderViewDelegate <NSObject>
 
+//跳转到我的资产
 - (void)toMyProperty;
+
+//切换账号
+- (void)changeAccountEvent;
 
 @end
 
 @interface LBMineHeaderView : UIView
 
 @property (nonatomic, weak)id <LBMineHeaderViewDelegate> delegate;
+
+@property (nonatomic, copy)NSArray *titleArr;
+@property (nonatomic, copy)NSArray *valueArr;
 
 @end

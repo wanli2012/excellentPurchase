@@ -60,6 +60,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
 }
 
+#pragma mark - LBMineHeaderViewDelegate
 /**
  跳转到我的资产
  */
@@ -68,7 +69,16 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     self.hidesBottomBarWhenPushed = YES;
     GLMine_PropertyController *propertyVC = [[GLMine_PropertyController alloc] init];
     [self.navigationController pushViewController:propertyVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
+
+/**
+ 切换账号
+ */
+- (void)changeAccountEvent{
+    NSLog(@" 切换账号");
+}
+
 
 #pragma mark - UITableViewDelegate
 
@@ -129,6 +139,13 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
         _headerView.frame = CGRectMake(0, 0, UIScreenWidth, kInitHeaderViewHeight);
         _headerView.autoresizingMask = 0;
     }
+    
+    NSArray *arr = @[@"积分",@"余额",@"购物券",@"优宝",@"优宝单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
+    NSArray *valueArr = @[@"23222",@"11",@"0",@"1",@"1",@"2",@"3",@"4444"];
+    
+    _headerView.titleArr = arr;
+    _headerView.valueArr = valueArr;
+    
     return _headerView;
 }
 

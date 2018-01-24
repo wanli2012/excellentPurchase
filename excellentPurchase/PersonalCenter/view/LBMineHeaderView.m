@@ -84,6 +84,9 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
  */
 - (IBAction)changeAccountEvent:(UIButton *)sender {
     
+    if ([self.delegate respondsToSelector:@selector(changeAccountEvent)]) {
+        [self.delegate changeAccountEvent];
+    }
     
 }
 
@@ -95,7 +98,7 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.titleArr.count;
 }
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -105,7 +108,8 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
     // must be dequeueReusableCellWithReuseIdentifier !!!!
     LBMineDataCollectionViewCell *cell = (LBMineDataCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:ID
                                                                             forIndexPath:indexPath];
- 
+    cell.titleNameLabel.text = self.titleArr[indexPath.row];
+    cell.valueLabel.text = self.valueArr[indexPath.row];
  
     return cell;
 }
