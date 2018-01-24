@@ -12,9 +12,12 @@
 #import "GLMine_ShoppingCartHeader.h"
 #import "GLMine_ShoppingCartGuessCell.h"
 
+#import "GLMine_Cart_PayController.h"//支付界面
+
 @interface GLMine_ShoppingCartController ()<UITableViewDelegate,UITableViewDataSource,GLMine_ShoppingCartCellDelegate,GLMine_ShoppingCartHeaderDelegate>
 {
     BOOL _isSelectedAll;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,15 +26,13 @@
 
 @property (nonatomic, strong)UIButton *rightBtn;//导航栏右键
 
-@property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic, strong)NSMutableArray *models;//数据源
 
 @property (weak, nonatomic) IBOutlet UIView *clearView;//结算view
 @property (weak, nonatomic) IBOutlet UIView *editView;//编辑view
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//选中标志(完成)
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV2;//选中标志(编辑)
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;//总价
-
-//@property (nonatomic, strong)GLMine_ShoppingCartHeader *headerView;
 
 @end
 
@@ -159,6 +160,11 @@
  */
 - (IBAction)clearCart:(id)sender {
     NSLog(@"结算");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Cart_PayController *payVC = [[GLMine_Cart_PayController alloc] init];
+    [self.navigationController pushViewController:payVC animated:YES];
+    
 }
 
 /**
@@ -172,48 +178,47 @@
  删除
  */
 - (IBAction)deleteGoods:(id)sender {
-    
-    
-    //给要删除的商品一个删除标记
-    for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
-        
-        for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr) {
-            if (model.isSelected) {
 
-                model.isDel = YES;
-            }
-
-        }
-    }
-
-    
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要删除这些商品吗?" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
     __weak __typeof__(self) weakSelf = self;
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
-        //删除有删除标记的商品
+        
+         NSMutableArray *buyerTempArr = [[NSMutableArray alloc] init];
+        
         for (GLMine_ShoppingCartDataModel *sectionModel in weakSelf.models) {
-            for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr) {
-                
-                if (model.isDel) {
+            if (sectionModel.shopIsSelected)
+            {
+                [buyerTempArr addObject:sectionModel];
+            }
+            else
+            {
+                NSMutableArray *productTempArr = [[NSMutableArray alloc] init];
+                for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr)
+                {
+                    if (model.isSelected)
+                    {
+                        [productTempArr addObject:model];
+                    }
+                }
+               
+                if (productTempArr.count != 0) {
                     
                     NSMutableArray *tempM = [NSMutableArray array];
                     [tempM addObjectsFromArray:sectionModel.goodsArr];
-                    [tempM removeObject:model];
-                    sectionModel.goodsArr = tempM;
+                    [tempM removeObjectsInArray:productTempArr];
                     
+                    sectionModel.goodsArr = tempM;
                 }
             }
         }
         
-        ///计算总价值 和 选中商品数量
-        [weakSelf caculateThePriceAndGoodsNum];
-
+        [self.models removeObjectsInArray:buyerTempArr];
         
-        [weakSelf.tableView reloadData];
+        [self updateInfomation];//删除之后一些列更新操作
+
         
     }];
     
@@ -223,10 +228,39 @@
     
 }
 
+#pragma mark - 删除之后一些列更新操作
+- (void)updateInfomation{
+    // 会影响到对应的买手选择
+    for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
+        NSInteger count = 0;
+        for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr){
+            if (model.isSelected) {
+                count ++;
+            }
+        }
+        if (count == sectionModel.goodsArr.count) {
+            sectionModel.shopIsSelected = YES;
+        }
+    }
+
+    // 再次影响到全部选择按钮
+    [self isSelectAll];
+    [self caculateThePriceAndGoodsNum];
+    
+    [self.tableView reloadData];
+    
+    // 如果删除干净了
+    if (self.models.count == 0) {
+        [self setDone:self.rightBtn];
+        self.rightBtn.enabled = NO;
+    }
+}
+
 /**
  算出商品的总价格 和 商品数  并显示
  */
 - (void)caculateThePriceAndGoodsNum{
+    
     ///算出商品的总价格 和 商品数
     NSInteger num = 0;
     CGFloat totalPrice = 0.00;
@@ -269,6 +303,12 @@
         self.signImageV2.image = [UIImage imageNamed:@"pay-select-n"];
         _isSelectedAll = NO;
     }
+    
+    if (self.models.count == 0) {
+        self.signImageV.image = [UIImage imageNamed:@"pay-select-n"];
+        self.signImageV2.image = [UIImage imageNamed:@"pay-select-n"];
+        _isSelectedAll = NO;
+    }
 }
 
 
@@ -307,7 +347,16 @@
     ///判断出购物车界面的全选按钮是否为选中状态
     [self isSelectAll];
     
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [UIView performWithoutAnimation:^{
+        
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+    
+    [self.tableView layoutIfNeeded]; // 强制更新
+    [self.tableView setContentOffset:offset];
 }
 
 /**
@@ -333,26 +382,6 @@
     model.amount = [NSString stringWithFormat:@"%zd",number];
     
     [self.tableView reloadData];
-
-}
-
-/**
- 监听数量Textfield输入
- @param sender textfield
- */
-- (void)valueChanged:(UITextField *)sender{
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:sender.tag];
-//    GLMine_ShoppingCartCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-//    NSLog(@"cell.section = %zd-------cell.index = %zd",cell.section,cell.index);
-    
-    
-    
-//    GLMine_ShoppingCartDataModel *sectionModel = self.models[section];
-//    GLMine_ShoppingCartModel *model = sectionModel.goodsArr[index];
-//
-//    GLMine_ShoppingCartModel *model = self.models[sender.tag];
-//    model.amount = sender.text;
 
 }
 
@@ -384,8 +413,15 @@
     ///判断出购物车界面的全选按钮是否为选中状态
     [self isSelectAll];
     
-    [self.tableView reloadData];
+    CGPoint offset = self.tableView.contentOffset;
+    [UIView performWithoutAnimation:^{
+
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
+    }];
     
+    [self.tableView layoutIfNeeded]; // 强制更新
+    [self.tableView setContentOffset:offset];
+
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -441,8 +477,6 @@
             cell.delegate = self;
             cell.selectionStyle = 0;
             
-            [cell.amountTF addTarget:self action:@selector(valueChanged:)  forControlEvents:UIControlEventAllEditingEvents];
-            
             return cell;
             
         }else{
@@ -456,9 +490,33 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (self.models.count == 0) {//没有商品的时候
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 0.0001)];
-        view.backgroundColor = [UIColor clearColor];
-        return view;
+        if (section == 0) {
+            
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 0.0001)];
+            view.backgroundColor = [UIColor clearColor];
+            return view;
+        }else{
+            UIView *guessView;
+            if (!guessView) {
+                
+                guessView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 50)];
+                guessView.backgroundColor = [UIColor whiteColor];
+                
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 50)];
+                label.font = [UIFont systemFontOfSize:15];
+                label.textColor = LBHexadecimalColor(0x333333);
+                label.text = @"猜你喜欢";
+                
+                UIView *lineV = [[UIView alloc] initWithFrame:CGRectMake(0, 50 -1, UIScreenWidth, 1)];
+                lineV.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                
+                [guessView addSubview:label];
+                [guessView addSubview:lineV];
+                
+            }
+            
+            return guessView;
+        }
     }else{//有商品的时候
         if (section < self.models.count) {
             
@@ -467,10 +525,11 @@
             if (!headerView) {
                 headerView = [[GLMine_ShoppingCartHeader alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 50)];
                 headerView.delegate = self;
-//                headerView.section = section;
                 
             }
-            headerView.model = self.models[section];
+            GLMine_ShoppingCartDataModel *sectionModel = self.models[section];
+            sectionModel.shopSection = section;
+            headerView.model = sectionModel;
             
             return headerView;
             
@@ -498,7 +557,6 @@
             return guessView;
         }
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

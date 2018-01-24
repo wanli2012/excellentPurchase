@@ -7,6 +7,7 @@
 //
 
 #import "GLMine_ShoppingCartCell.h"
+#import "ReactiveCocoa.h"
 
 @interface GLMine_ShoppingCartCell()<UITextFieldDelegate>
 
@@ -34,6 +35,11 @@
     self.picImageVWidth.constant = CZH_ScaleWidth(110);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectClick)];
     [self.selectView addGestureRecognizer:tap];
+    
+    ///响应式编程  即时获取textfield输入值
+    [[self.amountTF rac_textSignal] subscribeNext:^(id x) {
+        _model.amount = x;
+    }];
     
 }
 

@@ -123,6 +123,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
+                    @"",
                     @"GLMine_ShoppingCartController",
                     @"LBMineOrderManagerViewController",
                     @"GLMine_TeamController",
