@@ -24,7 +24,7 @@
     
     [super viewDidLoad];
 
-    self.navigationItem.title = @"推荐";
+    self.navigationItem.title = @"我的二维码";
 
     self.contentV.layer.cornerRadius = 5.f;
     self.contentV.clipsToBounds = YES;

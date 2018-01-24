@@ -16,6 +16,7 @@
 #import "LBModifyingUsernameViewController.h"//用户名修改
 #import "LBMineCenterAddAdreassViewController.h"//修改收货地址
 #import "LBImprovePersonalInformationViewController.h"//完善资料
+#import "GLRecommendController.h"//我的二维码
 
 @interface LBAccountManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -181,18 +182,9 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 break;
             case 3://我的二维码
             {
-//                self.hidesBottomBarWhenPushed = YES;
-//                LBModifyingUsernameViewController *modifyUserNameVC = [[LBModifyingUsernameViewController alloc] init];
-//
-//                modifyUserNameVC.block = ^(NSString *name) {
-//
-//                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:name];
-//
-//                    [weakSelf.tableview reloadData];
-//
-//                };
-//
-//                [self.navigationController pushViewController:modifyUserNameVC animated:YES];
+                self.hidesBottomBarWhenPushed = YES;
+                GLRecommendController *vc = [[GLRecommendController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 4://所在地区

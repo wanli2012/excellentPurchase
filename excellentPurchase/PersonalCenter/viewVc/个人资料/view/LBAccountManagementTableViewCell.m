@@ -22,7 +22,6 @@
 
 }
 
-
 - (void)setType:(NSInteger)type{
     _type = type;
     

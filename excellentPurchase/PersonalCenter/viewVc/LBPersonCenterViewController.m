@@ -20,6 +20,8 @@
 #import "LBMineOrderManagerViewController.h"//订单管理
 #import "GLMine_PropertyController.h"//我的资产
 #import "LBMineCollectionViewController.h"//收藏
+#import "LBSwitchAccountViewController.h"//切换账号
+#import "GLMine_ManagementController.h"//商家管理
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
@@ -78,7 +80,12 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
  切换账号
  */
 - (void)changeAccountEvent{
-    NSLog(@" 切换账号");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBSwitchAccountViewController *vc =[[LBSwitchAccountViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 /**
@@ -133,17 +140,17 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
 -(NSMutableArray*)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+        _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
     }
     return _imageArr;
 }
+
 -(NSMutableArray*)titleArr{
     if (!_titleArr) {
-        _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+        _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
     }
     return _titleArr;
 }
-
 
 -(LBMineHeaderView *)headerView{
     if (!_headerView) {
@@ -165,6 +172,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
+                    @"GLMine_ManagementController",
                     @"GLMine_ShoppingCartController",
                     @"LBMineOrderManagerViewController",
                     @"GLMine_TeamController",

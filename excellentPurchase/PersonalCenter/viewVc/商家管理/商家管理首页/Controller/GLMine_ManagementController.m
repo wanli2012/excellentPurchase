@@ -7,13 +7,12 @@
 //
 
 #import "GLMine_ManagementController.h"
-#import "GLMine_ManagementCell.h"
 
 @interface GLMine_ManagementController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
+@property (weak, nonatomic) IBOutlet UIView *todayView;//当天
+@property (weak, nonatomic) IBOutlet UIView *monthView;//当月
 
 @end
 
@@ -23,31 +22,69 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商家管理";
+    self.contentViewWidth.constant = 700;
     
-    self.leftViewWidth.constant = UIScreenWidth - 60;
+    self.todayView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+    self.todayView.layer.shadowOffset = CGSizeMake(0,0);//
+    self.todayView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
+    self.todayView.layer.shadowRadius = 6;//阴影半径，默认3
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_ManagementCell" bundle:nil] forCellReuseIdentifier:@"GLMine_ManagementCell"];
     
+    self.monthView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+    self.monthView.layer.shadowOffset = CGSizeMake(0,0);
+    self.monthView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
+    self.monthView.layer.shadowRadius = 6;//阴影半径，默认3
+
+
 }
 
-#pragma mark - UITableViewDelegate UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 7;
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    GLMine_ManagementCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ManagementCell" forIndexPath:indexPath];
-    
-//    cell.model = self.models[indexPath.row];
-    cell.selectionStyle = 0;
-    
-    return cell;
+#pragma mark - 六块主功能
+/**
+ 线上订单
+ */
+- (IBAction)orderOnline:(id)sender {
+    NSLog(@"线上订单");
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 75;
+/**
+ 线下订单
+ */
+- (IBAction)orderOffline:(id)sender {
+    NSLog(@"线下订单");
 }
 
+/**
+ 业绩查询
+  */
+- (IBAction)queryAchievement:(id)sender {
+    NSLog(@"业绩查询");
+}
+
+/**
+ 店铺装修
+  */
+- (IBAction)storeDecorate:(id)sender {
+    NSLog(@"店铺装修");
+}
+
+/**
+ 分店管理
+  */
+- (IBAction)branchManage:(id)sender {
+    NSLog(@"分店管理");
+}
+
+/**
+ 收款二维码
+  */
+- (IBAction)incomeCode:(id)sender {
+    NSLog(@"收款二维码");
+}
 
 @end
