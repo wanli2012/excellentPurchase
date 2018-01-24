@@ -7,12 +7,30 @@
 //
 
 #import "LBFinancialCenterExchangeRecodervc.h"
+#import "LBFinancialCenterRecoderTableViewCell.h"
+
+static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecoderTableViewCell";
 
 @implementation LBFinancialCenterExchangeRecodervc
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    adjustsScrollViewInsets_NO(self.scrollView, self);
-    
+     [self.tableView registerNib:[UINib nibWithNibName:financialCenterRecoderTableViewCell bundle:nil] forCellReuseIdentifier:financialCenterRecoderTableViewCell];
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 120;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LBFinancialCenterRecoderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:financialCenterRecoderTableViewCell forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
 @end
