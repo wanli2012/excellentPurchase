@@ -12,6 +12,7 @@
 #import "LBMineCollectionProductViewController.h"
 #import "LBMineCollectionShopViewController.h"
 #import "PGGDropView.h"
+#import "LBCollectionManager.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -43,8 +44,10 @@
 -(void)managerEvent:(UIButton*)sender{
     sender.selected = !sender.selected;
     if (sender.selected) {
+        [LBCollectionManager defaultUser].index = 1;
         [[NSNotificationCenter defaultCenter]postNotificationName:@"showEditview" object:nil];
     }else{
+        [LBCollectionManager defaultUser].index = 0;
          [[NSNotificationCenter defaultCenter]postNotificationName:@"dismissEditview" object:nil];
     }
     

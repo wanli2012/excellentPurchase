@@ -7,7 +7,7 @@
 //
 
 #import "LBFinancialCenterBaseViewController.h"
-#import "LBFinancialCenterTableViewCell.h"
+
 
 NSNotificationName const ChildScrollViewDidScrollNSNotificationFinancial = @"ChildScrollViewDidScrollNSNotificationFinancial";
 NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"ChildScrollViewRefreshStateNSNotificationFinancial";
@@ -16,7 +16,6 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"
 
 @end
 
-static NSString *donationTableViewCell = @"LBFinancialCenterTableViewCell";
 
 @implementation LBFinancialCenterBaseViewController
 
@@ -30,8 +29,6 @@ static NSString *donationTableViewCell = @"LBFinancialCenterTableViewCell";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    //注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:donationTableViewCell bundle:nil] forCellReuseIdentifier:donationTableViewCell];
     
     self.scrollView = self.tableView;
 }
@@ -67,20 +64,6 @@ static NSString *donationTableViewCell = @"LBFinancialCenterTableViewCell";
     // 滚动时发出通知
     [[NSNotificationCenter defaultCenter] postNotificationName:ChildScrollViewDidScrollNSNotificationFinancial object:nil userInfo:@{@"scrollingScrollView":scrollView,@"offsetDifference":@(offsetDifference)}];
     self.lastContentOffset = scrollView.contentOffset;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 12;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LBFinancialCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:donationTableViewCell forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 }
 
 
