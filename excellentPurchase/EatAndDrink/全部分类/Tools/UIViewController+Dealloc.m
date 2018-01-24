@@ -23,7 +23,7 @@
 
 - (void)my_dealloc
 {
-    NSLog(@"%@销毁了", self);
+   
     [self my_dealloc];
 }
 

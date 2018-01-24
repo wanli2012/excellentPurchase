@@ -54,6 +54,21 @@
             }
         }
     }
+}
+
+//这个方法在Cell被选中或者被取消选中时调用
+-(void)setSelected:(BOOL)selected
+animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    self.backView.backgroundColor = [UIColor whiteColor];
+   
+}
+//这个方法在用户按住Cell时被调用
+-(void)setHighlighted:(BOOL)highlighted
+             animated:(BOOL)animated{
     
+    [super setHighlighted:highlighted animated:animated];
+    self.backView.backgroundColor = [UIColor whiteColor];
 }
 @end

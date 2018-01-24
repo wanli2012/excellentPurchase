@@ -12,7 +12,7 @@
 
 @interface LBMineCollectionProductViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) UITableView *tableview;
 @property (strong, nonatomic) NSMutableArray    *listData;
 @property (strong, nonatomic) UIView            *editingView;
 
@@ -24,6 +24,7 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     adjustsScrollViewInsets_NO(self.tableview, self);
     [self Adds];
    
@@ -31,8 +32,6 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     for (int i = 0; i<40; i++) {
         [self.listData addObject:@(i)];
     }
-    
-    [self.tableview registerNib:[UINib nibWithNibName:mineCollectionProductTableViewCell bundle:nil] forCellReuseIdentifier:mineCollectionProductTableViewCell];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showEditview) name:@"showEditview" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissEditview) name:@"dismissEditview" object:nil];
@@ -87,9 +86,7 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
          [self.tableView deselectRowAtIndexPath:obj animated:NO];
          }];
          */
-        
         [sender setTitle:@"全选" forState:UIControlStateNormal];
-        
     }
 }
 
@@ -98,19 +95,24 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
 - (void)Adds{
 
     [self.view addSubview:self.editingView];
+    [self.view addSubview:self.tableview];
 
-
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.editingView.mas_top);
+    }];
+    
     [self.editingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.height.equalTo(@50);
-        make.bottom.equalTo(self.view).offset(60);
+        make.bottom.equalTo(self.view).offset(50);
     }];
 }
 
 
 - (void)showEitingView:(BOOL)isShow{
     [self.editingView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(isShow?0:60);
+        make.bottom.equalTo(self.view).offset(isShow?0:50);
     }];
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
@@ -164,5 +166,18 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
         
     }
     return _editingView;
+}
+#pragma mark -- getters and setters
+- (UITableView *)tableview{
+    if (!_tableview) {
+        _tableview = [[UITableView alloc] init];
+        _tableview.dataSource      = self;
+        _tableview.delegate        = self;
+        _tableview.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _tableview.tableFooterView = [[UIView alloc] init];
+        _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+         [self.tableview registerNib:[UINib nibWithNibName:mineCollectionProductTableViewCell bundle:nil] forCellReuseIdentifier:mineCollectionProductTableViewCell];
+    }
+    return _tableview;
 }
 @end
