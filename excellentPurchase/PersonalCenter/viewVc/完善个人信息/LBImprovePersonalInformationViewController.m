@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"完善资料";
+    
 }
 //上传身份照
 - (IBAction)uploadidentitypictures:(UITapGestureRecognizer *)sender {

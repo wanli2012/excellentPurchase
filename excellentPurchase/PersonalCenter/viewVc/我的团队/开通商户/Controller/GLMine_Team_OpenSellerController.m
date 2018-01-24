@@ -36,6 +36,7 @@
     [super viewDidLoad];
    
     self.navigationItem.title = @"开通商家";
+    
 }
 
 #pragma mark - 跳转到商家承诺书
@@ -72,6 +73,7 @@
 #pragma mark - UITextfieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
     if (textField == self.phoneTF) {
         [self.shopNameTF becomeFirstResponder];
     }else if (textField == self.shopNameTF) {

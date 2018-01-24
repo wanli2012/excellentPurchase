@@ -11,6 +11,8 @@
 #import "CCPScrollView.h"
 #import "LBMineTableViewCell.h"
 
+#import "LBAccountManagementViewController.h"//个人资料
+
 #import "GLMine_ShoppingCartController.h"//购物车
 #import "LBSetUpViewController.h"//设置
 #import "GLMine_TeamController.h"//我的团队
@@ -18,6 +20,8 @@
 #import "LBMineOrderManagerViewController.h"//订单管理
 #import "GLMine_PropertyController.h"//我的资产
 #import "LBMineCollectionViewController.h"//收藏
+#import "LBSwitchAccountViewController.h"//切换账号
+#import "GLMine_ManagementController.h"//商家管理
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
@@ -60,14 +64,39 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
 }
 
+#pragma mark - LBMineHeaderViewDelegate
 /**
- 跳转到我的资产
+ 跳转到 我的资产
  */
 - (void)toMyProperty{
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_PropertyController *propertyVC = [[GLMine_PropertyController alloc] init];
     [self.navigationController pushViewController:propertyVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+/**
+ 切换账号
+ */
+- (void)changeAccountEvent{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBSwitchAccountViewController *vc =[[LBSwitchAccountViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+
+/**
+ 跳转到 个人信息 界面
+ */
+- (void)toMyInfomation{
+
+    self.hidesBottomBarWhenPushed = YES;
+    LBAccountManagementViewController *vc = [[LBAccountManagementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - UITableViewDelegate
@@ -111,17 +140,17 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
 -(NSMutableArray*)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+        _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
     }
     return _imageArr;
 }
+
 -(NSMutableArray*)titleArr{
     if (!_titleArr) {
-        _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+        _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
     }
     return _titleArr;
 }
-
 
 -(LBMineHeaderView *)headerView{
     if (!_headerView) {
@@ -129,6 +158,13 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
         _headerView.frame = CGRectMake(0, 0, UIScreenWidth, kInitHeaderViewHeight);
         _headerView.autoresizingMask = 0;
     }
+    
+    NSArray *arr = @[@"积分",@"余额",@"购物券",@"优宝",@"优宝单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
+    NSArray *valueArr = @[@"23222",@"11",@"0",@"1",@"1",@"2",@"3",@"4444"];
+    
+    _headerView.titleArr = arr;
+    _headerView.valueArr = valueArr;
+    
     return _headerView;
 }
 
@@ -136,6 +172,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
+                    @"GLMine_ManagementController",
                     @"GLMine_ShoppingCartController",
                     @"LBMineOrderManagerViewController",
                     @"GLMine_TeamController",

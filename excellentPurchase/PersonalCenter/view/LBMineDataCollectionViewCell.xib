@@ -45,6 +45,10 @@
                 <constraint firstItem="Oyz-pi-UJ7" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-10" id="u6E-v1-vnr"/>
             </constraints>
             <size key="customSize" width="78" height="64"/>
+            <connections>
+                <outlet property="titleNameLabel" destination="hOu-L1-qYf" id="tPg-uF-Cyo"/>
+                <outlet property="valueLabel" destination="Oyz-pi-UJ7" id="RlH-Hl-YdL"/>
+            </connections>
             <point key="canvasLocation" x="39" y="59"/>
         </collectionViewCell>
     </objects>
