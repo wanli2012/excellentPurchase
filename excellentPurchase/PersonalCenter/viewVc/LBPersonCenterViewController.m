@@ -16,6 +16,7 @@
 #import "GLMine_TeamController.h"//我的团队
 #import "GLMine_MessageController.h"//消息中心
 #import "LBMineOrderManagerViewController.h"//订单管理
+#import "LBMineCollectionViewController.h"//收藏
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
@@ -126,7 +127,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                     @"LBMineOrderManagerViewController",
                     @"GLMine_TeamController",
                     @"GLMine_TeamController",
-                    @"GLMine_TeamController",
+                    @"LBMineCollectionViewController",
                     @"LBSetUpViewController",
                     @"GLMine_MessageController",nil];
         
