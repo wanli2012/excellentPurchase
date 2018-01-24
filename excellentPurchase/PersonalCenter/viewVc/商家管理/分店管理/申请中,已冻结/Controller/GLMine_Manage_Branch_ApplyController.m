@@ -1,17 +1,17 @@
 //
-//  GLMine_Manager_Branch_DoneController.m
+//  GLMine_Manage_Branch_ApplyController.m
 //  excellentPurchase
 //
 //  Created by 龚磊 on 2018/1/24.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_Manage_Branch_DoneController.h"
-#import "GLMine_Manage_Branch_DoneCell.h"
+#import "GLMine_Manage_Branch_ApplyController.h"
+#import "GLMine_Manage_Branch_ApplyCell.h"
 #import "GLMine_Manage_Branch_DoneModel.h"
-#import "GLMine_Branch_DetailController.h"//分店详情
 
-@interface GLMine_Manage_Branch_DoneController ()
+
+@interface GLMine_Manage_Branch_ApplyController ()<GLMine_Manage_Branch_ApplyCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -19,12 +19,22 @@
 
 @end
 
-@implementation GLMine_Manage_Branch_DoneController
+@implementation GLMine_Manage_Branch_ApplyController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Manage_Branch_DoneCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Manage_Branch_DoneCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Manage_Branch_ApplyCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Manage_Branch_ApplyCell"];
+}
+
+#pragma mark - GLMine_Manage_Branch_ApplyCellDelegate
+//取消申请
+- (void)cancelApply:(NSInteger)index{
+    NSLog(@"取消申请 --- %zd",index);
+}
+//解冻账号
+- (void)unfrezzAccount:(NSInteger)index{
+    NSLog(@"解冻账号 --- %zd",index);
 }
 
 #pragma mark -UITableviewDelegate
@@ -35,25 +45,35 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GLMine_Manage_Branch_DoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Manage_Branch_DoneCell"];
+    GLMine_Manage_Branch_ApplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Manage_Branch_ApplyCell"];
     cell.selectionStyle = 0;
+    cell.delegate = self;
+    GLMine_Manage_Branch_DoneModel *model = self.models[indexPath.row];
+    model.index = indexPath.row;
     
-    cell.model = self.models[indexPath.row];
+    if (self.type == 1) {//1:申请中 0:已冻结
+        model.controllerType = 1;
+    }else{
+        model.controllerType = 2;
+    }
+    
+    cell.model = model;
     
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 172;
+//    tableView.rowHeight = UITableViewAutomaticDimension;
+//    tableView.estimatedRowHeight = 44;
+    return 170;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Branch_DetailController *detailVC = [[GLMine_Branch_DetailController alloc] init];
-    GLMine_Manage_Branch_DoneModel *model = self.models[indexPath.row];
-    detailVC.title = model.storeName;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    //    self.hidesBottomBarWhenPushed = YES;
+    //    GLMine_Team_MemberDataController *dataVC = [[GLMine_Team_MemberDataController alloc] init];
+    //    [self.navigationController pushViewController:dataVC animated:YES];
     
 }
 
@@ -67,15 +87,11 @@
             model.storeName = @"小仙女的店";
             model.picName = [NSString stringWithFormat:@"我的店%zd",i];
             model.account = [NSString stringWithFormat:@"100%zd",i];
-            model.type = [NSString stringWithFormat:@"%zd",i];
-            model.month_Money = [NSString stringWithFormat:@"111%zd",i];
-            model.total_Money = [NSString stringWithFormat:@"222%zd",i];
             
             [_models addObject:model];
         }
     }
     return _models;
 }
-
 
 @end

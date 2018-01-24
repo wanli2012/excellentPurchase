@@ -23,7 +23,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商家管理";
-    self.contentViewWidth.constant = 700;
+    self.contentViewWidth.constant = UIScreenWidth * 2 - 50.0/750.0 * UIScreenWidth;
     
     self.todayView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
     self.todayView.layer.shadowOffset = CGSizeMake(0,0);//

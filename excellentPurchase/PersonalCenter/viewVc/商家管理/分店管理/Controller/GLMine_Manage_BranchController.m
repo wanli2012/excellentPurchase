@@ -10,6 +10,9 @@
 #import "SPPageMenu.h"
 
 #import "GLMine_Manage_Branch_DoneController.h"//已完成
+#import "GLMine_Manage_Branch_FailedController.h"//申请失败
+#import "GLMine_Manage_Branch_ApplyController.h"//申请中 , 已冻结
+#import "GLMine_Branch_OpenStoreController.h"//开通分店
 
 #define pageMenuH 50   //菜单高度
 
@@ -55,18 +58,11 @@
  */
 - (void)openBranch{
     
-//    self.hidesBottomBarWhenPushed = YES;
-//    GLIdentifySelectController *idSelectVC = [[GLIdentifySelectController alloc] init];
-//    idSelectVC.selectIndex = [self.group_id integerValue];
-//    __weak typeof(self) weakSelf = self;
-//    idSelectVC.block = ^(NSString *name,NSString *group_id) {
-//
-//        [weakSelf.rightBtn setTitle:name forState:UIControlStateNormal];
-//        weakSelf.group_id = group_id;
-//
-//    };
-//
-//    [self.navigationController pushViewController:idSelectVC animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
+
+    GLMine_Branch_OpenStoreController *openVC= [[GLMine_Branch_OpenStoreController alloc] init];
+    
+    [self.navigationController pushViewController:openVC animated:YES];
     
 }
 
@@ -84,31 +80,31 @@
     // 设置代理
     pageMenu.delegate = self;
     pageMenu.itemTitleFont = [UIFont systemFontOfSize:15];
-    pageMenu.selectedItemTitleColor = [UIColor blackColor];
+    pageMenu.selectedItemTitleColor = MAIN_COLOR;
     pageMenu.unSelectedItemTitleColor = YYSRGBColor(118, 118, 118, 1);
     pageMenu.dividingLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    pageMenu.tracker.backgroundColor = [UIColor blackColor];
+    pageMenu.tracker.backgroundColor = MAIN_COLOR;
     [self.view addSubview:pageMenu];
     _pageMenu = pageMenu;
     
-    
-    [self addChildViewController:[[GLMine_Manage_Branch_DoneController alloc] init]];
-    [self addChildViewController:[[GLMine_Manage_Branch_DoneController alloc] init]];
-    [self addChildViewController:[[GLMine_Manage_Branch_DoneController alloc] init]];
-    [self addChildViewController:[[GLMine_Manage_Branch_DoneController alloc] init]];
-    
-//    for (int i = 0; i < self.menuArr.count; i++) {
-//        if (self.controllerClassNames.count > i) {
-//
-//            //GLMine_Manage_Branch_DoneController
-//
-//            GLMine_Team_MemberListController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
-//            //            NSString *text = [self.pageMenu titleForItemAtIndex:i];
-//            [self addChildViewController:baseVc];
-//            // 控制器本来自带childViewControllers,但是遗憾的是该数组的元素顺序永远无法改变，只要是addChildViewController,都是添加到最后一个，而控制器不像数组那样，可以插入或删除任意位置，所以这里自己定义可变数组，以便插入(删除)(如果没有插入(删除)功能，直接用自带的childViewControllers即可)
-//            [self.myChildViewControllers addObject:baseVc];
-//        }
-//    }
+    for (int i = 0; i < self.menuArr.count; i++) {
+        if (self.controllerClassNames.count > i) {
+            UIViewController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
+            
+            if(i == 1){//申请中
+                GLMine_Manage_Branch_ApplyController *vc = (GLMine_Manage_Branch_ApplyController *)baseVc;
+                vc.type = 1; //1:申请中 0:已冻结
+                
+            }else if(i == 2){//已冻结
+                GLMine_Manage_Branch_ApplyController *vc = (GLMine_Manage_Branch_ApplyController *)baseVc;
+                vc.type = 0; //1:申请中 0:已冻结
+            }
+          
+            [self addChildViewController:baseVc];
+     
+            [self.myChildViewControllers addObject:baseVc];
+        }
+    }
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight+pageMenuH, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH)];
     scrollView.delegate = self;
@@ -174,19 +170,20 @@
     return _myChildViewControllers;
     
 }
+
 -(NSMutableArray*)controllerClassNames{
-    
+
     if (!_controllerClassNames) {
         _controllerClassNames = [NSMutableArray arrayWithObjects:
                                  @"GLMine_Manage_Branch_DoneController",
-                                 @"GLMine_Manage_Branch_DoneController",
-                                 @"GLMine_Manage_Branch_DoneController",
-                                 @"GLMine_Manage_Branch_DoneController",
+                                 @"GLMine_Manage_Branch_ApplyController",
+                                 @"GLMine_Manage_Branch_ApplyController",
+                                 @"GLMine_Manage_Branch_FailedController",
                                  nil];
     }
-    
+
     return _controllerClassNames;
-    
+
 }
 
 @end
