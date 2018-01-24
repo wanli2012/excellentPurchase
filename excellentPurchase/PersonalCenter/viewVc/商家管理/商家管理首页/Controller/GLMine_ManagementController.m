@@ -7,6 +7,7 @@
 //
 
 #import "GLMine_ManagementController.h"
+#import "GLMine_Manage_BranchController.h"//分店管理
 
 @interface GLMine_ManagementController ()
 
@@ -29,12 +30,10 @@
     self.todayView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
     self.todayView.layer.shadowRadius = 6;//阴影半径，默认3
     
-    
     self.monthView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
     self.monthView.layer.shadowOffset = CGSizeMake(0,0);
     self.monthView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
     self.monthView.layer.shadowRadius = 6;//阴影半径，默认3
-
 
 }
 
@@ -77,7 +76,10 @@
  分店管理
   */
 - (IBAction)branchManage:(id)sender {
-    NSLog(@"分店管理");
+
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Manage_BranchController *vc = [[GLMine_Manage_BranchController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

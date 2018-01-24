@@ -39,6 +39,11 @@
                                                 <constraint firstAttribute="height" constant="80" id="nKB-R6-9CK"/>
                                                 <constraint firstAttribute="width" constant="80" id="v8T-eV-AzZ"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李丹美眉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-oB-E4Y">
                                             <rect key="frame" x="157" y="105" width="61.5" height="18"/>
