@@ -10,5 +10,6 @@
 
 @interface LBMineCollectionProductTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titileLb;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end

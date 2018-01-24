@@ -91,6 +91,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
+                <outlet property="backView" destination="lFT-4Q-0C8" id="yhu-Ep-3dr"/>
                 <outlet property="titileLb" destination="hc1-j0-1Lx" id="46Y-Kx-r5g"/>
             </connections>
             <point key="canvasLocation" x="39" y="82"/>
