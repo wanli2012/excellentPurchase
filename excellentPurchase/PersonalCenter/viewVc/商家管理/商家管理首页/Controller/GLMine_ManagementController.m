@@ -7,6 +7,7 @@
 //
 
 #import "GLMine_ManagementController.h"
+#import "GLMine_Manage_BranchController.h"//分店管理
 
 @interface GLMine_ManagementController ()
 
@@ -77,7 +78,10 @@
  分店管理
   */
 - (IBAction)branchManage:(id)sender {
-    NSLog(@"分店管理");
+
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Manage_BranchController *vc = [[GLMine_Manage_BranchController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
