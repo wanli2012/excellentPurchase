@@ -17,4 +17,9 @@
 @property (nonatomic, copy)NSString *month_Money;//当月销售额
 @property (nonatomic, copy)NSString *total_Money;//累计销售额
 
+@property (nonatomic, copy)NSString *reason;//失败原因
+
+@property (nonatomic, assign)NSInteger controllerType;//1:申请中 0:已冻结
+@property (nonatomic, assign)NSInteger index;//cell下标
+
 @end

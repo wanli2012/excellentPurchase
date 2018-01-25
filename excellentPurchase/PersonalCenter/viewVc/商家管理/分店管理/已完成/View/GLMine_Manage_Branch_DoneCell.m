@@ -25,13 +25,14 @@
     [super awakeFromNib];
     // Initialization code
 }
+
 - (void)setModel:(GLMine_Manage_Branch_DoneModel *)model{
     _model = model;
     
-    self.storeNameLabel.text = model.storeName;
+    self.storeNameLabel.text = [NSString stringWithFormat:@"店铺名:%@", model.storeName];
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.picName] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.accountLabel.text = model.account;
-    self.typeLabel.text = model.type;
+    self.accountLabel.text =[NSString stringWithFormat:@"账号:%@",model.account];
+    self.typeLabel.text = [NSString stringWithFormat:@"类型:%@",model.type];
     self.monthMoneyLabel.text = [NSString stringWithFormat:@"¥ %@",model.month_Money];
     self.totalMoneyLabel.text = [NSString stringWithFormat:@"¥ %@",model.total_Money];
     
