@@ -8,6 +8,7 @@
 
 #import "GLMine_ManagementController.h"
 #import "GLMine_Manage_BranchController.h"//分店管理
+#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
 
 @interface GLMine_ManagementController ()
 
@@ -62,7 +63,10 @@
  业绩查询
   */
 - (IBAction)queryAchievement:(id)sender {
-    NSLog(@"业绩查询");
+
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_QueryAchievementController *vc = [[GLMine_Branch_QueryAchievementController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

@@ -141,6 +141,13 @@
 		4A9E18DC201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18DA201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m */; };
 		4A9E18DD201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9E18DB201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib */; };
 		4A9E18E02012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18DF2012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m */; };
+		4AA3A1502019746900C94E49 /* GLMine_Branch_AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A14E2019746900C94E49 /* GLMine_Branch_AccountManageController.m */; };
+		4AA3A1512019746900C94E49 /* GLMine_Branch_AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3A14F2019746900C94E49 /* GLMine_Branch_AccountManageController.xib */; };
+		4AA3A15D20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A15B20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.m */; };
+		4AA3A15E20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3A15C20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib */; };
+		4AA3A1622019806D00C94E49 /* GLMine_Branch_AchievementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1602019806D00C94E49 /* GLMine_Branch_AchievementController.m */; };
+		4AA3A1672019819800C94E49 /* GLMine_Branch_AchievementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1652019819800C94E49 /* GLMine_Branch_AchievementCell.m */; };
+		4AA3A1682019819800C94E49 /* GLMine_Branch_AchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3A1662019819800C94E49 /* GLMine_Branch_AchievementCell.xib */; };
 		4AB3DC862016C4AA00099650 /* LBMineOrderCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3DC792016C4A800099650 /* LBMineOrderCompletedViewController.m */; };
 		4AB3DC872016C4AA00099650 /* LBMineOrderCanceledViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB3DC7B2016C4A900099650 /* LBMineOrderCanceledViewController.xib */; };
 		4AB3DC882016C4AA00099650 /* LBMineOrderCanceledViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3DC7D2016C4A900099650 /* LBMineOrderCanceledViewController.m */; };
@@ -702,6 +709,17 @@
 		4A9E18DB201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_UnderlingAchieveCell.xib; sourceTree = "<group>"; };
 		4A9E18DE2012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_UnderlingAchieveModel.h; sourceTree = "<group>"; };
 		4A9E18DF2012148800E1EC05 /* GLMine_Team_UnderlingAchieveModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_UnderlingAchieveModel.m; sourceTree = "<group>"; };
+		4AA3A14D2019746900C94E49 /* GLMine_Branch_AccountManageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_AccountManageController.h; sourceTree = "<group>"; };
+		4AA3A14E2019746900C94E49 /* GLMine_Branch_AccountManageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_AccountManageController.m; sourceTree = "<group>"; };
+		4AA3A14F2019746900C94E49 /* GLMine_Branch_AccountManageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Branch_AccountManageController.xib; sourceTree = "<group>"; };
+		4AA3A15A20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_QueryAchievementController.h; sourceTree = "<group>"; };
+		4AA3A15B20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_QueryAchievementController.m; sourceTree = "<group>"; };
+		4AA3A15C20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Branch_QueryAchievementController.xib; sourceTree = "<group>"; };
+		4AA3A15F2019806D00C94E49 /* GLMine_Branch_AchievementController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_AchievementController.h; sourceTree = "<group>"; };
+		4AA3A1602019806D00C94E49 /* GLMine_Branch_AchievementController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_AchievementController.m; sourceTree = "<group>"; };
+		4AA3A1642019819800C94E49 /* GLMine_Branch_AchievementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_AchievementCell.h; sourceTree = "<group>"; };
+		4AA3A1652019819800C94E49 /* GLMine_Branch_AchievementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_AchievementCell.m; sourceTree = "<group>"; };
+		4AA3A1662019819800C94E49 /* GLMine_Branch_AchievementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Branch_AchievementCell.xib; sourceTree = "<group>"; };
 		4AB3DC782016C4A800099650 /* LBMineOrderCanceledViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineOrderCanceledViewController.h; sourceTree = "<group>"; };
 		4AB3DC792016C4A800099650 /* LBMineOrderCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineOrderCompletedViewController.m; sourceTree = "<group>"; };
 		4AB3DC7A2016C4A900099650 /* LBMineOrderObligationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineOrderObligationViewController.h; sourceTree = "<group>"; };
@@ -1423,6 +1441,7 @@
 				4A0EDF7720189A100037D47A /* 申请失败 */,
 				4A0EDFA72018C87A0037D47A /* 分店详情 */,
 				4A0EDFB02018CEB30037D47A /* 开通分店 */,
+				4AA3A1492019731100C94E49 /* 账号管理 */,
 			);
 			path = "分店管理";
 			sourceTree = "<group>";
@@ -1623,6 +1642,7 @@
 			children = (
 				4A19C37420171F9500D15D82 /* 商家管理首页 */,
 				4A0EDF6920189A100037D47A /* 分店管理 */,
+				4AA3A15620197F0E00C94E49 /* 业绩查询 */,
 			);
 			path = "商家管理";
 			sourceTree = "<group>";
@@ -2440,6 +2460,79 @@
 				4A9E18D9201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.h */,
 				4A9E18DA201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m */,
 				4A9E18DB201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AA3A1492019731100C94E49 /* 账号管理 */ = {
+			isa = PBXGroup;
+			children = (
+				4AA3A14A2019731100C94E49 /* Controller */,
+				4AA3A14B2019731100C94E49 /* Model */,
+				4AA3A14C2019731100C94E49 /* View */,
+			);
+			path = "账号管理";
+			sourceTree = "<group>";
+		};
+		4AA3A14A2019731100C94E49 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AA3A14D2019746900C94E49 /* GLMine_Branch_AccountManageController.h */,
+				4AA3A14E2019746900C94E49 /* GLMine_Branch_AccountManageController.m */,
+				4AA3A14F2019746900C94E49 /* GLMine_Branch_AccountManageController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AA3A14B2019731100C94E49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AA3A14C2019731100C94E49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AA3A15620197F0E00C94E49 /* 业绩查询 */ = {
+			isa = PBXGroup;
+			children = (
+				4AA3A15720197F0E00C94E49 /* Controller */,
+				4AA3A15820197F0E00C94E49 /* Model */,
+				4AA3A15920197F0E00C94E49 /* View */,
+			);
+			path = "业绩查询";
+			sourceTree = "<group>";
+		};
+		4AA3A15720197F0E00C94E49 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AA3A15A20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.h */,
+				4AA3A15B20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.m */,
+				4AA3A15C20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib */,
+				4AA3A15F2019806D00C94E49 /* GLMine_Branch_AchievementController.h */,
+				4AA3A1602019806D00C94E49 /* GLMine_Branch_AchievementController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AA3A15820197F0E00C94E49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AA3A15920197F0E00C94E49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AA3A1642019819800C94E49 /* GLMine_Branch_AchievementCell.h */,
+				4AA3A1652019819800C94E49 /* GLMine_Branch_AchievementCell.m */,
+				4AA3A1662019819800C94E49 /* GLMine_Branch_AchievementCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4039,6 +4132,7 @@
 				F955D17D2008A7BA001EEC81 /* LBBankCardListTableViewCell.xib in Resources */,
 				F9340A1B2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.xib in Resources */,
 				4A0EDF8B2018A2E30037D47A /* shopperManagement.xcassets in Resources */,
+				4AA3A15E20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib in Resources */,
 				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				4A20E9BD20132D1700E091EA /* GLMine_Message_InteractCell.xib in Resources */,
@@ -4104,6 +4198,7 @@
 				4A0EDF8420189BAD0037D47A /* GLMine_Manage_Branch_DoneController.xib in Resources */,
 				4A54139F2010ADA9008A2FBD /* GLMine_Team_HistoryHeader.xib in Resources */,
 				4A9E18A32011CAED00E1EC05 /* city.plist in Resources */,
+				4AA3A1682019819800C94E49 /* GLMine_Branch_AchievementCell.xib in Resources */,
 				F97137382005DFF90033F38B /* LoginRegister.xcassets in Resources */,
 				4A19C3812017241200D15D82 /* GLMine_ManagementCell.xib in Resources */,
 				F955D1782008A788001EEC81 /* LBBankCardListViewController.xib in Resources */,
@@ -4130,6 +4225,7 @@
 				4A9E18D82012105900E1EC05 /* GLMine_Team_UnderLingAchieveController.xib in Resources */,
 				F95B535E200CD16200A81954 /* LBCommentListsTableViewCell.xib in Resources */,
 				4A02ABE820174F66009213AD /* GLMine_PaySucessController.xib in Resources */,
+				4AA3A1512019746900C94E49 /* GLMine_Branch_AccountManageController.xib in Resources */,
 				4A02ABEF20174F8B009213AD /* GLMine_PayFailedView.xib in Resources */,
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
 				4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */,
@@ -4306,6 +4402,7 @@
 				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
 				4AFC0E9E2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.m in Sources */,
 				4A9E18C02011EAC000E1EC05 /* GLMine_Team_OpenSellerController.m in Sources */,
+				4AA3A1672019819800C94E49 /* GLMine_Branch_AchievementCell.m in Sources */,
 				4AB3DCBA2016C4CA00099650 /* LBMineOrderDetailprateTableViewCell.m in Sources */,
 				F96CF3FA201818380070658C /* LBMineOrdersDetailHeaderView.m in Sources */,
 				F95072ED200492DA0026D28F /* LBPersonCenterViewController.m in Sources */,
@@ -4381,6 +4478,7 @@
 				4A0B140120108E8200AC3334 /* GLMine_Team_AccountChooseController.m in Sources */,
 				F96971D02011849A00966E26 /* LBEat_WholeClassifyView.m in Sources */,
 				4A79EDF5200F1F6C001F28D1 /* GLIdentifySelectController.m in Sources */,
+				4AA3A15D20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.m in Sources */,
 				4A20E9C020132E2000E091EA /* GLMine_Message_InteractModel.m in Sources */,
 				F97137472005FB410033F38B /* LBImprovePersonalInformationViewController.m in Sources */,
 				4AB3DC962016C4B500099650 /* LBMineOrdersFooterView.m in Sources */,
@@ -4449,7 +4547,9 @@
 				4A0EDF972018B52A0037D47A /* GLMine_Manage_Branch_FailedCell.m in Sources */,
 				F96CF43E20181A880070658C /* LBMineCenterFlyNoticeDetailOneTableViewCell.m in Sources */,
 				4AB3DC862016C4AA00099650 /* LBMineOrderCompletedViewController.m in Sources */,
+				4AA3A1622019806D00C94E49 /* GLMine_Branch_AchievementController.m in Sources */,
 				F955D13A20088F4F001EEC81 /* LBChangeSecondaryPasswordVc.m in Sources */,
+				4AA3A1502019746900C94E49 /* GLMine_Branch_AccountManageController.m in Sources */,
 				F955D13220088CA6001EEC81 /* LBSwitchAccountViewController.m in Sources */,
 				F9340A262009F5220002DBB8 /* LBIntegralGoodsTwoCollectionViewCell.m in Sources */,
 				F9633D87200C4D78001B545A /* CALayer+LBBorderLayer.m in Sources */,
