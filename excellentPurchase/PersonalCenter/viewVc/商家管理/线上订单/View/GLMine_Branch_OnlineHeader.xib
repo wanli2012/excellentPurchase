@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GLMine_Branch_OnlineHeader">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNG-eO-Lt2">
+                    <rect key="frame" x="10" y="23.5" width="51" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1X-gW-CH3">
+                    <rect key="frame" x="0.0" y="54" width="403" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="OB2-Ri-7Hu"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow_big" translatesAutoresizingMaskIntoConstraints="NO" id="Ash-VU-1yN">
+                    <rect key="frame" x="386" y="25" width="7" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="7" id="6wV-b9-2S5"/>
+                        <constraint firstAttribute="height" constant="13" id="kvb-TQ-CZE"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLU-Gx-FgY">
+                    <rect key="frame" x="0.0" y="0.0" width="403" height="10"/>
+                    <color key="backgroundColor" red="0.96068006753921509" green="0.96084433794021606" blue="0.96066969633102417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="LrU-U8-FfF"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="67668687686" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdG-KJ-wPl">
+                    <rect key="frame" x="66" y="23.5" width="327" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PNG-eO-Lt2" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="5" id="03Y-tH-rb9"/>
+                <constraint firstItem="z1X-gW-CH3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1LJ-Ug-AfJ"/>
+                <constraint firstAttribute="trailing" secondItem="Ash-VU-1yN" secondAttribute="trailing" constant="10" id="5il-0n-r3A"/>
+                <constraint firstItem="NLU-Gx-FgY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FBC-fg-lEo"/>
+                <constraint firstItem="Ash-VU-1yN" firstAttribute="baseline" secondItem="gdG-KJ-wPl" secondAttribute="baseline" id="Fbt-KY-nau"/>
+                <constraint firstAttribute="trailing" secondItem="z1X-gW-CH3" secondAttribute="trailing" id="Ls2-pO-ty6"/>
+                <constraint firstItem="PNG-eO-Lt2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="NHW-Je-AqZ"/>
+                <constraint firstAttribute="trailing" secondItem="NLU-Gx-FgY" secondAttribute="trailing" id="PBd-h6-TKd"/>
+                <constraint firstAttribute="trailing" secondItem="gdG-KJ-wPl" secondAttribute="trailing" constant="10" id="PXO-Vm-n9f"/>
+                <constraint firstItem="gdG-KJ-wPl" firstAttribute="leading" secondItem="PNG-eO-Lt2" secondAttribute="trailing" constant="5" id="VFS-pI-ndf"/>
+                <constraint firstAttribute="bottom" secondItem="z1X-gW-CH3" secondAttribute="bottom" id="WCf-JT-qZo"/>
+                <constraint firstItem="gdG-KJ-wPl" firstAttribute="centerY" secondItem="PNG-eO-Lt2" secondAttribute="centerY" id="pdk-rS-6mw"/>
+                <constraint firstItem="NLU-Gx-FgY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z3c-I5-vT6"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="20.5" y="82"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="right_arrow_big" width="9" height="17"/>
+    </resources>
+</document>

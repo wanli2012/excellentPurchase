@@ -8,10 +8,13 @@
 
 #import "GLMine_Branch_AchievementController.h"
 #import "GLMine_Branch_AchievementCell.h"
+#import "GLMine_Branch_AchievementModel.h"
 
 @interface GLMine_Branch_AchievementController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, assign) NSInteger rowCount;
+
+@property (nonatomic, strong)NSMutableArray *models;
 
 @end
 
@@ -55,22 +58,46 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 15;
+    return self.models.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 90;
+    return 165;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GLMine_Branch_AchievementCell *cell = [tableView dequeueReusableCellWithIdentifier:donationTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = self.models[indexPath.row];
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 //    self.hidesBottomBarWhenPushed = YES;
 //    GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
+    
 }
+
+#pragma mark - 懒加载
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [NSMutableArray array];
+        
+        for (int i = 0; i <7; i ++) {
+            GLMine_Branch_AchievementModel *model = [[GLMine_Branch_AchievementModel alloc] init];
+            model.date = [NSString stringWithFormat:@"2018-01-0%zd",i];
+            model.price = @"3333";
+            model.remark = @"d搭建浪费时间代理费家拉设计费加啊;地方家拉设计费静安寺防火卷帘撒回复";
+            model.submitDate = @"2018-01-02";
+            model.type = self.type;
+            
+            [_models addObject:model];
+        }
+    }
+    return _models;
+}
+
 
 @end

@@ -11,4 +11,6 @@
 
 @interface GLMine_Branch_AchievementController : GLMine_Team_AchieveManageBaseController
 
+@property (nonatomic, assign)NSInteger type;//1:线上业绩  0:线下业绩
+
 @end

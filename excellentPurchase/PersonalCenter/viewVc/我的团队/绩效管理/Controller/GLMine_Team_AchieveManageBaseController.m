@@ -69,6 +69,7 @@ NSNotificationName const GLMine_Team_ChildScrollViewRefreshStateNSNotification =
         _tableView.contentInset = UIEdgeInsetsMake(self.scrollViewBeginTopInset, 0, 0, 0);
         _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.scrollViewBeginTopInset, 0, 0, 0);
         _tableView.tableFooterView = [UIView new];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
     }
     return _tableView;

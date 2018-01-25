@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="354" height="165"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="354" height="164.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="354" height="165"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAo-3e-oQw">
@@ -64,6 +64,7 @@
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kxh-y3-HFm">
                         <rect key="frame" x="10" y="65" width="80" height="80"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="7sb-6O-i1h"/>
                             <constraint firstAttribute="width" constant="80" id="HrO-OU-0ly"/>
@@ -139,6 +140,13 @@
                     <constraint firstItem="yqu-hc-AV8" firstAttribute="centerY" secondItem="5Ox-OC-JYX" secondAttribute="centerY" id="zv0-pS-AYy"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="oN1-2c-RS3" id="tzd-Ox-veO"/>
+                <outlet property="lastLabel" destination="yqu-hc-AV8" id="1qT-YP-3ko"/>
+                <outlet property="lastNameLabel" destination="5Ox-OC-JYX" id="QUM-Oy-jCb"/>
+                <outlet property="orderNumLabel" destination="CiG-n4-PCL" id="sdf-PG-Vh7"/>
+                <outlet property="priceLabel" destination="cSZ-4x-RWW" id="Lcw-d1-ZIx"/>
+            </connections>
             <point key="canvasLocation" x="11" y="55.5"/>
         </tableViewCell>
     </objects>

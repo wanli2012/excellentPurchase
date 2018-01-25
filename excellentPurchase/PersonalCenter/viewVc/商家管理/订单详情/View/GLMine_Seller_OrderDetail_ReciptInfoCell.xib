@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="93" id="KGk-i7-Jjw" customClass="GLMine_Seller_OrderDetail_ReciptInfoCell">
+            <rect key="frame" x="0.0" y="0.0" width="317" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="317" height="80.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZZ-fr-bl2">
+                        <rect key="frame" x="10" y="10" width="47" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货地址:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkz-wt-QUo">
+                        <rect key="frame" x="10" y="37" width="61.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="离家小千金 (158888929377)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C31-S9-LzZ">
+                        <rect key="frame" x="67" y="10" width="240" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="四川身成都市一环路段100号天天商场四川身成都市一环路段100号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-i0-jwv">
+                        <rect key="frame" x="77" y="37" width="230" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDa-7M-y4Z">
+                        <rect key="frame" x="0.0" y="0.0" width="317" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="MVC-bw-XDt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vcU-i0-jwv" firstAttribute="top" secondItem="fkz-wt-QUo" secondAttribute="top" id="0JY-Iu-fDA"/>
+                    <constraint firstItem="dZZ-fr-bl2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="4kJ-Op-kbk"/>
+                    <constraint firstItem="HDa-7M-y4Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="53g-Oz-6qE"/>
+                    <constraint firstAttribute="bottom" secondItem="vcU-i0-jwv" secondAttribute="bottom" constant="10" id="8AV-lc-etf"/>
+                    <constraint firstItem="fkz-wt-QUo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="AYI-as-enq"/>
+                    <constraint firstItem="dZZ-fr-bl2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Dgc-Qh-ce7"/>
+                    <constraint firstAttribute="trailing" secondItem="HDa-7M-y4Z" secondAttribute="trailing" id="EXL-ik-g0i"/>
+                    <constraint firstItem="C31-S9-LzZ" firstAttribute="centerY" secondItem="dZZ-fr-bl2" secondAttribute="centerY" id="GB1-Dw-Eed"/>
+                    <constraint firstItem="C31-S9-LzZ" firstAttribute="leading" secondItem="dZZ-fr-bl2" secondAttribute="trailing" constant="10" id="KMw-5o-glM"/>
+                    <constraint firstAttribute="trailing" secondItem="C31-S9-LzZ" secondAttribute="trailing" constant="10" id="SfA-1g-jEJ"/>
+                    <constraint firstItem="fkz-wt-QUo" firstAttribute="top" secondItem="dZZ-fr-bl2" secondAttribute="bottom" constant="10" id="aSs-SS-1DN"/>
+                    <constraint firstItem="HDa-7M-y4Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bmJ-cu-vY5"/>
+                    <constraint firstAttribute="trailing" secondItem="vcU-i0-jwv" secondAttribute="trailing" constant="10" id="cVR-eA-Izp"/>
+                    <constraint firstItem="vcU-i0-jwv" firstAttribute="leading" secondItem="fkz-wt-QUo" secondAttribute="trailing" constant="5" id="hBo-0w-zaj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="37.5" y="78"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -7,17 +7,18 @@
 //
 
 #import "GLMine_Branch_QueryAchievementController.h"
-#import "GLMine_Team_AchieveManageHeader.h"
+#import "GLMine_Team_HistoryHeader.h"
 #import "GLMine_Branch_AchievementController.h"//业绩
+#import "GLMine_Team_HistoryDateChooseView.h"//月份选择器
 
 #import "SPPageMenu.h"
 
-@interface GLMine_Branch_QueryAchievementController ()<UIScrollViewDelegate,SPPageMenuDelegate,GLMine_Team_AchieveManageHeaderDelegate>
+@interface GLMine_Branch_QueryAchievementController ()<UIScrollViewDelegate,SPPageMenuDelegate,GLMine_Team_HistoryHeaderDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 //头部视图
-@property (nonatomic, strong) GLMine_Team_AchieveManageHeader *headerView;
+@property (nonatomic, strong) GLMine_Team_HistoryHeader *headerView;
 
 @property (nonatomic, strong) SPPageMenu *pageMenu;
 
@@ -36,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.kHeaderViewH = 240;
+    self.kHeaderViewH = 120;
     self.kPageMenuH = 60;
     self.kGLMine_TeamScrollViewBeginTopInset = self.kHeaderViewH + self.kPageMenuH;
     
@@ -58,7 +59,9 @@
     
     // 添加子控制器
     GLMine_Branch_AchievementController *onlineVC = [[GLMine_Branch_AchievementController alloc] init];
+    onlineVC.type = 1;
     GLMine_Branch_AchievementController *offlineVC = [[GLMine_Branch_AchievementController alloc] init];
+    offlineVC.type = 2;
     
     onlineVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
     offlineVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
@@ -78,44 +81,24 @@
 #pragma mark - 导航栏设置
 - (void)setNav{
     
-    self.navigationItem.title = @"绩效管理";
+    self.navigationItem.title = @"业绩查询";
     self.navigationController.navigationBar.hidden = NO;
     
-    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
-    
-    [button setTitle:@"历史记录" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-    button.backgroundColor = [UIColor clearColor];
-    [button addTarget:self action:@selector(historyRecord) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
-    
-    
 }
 
-#pragma mark - 历史记录
-/**
- 历史记录
- */
-- (void)historyRecord {
-//    self.hidesBottomBarWhenPushed = YES;
-//    GLMine_Team_HistoryRecordController *recordVC = [[GLMine_Team_HistoryRecordController alloc] init];
-//    [self.navigationController pushViewController:recordVC animated:YES];
-}
 
-#pragma mark - 设置布置绩效
-- (void)setAchieveMent{
-    
-//    self.hidesBottomBarWhenPushed = YES;
-//    GLMine_Team_MonthAchieveManageController *setVC = [[GLMine_Team_MonthAchieveManageController alloc] init];
-//    [self.navigationController pushViewController:setVC animated:YES];
-    
-}
 #pragma mark - 日期选择
 - (void)dateChoose{
-    NSLog(@"日期选择");
+    
+    __block typeof(self) weakSelf = self;
+    
+    [GLMine_Team_HistoryDateChooseView showDateChooseViewWith:^(NSString *dateStr) {
+        weakSelf.headerView.dateLabel.text = dateStr;
+        
+        ///此处调 数据更新方法
+        
+    }];
+    
 }
 
 #pragma mark - 通知
@@ -289,10 +272,10 @@
     return _scrollView;
 }
 
-- (GLMine_Team_AchieveManageHeader *)headerView {
+- (GLMine_Team_HistoryHeader *)headerView {
     
     if (!_headerView) {
-        _headerView = [[GLMine_Team_AchieveManageHeader alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, _kHeaderViewH)];
+        _headerView = [[GLMine_Team_HistoryHeader alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, _kHeaderViewH)];
         _headerView.delegate = self;
     }
     return _headerView;
@@ -302,12 +285,12 @@
     
     if (!_pageMenu) {
         _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, _kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
-        [_pageMenu setItems:@[@"下属绩效已完成",@"下属绩效未完成"] selectedItemIndex:0];
+        [_pageMenu setItems:@[@"线上业绩",@"线下业绩"] selectedItemIndex:0];
         _pageMenu.delegate = self;
-        _pageMenu.itemTitleFont = [UIFont systemFontOfSize:17];
-        _pageMenu.selectedItemTitleColor = YYSRGBColor(251, 77, 83, 1);
+        _pageMenu.itemTitleFont = [UIFont systemFontOfSize:16];
+        _pageMenu.selectedItemTitleColor = MAIN_COLOR;
         _pageMenu.unSelectedItemTitleColor = [UIColor colorWithWhite:0 alpha:0.6];
-        _pageMenu.tracker.backgroundColor = [UIColor redColor];
+        _pageMenu.tracker.backgroundColor = MAIN_COLOR;
         _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
         _pageMenu.bridgeScrollView = self.scrollView;
         //        _pageMenu.closeTrackerFollowingMode = NO;
