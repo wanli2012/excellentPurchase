@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBStoreInformationViewController">
             <connections>
+                <outlet property="collectionH" destination="7cm-dv-pfw" id="ce1-p2-WzO"/>
                 <outlet property="collectionView" destination="VFh-rV-wiM" id="u5H-SV-doR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

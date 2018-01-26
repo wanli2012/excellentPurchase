@@ -10,4 +10,11 @@
 
 @interface LBStoreAmendPhotosCell : UICollectionViewCell
 
+@property (copy , nonatomic)void(^deleteBlock)(NSInteger index);
+
+@property (weak, nonatomic) IBOutlet UIButton *deleteBt;
+
+@property (assign , nonatomic)NSInteger index;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+
 @end
