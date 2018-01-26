@@ -8,6 +8,7 @@
 
 #import "GLMine_Team_OpenMakerController.h"
 #import "GLIdentifySelectController.h"
+#import "GLMine_Team_StaffingController.h"//人员配置
 
 ///地址选择
 #import "CZHAddressPickerView.h"
@@ -36,6 +37,15 @@
    
     self.navigationItem.title = @"开通创客";
     
+}
+/**
+人员配备
+ */
+- (IBAction)staffing:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_StaffingController *VC= [[GLMine_Team_StaffingController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 /**

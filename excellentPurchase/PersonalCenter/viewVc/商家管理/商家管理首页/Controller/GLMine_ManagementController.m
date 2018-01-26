@@ -8,6 +8,9 @@
 
 #import "GLMine_ManagementController.h"
 #import "GLMine_Manage_BranchController.h"//分店管理
+#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
+#import "GLMine_Branch_OnlineOrderController.h"//线上订单
+#import "GLMine_Branch_OfflineOrderController.h"//线下订单
 
 @interface GLMine_ManagementController ()
 
@@ -48,21 +51,29 @@
  线上订单
  */
 - (IBAction)orderOnline:(id)sender {
-    NSLog(@"线上订单");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_OnlineOrderController *vc = [[GLMine_Branch_OnlineOrderController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
  线下订单
  */
 - (IBAction)orderOffline:(id)sender {
-    NSLog(@"线下订单");
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_OfflineOrderController *vc = [[GLMine_Branch_OfflineOrderController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
  业绩查询
   */
 - (IBAction)queryAchievement:(id)sender {
-    NSLog(@"业绩查询");
+
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_QueryAchievementController *vc = [[GLMine_Branch_QueryAchievementController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

@@ -7,6 +7,7 @@
 //
 
 #import "GLMine_Branch_DetailController.h"
+#import "GLMine_Branch_AccountManageController.h"//账号管理
 
 @interface GLMine_Branch_DetailController ()
 
@@ -19,25 +20,31 @@
    
 }
 
-
 /**
  账号管理
  */
 - (IBAction)accountManage:(id)sender {
-    NSLog(@"账号管理");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_AccountManageController *manageVC = [[GLMine_Branch_AccountManageController alloc] init];
+    [self.navigationController pushViewController:manageVC animated:YES];
+    
 }
+
 /**
  分店管理
  */
 - (IBAction)branchDetail:(id)sender {
     NSLog(@"分店管理");
 }
+
 /**
  历史记录
  */
 - (IBAction)historyAchievement:(id)sender {
     NSLog(@"历史记录");
 }
+
 /**
  冻结账号
  */

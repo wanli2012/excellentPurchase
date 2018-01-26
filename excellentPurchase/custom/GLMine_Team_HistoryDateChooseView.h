@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 日期选择,只有年和月份
+ */
 @interface GLMine_Team_HistoryDateChooseView : UIView
 
 + (instancetype)showDateChooseViewWith:(void(^)(NSString *dateStr))dateBlock;
