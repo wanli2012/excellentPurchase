@@ -12,6 +12,7 @@
 #ifdef __OBJC__
 
 #import "excellentHeader.h"
+#import "Interface.h" //接口
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
 #import <Masonry/Masonry.h>
@@ -19,7 +20,18 @@
 #import "scaleHeader.h"
 #import "UIView+Extension.h"
 #import "UIButton+SetEdgeInsets.h"
+
+//输入判断
 #import "predicateModel.h"
+//数据保存
+#import "UserModel.h"
+#import "usermodelachivar.h"
+//提示框
+#import "EasyShow.h"
+#import "EasyShowOptions.h"
+//网络请求
+#import "NetworkManager.h"
+
 
 #endif
 

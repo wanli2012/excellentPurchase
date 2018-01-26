@@ -141,7 +141,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
 -(NSMutableArray*)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+        _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
     }
     return _imageArr;
 }

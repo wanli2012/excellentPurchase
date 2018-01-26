@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "BasetabbarViewController.h"
+#import "yindaotuViewController.h"//引导页
+#import "BasetabbarViewController.h"//tabbar控制器
+#import "BaseNavigationViewController.h"//导航控制器
+#import "LBLoginViewController.h"//登录注册
 
 @interface AppDelegate ()
 
@@ -22,12 +25,24 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[BasetabbarViewController alloc]init];
+//    self.window.rootViewController = [[BasetabbarViewController alloc]init];
+    
+    BaseNavigationViewController *loginNav = [[BaseNavigationViewController alloc] initWithRootViewController:[[LBLoginViewController alloc] init]];
+    self.window.rootViewController = loginNav;
+    
+    [self.window makeKeyAndVisible];
+    
+//    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
+    
+        self.window.rootViewController = [[BasetabbarViewController alloc]init];
+        
+//    }else{
+//        self.window.rootViewController = [[yindaotuViewController alloc]init];
+//    }
+
     
     return YES;
 }
-
-
 
 
 @end

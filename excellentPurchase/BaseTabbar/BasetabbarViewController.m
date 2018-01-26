@@ -15,6 +15,9 @@
 #import "BaseNavigationViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
+#import "BaseNavigationViewController.h"//导航控制器
+#import "LBLoginViewController.h"//登录注册
+
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
 @property (assign , nonatomic)SystemSoundID soundID;
@@ -71,12 +74,22 @@
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
+    
     NSInteger index = [self.tabBar.items indexOfObject:item];
     [self animationWithIndex:index];//动画
     [self playSound];//音效
+    
     if([item.title isEqualToString:@"首页"]){
         
+    }else if([item.title isEqualToString:@"个人中心"]){
+        
+//        LBLoginViewController *loginVC = [[LBLoginViewController alloc] init];
+//        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+//        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        [self presentViewController:nav animated:YES completion:nil];
+//        return;
     }
+    
 }
 
 - (UITabBarItem *)barTitle:(NSString *)title image:(NSString *)image selectImage:(NSString *)selectImage {
@@ -95,6 +108,21 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+    if (viewController == [tabBarController.viewControllers objectAtIndex:4] ||viewController == [tabBarController.viewControllers objectAtIndex:3]) {
+        
+        if ([UserModel defaultUser].loginstatus == YES) {
+            
+            return YES;
+        }
+        
+        LBLoginViewController *loginVC = [[LBLoginViewController alloc] init];
+        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nav animated:YES completion:nil];
+        return NO;
+        
+    }
+    
     return YES;
 }
 
