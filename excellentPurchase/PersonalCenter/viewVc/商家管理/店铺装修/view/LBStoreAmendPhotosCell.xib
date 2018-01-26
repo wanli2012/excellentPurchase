@@ -22,13 +22,17 @@
                         <rect key="frame" x="10" y="10" width="108" height="102"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBb-39-UJz">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBb-39-UJz">
                         <rect key="frame" x="103" y="5" width="20" height="20"/>
-                        <color key="backgroundColor" red="0.99401646850000003" green="0.40313595530000002" blue="0.39819234609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="YXm-X2-Frv"/>
                             <constraint firstAttribute="height" constant="20" id="w46-uh-Hbo"/>
                         </constraints>
+                        <state key="normal" image="shop-delete"/>
+                        <connections>
+                            <action selector="deletephoto:" destination="gTV-IL-0wX" eventType="touchUpInside" id="gSb-5g-cEX"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -41,10 +45,15 @@
                 <constraint firstItem="iBb-39-UJz" firstAttribute="trailing" secondItem="3Nv-vC-kQs" secondAttribute="trailing" constant="5" id="zga-XQ-U8p"/>
             </constraints>
             <size key="customSize" width="128" height="122"/>
+            <connections>
+                <outlet property="deleteBt" destination="iBb-39-UJz" id="5LQ-4a-1gE"/>
+                <outlet property="imagev" destination="3Nv-vC-kQs" id="G9X-kS-lFi"/>
+            </connections>
             <point key="canvasLocation" x="68" y="35"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="addphotograph" width="97" height="97"/>
+        <image name="shop-delete" width="398" height="398"/>
     </resources>
 </document>

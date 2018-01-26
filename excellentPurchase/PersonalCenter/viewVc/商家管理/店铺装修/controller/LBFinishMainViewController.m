@@ -10,6 +10,9 @@
 #import "UIButton+SetEdgeInsets.h"
 #import "SPPageMenu.h"
 #import "LBStoreInformationViewController.h"
+#import "LBFinishAmendPhotosViewController.h"
+#import "LBEat_StoreCommentsViewController.h"
+#import "LBStoreCounterMainViewController.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -120,6 +123,9 @@
  @param sender <#sender description#>
  */
 - (IBAction)amendSignEvent:(UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBFinishAmendPhotosViewController *vc = [[LBFinishAmendPhotosViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
@@ -139,6 +145,9 @@
  @param sender <#sender description#>
  */
 - (IBAction)amendGoodsEvent:(UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBStoreCounterMainViewController *vc = [[LBStoreCounterMainViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
@@ -147,6 +156,9 @@
  @param sender <#sender description#>
  */
 - (IBAction)replyEvent:(UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBEat_StoreCommentsViewController *vc = [[LBEat_StoreCommentsViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

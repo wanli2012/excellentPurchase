@@ -14,5 +14,9 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)deletephoto:(UIButton *)sender {
+    
+    self.deleteBlock(self.index);
+}
 
 @end
