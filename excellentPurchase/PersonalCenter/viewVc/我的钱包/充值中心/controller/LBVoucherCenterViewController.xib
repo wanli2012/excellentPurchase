@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBVoucherCenterViewController">
             <connections>
+                <outlet property="scrollView" destination="p1d-IY-Nzr" id="hvJ-n6-YiL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -301,7 +302,7 @@
         <image name="greetselect-y" width="11" height="11"/>
         <image name="pay-select-n" width="25" height="25"/>
         <image name="pay-select-y" width="25" height="25"/>
-        <image name="pay-weixin" width="26" height="25"/>
-        <image name="pay-zjifubao" width="26" height="26"/>
+        <image name="pay-weixin" width="40" height="39"/>
+        <image name="pay-zjifubao" width="40" height="40"/>
     </resources>
 </document>

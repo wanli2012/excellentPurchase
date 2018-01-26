@@ -21,6 +21,8 @@
 #import "StandardsView.h"
 #import "LBCommentListsView.h"
 
+#import "LBMineSureOrdersViewController.h"//确认订单
+
 @interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate>
 @property(nonatomic,strong)NSArray *subViewControllers;
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
@@ -57,6 +59,7 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = self.navigationTabBar;
     self.tableview.tableHeaderView = self.headerView;
@@ -104,6 +107,17 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     }
    
 }
+
+#pragma mark - 立即购买
+- (IBAction)buyNow:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineSureOrdersViewController *sureOrderVC = [[LBMineSureOrdersViewController alloc] init];
+    [self.navigationController pushViewController:sureOrderVC animated:YES];
+    
+}
+
+
 #pragma mark - tableview滚动联动导航栏标签
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     

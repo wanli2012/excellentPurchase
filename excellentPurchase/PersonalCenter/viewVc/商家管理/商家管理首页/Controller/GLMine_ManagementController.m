@@ -11,6 +11,7 @@
 #import "GLMine_Branch_QueryAchievementController.h"//业绩查询
 #import "GLMine_Branch_OnlineOrderController.h"//线上订单
 #import "GLMine_Branch_OfflineOrderController.h"//线下订单
+#import "GLMine_Seller_IncomeCodeController.h"//收款二维码
 
 @interface GLMine_ManagementController ()
 
@@ -97,7 +98,10 @@
  收款二维码
   */
 - (IBAction)incomeCode:(id)sender {
-    NSLog(@"收款二维码");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Seller_IncomeCodeController *vc = [[GLMine_Seller_IncomeCodeController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

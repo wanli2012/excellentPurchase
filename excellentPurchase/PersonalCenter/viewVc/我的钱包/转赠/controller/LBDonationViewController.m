@@ -9,6 +9,7 @@
 #import "LBDonationViewController.h"
 
 @interface LBDonationViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -16,7 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.navigationItem.title = @"转赠";
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = YES;
+    }
+    
+    
 }
 
 

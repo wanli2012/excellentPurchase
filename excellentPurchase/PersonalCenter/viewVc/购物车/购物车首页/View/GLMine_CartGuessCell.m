@@ -15,4 +15,11 @@
     // Initialization code
 }
 
+- (IBAction)collecteOrCancel:(id)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(collecte:)]) {
+        [self.delegate collecte:self.index];
+    }
+}
+
 @end

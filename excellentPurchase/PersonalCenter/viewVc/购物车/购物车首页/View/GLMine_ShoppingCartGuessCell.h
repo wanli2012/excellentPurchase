@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GLMine_ShoppingCartGuessCellDelegate <NSObject>
+
+- (void)toGoodsDetail:(NSInteger)index;
+
+@end
+
 @interface GLMine_ShoppingCartGuessCell : UITableViewCell
+
+@property (nonatomic, weak)id <GLMine_ShoppingCartGuessCellDelegate>delegate;
+
+@property (nonatomic, assign)NSInteger index;
 
 @end

@@ -12,9 +12,10 @@
 #import "GLMine_ShoppingCartHeader.h"
 #import "GLMine_ShoppingCartGuessCell.h"
 
-#import "GLMine_Cart_PayController.h"//支付界面
+#import "LBMineSureOrdersViewController.h"//提交订单
+#import "LBProductDetailViewController.h"//海淘商城-商品详情
 
-@interface GLMine_ShoppingCartController ()<UITableViewDelegate,UITableViewDataSource,GLMine_ShoppingCartCellDelegate,GLMine_ShoppingCartHeaderDelegate>
+@interface GLMine_ShoppingCartController ()<UITableViewDelegate,UITableViewDataSource,GLMine_ShoppingCartCellDelegate,GLMine_ShoppingCartHeaderDelegate,GLMine_ShoppingCartGuessCellDelegate>
 {
     BOOL _isSelectedAll;
     
@@ -154,26 +155,25 @@
     [self.tableView reloadData];
     
 }
-
+#pragma mark - 结算
 /**
  结算
  */
 - (IBAction)clearCart:(id)sender {
-    NSLog(@"结算");
     
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_Cart_PayController *payVC = [[GLMine_Cart_PayController alloc] init];
+    LBMineSureOrdersViewController *payVC = [[LBMineSureOrdersViewController alloc] init];
     [self.navigationController pushViewController:payVC animated:YES];
     
 }
-
+#pragma mark -  移入收藏夹
 /**
  移入收藏夹
  */
 - (IBAction)moveToCollector:(id)sender {
     NSLog(@"移入收藏夹");
 }
-
+#pragma mark - 删除
 /**
  删除
  */
@@ -312,7 +312,7 @@
 }
 
 
-#pragma mark - GLMine_ShoppingCartCellDelegate
+#pragma mark - GLMine_ShoppingCartCellDelegate 选中或取消 加减数量
 /**
  选中 取消选中
  @param index cell索引
@@ -385,7 +385,7 @@
 
 }
 
-#pragma mark - GLMine_ShoppingCartHeaderDelegate
+#pragma mark - GLMine_ShoppingCartHeaderDelegate 进店 选中该店所有商品
 - (void)goToStore:(NSInteger)section{
     NSLog(@"店铺名---%zd",section);
 }
@@ -424,6 +424,15 @@
 
 }
 
+#pragma mark - GLMine_ShoppingCartGuessCellDelegate 猜你喜欢
+//跳转到商品详情
+- (void)toGoodsDetail:(NSInteger)index{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBProductDetailViewController *payVC = [[LBProductDetailViewController alloc] init];
+    [self.navigationController pushViewController:payVC animated:YES];
+}
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.models.count == 0) {//没有商品的时候
@@ -459,6 +468,7 @@
         }else{   ///有商品的时候
             GLMine_ShoppingCartGuessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ShoppingCartGuessCell"];
             cell.selectionStyle = 0;
+            cell.delegate = self;
             return cell;
         }
     }else{
@@ -482,6 +492,7 @@
         }else{
             GLMine_ShoppingCartGuessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ShoppingCartGuessCell"];
             cell.selectionStyle = 0;
+            cell.delegate = self;
             return cell;
         }
     }
@@ -527,6 +538,7 @@
                 headerView.delegate = self;
                 
             }
+            
             GLMine_ShoppingCartDataModel *sectionModel = self.models[section];
             sectionModel.shopSection = section;
             headerView.model = sectionModel;
@@ -599,8 +611,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    self.hidesBottomBarWhenPushed = YES;
+    LBProductDetailViewController *payVC = [[LBProductDetailViewController alloc] init];
+    [self.navigationController pushViewController:payVC animated:YES];
     
-    NSLog(@"跳转到商品详情了!!!!!");
 }
 
 #pragma mark - 懒加载

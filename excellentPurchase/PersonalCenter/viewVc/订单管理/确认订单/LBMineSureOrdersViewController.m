@@ -16,6 +16,8 @@
 #import "LBMineOrderDetailPriceTableViewCell.h"
 #import "LBMineOrdersDetailHeaderView.h"
 
+#import "GLMine_Cart_PayController.h"//支付界面
+
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
 static NSString *mineOrderDetailprateTableViewCell = @"LBMineOrderDetailprateTableViewCell";
@@ -53,6 +55,18 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailPriceTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailPriceTableViewCell];
     
 }
+
+
+#pragma mark - 提交订单
+- (IBAction)submitOrder:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Cart_PayController *payVC = [[GLMine_Cart_PayController alloc] init];
+    [self.navigationController pushViewController:payVC animated:YES];
+    
+}
+
+
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {

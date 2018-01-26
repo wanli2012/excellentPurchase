@@ -10,12 +10,22 @@
 
 @interface LBVoucherCenterViewController ()
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @end
 
 @implementation LBVoucherCenterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"充值中心";
+    
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = YES;
+    }
 }
 
 
