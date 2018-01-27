@@ -10,6 +10,8 @@
 #import "BasetabbarViewController.h"
 #import "LBRegisterViewController.h"//注册
 
+#import "DropMenu.h"
+#import "GLGroupModel.h"
 
 @interface LBLoginViewController ()<UITextFieldDelegate>
 
