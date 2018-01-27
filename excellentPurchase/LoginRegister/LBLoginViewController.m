@@ -28,8 +28,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;//密码
 @property (weak, nonatomic) IBOutlet UITextField *group_idTF;//身份
 
-@property (nonatomic, strong)NSMutableArray *groupModels;
-@property (nonatomic, copy)NSString *group_id;
+@property (nonatomic, strong)NSMutableArray *groupModels;//身份类型数组
+@property (nonatomic, copy)NSString *group_id;//用户组id
 
 @end
 
@@ -41,7 +41,6 @@
     self.registerLb.attributedText = [self addoriginstr:self.registerLb.text specilstr:@[@"注册"]];
     
 }
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -184,6 +183,11 @@
         [EasyShowTextView showInfoText:@"请输入6-12位密码"];
         return;
     }
+    if (self.group_id <= 0) {
+        
+        [EasyShowTextView showInfoText:@"请选择身份"];
+        return;
+    }
     
 //    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
@@ -192,19 +196,16 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"SEARCH";
     dict[@"phone"] = self.accountTF.text;
+    dict[@"group_id"] = self.group_id;
     dict[@"password"] = self.passwordTF.text;
-    dict[@"group_id"] = @"";
-//    dict[@"yzm"] = self.codeTF.text;
     
-    [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:@{@"uname":self.accountTF.text,@"upwd":@""} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:dict finish:^(id responseObject) {
         
 //        [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [EasyShowTextView showSuccessText:responseObject[@"message"]];
-            
-           
             
             [UserModel defaultUser].loginstatus = YES;
             
