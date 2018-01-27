@@ -55,7 +55,7 @@
     // 添加4个子控制器
     [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
     [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
-     [self addChildViewController:[[LBFinancialCenterExchangeRecodervc alloc] init]];
+    [self addChildViewController:[[LBFinancialCenterExchangeRecodervc alloc] init]];
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
     

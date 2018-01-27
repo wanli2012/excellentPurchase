@@ -14,9 +14,10 @@
 {
     BOOL _isAgreeProtocol;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigation;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoH;
+@property (weak, nonatomic) IBOutlet UILabel *loginLb;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewW;//Scrollvive contentview的宽度
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 
 @property (weak, nonatomic) IBOutlet UITextField *recommendTF;//推荐人
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;//手机号
@@ -38,14 +39,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+     self.loginLb.attributedText = [self addoriginstr:self.loginLb.text specilstr:@[@"登录"]];
     
 }
 
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-    
-    self.contentViewW.constant = UIScreenWidth - 70;
-    self.contentViewHeight.constant = 360;
+    //iphoneX
+    if (UIScreenWidth == 812.0) {
+        self.navigation.constant = 47;
+        self.logoH.constant = 92;
+    }
+   
 }
 
 /**
@@ -361,4 +366,17 @@
     [EasyShowTextView showErrorText:error.localizedDescription];
 }
 
+-(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
+    
+    NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:originstr];
+    for (int i = 0; i < specilstrArr.count; i++) {
+        NSRange rang = [originstr rangeOfString:specilstrArr[i]];
+        [noteStr addAttributes:@{NSForegroundColorAttributeName:LBHexadecimalColor(0x333333)} range:rang];
+        [noteStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} range:rang];
+    }
+    
+    
+    return noteStr;
+    
+}
 @end

@@ -10,10 +10,12 @@
 #import "BasetabbarViewController.h"
 #import "LBRegisterViewController.h"//注册
 
-#import "DropMenu.h"
-#import "GLGroupModel.h"
 
 @interface LBLoginViewController ()<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigation;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoH;
+@property (weak, nonatomic) IBOutlet UILabel *registerLb;
 
 @property (weak, nonatomic) IBOutlet UIView *accountView;//用户名view
 @property (weak, nonatomic) IBOutlet UIView *passwordView;//密码view
@@ -23,9 +25,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;//账号
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;//密码
 @property (weak, nonatomic) IBOutlet UITextField *group_idTF;//身份
-
-@property (nonatomic, copy)NSString *group_id;//身份类型
-@property (nonatomic, strong)NSMutableArray *groupArr;//身份类型数据源
 
 @end
 
@@ -37,6 +36,8 @@
 //    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
 //    CGRect rect=[self.identifyView convertRect:self.identifyView.bounds toView:window];
     
+    self.registerLb.attributedText = [self addoriginstr:self.registerLb.text specilstr:@[@"注册"]];
+    
 }
 
 
@@ -44,62 +45,15 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
-
 /**
  身份选择
  */
 - (IBAction)groupTypeChoose:(id)sender {
     
-    if(self.groupArr.count != 0){
-        [self popGroupTypeView];
-        return;
-    }
-    
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
-    dic[@"type"] = @"1";
-    
-    [NetworkManager requestPOSTWithURLStr:kGet_GroupList_URL paramDic:dic finish:^(id responseObject) {
-        
-        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            for (NSDictionary *dict in responseObject[@"data"]) {
-                
-                GLGroupModel *model = [GLGroupModel mj_objectWithKeyValues:dict];
-                [self.groupArr addObject:model];
-                
-            }
-            [self popGroupTypeView];
-        }else{
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }
-        
-    } enError:^(NSError *error) {
-        [EasyShowTextView showErrorText:error.localizedDescription];
-    }];
-
-}
-
-- (void)popGroupTypeView{
-    
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect = [self.identifyView convertRect:self.identifyView.bounds toView:window];
     
-    NSMutableArray *arr = [NSMutableArray array];
-    
-    for (int i = 0; i < self.groupArr.count; i ++) {
-        GLGroupModel *groupModel = self.groupArr[i];
-        DropMenuModel *model = [[DropMenuModel alloc] init];
-        model.name = groupModel.group_name;
-        model.type_id = groupModel.group_id;
-        [arr addObject:model];
-    }
-    
-    [DropMenu showMenu:arr controlFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 5) MenuHeight:100 andReturnBlock:^(NSString *selectName, NSString *type_id) {
   
-        self.group_idTF.text = selectName;
-        self.group_id = type_id;
-        
-    }];
 }
 
 
@@ -151,10 +105,11 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     
-    self.accountView.layer.cornerRadius = 3;
-    self.passwordView.layer.cornerRadius = 3;
-    self.identifyView.layer.cornerRadius = 3;
-    self.loginBt.layer.cornerRadius = 3;
+    //iphoneX
+    if (UIScreenWidth == 812.0) {
+        self.navigation.constant = 47;
+        self.logoH.constant = 92;
+    }
     
 }
 
@@ -266,12 +221,18 @@
     return YES;
 }
 
-#pragma mark - 懒加载
-- (NSMutableArray *)groupArr{
-    if (!_groupArr) {
-        _groupArr = [NSMutableArray array];
+-(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
+    
+    NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:originstr];
+    for (int i = 0; i < specilstrArr.count; i++) {
+        NSRange rang = [originstr rangeOfString:specilstrArr[i]];
+        [noteStr addAttributes:@{NSForegroundColorAttributeName:LBHexadecimalColor(0x333333)} range:rang];
+        [noteStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} range:rang];
     }
-    return _groupArr;
+    
+    
+    return noteStr;
+    
 }
 
 @end
