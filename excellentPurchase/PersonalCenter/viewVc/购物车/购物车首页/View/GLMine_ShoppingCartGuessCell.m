@@ -9,7 +9,7 @@
 #import "GLMine_ShoppingCartGuessCell.h"
 #import "GLMine_CartGuessCell.h"
 
-@interface GLMine_ShoppingCartGuessCell()
+@interface GLMine_ShoppingCartGuessCell()<GLMine_CartGuessCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -24,6 +24,13 @@
     
 }
 
+#pragma mark - GLMine_CartGuessCellDelegate
+//收藏
+- (void)collecte:(NSInteger)index{
+    
+    NSLog(@"index = %zd",index);
+}
+
 #pragma mark - UICollectionViewDelegate
 //返回对应section的item 的数量
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -35,7 +42,10 @@
 {
     //重用cell
     GLMine_CartGuessCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GLMine_CartGuessCell" forIndexPath:indexPath];
+    
     //赋值给cell
+    cell.delegate = self;
+    cell.index = indexPath.row;
     
 //    cell.backgroundColor = [UIColor greenColor];
     
@@ -53,6 +63,9 @@
 //选择了某个cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //在这里进行点击cell后的操作
+    if ([self.delegate respondsToSelector:@selector(toGoodsDetail:)]) {
+        [self.delegate toGoodsDetail:self.index];
+    }
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

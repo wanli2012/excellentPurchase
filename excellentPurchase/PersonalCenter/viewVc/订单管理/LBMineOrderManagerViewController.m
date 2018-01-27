@@ -24,8 +24,6 @@
 
 /**
  淘淘商城订单
-
- @param sender <#sender description#>
  */
 - (IBAction)tapgestureTmallOders:(UITapGestureRecognizer *)sender {
     

@@ -8,6 +8,7 @@
 
 #import "GLMine_Branch_DetailController.h"
 #import "GLMine_Branch_AccountManageController.h"//账号管理
+#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
 
 @interface GLMine_Branch_DetailController ()
 
@@ -32,17 +33,19 @@
 }
 
 /**
- 分店管理
+ 分店详情
  */
 - (IBAction)branchDetail:(id)sender {
-    NSLog(@"分店管理");
+    NSLog(@"分店详情");
 }
 
 /**
  历史记录
  */
 - (IBAction)historyAchievement:(id)sender {
-    NSLog(@"历史记录");
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_QueryAchievementController *VC= [[GLMine_Branch_QueryAchievementController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 /**

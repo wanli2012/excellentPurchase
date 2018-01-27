@@ -22,6 +22,7 @@
 #import "LBMineCollectionViewController.h"//收藏
 #import "LBSwitchAccountViewController.h"//切换账号
 #import "GLMine_ManagementController.h"//商家管理
+#import "GLMine_MyWalletController.h"//我的钱包
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
@@ -140,7 +141,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
 -(NSMutableArray*)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+        _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
     }
     return _imageArr;
 }
@@ -175,7 +176,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                     @"GLMine_ManagementController",
                     @"GLMine_ShoppingCartController",
                     @"LBMineOrderManagerViewController",
-                    @"GLMine_TeamController",
+                    @"GLMine_MyWalletController",
                     @"GLMine_TeamController",
                     @"LBMineCollectionViewController",
                     @"LBSetUpViewController",

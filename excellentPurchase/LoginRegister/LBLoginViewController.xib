@@ -11,9 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBLoginViewController">
             <connections>
+                <outlet property="accountTF" destination="lmL-x9-tjN" id="aHk-Ph-Rv7"/>
                 <outlet property="accountView" destination="gWD-x3-gjk" id="G38-gg-aLU"/>
+                <outlet property="group_idTF" destination="4ge-V8-xMy" id="VbA-ti-S4x"/>
                 <outlet property="identifyView" destination="Lm2-Ln-Ex5" id="afC-11-kfh"/>
                 <outlet property="loginBt" destination="jtu-Kd-Ba0" id="nUD-Rg-vYM"/>
+                <outlet property="passwordTF" destination="s90-L4-aKM" id="h5V-x0-G3J"/>
                 <outlet property="passwordView" destination="cs4-dG-pge" id="PQh-Vi-OPp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,15 +31,19 @@
                     <color key="backgroundColor" red="0.95125693082809448" green="0.85454946756362915" blue="0.85360753536224365" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVN-8u-Zgc">
-                    <rect key="frame" x="10" y="20" width="60" height="30"/>
+                    <rect key="frame" x="0.0" y="20" width="80" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="vUU-Uf-zOp"/>
-                        <constraint firstAttribute="width" constant="60" id="z5z-2o-paF"/>
+                        <constraint firstAttribute="height" constant="40" id="vUU-Uf-zOp"/>
+                        <constraint firstAttribute="width" constant="80" id="z5z-2o-paF"/>
                     </constraints>
+                    <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="return"/>
+                    <connections>
+                        <action selector="back:" destination="-1" eventType="touchUpInside" id="6ok-KG-ajI"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="世纪优购" translatesAutoresizingMaskIntoConstraints="NO" id="aon-r6-CcH">
-                    <rect key="frame" x="117.5" y="70" width="85" height="85"/>
+                    <rect key="frame" x="117.5" y="80" width="85" height="85"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="85" id="iZu-RI-Nvd"/>
                         <constraint firstAttribute="width" constant="85" id="lWk-QR-43i"/>
@@ -62,11 +69,14 @@
                                         <constraint firstAttribute="width" constant="1" id="29H-pF-7Bh"/>
                                     </constraints>
                                 </view>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入帐号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lmL-x9-tjN">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入帐号(只能是数字)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lmL-x9-tjN">
                                     <rect key="frame" x="61" y="0.0" width="189" height="50"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="ZZM-ec-rNy"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,11 +110,14 @@
                                         <constraint firstAttribute="width" constant="1" id="X5m-4L-g5g"/>
                                     </constraints>
                                 </view>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s90-L4-aKM">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码(数字或字母)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s90-L4-aKM">
                                     <rect key="frame" x="61" y="0.0" width="139" height="50"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="21y-ox-zhz"/>
+                                    </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ao-tK-BJq">
                                     <rect key="frame" x="200" y="10.5" width="40" height="30"/>
@@ -138,7 +151,7 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lm2-Ln-Ex5">
                             <rect key="frame" x="0.0" y="120" width="250" height="50"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="identity" translatesAutoresizingMaskIntoConstraints="NO" id="LPz-H6-mmB">
+                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="identity" translatesAutoresizingMaskIntoConstraints="NO" id="LPz-H6-mmB">
                                     <rect key="frame" x="12.5" y="12.5" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="Ztf-eq-Gdy"/>
@@ -152,13 +165,13 @@
                                         <constraint firstAttribute="width" constant="1" id="Efc-zI-Uy0"/>
                                     </constraints>
                                 </view>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择身份" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ge-V8-xMy">
+                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择身份" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ge-V8-xMy">
                                     <rect key="frame" x="61" y="0.0" width="139" height="50"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My8-eq-i2E">
+                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My8-eq-i2E">
                                     <rect key="frame" x="200" y="10.5" width="40" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="bYq-fk-KlB"/>
@@ -171,6 +184,7 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="4ge-V8-xMy" firstAttribute="leading" secondItem="92o-eS-2Jt" secondAttribute="trailing" constant="10" id="0Sz-1A-ANM"/>
                                 <constraint firstItem="LPz-H6-mmB" firstAttribute="leading" secondItem="Lm2-Ln-Ex5" secondAttribute="leading" constant="12.5" id="45L-cY-9aX"/>
@@ -185,6 +199,9 @@
                                 <constraint firstItem="My8-eq-i2E" firstAttribute="centerY" secondItem="Lm2-Ln-Ex5" secondAttribute="centerY" id="yBS-CU-lU2"/>
                                 <constraint firstItem="92o-eS-2Jt" firstAttribute="top" secondItem="Lm2-Ln-Ex5" secondAttribute="top" id="zFl-3Y-aX0"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Vra-Gz-Rdy" appends="YES" id="i2C-Ju-pWX"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -255,6 +272,9 @@
                     <state key="normal" title="登录">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="login:" destination="-1" eventType="touchUpInside" id="Iw1-xN-NAD"/>
+                    </connections>
                 </button>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无帐号? 点击 注册" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbB-Ai-Spu">
                     <rect key="frame" x="35" y="445" width="107" height="25"/>
@@ -288,7 +308,7 @@
                 <constraint firstItem="mHB-3r-wou" firstAttribute="top" secondItem="b9G-qa-fVN" secondAttribute="bottom" constant="15" id="04H-wB-0Rq"/>
                 <constraint firstAttribute="trailing" secondItem="Pnr-VK-Fdq" secondAttribute="trailing" id="0bl-pF-ZeW"/>
                 <constraint firstItem="Srt-cD-b6b" firstAttribute="top" secondItem="jtu-Kd-Ba0" secondAttribute="bottom" constant="5" id="0tQ-9E-zWI"/>
-                <constraint firstItem="dVN-8u-Zgc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="2Uj-61-YyT"/>
+                <constraint firstItem="dVN-8u-Zgc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Uj-61-YyT"/>
                 <constraint firstItem="b9G-qa-fVN" firstAttribute="centerY" secondItem="Lpp-84-G4f" secondAttribute="centerY" id="3s4-8t-Py7"/>
                 <constraint firstItem="mHB-3r-wou" firstAttribute="centerX" secondItem="Mvh-it-Rq3" secondAttribute="centerX" id="4GK-7J-0v4"/>
                 <constraint firstItem="jtu-Kd-Ba0" firstAttribute="top" secondItem="Mvh-it-Rq3" secondAttribute="bottom" constant="40" id="4gQ-8Y-E3n"/>
@@ -321,14 +341,19 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="24" y="52"/>
         </view>
-        <tapGestureRecognizer id="b9V-4i-q7a">
+        <tapGestureRecognizer id="b9V-4i-q7a" userLabel="注册">
             <connections>
                 <action selector="registerEvent:" destination="-1" id="gH1-pS-Jno"/>
             </connections>
         </tapGestureRecognizer>
-        <tapGestureRecognizer id="49k-He-otc">
+        <tapGestureRecognizer id="49k-He-otc" userLabel="忘记密码">
             <connections>
                 <action selector="forgetSecretEvent:" destination="-1" id="DgQ-pX-nJv"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="Vra-Gz-Rdy" userLabel="身份选择">
+            <connections>
+                <action selector="groupTypeChoose:" destination="-1" id="15k-mD-Cgr"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

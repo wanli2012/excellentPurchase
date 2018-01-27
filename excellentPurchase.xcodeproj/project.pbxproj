@@ -238,6 +238,24 @@
 		4AB3DCC4201700DD00099650 /* GLMine_Cart_ConfirmOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB3DCC2201700DD00099650 /* GLMine_Cart_ConfirmOrderController.xib */; };
 		4AB3DCC82017050000099650 /* GLMine_Cart_PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3DCC62017050000099650 /* GLMine_Cart_PayController.m */; };
 		4AB3DCC92017050000099650 /* GLMine_Cart_PayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB3DCC72017050000099650 /* GLMine_Cart_PayController.xib */; };
+		4AB5886F201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5886D201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m */; };
+		4AB58870201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB5886E201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib */; };
+		4AB58875201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB58873201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.m */; };
+		4AB58876201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB58874201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.xib */; };
+		4AB5887E201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5887C201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m */; };
+		4AB5887F201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB5887D201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.xib */; };
+		4AB58883201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB58881201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m */; };
+		4AB58884201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB58882201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.xib */; };
+		4AB58887201B0197009ADC9A /* yindaotuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB58886201B0197009ADC9A /* yindaotuViewController.m */; };
+		4AB5888D201B04D4009ADC9A /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5888A201B04D3009ADC9A /* UserModel.m */; };
+		4AB5888E201B04D4009ADC9A /* usermodelachivar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5888C201B04D3009ADC9A /* usermodelachivar.m */; };
+		4AB58896201B2315009ADC9A /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB58895201B2315009ADC9A /* NetworkManager.m */; };
+		4AB58898201B2F3A009ADC9A /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB58897201B2F3A009ADC9A /* VerifyCode.framework */; };
+		4AB5889A201B312A009ADC9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB58899201B312A009ADC9A /* WebKit.framework */; };
+		4AB5889C201B315B009ADC9A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB5889B201B315B009ADC9A /* JavaScriptCore.framework */; };
+		4AB588F3201B6E41009ADC9A /* DropMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB588EF201B6E41009ADC9A /* DropMenu.m */; };
+		4AB588F4201B6E42009ADC9A /* GLDropCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB588F1201B6E41009ADC9A /* GLDropCell.m */; };
+		4AB588F5201B6E42009ADC9A /* GLDropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB588F2201B6E41009ADC9A /* GLDropCell.xib */; };
 		4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */; };
 		4AFC0E9720157182004518F4 /* LBEat_StoreCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */; };
 		4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9920157229004518F4 /* LBEat_StoreCommentFooterView.m */; };
@@ -991,6 +1009,35 @@
 		4AB3DCC52017050000099650 /* GLMine_Cart_PayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Cart_PayController.h; sourceTree = "<group>"; };
 		4AB3DCC62017050000099650 /* GLMine_Cart_PayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Cart_PayController.m; sourceTree = "<group>"; };
 		4AB3DCC72017050000099650 /* GLMine_Cart_PayController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Cart_PayController.xib; sourceTree = "<group>"; };
+		4AB5886C201AC0D7009ADC9A /* GLMine_MyWallet_CashController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_MyWallet_CashController.h; sourceTree = "<group>"; };
+		4AB5886D201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_MyWallet_CashController.m; sourceTree = "<group>"; };
+		4AB5886E201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_MyWallet_CashController.xib; sourceTree = "<group>"; };
+		4AB58872201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Seller_IncomeCodeController.h; sourceTree = "<group>"; };
+		4AB58873201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Seller_IncomeCodeController.m; sourceTree = "<group>"; };
+		4AB58874201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Seller_IncomeCodeController.xib; sourceTree = "<group>"; };
+		4AB5887B201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_MyWallet_CashRecordController.h; sourceTree = "<group>"; };
+		4AB5887C201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_MyWallet_CashRecordController.m; sourceTree = "<group>"; };
+		4AB5887D201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_MyWallet_CashRecordController.xib; sourceTree = "<group>"; };
+		4AB58880201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_MyWallet_CashRecordCell.h; sourceTree = "<group>"; };
+		4AB58881201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_MyWallet_CashRecordCell.m; sourceTree = "<group>"; };
+		4AB58882201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_MyWallet_CashRecordCell.xib; sourceTree = "<group>"; };
+		4AB58885201B0197009ADC9A /* yindaotuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yindaotuViewController.h; sourceTree = "<group>"; };
+		4AB58886201B0197009ADC9A /* yindaotuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yindaotuViewController.m; sourceTree = "<group>"; };
+		4AB58889201B04D3009ADC9A /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		4AB5888A201B04D3009ADC9A /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		4AB5888B201B04D3009ADC9A /* usermodelachivar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermodelachivar.h; sourceTree = "<group>"; };
+		4AB5888C201B04D3009ADC9A /* usermodelachivar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = usermodelachivar.m; sourceTree = "<group>"; };
+		4AB5888F201B17C5009ADC9A /* Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
+		4AB58894201B2315009ADC9A /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		4AB58895201B2315009ADC9A /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		4AB58897201B2F3A009ADC9A /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VerifyCode.framework; sourceTree = "<group>"; };
+		4AB58899201B312A009ADC9A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		4AB5889B201B315B009ADC9A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		4AB588EE201B6E41009ADC9A /* DropMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropMenu.h; sourceTree = "<group>"; };
+		4AB588EF201B6E41009ADC9A /* DropMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropMenu.m; sourceTree = "<group>"; };
+		4AB588F0201B6E41009ADC9A /* GLDropCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDropCell.h; sourceTree = "<group>"; };
+		4AB588F1201B6E41009ADC9A /* GLDropCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDropCell.m; sourceTree = "<group>"; };
+		4AB588F2201B6E41009ADC9A /* GLDropCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLDropCell.xib; sourceTree = "<group>"; };
 		4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsViewController.m; sourceTree = "<group>"; };
 		4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_StoreCommentsViewController.xib; sourceTree = "<group>"; };
 		4AFC0E9520157182004518F4 /* LBEat_StoreCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsViewController.h; sourceTree = "<group>"; };
@@ -1609,6 +1656,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB5889C201B315B009ADC9A /* JavaScriptCore.framework in Frameworks */,
+				4AB5889A201B312A009ADC9A /* WebKit.framework in Frameworks */,
+				4AB58898201B2F3A009ADC9A /* VerifyCode.framework in Frameworks */,
 				F9712CE320048A900015037A /* AudioToolbox.framework in Frameworks */,
 				F9712CE1200488C60015037A /* AVFoundation.framework in Frameworks */,
 				633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */,
@@ -1797,6 +1847,7 @@
 				4A0EDFA72018C87A0037D47A /* 分店详情 */,
 				4A0EDFB02018CEB30037D47A /* 开通分店 */,
 				4AA3A1492019731100C94E49 /* 账号管理 */,
+				4AB58871201AD112009ADC9A /* 收款二维码 */,
 			);
 			path = "分店管理";
 			sourceTree = "<group>";
@@ -3070,6 +3121,8 @@
 				4AA3A1DC201A218100C94E49 /* 充值中心 */,
 				4AA3A1E8201A218100C94E49 /* 发红包 */,
 				4AA3A201201A218100C94E49 /* 转赠 */,
+				4AB58868201ABF66009ADC9A /* 提现 */,
+				4AB58877201AF958009ADC9A /* 提现记录 */,
 			);
 			path = "我的钱包";
 			sourceTree = "<group>";
@@ -3245,6 +3298,121 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		4AB58868201ABF66009ADC9A /* 提现 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB58869201ABF66009ADC9A /* Controller */,
+				4AB5886A201ABF66009ADC9A /* Model */,
+				4AB5886B201ABF66009ADC9A /* View */,
+			);
+			path = "提现";
+			sourceTree = "<group>";
+		};
+		4AB58869201ABF66009ADC9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AB5886C201AC0D7009ADC9A /* GLMine_MyWallet_CashController.h */,
+				4AB5886D201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m */,
+				4AB5886E201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AB5886A201ABF66009ADC9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AB5886B201ABF66009ADC9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AB58871201AD112009ADC9A /* 收款二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB58872201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.h */,
+				4AB58873201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.m */,
+				4AB58874201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.xib */,
+			);
+			path = "收款二维码";
+			sourceTree = "<group>";
+		};
+		4AB58877201AF958009ADC9A /* 提现记录 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB58878201AF958009ADC9A /* Controller */,
+				4AB58879201AF958009ADC9A /* Model */,
+				4AB5887A201AF958009ADC9A /* View */,
+			);
+			name = "提现记录";
+			path = "提现/提现记录";
+			sourceTree = "<group>";
+		};
+		4AB58878201AF958009ADC9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AB5887B201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.h */,
+				4AB5887C201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m */,
+				4AB5887D201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AB58879201AF958009ADC9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AB5887A201AF958009ADC9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AB58880201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.h */,
+				4AB58881201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m */,
+				4AB58882201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AB58888201B04D3009ADC9A /* 数据保存 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB58889201B04D3009ADC9A /* UserModel.h */,
+				4AB5888A201B04D3009ADC9A /* UserModel.m */,
+				4AB5888B201B04D3009ADC9A /* usermodelachivar.h */,
+				4AB5888C201B04D3009ADC9A /* usermodelachivar.m */,
+			);
+			path = "数据保存";
+			sourceTree = "<group>";
+		};
+		4AB58890201B197A009ADC9A /* 网络请求 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB58894201B2315009ADC9A /* NetworkManager.h */,
+				4AB58895201B2315009ADC9A /* NetworkManager.m */,
+			);
+			path = "网络请求";
+			sourceTree = "<group>";
+		};
+		4AB588ED201B6E41009ADC9A /* dropMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4AB588EE201B6E41009ADC9A /* DropMenu.h */,
+				4AB588EF201B6E41009ADC9A /* DropMenu.m */,
+				4AB588F0201B6E41009ADC9A /* GLDropCell.h */,
+				4AB588F1201B6E41009ADC9A /* GLDropCell.m */,
+				4AB588F2201B6E41009ADC9A /* GLDropCell.xib */,
+			);
+			name = dropMenu;
+			path = ../../../dropMenu/dropMenu/dropMenu;
+			sourceTree = "<group>";
+		};
 		4AFC0EA92015740E004518F4 /* 评论弹出框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3281,6 +3449,7 @@
 				F9426A94201ABC1F0054417E /* EasyShowView */,
 				F9426AEB201ABC200054417E /* LCStarRatingView */,
 				F9426AA8201ABC1F0054417E /* ZLPhotoLib.bundle */,
+				4AB58897201B2F3A009ADC9A /* VerifyCode.framework */,
 				F9426A89201ABB520054417E /* HCPopup */,
 				4AFC0EA92015740E004518F4 /* 评论弹出框 */,
 				F97E6059200EF1DB00C9C4E7 /* XHStarRateView */,
@@ -4550,6 +4719,8 @@
 				F93409F12009CF560002DBB8 /* ThreePart */,
 				4AA3A1692019892500C94E49 /* custom */,
 				F9712CD8200468ED0015037A /* Resorce */,
+				4AB58888201B04D3009ADC9A /* 数据保存 */,
+				4AB58890201B197A009ADC9A /* 网络请求 */,
 				F9712C81200460030015037A /* AppDelegate.h */,
 				F9712C82200460030015037A /* AppDelegate.m */,
 				F9712C84200460040015037A /* ViewController.h */,
@@ -4557,6 +4728,7 @@
 				F9712CDB20046D8C0015037A /* PrefixHeader.pch */,
 				F9712CDC20046E5E0015037A /* excellentHeader.h */,
 				F950731D2004CFCF0026D28F /* scaleHeader.h */,
+				4AB5888F201B17C5009ADC9A /* Interface.h */,
 				F9712C87200460040015037A /* Main.storyboard */,
 				F9712C8A200460040015037A /* Assets.xcassets */,
 				F9712C8C200460040015037A /* LaunchScreen.storyboard */,
@@ -4683,6 +4855,8 @@
 		F9712CDF200488C60015037A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AB5889B201B315B009ADC9A /* JavaScriptCore.framework */,
+				4AB58899201B312A009ADC9A /* WebKit.framework */,
 				F9712CE220048A900015037A /* AudioToolbox.framework */,
 				F9712CE0200488C60015037A /* AVFoundation.framework */,
 				9A80B236198540F877F69684 /* Pods_excellentPurchase.framework */,
@@ -4693,6 +4867,7 @@
 		F97137312005DF3F0033F38B /* LoginRegister */ = {
 			isa = PBXGroup;
 			children = (
+				4AB588ED201B6E41009ADC9A /* dropMenu */,
 				F97137322005DF690033F38B /* LBLoginViewController.h */,
 				F97137332005DF690033F38B /* LBLoginViewController.m */,
 				F97137342005DF690033F38B /* LBLoginViewController.xib */,
@@ -4702,6 +4877,8 @@
 				F971373E2005F6D10033F38B /* LBForgetSecretViewController.h */,
 				F971373F2005F6D10033F38B /* LBForgetSecretViewController.m */,
 				F97137402005F6D10033F38B /* LBForgetSecretViewController.xib */,
+				4AB58885201B0197009ADC9A /* yindaotuViewController.h */,
+				4AB58886201B0197009ADC9A /* yindaotuViewController.m */,
 			);
 			path = LoginRegister;
 			sourceTree = "<group>";
@@ -5091,6 +5268,7 @@
 				F97CDC98201593B30036B8E0 /* LBEat_StoredetailCommentsTableViewCell.xib in Resources */,
 				4A20E9A6201322F300E091EA /* GLMine_Message_TrendsController.xib in Resources */,
 				F9712C8B200460040015037A /* Assets.xcassets in Resources */,
+				4AB58884201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.xib in Resources */,
 				F95073022004A9590026D28F /* LBNearby_classifyItemView.xib in Resources */,
 				F95072F6200493050026D28F /* LBTmallViewController.xib in Resources */,
 				F96971C82011849A00966E26 /* LBEat_storeDetailInfomationTableViewCell.xib in Resources */,
@@ -5182,6 +5360,7 @@
 				F9340A43200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.xib in Resources */,
 				4AA3A1B52019D64700C94E49 /* GLMine_Team_StaffingController.xib in Resources */,
 				F97CDC94201593B30036B8E0 /* LBEat_StoreCommentsTableViewCell.xib in Resources */,
+				4AB58876201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.xib in Resources */,
 				F97CDC79201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.xib in Resources */,
 				4A0EDF932018B5080037D47A /* GLMine_Manage_Branch_FailedController.xib in Resources */,
 				4A0B1409201091EC00AC3334 /* GLMine_Team_AccountChooseController.xib in Resources */,
@@ -5250,6 +5429,7 @@
 				4A02ABE820174F66009213AD /* GLMine_PaySucessController.xib in Resources */,
 				4AA3A1512019746900C94E49 /* GLMine_Branch_AccountManageController.xib in Resources */,
 				4AA3A214201A218200C94E49 /* LBVoucherCenterRecoderTableViewCell.xib in Resources */,
+				4AB588F5201B6E42009ADC9A /* GLDropCell.xib in Resources */,
 				4A02ABEF20174F8B009213AD /* GLMine_PayFailedView.xib in Resources */,
 				4AA3A218201A218200C94E49 /* LBSendRedPackRecoderReciveVc.xib in Resources */,
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
@@ -5278,12 +5458,14 @@
 				F9426B66201AF5C00054417E /* LBEatShopProdcutClassifyViewController.xib in Resources */,
 				F9712CDA2004690C0015037A /* tabbar.xcassets in Resources */,
 				F96971C42011849A00966E26 /* LBEat_storeDetailInfodiscountTableViewCell.xib in Resources */,
+				4AB58870201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib in Resources */,
 				F96971CC2011849A00966E26 /* LBEat_StoreClassifyViewController.xib in Resources */,
 				4A20E97D2012E04E00E091EA /* GLMine_MessageController.xib in Resources */,
 				4AFC0EBE2015E5CA004518F4 /* GLMine_ShoppingCartGuessCell.xib in Resources */,
 				F9D7CAB8201B44C100C87C58 /* XC_labelCollectionViewCell.xib in Resources */,
 				F9712C89200460040015037A /* Main.storyboard in Resources */,
 				F95072EE200492DA0026D28F /* LBPersonCenterViewController.xib in Resources */,
+				4AB5887F201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.xib in Resources */,
 				F9264A2620196B37000A0011 /* LBStoreInformationViewController.xib in Resources */,
 				4A9E18C72011F45100E1EC05 /* GLMine_Team_UploadLicenseController.xib in Resources */,
 				4AA3A212201A218200C94E49 /* LBVoucherCenterViewController.xib in Resources */,
@@ -5418,6 +5600,7 @@
 				4A20E98B2012E61900E091EA /* GLMine_Message_LogisticsCell.m in Sources */,
 				F9426BA5201B33390054417E /* HHPasswordErrorView.m in Sources */,
 				4AA3A1892019A29100C94E49 /* GLMine_Branch_Online_PendingController.m in Sources */,
+				4AB5886F201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m in Sources */,
 				4A79EE02200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m in Sources */,
 				F9426B0D201ABC200054417E /* ZLPhotoPickerCollectionViewCell.m in Sources */,
 				F95073212004D9DD0026D28F /* UIButton+SetEdgeInsets.m in Sources */,
@@ -5445,6 +5628,7 @@
 				F9426B4C201ABC810054417E /* LBAddCounterView.m in Sources */,
 				F96CF44C201824540070658C /* LBMineOrderDetailPriceTableViewCell.m in Sources */,
 				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
+				4AB58883201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m in Sources */,
 				4AA3A1962019B8D500C94E49 /* GLMine_Branch_Online_DeliveredController.m in Sources */,
 				F96CF4BA2018BFA40070658C /* LBFinishProductsCell1.m in Sources */,
 				F9426B03201ABC200054417E /* ZLPhotoPickerCustomToolBarView.m in Sources */,
@@ -5469,8 +5653,10 @@
 				4AA3A223201A218200C94E49 /* LBDonationRecoderViewController.m in Sources */,
 				F955D15320089C94001EEC81 /* LBResetBindBankViewController.m in Sources */,
 				4AA3A21F201A218200C94E49 /* LBSendRedPackHeaderV.m in Sources */,
+				4AB58896201B2315009ADC9A /* NetworkManager.m in Sources */,
 				F9426AF0201ABC200054417E /* EasyShowLodingView.m in Sources */,
 				F96971D12011849A00966E26 /* LeftTableViewCell.m in Sources */,
+				4AB588F3201B6E41009ADC9A /* DropMenu.m in Sources */,
 				4A0EDF61201883EC0037D47A /* LBAccountManagementTableViewCell.m in Sources */,
 				4AFC0EA7201573AF004518F4 /* LB_EatCommentFrameModel.m in Sources */,
 				F955D14920089676001EEC81 /* LBResetOldPhoneViewController.m in Sources */,
@@ -5498,6 +5684,7 @@
 				F9426B47201ABC810054417E /* LBStoreCounterViewController.m in Sources */,
 				F97137412005F6D10033F38B /* LBForgetSecretViewController.m in Sources */,
 				F96CF428201818A50070658C /* LBMineCollectionViewController.m in Sources */,
+				4AB5888E201B04D4009ADC9A /* usermodelachivar.m in Sources */,
 				4A0EDFA52018BC640037D47A /* GLMine_Manage_Branch_ApplyCell.m in Sources */,
 				4A54139D2010AD77008A2FBD /* GLMine_Team_HistoryHeader.m in Sources */,
 				F9426B3E201ABC810054417E /* LBAddOrEditProductViewController.m in Sources */,
@@ -5509,8 +5696,11 @@
 				F96971E0201195E000966E26 /* LBEat_StoreCommentHeaderView.m in Sources */,
 				F9340A39200A200A0002DBB8 /* LBFiltrateProductViewController.m in Sources */,
 				4AA3A17A20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.m in Sources */,
+				4AB588F4201B6E42009ADC9A /* GLDropCell.m in Sources */,
 				F97E603C200EE68100C9C4E7 /* UIImageView+JYImageViewManager.m in Sources */,
 				F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */,
+				4AB58875201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.m in Sources */,
+				4AB5887E201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m in Sources */,
 				4AA3A1D9201A169E00C94E49 /* GLMine_Seller_OrderDetail_ExpressCell.m in Sources */,
 				4AA3A22C201A21CC00C94E49 /* GLMine_MyWalletController.m in Sources */,
 				F96CF4C02018C44F0070658C /* LBFinishAmendPhotosViewController.m in Sources */,
@@ -5620,6 +5810,7 @@
 				F96CF426201818A50070658C /* LBMineCollectionShopViewController.m in Sources */,
 				F97E6058200EF18900C9C4E7 /* GLNearby_classifyCell.m in Sources */,
 				4AB3DC8B2016C4AA00099650 /* LBMineOrderMainViewController.m in Sources */,
+				4AB5888D201B04D4009ADC9A /* UserModel.m in Sources */,
 				F95FD425200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m in Sources */,
 				F9426B42201ABC810054417E /* LBAddOrEditProductChooseSingalView.m in Sources */,
 				F97CDC7C201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.m in Sources */,
@@ -5672,6 +5863,7 @@
 				F9426B6F201AF74A0054417E /* LBShopProductClassifyMenuReusableView.m in Sources */,
 				4A20E9BC20132D1700E091EA /* GLMine_Message_InteractCell.m in Sources */,
 				F97E6037200EE68100C9C4E7 /* JYImageCache.m in Sources */,
+				4AB58887201B0197009ADC9A /* yindaotuViewController.m in Sources */,
 				F9340A212009F0B10002DBB8 /* GLIntegralGoodsOneCell.m in Sources */,
 				F95073242004DA4A0026D28F /* UIView+Extension.m in Sources */,
 				F95FD43D200DDFD500F6C523 /* LBCommentListsView.m in Sources */,
@@ -5914,6 +6106,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/excellentPurchase/ThreePart",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -5932,6 +6128,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/excellentPurchase/ThreePart",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
