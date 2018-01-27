@@ -276,6 +276,8 @@
 		F9264A2620196B37000A0011 /* LBStoreInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9264A2520196B37000A0011 /* LBStoreInformationViewController.xib */; };
 		F9264A2A20196F80000A0011 /* LBStoreAmendPhotosCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9264A2820196F80000A0011 /* LBStoreAmendPhotosCell.m */; };
 		F9264A2B20196F80000A0011 /* LBStoreAmendPhotosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9264A2920196F80000A0011 /* LBStoreAmendPhotosCell.xib */; };
+		F9288219201C241E000B0474 /* LBFasterLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9288217201C241E000B0474 /* LBFasterLoginViewController.m */; };
+		F928821A201C241E000B0474 /* LBFasterLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9288218201C241E000B0474 /* LBFasterLoginViewController.xib */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
 		F93409FA2009CFDD0002DBB8 /* LBTmallChildredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F93409F82009CFDD0002DBB8 /* LBTmallChildredViewController.xib */; };
@@ -1068,6 +1070,9 @@
 		F9264A2720196F80000A0011 /* LBStoreAmendPhotosCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBStoreAmendPhotosCell.h; sourceTree = "<group>"; };
 		F9264A2820196F80000A0011 /* LBStoreAmendPhotosCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBStoreAmendPhotosCell.m; sourceTree = "<group>"; };
 		F9264A2920196F80000A0011 /* LBStoreAmendPhotosCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBStoreAmendPhotosCell.xib; sourceTree = "<group>"; };
+		F9288216201C241E000B0474 /* LBFasterLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFasterLoginViewController.h; sourceTree = "<group>"; };
+		F9288217201C241E000B0474 /* LBFasterLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFasterLoginViewController.m; sourceTree = "<group>"; };
+		F9288218201C241E000B0474 /* LBFasterLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFasterLoginViewController.xib; sourceTree = "<group>"; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		F93409F42009CF680002DBB8 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		F93409F62009CFDD0002DBB8 /* LBTmallChildredViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallChildredViewController.h; sourceTree = "<group>"; };
@@ -4857,6 +4862,9 @@
 				F97137402005F6D10033F38B /* LBForgetSecretViewController.xib */,
 				4AB58885201B0197009ADC9A /* yindaotuViewController.h */,
 				4AB58886201B0197009ADC9A /* yindaotuViewController.m */,
+				F9288216201C241E000B0474 /* LBFasterLoginViewController.h */,
+				F9288217201C241E000B0474 /* LBFasterLoginViewController.m */,
+				F9288218201C241E000B0474 /* LBFasterLoginViewController.xib */,
 			);
 			path = LoginRegister;
 			sourceTree = "<group>";
@@ -5344,6 +5352,7 @@
 				4A0B1409201091EC00AC3334 /* GLMine_Team_AccountChooseController.xib in Resources */,
 				4A79EDF6200F1F6C001F28D1 /* GLIdentifySelectController.xib in Resources */,
 				F96CF427201818A50070658C /* LBMineCollectionShopViewController.xib in Resources */,
+				F928821A201C241E000B0474 /* LBFasterLoginViewController.xib in Resources */,
 				4AA3A210201A218200C94E49 /* LBVoucherCenterRecoderViewController.xib in Resources */,
 				4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */,
 				F9426B6B201AF7340054417E /* LBShopProductClassifyReusableView.xib in Resources */,
@@ -5731,6 +5740,7 @@
 				F9426AF2201ABC200054417E /* EasyShowTextBgView.m in Sources */,
 				F9426B5D201AC5BA0054417E /* LBBaseFinishProductsViewController.m in Sources */,
 				F9426B0C201ABC200054417E /* ZLPhotoPickerCollectionView.m in Sources */,
+				F9288219201C241E000B0474 /* LBFasterLoginViewController.m in Sources */,
 				F97137472005FB410033F38B /* LBImprovePersonalInformationViewController.m in Sources */,
 				4AB3DC962016C4B500099650 /* LBMineOrdersFooterView.m in Sources */,
 				4A20E9B220132A3300E091EA /* GLMine_Message_SystemController.m in Sources */,

@@ -13,6 +13,10 @@
 
 @interface LBLoginViewController ()<UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigation;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoH;
+@property (weak, nonatomic) IBOutlet UILabel *registerLb;
+
 @property (weak, nonatomic) IBOutlet UIView *accountView;//用户名view
 @property (weak, nonatomic) IBOutlet UIView *passwordView;//密码view
 @property (weak, nonatomic) IBOutlet UIView *identifyView;//身份view
@@ -31,6 +35,8 @@
 
 //    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
 //    CGRect rect=[self.identifyView convertRect:self.identifyView.bounds toView:window];
+    
+    self.registerLb.attributedText = [self addoriginstr:self.registerLb.text specilstr:@[@"注册"]];
     
 }
 
@@ -99,10 +105,11 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     
-    self.accountView.layer.cornerRadius = 3;
-    self.passwordView.layer.cornerRadius = 3;
-    self.identifyView.layer.cornerRadius = 3;
-    self.loginBt.layer.cornerRadius = 3;
+    //iphoneX
+    if (UIScreenWidth == 812.0) {
+        self.navigation.constant = 47;
+        self.logoH.constant = 92;
+    }
     
 }
 
@@ -212,6 +219,20 @@
 //    }
     
     return YES;
+}
+
+-(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
+    
+    NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:originstr];
+    for (int i = 0; i < specilstrArr.count; i++) {
+        NSRange rang = [originstr rangeOfString:specilstrArr[i]];
+        [noteStr addAttributes:@{NSForegroundColorAttributeName:LBHexadecimalColor(0x333333)} range:rang];
+        [noteStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} range:rang];
+    }
+    
+    
+    return noteStr;
+    
 }
 
 @end
