@@ -10,13 +10,32 @@
 
 @interface GLMine_BankManageController ()
 
+@property (weak, nonatomic) IBOutlet UISwitch *switchV;
+
 @end
 
 @implementation GLMine_BankManageController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"银行卡管理";
+}
+
+//设置默认
+- (IBAction)setDefault:(UISwitch *)sender {
+    
+    if (sender.isOn) {
+        NSLog(@"设为默认");
+    }else{
+        NSLog(@"取消默认");
+    }
+}
+
+//解除绑定
+- (IBAction)unbindBtn:(id)sender {
+    
+    
 }
 
 

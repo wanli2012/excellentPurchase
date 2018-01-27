@@ -17,6 +17,7 @@
 @property (nonatomic, copy)NSString *token;
 @property (nonatomic, copy)NSString *uid;
 @property (nonatomic, copy)NSString *user_name;//用户ID
+@property (nonatomic, copy)NSString *phone;//手机号 账号
 
 
 +(UserModel*)defaultUser;

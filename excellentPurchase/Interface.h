@@ -41,7 +41,8 @@
 #define kForget_Second_Password_URL @"User/find_two_pwd"//找回二级密码
 #define kUpdate_Phone_First_Password_URL @"User/check_user_phone"//修改绑定手机号第一步
 #define kUpdate_Phone_Second_Password_URL @"User/update_user_phone"//修改绑定手机号
-
+#define kBankList_URL @"Bank/get_bank_list"//银行卡列表
+#define kBank_NameList_URL @"Bank/bank_name_list"//银行列表
 
 
 #endif /* Interface_h */

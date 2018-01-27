@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_BankManageController">
             <connections>
+                <outlet property="switchV" destination="FCB-ji-Eco" id="GF9-aK-jPU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVN-o7-JZo">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVN-o7-JZo">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jjo-SY-it8">
@@ -41,6 +42,12 @@
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FCB-ji-Eco">
+                                            <rect key="frame" x="311" y="9.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="setDefault:" destination="-1" eventType="valueChanged" id="6dm-xa-cqe"/>
+                                            </connections>
+                                        </switch>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -48,16 +55,65 @@
                                         <constraint firstAttribute="trailing" secondItem="bhh-Ip-XwM" secondAttribute="trailing" id="RRb-vm-k91"/>
                                         <constraint firstItem="jBV-fI-Q6u" firstAttribute="leading" secondItem="ECA-4x-Nrf" secondAttribute="leading" constant="15" id="Rhc-T6-E6a"/>
                                         <constraint firstItem="jBV-fI-Q6u" firstAttribute="centerY" secondItem="ECA-4x-Nrf" secondAttribute="centerY" id="WRq-U6-WmW"/>
+                                        <constraint firstItem="FCB-ji-Eco" firstAttribute="centerY" secondItem="ECA-4x-Nrf" secondAttribute="centerY" id="XaA-ia-ePm"/>
                                         <constraint firstAttribute="bottom" secondItem="bhh-Ip-XwM" secondAttribute="bottom" id="hqX-eH-P7n"/>
                                         <constraint firstItem="bhh-Ip-XwM" firstAttribute="leading" secondItem="ECA-4x-Nrf" secondAttribute="leading" id="otc-ZP-mV4"/>
+                                        <constraint firstAttribute="trailing" secondItem="FCB-ji-Eco" secondAttribute="trailing" constant="15" id="xtA-9J-WpV"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="soH-En-am2">
+                                    <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qne-VX-wDo">
+                                            <rect key="frame" x="0.0" y="49" width="375" height="1"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="AYm-aO-Jlw"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行卡尾号:3246" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2a-BJ-QVf">
+                                            <rect key="frame" x="15" y="16" width="125" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6w1-2l-y51">
+                                            <rect key="frame" x="275" y="0.0" width="100" height="49"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="yOF-C1-4XK"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <state key="normal" title="解除绑定">
+                                                <color key="titleColor" red="0.99801856280000001" green="0.029793719491666672" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="unbindBtn:" destination="-1" eventType="touchUpInside" id="5kR-2L-ITc"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="6w1-2l-y51" secondAttribute="trailing" id="1VB-lm-9Mr"/>
+                                        <constraint firstItem="qne-VX-wDo" firstAttribute="leading" secondItem="soH-En-am2" secondAttribute="leading" id="1dW-Nz-oXv"/>
+                                        <constraint firstAttribute="height" constant="50" id="S67-cv-Skw"/>
+                                        <constraint firstAttribute="trailing" secondItem="qne-VX-wDo" secondAttribute="trailing" id="SXt-dz-ilU"/>
+                                        <constraint firstAttribute="bottom" secondItem="qne-VX-wDo" secondAttribute="bottom" id="V9U-zq-ngM"/>
+                                        <constraint firstItem="U2a-BJ-QVf" firstAttribute="centerY" secondItem="soH-En-am2" secondAttribute="centerY" id="Ybe-P8-5ch"/>
+                                        <constraint firstItem="U2a-BJ-QVf" firstAttribute="leading" secondItem="soH-En-am2" secondAttribute="leading" constant="15" id="dd9-RW-TEt"/>
+                                        <constraint firstItem="qne-VX-wDo" firstAttribute="top" secondItem="6w1-2l-y51" secondAttribute="bottom" id="g7T-vh-I9c"/>
+                                        <constraint firstItem="6w1-2l-y51" firstAttribute="top" secondItem="soH-En-am2" secondAttribute="top" id="gxP-cm-PWn"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="ECA-4x-Nrf" firstAttribute="top" secondItem="Jjo-SY-it8" secondAttribute="top" id="6ME-uR-0EE"/>
+                                <constraint firstItem="soH-En-am2" firstAttribute="leading" secondItem="Jjo-SY-it8" secondAttribute="leading" id="BUb-dl-8wy"/>
+                                <constraint firstItem="soH-En-am2" firstAttribute="top" secondItem="ECA-4x-Nrf" secondAttribute="bottom" id="Fcn-bQ-Yh0"/>
                                 <constraint firstAttribute="trailing" secondItem="ECA-4x-Nrf" secondAttribute="trailing" id="ag9-tv-3ft"/>
                                 <constraint firstItem="ECA-4x-Nrf" firstAttribute="leading" secondItem="Jjo-SY-it8" secondAttribute="leading" id="iup-fZ-p9e"/>
+                                <constraint firstAttribute="trailing" secondItem="soH-En-am2" secondAttribute="trailing" id="tqJ-rd-mg2"/>
                             </constraints>
                         </view>
                     </subviews>
