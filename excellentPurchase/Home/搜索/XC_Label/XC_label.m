@@ -305,7 +305,11 @@ typedef NS_ENUM(NSInteger,EditorStateHot){
     }else{
         NSString *s = self.historySource[indexPath.row];
         CGFloat f = [self opnetionsWidth:s];
-        return CGSizeMake(f + 20  ,self.opetionsHeight?self.opetionsHeight:40);
+        if (f > LabelScreenW -30) {
+            return CGSizeMake(LabelScreenW -30  ,self.opetionsHeight?self.opetionsHeight:40);
+        }else{
+            return CGSizeMake(f + 20  ,self.opetionsHeight?self.opetionsHeight:40);
+        }
     }
 }
 

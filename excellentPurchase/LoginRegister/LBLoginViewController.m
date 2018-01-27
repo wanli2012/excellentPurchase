@@ -10,7 +10,6 @@
 #import "BasetabbarViewController.h"
 #import "LBRegisterViewController.h"//注册
 
-#import "DropMenu.h"
 
 @interface LBLoginViewController ()<UITextFieldDelegate>
 
@@ -48,9 +47,7 @@
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect = [self.identifyView convertRect:self.identifyView.bounds toView:window];
     
-    [DropMenu showMenu:^(NSString *selectName) {
-        NSLog(@"s-----%@",selectName);
-    } Rect:rect andMenuHeight:100];
+  
 }
 
 
