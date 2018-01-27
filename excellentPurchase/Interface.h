@@ -26,7 +26,6 @@
 //#define LOGIC_ERROR_CODE 405  //请求方法不被允许(验证post和get或其他方式的请求)
 //#define LOGIC_ERROR_CODE 500  //服务器内部错误
 
-
 //captchaid的值是每个产品从后台生成的,
 #define CAPTCHAID @"e81c8a046b5e4d08999ef30e01999e35"
 
@@ -36,6 +35,7 @@
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
 #define kREGISTER_URL @"User/register"//注册
 #define kLOGIN_URL @"User/sign_up"//登录
+#define kGet_GroupList_URL @"User/get_group_list"//用户分组列表
 
 
 

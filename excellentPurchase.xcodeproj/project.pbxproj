@@ -256,6 +256,8 @@
 		4AB588F3201B6E41009ADC9A /* DropMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB588EF201B6E41009ADC9A /* DropMenu.m */; };
 		4AB588F4201B6E42009ADC9A /* GLDropCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB588F1201B6E41009ADC9A /* GLDropCell.m */; };
 		4AB588F5201B6E42009ADC9A /* GLDropCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB588F2201B6E41009ADC9A /* GLDropCell.xib */; };
+		4AC74DA3201C0DF2006B0F5C /* DropMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC74DA2201C0DF2006B0F5C /* DropMenuModel.m */; };
+		4AC74DA7201C1CE3006B0F5C /* GLGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC74DA6201C1CE3006B0F5C /* GLGroupModel.m */; };
 		4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */; };
 		4AFC0E9720157182004518F4 /* LBEat_StoreCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */; };
 		4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFC0E9920157229004518F4 /* LBEat_StoreCommentFooterView.m */; };
@@ -1016,6 +1018,10 @@
 		4AB588F0201B6E41009ADC9A /* GLDropCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDropCell.h; sourceTree = "<group>"; };
 		4AB588F1201B6E41009ADC9A /* GLDropCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDropCell.m; sourceTree = "<group>"; };
 		4AB588F2201B6E41009ADC9A /* GLDropCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLDropCell.xib; sourceTree = "<group>"; };
+		4AC74DA1201C0DF2006B0F5C /* DropMenuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropMenuModel.h; sourceTree = "<group>"; };
+		4AC74DA2201C0DF2006B0F5C /* DropMenuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropMenuModel.m; sourceTree = "<group>"; };
+		4AC74DA5201C1CE3006B0F5C /* GLGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGroupModel.h; sourceTree = "<group>"; };
+		4AC74DA6201C1CE3006B0F5C /* GLGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLGroupModel.m; sourceTree = "<group>"; };
 		4AFC0E9320157181004518F4 /* LBEat_StoreCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreCommentsViewController.m; sourceTree = "<group>"; };
 		4AFC0E9420157182004518F4 /* LBEat_StoreCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_StoreCommentsViewController.xib; sourceTree = "<group>"; };
 		4AFC0E9520157182004518F4 /* LBEat_StoreCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreCommentsViewController.h; sourceTree = "<group>"; };
@@ -3345,12 +3351,23 @@
 			children = (
 				4AB588EE201B6E41009ADC9A /* DropMenu.h */,
 				4AB588EF201B6E41009ADC9A /* DropMenu.m */,
+				4AC74DA1201C0DF2006B0F5C /* DropMenuModel.h */,
+				4AC74DA2201C0DF2006B0F5C /* DropMenuModel.m */,
 				4AB588F0201B6E41009ADC9A /* GLDropCell.h */,
 				4AB588F1201B6E41009ADC9A /* GLDropCell.m */,
 				4AB588F2201B6E41009ADC9A /* GLDropCell.xib */,
 			);
 			name = dropMenu;
 			path = ../../../dropMenu/dropMenu/dropMenu;
+			sourceTree = "<group>";
+		};
+		4AC74DA4201C1CD2006B0F5C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4AC74DA5201C1CE3006B0F5C /* GLGroupModel.h */,
+				4AC74DA6201C1CE3006B0F5C /* GLGroupModel.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		4AFC0EA92015740E004518F4 /* 评论弹出框 */ = {
@@ -4737,6 +4754,7 @@
 			isa = PBXGroup;
 			children = (
 				4AB588ED201B6E41009ADC9A /* dropMenu */,
+				4AC74DA4201C1CD2006B0F5C /* model */,
 				F97137322005DF690033F38B /* LBLoginViewController.h */,
 				F97137332005DF690033F38B /* LBLoginViewController.m */,
 				F97137342005DF690033F38B /* LBLoginViewController.xib */,
@@ -5436,6 +5454,7 @@
 				F95B535D200CD16200A81954 /* LBCommentListsTableViewCell.m in Sources */,
 				F950730D2004C0240026D28F /* XBTextLoopView.m in Sources */,
 				4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */,
+				4AC74DA3201C0DF2006B0F5C /* DropMenuModel.m in Sources */,
 				F9426A93201ABB530054417E /* HCBottomPopupViewController.m in Sources */,
 				4AA3A1B42019D64700C94E49 /* GLMine_Team_StaffingController.m in Sources */,
 				4A9E18DC201213A700E1EC05 /* GLMine_Team_UnderlingAchieveCell.m in Sources */,
@@ -5444,6 +5463,7 @@
 				F9264A2A20196F80000A0011 /* LBStoreAmendPhotosCell.m in Sources */,
 				F96971C52011849A00966E26 /* LBEat_storeDetailInfomationHeaderView.m in Sources */,
 				4AA3A1922019AE7700C94E49 /* GLMine_Branch_OnlineFooter.m in Sources */,
+				4AC74DA7201C1CE3006B0F5C /* GLGroupModel.m in Sources */,
 				F96971D22011849A00966E26 /* LJCollectionViewFlowLayout.m in Sources */,
 				4AA3A1A62019C2EE00C94E49 /* GLMine_Branch_OfflineStatusController.m in Sources */,
 				4A20E9862012E4C600E091EA /* GLMine_Message_LogisticsController.m in Sources */,

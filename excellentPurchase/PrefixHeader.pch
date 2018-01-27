@@ -31,6 +31,9 @@
 #import "EasyShowOptions.h"
 //网络请求
 #import "NetworkManager.h"
+//数组转模型
+#import "MJExtension.h"
+
 
 
 #endif
