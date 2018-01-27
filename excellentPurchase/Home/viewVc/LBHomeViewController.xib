@@ -92,6 +92,7 @@
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="JPy-AQ-P4J" secondAttribute="trailing" constant="8" id="EPx-SP-4ld"/>
                                 <constraint firstItem="1Zq-XA-Ype" firstAttribute="leading" secondItem="4x0-LI-vvj" secondAttribute="leading" constant="8" id="ESk-GL-bqt"/>
@@ -103,6 +104,9 @@
                                 <constraint firstAttribute="height" constant="30" id="gKX-iY-BiM"/>
                                 <constraint firstItem="Ex0-tc-DTp" firstAttribute="top" secondItem="4x0-LI-vvj" secondAttribute="top" id="tSm-bn-29a"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="5i4-pQ-clQ" appends="YES" id="e5p-Ns-Mwj"/>
+                            </connections>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrI-5K-CLQ">
                             <rect key="frame" x="10" y="44" width="35" height="15"/>
@@ -186,6 +190,11 @@
             </constraints>
             <point key="canvasLocation" x="26.5" y="52.5"/>
         </view>
+        <tapGestureRecognizer id="5i4-pQ-clQ">
+            <connections>
+                <action selector="tapgestureSearch:" destination="-1" id="0td-G9-XK4"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="RichScan" width="15" height="15"/>

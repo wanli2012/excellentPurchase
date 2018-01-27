@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBBaseFinishProductsViewController.h"
 
-@interface LBFinishProductsViewController : UIViewController
+@interface LBFinishProductsViewController : LBBaseFinishProductsViewController
 
 @end

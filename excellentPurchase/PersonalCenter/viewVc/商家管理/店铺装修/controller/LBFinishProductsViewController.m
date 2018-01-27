@@ -9,9 +9,8 @@
 #import "LBFinishProductsViewController.h"
 #import "LBFinishProductsCell1.h"
 
-@interface LBFinishProductsViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface LBFinishProductsViewController ()
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 

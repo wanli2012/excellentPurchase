@@ -13,6 +13,7 @@
 #import "UIImage+GIF.h"
 
 #import "LBSetUpViewController.h"
+#import "LBHistoryHotSerachViewController.h"
 
 @interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -139,6 +140,14 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [self.navigationController pushViewController:vc animated:YES];
      self.hidesBottomBarWhenPushed = NO;
 }
+
+- (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBHistoryHotSerachViewController *vc =[[LBHistoryHotSerachViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat   offset = scrollView.contentOffset.y;

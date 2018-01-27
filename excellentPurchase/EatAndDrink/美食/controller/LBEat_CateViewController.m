@@ -14,6 +14,7 @@
 #import "GLNearby_classifyCell.h"
 #import "LBFinishMainViewController.h"
 #import "LBEatAndDrinkViewController.h"
+#import "LBEatShopProdcutClassifyViewController.h"//商店详情
 
 static NSString *burstingWithPopularityTableViewCell = @"LBBurstingWithPopularityTableViewCell";
 static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
@@ -104,7 +105,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self viewController].hidesBottomBarWhenPushed = YES;
-    LBFinishMainViewController *vc = [[LBFinishMainViewController alloc]init];
+    LBEatShopProdcutClassifyViewController *vc = [[LBEatShopProdcutClassifyViewController alloc]init];
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
   

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="XC_labelCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="112" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="112" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhZ-NI-XjK">
+                        <rect key="frame" x="0.0" y="0.0" width="112" height="60"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fn-x4-gcj">
+                        <rect key="frame" x="8" y="30.5" width="94" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h01-lp-NHa" customClass="Label_btn">
+                        <rect key="frame" x="95" y="0.0" width="17" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Fcm-hU-Hfo"/>
+                            <constraint firstAttribute="width" constant="17" id="TEt-ue-dOO"/>
+                        </constraints>
+                        <state key="normal" image="shop-delete">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="mhZ-NI-XjK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="25t-zN-0HK"/>
+                <constraint firstItem="7fn-x4-gcj" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="DbO-xd-Yzc"/>
+                <constraint firstItem="mhZ-NI-XjK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y0a-7G-pTK"/>
+                <constraint firstItem="7fn-x4-gcj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="aof-1b-goq"/>
+                <constraint firstItem="h01-lp-NHa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bci-gu-6YE"/>
+                <constraint firstAttribute="trailing" secondItem="7fn-x4-gcj" secondAttribute="trailing" constant="10" id="fjp-ZF-Lmj"/>
+                <constraint firstAttribute="trailing" secondItem="mhZ-NI-XjK" secondAttribute="trailing" id="iuB-ng-1WD"/>
+                <constraint firstAttribute="trailing" secondItem="h01-lp-NHa" secondAttribute="trailing" id="kxG-Av-hso"/>
+                <constraint firstAttribute="bottom" secondItem="mhZ-NI-XjK" secondAttribute="bottom" id="xEb-VH-cwL"/>
+            </constraints>
+            <size key="customSize" width="112" height="70"/>
+            <connections>
+                <outlet property="cellBackView" destination="mhZ-NI-XjK" id="l9B-gm-owz"/>
+                <outlet property="closeBtnOutle" destination="h01-lp-NHa" id="4zb-ef-zJm"/>
+                <outlet property="xc_label" destination="7fn-x4-gcj" id="h5v-LS-cCz"/>
+            </connections>
+            <point key="canvasLocation" x="66" y="64"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="shop-delete" width="398" height="398"/>
+    </resources>
+</document>
