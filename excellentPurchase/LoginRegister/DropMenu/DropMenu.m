@@ -15,7 +15,7 @@
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define CZHRGBColor(rgbValue, a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
-@interface DropMenu ()<UITableViewDataSource,UITableViewDelegate>
+@interface DropMenu ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
 ///容器view
 @property (nonatomic, weak) UIView *containView;
@@ -25,6 +25,7 @@
 @property (nonatomic, assign)CGRect rect;
 
 @property (nonatomic, assign)CGFloat menuHeight;
+@property (nonatomic, assign)CGFloat cellHeight;
 
 @property (nonatomic, copy)NSArray *dataArr;
 
@@ -35,18 +36,19 @@
 
 @implementation DropMenu
 
-+ (instancetype)showMenu:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuHeight:(CGFloat)menuHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock{
++(instancetype)showMenu:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight cellHeight:(CGFloat)cellHeight andReturnBlock:(void (^)(NSString *, NSString *))menuBlock{
     
-    return [DropMenu setShowPosition:titlesArr controlFrame:rect MenuHeight:menuHeight andReturnBlock:menuBlock];
+     return [DropMenu setShowPosition:titlesArr controlFrame:rect MenuMaxHeight:menuHeight cellHeight:cellHeight andReturnBlock:menuBlock];
 }
 
-+(instancetype)setShowPosition:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuHeight:(CGFloat)menuHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock{
++(instancetype)setShowPosition:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight cellHeight:(CGFloat)cellHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock{
     
     DropMenu *_memu = [[DropMenu alloc] init];
     
     _memu.rect = rect;
     _memu.menuBlock = menuBlock;
     _memu.menuHeight = menuHeight;
+    _memu.cellHeight = cellHeight;
     _memu.dataArr = titlesArr;
     
     [_memu updateConstraints];
@@ -64,13 +66,18 @@
     self.containView.frame = CGRectMake(self.rect.origin.x, CGRectGetMaxY(self.rect), self.rect.size.width, 0);
     self.tableView.frame = CGRectMake(0, 0, self.containView.width, self.containView.height);
     
+    if (self.menuHeight > self.dataArr.count * self.cellHeight) {
+        self.menuHeight = self.dataArr.count * self.cellHeight;
+    }
 }
+
 /**
  刷新数据源
  */
 - (void)refreshData {
     [self.tableView reloadData];
 }
+
 /**
  展示
  */
@@ -84,14 +91,8 @@
         
         self.backgroundColor = CZHRGBColor(0x000000, 0);
         
-        if (self.menuHeight > 200) {
-            self.menuHeight = 200;
-        }
-        
         self.containView.height = self.menuHeight;
         self.tableView.height = self.containView.height;
-        
-//        NSLog(@"%@-------rect = %@",NSStringFromCGRect(self.containView.frame),NSStringFromCGRect(self.containView.frame));
         
     }];
 }
@@ -110,7 +111,6 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
-    
 }
 
 /**
@@ -130,8 +130,9 @@
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
     self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
     
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(hideView)];
-//    [self addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(hideView)];
+    tap.delegate = self;
+    [self addGestureRecognizer:tap];
     
     UIView *containView = [[UIView alloc] init];
     containView.layer.cornerRadius = 5.f;
@@ -153,6 +154,15 @@
     
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if ([touch.view isDescendantOfView:self.containView]) {
+        return NO;
+    }
+    return YES;
+}
+
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -169,7 +179,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return self.cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

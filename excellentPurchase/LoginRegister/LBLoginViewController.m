@@ -28,15 +28,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;//密码
 @property (weak, nonatomic) IBOutlet UITextField *group_idTF;//身份
 
+@property (nonatomic, strong)NSMutableArray *groupModels;
+@property (nonatomic, copy)NSString *group_id;
+
 @end
 
 @implementation LBLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-//    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
-//    CGRect rect=[self.identifyView convertRect:self.identifyView.bounds toView:window];
     
     self.registerLb.attributedText = [self addoriginstr:self.registerLb.text specilstr:@[@"注册"]];
     
@@ -52,10 +52,57 @@
  */
 - (IBAction)groupTypeChoose:(id)sender {
     
+    if(self.groupModels.count != 0){
+        [self popGroupChooseView];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"type"] = @"1";
+    
+    [NetworkManager requestPOSTWithURLStr:kGet_GroupList_URL paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                
+                GLGroupModel *model = [GLGroupModel mj_objectWithKeyValues:dict];
+                [self.groupModels addObject:model];
+                
+            }
+            [self popGroupChooseView];
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+  
+}
+
+//弹出选择器
+- (void)popGroupChooseView {
+    
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect = [self.identifyView convertRect:self.identifyView.bounds toView:window];
     
-  
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (GLGroupModel *groupModel in self.groupModels) {
+        
+        DropMenuModel *model = [[DropMenuModel alloc] init];
+        
+        model.name = groupModel.group_name;
+        model.type_id = groupModel.group_id;
+        
+        [arrM addObject:model];
+    }
+    
+    [DropMenu showMenu:arrM controlFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 5) MenuMaxHeight:150 cellHeight:30 andReturnBlock:^(NSString *selectName, NSString *type_id) {
+        
+        self.group_idTF.text = selectName;
+        self.group_id = type_id;
+        
+    }];
 }
 
 
@@ -235,6 +282,15 @@
     
     return noteStr;
     
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray *)groupModels{
+    if (!_groupModels) {
+        _groupModels = [NSMutableArray array];
+        
+    }
+    return _groupModels;
 }
 
 @end

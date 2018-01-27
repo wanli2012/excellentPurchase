@@ -11,7 +11,7 @@
 
 @interface DropMenu : UIView
 
-+ (instancetype)showMenu:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuHeight:(CGFloat)menuHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock;
++ (instancetype)showMenu:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight cellHeight:(CGFloat)cellHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock;
 
 
 @end
