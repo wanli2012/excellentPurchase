@@ -14,7 +14,6 @@
 #define kAPP_VERSION @"1.0.0"
 #define kAPP_HANDLE @"SEARCH"
 
-
 #define SUCCESS_CODE 200 //请求或处理成功(请求数据，获取列表、删除数据、添加数据...等操作)
 #define PAGE_ERROR_CODE 204//请求成功，未获取到内容(分页未请求到数据,提示已经到底了)
 #define ERROR_CODE 400//参数错误
@@ -35,8 +34,13 @@
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
 #define kREGISTER_URL @"User/register"//注册
 #define kLOGIN_URL @"User/sign_up"//登录
+#define kForget_Password_URL @"User/forget_user_pwd"//忘记密码
 #define kGet_GroupList_URL @"User/get_group_list"//用户分组列表
-
+#define kUpdate_Password_URL @"User/update_sign_pass"//修改登录密码 
+#define kReset_Second_Password_URL @"User/user_reset_pwd"//重置二级密码
+#define kForget_Second_Password_URL @"User/find_two_pwd"//找回二级密码
+#define kUpdate_Phone_First_Password_URL @"User/check_user_phone"//修改绑定手机号第一步
+#define kUpdate_Phone_Second_Password_URL @"User/update_user_phone"//修改绑定手机号
 
 
 

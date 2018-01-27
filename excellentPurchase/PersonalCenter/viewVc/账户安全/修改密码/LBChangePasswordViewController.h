@@ -11,4 +11,5 @@
 @interface LBChangePasswordViewController : UIViewController
 
 @property (strong , nonatomic)NSString *naviStr;
+
 @end

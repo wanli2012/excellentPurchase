@@ -119,7 +119,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.getCodeBtn setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
                 self.getCodeBtn.userInteractionEnabled = NO;
-                self.getCodeBtn.backgroundColor = YYSRGBColor(184, 184, 184, 1);
+                self.getCodeBtn.backgroundColor = [UIColor whiteColor];
                 self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:11];
             });
             timeout--;
@@ -304,7 +304,7 @@
     
             if(![predicateModel inputShouldLetterOrNum:string]){
     
-                [EasyShowTextView showInfoText:@"密码只能是数字或字母"];
+                [EasyShowTextView showInfoText:@"密码只能是数字和字母的组合"];
     
                 return NO;
             }

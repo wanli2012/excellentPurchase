@@ -97,6 +97,8 @@
 		4A54139F2010ADA9008A2FBD /* GLMine_Team_HistoryHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A54139E2010ADA9008A2FBD /* GLMine_Team_HistoryHeader.xib */; };
 		4A5413A32010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5413A12010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m */; };
 		4A5413A42010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5413A22010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.xib */; };
+		4A65F133201CBA5E0022868E /* GLMine_BankManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A65F131201CBA5E0022868E /* GLMine_BankManageController.m */; };
+		4A65F134201CBA5E0022868E /* GLMine_BankManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A65F132201CBA5E0022868E /* GLMine_BankManageController.xib */; };
 		4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */; };
 		4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EDD0200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m */; };
 		4A79EDD3200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EDD1200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.xib */; };
@@ -787,6 +789,9 @@
 		4A5413A02010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_HistoryRecordController.h; sourceTree = "<group>"; };
 		4A5413A12010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_HistoryRecordController.m; sourceTree = "<group>"; };
 		4A5413A22010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_HistoryRecordController.xib; sourceTree = "<group>"; };
+		4A65F130201CBA5E0022868E /* GLMine_BankManageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_BankManageController.h; sourceTree = "<group>"; };
+		4A65F131201CBA5E0022868E /* GLMine_BankManageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_BankManageController.m; sourceTree = "<group>"; };
+		4A65F132201CBA5E0022868E /* GLMine_BankManageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_BankManageController.xib; sourceTree = "<group>"; };
 		4A79EDCA200EE469001F28D1 /* GLMine_TeamController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_TeamController.h; sourceTree = "<group>"; };
 		4A79EDCB200EE469001F28D1 /* GLMine_TeamController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_TeamController.m; sourceTree = "<group>"; };
 		4A79EDCF200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_TeamAchievementController.h; sourceTree = "<group>"; };
@@ -2550,6 +2555,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4A65F12F201CBA3B0022868E /* 银行卡管理 */ = {
+			isa = PBXGroup;
+			children = (
+				4A65F130201CBA5E0022868E /* GLMine_BankManageController.h */,
+				4A65F131201CBA5E0022868E /* GLMine_BankManageController.m */,
+				4A65F132201CBA5E0022868E /* GLMine_BankManageController.xib */,
+			);
+			path = "银行卡管理";
+			sourceTree = "<group>";
+		};
 		4A79EDB7200EE390001F28D1 /* 我的团队 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4271,6 +4286,7 @@
 		F955D1702008A736001EEC81 /* 银行卡列表 */ = {
 			isa = PBXGroup;
 			children = (
+				4A65F12F201CBA3B0022868E /* 银行卡管理 */,
 				F955D1722008A76E001EEC81 /* 添加银行卡 */,
 				F955D1732008A76E001EEC81 /* controller */,
 				F955D1712008A76E001EEC81 /* view */,
@@ -5292,6 +5308,7 @@
 				F955D14A20089676001EEC81 /* LBResetOldPhoneViewController.xib in Resources */,
 				F97CDC98201593B30036B8E0 /* LBEat_StoredetailCommentsTableViewCell.xib in Resources */,
 				4A20E9A6201322F300E091EA /* GLMine_Message_TrendsController.xib in Resources */,
+				4A65F134201CBA5E0022868E /* GLMine_BankManageController.xib in Resources */,
 				F9712C8B200460040015037A /* Assets.xcassets in Resources */,
 				4AB58884201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.xib in Resources */,
 				F95073022004A9590026D28F /* LBNearby_classifyItemView.xib in Resources */,
@@ -5735,6 +5752,7 @@
 				4AC74DAC201C365D006B0F5C /* GLGroupModel.m in Sources */,
 				F9633D91200C7061001B545A /* LBMineDataCollectionViewCell.m in Sources */,
 				4A79EE10200F42B7001F28D1 /* GLMine_Team_AchieveManageHeader.m in Sources */,
+				4A65F133201CBA5E0022868E /* GLMine_BankManageController.m in Sources */,
 				4AB3DCB22016C4CA00099650 /* LBMineOrderDetailViewController.m in Sources */,
 				F9426AF9201ABC200054417E /* DALabeledCircularProgressView.m in Sources */,
 				F95FD420200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.m in Sources */,

@@ -21,6 +21,7 @@
                 <outlet property="passwordTF" destination="s90-L4-aKM" id="h5V-x0-G3J"/>
                 <outlet property="passwordView" destination="cs4-dG-pge" id="PQh-Vi-OPp"/>
                 <outlet property="registerLb" destination="fbB-Ai-Spu" id="Zpf-Sj-K4b"/>
+                <outlet property="signBtn" destination="kn0-5q-DCo" id="xxJ-0P-Oov"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -240,7 +241,7 @@
                                 </view>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtu-Kd-Ba0">
                                     <rect key="frame" x="30" y="425" width="312" height="50"/>
-                                    <color key="backgroundColor" red="0.99801856279373169" green="0.39901572465896606" blue="0.39816218614578247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="1" green="0.39901572465896606" blue="0.39816218614578247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="JF5-Ni-5gk"/>
                                     </constraints>
@@ -293,7 +294,46 @@
                                     <state key="normal" title="快捷登录&gt;&gt;">
                                         <color key="titleColor" red="0.99801069499999995" green="0.39886236190000002" blue="0.40665975209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="fastLogin:" destination="-1" eventType="touchUpInside" id="KUI-Px-VKz"/>
+                                    </connections>
                                 </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6G-Av-EBB">
+                                    <rect key="frame" x="278.5" y="380" width="63.5" height="33"/>
+                                    <subviews>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="记住账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52n-N1-EHM">
+                                            <rect key="frame" x="14" y="0.0" width="49.5" height="33"/>
+                                            <gestureRecognizers/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.54584085940000004" green="0.51362806559999996" blue="0.51327699419999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kn0-5q-DCo">
+                                            <rect key="frame" x="0.0" y="10.5" width="11" height="11"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="11" id="5gv-H5-oAC"/>
+                                                <constraint firstAttribute="height" constant="11" id="bKq-Ey-apE"/>
+                                            </constraints>
+                                            <state key="normal" image="greetselect-n"/>
+                                            <state key="selected" image="greetselect-y"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="52n-N1-EHM" secondAttribute="trailing" id="77c-OR-s50"/>
+                                        <constraint firstAttribute="height" constant="33" id="7Jb-ez-Hhb"/>
+                                        <constraint firstItem="52n-N1-EHM" firstAttribute="leading" secondItem="kn0-5q-DCo" secondAttribute="trailing" constant="3" id="88B-XU-p60"/>
+                                        <constraint firstItem="52n-N1-EHM" firstAttribute="top" secondItem="a6G-Av-EBB" secondAttribute="top" id="BcZ-RV-EGG"/>
+                                        <constraint firstAttribute="bottom" secondItem="52n-N1-EHM" secondAttribute="bottom" id="Fa9-UI-0tg"/>
+                                        <constraint firstItem="kn0-5q-DCo" firstAttribute="leading" secondItem="a6G-Av-EBB" secondAttribute="leading" id="VtE-8c-J0d"/>
+                                        <constraint firstItem="52n-N1-EHM" firstAttribute="centerY" secondItem="kn0-5q-DCo" secondAttribute="centerY" id="saK-Ze-8aR"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="iWP-WX-pgn" appends="YES" id="S4S-Ov-iC1"/>
+                                    </connections>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -304,6 +344,7 @@
                                 <constraint firstItem="aon-r6-CcH" firstAttribute="top" secondItem="Jf6-th-afY" secondAttribute="top" constant="70" id="6DE-hb-q1D"/>
                                 <constraint firstItem="jtu-Kd-Ba0" firstAttribute="leading" secondItem="Jf6-th-afY" secondAttribute="leading" constant="30" id="89r-5E-2Ta"/>
                                 <constraint firstItem="Mvh-it-Rq3" firstAttribute="top" secondItem="aon-r6-CcH" secondAttribute="bottom" constant="20" id="Jrj-LC-cqZ"/>
+                                <constraint firstItem="a6G-Av-EBB" firstAttribute="top" secondItem="Mvh-it-Rq3" secondAttribute="bottom" constant="5" id="Lm0-5w-9Vi"/>
                                 <constraint firstItem="jtu-Kd-Ba0" firstAttribute="top" secondItem="Mvh-it-Rq3" secondAttribute="bottom" constant="50" id="Sfp-yS-EhM"/>
                                 <constraint firstItem="fbB-Ai-Spu" firstAttribute="top" secondItem="jtu-Kd-Ba0" secondAttribute="bottom" constant="15" id="Sgo-Qc-hBQ"/>
                                 <constraint firstItem="aon-r6-CcH" firstAttribute="centerX" secondItem="Jf6-th-afY" secondAttribute="centerX" id="Xoy-7m-tjG"/>
@@ -311,6 +352,7 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="eL6-al-FtE"/>
                                 <constraint firstAttribute="trailing" secondItem="Mvh-it-Rq3" secondAttribute="trailing" constant="30" id="ln2-0n-9eg"/>
                                 <constraint firstAttribute="trailing" secondItem="Srt-cD-b6b" secondAttribute="trailing" constant="30" id="o7T-T1-bow"/>
+                                <constraint firstItem="a6G-Av-EBB" firstAttribute="trailing" secondItem="Lm2-Ln-Ex5" secondAttribute="trailing" id="oQi-m4-LE6"/>
                                 <constraint firstItem="A57-QO-UWb" firstAttribute="top" secondItem="jtu-Kd-Ba0" secondAttribute="bottom" constant="95" id="otG-Ij-1as"/>
                                 <constraint firstItem="Mvh-it-Rq3" firstAttribute="leading" secondItem="Jf6-th-afY" secondAttribute="leading" constant="30" id="tfy-lE-PwH"/>
                             </constraints>
@@ -369,10 +411,17 @@
                 <action selector="groupTypeChoose:" destination="-1" id="15k-mD-Cgr"/>
             </connections>
         </tapGestureRecognizer>
+        <tapGestureRecognizer id="iWP-WX-pgn" userLabel="记住密码">
+            <connections>
+                <action selector="isSaveAccount:" destination="-1" id="5N6-Vw-T0H"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="account" width="20" height="22"/>
         <image name="closeEye" width="21" height="10"/>
+        <image name="greetselect-n" width="11" height="11"/>
+        <image name="greetselect-y" width="11" height="11"/>
         <image name="identity" width="20" height="22"/>
         <image name="identityDown" width="11" height="7"/>
         <image name="loginBack" width="375" height="667"/>

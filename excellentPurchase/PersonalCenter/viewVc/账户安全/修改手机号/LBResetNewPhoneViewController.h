@@ -10,4 +10,6 @@
 
 @interface LBResetNewPhoneViewController : UIViewController
 
+@property (nonatomic, copy)NSString *concate;//用于修改绑定手机第二步验证(防止直接url进入第二步修改)
+
 @end

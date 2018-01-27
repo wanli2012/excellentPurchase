@@ -46,6 +46,36 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
     [self.tableview registerNib:[UINib nibWithNibName:setUpTableViewCell bundle:nil] forCellReuseIdentifier:setUpTableViewCell];
     
 }
+
+- (IBAction)exit:(id)sender {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要退出吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UserModel defaultUser].loginstatus = NO;
+//        [UserModel defaultUser].user_pic = @"";
+        [UserModel defaultUser].token = @"";
+        [UserModel defaultUser].uid = @"";
+        
+        [usermodelachivar achive];
+        
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.3;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = @"suckEffect";
+        [self.view.window.layer addAnimation:animation forKey:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [alertVC addAction:cancel];
+    [alertVC addAction:ok];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
+}
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;
 }

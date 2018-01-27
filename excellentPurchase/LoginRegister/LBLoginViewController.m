@@ -9,11 +9,16 @@
 #import "LBLoginViewController.h"
 #import "BasetabbarViewController.h"
 #import "LBRegisterViewController.h"//注册
+#import "LBFasterLoginViewController.h"//快捷登录
+#import "LBForgetSecretViewController.h"//忘记密码
 
 #import "DropMenu.h"
 #import "GLGroupModel.h"
 
 @interface LBLoginViewController ()<UITextFieldDelegate>
+{
+    BOOL _isSaveAccount;//是否保存账号
+}
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigation;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoH;
@@ -27,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;//账号
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;//密码
 @property (weak, nonatomic) IBOutlet UITextField *group_idTF;//身份
+
+@property (weak, nonatomic) IBOutlet UIButton *signBtn;//是否记住密码
 
 @property (nonatomic, strong)NSMutableArray *groupModels;//身份类型数组
 @property (nonatomic, copy)NSString *group_id;//用户组id
@@ -46,6 +53,19 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
+
+/**
+ 是否记住账号
+ */
+- (IBAction)isSaveAccount:(id)sender {
+    _isSaveAccount = !_isSaveAccount;
+    if(_isSaveAccount){
+        [self.signBtn setImage:[UIImage imageNamed:@"greetselect-y"] forState:UIControlStateNormal];
+    }else{
+        [self.signBtn setImage:[UIImage imageNamed:@"greetselect-n"] forState:UIControlStateNormal];
+    }
+}
+
 /**
  身份选择
  */
@@ -60,8 +80,10 @@
     dic[@"app_handler"] = @"SEARCH";
     dic[@"type"] = @"1";
     
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
     [NetworkManager requestPOSTWithURLStr:kGet_GroupList_URL paramDic:dic finish:^(id responseObject) {
         
+        [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             for (NSDictionary *dict in responseObject[@"data"]) {
                 
@@ -74,6 +96,7 @@
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
     } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
   
@@ -96,12 +119,12 @@
         [arrM addObject:model];
     }
     
-    [DropMenu showMenu:arrM controlFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 5) MenuMaxHeight:150 cellHeight:30 andReturnBlock:^(NSString *selectName, NSString *type_id) {
-        
+    [DropMenu showMenu:arrM controlFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 5) MenuMaxHeight:150 cellHeight:40 isHaveMask:NO andReturnBlock:^(NSString *selectName, NSString *type_id) {
         self.group_idTF.text = selectName;
         self.group_id = type_id;
         
     }];
+
 }
 
 
@@ -133,6 +156,11 @@
 忘记密码
  */
 - (IBAction)forgetSecretEvent:(UITapGestureRecognizer *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBForgetSecretViewController *forgetVC = [[LBForgetSecretViewController alloc] init];
+    [self.navigationController pushViewController:forgetVC animated:YES];
+    
 }
 
 /**
@@ -149,6 +177,17 @@
 - (IBAction)showSecretEvent:(UIButton *)sender {
     sender.selected = !sender.selected;
 }
+
+/**
+ 快捷登录
+ */
+- (IBAction)fastLogin:(id)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBFasterLoginViewController *fastVC = [[LBFasterLoginViewController alloc] init];
+    [self.navigationController pushViewController:fastVC animated:YES];
+}
+
+
 
 -(void)updateViewConstraints{
     [super updateViewConstraints];
@@ -199,9 +238,15 @@
     dict[@"group_id"] = self.group_id;
     dict[@"password"] = self.passwordTF.text;
     
+    self.loginBt.enabled = NO;
+    self.loginBt.backgroundColor = [UIColor grayColor];
+    [EasyShowLodingView showLodingText:@"登录中..."];
+    
     [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:dict finish:^(id responseObject) {
         
-//        [_loadV removeloadview];
+        [EasyShowLodingView hidenLoding];
+        self.loginBt.enabled = YES;
+        self.loginBt.backgroundColor = MAIN_COLOR;
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
@@ -209,24 +254,26 @@
             
             [UserModel defaultUser].loginstatus = YES;
             
+            [UserModel defaultUser].token = responseObject[@"data"][@"token"];
+            [UserModel defaultUser].uid = responseObject[@"data"][@"uid"];
+            [UserModel defaultUser].user_name = responseObject[@"data"][@"user_name"];
+            
             [usermodelachivar achive];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
             
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
-        }else if([responseObject[@"code"] integerValue] == 412){
-//            self.serviceNumLabel.hidden = NO;
-//            self.serviceNumLabel.text = [NSString stringWithFormat:@"客服电话:%@",[UserModel defaultUser].user_server];
-            
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
         }else{
-            
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
         
     } enError:^(NSError *error) {
-//        [_loadV removeloadview];
+        
+        self.loginBt.enabled = YES;
+        self.loginBt.backgroundColor = MAIN_COLOR;
+        
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
