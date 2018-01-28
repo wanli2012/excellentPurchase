@@ -24,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;//提交
 
 @property (nonatomic, copy)NSString *bid;//所在银行id
+//银行类型
+@property(nonatomic, strong) NSMutableArray * bankTypeArray;
+///银行卡类型
+@property(nonatomic, strong) NSMutableArray * bankIDArray;
 
 @end
 
@@ -43,29 +47,54 @@
 - (IBAction)ChooseBankType:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
     
+    if(self.bankTypeArray.count != 0){
+        [self popBankTypeChooseView];
+        return;
+    }
     
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
     
-    [LBChooseBankTypeView areaPickerViewWithAreaBlock:^(NSString *bankType, NSString *bankcardType) {
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kBank_NameList_URL paramDic:dic finish:^(id responseObject) {
         
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [self.bankIDArray removeAllObjects];
+            [self.bankTypeArray removeAllObjects];
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                
+                [self.bankTypeArray addObject:dict[@"bank_name"]];
+                [self.bankIDArray addObject:dict[@"id"]];
+            }
+            
+            [self popBankTypeChooseView];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
     }];
-    
-}
 
+}
+///弹出银行选择框
+- (void)popBankTypeChooseView{
+    
+    [LBChooseBankTypeView areaPickerViewWithtitleArr:self.bankTypeArray idArr:self.bankIDArray andAreaBlock:^(NSString *bankType, NSString *bankcardType) {
+        
+        NSLog(@"%@%@",bankType,bankcardType);
+    }];
+}
 /**
  获取验证码
  */
 - (IBAction)getCode:(id)sender {
-    
-//    if (self.phoneTF.text.length <=0 ) {
-//        [EasyShowTextView showInfoText:@"请输入手机号码"];
-//        return;
-//    }else{
-//        if (![predicateModel valiMobile:self.phoneTF.text]) {
-//            [EasyShowTextView showInfoText:@"手机号格式不对"];
-//            return;
-//        }
-//    }
-    
     [self startTime];//获取倒计时
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -132,6 +161,74 @@
  */
 - (IBAction)submit:(id)sender {
     
+}
+
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if (textField == self.ownerTF) {
+        [self.bankNumberTF becomeFirstResponder];
+    }else if(textField == self.bankNumberTF){
+        [self.bankAddressTF becomeFirstResponder];
+    }else if(textField == self.bankAddressTF){
+        [self.codeTF becomeFirstResponder];
+    }else if(textField == self.codeTF){
+        [self.secondPasswordTF becomeFirstResponder];
+    }else if(textField == self.secondPasswordTF){
+        [self.view endEditing:YES];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (range.length == 1 && string.length == 0) {
+        
+        return YES;
+    }
+    if (textField == self.ownerTF) {
+        
+        if (![predicateModel IsChinese:string]) {
+            [self.view endEditing:YES];
+            [EasyShowTextView showInfoText:@"真实姓名请输入汉字"];
+            return NO;
+        }
+    }
+    
+    if (textField == self.bankNumberTF || textField == self.codeTF || textField == self.secondPasswordTF) {
+        
+        if(![predicateModel inputShouldNumber:string]){
+            [self.view endEditing:YES];
+            [EasyShowTextView showInfoText:@"此处只能输入数字"];
+            return NO;
+        }
+    }
+    
+    
+    
+    return YES;
+}
+
+
+
+#pragma mark - 懒加载
+- (NSMutableArray *)bankTypeArray
+{
+    if (!_bankTypeArray) {
+        _bankTypeArray = [NSMutableArray array];
+    }
+    return _bankTypeArray;
+}
+
+
+- (NSMutableArray *)bankIDArray
+{
+    if (!_bankIDArray) {
+        _bankIDArray = [NSMutableArray array];
+    }
+    return _bankIDArray;
 }
 
 @end

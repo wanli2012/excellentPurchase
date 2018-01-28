@@ -11,9 +11,9 @@
 @interface LBChooseBankTypeView()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 //银行类型
-@property(nonatomic, strong) NSMutableArray * bankTypeArray;
+@property(nonatomic, copy) NSArray * bankTypeArray;
 ///银行卡类型
-@property(nonatomic, strong) NSMutableArray * bankIDArray;
+@property(nonatomic, copy) NSArray * bankIDArray;
 ///内容视图
 @property(nonatomic, strong) UIView * containView;
 ///选择回调
@@ -25,16 +25,18 @@
 
 @implementation LBChooseBankTypeView
 
-+ (instancetype)areaPickerViewWithAreaBlock:(void(^)(NSString *bankType, NSString *bankcardType))bankBlock{
++ (instancetype)areaPickerViewWithtitleArr:(NSArray *)titleArr idArr:(NSArray *)idArr andAreaBlock:(void(^)(NSString *bankType, NSString *bankcardType))bankBlock{
     
-    return [LBChooseBankTypeView addBankTypePickerViewBlock:bankBlock];
+    return [LBChooseBankTypeView addBankTypePickerViewWithTitleArr:titleArr idArr:idArr andBlock:bankBlock];
 }
 
-+(instancetype)addBankTypePickerViewBlock:(void(^)(NSString *bankType, NSString *bankcardType))bankBlock{
++(instancetype)addBankTypePickerViewWithTitleArr:(NSArray *)titleArr idArr:(NSArray *)idArr andBlock:(void(^)(NSString *bankType, NSString *bankcardType))bankBlock{
     
     LBChooseBankTypeView *_view = [[LBChooseBankTypeView alloc] init];
     _view.bankBlock = bankBlock;
     
+    _view.bankTypeArray = titleArr;
+    _view.bankIDArray = idArr;
     [_view getData];//获取数据
     
     [_view showView];//展示视图
@@ -54,38 +56,41 @@
 
 -(void)getData{
     
-    if(self.bankTypeArray.count != 0){
-        return;
-    }
+    [self.pickerView reloadAllComponents];
     
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
-    dic[@"uid"] = [UserModel defaultUser].uid;
-    dic[@"token"] = [UserModel defaultUser].token;
     
-    [EasyShowLodingView showLodingText:@"正在请求数据"];
-    [NetworkManager requestPOSTWithURLStr:kBank_NameList_URL paramDic:dic finish:^(id responseObject) {
-        
-        [EasyShowLodingView hidenLoding];
-        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            
-            [self.bankIDArray removeAllObjects];
-            [self.bankTypeArray removeAllObjects];
-            for (NSDictionary *dict in responseObject[@"data"]) {
-                
-                [self.bankTypeArray addObject:dict[@"bank_name"]];
-                [self.bankIDArray addObject:dict[@"id"]];
-            }
-           
-        }else{
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }
-        [self.pickerView reloadAllComponents];
-    } enError:^(NSError *error) {
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
-    }];
-    
+//    [self.pickerView reloadAllComponents];
+//    if(self.bankTypeArray.count != 0){
+//        return;
+//    }
+//
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    dic[@"app_handler"] = @"SEARCH";
+//    dic[@"uid"] = [UserModel defaultUser].uid;
+//    dic[@"token"] = [UserModel defaultUser].token;
+//
+//    [EasyShowLodingView showLodingText:@"正在请求数据"];
+//    [NetworkManager requestPOSTWithURLStr:kBank_NameList_URL paramDic:dic finish:^(id responseObject) {
+//
+//        [EasyShowLodingView hidenLoding];
+//        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+//
+//            [self.bankIDArray removeAllObjects];
+//            [self.bankTypeArray removeAllObjects];
+//            for (NSDictionary *dict in responseObject[@"data"]) {
+//
+//                [self.bankTypeArray addObject:dict[@"bank_name"]];
+//                [self.bankIDArray addObject:dict[@"id"]];
+//            }
+//
+//        }else{
+//            [EasyShowTextView showErrorText:responseObject[@"message"]];
+//        }
+//        [self.pickerView reloadAllComponents];
+//    } enError:^(NSError *error) {
+//        [EasyShowLodingView hidenLoding];
+//        [EasyShowTextView showErrorText:error.localizedDescription];
+//    }];
     
 }
 
@@ -132,6 +137,7 @@
     UIButton *sureBt = [[UIButton alloc]initWithFrame:CGRectMake(UIScreenWidth - 65, 0, 65, toolBar.height)];
     [sureBt setTitle:@"确定" forState:UIControlStateNormal];
     [sureBt setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [sureBt addTarget:self  action:@selector(sureClick) forControlEvents:UIControlEventTouchUpInside];
     [toolBar addSubview:sureBt];
     
     UIPickerView *pickerView = [[UIPickerView alloc] init];
@@ -142,6 +148,16 @@
     [containView addSubview:pickerView];
     self.pickerView = pickerView;
     
+}
+- (void)sureClick{
+    if (_bankBlock) {
+
+        NSInteger row = [self.pickerView selectedRowInComponent:0];
+        NSString *title = self.bankTypeArray[row];
+        NSString *bankid = self.bankIDArray[row];
+        _bankBlock(title,bankid);
+        [self hideView];
+    }
 }
 
 #pragma mark -- UIPickerView
@@ -183,22 +199,22 @@
 
 
 
-- (NSMutableArray *)bankTypeArray
-{
-    if (!_bankTypeArray) {
-        _bankTypeArray = [NSMutableArray array];
-    }
-    return _bankTypeArray;
-}
-
-
-- (NSMutableArray *)bankIDArray
-{
-    if (!_bankIDArray) {
-        _bankIDArray = [NSMutableArray array];
-    }
-    return _bankIDArray;
-}
+//- (NSMutableArray *)bankTypeArray
+//{
+//    if (!_bankTypeArray) {
+//        _bankTypeArray = [NSMutableArray array];
+//    }
+//    return _bankTypeArray;
+//}
+//
+//
+//- (NSMutableArray *)bankIDArray
+//{
+//    if (!_bankIDArray) {
+//        _bankIDArray = [NSMutableArray array];
+//    }
+//    return _bankIDArray;
+//}
 
 
 
