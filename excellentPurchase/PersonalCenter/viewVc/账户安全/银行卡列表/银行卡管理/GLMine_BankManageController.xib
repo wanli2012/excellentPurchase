@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_BankManageController">
             <connections>
+                <outlet property="endNumLabel" destination="U2a-BJ-QVf" id="G7K-1L-E0w"/>
                 <outlet property="switchV" destination="FCB-ji-Eco" id="GF9-aK-jPU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -14,10 +14,10 @@
 @interface LBResetBindBankViewController ()<UITableViewDelegate,UITableViewDataSource,LBResetBindBankDelegate,HCBasePopupViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-/**
- 数据
- */
+
+/**数据*/
 @property (strong, nonatomic) NSArray *dataArr;
+
 @end
 
 static NSString *resetBindBankTableViewCell = @"LBResetBindBankTableViewCell";
@@ -26,12 +26,13 @@ static NSString *resetBindBankTableViewCell = @"LBResetBindBankTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationItem.title = @"银行卡管理";
     self.navigationController.navigationBar.hidden = NO;
     [self.tableview setTableFooterView:[UIView new]];
     
-//注册cell
-[self.tableview registerNib:[UINib nibWithNibName:resetBindBankTableViewCell bundle:nil] forCellReuseIdentifier:resetBindBankTableViewCell];
+    //注册cell
+    [self.tableview registerNib:[UINib nibWithNibName:resetBindBankTableViewCell bundle:nil] forCellReuseIdentifier:resetBindBankTableViewCell];
 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

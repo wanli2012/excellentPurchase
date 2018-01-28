@@ -43,6 +43,9 @@
 #define kUpdate_Phone_Second_Password_URL @"User/update_user_phone"//修改绑定手机号
 #define kBankList_URL @"Bank/get_bank_list"//银行卡列表
 #define kBank_NameList_URL @"Bank/bank_name_list"//银行列表
+#define kBank_addCard_URL @"Bank/add_bank"//添加银行卡
+#define kUnbind_Bank_URL @"Bank/unbind_bank"//解除银行卡绑定
+
 
 
 #endif /* Interface_h */

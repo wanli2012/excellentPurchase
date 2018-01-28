@@ -21,6 +21,8 @@
 #import "UIView+Extension.h"
 #import "UIButton+SetEdgeInsets.h"
 
+//无数据页面
+#import "NodataView.h"
 //输入判断
 #import "predicateModel.h"
 //数据保存
