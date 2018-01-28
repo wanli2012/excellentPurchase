@@ -11,11 +11,13 @@
 #import "LBHorseGroupTableViewCell.h"
 #import "LBImmediateRushBuyCell.h"
 #import "UIImage+GIF.h"
-
+#import <CoreLocation/CoreLocation.h>
 #import "LBSetUpViewController.h"
 #import "LBHistoryHotSerachViewController.h"
+#import "LBSaveLocationInfoModel.h"
+#import "GYZChooseCityController.h"
 
-@interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,GYZChooseCityDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;//导航栏高度
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -24,6 +26,10 @@
 @property (strong, nonatomic)GLNearby_ClassifyHeaderView *classfyHeaderV;//自定义头部视图
 @property (strong, nonatomic)NSArray *tradeArr;//分类数据数组
 @property (weak, nonatomic) IBOutlet UIImageView *activityImage;//底部活动图片
+
+@property (nonatomic,strong ) CLLocationManager *locationManager;//定位服务
+@property (weak, nonatomic) IBOutlet UILabel *cityLb;//城市展示
+
 
 @end
 
@@ -47,6 +53,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self locatemap];//定位
      [self.tableview registerNib:[UINib nibWithNibName:immediateRushBuyCell bundle:nil] forCellReuseIdentifier:immediateRushBuyCell];
     
     adjustsScrollViewInsets_NO(self.tableview, self);
@@ -69,6 +76,85 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         });
         
     });
+}
+- (void)locatemap{
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        _locationManager = [[CLLocationManager alloc]init];
+        _locationManager.delegate = self;
+        [_locationManager requestAlwaysAuthorization];
+        [_locationManager requestWhenInUseAuthorization];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.distanceFilter = 5.0;
+        [_locationManager startUpdatingLocation];
+    }
+}
+#pragma mark - 定位失败
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication]openURL:settingURL];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+#pragma mark - 定位成功
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    [_locationManager stopUpdatingLocation];
+    CLLocation *currentLocation = [locations lastObject];
+    CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
+    //当前的经纬度
+    [LBSaveLocationInfoModel defaultUser].strLatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
+    [LBSaveLocationInfoModel defaultUser].strLongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
+
+    //这里的代码是为了判断didUpdateLocations调用了几次 有可能会出现多次调用 为了避免不必要的麻烦 在这里加个if判断 如果大于1.0就return
+    NSTimeInterval locationAge = -[currentLocation.timestamp timeIntervalSinceNow];
+    if (locationAge > 1.0){//如果调用已经一次，不再执行
+        return;
+    }
+    //地理反编码 可以根据坐标(经纬度)确定位置信息(街道 门牌等)
+    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (placemarks.count >0) {
+            CLPlacemark *placeMark = placemarks[0];
+            [LBSaveLocationInfoModel defaultUser].currentCity = placeMark.locality;
+            self.cityLb.text = [LBSaveLocationInfoModel defaultUser].currentCity;
+            if (![LBSaveLocationInfoModel defaultUser].currentCity) {
+                [EasyShowTextView showInfoText:@"无法定位到当前城市"];
+            }
+            [self getWeatherInfo];
+            //看需求定义一个全局变量来接收赋值
+        }else if (error == nil && placemarks.count){
+
+        }else if (error){
+            
+        }
+    }];
+}
+
+-(void)getWeatherInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
+    manager.requestSerializer.timeoutInterval=20;
+
+    NSString *urlStr1 = [NSString stringWithFormat:@"http://wthrcdn.etouch.cn/weather_mini?"];
+    
+    NSMutableDictionary  *newDic = [NSMutableDictionary dictionary];
+    newDic[@"city"] = [LBSaveLocationInfoModel defaultUser].currentCity;
+    
+    [manager GET:urlStr1 parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
@@ -147,7 +233,35 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
-
+//选择城市列表
+- (IBAction)chooseCityGesture:(UITapGestureRecognizer *)sender {
+    
+    GYZChooseCityController *cityPickerVC = [[GYZChooseCityController alloc] init];
+    [cityPickerVC setDelegate:self];
+    
+    //    cityPickerVC.locationCityID = @"1400010000";
+    //    cityPickerVC.commonCitys = [[NSMutableArray alloc] initWithArray: @[@"1400010000", @"100010000"]];        // 最近访问城市，如果不设置，将自动管理
+    //    cityPickerVC.hotCitys = @[@"100010000", @"200010000", @"300210000", @"600010000", @"300110000"];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:cityPickerVC] animated:YES completion:^{
+        
+    }];
+}
+//选择城市
+- (void) cityPickerController:(GYZChooseCityController *)chooseCityController
+                didSelectCity:(GYZCity *)city{
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+//取消
+- (void) cityPickerControllerDidCancel:(GYZChooseCityController *)chooseCityController{
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat   offset = scrollView.contentOffset.y;

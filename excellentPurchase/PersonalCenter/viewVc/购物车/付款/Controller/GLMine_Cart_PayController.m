@@ -53,7 +53,7 @@
     GLMine_Cart_PayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Cart_PayCell" forIndexPath:indexPath];
     
     cell.model = self.models[indexPath.row];
-    cell.selectionStyle = 0;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

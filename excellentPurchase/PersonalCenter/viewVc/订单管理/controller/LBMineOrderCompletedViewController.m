@@ -7,12 +7,12 @@
 //
 
 #import "LBMineOrderCompletedViewController.h"
-#import "LBMineOrdersHeaderViewTableViewCell.h"
+#import "LBOrdersCompletTableViewCell.h"
 #import "LBMineOrdersHeaderView.h"
 #import "LBMineOrdersFooterView.h"
 #import "LBMineOrderDetailViewController.h"
 
-static NSString *mineOrdersHeaderViewTableViewCell = @"LBMineOrdersHeaderViewTableViewCell";
+static NSString *mineOrdersHeaderViewTableViewCell = @"LBOrdersCompletTableViewCell";
 
 @interface LBMineOrderCompletedViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -48,7 +48,7 @@ static NSString *mineOrdersHeaderViewTableViewCell = @"LBMineOrdersHeaderViewTab
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    LBMineOrdersHeaderViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrdersHeaderViewTableViewCell forIndexPath:indexPath];
+    LBOrdersCompletTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrdersHeaderViewTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     

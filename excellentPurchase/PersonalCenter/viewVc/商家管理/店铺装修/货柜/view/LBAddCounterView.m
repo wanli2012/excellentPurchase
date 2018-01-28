@@ -8,6 +8,7 @@
 
 #import "LBAddCounterView.h"
 #import "LBAddCounterContainerView.h"
+#import "LBAddOrEditProductChooseView.h"
 
 @interface LBAddCounterView()<UITextFieldDelegate>
 
@@ -44,17 +45,34 @@
     
     _containerview =[[NSBundle mainBundle]loadNibNamed:@"LBAddCounterContainerView" owner:nil options:nil].firstObject;
     _containerview.backgroundColor = [UIColor whiteColor];
-    _containerview.frame =CGRectMake(10, UIScreenHeight, UIScreenWidth - 20, 280);
+    _containerview.frame =CGRectMake(10, UIScreenHeight, UIScreenWidth - 20, 320);
     _containerview.layer.cornerRadius = 4;
     _containerview.clipsToBounds = YES;
     [_containerview.surebt addTarget:self action:@selector(sureEvent) forControlEvents:UIControlEventTouchUpInside];
     [_containerview.cancelBt addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
     _containerview.textfiled.delegate = self;
+    
+    UITapGestureRecognizer *tapgestureType = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(choseType)];
+    [_containerview.typeView addGestureRecognizer:tapgestureType];
+    
     [self addSubview:_containerview];
     
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideView)];
     [self addGestureRecognizer:tapgesture];
     
+}
+
+-(void)choseType{
+    _containerview.rightbt.selected = !_containerview.rightbt.selected;
+    
+    if (_containerview.rightbt.selected == YES) {
+        [LBAddOrEditProductChooseView showWholeClassifyViewBlock:^(NSInteger section) {
+            
+        } cancelBlock:^{
+            
+        }];
+    }
+
 }
 
 -(void)sureEvent{
@@ -65,6 +83,7 @@
 
     
 }
+
 
 - (void)showView {
     [[UIApplication sharedApplication].keyWindow addSubview:self];

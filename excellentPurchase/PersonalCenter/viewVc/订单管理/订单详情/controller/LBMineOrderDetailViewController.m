@@ -32,6 +32,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewoneTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTwoTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewThreeTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomVH;
 
 @end
 
@@ -113,6 +114,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         if (indexPath.row >= 0 && indexPath.row < self.productArr.count) {
             LBMineOrderDetailproductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailproductsTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (self.typeindex == 3){
+                cell.replayBt.hidden = NO;
+            }
             return cell;
         }else if ((indexPath.row >= self.productArr.count) && (indexPath.row < self.productArr.count + 2)){
             LBMineOrderDetailprateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailprateTableViewCell forIndexPath:indexPath];
@@ -139,6 +143,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         }else if (indexPath.row == self.productArr.count+5){
             LBMineOrderNumbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderNumbersTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (self.typeindex == 3){
+                cell.wuliuBt.hidden = NO;
+            }
             return cell;
         }
     }
@@ -191,7 +198,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     }else if (self.typeindex == 2){
         self.viewTwoTop.constant = 0;
     }else if (self.typeindex == 3){
-        self.viewTwoTop.constant = 0;
+        self.bottomVH.constant = 0;
     }else if (self.typeindex == 4){
         self.viewThreeTop.constant = 0;
     }

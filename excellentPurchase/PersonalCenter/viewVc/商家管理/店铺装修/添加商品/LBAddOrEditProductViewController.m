@@ -56,6 +56,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     
     [LBAddOrEditProductChooseView showWholeClassifyViewBlock:^(NSInteger section) {
         
+    } cancelBlock:^{
+        
     }];
 }
 
@@ -67,6 +69,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (IBAction)tapgesturebrand:(UITapGestureRecognizer *)sender {
     
     [LBAddOrEditProductChooseSingalView showWholeClassifyViewBlock:^(NSInteger section) {
+        
+    } cancelBlock:^{
         
     }];
     

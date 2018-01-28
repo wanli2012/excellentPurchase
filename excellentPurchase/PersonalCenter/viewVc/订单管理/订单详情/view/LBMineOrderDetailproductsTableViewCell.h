@@ -10,4 +10,6 @@
 
 @interface LBMineOrderDetailproductsTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *replayBt;
+
 @end

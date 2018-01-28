@@ -23,6 +23,7 @@
     self.navigationItem.title = @"出售";
     
     
+    
 }
 
 -(void)updateViewConstraints{

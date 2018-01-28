@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineOrderDetailViewController">
             <connections>
+                <outlet property="bottomVH" destination="lc6-iZ-fKa" id="Atx-Kb-Emg"/>
                 <outlet property="tableview" destination="GqL-RS-u0B" id="6Xj-J2-PhW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewThreeTop" destination="xsh-hZ-dxx" id="nyk-Xi-j0B"/>

@@ -285,6 +285,30 @@
 		F9264A2B20196F80000A0011 /* LBStoreAmendPhotosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9264A2920196F80000A0011 /* LBStoreAmendPhotosCell.xib */; };
 		F9288219201C241E000B0474 /* LBFasterLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9288217201C241E000B0474 /* LBFasterLoginViewController.m */; };
 		F928821A201C241E000B0474 /* LBFasterLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9288218201C241E000B0474 /* LBFasterLoginViewController.xib */; };
+		F928821E201C485E000B0474 /* LBOrdersCompletTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F928821C201C485E000B0474 /* LBOrdersCompletTableViewCell.m */; };
+		F928821F201C485E000B0474 /* LBOrdersCompletTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F928821D201C485E000B0474 /* LBOrdersCompletTableViewCell.xib */; };
+		F9288221201C62D5000B0474 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288220201C62D5000B0474 /* CoreLocation.framework */; };
+		F9288224201C6554000B0474 /* LBSaveLocationInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9288223201C6554000B0474 /* LBSaveLocationInfoModel.m */; };
+		F9288226201C6E67000B0474 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288225201C6E67000B0474 /* libstdc++.6.0.9.tbd */; };
+		F9288228201C6E72000B0474 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288227201C6E72000B0474 /* CoreTelephony.framework */; };
+		F928822A201C6E7E000B0474 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288229201C6E7E000B0474 /* libsqlite3.0.tbd */; };
+		F928822C201C6E86000B0474 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F928822B201C6E86000B0474 /* Security.framework */; };
+		F928822E201C6E92000B0474 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F928822D201C6E92000B0474 /* CoreGraphics.framework */; };
+		F9288230201C6E9B000B0474 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F928822F201C6E9B000B0474 /* SystemConfiguration.framework */; };
+		F9288232201C6EA8000B0474 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288231201C6EA8000B0474 /* OpenGLES.framework */; };
+		F9288234201C6EB5000B0474 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288233201C6EB4000B0474 /* QuartzCore.framework */; };
+		F928823B201C6FC2000B0474 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288236201C6FBA000B0474 /* BaiduMapAPI_Location.framework */; };
+		F928823C201C6FC2000B0474 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288237201C6FBA000B0474 /* BaiduMapAPI_Utils.framework */; };
+		F928823D201C6FC2000B0474 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288238201C6FBB000B0474 /* BaiduMapAPI_Search.framework */; };
+		F928823E201C6FC2000B0474 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288239201C6FBD000B0474 /* BaiduMapAPI_Base.framework */; };
+		F928823F201C6FC2000B0474 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F928823A201C6FC1000B0474 /* BaiduMapAPI_Map.framework */; };
+		F9288242201C6FF1000B0474 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288240201C6FEF000B0474 /* libcrypto.a */; };
+		F9288243201C6FF1000B0474 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9288241201C6FF1000B0474 /* libssl.a */; };
+		F928824F201C7C8D000B0474 /* CityData.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9288245201C7C8C000B0474 /* CityData.plist */; };
+		F9288250201C7C8D000B0474 /* GYZChooseCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9288247201C7C8C000B0474 /* GYZChooseCityController.m */; };
+		F9288251201C7C8D000B0474 /* GYZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824A201C7C8C000B0474 /* GYZCity.m */; };
+		F9288252201C7C8D000B0474 /* GYZCityGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */; };
+		F9288253201C7C8D000B0474 /* GYZCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
 		F93409FA2009CFDD0002DBB8 /* LBTmallChildredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F93409F82009CFDD0002DBB8 /* LBTmallChildredViewController.xib */; };
@@ -549,7 +573,7 @@
 		F96CF4BB2018BFA40070658C /* LBFinishProductsCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96CF4B92018BFA40070658C /* LBFinishProductsCell1.xib */; };
 		F96CF4C02018C44F0070658C /* LBFinishAmendPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96CF4BE2018C44F0070658C /* LBFinishAmendPhotosViewController.m */; };
 		F96CF4C12018C44F0070658C /* LBFinishAmendPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96CF4BF2018C44F0070658C /* LBFinishAmendPhotosViewController.xib */; };
-		F9712C83200460030015037A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C82200460030015037A /* AppDelegate.m */; };
+		F9712C83200460030015037A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9712C82200460030015037A /* AppDelegate.mm */; };
 		F9712C86200460040015037A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9712C85200460040015037A /* ViewController.m */; };
 		F9712C89200460040015037A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9712C87200460040015037A /* Main.storyboard */; };
 		F9712C8B200460040015037A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9712C8A200460040015037A /* Assets.xcassets */; };
@@ -1092,6 +1116,37 @@
 		F9288216201C241E000B0474 /* LBFasterLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFasterLoginViewController.h; sourceTree = "<group>"; };
 		F9288217201C241E000B0474 /* LBFasterLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFasterLoginViewController.m; sourceTree = "<group>"; };
 		F9288218201C241E000B0474 /* LBFasterLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFasterLoginViewController.xib; sourceTree = "<group>"; };
+		F928821B201C485E000B0474 /* LBOrdersCompletTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBOrdersCompletTableViewCell.h; sourceTree = "<group>"; };
+		F928821C201C485E000B0474 /* LBOrdersCompletTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBOrdersCompletTableViewCell.m; sourceTree = "<group>"; };
+		F928821D201C485E000B0474 /* LBOrdersCompletTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBOrdersCompletTableViewCell.xib; sourceTree = "<group>"; };
+		F9288220201C62D5000B0474 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F9288222201C6554000B0474 /* LBSaveLocationInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBSaveLocationInfoModel.h; sourceTree = "<group>"; };
+		F9288223201C6554000B0474 /* LBSaveLocationInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBSaveLocationInfoModel.m; sourceTree = "<group>"; };
+		F9288225201C6E67000B0474 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		F9288227201C6E72000B0474 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F9288229201C6E7E000B0474 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		F928822B201C6E86000B0474 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F928822D201C6E92000B0474 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F928822F201C6E9B000B0474 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F9288231201C6EA8000B0474 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		F9288233201C6EB4000B0474 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F9288236201C6FBA000B0474 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		F9288237201C6FBA000B0474 /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
+		F9288238201C6FBB000B0474 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
+		F9288239201C6FBD000B0474 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		F928823A201C6FC1000B0474 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
+		F9288240201C6FEF000B0474 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		F9288241201C6FF1000B0474 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		F9288245201C7C8C000B0474 /* CityData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CityData.plist; sourceTree = "<group>"; };
+		F9288246201C7C8C000B0474 /* GYZChooseCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYZChooseCityController.h; sourceTree = "<group>"; };
+		F9288247201C7C8C000B0474 /* GYZChooseCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZChooseCityController.m; sourceTree = "<group>"; };
+		F9288248201C7C8C000B0474 /* GYZChooseCityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYZChooseCityDelegate.h; sourceTree = "<group>"; };
+		F9288249201C7C8C000B0474 /* GYZCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYZCity.h; sourceTree = "<group>"; };
+		F928824A201C7C8C000B0474 /* GYZCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCity.m; sourceTree = "<group>"; };
+		F928824B201C7C8C000B0474 /* GYZCityGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYZCityGroupCell.h; sourceTree = "<group>"; };
+		F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCityGroupCell.m; sourceTree = "<group>"; };
+		F928824D201C7C8C000B0474 /* GYZCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYZCityHeaderView.h; sourceTree = "<group>"; };
+		F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCityHeaderView.m; sourceTree = "<group>"; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		F93409F42009CF680002DBB8 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		F93409F62009CFDD0002DBB8 /* LBTmallChildredViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallChildredViewController.h; sourceTree = "<group>"; };
@@ -1531,7 +1586,7 @@
 		F96CF4BF2018C44F0070658C /* LBFinishAmendPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFinishAmendPhotosViewController.xib; sourceTree = "<group>"; };
 		F9712C7E200460030015037A /* excellentPurchase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excellentPurchase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9712C81200460030015037A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F9712C82200460030015037A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F9712C82200460030015037A /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		F9712C84200460040015037A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F9712C85200460040015037A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F9712C88200460040015037A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1672,12 +1727,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9288234201C6EB5000B0474 /* QuartzCore.framework in Frameworks */,
+				F9288232201C6EA8000B0474 /* OpenGLES.framework in Frameworks */,
+				F9288243201C6FF1000B0474 /* libssl.a in Frameworks */,
+				F928823E201C6FC2000B0474 /* BaiduMapAPI_Base.framework in Frameworks */,
+				F928823F201C6FC2000B0474 /* BaiduMapAPI_Map.framework in Frameworks */,
+				F928823C201C6FC2000B0474 /* BaiduMapAPI_Utils.framework in Frameworks */,
+				F9288230201C6E9B000B0474 /* SystemConfiguration.framework in Frameworks */,
+				F928822E201C6E92000B0474 /* CoreGraphics.framework in Frameworks */,
+				F928822C201C6E86000B0474 /* Security.framework in Frameworks */,
+				F928822A201C6E7E000B0474 /* libsqlite3.0.tbd in Frameworks */,
+				F9288228201C6E72000B0474 /* CoreTelephony.framework in Frameworks */,
+				F928823D201C6FC2000B0474 /* BaiduMapAPI_Search.framework in Frameworks */,
+				F9288226201C6E67000B0474 /* libstdc++.6.0.9.tbd in Frameworks */,
+				F9288221201C62D5000B0474 /* CoreLocation.framework in Frameworks */,
 				4AB5889C201B315B009ADC9A /* JavaScriptCore.framework in Frameworks */,
 				4AB5889A201B312A009ADC9A /* WebKit.framework in Frameworks */,
 				4AB58898201B2F3A009ADC9A /* VerifyCode.framework in Frameworks */,
 				F9712CE320048A900015037A /* AudioToolbox.framework in Frameworks */,
 				F9712CE1200488C60015037A /* AVFoundation.framework in Frameworks */,
 				633A62E24EB5FE7BF013EFEC /* Pods_excellentPurchase.framework in Frameworks */,
+				F928823B201C6FC2000B0474 /* BaiduMapAPI_Location.framework in Frameworks */,
+				F9288242201C6FF1000B0474 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3477,9 +3548,35 @@
 			path = "店铺资料修改";
 			sourceTree = "<group>";
 		};
+		F9288235201C6EDA000B0474 /* 百度地图 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "百度地图";
+			sourceTree = "<group>";
+		};
+		F9288244201C7C8C000B0474 /* GYZChooseCity */ = {
+			isa = PBXGroup;
+			children = (
+				F9288245201C7C8C000B0474 /* CityData.plist */,
+				F9288246201C7C8C000B0474 /* GYZChooseCityController.h */,
+				F9288247201C7C8C000B0474 /* GYZChooseCityController.m */,
+				F9288248201C7C8C000B0474 /* GYZChooseCityDelegate.h */,
+				F9288249201C7C8C000B0474 /* GYZCity.h */,
+				F928824A201C7C8C000B0474 /* GYZCity.m */,
+				F928824B201C7C8C000B0474 /* GYZCityGroupCell.h */,
+				F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */,
+				F928824D201C7C8C000B0474 /* GYZCityHeaderView.h */,
+				F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */,
+			);
+			path = GYZChooseCity;
+			sourceTree = "<group>";
+		};
 		F93409F12009CF560002DBB8 /* ThreePart */ = {
 			isa = PBXGroup;
 			children = (
+				F9288244201C7C8C000B0474 /* GYZChooseCity */,
+				F9288235201C6EDA000B0474 /* 百度地图 */,
 				F9426B95201B2E0E0054417E /* LBPayPasswordView */,
 				F9426AA9201ABC1F0054417E /* Classes */,
 				F9426A94201ABC1F0054417E /* EasyShowView */,
@@ -3933,6 +4030,8 @@
 			children = (
 				F95073082004BDD20026D28F /* LBHorseRaceLampModel.h */,
 				F95073092004BDD20026D28F /* LBHorseRaceLampModel.m */,
+				F9288222201C6554000B0474 /* LBSaveLocationInfoModel.h */,
+				F9288223201C6554000B0474 /* LBSaveLocationInfoModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -4759,7 +4858,7 @@
 				4AB58888201B04D3009ADC9A /* 数据保存 */,
 				4AB58890201B197A009ADC9A /* 网络请求 */,
 				F9712C81200460030015037A /* AppDelegate.h */,
-				F9712C82200460030015037A /* AppDelegate.m */,
+				F9712C82200460030015037A /* AppDelegate.mm */,
 				F9712C84200460040015037A /* ViewController.h */,
 				F9712C85200460040015037A /* ViewController.m */,
 				F9712CDB20046D8C0015037A /* PrefixHeader.pch */,
@@ -4892,6 +4991,22 @@
 		F9712CDF200488C60015037A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9288240201C6FEF000B0474 /* libcrypto.a */,
+				F9288241201C6FF1000B0474 /* libssl.a */,
+				F9288239201C6FBD000B0474 /* BaiduMapAPI_Base.framework */,
+				F9288236201C6FBA000B0474 /* BaiduMapAPI_Location.framework */,
+				F928823A201C6FC1000B0474 /* BaiduMapAPI_Map.framework */,
+				F9288238201C6FBB000B0474 /* BaiduMapAPI_Search.framework */,
+				F9288237201C6FBA000B0474 /* BaiduMapAPI_Utils.framework */,
+				F9288233201C6EB4000B0474 /* QuartzCore.framework */,
+				F9288231201C6EA8000B0474 /* OpenGLES.framework */,
+				F928822F201C6E9B000B0474 /* SystemConfiguration.framework */,
+				F928822D201C6E92000B0474 /* CoreGraphics.framework */,
+				F928822B201C6E86000B0474 /* Security.framework */,
+				F9288229201C6E7E000B0474 /* libsqlite3.0.tbd */,
+				F9288227201C6E72000B0474 /* CoreTelephony.framework */,
+				F9288225201C6E67000B0474 /* libstdc++.6.0.9.tbd */,
+				F9288220201C62D5000B0474 /* CoreLocation.framework */,
 				4AB5889B201B315B009ADC9A /* JavaScriptCore.framework */,
 				4AB58899201B312A009ADC9A /* WebKit.framework */,
 				F9712CE220048A900015037A /* AudioToolbox.framework */,
@@ -5041,6 +5156,9 @@
 				4AB3DC932016C4B400099650 /* LBMineOrdersHeaderViewTableViewCell.h */,
 				4AB3DC922016C4B400099650 /* LBMineOrdersHeaderViewTableViewCell.m */,
 				4AB3DC952016C4B500099650 /* LBMineOrdersHeaderViewTableViewCell.xib */,
+				F928821B201C485E000B0474 /* LBOrdersCompletTableViewCell.h */,
+				F928821C201C485E000B0474 /* LBOrdersCompletTableViewCell.m */,
+				F928821D201C485E000B0474 /* LBOrdersCompletTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5403,6 +5521,7 @@
 				F9340A43200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.xib in Resources */,
 				4AA3A1B52019D64700C94E49 /* GLMine_Team_StaffingController.xib in Resources */,
 				F97CDC94201593B30036B8E0 /* LBEat_StoreCommentsTableViewCell.xib in Resources */,
+				F928821F201C485E000B0474 /* LBOrdersCompletTableViewCell.xib in Resources */,
 				4AB58876201AD1A6009ADC9A /* GLMine_Seller_IncomeCodeController.xib in Resources */,
 				F97CDC79201576A20036B8E0 /* LBFinancialCenterMarketvalueViewController.xib in Resources */,
 				4A0EDF932018B5080037D47A /* GLMine_Manage_Branch_FailedController.xib in Resources */,
@@ -5479,6 +5598,7 @@
 				4A0B13EE201030EC00AC3334 /* GLNearby_classifyCell.xib in Resources */,
 				4AB3DCC4201700DD00099650 /* GLMine_Cart_ConfirmOrderController.xib in Resources */,
 				F9426B51201ABC810054417E /* LBCounterStutasViewcell.xib in Resources */,
+				F928824F201C7C8D000B0474 /* CityData.plist in Resources */,
 				F96CF44120181A880070658C /* LBMineCenterFlyNoticeDetailTableViewCell.xib in Resources */,
 				F95FE0B32010328700F39919 /* LBBurstingWithPopularityTableViewCell.xib in Resources */,
 				F96CF43F20181A880070658C /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */,
@@ -5641,7 +5761,10 @@
 				F96CF44220181A880070658C /* LBMineCenterFlyNoticeDetailViewController.m in Sources */,
 				4AA3A215201A218200C94E49 /* LBSendRedPackRecoderBasevc.m in Sources */,
 				4A20E98B2012E61900E091EA /* GLMine_Message_LogisticsCell.m in Sources */,
+				F928821E201C485E000B0474 /* LBOrdersCompletTableViewCell.m in Sources */,
 				F9426BA5201B33390054417E /* HHPasswordErrorView.m in Sources */,
+				F9288251201C7C8D000B0474 /* GYZCity.m in Sources */,
+				F9288224201C6554000B0474 /* LBSaveLocationInfoModel.m in Sources */,
 				4AA3A1892019A29100C94E49 /* GLMine_Branch_Online_PendingController.m in Sources */,
 				4AB5886F201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m in Sources */,
 				4A79EE02200F3463001F28D1 /* GLMine_Team_AchieveManageCell.m in Sources */,
@@ -5656,6 +5779,7 @@
 				4AA3A18D2019A67200C94E49 /* GLMine_Branch_OnlineHeader.m in Sources */,
 				F95B535D200CD16200A81954 /* LBCommentListsTableViewCell.m in Sources */,
 				F950730D2004C0240026D28F /* XBTextLoopView.m in Sources */,
+				F9288250201C7C8D000B0474 /* GYZChooseCityController.m in Sources */,
 				4AC74DB5201C36B7006B0F5C /* GLDropCell.m in Sources */,
 				4A79EDD2200EF2D8001F28D1 /* GLMine_Team_TeamAchievementController.m in Sources */,
 				F9426A93201ABB530054417E /* HCBottomPopupViewController.m in Sources */,
@@ -5825,6 +5949,7 @@
 				4A9E18A52011CAED00E1EC05 /* UIButton+CZHExtension.m in Sources */,
 				F97E603B200EE68100C9C4E7 /* JYWeakTimer.m in Sources */,
 				4AC74DB7201C36B7006B0F5C /* DropMenuModel.m in Sources */,
+				F9288253201C7C8D000B0474 /* GYZCityHeaderView.m in Sources */,
 				F9426B49201ABC810054417E /* LBAddCounterContainerView.m in Sources */,
 				F955D1812008AEFD001EEC81 /* LBAddBankCardViewController.m in Sources */,
 				4A79EE16200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m in Sources */,
@@ -5944,6 +6069,7 @@
 				4A02ABFC20175ACD009213AD /* GLMine_PropertyCell.m in Sources */,
 				F9426BAC201B33BD0054417E /* LBHistoryHotSerachViewController.m in Sources */,
 				F95B5346200CAA0000A81954 /* PopoverAction.m in Sources */,
+				F9288252201C7C8D000B0474 /* GYZCityGroupCell.m in Sources */,
 				F97137352005DF690033F38B /* LBLoginViewController.m in Sources */,
 				F96CF4992018AB180070658C /* LBMineEvaluateViewController.m in Sources */,
 				4A19C3802017241200D15D82 /* GLMine_ManagementCell.m in Sources */,
@@ -5969,7 +6095,7 @@
 				F95072D5200492430026D28F /* LBHomeViewController.m in Sources */,
 				F97CDC6D2015767F0036B8E0 /* LBFinancialCenterTableViewCell.m in Sources */,
 				F96CF447201822760070658C /* LBMineCollectionStoreTableViewCell.m in Sources */,
-				F9712C83200460030015037A /* AppDelegate.m in Sources */,
+				F9712C83200460030015037A /* AppDelegate.mm in Sources */,
 				4A5413A32010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m in Sources */,
 				F97CDC8120157FAD0036B8E0 /* LBFinancialCenetrSaleViewController.m in Sources */,
 				F96CF4AB2018B51D0070658C /* LBFinancialCenterRecoderTableViewCell.m in Sources */,
@@ -6156,11 +6282,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/excellentPurchase/ThreePart",
+					"$(PROJECT_DIR)",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sunjun.excellentPurchase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6178,11 +6310,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/excellentPurchase/ThreePart",
+					"$(PROJECT_DIR)",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sunjun.excellentPurchase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

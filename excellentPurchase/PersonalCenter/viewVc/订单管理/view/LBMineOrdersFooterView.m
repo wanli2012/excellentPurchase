@@ -100,9 +100,8 @@
         [self.Btone setTitle:@"确认收货" forState:UIControlStateNormal];
     }else if (self.typeindex == 3){
         self.resonLb.hidden = YES;
-        self.BtTwo.hidden = NO;
-        [self.BtTwo setTitle:@"查看物流" forState:UIControlStateNormal];
-        [self.Btone setTitle:@"待评价" forState:UIControlStateNormal];
+        self.BtTwo.hidden = YES;
+        [self.Btone setTitle:@"查看物流" forState:UIControlStateNormal];
     }else if (self.typeindex == 4){
         self.resonLb.hidden = NO;
         self.BtTwo.hidden = YES;
