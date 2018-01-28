@@ -139,9 +139,10 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     
     self.hidesBottomBarWhenPushed = YES;
     LBAddBankCardViewController *vc =[[LBAddBankCardViewController alloc]init];
+    WeakSelf;
     vc.block = ^(BOOL isUnbind) {
         if (isUnbind) {
-            
+            [weakSelf postRequest:YES];
         }
     };
     [self.navigationController pushViewController:vc animated:YES];
@@ -161,7 +162,7 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LBBankCardListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:bankCardListTableViewCell forIndexPath:indexPath];
-    cell.model = self.models[indexPath.row];
+    cell.model = self.models[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    
     return cell;
@@ -188,17 +189,18 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    GLMine_CardModel *model = self.models[indexPath.row];
+    GLMine_CardModel *model = self.models[indexPath.section];
     
     self.hidesBottomBarWhenPushed = YES;
     
     GLMine_BankManageController *VC = [[GLMine_BankManageController alloc] init];
     VC.endNum = model.endnumber;
     VC.bank_id = model.bank_id;
+    WeakSelf;
     VC.block = ^(BOOL isUnbind) {
         if (isUnbind) {
             ///刷新
-            [self postRequest:YES];
+            [weakSelf postRequest:YES];
         }
     };
     [self.navigationController pushViewController:VC animated:YES];

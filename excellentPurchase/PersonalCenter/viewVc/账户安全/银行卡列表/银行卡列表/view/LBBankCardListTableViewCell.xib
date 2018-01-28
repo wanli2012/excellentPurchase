@@ -88,6 +88,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bankNameLabel" destination="slU-Yj-K8Z" id="pRu-uv-5Zh"/>
+                <outlet property="bgImageV" destination="6UV-RI-Xoh" id="Auy-vn-d0Z"/>
                 <outlet property="cardNumberLabel" destination="8ud-QF-bQK" id="Kf2-ht-Ae8"/>
                 <outlet property="iconImageV" destination="jgq-IM-Qqe" id="LFV-Ww-xJo"/>
             </connections>
