@@ -27,19 +27,17 @@
     
     self.endNumLabel.text = [NSString stringWithFormat:@"银行卡尾号:%@",self.endNum];
     
-    [self.switchV setOn:NO];
-    
+    if ([self.is_default integerValue] == 1) {//银行卡是否默认 1:是 2:否
+        [self.switchV setOn:YES];
+    }else{
+        [self.switchV setOn:NO];
+    }
 }
 
 //设置默认
 - (IBAction)setDefault:(UISwitch *)sender {
-    
-    if (sender.isOn) {
-        NSLog(@"设为默认");
-        
-    }else{
-        NSLog(@"取消默认");
-    }
+
+    [self setDefaultCard:sender.isOn];
 }
 
 //设置默认银行卡 取消默认
@@ -50,26 +48,42 @@
     dic[@"bank_id"] = self.bank_id;
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"is_default"] = self.bank_id;//是否默认状态 1:是 2:否
+    
+    if (self.switchV.isOn) {//是否默认状态 1:是 2:否
+        dic[@"is_default"] = @"1";
+    }else{
+        dic[@"is_default"] = @"2";
+    }
     
     [NetworkManager requestPOSTWithURLStr:kSetDefaultCard_URL paramDic:dic finish:^(id responseObject) {
-        
+
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+
+            if (self.switchV.isOn) {
+                [EasyShowTextView showSuccessText:@"设置默认成功"];
+            }else{
+                [EasyShowTextView showSuccessText:@"取消默认成功"];
+            }
             
-            [EasyShowTextView showSuccessText:@"解除绑定成功"];
- 
-            [self.navigationController popViewControllerAnimated:YES];
+            if (self.block) {
+                self.block(YES);
+            }
             
         }else{
+            [self.switchV setOn:!self.switchV.isOn];
+            
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
+        
     } enError:^(NSError *error) {
+        
+        [self.switchV setOn:!self.switchV.isOn];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
+
 //解除绑定
 - (IBAction)unbindBtn:(id)sender {
-    NSLog(@"解除绑定");
     
     HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
     
@@ -102,8 +116,10 @@
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     
+    [EasyShowLodingView showLodingText:@"请求中..."];
+    
     [NetworkManager requestPOSTWithURLStr:kUnbind_Bank_URL paramDic:dic finish:^(id responseObject) {
-        
+        [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [EasyShowTextView showSuccessText:@"解除绑定成功"];
@@ -118,6 +134,7 @@
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
     } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }

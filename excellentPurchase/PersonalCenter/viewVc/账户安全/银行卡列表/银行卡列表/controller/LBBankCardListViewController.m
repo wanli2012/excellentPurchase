@@ -196,6 +196,8 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     GLMine_BankManageController *VC = [[GLMine_BankManageController alloc] init];
     VC.endNum = model.endnumber;
     VC.bank_id = model.bank_id;
+    VC.is_default = model.is_default;
+    
     WeakSelf;
     VC.block = ^(BOOL isUnbind) {
         if (isUnbind) {

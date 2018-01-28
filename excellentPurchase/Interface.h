@@ -29,6 +29,12 @@
 #define CAPTCHAID @"e81c8a046b5e4d08999ef30e01999e35"
 
 
+//获取appStore上的最新版本号地址
+#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1300026210"
+//下载地址
+#define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1300026210?mt=8"
+
+
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
