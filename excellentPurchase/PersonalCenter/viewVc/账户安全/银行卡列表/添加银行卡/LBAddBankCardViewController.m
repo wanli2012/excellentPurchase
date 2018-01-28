@@ -225,8 +225,9 @@
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [EasyShowTextView showSuccessText:@"添加银行卡成功"];
+            WeakSelf;
             if (self.block) {
-                self.block(YES);
+                weakSelf.block(YES);
             }
             [self.navigationController popViewControllerAnimated:YES];
         }else{

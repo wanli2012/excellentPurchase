@@ -36,11 +36,40 @@
     
     if (sender.isOn) {
         NSLog(@"设为默认");
+        
     }else{
         NSLog(@"取消默认");
     }
 }
 
+//设置默认银行卡 取消默认
+- (void)setDefault:(BOOL)isSetDefault{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"bank_id"] = self.bank_id;
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"is_default"] = self.bank_id;//是否默认状态 1:是 2:否
+    [NetworkManager requestPOSTWithURLStr:kUnbind_Bank_URL paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showSuccessText:@"解除绑定成功"];
+            
+            if (self.block) {
+                self.block(YES);
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
 //解除绑定
 - (IBAction)unbindBtn:(id)sender {
     NSLog(@"解除绑定");
