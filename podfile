@@ -17,5 +17,6 @@ target 'excellentPurchase' do
     pod 'SSZipArchive', '>= 1.8.1'
     pod 'Toast', '>= 3.0'
     pod 'Reachability', '>= 3.2'
-    pod 'pop', ’~> 1.0.8' 
+    pod 'pop', ’~> 1.0.8'
+    pod 'MJRefresh'
 end

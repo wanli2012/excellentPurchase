@@ -29,6 +29,10 @@
 
 @property (nonatomic,strong ) CLLocationManager *locationManager;//定位服务
 @property (weak, nonatomic) IBOutlet UILabel *cityLb;//城市展示
+//天气图片
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
+//温度
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLb;
 
 
 @end
@@ -92,10 +96,12 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 #pragma mark - 定位失败
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [[UIApplication sharedApplication]openURL:settingURL];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请在设置中打开定位重新定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"重新定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//        [[UIApplication sharedApplication]openURL:settingURL];
+         WeakSelf;
+         [weakSelf locatemap];//定位
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -144,16 +150,63 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
     manager.requestSerializer.timeoutInterval=20;
 
-    NSString *urlStr1 = [NSString stringWithFormat:@"http://wthrcdn.etouch.cn/weather_mini?"];
+ //NSString *urlStr1 = [NSString stringWithFormat:@"http://wthrcdn.etouch.cn/weather_mini?"];
+//    NSMutableDictionary  *newDic = [NSMutableDictionary dictionary];
+//    newDic[@"city"] = [LBSaveLocationInfoModel defaultUser].currentCity;
     
-    NSMutableDictionary  *newDic = [NSMutableDictionary dictionary];
-    newDic[@"city"] = [LBSaveLocationInfoModel defaultUser].currentCity;
+    NSString *url = [NSString stringWithFormat:@"https://api.thinkpage.cn/v3/weather/daily.json?key=osoydf7ademn8ybv&location=%@&language=zh-Hans&start=0&days=3",[LBSaveLocationInfoModel defaultUser].currentCity];
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [manager GET:urlStr1 parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
+    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (responseObject) {
+            self.temperatureLb.text = [NSString stringWithFormat:@"%@℃~%@℃",responseObject[@"results"][0][@"daily"][0][@"low"],responseObject[@"results"][0][@"daily"][0][@"high"]];
+            [self addAnimationWithType:responseObject[@"results"][0][@"daily"][0][@"code_day"]];
+        }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+    
+}
+
+//添加动画
+- (void)addAnimationWithType:(NSString *)weatherType{
+    
+   
+    NSInteger type = [weatherType integerValue];
+    if (type >= 0 && type < 4) { //晴天
+        self.weatherImage.image = [UIImage imageNamed:@"天气38"];
+    }
+    else if (type >= 4 && type < 10) { //多云
+       self.weatherImage.image = [UIImage imageNamed:@"天气8"];
+    }
+    else if (type >= 10 && type < 20) { //雨
+      self.weatherImage.image = [UIImage imageNamed:@"天气10"];
+    }
+    else if (type >= 20 && type < 26) { //雪
+       self.weatherImage.image = [UIImage imageNamed:@"天气37"];
+    }
+    else if (type >= 26 && type < 30) { //沙尘暴
+        self.weatherImage.image = [UIImage imageNamed:@"天气28"];
+    }
+    else if (type >= 30 && type < 32) { //雾霾
+        self.weatherImage.image = [UIImage imageNamed:@"天气30"];
+    }
+    else if (type >= 32 && type < 37) { //风
+       self.weatherImage.image = [UIImage imageNamed:@"天气32"];
+        
+    }
+    else if (type == 37) { //冷
+        self.weatherImage.image = [UIImage imageNamed:@"天气21"];
+        
+    }
+    else if (type == 38) { //热
+        self.weatherImage.image = [UIImage imageNamed:@"天气38"];
+        
+    }else{
+ 
+    }
+   
     
 }
 
