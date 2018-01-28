@@ -46,6 +46,15 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [self addCarouselView1];
     [self.tableView registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
+    
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        NSLog(@"1111");
+    } footerRefresh:^{
+        NSLog(@"2222");
+    }];
+    
+    [LBDefineRefrsh dismissRefresh:self.tableView];
+    
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区

@@ -685,6 +685,7 @@
 		F98D1A2C201DA3A80021D3B1 /* 天气8.png in Resources */ = {isa = PBXBuildFile; fileRef = F98D1A04201DA3A80021D3B1 /* 天气8.png */; };
 		F98D1A2D201DA3A80021D3B1 /* 天气9.png in Resources */ = {isa = PBXBuildFile; fileRef = F98D1A05201DA3A80021D3B1 /* 天气9.png */; };
 		F98D1A2E201DA3A80021D3B1 /* 天气99.png in Resources */ = {isa = PBXBuildFile; fileRef = F98D1A06201DA3A80021D3B1 /* 天气99.png */; };
+		F98D1A34201DB3EC0021D3B1 /* LBDefineRefrsh.m in Sources */ = {isa = PBXBuildFile; fileRef = F98D1A33201DB3EC0021D3B1 /* LBDefineRefrsh.m */; };
 		F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C727B20099E4200E996FD /* taotaoShop.xcassets */; };
 		F9D7CAB5201B44C100C87C58 /* Label_btn.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D7CAA1201B44C100C87C58 /* Label_btn.m */; };
 		F9D7CAB6201B44C100C87C58 /* XC_label.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D7CAA3201B44C100C87C58 /* XC_label.m */; };
@@ -1783,6 +1784,8 @@
 		F98D1A04201DA3A80021D3B1 /* 天气8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "天气8.png"; sourceTree = "<group>"; };
 		F98D1A05201DA3A80021D3B1 /* 天气9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "天气9.png"; sourceTree = "<group>"; };
 		F98D1A06201DA3A80021D3B1 /* 天气99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "天气99.png"; sourceTree = "<group>"; };
+		F98D1A32201DB3EC0021D3B1 /* LBDefineRefrsh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDefineRefrsh.h; sourceTree = "<group>"; };
+		F98D1A33201DB3EC0021D3B1 /* LBDefineRefrsh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDefineRefrsh.m; sourceTree = "<group>"; };
 		F99C727B20099E4200E996FD /* taotaoShop.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = taotaoShop.xcassets; sourceTree = "<group>"; };
 		F9D7CAA0201B44C100C87C58 /* Label_btn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label_btn.h; sourceTree = "<group>"; };
 		F9D7CAA1201B44C100C87C58 /* Label_btn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label_btn.m; sourceTree = "<group>"; };
@@ -2961,6 +2964,8 @@
 				4A9E18982011C51B00E1EC05 /* formattime.m */,
 				4A9E18942011C50D00E1EC05 /* predicateModel.h */,
 				4A9E18952011C50D00E1EC05 /* predicateModel.m */,
+				F98D1A32201DB3EC0021D3B1 /* LBDefineRefrsh.h */,
+				F98D1A33201DB3EC0021D3B1 /* LBDefineRefrsh.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -6079,6 +6084,7 @@
 				F9426B04201ABC200054417E /* ZLPhotoAssets.m in Sources */,
 				F96971C12011849A00966E26 /* LBEat_StoreDetailViewController.m in Sources */,
 				4AB3DCB42016C4CA00099650 /* LBMineOrderDetailAdressTableViewCell.m in Sources */,
+				F98D1A34201DB3EC0021D3B1 /* LBDefineRefrsh.m in Sources */,
 				F955D1772008A788001EEC81 /* LBBankCardListViewController.m in Sources */,
 				4AB3DC972016C4B500099650 /* LBMineOrdersHeaderViewTableViewCell.m in Sources */,
 				4A0B140120108E8200AC3334 /* GLMine_Team_AccountChooseController.m in Sources */,
