@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LBEat_cateDataModel.h"
 
 @interface GLNearby_classifyCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
-
+@property (copy , nonatomic)LBEat_cateDataModel *model;
 @end

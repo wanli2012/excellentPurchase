@@ -16,7 +16,8 @@
 #import "LBEatAndDrinkViewController.h"
 #import "LBEatShopProdcutClassifyViewController.h"//商店详情
 #import "LBFinishMainViewController.h"
-
+#import "LBEat_cateModel.h"
+#import "LBSaveLocationInfoModel.h"
 
 static NSString *burstingWithPopularityTableViewCell = @"LBBurstingWithPopularityTableViewCell";
 static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
@@ -29,6 +30,9 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
  头部轮播
  */
 @property (nonatomic, strong) JYCarousel *carouselView;
+@property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, assign) NSInteger  allCount;
+@property (nonatomic, assign) NSInteger  page;
 
 @end
 
@@ -42,73 +46,88 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    WeakSelf;
+    self.page = 1;
     [self addCarouselView1];
     [self.tableView registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
     
+    
+    [self loadData:1 refreshDirect:YES];
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
-        NSLog(@"1111");
+           [weakSelf loadData:1 refreshDirect:YES];
     } footerRefresh:^{
-        NSLog(@"2222");
+        if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
+           [EasyShowTextView showInfoText:@"没有数据了"];
+        }else{
+            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
+        }
     }];
     
-    [LBDefineRefrsh dismissRefresh:self.tableView];
+}
+
+-(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"cate_id"] = [LBEat_cateModel defaultUser].cate_id;
+     dic[@"lng"] = [LBSaveLocationInfoModel defaultUser].strLongitude;
+     dic[@"lat"] = [LBSaveLocationInfoModel defaultUser].strLatitude;
+    dic[@"page"] = @(page);
+    
+    [NetworkManager requestPOSTWithURLStr:HappyHappy paramDic:dic finish:^(id responseObject) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.allCount = [responseObject[@"data"][@"count"] integerValue];
+            
+            if (isDirect) {
+                [self.dataArr removeAllObjects];
+            }
+            
+            for (NSDictionary *dic in responseObject[@"data"][@"page_data"]) {
+                LBEat_cateDataModel *model = [LBEat_cateDataModel mj_objectWithKeyValues:dic];
+                [self.dataArr addObject:model];
+            }
+            
+            [self.tableView reloadData];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+         [LBDefineRefrsh dismissRefresh:self.tableView];
+    }];
     
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 2; //返回值是多少既有几个分区
+    return self.dataArr.count; //返回值是多少既有几个分区
 }
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //分别设置每个分组上面显示的单元格个数
-    if (section == 0) {
-        return 1;
-    }else if (section == 1){
-        return 3;
-    }
-    return 0;
+   
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return  (UIScreenWidth - 36)/3.0 * EatrecommendScle + 25;
-    }else if (indexPath.section == 1){
+
         return EatCellH;
-    }
-    return 0;
 }
 
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        LBBurstingWithPopularityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:burstingWithPopularityTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else if (indexPath.section == 1){
         GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:nearby_classifyCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.model = self.dataArr[indexPath.row];
         return cell;
-    }
-    
-    return [[UITableViewCell alloc]init];
-}
-
-#pragma mark - 重写----设置自定义的标题和标注
--(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
-    GLIntegralHeaderView *headerLabel = [[NSBundle mainBundle]loadNibNamed:@"GLIntegralHeaderView" owner:self options:nil].firstObject;
-    
-    
-    return headerLabel;
-    
 }
 
 #pragma mark - 重写----设置标题和标注的高度
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50.0f;
+    return 0.00001f;
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0001f;
@@ -126,15 +145,21 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     
     //block方式创建
     __weak typeof(self) weakSelf = self;
-    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray: @[@"eat-banner",@"eat-banner"]];
+    NSMutableArray *imageArray;
+    if ([LBEat_cateModel defaultUser].cate_banners.count <= 0) {
+        imageArray = [[NSMutableArray alloc] initWithArray: @[@"eat-banner"]];
+    }else{
+        imageArray = [[NSMutableArray alloc] initWithArray: [LBEat_cateModel defaultUser].cate_banners];
+    }
     if (!_carouselView) {
         _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth * carouselViewHScle) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
             carouselConfig.pageContollType = RightPageControl;
             carouselConfig.interValTime = 3;
             return carouselConfig;
         } clickBlock:^(NSInteger index) {
-            NSLog(@"%ld",index);
+
         }];
+        
         self.tableView.tableHeaderView = _carouselView;
     }
     //开始轮播
@@ -155,5 +180,15 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
         }
     }
     return nil;
+}
+
+-(NSArray*)dataArr{
+    
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    
+    return _dataArr;
+    
 }
 @end
