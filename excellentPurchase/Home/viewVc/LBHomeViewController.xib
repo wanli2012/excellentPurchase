@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBHomeViewController">
             <connections>
                 <outlet property="activityImage" destination="ivC-re-5Xl" id="GRJ-Ue-c91"/>
+                <outlet property="cityLb" destination="TVQ-W7-K10" id="09E-QN-wID"/>
                 <outlet property="navigationH" destination="QGW-0d-c3I" id="L0l-IO-MZQ"/>
                 <outlet property="navigationView" destination="bun-fc-fBf" id="zFz-BF-pTF"/>
                 <outlet property="searchView" destination="4x0-LI-vvj" id="4ss-0I-Bdp"/>
@@ -135,7 +136,7 @@
                                         <constraint firstAttribute="width" constant="15" id="cKI-98-Osg"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVQ-W7-K10">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="城市" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVQ-W7-K10">
                                     <rect key="frame" x="0.0" y="0.0" width="29" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="Pe9-Y0-Kro"/>
@@ -146,6 +147,7 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="TVQ-W7-K10" firstAttribute="top" secondItem="uuW-2O-WyW" secondAttribute="top" id="06h-hF-dg4"/>
                                 <constraint firstItem="Hih-LR-CvJ" firstAttribute="centerY" secondItem="uuW-2O-WyW" secondAttribute="centerY" id="4hr-jq-9gd"/>
@@ -155,6 +157,9 @@
                                 <constraint firstAttribute="bottom" secondItem="TVQ-W7-K10" secondAttribute="bottom" id="g9O-nC-mrg"/>
                                 <constraint firstAttribute="height" constant="30" id="wfi-n3-oiF"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="PsY-ki-8bA" appends="YES" id="Qmz-uZ-OnI"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -193,6 +198,11 @@
         <tapGestureRecognizer id="5i4-pQ-clQ">
             <connections>
                 <action selector="tapgestureSearch:" destination="-1" id="0td-G9-XK4"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="PsY-ki-8bA">
+            <connections>
+                <action selector="chooseCityGesture:" destination="-1" id="PnO-fS-4sk"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

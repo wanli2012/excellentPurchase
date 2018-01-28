@@ -147,7 +147,7 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    return UITableViewCellEditingStyleDelete;
 }
 
 - (UIView *)editingView{

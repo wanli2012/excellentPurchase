@@ -8,6 +8,11 @@
 
 #import "LBAddCounterContainerView.h"
 
+@interface LBAddCounterContainerView()
+
+
+@end
+
 @implementation LBAddCounterContainerView
 
 

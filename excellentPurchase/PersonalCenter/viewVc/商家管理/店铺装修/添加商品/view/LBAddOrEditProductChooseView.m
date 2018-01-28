@@ -29,18 +29,21 @@ UICollectionViewDataSource>
 
 ///选择回调
 @property (nonatomic, copy) void (^bankBlock)(NSInteger section);
+///取消
+@property (nonatomic, copy) void (^cancelBlock)(void);
 
 @end
 
 @implementation LBAddOrEditProductChooseView
 
-+(instancetype)showWholeClassifyViewBlock:(void (^)(NSInteger ))bankBlock{
-    return [self addWholeClassifyBlock:bankBlock];
++(instancetype)showWholeClassifyViewBlock:(void (^)(NSInteger ))bankBlock cancelBlock:(void (^)(void))cancelBlock{
+    return [self addWholeClassifyBlock:bankBlock cancelBlock:cancelBlock];
 }
 
-+(instancetype)addWholeClassifyBlock:(void (^)(NSInteger ))bankBlock{
++(instancetype)addWholeClassifyBlock:(void (^)(NSInteger ))bankBlock cancelBlock:(void (^)(void))cancelBlock{
     LBAddOrEditProductChooseView *view = [[LBAddOrEditProductChooseView alloc]init];
     view.bankBlock = bankBlock;
+    view.cancelBlock = cancelBlock;
     [view showView];//展示视图
     
     return view;
@@ -232,7 +235,9 @@ UICollectionViewDataSource>
     }];
 }
 - (void)hideView {
-    
+    if (self.cancelBlock) {
+        self.cancelBlock();
+    }
     [UIView animateWithDuration:0.3 animations:^{
         self.backgroundColor = [UIColor clearColor];
         self.containerView.y = UIScreenHeight;

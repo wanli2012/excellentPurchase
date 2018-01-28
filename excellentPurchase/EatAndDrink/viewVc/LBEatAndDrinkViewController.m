@@ -12,7 +12,7 @@
 #import "LBEat_ActivityViewController.h"
 #import "LBEat_WholeClassifyView.h"
 #import "LBEat_StoreClassifyViewController.h"
-
+#import "LBSaveLocationInfoModel.h"
 #define pageMenuH 50   //菜单高度
 
 @interface LBEatAndDrinkViewController ()<SPPageMenuDelegate,UIScrollViewDelegate>
@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) NSMutableArray *controllerClassNames;
 @property (nonatomic, strong) NSArray *menuArr;
+@property (weak, nonatomic) IBOutlet UILabel *cityLb;
 
 @end
 
@@ -30,6 +31,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.cityLb.text =  [LBSaveLocationInfoModel defaultUser].currentCity;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

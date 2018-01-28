@@ -10,4 +10,7 @@
 
 @interface LBMineOrderNumbersTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *wuliuBt;
+
+
 @end
