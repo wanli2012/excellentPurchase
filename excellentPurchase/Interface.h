@@ -45,7 +45,7 @@
 #define kBank_NameList_URL @"Bank/bank_name_list"//银行列表
 #define kBank_addCard_URL @"Bank/add_bank"//添加银行卡
 #define kUnbind_Bank_URL @"Bank/unbind_bank"//解除银行卡绑定
-
+#define kSetDefaultCard_URL @"Bank/set_default_bank"//设置默认银行卡
 
 
 #endif /* Interface_h */

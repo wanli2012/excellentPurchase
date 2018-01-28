@@ -43,7 +43,7 @@
 }
 
 //设置默认银行卡 取消默认
-- (void)setDefault:(BOOL)isSetDefault{
+- (void)setDefaultCard:(BOOL)isSetDefault{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"UPDATE";
@@ -51,16 +51,13 @@
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"is_default"] = self.bank_id;//是否默认状态 1:是 2:否
-    [NetworkManager requestPOSTWithURLStr:kUnbind_Bank_URL paramDic:dic finish:^(id responseObject) {
+    
+    [NetworkManager requestPOSTWithURLStr:kSetDefaultCard_URL paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [EasyShowTextView showSuccessText:@"解除绑定成功"];
-            
-            if (self.block) {
-                self.block(YES);
-            }
-            
+ 
             [self.navigationController popViewControllerAnimated:YES];
             
         }else{
