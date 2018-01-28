@@ -36,8 +36,12 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self addMenu];//加载菜单
+    [self loadData];//加载数据
+    
+}
+
+-(void)loadData{
     
 }
 
