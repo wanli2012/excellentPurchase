@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_CardListModel.h"
 
 @interface LBBankCardListTableViewCell : UITableViewCell
+
+@property (nonatomic, strong)GLMine_CardModel *model;
 
 @end

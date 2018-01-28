@@ -52,19 +52,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工商银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slU-Yj-K8Z">
-                                <rect key="frame" x="72" y="33.5" width="61.5" height="18"/>
+                                <rect key="frame" x="72" y="43.5" width="61.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="储蓄卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1y-eA-w2L">
-                                <rect key="frame" x="72" y="56.5" width="37" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123456" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ud-QF-bQK">
-                                <rect key="frame" x="72" y="81" width="53" height="18"/>
+                                <rect key="frame" x="72" y="63.5" width="53" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -72,14 +66,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="H1y-eA-w2L" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="trailing" constant="10" id="0J6-Az-VDs"/>
                             <constraint firstItem="qjU-dB-I3Q" firstAttribute="leading" secondItem="m4E-18-4wV" secondAttribute="leading" constant="20" id="7w2-74-IMh"/>
                             <constraint firstItem="qjU-dB-I3Q" firstAttribute="centerY" secondItem="m4E-18-4wV" secondAttribute="centerY" id="8my-II-HtA"/>
-                            <constraint firstItem="slU-Yj-K8Z" firstAttribute="top" secondItem="qjU-dB-I3Q" secondAttribute="top" constant="-10" id="9az-ae-FgM"/>
-                            <constraint firstItem="8ud-QF-bQK" firstAttribute="top" secondItem="H1y-eA-w2L" secondAttribute="bottom" constant="10" id="HFB-Cm-cyk"/>
+                            <constraint firstItem="slU-Yj-K8Z" firstAttribute="top" secondItem="qjU-dB-I3Q" secondAttribute="top" id="9az-ae-FgM"/>
+                            <constraint firstItem="8ud-QF-bQK" firstAttribute="bottom" secondItem="jgq-IM-Qqe" secondAttribute="bottom" id="J5N-U8-DTa"/>
                             <constraint firstAttribute="bottom" secondItem="6UV-RI-Xoh" secondAttribute="bottom" id="JUz-G1-Uer"/>
                             <constraint firstAttribute="trailing" secondItem="6UV-RI-Xoh" secondAttribute="trailing" id="LjI-ir-Obg"/>
-                            <constraint firstItem="H1y-eA-w2L" firstAttribute="top" secondItem="slU-Yj-K8Z" secondAttribute="bottom" constant="5" id="U56-jz-Rr2"/>
                             <constraint firstItem="8ud-QF-bQK" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="trailing" constant="10" id="brS-29-yXp"/>
                             <constraint firstItem="slU-Yj-K8Z" firstAttribute="leading" secondItem="qjU-dB-I3Q" secondAttribute="trailing" constant="10" id="mSx-2D-egr"/>
                             <constraint firstItem="6UV-RI-Xoh" firstAttribute="top" secondItem="m4E-18-4wV" secondAttribute="top" id="nfj-aT-OcM"/>
@@ -94,6 +86,11 @@
                     <constraint firstAttribute="trailing" secondItem="m4E-18-4wV" secondAttribute="trailing" constant="10" id="sXa-Lj-oX0"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="bankNameLabel" destination="slU-Yj-K8Z" id="pRu-uv-5Zh"/>
+                <outlet property="cardNumberLabel" destination="8ud-QF-bQK" id="Kf2-ht-Ae8"/>
+                <outlet property="iconImageV" destination="jgq-IM-Qqe" id="LFV-Ww-xJo"/>
+            </connections>
             <point key="canvasLocation" x="0.5" y="-84.5"/>
         </tableViewCell>
     </objects>

@@ -9,6 +9,8 @@
 #import "LBAddBankCardViewController.h"
 #import "LBChooseBankTypeView.h"
 
+#import "IQKeyboardManager.h"
+
 @interface LBAddBankCardViewController ()
 {
     BOOL _isDefault;//是否设为默认银行卡
@@ -37,8 +39,19 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"添加银行卡";
+    [IQKeyboardManager sharedManager].enable = NO;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [IQKeyboardManager sharedManager].enable = YES;
 }
 
 /**
@@ -83,12 +96,14 @@
     }];
 
 }
+
 ///弹出银行选择框
 - (void)popBankTypeChooseView{
     
     [LBChooseBankTypeView areaPickerViewWithtitleArr:self.bankTypeArray idArr:self.bankIDArray andAreaBlock:^(NSString *bankType, NSString *bankcardType) {
-        
-        NSLog(@"%@%@",bankType,bankcardType);
+
+        self.bankTypeTF.text = bankType;
+        self.bid = bankcardType;
     }];
 }
 /**
@@ -99,25 +114,18 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
-    dic[@"uid"] = [UserModel defaultUser].uid;
-    dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"name"] = self.ownerTF.text;
-    dic[@"banknumber"] = self.bankNumberTF.text;
-    dic[@"bid"] = self.bid;
-    dic[@"bank_adderss"] = self.bankAddressTF.text;
-    dic[@"is_default"] = @(_isDefault);
-    dic[@"pwd"] = self.secondPasswordTF.text;
-    dic[@"yzm"] = self.codeTF.text;
+    dic[@"phone"] = [UserModel defaultUser].phone;
     
     [NetworkManager requestPOSTWithURLStr:kGETCODE_URL paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [EasyShowTextView showSuccessText:@"发送成功"];
+            return ;
         }
-        
     } enError:^(NSError *error) {
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
+    
     
 }
 
@@ -161,6 +169,73 @@
  */
 - (IBAction)submit:(id)sender {
     
+    if (self.ownerTF.text.length == 0) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"请输入持卡人姓名"];
+        return;
+    }
+    if (self.ownerTF.text.length > 15) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"输入内容太长了"];
+        return;
+    }
+    if (self.bankNumberTF.text.length == 0) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"请输入银行卡号"];
+        return;
+    }
+    if (![predicateModel IsBankCard:self.bankNumberTF.text]) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"银行卡号输入不合法"];
+        return;
+    }
+    
+//    if (self.codeTF.text.length == 0) {
+//        [self.view endEditing:YES];
+//        [EasyShowTextView showInfoText:@"请输入验证码"];
+//        return;
+//    }
+    
+    if (self.secondPasswordTF.text.length == 0) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"请输入二级密码"];
+        return;
+    }
+    if (self.secondPasswordTF.text.length != 6) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"二级密码输入错误"];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"name"] = self.ownerTF.text;
+    dic[@"banknumber"] = self.bankNumberTF.text;
+    dic[@"bid"] = self.bid;
+    dic[@"bank_adderss"] = self.bankAddressTF.text;
+    dic[@"is_default"] = @(_isDefault);
+    dic[@"pwd"] = self.secondPasswordTF.text;
+    dic[@"yzm"] = self.codeTF.text;
+    
+    [NetworkManager requestPOSTWithURLStr:kBank_addCard_URL paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showSuccessText:@"添加银行卡成功"];
+            if (self.block) {
+                self.block(YES);
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 
 
@@ -194,6 +269,11 @@
             [self.view endEditing:YES];
             [EasyShowTextView showInfoText:@"真实姓名请输入汉字"];
             return NO;
+        }else if(textField.text.length > 15){
+            [self.view endEditing:YES];
+             textField.text = [textField.text substringToIndex:14];
+            [EasyShowTextView showInfoText:@"你输入的内容太长了"];
+            return NO;
         }
     }
     
@@ -205,13 +285,9 @@
             return NO;
         }
     }
-    
-    
-    
+  
     return YES;
 }
-
-
 
 #pragma mark - 懒加载
 - (NSMutableArray *)bankTypeArray

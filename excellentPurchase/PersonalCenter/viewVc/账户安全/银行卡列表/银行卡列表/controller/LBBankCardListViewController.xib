@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBBankCardListViewController">
             <connections>
-                <outlet property="tableview" destination="t4Z-b8-N1E" id="b4k-4i-FC7"/>
+                <outlet property="tableView" destination="t4Z-b8-N1E" id="Mhi-S0-OAF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

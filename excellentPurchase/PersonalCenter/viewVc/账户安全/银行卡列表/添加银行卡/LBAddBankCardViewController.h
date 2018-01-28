@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^ReturnValueBlock) (BOOL isUnbind);
+
 @interface LBAddBankCardViewController : UIViewController
+
+@property(nonatomic, copy) ReturnValueBlock block;
 
 @end

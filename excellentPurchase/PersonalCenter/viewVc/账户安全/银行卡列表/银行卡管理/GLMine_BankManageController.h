@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^ReturnValueBlock) (BOOL isUnbind);
 @interface GLMine_BankManageController : UIViewController
+
+@property (nonatomic, copy)NSString *endNum;//银行卡尾数
+@property (nonatomic, copy)NSString *bank_id;//银行卡id
+
+@property(nonatomic, copy) ReturnValueBlock block;
 
 @end
