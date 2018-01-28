@@ -28,6 +28,7 @@
 @property (nonatomic, assign)CGFloat cellHeight;
 
 @property (nonatomic, copy)NSArray *dataArr;
+@property (nonatomic, assign)BOOL isHaveMask;
 
 ///回调
 @property (nonatomic, copy) void(^menuBlock)(NSString *selectName,NSString *type_id);
@@ -36,12 +37,12 @@
 
 @implementation DropMenu
 
-+(instancetype)showMenu:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight cellHeight:(CGFloat)cellHeight andReturnBlock:(void (^)(NSString *, NSString *))menuBlock{
++(instancetype)showMenu:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight cellHeight:(CGFloat)cellHeight isHaveMask:(BOOL)isHaveMask  andReturnBlock:(void (^)(NSString *, NSString *))menuBlock{
     
-     return [DropMenu setShowPosition:titlesArr controlFrame:rect MenuMaxHeight:menuHeight cellHeight:cellHeight andReturnBlock:menuBlock];
+     return [DropMenu setShowPosition:titlesArr controlFrame:rect MenuMaxHeight:menuHeight isHaveMask:isHaveMask  cellHeight:cellHeight andReturnBlock:menuBlock];
 }
 
-+(instancetype)setShowPosition:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight cellHeight:(CGFloat)cellHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock{
++(instancetype)setShowPosition:(NSArray *)titlesArr controlFrame:(CGRect)rect MenuMaxHeight:(CGFloat)menuHeight isHaveMask:(BOOL)isHaveMask  cellHeight:(CGFloat)cellHeight andReturnBlock:(void(^)(NSString *selectName,NSString *type_id))menuBlock{
     
     DropMenu *_memu = [[DropMenu alloc] init];
     
@@ -50,6 +51,7 @@
     _memu.menuHeight = menuHeight;
     _memu.cellHeight = cellHeight;
     _memu.dataArr = titlesArr;
+    _memu.isHaveMask = isHaveMask;
     
     [_memu updateConstraints];
     [_memu refreshData];
@@ -89,7 +91,12 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         
-        self.backgroundColor = CZHRGBColor(0x000000, 0);
+        if (self.isHaveMask) {
+            self.backgroundColor = CZHRGBColor(0x000000, 0.3);
+        }else{
+            
+            self.backgroundColor = CZHRGBColor(0x000000, 0);
+        }
         
         self.containView.height = self.menuHeight;
         self.tableView.height = self.containView.height;

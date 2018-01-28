@@ -11,6 +11,8 @@
 #import "LBBankCardListTableViewCell.h"
 #import "LBAddBankCardViewController.h"
 
+#import "GLMine_BankManageController.h"//银行卡管理
+
 @interface LBBankCardListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -35,6 +37,10 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"添加银行卡"] style:UIBarButtonItemStylePlain target:self action:@selector(addBanCard)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    
+    //kBankList_URL
+    
     
 }
 
@@ -86,7 +92,9 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_BankManageController *VC = [[GLMine_BankManageController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 

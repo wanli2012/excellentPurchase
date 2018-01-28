@@ -56,11 +56,12 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([self.dataArr[indexPath.row] isEqualToString:@"重置二级密码"]) {
+    if ([self.dataArr[indexPath.row] isEqualToString:@"找回二级密码"]) {
         self.hidesBottomBarWhenPushed = YES;
         LBFindSecondPassWordViewController *vc =[[LBFindSecondPassWordViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if ([self.dataArr[indexPath.row] isEqualToString:@"找回二级密码"]){
+        
+    }else if ([self.dataArr[indexPath.row] isEqualToString:@"重置二级密码"]){
         self.hidesBottomBarWhenPushed = YES;
         LBChangePasswordViewController *vc =[[LBChangePasswordViewController alloc]init];
         vc.naviStr = @"重置二级密码";

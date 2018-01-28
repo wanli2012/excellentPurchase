@@ -36,6 +36,14 @@
     self.delegate=self;
     [self addViewControllers];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(exitLogin) name:@"exitLogin" object:nil];
+    
+}
+
+//退出跳转登录
+-(void)exitLogin{
+    
+    self.selectedIndex = 0;
 }
 
 - (void)addViewControllers {

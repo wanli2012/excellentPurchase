@@ -11,9 +11,9 @@
 @interface LBChooseBankTypeView()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 //银行类型
-@property(nonatomic, strong) NSArray * bankTypeArray;
+@property(nonatomic, strong) NSMutableArray * bankTypeArray;
 ///银行卡类型
-@property(nonatomic, strong) NSArray * bankcardTypeArray;
+@property(nonatomic, strong) NSMutableArray * bankIDArray;
 ///内容视图
 @property(nonatomic, strong) UIView * containView;
 ///选择回调
@@ -53,7 +53,39 @@
 }
 
 -(void)getData{
-    self.bankTypeArray = @[@"a",@"b"];
+    
+    if(self.bankTypeArray.count != 0){
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kBank_NameList_URL paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [self.bankIDArray removeAllObjects];
+            [self.bankTypeArray removeAllObjects];
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                
+                [self.bankTypeArray addObject:dict[@"bank_name"]];
+                [self.bankIDArray addObject:dict[@"id"]];
+            }
+           
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [self.pickerView reloadAllComponents];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
     
 }
 
@@ -151,21 +183,21 @@
 
 
 
-- (NSArray *)bankTypeArray
+- (NSMutableArray *)bankTypeArray
 {
     if (!_bankTypeArray) {
-        _bankTypeArray = [NSArray array];
+        _bankTypeArray = [NSMutableArray array];
     }
     return _bankTypeArray;
 }
 
 
-- (NSArray *)bankcardTypeArray
+- (NSMutableArray *)bankIDArray
 {
-    if (!_bankcardTypeArray) {
-        _bankcardTypeArray = [NSArray array];
+    if (!_bankIDArray) {
+        _bankIDArray = [NSMutableArray array];
     }
-    return _bankcardTypeArray;
+    return _bankIDArray;
 }
 
 
