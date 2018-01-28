@@ -19,6 +19,8 @@
 #define CWIPRandomColor CWIPRandom(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 
 
+#define WeakObj(o) autoreleasepool{} __weak typeof(o) o##Weak = o;
 
+#define WeakSelf __weak typeof(self) weakSelf = self;
 
 #endif /* excellentHeader_h */

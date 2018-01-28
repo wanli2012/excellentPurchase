@@ -41,4 +41,8 @@
 #define CZH_ScaleHeight(__VA_ARGS__)  ([UIScreen mainScreen].bounds.size.height/667)*(__VA_ARGS__)
 
 
+//接口
+
+#define HappyPlayBanner @"Happy/play_banner"//吃喝玩乐首页banner
+
 #endif /* scaleHeader_h */
