@@ -13,6 +13,8 @@
 #import "LBEat_WholeClassifyView.h"
 #import "LBEat_StoreClassifyViewController.h"
 #import "LBSaveLocationInfoModel.h"
+#import "LBEat_cateModel.h"
+
 #define pageMenuH 50   //菜单高度
 
 @interface LBEatAndDrinkViewController ()<SPPageMenuDelegate,UIScrollViewDelegate>
@@ -22,7 +24,8 @@
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) NSMutableArray *controllerClassNames;
-@property (nonatomic, strong) NSArray *menuArr;
+@property (nonatomic, strong) NSMutableArray *menuArr;
+@property (nonatomic, strong) NSArray *dataArr;
 @property (weak, nonatomic) IBOutlet UILabel *cityLb;
 
 @end
@@ -36,12 +39,33 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addMenu];//加载菜单
     [self loadData];//加载数据
     
 }
 
 -(void)loadData{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    [NetworkManager requestPOSTWithURLStr:HappyPlayBanner paramDic:dic finish:^(id responseObject) {
+   
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.dataArr  = responseObject[@"data"];
+            for (int i = 0; i < self.dataArr.count; i++) {
+                [self.controllerClassNames addObject:@"LBEat_CateViewController"];
+                [self.menuArr addObject:self.dataArr[i][@"catename"]];
+            }
+            [LBEat_cateModel defaultUser].cate_id = self.dataArr[0][@"cate_id"];
+            [LBEat_cateModel defaultUser].cate_banners = self.dataArr[0][@"cate_banners"];
+            
+             [self addMenu];//加载菜单
+        }else{
+
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+       
+    }];
     
 }
 
@@ -98,11 +122,14 @@
 #pragma mark - SPPageMenu的代理方法
 
 - (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedAtIndex:(NSInteger)index {
-
+ 
 }
 
 - (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-
+ 
+    [LBEat_cateModel defaultUser].cate_id = self.dataArr[toIndex][@"cate_id"];
+    [LBEat_cateModel defaultUser].cate_banners = self.dataArr[toIndex][@"cate_banners"];
+    
     // 如果fromIndex与toIndex之差大于等于2,说明跨界面移动了,此时不动画.
     if (labs(toIndex - fromIndex) >= 2) {
         [self.scrollView setContentOffset:CGPointMake(UIScreenWidth * toIndex, 0) animated:NO];
@@ -132,10 +159,19 @@
     
 }
 
--(NSArray*)menuArr{
+-(NSArray*)dataArr{
+    
+    if (!_dataArr) {
+        _dataArr = [NSArray array];
+    }
+    
+    return _dataArr;
+    
+}
+-(NSMutableArray*)menuArr{
     
     if (!_menuArr) {
-        _menuArr = [NSArray arrayWithObjects:@"美食",@"住宿",@"玩乐",@"活动",@"全部",nil];
+        _menuArr = [NSMutableArray array];
     }
     
     return _menuArr;
@@ -153,7 +189,7 @@
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {
-        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBEat_CateViewController",@"UIViewController",@"UIViewController",@"LBEat_ActivityViewController",@"UIViewController", nil];
+        _controllerClassNames = [NSMutableArray array];
     }
     
     return _controllerClassNames;

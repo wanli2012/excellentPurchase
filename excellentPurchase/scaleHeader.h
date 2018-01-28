@@ -44,5 +44,6 @@
 //接口
 
 #define HappyPlayBanner @"Happy/play_banner"//吃喝玩乐首页banner
+#define HappyHappy @"Happy/happy"//吃喝玩乐数据展示
 
 #endif /* scaleHeader_h */
