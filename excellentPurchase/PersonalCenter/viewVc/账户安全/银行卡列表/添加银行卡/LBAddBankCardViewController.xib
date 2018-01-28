@@ -56,7 +56,7 @@
                                             <rect key="frame" x="69" y="0.0" width="296" height="54"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="kof-YB-X6x"/>
                                             </connections>
@@ -99,7 +99,7 @@
                                             <rect key="frame" x="85.5" y="0.0" width="279.5" height="54"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="utb-UT-gzP"/>
                                             </connections>
@@ -186,7 +186,7 @@
                                             <rect key="frame" x="85.5" y="0.0" width="279.5" height="54"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="0DN-04-DEs"/>
                                             </connections>
@@ -229,7 +229,7 @@
                                             <rect key="frame" x="69" y="0.0" width="196" height="54"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="g3K-pJ-mJD"/>
                                             </connections>
@@ -293,7 +293,7 @@
                                             <rect key="frame" x="85.5" y="0.0" width="279.5" height="54"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="hoJ-Qv-ebW"/>
                                             </connections>

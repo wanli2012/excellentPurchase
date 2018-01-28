@@ -10,6 +10,6 @@
 
 @interface LBChooseBankTypeView : UIView
 
-+ (instancetype)areaPickerViewWithAreaBlock:(void(^)(NSString *bankType, NSString *bankcardType))bankBlock;
++ (instancetype)areaPickerViewWithtitleArr:(NSArray *)titleArr idArr:(NSArray *)idArr andAreaBlock:(void(^)(NSString *bankType, NSString *bankcardType))bankBlock;
 
 @end

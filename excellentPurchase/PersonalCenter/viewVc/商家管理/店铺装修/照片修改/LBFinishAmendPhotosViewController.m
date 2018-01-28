@@ -85,12 +85,14 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.collectionview1) {
         if (indexPath.row == self.assets1.count) {//选择照片
+            
             HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
             __weak typeof(self) wself = self;
             HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
                 [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
                 [wself getcamera];
             } withType:HCBottomPopupActionSelectItemTypeDefault];
+            
             HCBottomPopupAction * action2 = [HCBottomPopupAction actionWithTitle:@"从手机相册选择" withSelectedBlock:^{
                 [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
                 [wself photoSelectet:self.assets1 collectionview:self.collectionview1];
