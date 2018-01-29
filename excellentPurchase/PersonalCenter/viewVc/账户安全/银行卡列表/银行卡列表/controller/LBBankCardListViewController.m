@@ -17,7 +17,6 @@
 @interface LBBankCardListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, strong)NodataView *nodataV;
@@ -32,6 +31,7 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
 @implementation LBBankCardListViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
 
     self.navigationItem.title = @"银行卡";
@@ -42,48 +42,32 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"添加银行卡"] style:UIBarButtonItemStylePlain target:self action:@selector(addBanCard)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    //
-    
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     
-//    __weak __typeof(self) weakSelf = self;
-//    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//
-//        [weakSelf postRequest:YES];
-//
-//    }];
-//
-//    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//
-//        [weakSelf postRequest:NO];
-//
-//    }];
-//
-//    // 设置文字
-//    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
-//
-//    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
-//
-//    [header setTitle:@"服务器正在狂奔..." forState:MJRefreshStateRefreshing];
-//
-//    self.tableView.mj_header = header;
-//    self.tableView.mj_footer = footer;
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [self postRequest:YES];
+        
+    } footerRefresh:^{
+        
+        [self postRequest:NO];
+        
+    }];
     
     self.page = 1;
     [self postRequest:YES];
-    
 }
+
+#pragma mark -  请求数据
 
 - (void)postRequest:(BOOL)isRefresh{
     
     if (isRefresh) {
         self.page = 1;
-        
     }else{
-        self.page ++ ;
+        self.page ++;
     }
-    
+
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
     dic[@"app_handler"] = @"SEARCH";
@@ -94,6 +78,8 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     [EasyShowLodingView showLodingText:@"正在加载数据"];
     
     [NetworkManager requestPOSTWithURLStr:kBankList_URL paramDic:dic finish:^(id responseObject) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
         
         [EasyShowLodingView hidenLoding];
         
@@ -118,19 +104,13 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
         
     } enError:^(NSError *error) {
 
+        [LBDefineRefrsh dismissRefresh:self.tableView];
         [EasyShowLodingView hidenLoding];
         [self.tableView reloadData];
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];
 }
-
-//- (void)endRefresh {
-//
-//    [self.tableView.mj_header endRefreshing];
-//    [self.tableView.mj_footer endRefreshing];
-//
-//}
 
 /**
  添加银行卡
@@ -145,6 +125,7 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
             [weakSelf postRequest:YES];
         }
     };
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }

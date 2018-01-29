@@ -7,6 +7,13 @@
 //
 
 #import "LBHorseGroupTableViewCell.h"
+#import "LBHorseRaceLampModel.h"
+
+@interface LBHorseGroupTableViewCell ()
+
+@property (nonatomic, copy)NSArray *dataSource;
+
+@end
 
 @implementation LBHorseGroupTableViewCell
 
@@ -37,12 +44,46 @@
     if (!self.loopView) {
         CGFloat h = bannerHeiget;
         CGFloat w = UIScreenWidth - h;
-        self.loopView = [XBTextLoopView textLoopViewWith:@[@"1",@"1",@"1",@"1"] loopInterval:3.0 initWithFrame:CGRectMake(h , 0, w, h) selectBlock:^(NSString *selectString, NSInteger index) {
-            NSLog(@"%@===index%ld", selectString, (long)index);
+        WeakSelf;
+        self.loopView = [XBTextLoopView textLoopViewWith:self.dataSource loopInterval:3.0 initWithFrame:CGRectMake(h , 0, w, h) selectBlock:^(NSString *selectString, NSInteger index) {
+            
+            if([weakSelf.delegate respondsToSelector:@selector(toDetail:infoIndex:)]){
+                [weakSelf.delegate toDetail:self.index infoIndex:index];
+            }
+            
+//            NSLog(@"%@===index%ld", selectString, (long)index);
         }];
     }
-
+    
     [self addSubview:self.loopView];
+    
+}
+
+- (void)setNewsModels:(NSArray<GLHome_newsModel *> *)newsModels{
+    _newsModels = newsModels;
+
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (GLHome_newsModel *model in newsModels) {
+        LBHorseRaceLampModel *newModel = [[LBHorseRaceLampModel alloc] init];
+        newModel.contentstr = model.content;
+        newModel.content_id = model.news_id;
+        [arrM addObject:newModel];
+    }
+    self.loopView.dataSource = arrM;
+}
+
+
+- (void)setOrderModels:(NSArray<GLHome_ordersModel *> *)orderModels{
+    _orderModels = orderModels;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (GLHome_ordersModel *model in orderModels) {
+        
+        LBHorseRaceLampModel *newModel = [[LBHorseRaceLampModel alloc] init];
+        newModel.contentstr = model.content;
+        [arrM addObject:newModel];
+    }
+    self.loopView.dataSource = arrM;
     
 }
 

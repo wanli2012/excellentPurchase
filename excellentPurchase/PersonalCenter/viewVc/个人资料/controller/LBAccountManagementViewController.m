@@ -8,15 +8,17 @@
 
 #import "LBAccountManagementViewController.h"
 #import "LBAccountManagementTableViewCell.h"
+#import "GLAccountManagementModel.h"
 
 ///地址选择
 #import "CZHAddressPickerView.h"
 #import "AddressPickerHeader.h"
 
+//#import "LBMineCenterAddAdreassViewController.h"//修改收货地址
 #import "LBModifyingUsernameViewController.h"//用户名修改
-#import "LBMineCenterAddAdreassViewController.h"//修改收货地址
 #import "LBImprovePersonalInformationViewController.h"//完善资料
 #import "GLRecommendController.h"//我的二维码
+#import "LBMineCentermodifyAdressViewController.h"//收货地址列表
 
 @interface LBAccountManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -25,10 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *headNameLabel;
 
 @property (nonatomic, copy)NSArray *titleArr;
-@property (nonatomic, copy)NSArray *valueArr;
-
 @property (nonatomic, copy)NSArray *titleArr2;
-@property (nonatomic, strong)NSMutableArray *valueArr2;
+@property (nonatomic, strong)GLAccountManagementModel *model;
+@property (nonatomic, strong)NSDictionary *dataDic;
 
 //@property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
 
@@ -54,14 +55,13 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     
     self.navigationItem.title = @"个人资料";
     
-    if (self.type == 1) {
+    if (self.type == 1) {//编辑资料
         self.headNameLabel.text = @"头像";
-    }else{
+    }else{//不可编辑
         self.headNameLabel.text = @"其他资料";
     }
     
     self.titleArr = @[@"真实姓名",@"身份",@"账号",@"推荐账号",@"推荐人用户名"];
-    self.valueArr = @[@"磊哥",@"会员",@"342423",@"22342344",@"你大爷"];
     
     self.titleArr2 = @[@"用户名",@"账号状态",@"收货地址",@"我的二维码",@"所在地区"];
     
@@ -69,12 +69,55 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     [self.tableview registerNib:[UINib nibWithNibName:accountManagementTableViewCell bundle:nil] forCellReuseIdentifier:accountManagementTableViewCell];
 
     //底部视图高度
-    self.tableview.tableFooterView.height = 60 ;
+    self.tableview.tableFooterView.height = 60;
+    
+    //请求数据
+    [self postData];
 }
 
-/**
- 跳转到可编辑资料
- */
+#pragma mark - 请求数据
+
+- (void)postData{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    
+    NSString *url;
+    if (self.type == 1) {
+        url = kget_user_info;
+    }else {
+        url = kuser_relevant;
+    }
+
+    [NetworkManager requestPOSTWithURLStr:url paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.dataDic = responseObject[@"data"];
+            
+            self.model = [GLAccountManagementModel mj_objectWithKeyValues:responseObject[@"data"]];
+
+            [self.headImge sd_setImageWithURL:[NSURL URLWithString:self.model.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [self.tableview reloadData];
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+
+#pragma mark - 跳转到可编辑资料
+/** 跳转到可编辑资料*/
 - (IBAction)editInfo:(id)sender {
     
     if (self.type == 1) {
@@ -117,22 +160,69 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     
     if (self.type == 1) {
         cell.titleLabel.text = self.titleArr2[indexPath.row];
-        cell.valueLabel.text = self.valueArr2[indexPath.row];
-        if(indexPath.row == 3){//我的二维码
+        
+        cell.type = self.type;
+        if (indexPath.row == 0) {
+            cell.valueLabel.text = self.dataDic[@"nickname"];
+        }else  if (indexPath.row == 1) {
+            switch ([self.model.rzstatus integerValue]) {////认证状态 0没有认证 1:申请实名认证 2审核通过3失败',
+                case 0:
+                {
+                    cell.valueLabel.text = @"没有认证";
+                }
+                    break;
+                case 1:
+                {
+                    cell.valueLabel.text = @"实名认证中";
+                }
+                    break;
+                case 2:
+                {
+                    cell.valueLabel.text = @"审核通过";
+                }
+                    break;
+                case 3:
+                {
+                    cell.valueLabel.text = @"认证失败";
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }else if(indexPath.row == 2){
+            
+            cell.valueLabel.text = self.dataDic[@"address"];
+            
+        }else if(indexPath.row == 3){//我的二维码
             cell.type = 2;
-        }else{
-            cell.type = self.type;
+        }else if(indexPath.row == 4){
+            
+            cell.valueLabel.text = self.dataDic[@"detail_address"];
         }
+        
     }else{
         cell.type = self.type;
+        
         cell.titleLabel.text = self.titleArr[indexPath.row];
-        cell.valueLabel.text = self.valueArr[indexPath.row];
+        if(indexPath.row == 0){
+            cell.valueLabel.text = self.dataDic[@"truename"];
+        }else if(indexPath.row == 1){
+            cell.valueLabel.text = self.dataDic[@"group_name"];
+        }else if(indexPath.row == 2){
+            cell.valueLabel.text = self.dataDic[@"user_name"];
+        }else if(indexPath.row == 3){
+            cell.valueLabel.text = self.dataDic[@"tj_username"];
+        }else if(indexPath.row == 4){
+            cell.valueLabel.text = self.dataDic[@"tj_nickname"];
+        }
+        
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-    
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -147,9 +237,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 
                 modifyUserNameVC.block = ^(NSString *name) {
                     
-                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:name];
-                    
-                    [weakSelf.tableview reloadData];
+                    [weakSelf postData];
                     
                 };
                 
@@ -166,18 +254,10 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 break;
             case 2://收货地址
             {
-//                self.hidesBottomBarWhenPushed = YES;
-//                LBModifyingUsernameViewController *modifyUserNameVC = [[LBModifyingUsernameViewController alloc] init];
-//
-//                modifyUserNameVC.block = ^(NSString *name) {
-//
-//                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:name];
-//
-//                    [weakSelf.tableview reloadData];
-//
-//                };
-//
-//                [self.navigationController pushViewController:modifyUserNameVC animated:YES];
+                self.hidesBottomBarWhenPushed = YES;
+                LBMineCentermodifyAdressViewController *addListVC = [[LBMineCentermodifyAdressViewController alloc] init];
+
+                [self.navigationController pushViewController:addListVC animated:YES];
             }
                 break;
             case 3://我的二维码
@@ -190,12 +270,12 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             case 4://所在地区
             {
                 [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
-                    
-                    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
-                    
-                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:str];
-                    
-                    [weakSelf.tableview reloadData];
+                    [weakSelf postData];
+//                    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
+//
+//                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:str];
+//
+//                    [weakSelf.tableview reloadData];
                 }];
             }
                 
@@ -206,19 +286,20 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 }
 
 #pragma mark - 懒加载
-
-- (NSMutableArray *)valueArr2{
-    if (!_valueArr2) {
-        _valueArr2 = [NSMutableArray array];
-        
-        NSArray *arr = @[@"24K纯帅",@"未审核",@"金牛区万达正中间",@"22342344",@"四川省成都市"];
-        
-        for (int i = 0; i < 5; i ++) {
-            [_valueArr2 addObject:arr[i]];
-        }
-        
-    }
-    return _valueArr2;
-}
+//- (NSMutableArray *)valueArr{
+//    if (!_valueArr) {
+//        _valueArr = [NSMutableArray array];
+//
+//    }
+//    return _valueArr;
+//}
+//
+//- (NSMutableArray *)valueArr2{
+//    if (!_valueArr2) {
+//        _valueArr2 = [NSMutableArray array];
+//
+//    }
+//    return _valueArr2;
+//}
 
 @end

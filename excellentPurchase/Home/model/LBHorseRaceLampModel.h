@@ -14,4 +14,6 @@
 @property (copy , nonatomic)NSString *contentstr;//内容
 @property (copy , nonatomic)NSString *goodImage;//商品图片
 
+@property (nonatomic, copy)NSString *content_id;
+
 @end

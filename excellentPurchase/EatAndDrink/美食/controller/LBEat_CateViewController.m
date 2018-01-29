@@ -144,7 +144,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 - (void)addCarouselView1{
     
     //block方式创建
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
+    
     NSMutableArray *imageArray;
     if ([LBEat_cateModel defaultUser].cate_banners.count <= 0) {
         imageArray = [[NSMutableArray alloc] initWithArray: @[@"eat-banner"]];

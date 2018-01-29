@@ -21,8 +21,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMZ-ey-V5O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="42.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V71-fq-DgC">
-                                <rect key="frame" x="10" y="11.5" width="49" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V71-fq-DgC">
+                                <rect key="frame" x="10" y="11.5" width="0.0" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="XhB-8e-xOC"/>
                                 </constraints>
@@ -37,15 +37,15 @@
                                     <constraint firstAttribute="width" constant="15" id="bnW-zR-d4K"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="吕兵" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfN-zI-C6W">
-                                <rect key="frame" x="69" y="0.0" width="241" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfN-zI-C6W">
+                                <rect key="frame" x="20" y="0.0" width="290" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.54584085940000004" green="0.51362806559999996" blue="0.51327699419999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zAw-cw-cUk">
                                 <rect key="frame" x="250" y="4" width="35" height="35"/>
-                                <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="1Dc-8n-e7D"/>
                                     <constraint firstAttribute="height" constant="35" id="i6I-Zg-kfF"/>

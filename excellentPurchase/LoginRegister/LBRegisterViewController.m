@@ -9,6 +9,8 @@
 #import "LBRegisterViewController.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
 
+#import "DropMenu.h"
+#import "GLGroupModel.h"
 
 @interface LBRegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>
 {
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoH;
 @property (weak, nonatomic) IBOutlet UILabel *loginLb;
 
+@property (weak, nonatomic) IBOutlet UIView *identifyView;
 
 @property (weak, nonatomic) IBOutlet UITextField *recommendTF;//推荐人
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;//手机号
@@ -30,6 +33,8 @@
 
 @property (nonatomic, copy)NSString *validate;//极验证
 @property(nonatomic,strong)NTESVerifyCodeManager *manager;
+@property (nonatomic, copy)NSString *group_id;
+@property (nonatomic, strong)NSMutableArray *groupModels;//身份类型数组
 
 
 @end
@@ -50,7 +55,6 @@
         self.navigation.constant = 47;
         self.logoH.constant = 92;
     }
-   
 }
 
 /**
@@ -58,7 +62,59 @@
  */
 - (IBAction)groupTypeChoose:(id)sender {
     
-
+    if(self.groupModels.count != 0){
+        [self popGroupChooseView];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"type"] = @"1";
+    
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kGet_GroupList_URL paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                
+                GLGroupModel *model = [GLGroupModel mj_objectWithKeyValues:dict];
+                [self.groupModels addObject:model];
+                
+            }
+            [self popGroupChooseView];
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+//弹出选择器
+- (void)popGroupChooseView {
+    
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect = [self.identifyView convertRect:self.identifyView.bounds toView:window];
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (GLGroupModel *groupModel in self.groupModels) {
+        
+        DropMenuModel *model = [[DropMenuModel alloc] init];
+        
+        model.name = groupModel.group_name;
+        model.type_id = groupModel.group_id;
+        
+        [arrM addObject:model];
+    }
+    
+    [DropMenu showMenu:arrM controlFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 5) MenuMaxHeight:150 cellHeight:40 isHaveMask:NO andReturnBlock:^(NSString *selectName, NSString *type_id) {
+        
+        self.groupTypeTF.text = selectName;
+        self.group_id = type_id;
+        
+    }];
+    
 }
 
 /**
@@ -156,6 +212,10 @@
  */
 - (IBAction)registe:(id)sender {
     
+    [self.view endEditing:YES];
+    
+    self.group_id = @"9";
+
     if (self.phoneTF.text.length <=0 ) {
 
         [EasyShowTextView showInfoText:@"请输入手机号码" inView:[UIApplication sharedApplication].keyWindow];
@@ -190,15 +250,15 @@
         [EasyShowTextView showInfoText:@"请输入确认密码"inView:[UIApplication sharedApplication].keyWindow];
         return;
     }
-    
+        
     if (![self.passwordTF.text isEqualToString:self.ensureTF.text]) {
-
+        
         [EasyShowTextView showInfoText:@"两次输入的密码不一致" inView:[UIApplication sharedApplication].keyWindow];
         return;
     }
     
     if (self.codeTF.text.length <= 0) {
-
+        
         [EasyShowTextView showInfoText:@"请输入验证码" inView:[UIApplication sharedApplication].keyWindow];
         return;
     }
@@ -238,10 +298,12 @@
     dict[@"password"] = self.passwordTF.text;
     dict[@"yzm"] = self.codeTF.text;
     dict[@"app_handler"] = @"ADD";
-    dict[@"user_name"] = @"ZY16932075";
+    dict[@"user_name"] = self.recommendTF.text;
     dict[@"validate"] = self.validate;
+    dict[@"group_id"] = self.group_id;
     
     //    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
     [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
         //        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -258,7 +320,8 @@
         }
         
     } enError:^(NSError *error) {
-        //        [_loadV removeloadview];
+        
+        //[_loadV removeloadview];
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];
@@ -379,4 +442,15 @@
     return noteStr;
     
 }
+
+#pragma mark - 懒加载
+- (NSMutableArray *)groupModels{
+    if (!_groupModels) {
+        _groupModels = [NSMutableArray array];
+        
+    }
+    return _groupModels;
+}
+
+
 @end

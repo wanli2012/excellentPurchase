@@ -27,6 +27,7 @@
  * areaBlock : 回调省份城市和区域
  */
 + (instancetype)areaPickerViewWithAreaBlock:(void(^)(NSString *province, NSString *city, NSString *area))areaBlock;
++ (instancetype)areaPickerViewWithDataArr:(NSArray *)dataArr AreaDetailBlock:(void(^)(NSString *province, NSString *city, NSString *area,NSString *province_id,NSString *city_id,NSString *area_id))areaDetailBlock;
 
 
 /**

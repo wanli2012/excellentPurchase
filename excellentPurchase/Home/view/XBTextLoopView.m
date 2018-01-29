@@ -9,10 +9,10 @@
 #import "XBTextLoopView.h"
 #import <Masonry/Masonry.h>
 #import "LBHorseRaceLampCell.h"
+#import "LBHorseRaceLampModel.h"
 
 @interface XBTextLoopView () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, assign) NSTimeInterval interval;
 @property (nonatomic, strong) NSTimer *myTimer;
@@ -31,10 +31,14 @@
     loopView.interval = timeInterval ? timeInterval : 1.0;
     return loopView;
 }
+- (void)setDataSource:(NSArray *)dataSource{
+    _dataSource = dataSource;
+    [self.tableView reloadData];
+}
 
 #pragma mark - tableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -48,6 +52,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LBHorseRaceLampCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBHorseRaceLampCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    LBHorseRaceLampModel *model = self.dataSource[indexPath.row];
+    cell.model = model;
     
     return cell;
 }
@@ -80,6 +86,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
+        
         // tableView
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - 10, frame.size.height)];
         _tableView = tableView;
@@ -90,8 +97,8 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [tableView registerNib:[UINib nibWithNibName:@"LBHorseRaceLampCell" bundle:nil] forCellReuseIdentifier:@"LBHorseRaceLampCell"];
         [self addSubview:tableView];
-        
     }
+    
     return self;
 }
 

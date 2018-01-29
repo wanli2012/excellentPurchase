@@ -11,6 +11,8 @@ typedef void(^selectTextBlock)(NSString *selectString, NSInteger index);
 
 @interface XBTextLoopView : UIView
 
+@property (nonatomic, copy)NSArray *dataSource;
+
 /**
  直接调用这个方法
 
