@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBEat_StoreDetailDataModel.h"
 
 @protocol LBEat_storeDetailInfomationdelegete<NSObject>
 
 -(void)tapgesturecomments;
+-(void)ComeStorePay;
 
 @end
 
 @interface LBEat_storeDetailInfomationTableViewCell : UITableViewCell
 
 @property (nonatomic, assign)id<LBEat_storeDetailInfomationdelegete> delegate;
+@property (strong , nonatomic)LBEat_StoreDetailDataModel *model;
 
 @end

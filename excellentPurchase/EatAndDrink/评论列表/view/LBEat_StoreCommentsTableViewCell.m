@@ -21,12 +21,12 @@
     // Initialization code
 }
 
--(void)setModel:(LB_Eat_commentOneDataModel *)model{
-    _model = model;
-    NSString  *str  = [NSString stringWithFormat:@"%@回复%@：%@",_model.name,_model.replyname,_model.content];
-
-    self.contentLb.attributedText = [self addoriginstr:str specilstr:@[_model.name,_model.replyname]];
-   
+-(void)setContentReply:(NSString *)contentReply{
+    _contentReply = contentReply;
+    
+    NSString  *str  = [NSString stringWithFormat:@"商家回复：%@",_contentReply];
+    
+    self.contentLb.attributedText = [self addoriginstr:str specilstr:@[@"商家"]];
 }
 
 -(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{

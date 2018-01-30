@@ -7,12 +7,13 @@
 //  代码下载地址https://github.com/leejayID/Linkage
 
 #import <UIKit/UIKit.h>
+#import "LBEatClassifyModel.h"
 
 #define kCellIdentifier_CollectionView @"CollectionViewCell"
 
 
 @interface CollectionViewCell : UICollectionViewCell
 
-
+@property (copy , nonatomic)LBEatTwoClassifyModel *model;
 
 @end

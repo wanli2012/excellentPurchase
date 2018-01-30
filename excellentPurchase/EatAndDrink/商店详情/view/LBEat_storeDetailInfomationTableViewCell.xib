@@ -56,6 +56,9 @@
                                         <color key="value" red="0.99607843137254903" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="ComeStorePay:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MYs-9A-1os"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="养生汤锅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4y-KP-nuJ">
                                 <rect key="frame" x="70" y="47" width="217" height="17"/>
@@ -114,6 +117,9 @@
                                     <constraint firstAttribute="width" constant="46" id="pm5-68-9DY"/>
                                 </constraints>
                                 <state key="normal" image="tat-detail-phone"/>
+                                <connections>
+                                    <action selector="takeTelephone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MTM-YF-4uu"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金牛区万达专柜啊啊金牛区万达专" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMC-Zd-aaK">
                                 <rect key="frame" x="35" y="15.5" width="276" height="14.5"/>
@@ -158,8 +164,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(98条)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzO-Jt-S5y">
-                                <rect key="frame" x="56" y="14.5" width="50.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzO-Jt-S5y">
+                                <rect key="frame" x="56" y="25" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -224,8 +230,13 @@
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
+                <outlet property="adressLb" destination="vMC-Zd-aaK" id="KNh-V6-vDd"/>
                 <outlet property="commentView" destination="0Y4-71-PyY" id="S0I-vH-OAX"/>
+                <outlet property="imagev" destination="j05-8V-1uI" id="tMj-Lx-wgp"/>
+                <outlet property="repalyNum" destination="dzO-Jt-S5y" id="LKg-6e-mWG"/>
+                <outlet property="scoreLb" destination="7n0-sc-rQX" id="Sow-qO-Ipe"/>
                 <outlet property="starView" destination="FlZ-Xd-PFg" id="G1E-1X-RM3"/>
+                <outlet property="storeName" destination="M4y-KP-nuJ" id="aFp-63-3YK"/>
             </connections>
             <point key="canvasLocation" x="54.5" y="88"/>
         </tableViewCell>

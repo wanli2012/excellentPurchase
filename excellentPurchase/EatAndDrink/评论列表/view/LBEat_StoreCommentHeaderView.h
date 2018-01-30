@@ -17,7 +17,7 @@
 
 @property (copy , nonatomic)void(^showComments)(NSInteger section);
 
-@property (copy , nonatomic)void(^pushCommentsListVc)();
+@property (copy , nonatomic)void(^pushCommentsListVc)(void);
 
 @property (assign , nonatomic)NSInteger section;
 

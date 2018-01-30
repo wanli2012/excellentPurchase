@@ -9,6 +9,7 @@
 #import "LBEat_StoreCommentHeaderView.h"
 #import "XHStarRateView.h"
 #import "LB_Eat'commentDataModel.h"
+#import "formattime.h"
 
 @interface LBEat_StoreCommentHeaderView()
 
@@ -41,11 +42,27 @@
 
 -(void)setHomeInvestModel:(LB_EatCommentFrameModel *)HomeInvestModel{
     _HomeInvestModel = HomeInvestModel;
-    self.contentLb.text = _HomeInvestModel.HomeInvestModel.content;
+
+    [self.headimage sd_setImageWithURL:[NSURL URLWithString:_HomeInvestModel.HomeInvestModel.pic] placeholderImage:nil];
+    
+    if ([NSString StringIsNullOrEmpty:_HomeInvestModel.HomeInvestModel.nickname] == NO) {
+        self.nameLb.text = [NSString stringWithFormat:@"%@",_HomeInvestModel.HomeInvestModel.nickname];
+    }else{
+        self.nameLb.text = [NSString stringWithFormat:@"无呢称"];
+    }
+    _starRateView.currentScore = [_HomeInvestModel.HomeInvestModel.mark floatValue];
+    
+    self.contentLb.text = [NSString stringWithFormat:@"%@",_HomeInvestModel.HomeInvestModel.comment];
+    
+    self.identifyLb.text = [NSString stringWithFormat:@"%@",_HomeInvestModel.HomeInvestModel.user_name];
+    
+    self.timeLb.text = [formattime formateTimeYM:_HomeInvestModel.HomeInvestModel.addtime];
 }
 
 -(void)tapgestureSelf{
-    self.pushCommentsListVc();
+    if (self.pushCommentsListVc) {
+        self.pushCommentsListVc();
+    }
 }
 
 -(void)showComment{
@@ -59,7 +76,7 @@
     [self addSubview:self.identifyLb];
     [self addSubview:self.contentLb];
     [self addSubview:self.timeLb];
-    [self addSubview:self.replayBt];
+    //[self addSubview:self.replayBt];
     
     [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -91,12 +108,12 @@
         
     }];
     
-    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.trailing.equalTo(self).offset(-10);
-        make.centerY.equalTo(self.timeLb);
-        
-    }];
+//    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.trailing.equalTo(self).offset(-10);
+//        make.centerY.equalTo(self.timeLb);
+//
+//    }];
     
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureSelf)];
     [self addGestureRecognizer:tapgesture];
@@ -106,7 +123,6 @@
 -(UILabel*)nameLb{
     if (!_nameLb) {
         _nameLb = [[UILabel alloc]init];
-        _nameLb.text = @"哈哈哈哈哈";
         _nameLb.textColor = LBHexadecimalColor(0x666666);
         _nameLb.font = [UIFont systemFontOfSize:13];
     }
@@ -116,7 +132,6 @@
 -(UILabel*)identifyLb{
     if (!_identifyLb) {
         _identifyLb = [[UILabel alloc]init];
-        _identifyLb.text = @"DZ111111";
         _identifyLb.textColor = LBHexadecimalColor(0x808080);
         _identifyLb.font = [UIFont systemFontOfSize:10];
     }
@@ -126,7 +141,6 @@
 -(UILabel*)contentLb{
     if (!_contentLb) {
         _contentLb = [[UILabel alloc]init];
-        _contentLb.text = @"你的间距的时刻打打闹闹数学课面对山明";
         _contentLb.textColor = LBHexadecimalColor(0x333333);
         _contentLb.font = [UIFont systemFontOfSize:14];
         _contentLb.numberOfLines = 0;
@@ -136,7 +150,6 @@
 -(UILabel*)timeLb{
     if (!_timeLb) {
         _timeLb = [[UILabel alloc]init];
-        _timeLb.text = @"1分钟";
         _timeLb.textColor = LBHexadecimalColor(0x999999);
         _timeLb.font = [UIFont systemFontOfSize:10];
     }
@@ -146,7 +159,7 @@
 -(UIImageView*)headimage{
     if (!_headimage) {
         _headimage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 40, 40)];
-        _headimage.backgroundColor = [UIColor redColor];
+        _headimage.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _headimage.layer.cornerRadius = 20;
     }
     return _headimage;
@@ -170,7 +183,6 @@
         _starRateView.isAnimation = YES;
         _starRateView.rateStyle = IncompleteStar;
         _starRateView.backgroundColor = [UIColor clearColor];
-        _starRateView.currentScore = 4.5;
     }
     return _starRateView;
 }

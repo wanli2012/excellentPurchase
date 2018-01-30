@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBHistoryHotSerachViewController">
             <connections>
+                <outlet property="keyTextfiled" destination="rgl-Gp-tdf" id="oFM-79-MXS"/>
                 <outlet property="navigationH" destination="EbK-ab-PcQ" id="VEr-w6-ToK"/>
+                <outlet property="tableview" destination="s8S-Ro-CJk" id="yZW-wa-cxa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -53,7 +55,7 @@
                                             <rect key="frame" x="46" y="0.0" width="219" height="35"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="89O-9G-oyP"/>
                                             </connections>
@@ -95,12 +97,24 @@
                         <constraint firstAttribute="trailing" secondItem="M9g-rK-aqh" secondAttribute="trailing" id="x4X-qm-r8f"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s8S-Ro-CJk">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Fgr-Y5-n6b"/>
+                        <outlet property="delegate" destination="-1" id="TZx-HG-Ohx"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="s8S-Ro-CJk" secondAttribute="trailing" id="Drm-Oa-CfI"/>
+                <constraint firstItem="s8S-Ro-CJk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hxe-w8-IoM"/>
+                <constraint firstItem="s8S-Ro-CJk" firstAttribute="top" secondItem="fzQ-kh-4xK" secondAttribute="bottom" id="Pdu-iy-hIp"/>
                 <constraint firstAttribute="trailing" secondItem="fzQ-kh-4xK" secondAttribute="trailing" id="RfX-M6-1Qh"/>
                 <constraint firstItem="fzQ-kh-4xK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Z1n-Fa-yGp"/>
                 <constraint firstItem="fzQ-kh-4xK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="j7x-Uz-Jxj"/>
+                <constraint firstAttribute="bottom" secondItem="s8S-Ro-CJk" secondAttribute="bottom" id="mbA-qG-D77"/>
             </constraints>
         </view>
     </objects>

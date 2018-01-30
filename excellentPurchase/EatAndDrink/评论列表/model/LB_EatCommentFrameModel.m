@@ -14,7 +14,7 @@
 
 -(void)setHomeInvestModel:(LB_Eat_commentDataModel *)HomeInvestModel{
     _HomeInvestModel = HomeInvestModel;
-     CGRect sizeconent=[_HomeInvestModel.content boundingRectWithSize:CGSizeMake(UIScreenWidth - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
+     CGRect sizeconent=[_HomeInvestModel.comment boundingRectWithSize:CGSizeMake(UIScreenWidth - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
     
     self.contentlH = sizeconent.size.height + 100;
     

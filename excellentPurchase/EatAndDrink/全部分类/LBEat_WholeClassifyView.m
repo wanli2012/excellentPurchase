@@ -11,13 +11,14 @@
 #import "LeftTableViewCell.h"
 #import "CollectionViewCell.h"
 #import "CollectionViewHeaderView.h"
+#import "LBEatClassifyModel.h"
 
 static float kLeftTableViewWidth = 80.f;
 static float kCollectionViewMargin = 3.f;
 static float kCollectionHeaderViewH = 45.f;
 
 @interface LBEat_WholeClassifyView()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout,
-UICollectionViewDataSource>
+UICollectionViewDataSource,UIGestureRecognizerDelegate>
 {
     NSInteger _selectIndex;
     BOOL _isScrollDown;
@@ -29,6 +30,8 @@ UICollectionViewDataSource>
 
 ///选择回调
 @property (nonatomic, copy) void (^bankBlock)(NSInteger section);
+@property (nonatomic, strong) NSMutableArray *dataArr;
+
 
 @end
 
@@ -58,7 +61,7 @@ UICollectionViewDataSource>
 -(void)addInterface{
     
     self.backgroundColor = [UIColor clearColor];
-    self.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight);
+    self.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight);
     [self addSubview:self.containerView];
     
     UIView  *headView =[[NSBundle mainBundle]loadNibNamed:@"LBEat_WhloeClassifyHeaderView" owner:nil options:nil].firstObject;
@@ -75,23 +78,63 @@ UICollectionViewDataSource>
     
     [self.containerView addSubview:self.tableView];
     [self.containerView addSubview:self.collectionView];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                                animated:YES
-                          scrollPosition:UITableViewScrollPositionNone];
+    
+   [self loadData];//加载数据
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideView)];
+    gesture.delegate = self;
+    [self addGestureRecognizer:gesture];
     
 }
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if ([touch.view isDescendantOfView:self.collectionView] || [touch.view isDescendantOfView:self.tableView]) {
+        return NO;
+    }
+    return YES;
+}
+
+-(void)loadData{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    
+    [NetworkManager requestPOSTWithURLStr:HappyCateData paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+          
+            for (int i = 0; i < [responseObject[@"data"]count]; i++) {
+                LBEatClassifyModel *model = [LBEatClassifyModel mj_objectWithKeyValues:responseObject[@"data"][i]];
+                [self.dataArr addObject:model];
+                [self.tableView reloadData];
+                [self.collectionView reloadData];
+                [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                            animated:YES
+                                      scrollPosition:UITableViewScrollPositionNone];
+            }
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
+
 
 #pragma mark - UITableView DataSource Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left forIndexPath:indexPath];
-    
+    cell.model = self.dataArr[indexPath.row];
     return cell;
 }
 
@@ -103,9 +146,10 @@ UICollectionViewDataSource>
     // 解决点击 TableView 后 CollectionView 的 Header 遮挡问题。
     [self scrollToTopOfSection:_selectIndex animated:YES];
     
-    //    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:_selectIndex] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    //[self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:_selectIndex] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]
                           atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
 }
 
 #pragma mark - 解决点击 TableView 后 CollectionView 的 Header 遮挡问题
@@ -128,19 +172,20 @@ UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3;
+    return self.dataArr.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 
-    return 10;
+    LBEatClassifyModel *model = self.dataArr[section];
+    return model.two_cate.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier_CollectionView forIndexPath:indexPath];
-
+    cell.model = ((LBEatClassifyModel*)self.dataArr[indexPath.section]).two_cate[indexPath.row];
     return cell;
 }
 
@@ -167,7 +212,7 @@ UICollectionViewDataSource>
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
        
-        view.title.text = @"哈哈哈";
+        view.title.text = [NSString stringWithFormat:@"%@",((LBEatClassifyModel*)self.dataArr[indexPath.section]).catename];
     }
     return view;
 }
@@ -227,15 +272,14 @@ UICollectionViewDataSource>
     self.backgroundColor = [UIColor clearColor];
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.backgroundColor = YYSRGBColor(0, 0, 0, 0.3);
-        self.containerView.y = 0;
+        self.containerView.y = SafeAreaTopHeight;
     }];
 }
 - (void)hideView {
     
     [UIView animateWithDuration:0.3 animations:^{
         self.backgroundColor = [UIColor clearColor];
-        self.containerView.y = UIScreenHeight - SafeAreaTopHeight;
+        self.containerView.y = UIScreenHeight;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -244,7 +288,7 @@ UICollectionViewDataSource>
 
 -(UIView*)containerView{
     if (!_containerView) {
-        _containerView = [[UIView alloc]initWithFrame:CGRectMake(0, UIScreenHeight - SafeAreaTopHeight, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight)];
+        _containerView = [[UIView alloc]initWithFrame:CGRectMake(0, UIScreenHeight , UIScreenWidth, UIScreenHeight - SafeAreaTopHeight)];
         _containerView.backgroundColor = [UIColor whiteColor];
     }
     return _containerView;
@@ -297,5 +341,12 @@ UICollectionViewDataSource>
                    withReuseIdentifier:@"CollectionViewHeaderView"];
     }
     return _collectionView;
+}
+
+-(NSMutableArray*)dataArr{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
 }
 @end

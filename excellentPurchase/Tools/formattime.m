@@ -48,7 +48,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSDateFormatter *formatterT = [[NSDateFormatter alloc] init];
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:tempTime];
-    [formatter setDateFormat:@"YYYY年MM月"];
+    [formatter setDateFormat:@"YYYY年MM月dd日"];
     NSDate *confromTimespT = [NSDate dateWithTimeIntervalSince1970:tempTime];
     [formatterT setDateFormat:@"HH:mm"];
     NSDate *startDate = confromTimesp;

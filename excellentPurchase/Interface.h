@@ -34,7 +34,6 @@
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1300026210?mt=8"
 
-
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码

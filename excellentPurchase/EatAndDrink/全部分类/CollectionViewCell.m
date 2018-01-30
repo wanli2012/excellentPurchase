@@ -36,5 +36,10 @@
     return self;
 }
 
+-(void)setModel:(LBEatTwoClassifyModel *)model{
+    _model = model;
+    [self.imageV sd_setImageWithURL:[NSURL URLWithString:_model.cate_img] placeholderImage:nil];
+    self.name.text = _model.catename;
+}
 
 @end

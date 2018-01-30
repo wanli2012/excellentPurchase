@@ -10,4 +10,6 @@
 
 @interface LBEat_StoreDetailViewController : UIViewController
 
+@property (strong , nonatomic)NSString *store_id;
+@property (strong , nonatomic)NSString *titile;
 @end

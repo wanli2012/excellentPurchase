@@ -10,4 +10,5 @@
 
 @interface LBHistoryHotSerachViewController : UIViewController
 
+@property (assign , nonatomic)NSInteger type;//1 首页搜索 2 吃喝玩乐搜索 3 海淘商城搜索
 @end
