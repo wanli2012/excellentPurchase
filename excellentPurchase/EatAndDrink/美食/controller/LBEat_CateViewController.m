@@ -52,7 +52,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
     
     self.tableView.tableFooterView = [UIView new];
-    self.tableView.loading = NO;
     [self.tableView reloadData];
    
     

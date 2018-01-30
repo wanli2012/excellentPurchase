@@ -41,8 +41,7 @@
 #import "LBDefineRefrsh.h"
 //判断字符串是否为空
 #import "NSString+LBNullOrEmpty.h"
-//无数据
-#import "GzwScrollViewExtension.h"
+
 #endif
 
 #define UIColorFromRGB(rgbValue) UIColorFromRGBA(rgbValue, 1.0)
