@@ -111,7 +111,6 @@
         [self.tableview reloadData];
         
     }];
-
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -140,12 +139,11 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.models[indexPath.row];
     
-    
 //    cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"collect_name"]];
 ////    cell.phoneLb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"s_phone"]];
 //    cell.phoneLb.text = [NSString stringWithFormat:@"%@*****%@",[self.dataarr[indexPath.row][@"s_phone"] substringToIndex:3],[self.dataarr[indexPath.row][@"s_phone"] substringFromIndex:7]];
 //    cell.adressLn.text = [NSString stringWithFormat:@"%@%@",self.dataarr[indexPath.row][@"areas"],self.dataarr[indexPath.row][@"s_address"]];
-//
+
     WeakSelf;
     
     cell.index = indexPath.row;

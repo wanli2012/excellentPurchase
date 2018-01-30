@@ -58,11 +58,17 @@
     
     self.navigationItem.title = @"新增收货地址";
     
-    self.isdeualt = 0;
-    self.adressID = @"";
-    self.provinceStrId = @"";
-    self.cityStrId = @"";
-    self.countryStrId = @"";
+    if(_isEdit){//编辑
+        
+    }else{//添加
+        
+        self.isdeualt = 0;
+        self.adressID = @"";
+        self.provinceStrId = @"";
+        self.cityStrId = @"";
+        self.countryStrId = @"";
+    }
+    
     
     //    [self initProvinceCityArea];
     
@@ -74,7 +80,8 @@
  */
 - (IBAction)areaChoose:(id)sender {
     
-    //kget_city_list
+    [self.view endEditing:YES];
+    
     if(self.dataArr.count != 0){
         [self popAreaPicker];
         return;
