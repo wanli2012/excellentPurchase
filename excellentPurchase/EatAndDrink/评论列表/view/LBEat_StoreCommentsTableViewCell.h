@@ -11,6 +11,6 @@
 
 @interface LBEat_StoreCommentsTableViewCell : UITableViewCell
 
-@property (strong , nonatomic)LB_Eat_commentOneDataModel *model;
+@property (strong , nonatomic)NSString *contentReply;
 
 @end

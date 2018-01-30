@@ -15,16 +15,16 @@
             <rect key="frame" x="0.0" y="0.0" width="401" height="73"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eat-discount" translatesAutoresizingMaskIntoConstraints="NO" id="ph8-6c-SIr">
-                    <rect key="frame" x="152" y="26.5" width="20" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eat-others" translatesAutoresizingMaskIntoConstraints="NO" id="ph8-6c-SIr">
+                    <rect key="frame" x="154" y="26.5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="a1d-Iv-2bt"/>
                         <constraint firstAttribute="width" constant="20" id="qik-mt-lCI"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w58-ug-RBA">
-                    <rect key="frame" x="179" y="26.5" width="69.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店内其他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w58-ug-RBA">
+                    <rect key="frame" x="181" y="27.5" width="65.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.98613291979999995" green="0.39517146349999999" blue="0.39447033409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -41,6 +41,6 @@
         </view>
     </objects>
     <resources>
-        <image name="eat-discount" width="17" height="17"/>
+        <image name="eat-others" width="15" height="17"/>
     </resources>
 </document>

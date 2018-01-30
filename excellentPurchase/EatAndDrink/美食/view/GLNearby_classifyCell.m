@@ -44,20 +44,25 @@
     self.nameLabel.text = [NSString stringWithFormat:@"%@",_model.store_name];
     self.starLb.text = _model.store_score;
     self.starRateView.currentScore = [_model.store_score floatValue];
-    self.adressLb.text = [NSString stringWithFormat:@"%@|%@",_model.p_name,_model.s_name];
-    self.phonelb.text = [NSString stringWithFormat:@"%@",_model.store_phone];
-    if ([_model.limit floatValue] < 100) {
-        self.distanceLabel.text = [NSString stringWithFormat:@"<%@",_model.limit];
-    }else if ([_model.limit floatValue] >= 1000){
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm",[_model.limit floatValue] / 1000.0];
+    if (_model.p_name.length >0  && _model.s_name.length > 0) {
+         self.adressLb.text = [NSString stringWithFormat:@"%@|%@",_model.p_name,_model.s_name];
     }else{
-        self.distanceLabel.text = [NSString stringWithFormat:@"%@",_model.limit];
+        self.adressLb.text = [NSString stringWithFormat:@"%@%@",_model.p_name,_model.s_name];
+    }
+   
+    self.phonelb.text = [NSString stringWithFormat:@"%@",_model.store_phone];
+    if ([_model.limit floatValue] < 100.0) {
+        self.distanceLabel.text = [NSString stringWithFormat:@"<%@m",_model.limit];
+    }else if ([_model.limit floatValue] >= 1000.0){
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm",[_model.limit floatValue] / 1000.0];
+    }else if ([_model.limit floatValue] >= 100.0 && [_model.limit floatValue] < 1000.0){
+        self.distanceLabel.text = [NSString stringWithFormat:@"%@m",_model.limit];
     }
     
     if ([_model.store_clicks floatValue] < 10000) {
-        self.distanceLabel.text = [NSString stringWithFormat:@"<%@",_model.limit];
-    }else if ([_model.limit floatValue] >= 1000){
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f万",[_model.limit floatValue] / 10000.0];
+        self.scanLb.text = [NSString stringWithFormat:@"%@",_model.store_clicks];
+    }else if ([_model.store_clicks floatValue] >= 1000){
+        self.scanLb.text = [NSString stringWithFormat:@"%.1f万",[_model.store_clicks floatValue] / 10000.0];
     }
 }
 

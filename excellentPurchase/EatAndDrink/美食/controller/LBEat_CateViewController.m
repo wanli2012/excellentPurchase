@@ -14,8 +14,7 @@
 #import "GLNearby_classifyCell.h"
 #import "LBFinishMainViewController.h"
 #import "LBEatAndDrinkViewController.h"
-#import "LBEatShopProdcutClassifyViewController.h"//商店详情
-#import "LBFinishMainViewController.h"
+#import "LBEat_StoreDetailViewController.h"
 #import "LBEat_cateModel.h"
 #import "LBSaveLocationInfoModel.h"
 
@@ -52,6 +51,10 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [self.tableView registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
     
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.loading = NO;
+    [self.tableView reloadData];
+   
     
     [self loadData:1 refreshDirect:YES];
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
@@ -59,6 +62,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     } footerRefresh:^{
         if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
            [EasyShowTextView showInfoText:@"没有数据了"];
+             [LBDefineRefrsh dismissRefresh:self.tableView];
         }else{
             [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
         }
@@ -134,8 +138,11 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 }
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [self viewController].hidesBottomBarWhenPushed = YES;
-    LBFinishMainViewController *vc = [[LBFinishMainViewController alloc]init];
+    LBEat_StoreDetailViewController *vc = [[LBEat_StoreDetailViewController alloc]init];
+    vc.store_id = ((LBEat_cateDataModel*)self.dataArr[indexPath.row]).store_id;
+    vc.title = ((LBEat_cateDataModel*)self.dataArr[indexPath.row]).store_name;
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
   

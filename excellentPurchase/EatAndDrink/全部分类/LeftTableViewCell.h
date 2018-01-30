@@ -7,11 +7,13 @@
 //  代码下载地址https://github.com/leejayID/Linkage
 
 #import <UIKit/UIKit.h>
+#import "LBEatClassifyModel.h"
 
 #define kCellIdentifier_Left @"LeftTableViewCell"
 
 @interface LeftTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *name;
+@property (copy , nonatomic)LBEatClassifyModel *model;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBEat_StoreDetailDataModel.h"
 
 @interface LBEat_storeDetailInfoOtherTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBEat_StoreDetailOtherDataModel *model;
 
 @end

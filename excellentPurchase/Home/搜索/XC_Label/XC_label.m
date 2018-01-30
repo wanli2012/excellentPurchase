@@ -48,7 +48,6 @@ typedef NS_ENUM(NSInteger,EditorStateHot){
 {
     XC_EqualSpaceCollectionViewFlowLayout *layout;
 }
-@property (nonatomic,strong)UICollectionView *collectionView ;
 
 @property (nonatomic,strong)NSMutableArray *dataSource ; //推荐搜索
 
@@ -111,8 +110,6 @@ typedef NS_ENUM(NSInteger,EditorStateHot){
     [self.historySource removeLastObject];
     [self.collectionView reloadData];
 }
-
-
 
 #pragma mark Other
 -(void)setShowsHorizontalScrollIndicator:(BOOL)isShow

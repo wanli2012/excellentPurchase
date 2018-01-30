@@ -8,19 +8,29 @@
 
 #import "LBHistoryHotSerachViewController.h"
 #import "XC_label.h"
+#import "GLNearby_classifyCell.h"
+#import "LBSaveLocationInfoModel.h"
 
-@interface LBHistoryHotSerachViewController ()<selectHotOrHistoryDelegate,UITextFieldDelegate>
+@interface LBHistoryHotSerachViewController ()<selectHotOrHistoryDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) XC_label  *xcLabel ;
 
-@property (nonatomic,strong)NSMutableArray *dataSource ;//推荐搜索
+@property (nonatomic,strong)NSMutableArray *reCommendSource ;//推荐搜索
 
 @property (nonatomic,strong)NSMutableArray *historySource ;//历史搜索
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;
+@property (nonatomic,strong)NSMutableArray *dataSource ;//数据源
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UITextField *keyTextfiled;
+
+@property (nonatomic,strong)NSString *key ;//关键字
+@property (nonatomic,assign)NSInteger page ;//页数
 
 @end
+
+static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
 @implementation LBHistoryHotSerachViewController
 
@@ -32,49 +42,168 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.page = 1;
     self.navigationController.navigationBar.hidden = YES ;
-    
-    [self hotOptions];
-    
+    [self.tableview registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
+    self.tableview.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
+    WeakSelf;
+    [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
+        weakSelf.page = 1;
+        [weakSelf searchKeySource:YES];
+    } footerRefresh:^{
+        weakSelf.page = weakSelf.page + 1;
+        [weakSelf searchKeySource:NO];
+    }];
+    
+    if (self.type == 1) {
+        
+    }else if (self.type == 2){
+        [self loadData];//加载数据
+    }else if (self.type == 3){
+        
+    }
     
 }
+//获取数据
+-(void)loadData{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    WeakSelf;
+    [NetworkManager requestPOSTWithURLStr:HappyHotSearch paramDic:dic finish:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [weakSelf.reCommendSource addObjectsFromArray:responseObject[@"data"]];
+            [weakSelf hotOptions ];
+
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
+
+//搜索
+-(void)searchKeySource:(BOOL)isrefresh{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"name"] = self.key;
+    dic[@"lng"] = [LBSaveLocationInfoModel defaultUser].strLongitude;
+    dic[@"lat"] = [LBSaveLocationInfoModel defaultUser].strLatitude;
+    dic[@"page"] = @(self.page);
+    WeakSelf;
+    [NetworkManager requestPOSTWithURLStr:HappySearchPlay paramDic:dic finish:^(id responseObject) {
+  
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+    
+            //搜索了关键字 ，就需要历史记录添加进去
+            [_xcLabel insertHistorOptions:self.key];
+            
+            if (isrefresh) {
+                [self.dataSource removeAllObjects];
+            }
+            
+            for (NSDictionary *dic in responseObject[@"data"][@"page_data"]) {
+                LBEat_cateDataModel *model = [LBEat_cateDataModel mj_objectWithKeyValues:dic];
+                [self.dataSource addObject:model];
+            }
+            
+            if (self.dataSource.count  <= 0) {
+                 [EasyShowTextView showErrorText:@"未找到相关信息"];
+            }else{
+                self.tableview.hidden = NO;
+                self.xcLabel.hidden = YES;
+            }
+            [self.tableview reloadData];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [LBDefineRefrsh dismissRefresh:weakSelf.tableview];
+    } enError:^(NSError *error) {
+         [LBDefineRefrsh dismissRefresh:weakSelf.tableview];
+    }];
+    
+}
+
 - (IBAction)backEvent:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
     
 }
 
-
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSInteger existedLength = textField.text.length;
+    NSInteger selectedLength = range.length;
+    NSInteger replaceLength = string.length;
+    if (existedLength - selectedLength + replaceLength == 0) {
+        _xcLabel.hidden = NO;
+        _tableview.hidden = YES;
+
+    }
+    
+    if ([string isEqualToString:@"\n"]) {
+        [textField endEditing:YES];
+        self.key = textField.text;
+        self.page = 1;
+        [self searchKeySource:YES];
+        
+        return NO;
+    }
+    
     return YES;
 }
 
 -(void)hotOptions
 {
-    //推荐搜索 ，模拟网络数据
-    NSArray *arr = @[@"fes4发发ewrew",@"发顺丰",@"飞舞",@"粉丝纷纷",@"fes",@"发顺丰",@"蜂飞舞",@"粉丝纷纷",@"fes",@"发顺发丰",@"蜂飞舞",@"粉丝发发发发发纷",@"fes",@"发发发顺丰",@"蜂发飞舞",@"粉发发发丝发纷纷",@"发发fes",@"发顺丰",@"蜂飞发舞",@"发",@"粉丝粉丝纷纷粉丝纷纷粉丝纷纷粉丝纷纷粉丝纷纷粉丝纷纷粉丝纷纷粉丝纷纷"];
-    
-    self.dataSource = [NSMutableArray arrayWithArray:arr];
-    //历史搜索 。模拟本地数据库里面拿数据
-    NSArray *historyArr =@[@"蜂飞舞",@"粉丝纷纷",@"发顺丰",@"发顺丰",@"发顺丰",@"蜂飞舞",@"粉丝纷纷",@"fes",@"发顺丰",@"蜂飞舞",@"粉丝纷纷",@"fes",@"发顺丰",@"蜂飞舞",@"蜂飞舞",@"粉丝纷纷",@"发顺丰",@"发顺丰",@"发顺丰",@"蜂飞舞",@"粉丝纷纷",@"fes",@"发顺丰",@"蜂飞舞",@"粉丝纷纷",@"fes",@"发顺丰",@"蜂飞舞"];
-    self.historySource = [NSMutableArray arrayWithArray:historyArr];
-    
-    _xcLabel = [[XC_label alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight-SafeAreaTopHeight) AndTitleArr:arr AndhistoryArr:historyArr AndTitleFont:14 AndScrollDirection:UICollectionViewScrollDirectionVertical];
+   
+    _xcLabel = [[XC_label alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight-SafeAreaTopHeight) AndTitleArr:self.reCommendSource AndhistoryArr:self.historySource AndTitleFont:14 AndScrollDirection:UICollectionViewScrollDirectionVertical];
     _xcLabel.delegate = self ;
     _xcLabel.opetionsHeight = 30;
     _xcLabel.isShow_One = YES ;  //默认NO 显示
     _xcLabel.isShow_Two = NO ; //默认NO 显示
     _xcLabel.headTitle_one = @"热门搜索";
     _xcLabel.headTitle_two = @"历史搜索";
+    
     [self.view addSubview:_xcLabel];
 }
+#pragma mark - 重写----设置每个分区有几个单元格
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.dataSource.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return EatCellH;
+}
+
+#pragma mark - 重写----设置每个分组单元格中显示的内容
+-(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:nearby_classifyCell forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = self.dataSource[indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+}
+
 
 #pragma mark selectHotOrHistoryDelegate
 //选中某个选项
 -(void)selectHotOrHistory:(NSString *)historyOrHot AndIndex:(NSInteger)index AndTitile:(NSString *)selectTitle{
     [self.view endEditing:YES];
-    
+    self.key = selectTitle;
+    [self searchKeySource:YES];
     //这里是选中某个选项， 主要处理跳转逻辑
 }
 
@@ -97,6 +226,10 @@
     
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 #pragma mark Xc_serchViewCilckBtn
 -(void)cilckCancle{
     [self.view endEditing:YES];
@@ -117,7 +250,28 @@
     [_xcLabel insertHistorOptions:resultString];
 }
 
+-(NSMutableArray*)dataSource{
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
+        
+    }
+    return _dataSource;
+}
 
+-(NSMutableArray*)reCommendSource{
+    if (!_reCommendSource) {
+        _reCommendSource = [NSMutableArray array];
+        
+    }
+    return _reCommendSource;
+}
 
+-(NSMutableArray*)historySource{
+    if (!_historySource) {
+        _historySource = [NSMutableArray array];
+        
+    }
+    return _historySource;
+}
 
 @end

@@ -67,7 +67,7 @@
 @property (nonatomic, assign) id <selectHotOrHistoryDelegate> _Nonnull delegate;
 
 
-
+@property (nonatomic,strong)UICollectionView *_Nonnull collectionView ;
 
 /** 这个属性是：第一组的标题  默认显示推荐搜索 ****/
 @property (nonatomic,copy,nullable)NSString *  headTitle_one ;

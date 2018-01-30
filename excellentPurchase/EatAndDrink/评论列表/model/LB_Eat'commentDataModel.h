@@ -11,7 +11,25 @@
 
 @interface LB_Eat_commentDataModel : NSObject
 
-@property (copy , nonatomic)NSString *content;//内容
+@property (copy , nonatomic)NSString *store_comment_id;
+
+@property (copy , nonatomic)NSString *comment;//内容
+
+@property (copy , nonatomic)NSString *reply;//回复
+
+@property (copy , nonatomic)NSString *addtime;
+
+@property (copy , nonatomic)NSString *reply_time;
+
+@property (copy , nonatomic)NSString *mark;
+
+@property (copy , nonatomic)NSString *nickname;
+
+@property (copy , nonatomic)NSString *user_name;
+
+@property (copy , nonatomic)NSString *pic;
+
+@property (copy , nonatomic)NSString *group_name;
 
 +(NSArray *)getIndustryModels:(NSArray *)infos;
 

@@ -10,4 +10,5 @@
 
 @interface LBEat_StoreCommentsViewController : UIViewController
 
+@property (strong , nonatomic)NSString *store_id;
 @end

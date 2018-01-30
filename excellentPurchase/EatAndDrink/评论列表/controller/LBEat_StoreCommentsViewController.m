@@ -27,7 +27,9 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong , nonatomic)NSArray *dataArr;
 
-@property (strong , nonatomic)NSArray *commentdataArr;
+@property (strong , nonatomic)NSMutableArray *commentdataArr;
+@property (nonatomic, assign) NSInteger  page;
+@property (nonatomic, assign) NSInteger  allCount;
 
 
 @end
@@ -36,25 +38,64 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.page = 1;
     self.navigationItem.title = @"评价列表";
     [self.tableview registerNib:[UINib nibWithNibName:eat_StoreCommentsTableViewCell bundle:nil] forCellReuseIdentifier:eat_StoreCommentsTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:eat_StoreMoreCommentsTableViewCell bundle:nil] forCellReuseIdentifier:eat_StoreMoreCommentsTableViewCell];
     
-    NSArray  *arr = [LB_Eat_commentDataModel getIndustryModels:@[@{@"content":@"我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓"},@{@"content":@"我觉得从前我非常浓无法 i 超浓"},@{@"content":@"我觉得从前我非常浓无法 i "},@{@"content":@"我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓我觉得从前我非常浓无法 i 超浓"}]];
-    
-    self.dataArr = [LB_EatCommentFrameModel getIndustryModels:arr];
-    
-    NSArray *arr1 = @[@{@"content":@"sddssssevfewvg为哦供暖费更年期鞥为苹果 v 年轻阿房宫你",@"name":@"hhh",@"replyname":@"wdwd"},
-                                   @{@"content":@"sddssss",@"name":@"hhh",@"replyname":@"wdwd"},
-                                   @{@"content":@"sddssss",@"name":@"hhh",@"replyname":@"wdwd"},
-                                   @{@"content":@"sddssss",@"name":@"hhh",@"replyname":@"wdwd"}];
-    self.commentdataArr = [LB_Eat_commentOneDataModel getIndustryModels:arr1];
-    
-     [self.tableview reloadData];
-    
+    WeakSelf;
+    [self loadData:1 refreshDirect:YES];
+    [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
+        [weakSelf loadData:1 refreshDirect:YES];
+    } footerRefresh:^{
+        if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
+            [EasyShowTextView showInfoText:@"没有数据了"];
+            [LBDefineRefrsh dismissRefresh:self.tableview];
+        }else{
+            weakSelf.page = weakSelf.page + 1;
+            [weakSelf loadData:weakSelf.page refreshDirect:NO];
+        }
+    }];
 
 }
+
+-(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
     
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"store_id"] = self.store_id;
+    dic[@"page"] = @(page);
+    
+    [EasyShowLodingView showLodingText:@"正在加载"];
+    [NetworkManager requestPOSTWithURLStr:HappyStore_comment_list paramDic:dic finish:^(id responseObject) {
+        [LBDefineRefrsh dismissRefresh:self.tableview];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.allCount = [responseObject[@"data"][@"count"] integerValue];
+            
+            if (isDirect) {
+                [self.commentdataArr removeAllObjects];
+            }
+            
+            NSArray *arr = [LB_Eat_commentDataModel getIndustryModels:responseObject[@"data"][@"page_data"]];
+            NSArray *arr1 = [LB_EatCommentFrameModel getIndustryModels:arr];
+            
+            [self.commentdataArr addObjectsFromArray:arr1];
+            
+            
+            [self.tableview reloadData];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [LBDefineRefrsh dismissRefresh:self.tableview];
+        
+    }];
+    
+}
+
     
 -(void)showXHInputViewWithStyle:(InputViewStyle)style plaecholderStr:(NSString*)plaecholderStr{
     
@@ -95,20 +136,20 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 4; //返回值是多少既有几个分区
+    return self.commentdataArr.count; //返回值是多少既有几个分区
 }
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //分别设置每个分组上面显示的单元格个数
-    
-    return 4;
+    LB_EatCommentFrameModel *modelF = self.commentdataArr[section];
+    if ([NSString StringIsNullOrEmpty:modelF.HomeInvestModel.reply] == NO) {
+        return 1;
+    }
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 3) {
-        return 30;
-    }
     tableView.estimatedRowHeight = 10;
     tableView.rowHeight = UITableViewAutomaticDimension;
     return UITableViewAutomaticDimension;
@@ -117,21 +158,17 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 3) {
-        LBEat_StoreMoreCommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:eat_StoreMoreCommentsTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
+  
     LBEat_StoreCommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:eat_StoreCommentsTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = self.commentdataArr[indexPath.row];
+    LB_EatCommentFrameModel *modelF = self.commentdataArr[indexPath.section];
+    cell.contentReply = modelF.HomeInvestModel.reply;
     return cell;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   LB_Eat_commentOneDataModel *model =   self.commentdataArr[indexPath.row];
-    [self showXHInputViewWithStyle:InputViewStyleLarge plaecholderStr:[NSString stringWithFormat:@"回复%@",model.name]];
+   //LB_Eat_commentOneDataModel *model =   self.commentdataArr[indexPath.row];
+    //[self showXHInputViewWithStyle:InputViewStyleLarge plaecholderStr:[NSString stringWithFormat:@"回复%@",model.name]];
 }
 
 #pragma mark - 重写----设置自定义的标题和标注
@@ -144,18 +181,18 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
         headerview = [[LBEat_StoreCommentHeaderView alloc]initWithReuseIdentifier:ID];
 
     }
-    __weak typeof(self) wself = self;
-    headerview.HomeInvestModel = self.dataArr[section];
+//    __weak typeof(self) wself = self;
+    headerview.HomeInvestModel = self.commentdataArr[section];
     headerview.section = section;
-    headerview.showComments = ^(NSInteger section) {
-        [wself showCommentInput:section];
-    };
+//    headerview.showComments = ^(NSInteger section) {
+//        [wself showCommentInput:section];
+//    };
 //    跳转评论详情
-    headerview.pushCommentsListVc = ^{
-        wself.hidesBottomBarWhenPushed = YES;
-        LBEat_StoreCommentsdetailViewController *vc = [[LBEat_StoreCommentsdetailViewController alloc]init];
-        [wself.navigationController pushViewController:vc animated:YES];
-    };
+//    headerview.pushCommentsListVc = ^{
+//        wself.hidesBottomBarWhenPushed = YES;
+//        LBEat_StoreCommentsdetailViewController *vc = [[LBEat_StoreCommentsdetailViewController alloc]init];
+//        [wself.navigationController pushViewController:vc animated:YES];
+//    };
     
     return headerview;
     
@@ -174,12 +211,12 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 
 #pragma mark - 重写----设置标题和标注的高度
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    LB_EatCommentFrameModel *frmeModel =self.dataArr[section];
+    LB_EatCommentFrameModel *frmeModel =self.commentdataArr[section];
     return frmeModel.contentlH;
 
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
-    return 25;
+    return 10;
 }
 #pragma mark - XHInputViewDelagete
 /** XHInputView 将要显示 */
@@ -207,9 +244,9 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
     return _dataArr;
 }
 
--(NSArray*)commentdataArr{
+-(NSMutableArray*)commentdataArr{
     if (!_commentdataArr) {
-        _commentdataArr  = [[NSArray alloc]init];
+        _commentdataArr  = [[NSMutableArray alloc]init];
     }
     return _commentdataArr;
 }

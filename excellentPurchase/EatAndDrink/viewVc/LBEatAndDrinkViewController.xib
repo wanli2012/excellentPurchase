@@ -25,26 +25,27 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uM9-ra-96X">
-                            <rect key="frame" x="35" y="26.5" width="47" height="30"/>
+                            <rect key="frame" x="35" y="26.5" width="40" height="30"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eat-Citydropdown" translatesAutoresizingMaskIntoConstraints="NO" id="99a-pS-TIh">
-                                    <rect key="frame" x="32" y="7.5" width="15" height="15"/>
+                                    <rect key="frame" x="30" y="7.5" width="10" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="C0b-TD-BUf"/>
-                                        <constraint firstAttribute="width" constant="15" id="Gn1-PI-z8M"/>
+                                        <constraint firstAttribute="width" constant="10" id="Gn1-PI-z8M"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="城市" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrf-2j-XAH">
-                                    <rect key="frame" x="0.0" y="0.0" width="29" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="27" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="M8G-1G-0Tz"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="99a-pS-TIh" firstAttribute="centerY" secondItem="uM9-ra-96X" secondAttribute="centerY" id="4Ug-1H-ksH"/>
                                 <constraint firstItem="Vrf-2j-XAH" firstAttribute="leading" secondItem="uM9-ra-96X" secondAttribute="leading" id="6Fd-Jh-wgy"/>
@@ -54,6 +55,9 @@
                                 <constraint firstAttribute="height" constant="30" id="uc5-Kn-hb6"/>
                                 <constraint firstItem="99a-pS-TIh" firstAttribute="leading" secondItem="Vrf-2j-XAH" secondAttribute="trailing" constant="3" id="yHY-bY-XwW"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="IHS-IN-6fV" appends="YES" id="UeD-s9-Tcc"/>
+                            </connections>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eat-location" translatesAutoresizingMaskIntoConstraints="NO" id="hRB-As-h3f">
                             <rect key="frame" x="10" y="34" width="15" height="15"/>
@@ -63,10 +67,10 @@
                             </constraints>
                         </imageView>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzm-Ar-5YX">
-                            <rect key="frame" x="97" y="26.5" width="268" height="30"/>
+                            <rect key="frame" x="90" y="26.5" width="275" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60H-B6-g8H">
-                                    <rect key="frame" x="69" y="0.0" width="30" height="30"/>
+                                    <rect key="frame" x="72.5" y="0.0" width="30" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="BYC-G3-Kgg"/>
@@ -75,7 +79,7 @@
                                     <state key="normal" image="search"/>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="附近好吃好玩的" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xyv-8Y-SLL">
-                                    <rect key="frame" x="99" y="0.0" width="104" height="30"/>
+                                    <rect key="frame" x="102.5" y="0.0" width="104" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -83,6 +87,7 @@
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" red="0.90970492362976074" green="0.90986090898513794" blue="0.9096950888633728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="Xyv-8Y-SLL" firstAttribute="leading" secondItem="60H-B6-g8H" secondAttribute="trailing" id="Db9-Yt-tr6"/>
                                 <constraint firstAttribute="bottom" secondItem="Xyv-8Y-SLL" secondAttribute="bottom" id="JVV-CP-LZy"/>
@@ -96,6 +101,9 @@
                                     <integer key="value" value="15"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="tie-pm-sHq" appends="YES" id="78y-bo-MHr"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2E-B7-g9z">
                             <rect key="frame" x="0.0" y="63" width="375" height="1"/>
@@ -129,6 +137,16 @@
             </constraints>
             <point key="canvasLocation" x="24.5" y="52.5"/>
         </view>
+        <tapGestureRecognizer id="IHS-IN-6fV">
+            <connections>
+                <action selector="tapgestureChooseCity:" destination="-1" id="BZT-Ef-3VI"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="tie-pm-sHq">
+            <connections>
+                <action selector="tapgestureSearch:" destination="-1" id="cCi-Ep-7HM"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="eat-Citydropdown" width="10" height="7"/>

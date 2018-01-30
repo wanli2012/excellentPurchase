@@ -14,6 +14,7 @@
 #import "LBEat_StoreClassifyViewController.h"
 #import "LBSaveLocationInfoModel.h"
 #import "LBEat_cateModel.h"
+#import "LBHistoryHotSerachViewController.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -67,6 +68,18 @@
        
     }];
     
+}
+//选择城市
+- (IBAction)tapgestureChooseCity:(UITapGestureRecognizer *)sender {
+    
+}
+//搜索
+- (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBHistoryHotSerachViewController *vc = [[LBHistoryHotSerachViewController alloc]init];
+    vc.type = 2;
+    [self.navigationController pushViewController:vc animated:true];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 -(void)addMenu{

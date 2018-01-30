@@ -37,6 +37,7 @@
             make.leading.equalTo(self).offset(5);
             make.top.equalTo(self).offset(5);
             make.bottom.equalTo(self).offset(-5);
+            
         }];
 
     }
@@ -52,6 +53,12 @@
     self.highlighted = selected;
     self.name.highlighted = selected;
     self.yellowView.hidden = !selected;
+}
+
+-(void)setModel:(LBEatClassifyModel *)model{
+    _model = model;
+    
+    self.name.text = _model.catename;
 }
 
 @end

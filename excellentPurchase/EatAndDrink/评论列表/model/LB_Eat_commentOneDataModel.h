@@ -10,11 +10,6 @@
 
 @interface LB_Eat_commentOneDataModel : NSObject
 
-@property (copy , nonatomic)NSString *name;
-
-@property (copy , nonatomic)NSString *replyname;
-
-@property (copy , nonatomic)NSString *content;
 
 +(NSArray *)getIndustryModels:(NSArray *)infos;
 
