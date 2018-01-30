@@ -60,6 +60,23 @@
     
     if(_isEdit){//编辑
         
+        self.isdeualt = [self.model.is_default boolValue];
+        self.adressID = self.model.address_id;
+        self.provinceStr = self.model.address_province;
+        self.cityStr = self.model.address_city;
+        self.countryStr = self.model.address_area;
+        
+        self.nameTf.text = self.model.truename;
+        self.phoneTf.text = self.model.phone;
+        self.provinceTf.text = [NSString stringWithFormat:@"%@%@%@",self.model.address_province,self.model.address_city,self.model.address_area];
+        self.adressTf.text = self.model.address_address;
+        
+        if (self.isdeualt) {
+            [self.is_defaultSwith setOn:YES];
+        }else{
+            [self.is_defaultSwith setOn:NO];
+        }
+        
     }else{//添加
         
         self.isdeualt = 0;
@@ -177,12 +194,9 @@
         [EasyShowTextView showInfoText:@"请输入详细地址"];
         return;
     }
-    
-    //    if (self.isEdit == YES) {//编辑
-    
+
     [EasyShowLodingView showLodingText:@"请求中"];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"ADD";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"truename"] = self.nameTf.text;
@@ -193,7 +207,16 @@
     dic[@"phone"] = self.phoneTf.text;
     dic[@"address"] = self.adressTf;
     
-//    dic[@"address_id"] = self.adressID;
+    if (_isEdit) {//编辑
+        
+        dic[@"app_handler"] = @"UPDATE";
+        dic[@"address_id"] = self.adressID;
+        
+    }else{//添加
+        
+        dic[@"app_handler"] = @"ADD";
+        
+    }
     
     [NetworkManager requestPOSTWithURLStr:kAddressed paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];
