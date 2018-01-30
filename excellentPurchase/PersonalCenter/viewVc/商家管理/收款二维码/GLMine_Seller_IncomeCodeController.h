@@ -10,4 +10,6 @@
 
 @interface GLMine_Seller_IncomeCodeController : UIViewController
 
+@property (nonatomic, assign)NSInteger type;//1:个人资料界面跳转过来的
+
 @end

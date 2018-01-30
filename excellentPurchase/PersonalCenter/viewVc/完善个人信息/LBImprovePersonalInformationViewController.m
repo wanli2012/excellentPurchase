@@ -9,6 +9,7 @@
 #import "LBImprovePersonalInformationViewController.h"
 #import "LBUploadIdentityPictureViewController.h"
 
+
 ///地址选择
 #import "CZHAddressPickerView.h"
 #import "AddressPickerHeader.h"
@@ -64,6 +65,8 @@
 - (IBAction)uploadidentitypictures:(UITapGestureRecognizer *)sender {
     self.hidesBottomBarWhenPushed = YES;
     LBUploadIdentityPictureViewController *vc =[[LBUploadIdentityPictureViewController alloc]init];
+    vc.faceUrl = self.faceUrl;
+    vc.oppositeUrl = self.oppositeUrl;
     WeakSelf;
     vc.block = ^(NSString *faceUrl, NSString *oppositeUrl) {
         weakSelf.faceUrl = faceUrl;
@@ -121,28 +124,33 @@
         
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
-        
     }];
-    
 }
+
 #pragma mark - 弹出省市区三级列表
 - (void)popAreaPicker{
     
     WeakSelf;
     [CZHAddressPickerView areaPickerViewWithDataArr:self.dataArr AreaDetailBlock:^(NSString *province, NSString *city, NSString *area, NSString *province_id, NSString *city_id, NSString *area_id) {
-        
-        weakSelf.areaTF.text = [NSString stringWithFormat:@"%@%@%@",province,city,area];
-        
+
         weakSelf.provinceStrId = province_id;
         weakSelf.cityStrId = city_id;
-        weakSelf.countryStrId = area_id;
+        
+        if ([NSString StringIsNullOrEmpty:area_id]) {
+            weakSelf.countryStrId = @"";
+        }else{
+            weakSelf.countryStrId = area_id;
+        }
         
         weakSelf.provinceStr = province;
         weakSelf.cityStr = city;
-//        if ([NSString ]) {
-//            statements
-//        }
-        weakSelf.countryStr = area;
+        if ([NSString StringIsNullOrEmpty:area]) {
+            weakSelf.countryStr = @"";
+        }else{
+            weakSelf.countryStr = area;
+        }
+        
+        weakSelf.areaTF.text = [NSString stringWithFormat:@"%@%@%@",weakSelf.provinceStr,weakSelf.cityStr,weakSelf.countryStr];
         
     }];
 }
@@ -152,6 +160,10 @@
     
     [self.view endEditing:YES];
     
+    if (self.nameTF.text.length < 2 || self.nameTF.text.length > 15) {
+        [EasyShowTextView showInfoText:@"姓名请输入2-15位"];
+        return;
+    }
     if (self.IDTF.text.length == 0) {
         [EasyShowTextView showInfoText:@"请输入身份证号"];
         return;
@@ -160,12 +172,57 @@
         [EasyShowTextView showInfoText:@"身份证号不合法"];
         return;
     }
-    if (self.nameTF.text.length < 2 || self.nameTF.text.length > 15) {
-        [EasyShowTextView showInfoText:@"姓名请输入2-15位"];
+    if (self.faceUrl.length == 0 || self.oppositeUrl.length == 0) {
+        [EasyShowTextView showInfoText:@"请上传身份证正反面"];
+        return;
+    }
+    if (self.areaTF.text.length == 0) {
+        [EasyShowTextView showInfoText:@"请选择地区"];
+        return;
+    }
+    if (self.detailAddressTF.text.length == 0) {
+        [EasyShowTextView showInfoText:@"请输入详细地址"];
         return;
     }
     
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"UPDATE";
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"face_pic"] = self.faceUrl;
+    dict[@"con_pic"] = self.oppositeUrl;
+    dict[@"idcard"] = self.IDTF.text;
+    dict[@"province_id"] = self.provinceStrId;
+    dict[@"city_id"] = self.cityStrId;
+    dict[@"area_id"] = self.countryStrId;
+    dict[@"address"] = self.detailAddressTF.text;
+    dict[@"user_sex"] = self.user_sex;
+    dict[@"truename"] = self.nameTF.text;
     
+    [EasyShowLodingView showLoding];
+    
+    [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dict finish:^(id responseObject) {
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showSuccessText:@"资料完善成功"];
+            
+            if (self.block) {
+                self.block(YES);
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
     
 }
 

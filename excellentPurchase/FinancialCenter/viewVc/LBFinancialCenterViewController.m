@@ -49,13 +49,22 @@
     
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.headerView];
+    
     // 添加悬浮菜单
     [self.view addSubview:self.pageMenu];
     
-    // 添加4个子控制器
-    [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
-    [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
-    [self addChildViewController:[[LBFinancialCenterExchangeRecodervc alloc] init]];
+//    if ([[UserModel defaultUser].group_id integerValue] == 8) {//商家身份
+        // 添加3个子控制器
+        [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
+        [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
+        [self addChildViewController:[[LBFinancialCenterExchangeRecodervc alloc] init]];
+        
+//    }else{    //除商家以外的身份
+//
+//        [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
+//        [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
+//    }
+    
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
     
@@ -250,7 +259,14 @@
         _scrollView.pagingEnabled = YES;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.contentSize = CGSizeMake(UIScreenWidth*3, 0);
+        
+//        if ([[UserModel defaultUser].group_id integerValue] == 8) {
+        
+            _scrollView.contentSize = CGSizeMake(UIScreenWidth*3, 0);
+//        }else{
+//            _scrollView.contentSize = CGSizeMake(UIScreenWidth*2, 0);
+//        }
+        
         _scrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
     }
     return _scrollView;
@@ -266,13 +282,19 @@
     }
     return _headerView;
 }
+
 - (SPPageMenu *)pageMenu{
     
     if (!_pageMenu) {
         _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
-        [_pageMenu setItems:@[@"优购币市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
+        
+//        if([[UserModel defaultUser].group_id integerValue] == 8){
+            [_pageMenu setItems:@[@"优购币市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
+//        }else{
+//            [_pageMenu setItems:@[@"优购币市值",@"出售记录"] selectedItemIndex:0];
+//        }
         _pageMenu.delegate = self;
-        _pageMenu.itemTitleFont = [UIFont systemFontOfSize:17];
+        _pageMenu.itemTitleFont = [UIFont systemFontOfSize:15];
         _pageMenu.selectedItemTitleColor = YYSRGBColor(251, 77, 83, 1);
         _pageMenu.unSelectedItemTitleColor = [UIColor colorWithWhite:0 alpha:0.6];
         _pageMenu.tracker.backgroundColor = YYSRGBColor(251, 77, 83, 1);

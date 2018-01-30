@@ -14,13 +14,17 @@
 #import "CZHAddressPickerView.h"
 #import "AddressPickerHeader.h"
 
+//弹出的选择器 类似alertViewSheet
+#import "HCBasePopupViewController.h"
+#import "HCBottomPopupViewController.h"
+
 //#import "LBMineCenterAddAdreassViewController.h"//修改收货地址
 #import "LBModifyingUsernameViewController.h"//用户名修改
 #import "LBImprovePersonalInformationViewController.h"//完善资料
-#import "GLRecommendController.h"//我的二维码
+#import "GLMine_Seller_IncomeCodeController.h"//我的二维码
 #import "LBMineCentermodifyAdressViewController.h"//收货地址列表
 
-@interface LBAccountManagementViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBAccountManagementViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIImageView *headImge;//头像
@@ -121,8 +125,27 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 - (IBAction)editInfo:(id)sender {
     
     if (self.type == 1) {
+
+        HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
+
+        __weak typeof(self) wself = self;
+        HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
+            [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+            [wself getcamera];
+        } withType:HCBottomPopupActionSelectItemTypeDefault];
         
-        NSLog(@"修改头像");
+        HCBottomPopupAction * action2 = [HCBottomPopupAction actionWithTitle:@"从手机相册选择" withSelectedBlock:^{
+            [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+            [wself getImageFromIpc];
+        } withType:HCBottomPopupActionSelectItemTypeDefault];
+        
+        HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
+        
+        [pc addAction:action1];
+        [pc addAction:action2];
+        [pc addAction:action4];
+        
+        [self presentViewController:pc animated:YES completion:nil];
         
     }else if(self.type == 0){
         self.hidesBottomBarWhenPushed = YES;
@@ -130,6 +153,95 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         vc.type = 1;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark -拍照
+-(void)getcamera{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        // 设置拍照后的图片可以被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:nil];
+    }else {
+        
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([type isEqualToString:@"public.image"]) {
+        // 先把图片转成NSData
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        
+        NSData *data;
+        if (UIImagePNGRepresentation(image) == nil) {
+            data = UIImageJPEGRepresentation(image, 0.2);
+        }else {
+            data = UIImageJPEGRepresentation(image, 0.2);
+        }
+        //#warning 这里来做操作，提交的时候要上传
+        // 图片保存的路径
+        self.headImge.image = [UIImage imageWithData:data];
+        
+        }
+        [self modifyPic];
+    
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        
+}
+
+
+#pragma mark - 相册读取
+- (void)getImageFromIpc
+{
+    // 1.判断相册是否可以打开
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) return;
+    // 2. 创建图片选择控制器
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+
+    // 3. 设置打开照片相册类型(显示所有相簿)
+    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+    // 4.设置代理
+    ipc.delegate = self;
+    // 5.modal出这个控制器
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+#pragma mark - 修改头像
+- (void)modifyPic{
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"UPDATE";
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"pic"] = self.headImge.image;
+    
+    [EasyShowLodingView showLoding];
+    
+    [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dict finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showSuccessText:@"头像修改成功"];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
+    
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
@@ -158,7 +270,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 
     LBAccountManagementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:accountManagementTableViewCell forIndexPath:indexPath];
     
-    if (self.type == 1) {
+    if (self.type == 1) {//1:编辑资料 0:不可编辑资料
         cell.titleLabel.text = self.titleArr2[indexPath.row];
         
         cell.type = self.type;
@@ -236,9 +348,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 LBModifyingUsernameViewController *modifyUserNameVC = [[LBModifyingUsernameViewController alloc] init];
                 
                 modifyUserNameVC.block = ^(NSString *name) {
-                    
                     [weakSelf postData];
-                    
                 };
                 
                 [self.navigationController pushViewController:modifyUserNameVC animated:YES];
@@ -246,10 +356,21 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 break;
             case 1://未审核  跳转到 完善信息
             {
-                self.hidesBottomBarWhenPushed = YES;
-                LBImprovePersonalInformationViewController *vc = [[LBImprovePersonalInformationViewController alloc] init];
+                ////认证状态 0没有认证 1:申请实名认证 2审核通过3失败
                 
-                [self.navigationController pushViewController:vc animated:YES];
+                if ([self.model.rzstatus integerValue] == 0 ||[self.model.rzstatus integerValue] == 3) {
+                    
+                    self.hidesBottomBarWhenPushed = YES;
+                    LBImprovePersonalInformationViewController *vc = [[LBImprovePersonalInformationViewController alloc] init];
+                    
+                    vc.block = ^(BOOL isRefresh) {
+                        if (isRefresh) {
+                            [weakSelf postData];
+                        }
+                    };
+                    
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             }
                 break;
             case 2://收货地址
@@ -263,7 +384,8 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             case 3://我的二维码
             {
                 self.hidesBottomBarWhenPushed = YES;
-                GLRecommendController *vc = [[GLRecommendController alloc] init];
+                GLMine_Seller_IncomeCodeController *vc = [[GLMine_Seller_IncomeCodeController alloc] init];
+                
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

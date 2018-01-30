@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^infomationBlock)(BOOL isRefresh);
+
 @interface LBImprovePersonalInformationViewController : UIViewController
+
+@property (nonatomic, copy)infomationBlock block;
 
 @end

@@ -149,7 +149,6 @@
         [_scorllView addSubview:item];
         
     }
-    
 }
 
 -(void)reloadScorlvoewimages:(NSArray *)dataArr{
@@ -177,7 +176,10 @@
 
 -(void)tapgestureClassfty:(UITapGestureRecognizer*)tap{
 
-    [self.delegete tapgesture:tap.view.tag];
+    if([self.delegete respondsToSelector:@selector(tapgesture:)]){
+        [self.delegete tapgesture:tap.view.tag];
+        
+    }
 
 }
 

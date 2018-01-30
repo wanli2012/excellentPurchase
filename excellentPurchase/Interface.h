@@ -61,5 +61,10 @@
 #define kAddressed @"Address/addressed"///添加或编辑地址-峰
 #define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
 #define kappend_upload @"Upload/append_upload"///上传图片
+#define kget_money_list @"MoneyCenter/get_money_list"///优购币市值列表
+#define kget_back_list @"MoneyCenter/get_back_list"///优购币出售记录
+#define kget_mark_list @"MoneyCenter/get_mark_list"///购物券兑换记录
+#define kwithdraw_cash @"MoneyCenter/withdraw_cash"///优购币出售
+
 
 #endif /* Interface_h */

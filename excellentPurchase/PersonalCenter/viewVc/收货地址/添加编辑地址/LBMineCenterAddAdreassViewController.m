@@ -205,7 +205,7 @@
     dic[@"area"] = self.countryStr;
     dic[@"is_default"] = @(self.isdeualt);
     dic[@"phone"] = self.phoneTf.text;
-    dic[@"address"] = self.adressTf;
+    dic[@"address"] = self.adressTf.text;
     
     if (_isEdit) {//编辑
         

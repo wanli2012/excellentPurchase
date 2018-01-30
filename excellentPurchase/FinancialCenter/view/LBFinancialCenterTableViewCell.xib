@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="362" height="141"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="140.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="362" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ueg-aL-XGb">
@@ -62,6 +62,11 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <connections>
+                <outlet property="dateLabel" destination="aLP-nU-tj0" id="8Xt-Nv-VGy"/>
+                <outlet property="progressView" destination="c6D-4Z-2qZ" id="tsF-Uz-xI1"/>
+                <outlet property="radioLabel" destination="yoL-mC-qSw" id="Mqb-xc-qpn"/>
+            </connections>
             <point key="canvasLocation" x="46" y="100.5"/>
         </tableViewCell>
     </objects>

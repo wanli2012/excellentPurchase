@@ -12,7 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_Seller_IncomeCodeController">
             <connections>
+                <outlet property="IDLabel" destination="NB6-UW-BOV" id="U40-bk-GiX"/>
                 <outlet property="codeImageV" destination="Ppz-Uf-Nzz" id="4tk-5e-tT5"/>
+                <outlet property="nameLabel" destination="tAS-Vo-l5R" id="0rU-Bd-E9z"/>
+                <outlet property="noticeLabel" destination="UJh-pM-wHZ" id="HmA-P3-hBe"/>
+                <outlet property="picImageV" destination="ulj-Xg-S8X" id="g9Z-aY-xdW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

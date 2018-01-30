@@ -20,9 +20,6 @@
 
 @property (nonatomic, assign)BOOL isFacePic;//是否为正面照
 
-@property (nonatomic, copy)NSString *faceUrl;//正面照url
-@property (nonatomic, copy)NSString *oppositeUrl;//反面照url
-
 @end
 
 @implementation LBUploadIdentityPictureViewController
@@ -31,6 +28,25 @@
     [super viewDidLoad];
     
     [self setNav];
+    
+    if (self.faceUrl.length != 0) {
+        
+        [self.faceImageV sd_setImageWithURL:[NSURL URLWithString:self.faceUrl] placeholderImage:nil];
+        if (self.faceSignImageV.image == nil) {
+            self.faceSignImageV.hidden = NO;
+        }else{
+            self.faceSignImageV.hidden = YES;
+        }
+    }
+    
+    if (self.oppositeUrl.length != 0) {
+        [self.oppositeImageV sd_setImageWithURL:[NSURL URLWithString:self.oppositeUrl] placeholderImage:nil];
+        if (self.oppositeSignImageV.image == nil) {
+            self.oppositeSignImageV.hidden = NO;
+        }else{
+            self.oppositeSignImageV.hidden = YES;
+        }
+    }
 
 }
 
@@ -101,9 +117,9 @@
         NSData *data;
         
         if(self.isFacePic){
-            data = UIImageJPEGRepresentation(self.faceSignImageV.image,1);
+            data = UIImageJPEGRepresentation(self.faceImageV.image,1);
         }else{
-            data = UIImageJPEGRepresentation(self.oppositeSignImageV.image,1);
+            data = UIImageJPEGRepresentation(self.oppositeImageV.image,1);
         }
     
         [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
@@ -131,11 +147,7 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
         
         [EasyShowLodingView hidenLoding];
-        
-//        self.submitBtn.userInteractionEnabled = YES;
-//        self.submitBtn.backgroundColor = MAIN_COLOR;
-//        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        
+
     }];
 }
 

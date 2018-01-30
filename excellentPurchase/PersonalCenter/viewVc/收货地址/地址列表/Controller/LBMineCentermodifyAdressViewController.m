@@ -23,7 +23,6 @@
 @property (strong, nonatomic)UIButton *rightBt;
 @property (strong, nonatomic)NSMutableArray *models;
 @property (assign, nonatomic)NSInteger page;//页数默认为1
-@property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
 
 @property (assign, nonatomic)NSInteger  deleteIndex;//删除下标
@@ -44,6 +43,8 @@
 
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"修改收货地址";
+    
+    [self setupNpdata];//设置无数据的时候展示
     
     self.tableview.tableFooterView = [UIView new];
     self.tableview.estimatedRowHeight = 105;
@@ -74,8 +75,34 @@
     [self postRequest:YES];
 }
 
+/**
+ 设置无数据图
+ */
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableview.tableFooterView = [UIView new];
+    
+    self.tableview.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableview.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    //emptyView内容上的点击事件监听
+    [self.tableview.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf postRequest:YES];
+    }];
+}
+
 //请求数据
 -(void)postRequest:(BOOL)isRefresh{
+    if(isRefresh){
+        self.page = 1;
+    }else{
+        self.page ++;
+    }
     
     [EasyShowLodingView showLodingText:@"数据请求中"];
     

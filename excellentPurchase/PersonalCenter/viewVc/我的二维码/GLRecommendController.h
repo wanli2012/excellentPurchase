@@ -10,4 +10,6 @@
 
 @interface GLRecommendController : UIViewController
 
+@property (nonatomic, assign)NSInteger type;
+
 @end

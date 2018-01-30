@@ -12,7 +12,8 @@
 NSNotificationName const ChildScrollViewDidScrollNSNotificationFinancial = @"ChildScrollViewDidScrollNSNotificationFinancial";
 NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"ChildScrollViewRefreshStateNSNotificationFinancial";
 
-@interface LBFinancialCenterBaseViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LBFinancialCenterBaseViewController ()
+
 
 @end
 
@@ -26,9 +27,6 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"
     //self.rowCount = 20;
     
     [self.view addSubview:self.tableView];
-    
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
     
     self.scrollView = self.tableView;
 }
