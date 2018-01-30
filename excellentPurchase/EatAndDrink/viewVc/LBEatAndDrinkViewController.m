@@ -163,9 +163,11 @@
 - (void)pageMenu:(SPPageMenu *)pageMenu functionButtonClicked:(UIButton *)functionButton {
     
     __weak typeof(self) weaks = self;
-    [LBEat_WholeClassifyView showWholeClassifyViewBlock:^(NSInteger section) {
+    [LBEat_WholeClassifyView showWholeClassifyViewBlock:^(NSString *cate_id,NSString *catename) {
         weaks.hidesBottomBarWhenPushed = YES;
         LBEat_StoreClassifyViewController *vc = [[LBEat_StoreClassifyViewController alloc]init];
+        vc.cate_id = cate_id;
+        vc.cate_name = catename;
         [self.navigationController pushViewController:vc animated:YES];
         weaks.hidesBottomBarWhenPushed = NO;
     }];

@@ -45,19 +45,18 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    WeakSelf;
     self.page = 1;
     [self addCarouselView1];
     [self.tableView registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
     
-    self.tableView.tableFooterView = [UIView new];
-    [self.tableView reloadData];
-   
-    
+    [self setupNpdata];//设置无数据的时候展示
+    [self setuprefrsh];//刷新
     [self loadData:1 refreshDirect:YES];
+    WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
-           [weakSelf loadData:1 refreshDirect:YES];
+           weakSelf.page = 1;
+           [weakSelf loadData:weakSelf.page refreshDirect:YES];
     } footerRefresh:^{
         if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
            [EasyShowTextView showInfoText:@"没有数据了"];
@@ -66,6 +65,30 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
             [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
         }
     }];
+    
+}
+
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableView.tableFooterView = [UIView new];
+    
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableView.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableView.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    
+    //emptyView内容上的点击事件监听
+    [self.tableView.ly_emptyView setTapContentViewBlock:^{
+        weakSelf.page = 1;
+        [self loadData:weakSelf.page refreshDirect:YES];
+    }];
+}
+
+-(void)setuprefrsh{
     
 }
 
@@ -97,8 +120,9 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
-        
+
     } enError:^(NSError *error) {
+
          [LBDefineRefrsh dismissRefresh:self.tableView];
     }];
     
@@ -124,7 +148,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     
         GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:nearby_classifyCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = self.dataArr[indexPath.row];
+        cell.model = self.dataArr[indexPath.section];
         return cell;
 }
 
@@ -140,8 +164,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBEat_StoreDetailViewController *vc = [[LBEat_StoreDetailViewController alloc]init];
-    vc.store_id = ((LBEat_cateDataModel*)self.dataArr[indexPath.row]).store_id;
-    vc.title = ((LBEat_cateDataModel*)self.dataArr[indexPath.row]).store_name;
+    vc.store_id = ((LBEat_cateDataModel*)self.dataArr[indexPath.section]).store_id;
+    vc.title = ((LBEat_cateDataModel*)self.dataArr[indexPath.section]).store_name;
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
   

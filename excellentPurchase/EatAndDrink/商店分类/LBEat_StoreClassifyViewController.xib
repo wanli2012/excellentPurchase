@@ -12,7 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBEat_StoreClassifyViewController">
             <connections>
+                <outlet property="hotBt" destination="pfh-i5-bBf" id="hI9-Zz-gA3"/>
+                <outlet property="intelligentBt" destination="HbH-ry-WQU" id="VoG-ny-Wd9"/>
                 <outlet property="navigationH" destination="qbI-3e-ASg" id="Kb2-rs-dUw"/>
+                <outlet property="replayBt" destination="QwO-MK-l6F" id="4R8-nq-JOP"/>
+                <outlet property="searchTf" destination="jHf-nX-dfY" id="K0y-8w-9kc"/>
                 <outlet property="tableview" destination="qZr-zl-rD8" id="HZT-go-jD5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,12 +41,15 @@
                                     </constraints>
                                     <state key="normal" image="search"/>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="川菜" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHf-nX-dfY">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="川菜" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHf-nX-dfY">
                                     <rect key="frame" x="45" y="0.0" width="250" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="s4c-65-xqi"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" red="0.90970492359999999" green="0.90986090900000005" blue="0.90969508889999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,6 +125,9 @@
                                             <state key="selected">
                                                 <color key="titleColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="intelligentSortingEvent:" destination="-1" eventType="touchUpInside" id="Gka-YT-9CV"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfh-i5-bBf">
                                             <rect key="frame" x="128.5" y="0.0" width="118.5" height="44"/>
@@ -125,9 +135,12 @@
                                             <state key="normal" title="热门排序">
                                                 <color key="titleColor" red="0.24702778459999999" green="0.24707666040000001" blue="0.2470246851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="selected" image="taotao-rank-y">
+                                            <state key="selected">
                                                 <color key="titleColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="hotSortingEvent:" destination="-1" eventType="touchUpInside" id="D1r-8G-NAq"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-MK-l6F">
                                             <rect key="frame" x="247" y="0.0" width="118" height="44"/>
@@ -135,9 +148,12 @@
                                             <state key="normal" title="好评优先 ">
                                                 <color key="titleColor" red="0.24702778459999999" green="0.24707666040000001" blue="0.2470246851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
-                                            <state key="selected" image="taotao-rank-y">
+                                            <state key="selected">
                                                 <color key="titleColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="replaySortingEvent:" destination="-1" eventType="touchUpInside" id="RAk-zs-Sog"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -211,6 +227,5 @@
     <resources>
         <image name="return" width="10" height="17"/>
         <image name="search" width="15" height="15"/>
-        <image name="taotao-rank-y" width="9" height="14"/>
     </resources>
 </document>

@@ -10,4 +10,8 @@
 
 @interface LBEat_StoreClassifyViewController : UIViewController
 
+@property (strong , nonatomic)NSString  *cate_id;
+
+@property (strong , nonatomic)NSString  *cate_name;
+
 @end

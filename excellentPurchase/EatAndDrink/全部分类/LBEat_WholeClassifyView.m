@@ -29,7 +29,7 @@ UICollectionViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 ///选择回调
-@property (nonatomic, copy) void (^bankBlock)(NSInteger section);
+@property (nonatomic, copy) void (^bankBlock)(NSString *cate_id,NSString *cate_name);
 @property (nonatomic, strong) NSMutableArray *dataArr;
 
 
@@ -37,11 +37,11 @@ UICollectionViewDataSource,UIGestureRecognizerDelegate>
 
 @implementation LBEat_WholeClassifyView
 
-+(instancetype)showWholeClassifyViewBlock:(void (^)(NSInteger ))bankBlock{
++(instancetype)showWholeClassifyViewBlock:(void (^)(NSString *, NSString *))bankBlock{
     return [self addWholeClassifyBlock:bankBlock];
 }
 
-+(instancetype)addWholeClassifyBlock:(void (^)(NSInteger ))bankBlock{
++(instancetype)addWholeClassifyBlock:(void (^)(NSString *, NSString *))bankBlock{
     LBEat_WholeClassifyView *view = [[LBEat_WholeClassifyView alloc]init];
     view.bankBlock = bankBlock;
     [view showView];//展示视图
@@ -250,7 +250,7 @@ UICollectionViewDataSource,UIGestureRecognizerDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self hideView];
-    self.bankBlock(indexPath.section);
+    self.bankBlock(((LBEatClassifyModel*)self.dataArr[indexPath.section]).cate_id,((LBEatClassifyModel*)self.dataArr[indexPath.section]).catename);
 }
 
 #pragma mark - UIScrollView Delegate
