@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_AddressModel.h"
 
 @interface LBMineCenterAddAdreassViewController : UIViewController
 
 @property(assign , nonatomic)BOOL isEdit;//判断是否是编辑
 @property(strong , nonatomic)NSDictionary *dataDic;//判断是否是编辑
+
+@property (nonatomic, strong)GLMine_AddressModel *model;
 
 @end
