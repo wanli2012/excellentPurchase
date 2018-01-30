@@ -51,6 +51,6 @@
 #define HappyShopData @"Happy/shop_data"//吃喝玩乐商店详情
 #define SeaShoppingUser_collect @"SeaShopping/user_collect"//吃喝玩乐商店详情收藏
 #define SeaShoppingNot_collect @"SeaShopping/not_collect"//吃喝玩乐商店详情取消收藏
-#define HappyStore_comment_list@"Happy/store_comment_list"//店铺评论列表
+#define HappyStore_comment_list @"Happy/store_comment_list"//店铺评论列表
 
 #endif /* scaleHeader_h */

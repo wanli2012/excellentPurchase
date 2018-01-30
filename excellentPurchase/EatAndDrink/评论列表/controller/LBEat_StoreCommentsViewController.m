@@ -31,7 +31,6 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 @property (nonatomic, assign) NSInteger  page;
 @property (nonatomic, assign) NSInteger  allCount;
 
-
 @end
 
 @implementation LBEat_StoreCommentsViewController
@@ -43,10 +42,13 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
     [self.tableview registerNib:[UINib nibWithNibName:eat_StoreCommentsTableViewCell bundle:nil] forCellReuseIdentifier:eat_StoreCommentsTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:eat_StoreMoreCommentsTableViewCell bundle:nil] forCellReuseIdentifier:eat_StoreMoreCommentsTableViewCell];
     
+    [self setupNpdata];//设置无数据的时候展示
+    
     WeakSelf;
-    [self loadData:1 refreshDirect:YES];
+    [self loadData:self.page refreshDirect:YES];
     [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
-        [weakSelf loadData:1 refreshDirect:YES];
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
     } footerRefresh:^{
         if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
             [EasyShowTextView showInfoText:@"没有数据了"];
@@ -57,6 +59,26 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
         }
     }];
 
+}
+
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableview.tableFooterView = [UIView new];
+    
+    self.tableview.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableview.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    
+    //emptyView内容上的点击事件监听
+    [self.tableview.ly_emptyView setTapContentViewBlock:^{
+        weakSelf.page = 1;
+        [self loadData:weakSelf.page refreshDirect:YES];
+    }];
 }
 
 -(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
@@ -141,18 +163,18 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //分别设置每个分组上面显示的单元格个数
-    LB_EatCommentFrameModel *modelF = self.commentdataArr[section];
-    if ([NSString StringIsNullOrEmpty:modelF.HomeInvestModel.reply] == NO) {
-        return 1;
-    }
-    return 0;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    tableView.estimatedRowHeight = 10;
-    tableView.rowHeight = UITableViewAutomaticDimension;
-    return UITableViewAutomaticDimension;
+    LB_EatCommentFrameModel *modelF = self.commentdataArr[indexPath.section];
+    if ([NSString StringIsNullOrEmpty:modelF.HomeInvestModel.reply] == NO) {
+        tableView.estimatedRowHeight = 10;
+        tableView.rowHeight = UITableViewAutomaticDimension;
+        return UITableViewAutomaticDimension;
+    }
+    return 0;
     
 }
 
@@ -163,6 +185,12 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     LB_EatCommentFrameModel *modelF = self.commentdataArr[indexPath.section];
     cell.contentReply = modelF.HomeInvestModel.reply;
+    
+    if ([NSString StringIsNullOrEmpty:modelF.HomeInvestModel.reply] == NO) {
+        cell.hidden =  NO;
+    }else{
+        cell.hidden =  YES;
+    }
     return cell;
 }
 

@@ -10,7 +10,7 @@
 
 @interface LBEat_WholeClassifyView : UIView
 
-+ (instancetype)showWholeClassifyViewBlock:(void(^)(NSInteger section))bankBlock;
++ (instancetype)showWholeClassifyViewBlock:(void(^)(NSString *cate_id,NSString *cate_name))bankBlock;
 
 
 @end
