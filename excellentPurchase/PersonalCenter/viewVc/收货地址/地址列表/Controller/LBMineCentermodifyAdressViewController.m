@@ -113,6 +113,44 @@
     }];
 }
 
+
+- (void)deleteAddres:(NSInteger)index{
+    GLMine_AddressModel *model = self.models[index];
+    
+    [EasyShowLodingView showLodingText:@"请求中"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"app_handler"] = @"DELETE";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"truename"] = model.truename;
+    dic[@"province"] = model.address_province;
+    dic[@"city"] = model.address_city;
+    dic[@"area"] = model.address_area;
+    dic[@"is_default"] = @([model.is_default boolValue]);
+    dic[@"phone"] = model.phone;
+    dic[@"address"] = model.address_address;
+    
+    dic[@"address_id"] = model.address_id;
+      
+    [NetworkManager requestPOSTWithURLStr:kAddressed paramDic:dic finish:^(id responseObject) {
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshReceivingAddress" object:nil];
+            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (self.models.count > 0 ) {
@@ -149,7 +187,7 @@
     cell.index = indexPath.row;
 //    cell.returnSetUpbt = ^(NSInteger index){
 //
-////        [weakSelf setupDefaultSelect:index];
+//        [weakSelf setupDefaultSelect:index];
 //
 //    };
     
@@ -157,17 +195,24 @@
         weakSelf.hidesBottomBarWhenPushed = YES;
         LBMineCenterAddAdreassViewController *vc=[[LBMineCenterAddAdreassViewController alloc]init];
         vc.isEdit = YES;
-//        vc.dataDic = _dataarr[index];
+        vc.model = weakSelf.models[index];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
 
     cell.returnDeletebt = ^(NSInteger index){
 
-//        self.deleteIndex = index;
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"确定删除地址吗?" delegate:weakself cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//        [alert show];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要删除该地址吗?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf deleteAddres:index];
+            
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertVC addAction:ok];
+        [alertVC addAction:cancel];
+        [self presentViewController:alertVC animated:YES completion:nil];
+        
     };
-//
+
     return cell;
     
 }
@@ -261,10 +306,15 @@
 
     if (!_rightBt) {
         _rightBt=[UIButton buttonWithType:UIButtonTypeContactAdd];
-        _rightBt.frame = CGRectMake(0, 0, 30, 30);
-        _rightBt.backgroundColor=[UIColor redColor];
+        _rightBt.frame = CGRectMake(0, 0, 80, 44);
+        _rightBt.backgroundColor = [UIColor clearColor];
         [_rightBt addTarget:self action:@selector(addAdressEvent) forControlEvents:UIControlEventTouchUpInside];
-        [_rightBt setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
+        [_rightBt setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+        [_rightBt setImage:[UIImage imageNamed:@"添加银行卡"] forState:UIControlStateNormal];
+        [_rightBt setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 5)];
+        [_rightBt setTitle:@"添加" forState:UIControlStateNormal];
+        [_rightBt setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
+        
     }
     
     return _rightBt;

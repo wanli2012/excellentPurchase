@@ -269,14 +269,20 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 break;
             case 4://所在地区
             {
-                [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
-                    [weakSelf postData];
+                
+//                [CZHAddressPickerView areaPickerViewWithDataArr:(NSArray *) AreaDetailBlock:^(NSString *province, NSString *city, NSString *area, NSString *province_id, NSString *city_id, NSString *area_id) {
+//
+//                }];
+                
+                
+//                [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
+//                    [weakSelf postData];
 //                    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
 //
 //                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:str];
 //
 //                    [weakSelf.tableview reloadData];
-                }];
+//                }];
             }
                 
             default:

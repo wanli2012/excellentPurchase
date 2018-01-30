@@ -479,16 +479,26 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
             [self.pickerView reloadComponent:2];
             [self.pickerView selectRow:0 inComponent:2 animated:YES];
             self.selectCity = self.cityArray[row];
-            self.selectArea = self.areaArray[0];
+            
+            if (self.areaArray.count != 0) {
+                self.selectArea = self.areaArray[0];
+            }else{
+                self.selectArea = nil;
+            }
             
             self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][row][@"id"];
-            self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][row][@"id"];
+//            
+//            if (self.areaArray.count != 0) {
+//                self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][row][@"id"];
+//            }
         }
     }else if (component == 2){//选择区
         self.selectAreaIndex = row;
         if (self.showType == CZHAddressPickerViewTypeArea) {
+            
             self.selectArea = self.areaArray[row];
             self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][self.selectAreaIndex][@"id"];
+            
         }
     }
 }

@@ -29,7 +29,7 @@
 
 //@property (strong, nonatomic) RACSubject *subject;
 
-@property (nonatomic, copy)void(^returnSetUpbt)(NSInteger index);
+//@property (nonatomic, copy)void(^returnSetUpbt)(NSInteger index);
 @property (nonatomic, copy)void(^returnEditbt)(NSInteger index);
 @property (nonatomic, copy)void(^returnDeletebt)(NSInteger index);
 

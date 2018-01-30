@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^pictureBlock)(NSString *faceUrl,NSString *oppositeUrl);
+
 @interface LBUploadIdentityPictureViewController : UIViewController
+
+@property (nonatomic, copy)pictureBlock block;
 
 @end
