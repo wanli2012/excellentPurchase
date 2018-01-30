@@ -10,15 +10,10 @@
 
 @interface LBHorseRaceLampCell()
 
-/**
- 标题图片
- */
-@property (weak, nonatomic) IBOutlet UIImageView *titltImage;
-
-/**
- 展示内容
- */
-@property (weak, nonatomic) IBOutlet UILabel *contentLb;
+///**
+// 标题图片
+// */
+//@property (weak, nonatomic) IBOutlet UIImageView *titltImage;
 
 /**
  商品展示图片
@@ -36,19 +31,15 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+   
 }
 
 
 -(void)setModel:(LBHorseRaceLampModel *)model{
     
     _model = model;
-    
-    self.contentLb.text = [NSString stringWithFormat:@"swcxscscscscscx+%d",_indexpath.row];
-    self.titltImage.image = [UIImage imageNamed:@"banner"];
-    self.titltImage.image = [UIImage imageNamed:@"banner"];
-    
-    
+    self.contentLb.text = model.contentstr;
+
 }
 
 @end

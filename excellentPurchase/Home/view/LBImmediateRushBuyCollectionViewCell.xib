@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -95,9 +96,10 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Secondskill" translatesAutoresizingMaskIntoConstraints="NO" id="A0O-3n-bID">
-                        <rect key="frame" x="10" y="15" width="70" height="15"/>
+                        <rect key="frame" x="5" y="15" width="63" height="15"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="A0O-3n-bID" secondAttribute="height" multiplier="143:34" id="3BY-oS-0fw"/>
                             <constraint firstAttribute="height" constant="15" id="fha-sN-6Pz"/>
                         </constraints>
                     </imageView>
@@ -109,21 +111,26 @@
                             <constraint firstAttribute="height" constant="60" id="yTD-Ke-cfj"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="NQc-dT-1Tk">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="NQc-dT-1Tk">
                         <rect key="frame" x="150" y="80" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="MEM-uv-upF"/>
                             <constraint firstAttribute="width" constant="40" id="P9L-yS-fPU"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新款棉衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6i-Re-jFa">
-                        <rect key="frame" x="10" y="40" width="90" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="10" y="40" width="90" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新款棉衣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3I-A3-tXH">
-                        <rect key="frame" x="10" y="63" width="90" height="12"/>
+                        <rect key="frame" x="10" y="62" width="90" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="D7O-u6-gE0"/>
                         </constraints>
@@ -132,7 +139,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btr-rY-vJa">
-                        <rect key="frame" x="10" y="85" width="70" height="16"/>
+                        <rect key="frame" x="10" y="84" width="70" height="16"/>
                         <color key="backgroundColor" red="0.99743407964706421" green="0.79748904705047607" blue="0.0084904329851269722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="9vT-9m-nuw"/>
@@ -161,12 +168,15 @@
                 <constraint firstItem="NQc-dT-1Tk" firstAttribute="bottom" secondItem="Jp0-0h-Diy" secondAttribute="bottom" constant="20" id="hgY-UN-099"/>
                 <constraint firstAttribute="trailing" secondItem="Jp0-0h-Diy" secondAttribute="trailing" constant="30" id="hxd-F5-cMH"/>
                 <constraint firstItem="Jp0-0h-Diy" firstAttribute="leading" secondItem="A3I-A3-tXH" secondAttribute="trailing" constant="10" id="j86-0a-sRc"/>
-                <constraint firstItem="A0O-3n-bID" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="qM5-8G-kjb"/>
+                <constraint firstItem="A0O-3n-bID" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="qM5-8G-kjb"/>
                 <constraint firstItem="E6i-Re-jFa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="vqt-D5-8rD"/>
             </constraints>
             <connections>
                 <outlet property="buyBt" destination="btr-rY-vJa" id="BE4-NW-rwy"/>
+                <outlet property="goodsNameLabel" destination="E6i-Re-jFa" id="Bvn-pM-cjn"/>
+                <outlet property="killImageHeight" destination="fha-sN-6Pz" id="Zxb-fc-LWJ"/>
                 <outlet property="skillImage" destination="A0O-3n-bID" id="eDO-DY-euR"/>
+                <outlet property="subNameLabel" destination="A3I-A3-tXH" id="4C5-0t-x0q"/>
             </connections>
             <point key="canvasLocation" x="31" y="42"/>
         </collectionViewCell>

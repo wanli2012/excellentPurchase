@@ -19,14 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setNav];
-
 }
 
-/**
- 导航栏设置
- */
+/**导航栏设置*/
 - (void)setNav{
     
     self.topContrait.constant = SafeAreaTopHeight;
@@ -40,7 +37,7 @@
     [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
     button.backgroundColor = [UIColor clearColor];
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
 }
 
@@ -48,10 +45,39 @@
  保存
  */
 - (void)save{
-
-    self.block(self.nameTF.text);
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.nameTF.text.length == 0){
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"请输入你的新昵称"];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"nick_name"] = self.nameTF.text;
+    
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+
+    [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+          
+            self.block(self.nameTF.text);
+            
+            [EasyShowTextView showSuccessText:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 
 }
 

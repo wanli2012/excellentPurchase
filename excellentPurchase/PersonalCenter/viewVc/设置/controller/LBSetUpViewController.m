@@ -295,7 +295,6 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
     }
     
     [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
     
 }
 

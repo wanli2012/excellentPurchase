@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "JYCarousel.h"
 
 @protocol ClassifyHeaderViewdelegete <NSObject>
 
@@ -17,7 +18,6 @@
 -(void)clickSacnEvent;
 //点击搜索
 -(void)clickSerachevent;
-
 
 @end
 
@@ -30,9 +30,15 @@
 
 -(void)initdatasorece:(NSArray*)dataArr;
 
+
 -(void)reloadScorlvoewimages:(NSArray*)dataArr;
 //轮播高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightB;
+
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
+
+
+@property (nonatomic, copy)NSArray *imageArr;
 
 
 @end

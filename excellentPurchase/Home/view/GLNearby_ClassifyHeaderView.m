@@ -9,15 +9,18 @@
 #import "GLNearby_ClassifyHeaderView.h"
 #import "LBNearby_classifyItemView.h"
 
+#define carouselViewHScle 242.0/750
+
 @interface GLNearby_ClassifyHeaderView ()<UIScrollViewDelegate,SDCycleScrollViewDelegate>
 
 @property (strong, nonatomic)  UIScrollView *scorllView;
 @property (strong, nonatomic)  UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *bannerView;
 @property (weak, nonatomic) IBOutlet UIView *classifyView;
-@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;
-@property (strong, nonatomic)NSArray *imagearr;
+
 @property (assign, nonatomic)NSInteger SCR_conW;
+
+
 
 @end
 
@@ -90,7 +93,12 @@
         make.top.equalTo(self.classifyView).offset(0);
         make.bottom.equalTo(self.pageControl.mas_bottom).offset(0);
     }];
-    
+    [_cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.bannerView).offset(0);
+        make.leading.equalTo(self.bannerView).offset(0);
+        make.top.equalTo(self.bannerView).offset(0);
+        make.bottom.equalTo(self.bannerView).offset(0);
+    }];
     [_cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self.bannerView).offset(0);
         make.leading.equalTo(self.bannerView).offset(0);
@@ -145,11 +153,11 @@
 }
 
 -(void)reloadScorlvoewimages:(NSArray *)dataArr{
-    self.imagearr = dataArr;
-    if (self.imagearr.count > 1) {
+    self.imageArr = dataArr;
+    if (self.imageArr.count > 1) {
         self.cycleScrollView.autoScroll = YES;
     }
-    self.cycleScrollView.imageURLStringsGroup = self.imagearr;
+    self.cycleScrollView.imageURLStringsGroup = self.imageArr;
 }
 
 -(void)pageControlChanged:(UIPageControl*)pageControl{
@@ -173,11 +181,13 @@
 
 }
 
-/** 点击图片回调 */
+#pragma mark - 点击轮播图 回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
-    [self.delegete tapgestureImage:index];
+    if([self.delegete respondsToSelector:@selector(tapgestureImage:)]){
+        [self.delegete tapgestureImage:index];
+    }
 }
+
 //扫码
 - (IBAction)clickScan:(id)sender {
     [self.delegete clickSacnEvent];
@@ -188,32 +198,23 @@
 }
 
 -(SDCycleScrollView*)cycleScrollView{
-    
+
     if (!_cycleScrollView) {
         _cycleScrollView = [[SDCycleScrollView alloc]init];//当一张都没有的时候的 占位图
         //每一张图的占位图
         _cycleScrollView.delegate = self;
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"banner"];
-         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
-        _cycleScrollView.localizationImageNamesGroup = self.imagearr;
+        _cycleScrollView.localizationImageNamesGroup = @[PlaceHolder,PlaceHolder];
         _cycleScrollView.showPageControl = NO;
     }
-    
+
     return _cycleScrollView;
-    
+
 }
 
--(NSArray*)imagearr{
-    
-    if (!_imagearr) {
-        _imagearr = @[@"逛逛占位图"];
-    }
-    
-    return _imagearr;
-    
-}
 @end

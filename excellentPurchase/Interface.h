@@ -51,6 +51,13 @@
 #define kBank_addCard_URL @"Bank/add_bank"//添加银行卡
 #define kUnbind_Bank_URL @"Bank/unbind_bank"//解除银行卡绑定
 #define kSetDefaultCard_URL @"Bank/set_default_bank"//设置默认银行卡
+#define kShop_index_URL @"SeaShopping/shop_index"//商城首页
+#define kget_user_info @"User/get_user_info"//个人资料-峰
+#define kuser_relevant @"User/user_relevant"///账号管理
+#define kperfect_get_info @"User/perfect_get_info"///完善或修改信息-峰
+#define kaddresses @"Address/addresses"///收货地址列表-峰
+#define kAddressed @"Address/addressed"///添加或编辑地址-峰
+#define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
 
 
 #endif /* Interface_h */

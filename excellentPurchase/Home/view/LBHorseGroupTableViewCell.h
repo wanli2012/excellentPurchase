@@ -8,10 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import "XBTextLoopView.h"
+#import "GLHomeModel.h"
+
+
+@protocol LBHorseGroupTableViewCellDelegate <NSObject>
+
+//跳转到详情
+- (void)toDetail:(NSInteger)index infoIndex:(NSInteger)infoIndex;
+
+@end
 
 @interface LBHorseGroupTableViewCell : UITableViewCell
 
 @property (nonatomic, strong)XBTextLoopView *loopView;
 @property (strong , nonatomic)UIImageView *imagev;
+@property (nonatomic, assign)NSInteger index;
+
+@property (nonatomic, copy)NSArray<GLHome_newsModel *> *newsModels;
+@property (nonatomic, copy)NSArray <GLHome_ordersModel *>*orderModels;
+
+@property (nonatomic, weak)id <LBHorseGroupTableViewCellDelegate>delegate;
 
 @end
+

@@ -29,8 +29,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他资料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57R-S6-cyi">
-                                <rect key="frame" x="10" y="20" width="65.5" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="头像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57R-S6-cyi">
+                                <rect key="frame" x="10" y="20" width="33" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0Sc-lP-x3v"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-YB-dGw">
                                 <rect key="frame" x="299" y="5" width="50" height="50"/>
-                                <color key="backgroundColor" red="0.99743407959999997" green="0.79748904710000001" blue="0.0084904329850000008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9Ax-kj-BTR"/>
                                     <constraint firstAttribute="width" constant="50" id="QIm-P5-fWV"/>

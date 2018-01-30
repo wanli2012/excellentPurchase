@@ -15,4 +15,9 @@
 
 @property (strong , nonatomic)NSIndexPath *indexpath;
 
+/**
+ 展示内容
+ */
+@property (weak, nonatomic) IBOutlet UILabel *contentLb;
+
 @end
