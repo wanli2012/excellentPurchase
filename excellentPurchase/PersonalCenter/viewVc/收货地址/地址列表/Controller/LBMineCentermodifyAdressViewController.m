@@ -11,11 +11,6 @@
 #import "GLMine_AddressModel.h"
 
 #import "LBMineCenterAddAdreassViewController.h"
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-//#import <ReactiveCocoa/NSObject+RACKVOWrapper.h>
-//#import "LBMineCenterAddAdreassViewController.h"
-
-//#import "GLConfirmOrderController.h"
 
 @interface LBMineCentermodifyAdressViewController ()<UIAlertViewDelegate>
 
@@ -355,7 +350,6 @@
     }
     
     return _models;
-    
 }
 
 -(NodataView*)nodataV{

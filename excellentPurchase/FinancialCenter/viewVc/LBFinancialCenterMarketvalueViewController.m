@@ -66,7 +66,7 @@ static NSString *donationTableViewCell = @"LBFinancialCenterTableViewCell";
     self.tableView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
     self.tableView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
     
-    self.tableView.ly_emptyView.contentViewY = 0;
+    self.tableView.ly_emptyView.contentViewY = 20;
     //emptyView内容上的点击事件监听
     [self.tableView.ly_emptyView setTapContentViewBlock:^{
         [weakSelf postRequest:YES];

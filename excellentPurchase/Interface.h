@@ -36,7 +36,7 @@
 
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 
-#define Xianxia_Base @"http://192.168.0.165/yogo_dz/htdocs/index.php/App"
+//#define Xianxia_Base @"http://192.168.0.165/yogo_dz/htdocs/index.php/App"
 
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
 #define kREGISTER_URL @"User/register"//注册
