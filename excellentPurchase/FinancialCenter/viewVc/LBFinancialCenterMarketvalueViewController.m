@@ -30,8 +30,7 @@ static NSString *donationTableViewCell = @"LBFinancialCenterTableViewCell";
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:donationTableViewCell bundle:nil] forCellReuseIdentifier:donationTableViewCell];
     
-    //kget_money_list
-    [self setupNpdata];//设置无数据的时候展示
+//    [self setupNpdata];//设置无数据的时候展示
 
     WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
@@ -100,6 +99,7 @@ static NSString *donationTableViewCell = @"LBFinancialCenterTableViewCell";
             for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
                 GLFinancialCenterModel *model = [GLFinancialCenterModel mj_objectWithKeyValues:dict];
                 model.ratio_max = responseObject[@"data"][@"ratio_max"];
+                model.cellType = 1;
                 [self.models addObject:model];
             }
             

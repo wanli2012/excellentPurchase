@@ -460,7 +460,9 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
             self.selectArea = self.areaArray[0];
             
             self.selectProvince_id = self.dataSource[row][@"id"];
-            self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"id"];
+            
+            self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][0][@"id"];
+            
             self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][self.selectAreaIndex][@"id"];
         }
         

@@ -65,6 +65,12 @@
 #define kget_back_list @"MoneyCenter/get_back_list"///优购币出售记录
 #define kget_mark_list @"MoneyCenter/get_mark_list"///购物券兑换记录
 #define kwithdraw_cash @"MoneyCenter/withdraw_cash"///优购币出售
+#define ksell_mark @"MoneyCenter/sell_mark"///购物券兑换
+#define kstore_type_list @"StoreType/store_type_list"///获取商铺类型-江海林
+#define kgoods_brand_list @"GoodsCate/goods_brand_list"///获取品牌列表
+#define kappend_shop @"Store/append_shop"///开通商家-峰-江海林
+#define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
+
 
 
 #endif /* Interface_h */

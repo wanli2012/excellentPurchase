@@ -20,6 +20,7 @@
 #import "scaleHeader.h"
 #import "UIView+Extension.h"
 #import "UIButton+SetEdgeInsets.h"
+#import "formattime.h"
 
 //无数据页面
 #import "NodataView.h"

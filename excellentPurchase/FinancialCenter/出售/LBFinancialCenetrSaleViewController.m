@@ -10,8 +10,12 @@
 #import "LBBankCardListViewController.h"//银行卡列表
 #import "HHPayPasswordView.h"//密码框弹出
 #import "IQKeyboardManager.h"
+#import "GLMine_CardListModel.h"
 
 @interface LBFinancialCenetrSaleViewController ()<HHPayPasswordViewDelegate>
+{
+    BOOL _isAgreeProtocol;
+}
 //到账方式
 @property (weak, nonatomic) IBOutlet UIButton *payOneBt;//T+1
 @property (weak, nonatomic) IBOutlet UIButton *payTwoBt;//T+3
@@ -26,9 +30,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *sellNumTF;//出售数量
 @property (weak, nonatomic) IBOutlet UIButton *ensureSellBtn;//确认出售按钮
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//标志
+@property (weak, nonatomic) IBOutlet UIView *cardChooseView;
 
 @property (nonatomic, assign)NSInteger payType;//类型1:T+1 2:T+2 3:T+3
 @property (nonatomic, assign)BOOL isHaveDian;
+@property (nonatomic, copy)NSString *card_id;
 
 @end
 
@@ -36,12 +42,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"出售";
 
 }
 
-//到账时间选择
+#pragma mark - 到账时间选择
 - (IBAction)payWayChoose:(UIButton *)sender {
     
     [self.payOneBt setImage:[UIImage imageNamed:@"unselect-sex"] forState:UIControlStateNormal];
@@ -60,16 +67,64 @@
     
 }
 
-//更换银行卡
+#pragma mark - 更换银行卡
 - (IBAction)changeCard:(id)sender {
     
     self.hidesBottomBarWhenPushed = YES;
     LBBankCardListViewController *vc = [[LBBankCardListViewController alloc] init];
+    vc.pushType = 1;
+    WeakSelf;
+    vc.block = ^(GLMine_CardModel *model) {
+        weakSelf.cardChooseView.hidden = YES;
+        switch ([model.bank_icon integerValue]) {
+            case 1:
+            {
+                weakSelf.bankIconV.image = [UIImage imageNamed:@"中国农业银行"];
+               
+            }
+                break;
+            case 2:
+            {
+                weakSelf.bankIconV.image = [UIImage imageNamed:@"中国工商银行"];
+               
+            }
+                break;
+            case 3:
+            {
+                weakSelf.bankIconV.image = [UIImage imageNamed:@"中国建设银行"];
+               
+            }
+                break;
+            case 4:
+            {
+                weakSelf.bankIconV.image = [UIImage imageNamed:@"中国邮政银行"];
+               
+            }
+                break;
+            case 8:
+            {
+                weakSelf.bankIconV.image = [UIImage imageNamed:@"中国银行"];
+               
+            }
+                break;
+                
+            default:
+            {
+                weakSelf.bankIconV.image = [UIImage imageNamed:@"其他银行"];
+                
+            }
+                break;
+        }
+        
+        weakSelf.bankNameLabel.text = model.bank_name;
+        weakSelf.bankNumberLabel.text = model.banknumber;
+        weakSelf.card_id = model.bank_id;
+    };
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
-//更新约束
+#pragma mark - 更新约束
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     
@@ -79,11 +134,28 @@
     
 }
 
-//确认出售
+#pragma mark - 确认出售
 - (IBAction)ensureSell:(id)sender {
-    //kwithdraw_cash
+    [self.view endEditing:YES];
     
-     [IQKeyboardManager sharedManager].enable = NO;
+    if (self.card_id.length == 0) {
+        [EasyShowTextView showInfoText:@"请选择银行卡"];
+        return;
+    }
+    if (self.sellNumTF.text.length == 0) {
+        [EasyShowTextView showInfoText:@"请输入出售金额"];
+        return;
+    }
+    if(self.payType == 0){
+        [EasyShowTextView showInfoText:@"请选择到账时间"];
+        return;
+    }
+    if (!_isAgreeProtocol) {
+        [EasyShowTextView showInfoText:@"请先同意出售协议"];
+        return;
+    }
+    
+    [IQKeyboardManager sharedManager].enable = NO;
     
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
@@ -91,65 +163,55 @@
     
 }
 
-//出售请求
-- (void)sellPost:(NSString *)secondPwd{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
-    dic[@"uid"] = [UserModel defaultUser].uid;
-    dic[@"token"] = [UserModel defaultUser].token;
-    //    dic[@"bank_id"] = ;
-    dic[@"back_money"] = self.sellNumTF.text;
-    dic[@"back_choice"] = @(self.payType);
-    dic[@"user_pwd"] = secondPwd;
-    
-    [EasyShowLodingView showLoding];
-    [NetworkManager requestPOSTWithURLStr:kget_money_list paramDic:dic finish:^(id responseObject) {
-        
-        [EasyShowLodingView hidenLoding];
-        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            
-            
-        }else{
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }
-        
-        
-        
-    } enError:^(NSError *error) {
-        
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
-        
-        
-    }];
+#pragma mark - 跳转到出售协议
+- (IBAction)toProtocol:(id)sender {
+    NSLog(@"出售协议");
 }
+
+#pragma mark - 是否同意出售协议
+- (IBAction)isAgreeProtocol:(id)sender {
+    _isAgreeProtocol = !_isAgreeProtocol;
+    if (_isAgreeProtocol) {
+        self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
+    }else{
+        self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
+    }
+}
+
 #pragma mark - HHPayPasswordViewDelegate
 - (void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
+    dic[@"app_handler"] = @"ADD";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    //    dic[@"bank_id"] = ;
+    dic[@"bank_id"] = self.card_id;
     dic[@"back_money"] = self.sellNumTF.text;
     dic[@"back_choice"] = @(self.payType);
     dic[@"user_pwd"] = password;
     
     [EasyShowLodingView showLoding];
-    [NetworkManager requestPOSTWithURLStr:kget_money_list paramDic:dic finish:^(id responseObject) {
+    self.ensureSellBtn.enabled = NO;
+    self.ensureSellBtn.backgroundColor = [UIColor grayColor];
+    [NetworkManager requestPOSTWithURLStr:kwithdraw_cash paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];
+        self.ensureSellBtn.enabled = YES;
+        self.ensureSellBtn.backgroundColor = MAIN_COLOR;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
+            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            [self.navigationController popViewControllerAnimated:YES];
             
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
         
-        
         [passwordView hide];
         [IQKeyboardManager sharedManager].enable = YES;
     } enError:^(NSError *error) {
         [passwordView hide];
+        self.ensureSellBtn.enabled = YES;
+        self.ensureSellBtn.backgroundColor = MAIN_COLOR;
          [IQKeyboardManager sharedManager].enable = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
@@ -157,30 +219,15 @@
         
     }];
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
-        
-//        if ([password isEqualToString:@"000000"]) {
-//            [passwordView paySuccess];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [passwordView hide];
-////                PaySuccessViewController *paySuccessVC = [[PaySuccessViewController alloc] init];
-////                [self.navigationController pushViewController:paySuccessVC animated:YES];
-//            });
-//        }else{
-//            [passwordView payFailureWithPasswordError:YES withErrorLimit:3];
-//        }
-//    });
-    
 }
 /**
  点击确认
  */
 - (void)actionSure{
-    
+    [self.view endEditing:YES];
+    [EasyShowTextView showInfoText:@"请输入6位的二级密码"];
+    return;
 }
-
-
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

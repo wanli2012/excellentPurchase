@@ -10,7 +10,6 @@
 #import "LBBankCardListViewController.h"
 #import "LBBankCardListTableViewCell.h"
 #import "LBAddBankCardViewController.h"
-#import "GLMine_CardListModel.h"
 
 #import "GLMine_BankManageController.h"//银行卡管理
 
@@ -127,8 +126,8 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     };
     
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
+
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return self.models.count; //返回值是多少既有几个分区
@@ -137,7 +136,9 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     return 1;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 125;
+    
+//    return 125;
+    return CZH_ScaleWidth(125);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -172,21 +173,31 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     
     GLMine_CardModel *model = self.models[indexPath.section];
     
-    self.hidesBottomBarWhenPushed = YES;
-    
-    GLMine_BankManageController *VC = [[GLMine_BankManageController alloc] init];
-    VC.endNum = model.endnumber;
-    VC.bank_id = model.bank_id;
-    VC.is_default = model.is_default;
-    
-    WeakSelf;
-    VC.block = ^(BOOL isUnbind) {
-        if (isUnbind) {
-            ///刷新
-            [weakSelf postRequest:YES];
+    if (self.pushType == 1) {
+        if (self.block) {
+            self.block(model);
+            [self.navigationController popViewControllerAnimated:YES];
         }
-    };
-    [self.navigationController pushViewController:VC animated:YES];
+    }else{
+        
+        self.hidesBottomBarWhenPushed = YES;
+        
+        GLMine_BankManageController *VC = [[GLMine_BankManageController alloc] init];
+        VC.endNum = model.endnumber;
+        VC.bank_id = model.bank_id;
+        VC.is_default = model.is_default;
+        
+        WeakSelf;
+        VC.block = ^(BOOL isUnbind) {
+            if (isUnbind) {
+                ///刷新
+                [weakSelf postRequest:YES];
+            }
+        };
+        [self.navigationController pushViewController:VC animated:YES];
+        
+    }
+    
 }
 
 #pragma mark - 懒加载

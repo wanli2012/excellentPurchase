@@ -241,8 +241,8 @@
         [pan setTranslation:CGPointZero inView:pan.view];
         self.lastPoint = CGPointZero;
     }
-    
 }
+
 - (void)changeColorWithOffsetY:(CGFloat)offsetY {
     
     self.headerView.titileLb.alpha = offsetY/(kHeaderViewH - SafeAreaTopHeight);
@@ -271,6 +271,7 @@
     }
     return _scrollView;
 }
+
 - (LBFinancialCenterHeaderView *)headerView {
     
     if (!_headerView) {

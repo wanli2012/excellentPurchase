@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_CardListModel.h"
+
+typedef void(^cardChooseBlock)(GLMine_CardModel *model);
 
 @interface LBBankCardListViewController : UIViewController
 
+@property (nonatomic, assign)NSInteger pushType;//1:出售界面 跳转过来的 2:
+
+@property (nonatomic, copy)cardChooseBlock block;
+
 @end
+

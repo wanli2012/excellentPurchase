@@ -156,6 +156,9 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="dateLabel" destination="n6h-84-3ci" id="HOp-t2-w8f"/>
+                <outlet property="nameLabel1" destination="hLq-x2-qdH" id="Fr2-30-T6N"/>
+                <outlet property="nameLabel2" destination="AWo-7b-i42" id="NDj-jx-aj7"/>
+                <outlet property="nameLabel3" destination="dXW-tE-29B" id="O3M-as-FSJ"/>
                 <outlet property="sellLabel" destination="b7f-CX-0cg" id="D6h-jj-qY0"/>
                 <outlet property="statusLabel" destination="0Pg-NR-Z0X" id="OyT-GR-Mxd"/>
                 <outlet property="totalPriceLabel" destination="cv6-q6-kzu" id="obm-2G-Ekj"/>

@@ -19,7 +19,6 @@
 @property (nonatomic, copy)NSString *really_num;//实际出售优购币数量(出售记录) 实际兑换数量(兑换记录)
 @property (nonatomic, copy)NSString *sell_num;//出售优购币数量(出售记录)  兑换数量(兑换记录)
 
-
-
+@property (nonatomic, assign)NSInteger cellType;//1:优购币市值 2:出售记录 3:兑换记录
 
 @end

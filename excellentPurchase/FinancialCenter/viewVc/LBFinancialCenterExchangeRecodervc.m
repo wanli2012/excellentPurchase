@@ -27,7 +27,7 @@ static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecode
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
      [self.tableView registerNib:[UINib nibWithNibName:financialCenterRecoderTableViewCell bundle:nil] forCellReuseIdentifier:financialCenterRecoderTableViewCell];
-    [self setupNpdata];//设置无数据的时候展示
+//    [self setupNpdata];//设置无数据的时候展示
     
     WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
@@ -95,6 +95,7 @@ static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecode
             }
             for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
                 GLFinancialCenterModel *model = [GLFinancialCenterModel mj_objectWithKeyValues:dict];
+                model.cellType = 3;
                 [self.models addObject:model];
             }
             
@@ -122,15 +123,15 @@ static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecode
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     LBFinancialCenterRecoderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:financialCenterRecoderTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.models[indexPath.row];
     
-    
     return cell;
 }
-#pragma mark - 懒加载
 
+#pragma mark - 懒加载
 -(NSMutableArray *)models{
     
     if (!_models) {
@@ -138,8 +139,6 @@ static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecode
     }
     
     return _models;
-    
 }
-
 
 @end

@@ -30,7 +30,7 @@ static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecode
     self.tableView.dataSource = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:financialCenterRecoderTableViewCell bundle:nil] forCellReuseIdentifier:financialCenterRecoderTableViewCell];
-    [self setupNpdata];//设置无数据的时候展示
+//    [self setupNpdata];//设置无数据的时候展示
     
     WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
@@ -97,6 +97,7 @@ static NSString *financialCenterRecoderTableViewCell = @"LBFinancialCenterRecode
             }
             for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
                 GLFinancialCenterModel *model = [GLFinancialCenterModel mj_objectWithKeyValues:dict];
+                model.cellType = 2;
                 [self.models addObject:model];
             }
             

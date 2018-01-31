@@ -143,7 +143,6 @@
         weakSelf.countryStr = area;
         
     }];
-
 }
 
 /**
@@ -156,7 +155,6 @@
     }else {
         self.isdeualt = NO;
     }
-    
 }
 
 /**
@@ -235,7 +233,6 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];
-    
 }
 
 #pragma mark - UITextFieldDelegate
@@ -248,7 +245,6 @@
     }else if(textField == self.adressTf){
         [self.view endEditing:YES];
     }
-    
     return YES;
 }
 
@@ -279,7 +275,6 @@
     return YES;
 }
 
-
 -(void)updateViewConstraints{
     
     [super updateViewConstraints];
@@ -288,7 +283,6 @@
     
     self.savebutoon.layer.cornerRadius = 4;
     self.savebutoon.clipsToBounds=YES;
-    //    self.navigationH.constant = SafeAreaTopHeight;
     
 }
 
