@@ -59,7 +59,7 @@
     [self.navigationController pushViewController:achieveVC animated:YES];
 }
 
-#pragma mark - 开通创客
+#pragma mark - 开通下级
 - (IBAction)openGuest:(id)sender {
    
     self.hidesBottomBarWhenPushed = YES;
@@ -73,7 +73,9 @@
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_MembersController *vc = [[GLMine_Team_MembersController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
+
 
 #pragma mark - 开通商户
 - (IBAction)openBusiness:(id)sender {

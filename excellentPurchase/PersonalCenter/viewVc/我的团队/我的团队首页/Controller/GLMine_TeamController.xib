@@ -291,7 +291,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="NSQ-Rd-fJT"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="开通创客">
+                                            <state key="normal" title="开通下级">
                                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>

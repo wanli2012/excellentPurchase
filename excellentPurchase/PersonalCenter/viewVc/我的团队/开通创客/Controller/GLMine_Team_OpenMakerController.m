@@ -16,12 +16,19 @@
 
 @interface GLMine_Team_OpenMakerController ()<UITextFieldDelegate>
 {
-    BOOL _isAgreeProtocol;
+    BOOL _isAgreeProtocol;//是否同意协议
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;//手机号
-@property (weak, nonatomic) IBOutlet UILabel *IDTypeLabel;//身份类型
-@property (weak, nonatomic) IBOutlet UILabel *areaLabel;//地区
+@property (weak, nonatomic) IBOutlet UITextField *codeTF;//验证码
+@property (weak, nonatomic) IBOutlet UITextField *staffingTF;//人员配置
+@property (weak, nonatomic) IBOutlet UILabel *subordinateLabel;//下级
+@property (weak, nonatomic) IBOutlet UILabel *remainderLabel;//剩余人数
+@property (weak, nonatomic) IBOutlet UITextField *groupTypeTF;//身份类型
+@property (weak, nonatomic) IBOutlet UITextField *areaTF;
+
+//@property (weak, nonatomic) IBOutlet UILabel *IDTypeLabel;//身份类型
+//@property (weak, nonatomic) IBOutlet UILabel *areaLabel;//地区
 @property (weak, nonatomic) IBOutlet UITextField *passWordTF;//密码
 @property (weak, nonatomic) IBOutlet UITextField *ensurePwdTF;//确认密码
 
@@ -57,7 +64,7 @@
     
      __block typeof(self) weakSelf = self;
     vc.block = ^(NSString *name, NSString *group_id) {
-        weakSelf.IDTypeLabel.text = name;
+        weakSelf.groupTypeTF.text = name;
         weakSelf.group_id = group_id;
     };
     
@@ -69,9 +76,10 @@
  */
 - (IBAction)areaChoose:(id)sender {
 
+    WeakSelf;
     [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
         
-        self.areaLabel.text = [NSString stringWithFormat:@"%@%@%@",province,city,area];
+        weakSelf.areaTF.text = [NSString stringWithFormat:@"%@%@%@",province,city,area];
     }];
 }
 

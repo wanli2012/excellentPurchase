@@ -10,4 +10,6 @@
 
 @interface GLMine_Message_PropertyListController : UIViewController
 
+@property (nonatomic, assign)NSInteger infoType;//1:积分 2:余额 3:优购币  4:购物券
+
 @end

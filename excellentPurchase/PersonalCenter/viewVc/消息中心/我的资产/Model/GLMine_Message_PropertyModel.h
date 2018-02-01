@@ -18,12 +18,15 @@
 
 @property (nonatomic, copy)NSString *log_id;//消息ID
 @property (nonatomic, copy)NSString *log_content;//信息
-@property (nonatomic, copy)NSString *log_money;//积分数量
 @property (nonatomic, copy)NSString *log_addtime;//添加时间
 @property (nonatomic, copy)NSString *log_is_read;//是否阅读
 @property (nonatomic, copy)NSString *sign;//0:资金流出 1:资金流入
 @property (nonatomic, copy)NSString *action;//操作
 
+@property (nonatomic, copy)NSString *log_money;//余额数量
+@property (nonatomic, copy)NSString *log_mark;//积分数量
+@property (nonatomic, copy)NSString *log_coupons;//购物券数量
 
+@property (nonatomic, assign)NSInteger infoType;///1:积分 2:余额 3:优购币  4:购物券
 
 @end
