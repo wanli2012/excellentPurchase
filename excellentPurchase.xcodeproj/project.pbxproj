@@ -704,7 +704,6 @@
 		F95035FC2021DBEA00093644 /* LBTmallHotsearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95035FA2021DBEA00093644 /* LBTmallHotsearchViewController.m */; };
 		F95035FD2021DBEA00093644 /* LBTmallHotsearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95035FB2021DBEA00093644 /* LBTmallHotsearchViewController.xib */; };
 		F95036002021F5F800093644 /* LBTmallProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95035FF2021F5F800093644 /* LBTmallProductDetailModel.m */; };
-		F95036032021FCFB00093644 /* LBTmallProductDetailOtherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95036022021FCFB00093644 /* LBTmallProductDetailOtherModel.m */; };
 		F95072D5200492430026D28F /* LBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95072D1200492430026D28F /* LBHomeViewController.m */; };
 		F95072D6200492430026D28F /* LBHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95072D2200492430026D28F /* LBHomeViewController.xib */; };
 		F95072DD200492840026D28F /* LBEatAndDrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95072DA200492840026D28F /* LBEatAndDrinkViewController.m */; };
@@ -2236,8 +2235,6 @@
 		F95035FB2021DBEA00093644 /* LBTmallHotsearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTmallHotsearchViewController.xib; sourceTree = "<group>"; };
 		F95035FE2021F5F800093644 /* LBTmallProductDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallProductDetailModel.h; sourceTree = "<group>"; };
 		F95035FF2021F5F800093644 /* LBTmallProductDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallProductDetailModel.m; sourceTree = "<group>"; };
-		F95036012021FCFB00093644 /* LBTmallProductDetailOtherModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallProductDetailOtherModel.h; sourceTree = "<group>"; };
-		F95036022021FCFB00093644 /* LBTmallProductDetailOtherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallProductDetailOtherModel.m; sourceTree = "<group>"; };
 		F95072D0200492430026D28F /* LBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeViewController.h; sourceTree = "<group>"; };
 		F95072D1200492430026D28F /* LBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeViewController.m; sourceTree = "<group>"; };
 		F95072D2200492430026D28F /* LBHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBHomeViewController.xib; sourceTree = "<group>"; };
@@ -6471,8 +6468,6 @@
 			children = (
 				F95035FE2021F5F800093644 /* LBTmallProductDetailModel.h */,
 				F95035FF2021F5F800093644 /* LBTmallProductDetailModel.m */,
-				F95036012021FCFB00093644 /* LBTmallProductDetailOtherModel.h */,
-				F95036022021FCFB00093644 /* LBTmallProductDetailOtherModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -7957,7 +7952,6 @@
 				F923B1F62020021F00DFEF7C /* ZXResultPoint.m in Sources */,
 				4AB58896201B2315009ADC9A /* NetworkManager.m in Sources */,
 				F9426AF0201ABC200054417E /* EasyShowLodingView.m in Sources */,
-				F95036032021FCFB00093644 /* LBTmallProductDetailOtherModel.m in Sources */,
 				F96971D12011849A00966E26 /* LeftTableViewCell.m in Sources */,
 				4A0EDF61201883EC0037D47A /* LBAccountManagementTableViewCell.m in Sources */,
 				F923B23D2020021F00DFEF7C /* ZXMultiFormatOneDReader.m in Sources */,
