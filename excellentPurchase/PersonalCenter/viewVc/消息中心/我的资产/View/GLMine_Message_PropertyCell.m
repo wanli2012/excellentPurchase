@@ -31,6 +31,7 @@
     self.typeLabel.text = model.action;
     self.dateLabel.text = [formattime formateTimeOfDate4:model.log_addtime];
     self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",@"00000000"];
+    self.detailLabel.text = [NSString stringWithFormat:@"%@",model.log_content];
     
     NSString *str;
     if([model.sign integerValue] == 0){//0:资金流出 1:资金流入
@@ -38,9 +39,35 @@
     }else{
         str = @"-";
     }
+    switch (model.infoType) {////1:积分 2:余额 3:优购币  4:购物券
+        case 1://1:积分
+        {
+            self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_mark];
+        }
+            break;
+        case 2://2:余额
+        {
+            self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_money];
+        }
+            break;
+        case 3://3:优购币
+        {
+            self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_money];
+        }
+            break;
+        case 4://4:购物券
+        {
+            self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_coupons];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
-    self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_money];
-    self.detailLabel.text = [NSString stringWithFormat:@"%@",model.log_content];
+    
+    
+    
     
 }
 

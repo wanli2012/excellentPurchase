@@ -70,6 +70,10 @@
 #define kgoods_brand_list @"GoodsCate/goods_brand_list"///获取品牌列表
 #define kappend_shop @"Store/append_shop"///开通商家-峰-江海林
 #define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
+#define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯
+#define kget_integral_log_list @"Assets/get_integral_log_list"///个人积分变更-王凯
+#define kget_balance_log_list @"Assets/get_balance_log_list"///余额消息记录-王凯
+
 
 
 

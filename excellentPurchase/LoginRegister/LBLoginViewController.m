@@ -254,10 +254,29 @@
             
             [UserModel defaultUser].loginstatus = YES;
             
-            [UserModel defaultUser].token = responseObject[@"data"][@"token"];
-            [UserModel defaultUser].uid = responseObject[@"data"][@"uid"];
-            [UserModel defaultUser].user_name = responseObject[@"data"][@"user_name"];
+            [UserModel defaultUser].token = [self judgeStr:responseObject[@"data"][@"token"]];
+            [UserModel defaultUser].uid = [self judgeStr:responseObject[@"data"][@"uid"]];
+            [UserModel defaultUser].user_name = [self judgeStr:responseObject[@"data"][@"user_name"]];
+            [UserModel defaultUser].group_id = [self judgeStr:responseObject[@"data"][@"group_id"]];
+            [UserModel defaultUser].group_name = [self judgeStr:responseObject[@"data"][@"group_name"]];
             
+            [UserModel defaultUser].phone = [self judgeStr:responseObject[@"data"][@"phone"]];
+            [UserModel defaultUser].pic = [self judgeStr:responseObject[@"data"][@"pic"]];
+            [UserModel defaultUser].trueName = [self judgeStr:responseObject[@"data"][@"trueName"]];
+            [UserModel defaultUser].im_id = [self judgeStr:responseObject[@"data"][@"im_id"]];
+            [UserModel defaultUser].im_token = [self judgeStr:responseObject[@"data"][@"im_token"]];
+            [UserModel defaultUser].nick_name = [self judgeStr:responseObject[@"data"][@"nick_name"]];
+            [UserModel defaultUser].rzstatus = [self judgeStr:responseObject[@"data"][@"rzstatus"]];
+            [UserModel defaultUser].del = [self judgeStr:responseObject[@"data"][@"del"]];
+            [UserModel defaultUser].tjr_group = [self judgeStr:responseObject[@"data"][@"tjr_group"]];
+            [UserModel defaultUser].tjr_name = [self judgeStr:responseObject[@"data"][@"tjr_name"]];
+            [UserModel defaultUser].mark = [self judgeStr:responseObject[@"data"][@"mark"]];
+            [UserModel defaultUser].balance = [self judgeStr:responseObject[@"data"][@"balance"]];
+            [UserModel defaultUser].keti_bean = [self judgeStr:responseObject[@"data"][@"keti_bean"]];
+            [UserModel defaultUser].shopping_voucher = [self judgeStr:responseObject[@"data"][@"shopping_voucher"]];
+            [UserModel defaultUser].cion_price = [self judgeStr:responseObject[@"data"][@"cion_price"]];
+            [UserModel defaultUser].voucher_ratio = [self judgeStr:responseObject[@"data"][@"voucher_ratio"]];
+
             [usermodelachivar achive];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
@@ -276,6 +295,18 @@
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
+}
+
+- (NSString *)judgeStr:(id )str{
+    
+    str = [NSString stringWithFormat:@"%@",str];
+    
+    if ([NSString StringIsNullOrEmpty:str]) {
+        return @"";
+    }else{
+        return str;
+    }
+   
 }
 
 #pragma mark - UITextFieldDelegate

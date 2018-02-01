@@ -87,7 +87,36 @@
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"page"] = @(self.page);
     
-    [NetworkManager requestPOSTWithURLStr:kget_assets_log_list paramDic:dic finish:^(id responseObject) {
+    NSString *url;
+    switch (self.infoType) {////1:积分 2:余额 3:优购币  4:购物券
+        case 1://1:积分
+        {
+            url = kget_integral_log_list;
+        }
+            break;
+        case 2://2:余额
+        {
+            dic[@"group_id"] = [UserModel defaultUser].group_id;
+            url = kget_balance_log_list;
+        }
+            break;
+        case 3://3:优购币
+        {
+            url = kget_assets_log_list;
+        }
+            break;
+        case 4://4:购物券
+        {
+            dic[@"group_id"] = [UserModel defaultUser].group_id;
+            url = kget_coupons_log_list;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [NetworkManager requestPOSTWithURLStr:url paramDic:dic finish:^(id responseObject) {
         
         [LBDefineRefrsh dismissRefresh:self.tableView];
         [EasyShowLodingView hidenLoding];
@@ -102,6 +131,8 @@
                 
                 for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
                     GLMine_Message_PropertyModel *model = [GLMine_Message_PropertyModel mj_objectWithKeyValues:dict];
+                    model.infoType = self.infoType;
+                    
                     [self.models addObject:model];
                 }
             }
@@ -138,9 +169,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    tableView.estimatedRowHeight = 44;
     
-    return 110;
+    return tableView.rowHeight;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    self.hidesBottomBarWhenPushed = YES;
 //    GLMine_Team_MemberDataController *dataVC = [[GLMine_Team_MemberDataController alloc] init];
