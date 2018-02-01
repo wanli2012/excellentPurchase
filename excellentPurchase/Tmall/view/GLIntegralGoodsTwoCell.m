@@ -28,18 +28,22 @@ static NSString *integralGoodsTwoCollectionViewCell = @"LBIntegralGoodsTwoCollec
 #pragma UICollectionDelegate UICollectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 8;
+    return self.dataArr.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     LBIntegralGoodsTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:integralGoodsTwoCollectionViewCell forIndexPath:indexPath];
-
+    cell.model = self.dataArr[indexPath.row];
+    cell.refrshDatasorece = ^{
+        [_collectionV reloadData];
+    };
 
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    [self.delegate clickCheckGoodsinfo:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).goods_id];
 
 }
 
@@ -69,6 +73,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 -(void)refreshdataSource:(NSArray *)arr{
     
     self.dataArr = arr;
+    if (arr.count > 0) {
+        self.beautfHeight =  ((UIScreenWidth - 35)/2.0 + 110) * ((arr.count + 1)/2);
+    }
     [self.collectionV reloadData];
 
 }

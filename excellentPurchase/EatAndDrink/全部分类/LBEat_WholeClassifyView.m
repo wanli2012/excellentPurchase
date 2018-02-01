@@ -250,7 +250,9 @@ UICollectionViewDataSource,UIGestureRecognizerDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self hideView];
-    self.bankBlock(((LBEatClassifyModel*)self.dataArr[indexPath.section]).cate_id,((LBEatClassifyModel*)self.dataArr[indexPath.section]).catename);
+    LBEatTwoClassifyModel *model = ((LBEatClassifyModel*)self.dataArr[indexPath.section]).two_cate[indexPath.row];
+    
+    self.bankBlock(model.cate_id,model.catename);
 }
 
 #pragma mark - UIScrollView Delegate

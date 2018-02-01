@@ -19,6 +19,7 @@
 #import "LBXScanResult.h"
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
+#import "LBEatProductDetailViewController.h"
 
 static NSString *eat_storeDetailInfodiscountTableViewCell = @"LBEat_storeDetailInfodiscountTableViewCell";
 static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfoOtherTableViewCell";
@@ -57,6 +58,26 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
     [self.tableview registerNib:[UINib nibWithNibName:eat_storeDetailInfomationTableViewCell bundle:nil] forCellReuseIdentifier:eat_storeDetailInfomationTableViewCell];
 
     [self loadData];//加载数据
+    [self setupNpdata];//设置无数据的时候展示
+}
+
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableview.tableFooterView = [UIView new];
+    
+    self.tableview.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableview.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    
+    //emptyView内容上的点击事件监听
+    [self.tableview.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf loadData];
+    }];
 }
 
 -(void)loadData{
@@ -64,7 +85,10 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     dic[@"store_id"] = self.store_id;
-    dic[@"uid"] = [UserModel defaultUser].uid;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+    }
+    
     [EasyShowLodingView showLodingText:@"正在加载"];
     [NetworkManager requestPOSTWithURLStr:HappyShopData paramDic:dic finish:^(id responseObject) {
 
@@ -232,6 +256,14 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    
+    if (indexPath.section == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBEatProductDetailViewController *vc = [[LBEatProductDetailViewController alloc]init];
+        LBEat_StoreDetailOtherDataModel *model = self.model.other[indexPath.row];
+        vc.goods_id = model.goods_id;
+         vc.goods_name = model.goods_name;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTmallhomepageDataModel.h"
 
 @interface LBIntegralGoodsTwoCollectionViewCell : UICollectionViewCell
+
+@property (copy , nonatomic)LBTmallhomepageDataStructureModel *model;
+
+@property (copy , nonatomic)void(^refrshDatasorece)(void);
 
 @end

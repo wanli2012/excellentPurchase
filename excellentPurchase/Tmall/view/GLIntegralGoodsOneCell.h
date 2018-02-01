@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTmallhomepageDataModel.h"
 
 @protocol GLIntegralGoodsOnedelegete <NSObject>
 
@@ -15,11 +16,8 @@
 @end
 @interface GLIntegralGoodsOneCell : UITableViewCell
 
-@property (strong, nonatomic)NSArray *dataArr;
+@property (strong, nonatomic)NSArray<LBTmallhomepageDataStructureModel*> *dataArr;
 @property (nonatomic, assign)id<GLIntegralGoodsOnedelegete> delegete;
 @property (nonatomic, assign)NSInteger index;
 
--(void)refreshDataSorce:(NSArray*)arr;
-
-@property (nonatomic, assign)CGFloat goodTwoH;
 @end

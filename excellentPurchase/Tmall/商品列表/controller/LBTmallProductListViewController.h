@@ -10,4 +10,10 @@
 
 @interface LBTmallProductListViewController : UIViewController
 
+@property (strong , nonatomic)NSString *cate_id;
+@property (strong , nonatomic)NSString *catename;
+
+@property (assign , nonatomic)NSInteger goods_type;//1每日推荐 2精品优选
+
+
 @end

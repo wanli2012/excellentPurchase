@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBEatProductDetailModel.h"
 
 @interface LBEatProductDetailTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBEatProductDetailModel *model;
 
 @end

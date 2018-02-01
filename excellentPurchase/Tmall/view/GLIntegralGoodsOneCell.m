@@ -30,20 +30,29 @@ static NSString *ID = @"LBIntegralGoodsOneCollectionViewCell";
     
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    
+    [self.collectionv reloadData];
+}
+
 #pragma UICollectionDelegate UICollectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 9;
+    return self.dataArr.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     LBIntegralGoodsOneCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-  
+    cell.model = self.dataArr[indexPath.row];
+    cell.refrshDatasorece = ^{
+        [_collectionv reloadData];
+    };
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    [self.delegete clickGoodsdetail:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).goods_id];
  
 }
 
@@ -68,15 +77,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
     return UIEdgeInsetsMake(0, 10, 0, 10);
-}
-
--(void)refreshDataSorce:(NSArray *)arr{
-    if (arr.count > 0) {
-        self.goodTwoH =  (UIScreenWidth - 35)/4  + 60;
-    }
-    self.dataArr = arr;
-    [self.collectionv reloadData];
-
 }
 
 -(NSArray*)dataArr{

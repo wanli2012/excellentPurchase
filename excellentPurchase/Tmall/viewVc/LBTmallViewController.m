@@ -10,17 +10,19 @@
 #import "SPPageMenu.h"
 #import "LBTmallChildredViewController.h"
 #import "LBTmallProductListViewController.h"
-#import "LBProductDetailViewController.h"
+#import "LBTmallFirstCalssifymodel.h"
+#import "LBTmallHotsearchViewController.h"
 
 #define pageMenuH 50   //菜单高度
 
 @interface LBTmallViewController ()<SPPageMenuDelegate,UIScrollViewDelegate>
 
-@property (nonatomic, strong) NSArray *menuArr;
+@property (nonatomic, strong) NSMutableArray *menuArr;
 @property (nonatomic, weak) SPPageMenu *pageMenu;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) NSMutableArray *controllerClassNames;
+@property (nonatomic, strong) NSArray *dataArr;
 
 @end
 
@@ -43,6 +45,35 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     [self addMenu];//加载菜单
+     [self loadData];//加载数据
+}
+
+-(void)loadData{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    [NetworkManager requestPOSTWithURLStr:SeaShoppingNav_cate paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.dataArr  = responseObject[@"data"];
+            for (int i = 0; i < self.dataArr.count; i++) {
+                [self.controllerClassNames addObject:@"LBTmallChildredViewController"];
+                [self.menuArr addObject:self.dataArr[i][@"typename"]];
+            }
+            if ( self.dataArr.count > 0) {
+                [LBTmallFirstCalssifymodel defaultUser].type_id = self.dataArr[0][@"type_id"];
+                [LBTmallFirstCalssifymodel defaultUser].typeName = self.dataArr[0][@"typename"];
+            }
+    
+            [self addMenu];//加载菜单
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+    }];
+    
 }
 
 -(void)addMenu{
@@ -96,16 +127,13 @@
 #pragma mark -----搜索
 -(void)searchProducts{
     self.hidesBottomBarWhenPushed = YES;
-    LBTmallProductListViewController *vc =[[LBTmallProductListViewController alloc]init];
+    LBTmallHotsearchViewController *vc =[[LBTmallHotsearchViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
      self.hidesBottomBarWhenPushed = NO;
 }
 #pragma mark -----xiao xi
 -(void)messageEvent{
-    self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController *vc =[[LBProductDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+   
 }
 
 #pragma mark - SPPageMenu的代理方法
@@ -115,6 +143,9 @@
 }
 
 - (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+    
+    [LBTmallFirstCalssifymodel defaultUser].type_id = self.dataArr[toIndex][@"type_id"];
+    [LBTmallFirstCalssifymodel defaultUser].typeName = self.dataArr[toIndex][@"typename"];
     
     // 如果fromIndex与toIndex之差大于等于2,说明跨界面移动了,此时不动画.
     if (labs(toIndex - fromIndex) >= 2) {
@@ -134,13 +165,22 @@
 }
 
 
--(NSArray*)menuArr{
+-(NSMutableArray*)menuArr{
     
     if (!_menuArr) {
-        _menuArr = [NSArray arrayWithObjects:@"今日活动",@"微商清仓",@"厂家直销",@"自营商城", nil];
+        _menuArr = [NSMutableArray array];
     }
     
     return _menuArr;
+    
+}
+-(NSArray*)dataArr{
+    
+    if (!_dataArr) {
+        _dataArr = [NSArray array];
+    }
+    
+    return _dataArr;
     
 }
 -(NSMutableArray*)myChildViewControllers{
@@ -155,7 +195,7 @@
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {
-        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBTmallChildredViewController",@"LBTmallChildredViewController",@"LBTmallChildredViewController",@"LBTmallChildredViewController", nil];
+        _controllerClassNames = [NSMutableArray array];
     }
     
     return _controllerClassNames;

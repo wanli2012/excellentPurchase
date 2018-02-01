@@ -47,8 +47,8 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="S2A-xg-iuW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.99801069499999995" green="0.39886236190000002" blue="0.40665975209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmG-di-3rd">
@@ -56,7 +56,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="gay-DW-Xk6"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -68,9 +68,13 @@
                             <constraint firstAttribute="height" constant="18" id="c3R-ht-Cm5"/>
                         </constraints>
                         <state key="normal" title="Button" image="taotao-collect-n"/>
+                        <state key="selected" image="taotao-collect-y"/>
+                        <connections>
+                            <action selector="collectionEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ovu-DG-JRQ"/>
+                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111人付款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dy1-Ae-Qfz">
-                        <rect key="frame" x="5" y="279" width="170" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dy1-Ae-Qfz">
+                        <rect key="frame" x="5" y="285" width="170" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.46661311389999999" green="0.4666974545" blue="0.4666077495" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -98,11 +102,20 @@
                     <constraint firstAttribute="trailing" secondItem="pmG-di-3rd" secondAttribute="trailing" constant="5" id="ywq-Qs-6bX"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionBt" destination="2qU-Lg-5eN" id="hVA-MS-ihV"/>
+                <outlet property="imagev" destination="gAd-K1-nCE" id="VCt-bj-PL3"/>
+                <outlet property="jifen" destination="pmG-di-3rd" id="Xre-di-X21"/>
+                <outlet property="priceLb" destination="A9x-cS-WXt" id="ywk-a4-W5u"/>
+                <outlet property="scanNum" destination="dy1-Ae-Qfz" id="4EG-2J-Kya"/>
+                <outlet property="titlte" destination="Hna-c1-Z9X" id="Edj-OZ-Ied"/>
+            </connections>
             <point key="canvasLocation" x="-26" y="-5.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="taotao-collect-n" width="22" height="20"/>
+        <image name="taotao-collect-y" width="22" height="20"/>
         <image name="taotao-fan" width="17" height="17"/>
     </resources>
 </document>

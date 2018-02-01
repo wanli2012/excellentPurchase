@@ -14,6 +14,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.dwqTagV = [[LBRiceShopTagView alloc] initWithFrame:CGRectMake(10, 15, UIScreenWidth - 20, 0)];
+        self.dwqTagV.selecindex = 0;
         [self addSubview:self.dwqTagV];
     }
     return self;

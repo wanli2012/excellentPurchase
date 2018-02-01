@@ -42,7 +42,7 @@
     
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_model.store_thumb] placeholderImage:nil];
     self.nameLabel.text = [NSString stringWithFormat:@"%@",_model.store_name];
-    self.starLb.text = _model.store_score;
+    self.starLb.text = [NSString stringWithFormat:@"%@分",_model.store_score];
     self.starRateView.currentScore = [_model.store_score floatValue];
     if (_model.p_name.length >0  && _model.s_name.length > 0) {
          self.adressLb.text = [NSString stringWithFormat:@"%@|%@",_model.p_name,_model.s_name];

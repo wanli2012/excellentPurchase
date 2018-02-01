@@ -8,11 +8,11 @@
 
 #import "LBRiceShopTagView.h"
 /** 字体离边框的水平距离 */
-#define HORIZONTAL_PADDING 5.0f
+#define HORIZONTAL_PADDING 10.0f
 /** 字体离边框的竖直距离 */
 #define VERTICAL_PADDING   5.0f
 /** tagLab之间的水平间距 */
-#define HORIZONTAL_MARGIN  5.0f
+#define HORIZONTAL_MARGIN  10.0f
 /** tagLab之间的竖直间距 */
 #define VERTICAL_MARGIN    10.0f
 
@@ -51,13 +51,20 @@
     
         tag.textAlignment = NSTextAlignmentCenter;
         tag.font = [UIFont systemFontOfSize:13];
-        tag.text = arr[i];
+        tag.text = arr[i][@"catename"];
         tag.tag = 500 + i;
         tag.layer.cornerRadius = 3.0;
         tag.clipsToBounds = YES;
-        tag.layer.borderColor = YYSRGBColor(118, 118, 118, 1).CGColor;
         tag.layer.borderWidth = 1;
-        tag.textColor = YYSRGBColor(118, 118, 118, 1);
+        if (self.selecindex == i) {
+            tag.layer.borderColor = [UIColor clearColor].CGColor;
+            tag.textColor = [UIColor whiteColor];
+            tag.backgroundColor = MAIN_COLOR;
+        }else{
+            tag.layer.borderColor = YYSRGBColor(118, 118, 118, 1).CGColor;
+            tag.textColor = YYSRGBColor(118, 118, 118, 1);
+            tag.backgroundColor = [UIColor whiteColor];
+        }
         
         CGSize textStrSize = [tag.text sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:13]}];
         textStrSize.width += HORIZONTAL_PADDING*2;
@@ -97,12 +104,18 @@
     UILabel *selectlab = (UILabel *)[self viewWithTag:500 + self.selecindex];
     
     if (self.selecindex != lab.tag - 500) {
-        lab.backgroundColor=MAIN_COLOR;
+        lab.layer.borderColor = [UIColor clearColor].CGColor;
         lab.textColor = [UIColor whiteColor];
+        lab.backgroundColor = MAIN_COLOR;
         
-        selectlab.textColor = [UIColor blackColor];
-        selectlab.backgroundColor=[UIColor groupTableViewBackgroundColor];
+        selectlab.layer.borderColor = YYSRGBColor(118, 118, 118, 1).CGColor;
+        selectlab.textColor = YYSRGBColor(118, 118, 118, 1);
+        selectlab.backgroundColor = [UIColor whiteColor];
          self.selecindex = lab.tag - 500;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(LBRiceShopTagView:fetchWordToTextFiled:)]) {
+            [self.delegate LBRiceShopTagView:self fetchWordToTextFiled:self.dataArr[lab.tag - 500]];
+        }
+    }else{
         if (self.delegate && [self.delegate respondsToSelector:@selector(LBRiceShopTagView:fetchWordToTextFiled:)]) {
             [self.delegate LBRiceShopTagView:self fetchWordToTextFiled:self.dataArr[lab.tag - 500]];
         }
