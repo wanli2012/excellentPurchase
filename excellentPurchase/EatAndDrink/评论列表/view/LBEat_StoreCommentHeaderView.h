@@ -10,7 +10,6 @@
 #import "LB_EatCommentFrameModel.h"
 
 
-
 @interface LBEat_StoreCommentHeaderView : UITableViewHeaderFooterView
 
 @property(nonatomic,strong)LB_EatCommentFrameModel *HomeInvestModel;

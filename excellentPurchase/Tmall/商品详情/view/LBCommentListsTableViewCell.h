@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTmallProductDetailModel.h"
 
 @interface LBCommentListsTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBTmallProductDetailgoodsCommentModel *model;
 
 @end

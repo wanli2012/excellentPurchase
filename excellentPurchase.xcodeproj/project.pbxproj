@@ -597,6 +597,7 @@
 		F9288251201C7C8D000B0474 /* GYZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824A201C7C8C000B0474 /* GYZCity.m */; };
 		F9288252201C7C8D000B0474 /* GYZCityGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */; };
 		F9288253201C7C8D000B0474 /* GYZCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */; };
+		F929D20F20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */; };
 		F93409F52009CF690002DBB8 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F42009CF680002DBB8 /* SPPageMenu.m */; };
 		F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93409F72009CFDD0002DBB8 /* LBTmallChildredViewController.m */; };
 		F93409FA2009CFDD0002DBB8 /* LBTmallChildredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F93409F82009CFDD0002DBB8 /* LBTmallChildredViewController.xib */; };
@@ -786,8 +787,6 @@
 		F95FD421200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95FD41F200D9A9200F6C523 /* LBriceshopwebviewTableViewCell.xib */; };
 		F95FD425200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD423200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m */; };
 		F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95FD424200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib */; };
-		F95FD42A200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95FD427200DA03B00F6C523 /* LBGoodsDetailRecommendListCell.xib */; };
-		F95FD42B200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD429200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m */; };
 		F95FD435200DC2C300F6C523 /* StandardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD42E200DC2C300F6C523 /* StandardModel.m */; };
 		F95FD436200DC2C300F6C523 /* StandardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD430200DC2C300F6C523 /* StandardsView.m */; };
 		F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F95FD434200DC2C300F6C523 /* ThrowLineTool.m */; };
@@ -2051,6 +2050,8 @@
 		F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCityGroupCell.m; sourceTree = "<group>"; };
 		F928824D201C7C8C000B0474 /* GYZCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYZCityHeaderView.h; sourceTree = "<group>"; };
 		F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCityHeaderView.m; sourceTree = "<group>"; };
+		F929D20D20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallDetailgoodsCommentFrameModel.h; sourceTree = "<group>"; };
+		F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallDetailgoodsCommentFrameModel.m; sourceTree = "<group>"; };
 		F93409F32009CF680002DBB8 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		F93409F42009CF680002DBB8 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		F93409F62009CFDD0002DBB8 /* LBTmallChildredViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallChildredViewController.h; sourceTree = "<group>"; };
@@ -2370,9 +2371,6 @@
 		F95FD422200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBProductDetailWebTitleTableViewCell.h; sourceTree = "<group>"; };
 		F95FD423200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBProductDetailWebTitleTableViewCell.m; sourceTree = "<group>"; };
 		F95FD424200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBProductDetailWebTitleTableViewCell.xib; sourceTree = "<group>"; };
-		F95FD427200DA03B00F6C523 /* LBGoodsDetailRecommendListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBGoodsDetailRecommendListCell.xib; sourceTree = "<group>"; };
-		F95FD428200DA03B00F6C523 /* LBGoodsDetailRecommendListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBGoodsDetailRecommendListCell.h; sourceTree = "<group>"; };
-		F95FD429200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBGoodsDetailRecommendListCell.m; sourceTree = "<group>"; };
 		F95FD42D200DC2C300F6C523 /* StandardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardModel.h; sourceTree = "<group>"; };
 		F95FD42E200DC2C300F6C523 /* StandardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardModel.m; sourceTree = "<group>"; };
 		F95FD42F200DC2C300F6C523 /* StandardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardsView.h; sourceTree = "<group>"; };
@@ -6501,9 +6499,6 @@
 				F95FD422200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.h */,
 				F95FD423200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.m */,
 				F95FD424200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib */,
-				F95FD428200DA03B00F6C523 /* LBGoodsDetailRecommendListCell.h */,
-				F95FD429200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m */,
-				F95FD427200DA03B00F6C523 /* LBGoodsDetailRecommendListCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6513,6 +6508,8 @@
 			children = (
 				F95035FE2021F5F800093644 /* LBTmallProductDetailModel.h */,
 				F95035FF2021F5F800093644 /* LBTmallProductDetailModel.m */,
+				F929D20D20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.h */,
+				F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -7622,7 +7619,6 @@
 				4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */,
 				F9426B6B201AF7340054417E /* LBShopProductClassifyReusableView.xib in Resources */,
 				F923B2BE202070AF00DFEF7C /* LBEatProductDetailTitleTableViewCell.xib in Resources */,
-				F95FD42A200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.xib in Resources */,
 				F97137502005FF280033F38B /* LBModifyingUsernameViewController.xib in Resources */,
 				F98D1A22201DA3A80021D3B1 /* 天气33.png in Resources */,
 				F955D1822008AEFD001EEC81 /* LBAddBankCardViewController.xib in Resources */,
@@ -8287,7 +8283,6 @@
 				F98D1A3D201DD1E00021D3B1 /* LBEat_cateDataModel.m in Sources */,
 				4A79EDFD200F28A3001F28D1 /* GLMine_Team_AchievementManageController.m in Sources */,
 				F9426B06201ABC200054417E /* ZLPhotoPickerGroup.m in Sources */,
-				F95FD42B200DA03C00F6C523 /* LBGoodsDetailRecommendListCell.m in Sources */,
 				F923B1D62020021E00DFEF7C /* ZXMonochromeRectangleDetector.m in Sources */,
 				4A9E18962011C50D00E1EC05 /* predicateModel.m in Sources */,
 				4A20E9B720132CB100E091EA /* GLMine_Message_InteractController.m in Sources */,
@@ -8465,6 +8460,7 @@
 				F923B29C2020093A00DFEF7C /* LYEmptyView.m in Sources */,
 				4AFC0E9620157182004518F4 /* LBEat_StoreCommentsViewController.m in Sources */,
 				F9633D8B200C629A001B545A /* CCPScrollView.m in Sources */,
+				F929D20F20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m in Sources */,
 				F923B27B2020021F00DFEF7C /* ZXQRCodeWriter.m in Sources */,
 				F95072D5200492430026D28F /* LBHomeViewController.m in Sources */,
 				F97CDC6D2015767F0036B8E0 /* LBFinancialCenterTableViewCell.m in Sources */,

@@ -14,4 +14,6 @@
 
 - (void)hideView;
 
+@property (strong , nonatomic)NSString *goods_id;
+
 @end

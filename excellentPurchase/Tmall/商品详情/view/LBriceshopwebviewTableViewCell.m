@@ -12,25 +12,18 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    //self.webview.delegate = self;
-}
-
--(void)setUrlstr:(NSString *)urlstr{
-    _urlstr = urlstr;
-    if (_urlstr.length > 0 && [_urlstr rangeOfString:@"null"].location == NSNotFound) {
-         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlstr]]];
-        self.isload = YES;
-    }
 
 }
 
-#pragma mark ----- uiwebviewdelegete
--(void)webViewDidFinishLoad:(UIWebView *)webView{
+//-(void)setUrlstr:(NSString *)urlstr{
+//    _urlstr = urlstr;
+//    if (_urlstr.length > 0 && [_urlstr rangeOfString:@"null"].location == NSNotFound) {
+//         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlstr]]];
+//        self.isload = YES;
+//    }
+//
+//}
 
-     self.webH=[webView.scrollView contentSize].height;
-    [self.delegate refreshWebHeigt:self.webH];
-    
-}
 
 
 @end

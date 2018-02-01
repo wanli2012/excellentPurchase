@@ -31,6 +31,7 @@
 
 @property (copy , nonatomic)NSString *group_name;
 
+
 +(NSArray *)getIndustryModels:(NSArray *)infos;
 
 @end

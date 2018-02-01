@@ -76,6 +76,7 @@
     [self addSubview:self.identifyLb];
     [self addSubview:self.contentLb];
     [self addSubview:self.timeLb];
+    
     //[self addSubview:self.replayBt];
     
     [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,6 +162,7 @@
         _headimage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 40, 40)];
         _headimage.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _headimage.layer.cornerRadius = 20;
+        _headimage.clipsToBounds = YES;
     }
     return _headimage;
 }

@@ -40,6 +40,8 @@
 /**高度比例*/
 #define CZH_ScaleHeight(__VA_ARGS__)  ([UIScreen mainScreen].bounds.size.height/667)*(__VA_ARGS__)
 
+//海淘商城 商品详情
+#define TmallPdetail @"http://192.168.0.130/yogo_dz/htdocs/index.php/App/GoodsDetail/goods_detail_view/goods_id/"
 
 //接口
 
@@ -60,5 +62,7 @@
 #define SeaShoppingMore_goods @"SeaShopping/more_goods"//海淘商城 更多数据
 #define SeaShoppingHot_seach @"SeaShopping/hot_seach"//海淘商城 热门搜索
 #define SeaShoppingGoods_data @"SeaShopping/goods_data"//海淘商城 商品详情
+#define SeaShoppingGoods_comment_list @"SeaShopping/goods_comment_list"//海淘商城 评论更多
+
 
 #endif /* scaleHeader_h */

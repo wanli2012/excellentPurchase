@@ -10,9 +10,6 @@
 
 @interface LBCommentHeaderTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UIView *buttonView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *SCR_content;
-
 @end
 
 @implementation LBCommentHeaderTableViewCell
@@ -20,9 +17,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-    self.SCR_content.constant = UIScreenWidth;
-    
+
 }
 
 

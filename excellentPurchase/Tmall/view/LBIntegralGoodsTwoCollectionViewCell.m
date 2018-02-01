@@ -59,11 +59,17 @@
 
 //取消收藏
 -(void)userCancelCollection{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"DELETE";
     dic[@"collect_id"] = self.model.is_collect;
-    dic[@"uid"] = [UserModel defaultUser].uid;
-    dic[@"token"] = [UserModel defaultUser].token;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
     dic[@"type"] = @"1"; //1收藏商品 2海淘商城店铺 3吃喝玩乐店铺
     
     [NetworkManager requestPOSTWithURLStr:SeaShoppingNot_collect paramDic:dic finish:^(id responseObject) {
@@ -83,11 +89,17 @@
 }
 //收藏
 -(void)userCollection{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"ADD";
     dic[@"link_id"] = self.model.goods_id;
-    dic[@"uid"] = [UserModel defaultUser].uid;
-    dic[@"token"] = [UserModel defaultUser].token;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
     dic[@"type"] = @"1"; //1收藏商品 2海淘商城店铺 3吃喝玩乐店铺
     
     [NetworkManager requestPOSTWithURLStr:SeaShoppingUser_collect paramDic:dic finish:^(id responseObject) {
