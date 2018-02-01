@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *storeName;
 @property (weak, nonatomic) IBOutlet UILabel *storeInfo;
 @property (weak, nonatomic) IBOutlet UILabel *priceLb;
+@property (weak, nonatomic) IBOutlet UILabel *oldPrice;
+
+@property (weak, nonatomic) IBOutlet UIView *linev;
 
 @end
 
@@ -30,7 +33,17 @@
     self.storeName.text = [NSString stringWithFormat:@"%@",_model.goods_name];
     self.storeInfo.text = [NSString stringWithFormat:@"%@",_model.goods_info];
     self.priceLb.text = [NSString stringWithFormat:@"¥%@",_model.discount];
-    
+    self.linev.hidden = YES;
+}
+
+-(void)setPmodel:(LBEatProductDetailOtherModel *)pmodel{
+    _pmodel = pmodel;
+    self.oldPrice.hidden = NO;
+    self.storeName.text = [NSString stringWithFormat:@"%@",_pmodel.goods_name];
+    self.storeInfo.text = [NSString stringWithFormat:@"%@",_pmodel.goods_info];
+    self.priceLb.text = [NSString stringWithFormat:@"¥%@",_pmodel.discount];
+    self.oldPrice.text = [NSString stringWithFormat:@"¥%@",_pmodel.goods_price];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_pmodel.thumb] placeholderImage:nil];
 }
 
 @end

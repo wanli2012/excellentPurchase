@@ -15,19 +15,38 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="43"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="363" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="363" height="42.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taotao-jingpinyouxuan" translatesAutoresizingMaskIntoConstraints="NO" id="3Na-af-1fM">
                         <rect key="frame" x="118.5" y="14" width="125" height="17.5"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0L-vI-uTd">
+                        <rect key="frame" x="293" y="10" width="60" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="1GL-AS-REo"/>
+                            <constraint firstAttribute="height" constant="30" id="Zlf-o4-S3j"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="更多&gt;&gt;">
+                            <color key="titleColor" red="0.99801069499999995" green="0.39886236190000002" blue="0.40665975209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="checkMoreProducts:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LaK-bD-6Tw"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="w0L-vI-uTd" firstAttribute="centerY" secondItem="3Na-af-1fM" secondAttribute="centerY" constant="2" id="Nyt-qa-mSe"/>
                     <constraint firstItem="3Na-af-1fM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="ZQq-tW-9lU"/>
                     <constraint firstAttribute="bottom" secondItem="3Na-af-1fM" secondAttribute="bottom" constant="11" id="bBb-Hh-hzI"/>
                     <constraint firstItem="3Na-af-1fM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="t16-8b-aDw"/>
+                    <constraint firstAttribute="trailing" secondItem="w0L-vI-uTd" secondAttribute="trailing" constant="10" id="vID-Hg-DdR"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imagev" destination="3Na-af-1fM" id="ukZ-am-v0S"/>
+            </connections>
             <point key="canvasLocation" x="15.5" y="-29.5"/>
         </tableViewCell>
     </objects>

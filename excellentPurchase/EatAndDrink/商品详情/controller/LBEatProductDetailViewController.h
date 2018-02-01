@@ -10,4 +10,7 @@
 
 @interface LBEatProductDetailViewController : UIViewController
 
+@property (strong , nonatomic)NSString *goods_id;
+@property (strong , nonatomic)NSString *goods_name;
+
 @end

@@ -13,10 +13,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBTmallProductListViewController">
             <connections>
                 <outlet property="collectionView" destination="Bqf-Rc-BEB" id="8fI-UQ-7iI"/>
+                <outlet property="compositeBt" destination="Ubn-DQ-h7D" id="waY-8g-rgG"/>
                 <outlet property="filtrateBt" destination="7nk-cn-EIb" id="C4d-Qn-rxd"/>
                 <outlet property="priceBt" destination="Wtz-J4-Wy6" id="gaa-b1-AsM"/>
                 <outlet property="saleBt" destination="pkA-nk-4bQ" id="YdH-k8-3On"/>
                 <outlet property="searchTf" destination="hFz-mD-li8" id="Dfy-HD-nVn"/>
+                <outlet property="searchView" destination="if0-bY-zzy" id="onC-eE-3B7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -65,7 +67,10 @@
                                     <rect key="frame" x="20" y="0.0" width="220" height="32"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="FS0-bP-u76"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" red="0.90970492362976074" green="0.90986090898513794" blue="0.9096950888633728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -156,11 +161,11 @@
                                         <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nk-cn-EIb">
                                             <rect key="frame" x="282" y="0.0" width="93" height="49"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="筛选" image="taotao-shaixuan">
+                                            <state key="normal" title="分类" image="taotao-shaixuan">
                                                 <color key="titleColor" red="0.24702778459999999" green="0.24707666040000001" blue="0.2470246851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <state key="selected">
-                                                <color key="titleColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleColor" red="0.24702778459999999" green="0.24707666040000001" blue="0.2470246851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="comprehensiveEvent:" destination="-1" eventType="touchUpInside" id="WBs-BV-zGT"/>

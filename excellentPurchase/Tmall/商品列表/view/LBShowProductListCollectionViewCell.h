@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTmallhomepageDataModel.h"
 
 @interface LBShowProductListCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *productName;
+
+@property (copy , nonatomic)LBTmallhomepageDataStructureModel *model;
+@property (copy , nonatomic)void(^refrshDatasorece)(void);
 
 @end

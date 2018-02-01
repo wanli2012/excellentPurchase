@@ -49,7 +49,7 @@
                                                               delegate:self
                                                       placeholderImage:[UIImage imageNamed:@""]];//当一张都没有的时候的 占位图
         //每一张图的占位图
-        _cycleScrollView.placeholderImage = [UIImage imageNamed:@""];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"haitao_banner"];
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.showPageControl = NO;

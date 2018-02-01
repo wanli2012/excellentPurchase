@@ -10,5 +10,9 @@
 
 @interface GLIntegralHeaderTableViewCell : UITableViewCell
 
+@property (copy , nonatomic)void(^checkMoreProducts)(NSInteger section);
+
+@property (assign , nonatomic)NSInteger section;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
 
 @end

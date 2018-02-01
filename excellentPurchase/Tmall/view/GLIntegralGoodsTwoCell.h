@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTmallhomepageDataModel.h"
 
 @protocol GLIntegralGoodsTwodelegete <NSObject>
 
@@ -18,7 +19,7 @@
 @property (strong, nonatomic)NSArray *dataArr;
 @property (nonatomic, assign)id<GLIntegralGoodsTwodelegete> delegate;
 
--(void)refreshdataSource:(NSArray*)arr;
+-(void)refreshdataSource:(NSArray<LBTmallhomepageDataStructureModel*>*)arr;
 
 @property (assign , nonatomic)CGFloat beautfHeight;//缓存精品推荐高度
 

@@ -19,14 +19,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="177" height="214"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="av3-IU-uDb">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="av3-IU-uDb">
                         <rect key="frame" x="0.0" y="0.0" width="177" height="117.5"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="av3-IU-uDb" secondAttribute="height" multiplier="3:2" id="NF6-W5-xUI"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Nl-Kc-xIT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Nl-Kc-xIT">
                         <rect key="frame" x="0.0" y="122.5" width="177" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="bJg-jb-Yyo"/>
@@ -40,7 +40,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="A9G-e3-Y7v"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -51,12 +51,12 @@
                             <constraint firstAttribute="height" constant="20" id="vc0-RB-9p9"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ2-iC-Oe1">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ2-iC-Oe1">
                         <rect key="frame" x="103" y="147.5" width="74" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="cJG-hy-yMO"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -68,9 +68,13 @@
                             <constraint firstAttribute="width" constant="21" id="dV0-wD-0DC"/>
                         </constraints>
                         <state key="normal" title="Button" image="taotao-collect-n"/>
+                        <state key="selected" image="taotao-collect-y"/>
+                        <connections>
+                            <action selector="collectionEvent:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qda-9J-JTi"/>
+                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111人付款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjn-MT-wnG">
-                        <rect key="frame" x="0.0" y="180.5" width="136" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjn-MT-wnG">
+                        <rect key="frame" x="0.0" y="186.5" width="136" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.46661311389999999" green="0.4666974545" blue="0.4666077495" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -101,15 +105,19 @@
             </constraints>
             <size key="customSize" width="177" height="214"/>
             <connections>
+                <outlet property="collectionBt" destination="7FM-FB-80v" id="cNq-gp-Qkn"/>
                 <outlet property="imagev" destination="av3-IU-uDb" id="xG1-83-DbX"/>
-                <outlet property="nameLb" destination="9Nl-Kc-xIT" id="L6R-4o-LDQ"/>
+                <outlet property="jifen" destination="IZ2-iC-Oe1" id="Dur-4m-HfY"/>
                 <outlet property="priceLb" destination="khz-gv-FFZ" id="FGt-qC-OdC"/>
+                <outlet property="scanNum" destination="rjn-MT-wnG" id="YCc-Uq-HEk"/>
+                <outlet property="titlte" destination="9Nl-Kc-xIT" id="0fG-4q-2hc"/>
             </connections>
             <point key="canvasLocation" x="72.5" y="71"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="taotao-collect-n" width="22" height="20"/>
+        <image name="taotao-collect-y" width="22" height="20"/>
         <image name="taotao-fan" width="17" height="17"/>
     </resources>
 </document>

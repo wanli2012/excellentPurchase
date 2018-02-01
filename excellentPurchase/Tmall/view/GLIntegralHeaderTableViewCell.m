@@ -23,7 +23,14 @@
  
     
 }
-
+//查看更多商品
+- (IBAction)checkMoreProducts:(UIButton *)sender {
+    WeakSelf;
+    if (self.checkMoreProducts) {
+        weakSelf.checkMoreProducts(weakSelf.section);
+    }
+    
+}
 
 
 @end

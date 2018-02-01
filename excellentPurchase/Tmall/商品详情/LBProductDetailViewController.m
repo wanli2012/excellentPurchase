@@ -10,7 +10,6 @@
 #import "DLNavigationTabBar.h"
 #import "PopoverView.h"
 #import "UIButton+SetEdgeInsets.h"
-#import "LBTaoTaoProductDeailHeaderView.h"
 #import "LBTaoTaoProductInofoTableViewCell.h"
 #import "LBCommentHeaderTableViewCell.h"
 #import "LBCheckMoreCommentsTableViewCell.h"
@@ -20,8 +19,10 @@
 #import "LBGoodsDetailRecommendListCell.h"
 #import "StandardsView.h"
 #import "LBCommentListsView.h"
-
+#import "JYCarousel.h"
+#import "JYImageCache.h"
 #import "LBMineSureOrdersViewController.h"//确认订单
+#import "LBTmallProductDetailModel.h"
 
 @interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate>
 @property(nonatomic,strong)NSArray *subViewControllers;
@@ -29,11 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *merchetBt;//商家
 @property (weak, nonatomic) IBOutlet UIButton *collectBt;//收藏
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
-/**
- 头部视图
- */
-@property (strong , nonatomic)LBTaoTaoProductDeailHeaderView *headerView;
 
 @property (nonatomic ,assign) CGFloat webHeight;//商品详情网页加载高度
 @property (nonatomic ,assign) CGFloat shiftGoodsH;//推荐商品cell的高度
@@ -44,6 +40,14 @@
  评论view
  */
 @property (strong , nonatomic)LBCommentListsView *commentView;
+/**
+ 头部轮播
+ */
+@property (nonatomic, strong) JYCarousel *carouselView;
+
+@property (nonatomic, strong) LBTmallProductDetailModel *model;
+
+@property (nonatomic ,assign) NSInteger ptype;//商品类型 1厂家直销 2产地直供 3品牌加盟 4渠道授权/微商特供 5商场自营
 
 @end
 
@@ -62,7 +66,82 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = self.navigationTabBar;
-    self.tableview.tableHeaderView = self.headerView;
+    [self registerTablecell];
+  
+    [self addBavigationItem];//添加item
+    [self.merchetBt verticalCenterImageAndTitle:5];
+    [self.collectBt verticalCenterImageAndTitle:5];
+   
+    [self loadData];//加载数据
+    [self setupNpdata];//设置无数据的时候展示
+}
+
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableview.tableFooterView = [UIView new];
+    
+    self.tableview.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableview.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    
+    //emptyView内容上的点击事件监听
+    [self.tableview.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf loadData];
+    }];
+}
+
+-(void)loadData{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"goods_id"] = self.goods_id;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    
+    [EasyShowLodingView showLodingText:@"正在加载"];
+    [NetworkManager requestPOSTWithURLStr:SeaShoppingGoods_data paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.ptype = [responseObject[@"data"][@"channel"] integerValue];
+             self.model = [LBTmallProductDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
+            if (self.ptype != 5) {
+                NSMutableArray *arr = [NSMutableArray array];
+                for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
+                    LBTmallProductDetailgoodsSpecOtherModel * model = [LBTmallProductDetailgoodsSpecOtherModel mj_objectWithKeyValues:dic];
+                    [arr addObject:model];
+                }
+                
+                self.model.autotrophygoods_spec = arr;
+            }else{
+                NSMutableArray *arr = [NSMutableArray array];
+                for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
+                    LBTmallProductDetailgoodsSpecModel * model = [LBTmallProductDetailgoodsSpecModel mj_objectWithKeyValues:dic];
+                    [arr addObject:model];
+                }
+                
+                self.model.goods_spec = arr;
+            }
+            [self addCarouselView1];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+    }];
+    
+}
+
+
+-(void)registerTablecell{
     // 注册cell
     [self.tableview registerNib:[UINib nibWithNibName:taoTaoProductInofoTableViewCell bundle:nil] forCellReuseIdentifier:taoTaoProductInofoTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:commentHeaderTableViewCell bundle:nil] forCellReuseIdentifier:commentHeaderTableViewCell];
@@ -71,12 +150,6 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     [self.tableview registerNib:[UINib nibWithNibName:riceshopwebviewTableViewCell bundle:nil] forCellReuseIdentifier:riceshopwebviewTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:productDetailWebTitleTableViewCell bundle:nil] forCellReuseIdentifier:productDetailWebTitleTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:goodsDetailRecommendListCell bundle:nil] forCellReuseIdentifier:goodsDetailRecommendListCell];
-  
-    [self addBavigationItem];//添加item
-    
-    [self.merchetBt verticalCenterImageAndTitle:5];
-    [self.collectBt verticalCenterImageAndTitle:5];
-   
 }
 
 -(void)addBavigationItem{
@@ -218,7 +291,8 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
 }
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 4; //返回值是多少既有几个分区
+    
+    return  self.model?4:0;
 }
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -382,6 +456,29 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
 
 }
 
+- (void)addCarouselView1{
+    
+    //block方式创建
+    __weak typeof(self) weakSelf = self;
+
+      NSMutableArray   *imageArray  = [[NSMutableArray alloc] initWithArray: _model.thumb_url];
+
+    
+    if (!_carouselView) {
+        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
+            carouselConfig.pageContollType = LabelPageControl;
+            carouselConfig.interValTime = 3;
+            return carouselConfig;
+        } clickBlock:^(NSInteger index) {
+            
+        }];
+        self.tableview.tableHeaderView = _carouselView;
+    }
+    //开始轮播
+    [_carouselView startCarouselWithArray:imageArray];
+    
+}
+
 -(DLNavigationTabBar *)navigationTabBar
 {
     if (!_navigationTabBar) {
@@ -394,13 +491,6 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     return _navigationTabBar;
 }
 
--(LBTaoTaoProductDeailHeaderView *)headerView{
-    if (!_headerView) {
-       
-        _headerView = [[LBTaoTaoProductDeailHeaderView alloc]initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth)];
-    }
-    return _headerView;
-}
 -(LBCommentListsView*)commentView{
     if (!_commentView) {
         _commentView = [[LBCommentListsView alloc]initWithFrame:CGRectMake(0, 0, UIScreenWidth, self.view.height- 60)];

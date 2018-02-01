@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "LBEat_StoreDetailDataModel.h"
+#import "LBEatProductDetailModel.h"
 
 @interface LBEat_storeDetailInfoOtherTableViewCell : UITableViewCell
 
 @property (strong , nonatomic)LBEat_StoreDetailOtherDataModel *model;
+
+@property (strong , nonatomic)LBEatProductDetailOtherModel *pmodel;
 
 @end

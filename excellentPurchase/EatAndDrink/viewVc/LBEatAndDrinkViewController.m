@@ -55,9 +55,10 @@
                 [self.controllerClassNames addObject:@"LBEat_CateViewController"];
                 [self.menuArr addObject:self.dataArr[i][@"catename"]];
             }
-            [LBEat_cateModel defaultUser].cate_id = self.dataArr[0][@"cate_id"];
-            [LBEat_cateModel defaultUser].cate_banners = self.dataArr[0][@"cate_banners"];
-            
+            if (self.dataArr.count > 0) {
+                [LBEat_cateModel defaultUser].cate_id = self.dataArr[0][@"cate_id"];
+                [LBEat_cateModel defaultUser].cate_banners = self.dataArr[0][@"cate_banners"];
+            }
              [self addMenu];//加载菜单
         }else{
 

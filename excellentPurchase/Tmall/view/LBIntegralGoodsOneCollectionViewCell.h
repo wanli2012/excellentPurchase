@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTmallhomepageDataModel.h"
 
 @interface LBIntegralGoodsOneCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imagev;
-@property (weak, nonatomic) IBOutlet UILabel *nameLb;
-@property (weak, nonatomic) IBOutlet UILabel *priceLb;
+@property (copy , nonatomic)LBTmallhomepageDataStructureModel *model;
 
-
+@property (copy , nonatomic)void(^refrshDatasorece)(void);
 
 @end

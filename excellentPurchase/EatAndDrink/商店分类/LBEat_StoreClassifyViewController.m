@@ -52,15 +52,15 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     
     self.searchTf.placeholder = self.cate_name;
     
-    [[self.searchTf rac_textSignal]subscribeNext:^(NSString *x) {
-        
-        if (x.length <= 0) {
-            self.keyWord = x;
-            self.page = 1;
-            [self loadData:1 refreshDirect:YES];
-        }
-        
-    }];
+//    [[self.searchTf rac_textSignal]subscribeNext:^(NSString *x) {
+//        
+//        if (x.length <= 0) {
+//            self.keyWord = x;
+//            self.page = 1;
+//            [self loadData:1 refreshDirect:YES];
+//        }
+//        
+//    }];
     
 }
 -(void)setupNpdata{
@@ -133,7 +133,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
                 }
                 [self.dataArr removeAllObjects];
             }
-            
+        
             for (NSDictionary *dic in responseObject[@"data"][@"page_data"]) {
                 LBEat_cateDataModel *model = [LBEat_cateDataModel mj_objectWithKeyValues:dic];
                 [self.dataArr addObject:model];
@@ -224,24 +224,30 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    NSInteger existedLength = textField.text.length;
-    NSInteger selectedLength = range.length;
-    NSInteger replaceLength = string.length;
-    if (existedLength - selectedLength + replaceLength == 0) {
-        [textField endEditing:YES];
-        self.keyWord = @"";
-        [EasyShowTextView showText:@"请输入关键字查询"];
-    }
-    
     if ([string isEqualToString:@"\n"]) {
         [textField endEditing:YES];
         self.keyWord = textField.text;
+        if (self.keyWord.length <= 0) {
+            [EasyShowTextView showText:@"请输入关键字查询"];
+            return NO;
+        }
         self.page = 1;
         [self loadData:1 refreshDirect:YES];
-        
         return NO;
     }
     
+    if ([string isEqualToString:@""] ) {
+        
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength == 0) {
+            self.keyWord = @"";
+            self.page = 1;
+            [self loadData:1 refreshDirect:YES];
+        }
+        
+    }
     return YES;
     
 }
