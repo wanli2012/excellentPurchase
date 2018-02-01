@@ -10,4 +10,6 @@
 
 @interface LBCommentHeaderTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *repalyNum;
+
 @end

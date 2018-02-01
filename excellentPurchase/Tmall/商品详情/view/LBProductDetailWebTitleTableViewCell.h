@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LBProductDetailWebTitleTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *titlelb;
 
 @end

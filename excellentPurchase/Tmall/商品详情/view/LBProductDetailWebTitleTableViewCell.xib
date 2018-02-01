@@ -43,6 +43,9 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <connections>
+                <outlet property="titlelb" destination="T0a-4C-zYS" id="YGp-xH-8dd"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

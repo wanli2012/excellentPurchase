@@ -16,7 +16,7 @@
 #import "LBCommentListsTableViewCell.h"
 #import "LBriceshopwebviewTableViewCell.h"
 #import "LBProductDetailWebTitleTableViewCell.h"
-#import "LBGoodsDetailRecommendListCell.h"
+#import "GLIntegralGoodsTwoCell.h"
 #import "StandardsView.h"
 #import "LBCommentListsView.h"
 #import "JYCarousel.h"
@@ -33,6 +33,7 @@
 
 @property (nonatomic ,assign) CGFloat webHeight;//商品详情网页加载高度
 @property (nonatomic ,assign) CGFloat shiftGoodsH;//推荐商品cell的高度
+
 @property (nonatomic ,assign) BOOL isTapMenu;//判断是否点击标签
 @property (nonatomic ,assign) BOOL isShowComment;//是否展示的评论界面
 
@@ -47,7 +48,11 @@
 
 @property (nonatomic, strong) LBTmallProductDetailModel *model;
 
+@property (nonatomic, strong) UIWebView *webView;//加载商品详情
+
 @property (nonatomic ,assign) NSInteger ptype;//商品类型 1厂家直销 2产地直供 3品牌加盟 4渠道授权/微商特供 5商场自营
+
+@property (nonatomic, strong) StandardsView *mystandardsView;//加载商品详情
 
 @end
 
@@ -57,7 +62,7 @@ static NSString *checkMoreCommentsTableViewCell = @"LBCheckMoreCommentsTableView
 static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
 static NSString *riceshopwebviewTableViewCell = @"LBriceshopwebviewTableViewCell";
 static NSString *productDetailWebTitleTableViewCell = @"LBProductDetailWebTitleTableViewCell";
-static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell";
+static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 
 @implementation LBProductDetailViewController
 
@@ -74,6 +79,13 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
    
     [self loadData];//加载数据
     [self setupNpdata];//设置无数据的时候展示
+    
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+    _webView.delegate = self;
+    _webView.scrollView.scrollEnabled = NO;
+    [_webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@.html",TmallPdetail,self.goods_id]]]];
+
+    
 }
 
 -(void)setupNpdata{
@@ -110,7 +122,19 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.ptype = [responseObject[@"data"][@"channel"] integerValue];
              self.model = [LBTmallProductDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
-            if (self.ptype != 5) {
+            
+            self.collectBt.selected = [self.model.is_collect integerValue]==0?NO:YES;//收藏状态
+            
+            if (self.ptype == 5) {
+                
+                NSMutableArray *arr = [NSMutableArray array];
+                for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
+                    LBTmallProductDetailgoodsSpecModel * model = [LBTmallProductDetailgoodsSpecModel mj_objectWithKeyValues:dic];
+                    [arr addObject:model];
+                }
+                
+                self.model.goods_speca = arr;
+            }else{
                 NSMutableArray *arr = [NSMutableArray array];
                 for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
                     LBTmallProductDetailgoodsSpecOtherModel * model = [LBTmallProductDetailgoodsSpecOtherModel mj_objectWithKeyValues:dic];
@@ -118,16 +142,9 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
                 }
                 
                 self.model.autotrophygoods_spec = arr;
-            }else{
-                NSMutableArray *arr = [NSMutableArray array];
-                for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
-                    LBTmallProductDetailgoodsSpecModel * model = [LBTmallProductDetailgoodsSpecModel mj_objectWithKeyValues:dic];
-                    [arr addObject:model];
-                }
-                
-                self.model.goods_spec = arr;
             }
             [self addCarouselView1];
+            [self.tableview reloadData];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -189,6 +206,21 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     [self.navigationController pushViewController:sureOrderVC animated:YES];
     
 }
+#pragma mark - 加入购物车
+- (IBAction)addShopCar:(UIButton *)sender {
+    
+}
+#pragma mark - 收藏
+- (IBAction)colllectProduct:(UIButton *)sender {
+    if (sender.selected == YES) {//收藏过 ，该取消收藏
+        [self userCancelCollection];
+    }else{//取消该藏过
+        [self userCollection];
+    }
+}
+#pragma mark - 跳转商家主页
+- (IBAction)jumpMerchat:(UIButton *)sender {
+}
 
 
 #pragma mark - tableview滚动联动导航栏标签
@@ -212,41 +244,67 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
         self.isTapMenu = NO;
     }
 }
+#pragma mark - 分享
+-(void)shareInfo{
+    
+}
 #pragma mark - 选择规格
 -(void)chooseSpecification{
-    StandardsView *mystandardsView = [self buildStandardView:[UIImage imageNamed:@"banner"] andIndex:1];
-    mystandardsView.GoodDetailView = self.view;//设置该属性 对应的view 会缩小
-    mystandardsView.showAnimationType = StandsViewShowAnimationShowFromLeft;
-    mystandardsView.dismissAnimationType = StandsViewDismissAnimationDisToRight;
-    [mystandardsView show];
+    _mystandardsView = [self buildStandardView:self.model.thumb andIndex:-1];
+    _mystandardsView.GoodDetailView = self.view;//设置该属性 对应的view 会缩小
+    _mystandardsView.showAnimationType = StandsViewShowAnimationShowFromLeft;
+    _mystandardsView.dismissAnimationType = StandsViewDismissAnimationDisToRight;
+    [_mystandardsView show];
 }
--(StandardsView *)buildStandardView:(UIImage *)img andIndex:(NSInteger)index
+-(StandardsView *)buildStandardView:(NSString *)img andIndex:(NSInteger)index
 {
     StandardsView *standview = [[StandardsView alloc] init];
     standview.tag = index;
     standview.delegate = self;
 
-    standview.mainImgView.image = img;
+    [standview.mainImgView sd_setImageWithURL:[NSURL URLWithString:img] placeholderImage:nil];
     standview.mainImgView.backgroundColor = [UIColor whiteColor];
-    standview.priceLab.text = @"¥100.0";
-    standview.tipLab.text = @"请选择规格请选择规格请选择规格请选择规格请选择规格请选择规格请选择规格请选择规格请选择规格请选择规格";
-    standview.goodNum.text = @"库存 10件";
+    standview.priceLab.text = [NSString stringWithFormat:@"¥%@",self.model.discount];
+    standview.tipLab.text = [NSString stringWithFormat:@"%@",self.model.goods_name];
+    standview.goodNum.text =  [NSString stringWithFormat:@"库存 %@",self.model.goods_num];
     
     standview.customBtns = @[@"加入购物车",@"立即购买"];
     
-    standardClassInfo *tempClassInfo1 = [standardClassInfo StandardClassInfoWith:@"100" andStandClassName:@"红色"];
-    standardClassInfo *tempClassInfo2 = [standardClassInfo StandardClassInfoWith:@"101" andStandClassName:@"蓝色"];
-    NSArray *tempClassInfoArr = @[tempClassInfo1,tempClassInfo2];
-    StandardModel *tempModel = [StandardModel StandardModelWith:tempClassInfoArr andStandName:@"颜色"];
-    
-    standardClassInfo *tempClassInfo3 = [standardClassInfo StandardClassInfoWith:@"102" andStandClassName:@"XL"];
-    standardClassInfo *tempClassInfo4 = [standardClassInfo StandardClassInfoWith:@"103" andStandClassName:@"XXL"];
-    standardClassInfo *tempClassInfo5 = [standardClassInfo StandardClassInfoWith:@"104" andStandClassName:@"XXXXXXXXXXXXXL"];
-    NSArray *tempClassInfoArr2 = @[tempClassInfo3,tempClassInfo4,tempClassInfo5];
-    StandardModel *tempModel2 = [StandardModel StandardModelWith:tempClassInfoArr2 andStandName:@"尺寸"];
-    standview.standardArr = @[tempModel,tempModel2,tempModel,tempModel2];
-    
-    
+    if (self.ptype == 5) {
+        if (self.model.goods_speca.count != 0) {
+            NSMutableArray *arr1 = [NSMutableArray array];
+            for (int i = 0; i < self.model.goods_speca.count; i++) {
+                LBTmallProductDetailgoodsSpecModel *model = self.model.goods_speca[i];
+                NSMutableArray *arr = [NSMutableArray array];
+                for (int j = 0; j < model.items.count ; j++ ) {
+                    LBTmallProductDetailgoodsSpecItemModel *model1 = model.items[j];
+                    standardClassInfo *tempClassInfo = [standardClassInfo StandardClassInfoWith:model1.itemid andStandClassName:model1.title];
+                    [arr addObject:tempClassInfo];
+                }
+                StandardModel *tempModel = [StandardModel StandardModelWith:arr andStandName:model.title];
+                [arr1 addObject:tempModel];
+            }
+            standview.standardArr = [arr1 copy];
+        }
+    }else{
+        if (self.model.autotrophygoods_spec.count != 0) {
+            NSMutableArray *arr = [NSMutableArray array];
+            for (int i = 0; i < self.model.autotrophygoods_spec.count ; i++) {
+                LBTmallProductDetailgoodsSpecOtherModel *model = self.model.autotrophygoods_spec[i];
+                standardClassInfo *tempClassInfo;
+                if (model.title.length <= 0) {
+                    tempClassInfo = [standardClassInfo StandardClassInfoWith:@"1" andStandClassName:@"默认"];
+                }else{
+                    tempClassInfo = [standardClassInfo StandardClassInfoWith:model.idspec andStandClassName:model.title];
+                }
+                [arr addObject:tempClassInfo];
+            }
+            
+            StandardModel *tempModel = [StandardModel StandardModelWith:arr andStandName:@"规格"];
+            standview.standardArr = @[tempModel];
+        }
+    }
+
     return standview;
 }
 #pragma mark - standardView  delegate
@@ -266,6 +324,29 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
 //点击规格代理
 -(void)Standards:(StandardsView *)standardView SelectBtnClick:(UIButton *)sender andSelectID:(NSString *)selectID andStandName:(NSString *)standName andIndex:(NSInteger)index
 {
+    if (self.ptype == 5) {
+        if (self.model.goods_speca.count != 0) {
+            LBTmallProductDetailgoodsSpecModel *model = self.model.goods_speca[index];
+            for (int i = 0; i < model.items.count ; i++ ) {
+                LBTmallProductDetailgoodsSpecItemModel *model1 = model.items[i];
+                if ([model1.itemid isEqualToString:selectID]) {
+                    [_mystandardsView.mainImgView sd_setImageWithURL:[NSURL URLWithString:model1.spec_thumb] placeholderImage:nil];
+                    _mystandardsView.priceLab.text = [NSString stringWithFormat:@"¥%@",model1.marketprice];
+                    _mystandardsView.tipLab.text = [NSString stringWithFormat:@"%@",model1.title];
+                    _mystandardsView.goodNum.text =  [NSString stringWithFormat:@"库存 %@",model1.stock];
+                    break;
+                }
+            }
+        }
+    }else{
+        if (self.model.autotrophygoods_spec.count != 0) {
+            LBTmallProductDetailgoodsSpecOtherModel *model1 = self.model.autotrophygoods_spec[index];
+            //[_mystandardsView.mainImgView sd_setImageWithURL:[NSURL URLWithString:model1.spec_thumb] placeholderImage:nil];
+            _mystandardsView.priceLab.text = [NSString stringWithFormat:@"¥%@",model1.marketprice];
+            _mystandardsView.tipLab.text = [NSString stringWithFormat:@"%@",model1.title];
+            _mystandardsView.goodNum.text =  [NSString stringWithFormat:@"库存 %@",model1.stock];
+        }
+    }
     
     NSLog(@"selectID = %@ standName = %@ index = %ld",selectID,standName,(long)index);
     
@@ -300,10 +381,17 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     if (section == 0) {
         return 1;
     }else if (section == 1){
-        return 4;
+        if (self.model.comment_list.count > 0) {
+            return self.model.comment_list.count + 2;
+        }else{
+            return 1;
+        }
     }else if (section == 2){
         return 2;
     }else if (section == 3){
+        if (self.model.love.count <= 0) {
+            return 0;
+        }
         return 2;
     }
     return 0;
@@ -316,13 +404,11 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
         return UITableViewAutomaticDimension;
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
-            return 90;
-        }else if (indexPath.row == 3){
+            return 40;
+        }else if (indexPath.row == self.model.comment_list.count + 1){
             return 60;
         }else{
-            tableView.estimatedRowHeight = 110;
-            tableView.rowHeight = UITableViewAutomaticDimension;
-            return UITableViewAutomaticDimension;
+            return ((LBTmallProductDetailgoodsCommentModel*)self.model.comment_list[indexPath.row - 1]).cellH;
         }
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
@@ -334,8 +420,7 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
         if (indexPath.row == 0) {
             return 40;
         }else if (indexPath.row == 1){
-//            return self.shiftGoodsH;
-            return ((UIScreenWidth-1)/2.0 + 100)*2;
+          return self.shiftGoodsH;
         }
     }
     return 0;
@@ -348,13 +433,15 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
         LBTaoTaoProductInofoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:taoTaoProductInofoTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = 0;
         cell.delegate = self;
+        cell.model = self.model;
         return cell;
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             LBCommentHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:commentHeaderTableViewCell forIndexPath:indexPath];
              cell.selectionStyle = 0;
+            cell.repalyNum.text = [NSString stringWithFormat:@"(共%@条)",self.model.comment_count];
             return cell;
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == self.model.comment_list.count + 1){
             LBCheckMoreCommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:checkMoreCommentsTableViewCell forIndexPath:indexPath];
              cell.selectionStyle = 0;
             cell.delegate = self;
@@ -362,34 +449,37 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
         }else{
             LBCommentListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:commentListsTableViewCell forIndexPath:indexPath];
              cell.selectionStyle = 0;
+            cell.model = self.model.comment_list[indexPath.row-1];
             return cell;
         }
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
             LBProductDetailWebTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:productDetailWebTitleTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = 0;
+            cell.titlelb.text = @"商品详情";
             return cell;
         }else if (indexPath.row == 1){
             LBriceshopwebviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:riceshopwebviewTableViewCell forIndexPath:indexPath];
-            if (cell.isload == NO) {
-               
+           
+            if (self.webHeight != 0) {
+                [cell addSubview:_webView];
             }
-            //cell.webview.delegate = self;
             return cell;
         }
     }else if (indexPath.section == 3){
         if (indexPath.row == 0) {
             LBProductDetailWebTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:productDetailWebTitleTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = 0;
+            cell.titlelb.text = @"猜你喜欢";
             return cell;
         }else if (indexPath.row == 1){
-            LBGoodsDetailRecommendListCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsDetailRecommendListCell forIndexPath:indexPath];
-            self.shiftGoodsH = cell.shiftGoodsH;
+            GLIntegralGoodsTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsDetailRecommendListCell forIndexPath:indexPath];
+            [cell refreshdataSource:self.model.love];
+            self.shiftGoodsH = cell.beautfHeight;
 
             return cell;
         }
     }
-    
     
     return [[UITableViewCell alloc]init];
 }
@@ -421,8 +511,16 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     
     self.webHeight = webViewHeight + 10;
     
-//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:5 inSection:0];  //你需要更新的组数中的cell
-//    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        //回调或者说是通知主线程刷新，
+        _webView.frame = CGRectMake(0, 0, UIScreenWidth, self.webHeight);
+        [UIView performWithoutAnimation:^{
+            
+            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:1 inSection:2];  //你需要更新的组数中的cell
+            [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        }];
+        
+        [self.tableview layoutIfNeeded]; // 强制更新
+   
 }
 #pragma mark - 展示更多选项
 -(void)showMoreInfo{
@@ -444,6 +542,64 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     // 在没有系统控件的情况下调用可以使用显示在指定的点坐标的方法弹出菜单控件.
     [popoverView showToPoint:CGPointMake(UIScreenWidth - 20, SafeAreaTopHeight) withActions:@[action1, action2, action3, action4]];
 }
+
+//取消收藏
+-(void)userCancelCollection{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"DELETE";
+    dic[@"collect_id"] = self.model.is_collect;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    dic[@"type"] = @"1"; //1收藏商品 2海淘商城店铺 3吃喝玩乐店铺
+    
+    [NetworkManager requestPOSTWithURLStr:SeaShoppingNot_collect paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.model.is_collect=0;
+            self.collectBt.selected = NO;
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+//收藏
+-(void)userCollection{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"link_id"] = self.model.goods_id;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    dic[@"type"] = @"1"; //1收藏商品 2海淘商城店铺 3吃喝玩乐店铺
+    
+    [NetworkManager requestPOSTWithURLStr:SeaShoppingUser_collect paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.model.is_collect = [NSString stringWithFormat:@"%@",responseObject[@"data"]];
+            self.collectBt.selected = YES;
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+
 -(void)popself{
     if (self.isShowComment == YES) {//展示的评论界面
         self.navigationItem.titleView = self.navigationTabBar;
@@ -495,6 +651,7 @@ static NSString *goodsDetailRecommendListCell = @"LBGoodsDetailRecommendListCell
     if (!_commentView) {
         _commentView = [[LBCommentListsView alloc]initWithFrame:CGRectMake(0, 0, UIScreenWidth, self.view.height- 60)];
         _commentView.backgroundColor = [UIColor redColor];
+        _commentView.goods_id = self.goods_id;
     }
     
     return _commentView;

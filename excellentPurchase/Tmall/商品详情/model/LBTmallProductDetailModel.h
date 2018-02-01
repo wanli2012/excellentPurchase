@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LBTmallhomepageDataModel.h"
+
 @class LBTmallProductDetailgoodsSpecModel;
 @class LBTmallProductDetailgoodsSpecItemModel;
 @class LBTmallProductDetailgoodsCommentModel;
-@class LBTmallProductDetailgoodsLoveModel;
 @class LBTmallProductDetailgoodsSpecOtherModel;
 
 @interface LBTmallProductDetailModel : NSObject
@@ -32,10 +33,10 @@
 @property (copy , nonatomic)NSString *addtime;
 @property (copy , nonatomic)NSString *is_collect;
 @property (copy , nonatomic)NSString *comment_count;
-@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecModel*> *goods_spec;//规格
+@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecModel*> *goods_speca;//规格
 @property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecOtherModel*> *autotrophygoods_spec;//自营商城规格
 @property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsCommentModel*> *comment_list;//评论
-@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsLoveModel*> *love;//喜欢
+@property (copy , nonatomic)NSArray<LBTmallhomepageDataStructureModel*> *love;//喜欢
 
 @end
 
@@ -75,21 +76,7 @@
 @property (copy , nonatomic)NSString *pic;
 @property (copy , nonatomic)NSString *group_name;
 
-@end
-
-@interface LBTmallProductDetailgoodsLoveModel : NSObject
-
-@property (copy , nonatomic)NSString *store_id;
-@property (copy , nonatomic)NSString *goods_id;
-@property (copy , nonatomic)NSString *goods_name;
-@property (copy , nonatomic)NSString *thumb;
-@property (copy , nonatomic)NSString *discount;
-@property (copy , nonatomic)NSString *bonuspoints;
-@property (copy , nonatomic)NSString *salenum;
-@property (copy , nonatomic)NSString *month_salenum;
-@property (copy , nonatomic)NSString *browse;
-@property (copy , nonatomic)NSString *channel;
-@property (copy , nonatomic)NSString *is_collect;
+@property(nonatomic,assign)CGFloat  cellH;//评论cell的高度
 
 @end
 

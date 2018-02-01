@@ -375,6 +375,8 @@
     }
     NSString *tagStr = [NSString stringWithFormat:@"%ld",(unsigned long)(sender.tag & 0xffff0000)>>16];
     
+    [self.standardBtnClickDict removeAllObjects];//移除全部选项 只剩选中一个
+    
     [self.standardBtnClickDict setObject:tagStr forKey:[NSString stringWithFormat:@"%ld",(sender.tag & 0x0000ffff)/100]];
     
     if([self.delegate respondsToSelector:@selector(Standards:SelectBtnClick:andSelectID:andStandName:andIndex:)])

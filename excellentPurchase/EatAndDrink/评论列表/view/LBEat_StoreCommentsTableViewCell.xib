@@ -22,7 +22,7 @@
                         <rect key="frame" x="60" y="0.0" width="245" height="21.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="qwcdwefc" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1m-YQ-AM1">
-                                <rect key="frame" x="5" y="10" width="235" height="11.5"/>
+                                <rect key="frame" x="5" y="5" width="235" height="11.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="7Do-p4-yGV"/>
@@ -35,9 +35,9 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Q1m-YQ-AM1" secondAttribute="trailing" constant="5" id="026-QQ-aYU"/>
-                            <constraint firstItem="Q1m-YQ-AM1" firstAttribute="top" secondItem="ZeR-Im-aZv" secondAttribute="top" constant="10" id="WI5-Zx-QfH"/>
+                            <constraint firstItem="Q1m-YQ-AM1" firstAttribute="top" secondItem="ZeR-Im-aZv" secondAttribute="top" constant="5" id="WI5-Zx-QfH"/>
                             <constraint firstItem="Q1m-YQ-AM1" firstAttribute="leading" secondItem="ZeR-Im-aZv" secondAttribute="leading" constant="5" id="erq-2r-Jtm"/>
-                            <constraint firstAttribute="bottom" secondItem="Q1m-YQ-AM1" secondAttribute="bottom" id="rGk-8g-U4l"/>
+                            <constraint firstAttribute="bottom" secondItem="Q1m-YQ-AM1" secondAttribute="bottom" constant="5" id="rGk-8g-U4l"/>
                         </constraints>
                     </view>
                 </subviews>

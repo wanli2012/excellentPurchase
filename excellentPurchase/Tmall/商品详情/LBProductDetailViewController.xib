@@ -38,6 +38,9 @@
                                     <state key="normal" title="商家" image="taotao-shangjia">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="jumpMerchat:" destination="-1" eventType="touchUpInside" id="dyD-mJ-UWM"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gic-Jr-XDm">
                                     <rect key="frame" x="70" y="0.0" width="50" height="59"/>
@@ -48,6 +51,10 @@
                                     <state key="normal" title="收藏" image="taotao-collect-n">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <state key="selected" image="taotao-collect-y"/>
+                                    <connections>
+                                        <action selector="colllectProduct:" destination="-1" eventType="touchUpInside" id="217-yb-uTu"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11X-w2-uNN">
                                     <rect key="frame" x="130" y="0.0" width="245" height="59"/>
@@ -68,6 +75,9 @@
                                             <state key="normal" title="加入购物车">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="addShopCar:" destination="-1" eventType="touchUpInside" id="Jvo-3S-6Cx"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -132,6 +142,7 @@
     </objects>
     <resources>
         <image name="taotao-collect-n" width="22" height="20"/>
+        <image name="taotao-collect-y" width="22" height="20"/>
         <image name="taotao-shangjia" width="23" height="20"/>
     </resources>
 </document>

@@ -16,8 +16,7 @@
     _HomeInvestModel = HomeInvestModel;
      CGRect sizeconent=[_HomeInvestModel.comment boundingRectWithSize:CGSizeMake(UIScreenWidth - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
     
-    self.contentlH = sizeconent.size.height + 100;
-    
+        self.contentlH = sizeconent.size.height + 100;
 }
 
 +(NSArray *)getIndustryModels:(NSArray *)infos{
