@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;//数额
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;//细节
 
-
 @end
 
 @implementation GLMine_Message_PropertyCell
@@ -29,11 +28,19 @@
 - (void)setModel:(GLMine_Message_PropertyModel *)model{
     _model = model;
     
-    self.typeLabel.text = model.changeType;
-    self.dateLabel.text = model.date;
-    self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",model.orderNum];
-    self.amountLabel.text = [NSString stringWithFormat:@"+%@",model.amount];
-    self.detailLabel.text = [NSString stringWithFormat:@"您购买的%@",model.goodsName];
+    self.typeLabel.text = model.action;
+    self.dateLabel.text = [formattime formateTimeOfDate4:model.log_addtime];
+    self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",@"00000000"];
+    
+    NSString *str;
+    if([model.sign integerValue] == 0){//0:资金流出 1:资金流入
+        str = @"+";
+    }else{
+        str = @"-";
+    }
+    
+    self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_money];
+    self.detailLabel.text = [NSString stringWithFormat:@"%@",model.log_content];
     
 }
 

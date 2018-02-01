@@ -21,13 +21,23 @@
     [super viewDidLoad];
     
     [self setNav];
+    
+    if (self.firstUrl.length != 0) {
+        
+        [self.imageV sd_setImageWithURL:[NSURL URLWithString:self.firstUrl] placeholderImage:nil];
+        if (self.imageV.image == nil) {
+            self.placeHolderImageV.hidden = NO;
+        }else{
+            self.placeHolderImageV.hidden = YES;
+        }
+    }
 }
 
 /**
  导航栏设置
  */
 - (void)setNav{
-    self.navigationItem.title = @"上传营业执照";
+//    self.navigationItem.title = @"上传营业执照";
     
     UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
@@ -42,8 +52,73 @@
 //保存
 - (void)save{
     
+    if (self.firstUrl.length == 0) {
+        [EasyShowTextView showInfoText:@"请上传图片"];
+        return;
+    }
+    
+    if(self.block){
+        self.block(self.firstUrl);
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
+
 }
+
+/**
+ 上传图片
+ */
+- (void)uploadImage{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"type"] = @"3";
+    dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
+    dic[@"app_version"] = @"1.0.0";
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20;
+    
+    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
+        NSString *title = [NSString stringWithFormat:@"uploadfile"];
+        
+        NSData *data;
+  
+        data = UIImageJPEGRepresentation(self.imageV.image,1);
+        
+        
+        [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
+        
+        [EasyShowLodingView showLodingText:@"图片上传中"];
+    }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showSuccessText:@"上传成功"];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.firstUrl = responseObject[@"data"][@"url"];
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+        [EasyShowLodingView hidenLoding];
+        
+    }];
+}
+
 
 //拍照颗照片选取
 - (IBAction)choosePicType:(id)sender {
@@ -87,7 +162,7 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage]; //通过key值获取到图片
     self.imageV.image = image;  //给UIimageView赋值已经选择的相片
     
-    
+    [self uploadImage];
     //上传图片到服务器--在这里进行图片上传的网络请求，这里不再介绍
 
 }

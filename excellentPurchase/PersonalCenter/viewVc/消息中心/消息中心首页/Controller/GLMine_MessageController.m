@@ -18,10 +18,8 @@
 @interface GLMine_MessageController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (nonatomic, strong)NSMutableArray *titleArr;
 @property (nonatomic, strong)NSMutableArray *imageArr;
-
 @property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
 
 @end
@@ -34,11 +32,13 @@
     self.navigationItem.title = @"消息中心";
      [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_MessageCell" bundle:nil] forCellReuseIdentifier:@"GLMine_MessageCell"];
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     
     self.navigationController.navigationBar.hidden = NO;
-    
 }
+
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.titleArr.count;
@@ -69,6 +69,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+#pragma mark - 懒加载
+
 - (NSMutableArray *)titleArr{
     if (!_titleArr) {
         _titleArr = [NSMutableArray arrayWithObjects:@"物流信息",@"我的资产",@"我的动态",@"系统消息",@"互动消息", nil];
@@ -78,7 +81,7 @@
 }
 - (NSMutableArray *)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"eat-picture1",@"eat-picture1",@"eat-picture1",@"eat-picture1",@"eat-picture1", nil];
+        _imageArr = [NSMutableArray arrayWithObjects:@"message_logistics",@"message_property",@"message_newsfeed",@"message_system",@"message_Interactive", nil];
     }
     return _imageArr;
 }

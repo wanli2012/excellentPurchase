@@ -10,6 +10,7 @@
 @class HHPayPasswordView;
 @protocol HHPayPasswordViewDelegate <NSObject>
 
+
 /**
  输入密码完毕的回调
 
@@ -18,6 +19,7 @@
  */
 - (void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password;
 
+@optional
 /**
  忘记密码
  */

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^pictureBlock)(NSString *faceUrl,NSString *oppositeUrl);
+
 @interface LBUploadIdentityPictureViewController : UIViewController
+
+@property (nonatomic, copy)pictureBlock block;
+
+@property (nonatomic, copy)NSString *faceUrl;//正面照url
+@property (nonatomic, copy)NSString *oppositeUrl;//反面照url
 
 @end

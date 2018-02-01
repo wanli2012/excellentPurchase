@@ -80,6 +80,7 @@
 
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_OpenSellerController *vc = [[GLMine_Team_OpenSellerController alloc] init];
+    vc.pushType = 1;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -8,6 +8,7 @@
 
 #import "LBRegisterViewController.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
+#import "GLMine_Team_OpenSellerController.h"//商家注册
 
 #import "DropMenu.h"
 #import "GLGroupModel.h"
@@ -206,10 +207,18 @@
     }
 }
 
+#pragma mark - 商户注册
+- (IBAction)sellerRegister:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Team_OpenSellerController *vc = [[GLMine_Team_OpenSellerController alloc] init];
+    vc.pushType = 2;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 #pragma mark - 注册
-/**
- 注册
- */
+/**注册*/
 - (IBAction)registe:(id)sender {
     
     [self.view endEditing:YES];

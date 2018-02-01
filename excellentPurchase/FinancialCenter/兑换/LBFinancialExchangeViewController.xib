@@ -11,6 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBFinancialExchangeViewController">
             <connections>
+                <outlet property="ensureBtn" destination="qtd-t5-Le8" id="g0A-b3-9DJ"/>
+                <outlet property="exchangeNumTF" destination="CGc-j5-zUy" id="Vp3-oy-OdY"/>
+                <outlet property="signImageV" destination="Ydy-D7-2LY" id="Ijo-VH-nV0"/>
+                <outlet property="sumLabel" destination="QCe-L9-btg" id="gPz-9P-RaM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,13 +39,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="90"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCe-L9-btg">
-                                                    <rect key="frame" x="159" y="22" width="38" height="36"/>
+                                                    <rect key="frame" x="159" y="17" width="38" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <color key="textColor" red="0.96078431369999995" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的优购币" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-Y4-q8S">
-                                                    <rect key="frame" x="144" y="68" width="67" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的优购劵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-Y4-q8S">
+                                                    <rect key="frame" x="144" y="63" width="67" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -49,7 +53,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="QCe-L9-btg" firstAttribute="centerY" secondItem="GL1-L9-urk" secondAttribute="centerY" constant="-5" id="Fek-bl-BKh"/>
+                                                <constraint firstItem="QCe-L9-btg" firstAttribute="centerY" secondItem="GL1-L9-urk" secondAttribute="centerY" constant="-10" id="Fek-bl-BKh"/>
                                                 <constraint firstItem="rKz-Y4-q8S" firstAttribute="top" secondItem="QCe-L9-btg" secondAttribute="bottom" constant="10" id="JwS-i7-MHY"/>
                                                 <constraint firstAttribute="trailing" secondItem="hME-BN-pca" secondAttribute="trailing" id="MTb-lX-Vr9"/>
                                                 <constraint firstItem="QCe-L9-btg" firstAttribute="centerX" secondItem="GL1-L9-urk" secondAttribute="centerX" id="OEc-Cf-rVb"/>
@@ -75,7 +79,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAs-c2-rQq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="理财方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8me-6Z-89V">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8me-6Z-89V">
                                                     <rect key="frame" x="10" y="30" width="62" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="gXi-ZH-vjs"/>
@@ -85,12 +89,6 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您将出售优购币的数量" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-j5-zUy">
-                                                    <rect key="frame" x="97" y="0.0" width="268" height="80"/>
-                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gS7-nL-Bcu">
                                                     <rect key="frame" x="0.0" y="79" width="375" height="1"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -98,6 +96,15 @@
                                                         <constraint firstAttribute="height" constant="1" id="VDH-bW-nvv"/>
                                                     </constraints>
                                                 </view>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您将兑换优购劵金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-j5-zUy">
+                                                    <rect key="frame" x="97" y="0.0" width="268" height="80"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="-1" id="bsa-0p-wNY"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <gestureRecognizers/>
@@ -115,31 +122,47 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beC-Xc-BXX">
-                                            <rect key="frame" x="109" y="180" width="158" height="25"/>
+                                            <rect key="frame" x="109.5" y="180" width="156.5" height="25"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nochoice" translatesAutoresizingMaskIntoConstraints="NO" id="Ydy-D7-2LY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greetselect-n" translatesAutoresizingMaskIntoConstraints="NO" id="Ydy-D7-2LY">
                                                     <rect key="frame" x="0.0" y="6" width="13" height="13"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="13" id="ZK1-4u-0iK"/>
                                                         <constraint firstAttribute="width" constant="13" id="wNO-90-hXw"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已阅读并同意  兑换协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy8-7p-Lu3">
-                                                    <rect key="frame" x="18" y="4" width="140" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已阅读并同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hy8-7p-Lu3">
+                                                    <rect key="frame" x="18" y="3.5" width="80" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1t-uR-RWR">
+                                                    <rect key="frame" x="103" y="4.5" width="53.5" height="16"/>
+                                                    <gestureRecognizers/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="HDt-Yi-o2T" appends="YES" id="byJ-G9-zpe"/>
+                                                    </connections>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="hy8-7p-Lu3" secondAttribute="trailing" id="3qM-Zs-Imc"/>
                                                 <constraint firstItem="Ydy-D7-2LY" firstAttribute="centerY" secondItem="beC-Xc-BXX" secondAttribute="centerY" id="79S-d0-Axx"/>
                                                 <constraint firstAttribute="height" constant="25" id="AZw-ET-XzB"/>
                                                 <constraint firstItem="Ydy-D7-2LY" firstAttribute="leading" secondItem="beC-Xc-BXX" secondAttribute="leading" id="Bpg-GS-skJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="U1t-uR-RWR" secondAttribute="trailing" id="K1Q-ou-67o"/>
                                                 <constraint firstItem="hy8-7p-Lu3" firstAttribute="centerY" secondItem="beC-Xc-BXX" secondAttribute="centerY" constant="-1" id="Vu0-Ea-i2h"/>
                                                 <constraint firstItem="hy8-7p-Lu3" firstAttribute="leading" secondItem="Ydy-D7-2LY" secondAttribute="trailing" constant="5" id="qHv-6S-nXu"/>
+                                                <constraint firstItem="U1t-uR-RWR" firstAttribute="centerY" secondItem="beC-Xc-BXX" secondAttribute="centerY" id="rNb-zQ-8k7"/>
+                                                <constraint firstItem="U1t-uR-RWR" firstAttribute="leading" secondItem="hy8-7p-Lu3" secondAttribute="trailing" constant="5" id="tr4-F0-juU"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="GUv-wO-ONh" appends="YES" id="aec-9V-39e"/>
+                                            </connections>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtd-t5-Le8">
                                             <rect key="frame" x="30" y="215" width="315" height="50"/>
@@ -156,6 +179,9 @@
                                                     <integer key="value" value="3"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="exchange:" destination="-1" eventType="touchUpInside" id="C2u-BX-tis"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,10 +226,21 @@
                 <constraint firstAttribute="trailing" secondItem="i4n-Or-pFi" secondAttribute="trailing" id="QKD-OY-p3p"/>
                 <constraint firstItem="i4n-Or-pFi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WUU-Dc-d7H"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="166.5"/>
         </view>
+        <tapGestureRecognizer id="GUv-wO-ONh" userLabel="是否同意协议">
+            <connections>
+                <action selector="isAgreeProtocol:" destination="-1" id="Mbz-xs-8yw"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="HDt-Yi-o2T" userLabel="兑换协议">
+            <connections>
+                <action selector="toProtocol:" destination="-1" id="JNg-mg-rxV"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="nochoice" width="12" height="12"/>
+        <image name="greetselect-n" width="11" height="11"/>
         <image name="吃喝玩乐-出售" width="373" height="133"/>
     </resources>
 </document>

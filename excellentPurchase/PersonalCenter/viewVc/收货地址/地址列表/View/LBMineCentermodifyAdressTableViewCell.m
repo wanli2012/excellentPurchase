@@ -23,8 +23,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setupevent:)];
-    [self.defaultSetLabel addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setupevent:)];
+//    [self.defaultSetLabel addGestureRecognizer:tap];
+    
 }
 
 ///设置默认
@@ -32,9 +33,9 @@
     
 //    self.model.is_default = !self.model.is_default;
     
-    if (self.returnSetUpbt) {
-        self.returnSetUpbt(self.index);
-    }
+//    if (self.returnSetUpbt) {
+//        self.returnSetUpbt(self.index);
+//    }
     
 }
 ///删除
@@ -43,7 +44,6 @@
     if (self.returnDeletebt) {
         self.returnDeletebt(self.index);
     }
-    
 }
 
 ///编辑
@@ -67,13 +67,5 @@
     }
 }
 
-// 懒加载
-//- (RACSubject *)subject {
-//    if (_subject == nil) {
-//        _subject = [RACSubject subject];
-//    }
-//    
-//    return _subject;
-//}
 
 @end

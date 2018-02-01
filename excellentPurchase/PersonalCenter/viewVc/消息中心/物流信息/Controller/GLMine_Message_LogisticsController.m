@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong)NSMutableArray *models;
 
-
 @end
 
 @implementation GLMine_Message_LogisticsController

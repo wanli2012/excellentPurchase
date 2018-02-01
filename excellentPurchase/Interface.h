@@ -12,7 +12,7 @@
 //接口需要的固定值
 #define kPORT @"3"
 #define kAPP_VERSION @"1.0.0"
-#define kAPP_HANDLE @"SEARCH"
+//#define kAPP_HANDLE @"SEARCH"
 
 #define SUCCESS_CODE 200 //请求或处理成功(请求数据，获取列表、删除数据、添加数据...等操作)
 #define PAGE_ERROR_CODE 204//请求成功，未获取到内容(分页未请求到数据,提示已经到底了)
@@ -36,6 +36,8 @@
 
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 
+//#define Xianxia_Base @"http://192.168.0.165/yogo_dz/htdocs/index.php/App"
+
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
 #define kREGISTER_URL @"User/register"//注册
 #define kLOGIN_URL @"User/sign_up"//登录
@@ -58,6 +60,17 @@
 #define kaddresses @"Address/addresses"///收货地址列表-峰
 #define kAddressed @"Address/addressed"///添加或编辑地址-峰
 #define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
+#define kappend_upload @"Upload/append_upload"///上传图片
+#define kget_money_list @"MoneyCenter/get_money_list"///优购币市值列表
+#define kget_back_list @"MoneyCenter/get_back_list"///优购币出售记录
+#define kget_mark_list @"MoneyCenter/get_mark_list"///购物券兑换记录
+#define kwithdraw_cash @"MoneyCenter/withdraw_cash"///优购币出售
+#define ksell_mark @"MoneyCenter/sell_mark"///购物券兑换
+#define kstore_type_list @"StoreType/store_type_list"///获取商铺类型-江海林
+#define kgoods_brand_list @"GoodsCate/goods_brand_list"///获取品牌列表
+#define kappend_shop @"Store/append_shop"///开通商家-峰-江海林
+#define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
+
 
 
 #endif /* Interface_h */

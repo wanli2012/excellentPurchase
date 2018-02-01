@@ -10,4 +10,6 @@
 
 @interface GLMine_Team_OpenSellerController : UIViewController
 
+@property (nonatomic, assign)NSInteger pushType;//1:开通商户 2:注册页跳转过来的
+
 @end

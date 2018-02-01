@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLFinancialCenterModel.h"
 
 @interface LBFinancialCenterTableViewCell : UITableViewCell
+
+@property (nonatomic, strong)GLFinancialCenterModel *model;
 
 @end

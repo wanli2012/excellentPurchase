@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zAw-cw-cUk">
-                                <rect key="frame" x="250" y="4" width="35" height="35"/>
+                                <rect key="frame" x="275" y="4" width="35" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="1Dc-8n-e7D"/>
@@ -57,11 +57,11 @@
                             <constraint firstItem="VfN-zI-C6W" firstAttribute="top" secondItem="zMZ-ey-V5O" secondAttribute="top" id="Bhg-Wf-8Ao"/>
                             <constraint firstItem="zAw-cw-cUk" firstAttribute="centerY" secondItem="zMZ-ey-V5O" secondAttribute="centerY" id="C8H-bs-E5u"/>
                             <constraint firstItem="P15-Jd-qr8" firstAttribute="centerY" secondItem="zMZ-ey-V5O" secondAttribute="centerY" id="Gx6-5o-Mwd"/>
-                            <constraint firstItem="P15-Jd-qr8" firstAttribute="leading" secondItem="zAw-cw-cUk" secondAttribute="trailing" constant="10" id="Ih1-SK-oOX"/>
                             <constraint firstAttribute="trailing" secondItem="VfN-zI-C6W" secondAttribute="trailing" constant="10" id="bN2-Jq-lOB"/>
                             <constraint firstItem="VfN-zI-C6W" firstAttribute="leading" secondItem="V71-fq-DgC" secondAttribute="trailing" constant="10" id="ep6-I6-Jjv"/>
                             <constraint firstAttribute="trailing" secondItem="P15-Jd-qr8" secondAttribute="trailing" constant="10" id="kVw-Ho-sbP"/>
                             <constraint firstAttribute="bottom" secondItem="VfN-zI-C6W" secondAttribute="bottom" id="pDJ-WC-fxI"/>
+                            <constraint firstAttribute="trailing" secondItem="zAw-cw-cUk" secondAttribute="trailing" constant="10" id="sVn-ho-wcQ"/>
                             <constraint firstItem="V71-fq-DgC" firstAttribute="leading" secondItem="zMZ-ey-V5O" secondAttribute="leading" constant="10" id="so5-jq-aTm"/>
                             <constraint firstItem="V71-fq-DgC" firstAttribute="centerY" secondItem="zMZ-ey-V5O" secondAttribute="centerY" id="vV8-HX-xx8"/>
                         </constraints>

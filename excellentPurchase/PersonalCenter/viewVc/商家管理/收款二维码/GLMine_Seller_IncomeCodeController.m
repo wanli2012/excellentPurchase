@@ -9,7 +9,13 @@
 #import "GLMine_Seller_IncomeCodeController.h"
 
 @interface GLMine_Seller_IncomeCodeController ()
-@property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
+
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;//图标
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;//昵称
+@property (weak, nonatomic) IBOutlet UILabel *IDLabel;//ID号
+
+@property (weak, nonatomic) IBOutlet UIImageView *codeImageV;//二维码
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;//提示Label
 
 @end
 
@@ -18,9 +24,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"商家收款二维码";
+    if(self.type == 1){
+        self.navigationItem.title = @"我的二维码";
+        self.noticeLabel.hidden = YES;
+    }else{
+        self.navigationItem.title = @"商家收款二维码";
+        self.noticeLabel.hidden = NO;
+    }
     
     [self logoQrCode];
+    
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.nameLabel.text = [UserModel defaultUser].trueName;
+    self.IDLabel.text = [UserModel defaultUser].user_name;
     
 }
 //MARK: 二维码中间内置图片,可以是公司logo
@@ -32,8 +48,12 @@
     //设置过滤器默认属性 (老油条)
     [qrImageFilter setDefaults];
     
-    //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
-    NSString *contentStr = [NSString stringWithFormat:@"%@",@"www.baidu.com"];
+    NSString *contentStr;
+    if(self.type == 1){
+        contentStr = [UserModel defaultUser].user_name;
+    }else{
+        contentStr = [NSString stringWithFormat:@"%@",@"www.baidu.com"];
+    }
     //    NSString *contentStr = @"";
     NSData *qrImageData = [contentStr dataUsingEncoding:NSUTF8StringEncoding];
     

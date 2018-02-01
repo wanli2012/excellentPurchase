@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="365" height="146"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="365" height="145.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="365" height="146"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SW-u1-xs4">
@@ -82,7 +82,7 @@
                                         <color key="textColor" red="0.99401646850000003" green="0.40313595530000002" blue="0.39819234609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出售优购币" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWo-7b-i42">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当日市值" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWo-7b-i42">
                                         <rect key="frame" x="10" y="56" width="102" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -108,7 +108,7 @@
                                         <color key="textColor" red="0.99401646850000003" green="0.40313595530000002" blue="0.39819234609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出售优购币" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXW-tE-29B">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="售出总价" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXW-tE-29B">
                                         <rect key="frame" x="10" y="56" width="101.5" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,6 +154,16 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <connections>
+                <outlet property="dateLabel" destination="n6h-84-3ci" id="HOp-t2-w8f"/>
+                <outlet property="nameLabel1" destination="hLq-x2-qdH" id="Fr2-30-T6N"/>
+                <outlet property="nameLabel2" destination="AWo-7b-i42" id="NDj-jx-aj7"/>
+                <outlet property="nameLabel3" destination="dXW-tE-29B" id="O3M-as-FSJ"/>
+                <outlet property="sellLabel" destination="b7f-CX-0cg" id="D6h-jj-qY0"/>
+                <outlet property="statusLabel" destination="0Pg-NR-Z0X" id="OyT-GR-Mxd"/>
+                <outlet property="totalPriceLabel" destination="cv6-q6-kzu" id="obm-2G-Ekj"/>
+                <outlet property="valueDay" destination="sKQ-mG-iWp" id="EGx-fj-OCA"/>
+            </connections>
             <point key="canvasLocation" x="48.5" y="103"/>
         </tableViewCell>
     </objects>

@@ -459,12 +459,24 @@
                                     <color key="textColor" red="0.99801069499999995" green="0.39886236190000002" blue="0.40665975209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgt-Y6-GbM">
+                                    <rect key="frame" x="251" y="20" width="100" height="50"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <state key="normal" title="商户注册">
+                                        <color key="titleColor" red="1" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="sellerRegister:" destination="-1" eventType="touchUpInside" id="63s-0b-pFQ"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="Zho-VB-46m" secondAttribute="bottom" constant="32" id="0hM-QC-b2F"/>
                                 <constraint firstItem="doX-sb-c5D" firstAttribute="top" secondItem="Gef-5v-pGN" secondAttribute="bottom" constant="15" id="A10-31-zGq"/>
                                 <constraint firstItem="kKB-jj-hY9" firstAttribute="top" secondItem="rwZ-NN-fG6" secondAttribute="top" constant="70" id="BOD-W5-uTw"/>
+                                <constraint firstAttribute="trailing" secondItem="zgt-Y6-GbM" secondAttribute="trailing" id="C0H-XA-O4s"/>
                                 <constraint firstItem="Gef-5v-pGN" firstAttribute="leading" secondItem="rwZ-NN-fG6" secondAttribute="leading" constant="30" id="EgY-Ee-zCS"/>
                                 <constraint firstItem="lsG-4I-S1E" firstAttribute="top" secondItem="6T5-X9-fbE" secondAttribute="bottom" id="Iyt-4b-8aQ"/>
                                 <constraint firstAttribute="trailing" secondItem="Zho-VB-46m" secondAttribute="trailing" constant="30" id="MHC-J0-17Q"/>
@@ -474,6 +486,7 @@
                                 <constraint firstAttribute="trailing" secondItem="Gef-5v-pGN" secondAttribute="trailing" constant="30" id="dWL-Fr-bXf"/>
                                 <constraint firstAttribute="trailing" secondItem="6T5-X9-fbE" secondAttribute="trailing" constant="30" id="eUb-Tz-r2O"/>
                                 <constraint firstItem="kKB-jj-hY9" firstAttribute="centerX" secondItem="rwZ-NN-fG6" secondAttribute="centerX" id="jFV-Oz-QPh"/>
+                                <constraint firstItem="zgt-Y6-GbM" firstAttribute="top" secondItem="rwZ-NN-fG6" secondAttribute="top" constant="20" id="lXm-gS-IJX"/>
                                 <constraint firstItem="doX-sb-c5D" firstAttribute="leading" secondItem="rwZ-NN-fG6" secondAttribute="leading" constant="30" id="mmO-hS-Giq"/>
                                 <constraint firstItem="6T5-X9-fbE" firstAttribute="top" secondItem="kKB-jj-hY9" secondAttribute="bottom" constant="30" id="uvb-dl-43R"/>
                                 <constraint firstItem="Gef-5v-pGN" firstAttribute="top" secondItem="6T5-X9-fbE" secondAttribute="bottom" constant="30" id="w6l-9z-TWW"/>
@@ -509,10 +522,12 @@
                 <constraint firstItem="jj7-VD-V3A" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9bF-vg-loB"/>
                 <constraint firstItem="4MR-c0-EIP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Sn4-Bf-Rhi"/>
                 <constraint firstItem="jj7-VD-V3A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WgQ-jL-sov"/>
+                <constraint firstItem="zgt-Y6-GbM" firstAttribute="centerY" secondItem="eGW-Iu-nNp" secondAttribute="centerY" id="X3k-a2-iXD"/>
                 <constraint firstAttribute="trailing" secondItem="4MR-c0-EIP" secondAttribute="trailing" id="dEL-TQ-Nmq"/>
                 <constraint firstItem="4MR-c0-EIP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oh7-X3-y9i"/>
                 <constraint firstAttribute="trailing" secondItem="jj7-VD-V3A" secondAttribute="trailing" id="onM-D8-4AP"/>
                 <constraint firstAttribute="bottom" secondItem="jj7-VD-V3A" secondAttribute="bottom" id="pG8-sz-nuh"/>
+                <constraint firstItem="zgt-Y6-GbM" firstAttribute="width" secondItem="eGW-Iu-nNp" secondAttribute="width" constant="20" id="wpG-0Y-Qru"/>
                 <constraint firstItem="eGW-Iu-nNp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="yfd-Ld-aNT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

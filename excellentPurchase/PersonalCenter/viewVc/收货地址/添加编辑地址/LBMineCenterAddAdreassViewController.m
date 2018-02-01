@@ -143,7 +143,6 @@
         weakSelf.countryStr = area;
         
     }];
-
 }
 
 /**
@@ -156,7 +155,6 @@
     }else {
         self.isdeualt = NO;
     }
-    
 }
 
 /**
@@ -205,7 +203,7 @@
     dic[@"area"] = self.countryStr;
     dic[@"is_default"] = @(self.isdeualt);
     dic[@"phone"] = self.phoneTf.text;
-    dic[@"address"] = self.adressTf;
+    dic[@"address"] = self.adressTf.text;
     
     if (_isEdit) {//编辑
         
@@ -235,7 +233,6 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];
-    
 }
 
 #pragma mark - UITextFieldDelegate
@@ -248,7 +245,6 @@
     }else if(textField == self.adressTf){
         [self.view endEditing:YES];
     }
-    
     return YES;
 }
 
@@ -279,7 +275,6 @@
     return YES;
 }
 
-
 -(void)updateViewConstraints{
     
     [super updateViewConstraints];
@@ -288,7 +283,6 @@
     
     self.savebutoon.layer.cornerRadius = 4;
     self.savebutoon.clipsToBounds=YES;
-    //    self.navigationH.constant = SafeAreaTopHeight;
     
 }
 
