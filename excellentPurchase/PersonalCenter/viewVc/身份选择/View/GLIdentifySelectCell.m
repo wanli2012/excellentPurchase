@@ -23,7 +23,8 @@
 
 - (void)setModel:(GLIdentifySelectModel *)model{
     _model = model;
-    self.titleLabel.text = model.title;
+    self.titleLabel.text = model.group_name;
+    
     if (model.isSelected) {
         self.backgroundColor = YYSRGBColor(245, 245, 245, 1);
     }else{

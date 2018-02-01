@@ -18,6 +18,7 @@
 
 @property (nonatomic, copy)NSString *group_id;
 @property (nonatomic, assign)BOOL isHaveDian;
+@property (nonatomic, assign)NSInteger selectIndex;//选中身份下标
 
 @end
 
@@ -43,9 +44,10 @@
     
     idVC.selectIndex = [self.group_id integerValue];
     __weak typeof(self) weakSelf = self;
-    idVC.block = ^(NSString *name, NSString *group_id) {
+    idVC.block = ^(NSString *name, NSString *group_id,NSInteger selectIndex) {
         weakSelf.IDLabel.text = name;
         weakSelf.group_id = group_id;
+        weakSelf.selectIndex = selectIndex;
     };
     
     [self.navigationController pushViewController:idVC animated:YES];

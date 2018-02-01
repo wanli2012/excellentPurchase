@@ -66,6 +66,7 @@
     }
 }
 
+#pragma mark - 身份选择
 /**
  身份选择
  */
@@ -101,8 +102,7 @@
     }];
   
 }
-
-//弹出选择器
+// 弹出选择器
 - (void)popGroupChooseView {
     
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
@@ -143,7 +143,7 @@
     [tabVC setSelectedIndex:0];
     
 }
-
+#pragma mark - 注册
 /**
  注册
  */
@@ -152,6 +152,7 @@
     LBRegisterViewController *registVC = [[LBRegisterViewController alloc] init];
     [self.navigationController pushViewController:registVC animated:YES];
 }
+#pragma mark -忘记密码
 /**
 忘记密码
  */

@@ -19,6 +19,7 @@
 @property (nonatomic, copy)NSString *group_id;
 
 @property (nonatomic, strong)UIButton *rightBtn;
+@property (nonatomic, assign)NSInteger selectIndex;//选中身份下标
 
 @end 
 
@@ -60,10 +61,11 @@
     GLIdentifySelectController *idSelectVC = [[GLIdentifySelectController alloc] init];
     idSelectVC.selectIndex = [self.group_id integerValue];
     __weak typeof(self) weakSelf = self;
-    idSelectVC.block = ^(NSString *name,NSString *group_id) {
+    idSelectVC.block = ^(NSString *name,NSString *group_id,NSInteger selectIndex) {
         
         [weakSelf.rightBtn setTitle:name forState:UIControlStateNormal];
         weakSelf.group_id = group_id;
+        weakSelf.selectIndex = selectIndex;
         
     };
     

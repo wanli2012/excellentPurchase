@@ -27,6 +27,39 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIdentifySelectCell" bundle:nil] forCellReuseIdentifier:@"GLIdentifySelectCell"];
     
+    //请求数据
+    [self requestPost];
+}
+
+//请求数据
+- (void)requestPost {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"type"] = @"1";
+    
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kGet_GroupList_URL paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                
+                GLIdentifySelectModel *model = [GLIdentifySelectModel mj_objectWithKeyValues:dict];
+                [self.models addObject:model];
+                
+            }
+        
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [self.tableView reloadData];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -53,10 +86,11 @@
     return 50;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLIdentifySelectModel *model = self.models[indexPath.row];
-    self.block(model.title,model.group_id);
+    self.block(model.group_name,model.group_id,indexPath.row);
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -66,19 +100,6 @@
     if (!_models) {
         _models = [NSMutableArray array];
         
-        NSArray *arr = @[@"全部",@"会员",@"商家",@"城市创客",@"大区创客",@"省级服务中心",@"市级服务中心",@"区级服务中心"];
-        
-        for (int i = 0; i < 8 ; i ++) {
-            GLIdentifySelectModel *model = [[GLIdentifySelectModel alloc] init];
-            
-            model.title = arr[i];
-           
-            model.group_id = [NSString stringWithFormat:@"%zd",i];
-            
-            model.isSelected = NO;
-            
-            [_models addObject:model];
-        }
     }
     return _models;
 }

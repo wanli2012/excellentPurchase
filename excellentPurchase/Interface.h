@@ -73,8 +73,8 @@
 #define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯
 #define kget_integral_log_list @"Assets/get_integral_log_list"///个人积分变更-王凯
 #define kget_balance_log_list @"Assets/get_balance_log_list"///余额消息记录-王凯
-
-
+#define kappend_subordinate @"Team/append_subordinate"///人员配置-江海林
+#define kappend_lower @"Team/append_lower"///开通下级-江海林
 
 
 #endif /* Interface_h */

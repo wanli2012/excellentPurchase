@@ -14,12 +14,14 @@
                 <outlet property="areaTF" destination="703-AY-8Sf" id="ans-cZ-C9G"/>
                 <outlet property="codeTF" destination="Um8-gp-ldb" id="i7R-7M-STQ"/>
                 <outlet property="ensurePwdTF" destination="azk-23-tOw" id="E6t-8F-O28"/>
+                <outlet property="getCodeBtn" destination="rUC-hR-vfr" id="jp0-Fq-BZc"/>
                 <outlet property="groupTypeTF" destination="hLk-Oe-Qep" id="ws7-Kv-pQP"/>
                 <outlet property="passWordTF" destination="sb4-5I-F6D" id="Ek2-77-9Wb"/>
                 <outlet property="phoneTF" destination="MCk-5b-6o4" id="h3K-JM-ser"/>
                 <outlet property="remainderLabel" destination="um6-Ig-5NR" id="kr8-Rt-ldI"/>
                 <outlet property="signImageV" destination="klZ-6j-d5h" id="Yso-sq-FQ4"/>
                 <outlet property="staffingTF" destination="c6r-Ca-vfC" id="aWJ-Gf-wpq"/>
+                <outlet property="submitBtn" destination="zuF-wm-2M7" id="MSt-yv-VIJ"/>
                 <outlet property="subordinateLabel" destination="KNy-yN-oN8" id="KHM-PK-cxb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="696"/>
                     <subviews>
                         <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mey-Hf-neN">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="639.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="589.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-oh-4yd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -51,7 +53,7 @@
                                             <rect key="frame" x="100" y="0.0" width="265" height="50"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="dgP-ob-rWm"/>
                                             </connections>
@@ -79,10 +81,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GX2-JT-lks">
-                                    <rect key="frame" x="0.0" y="200" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="200" width="375" height="0.0"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82e-t1-T8J">
-                                            <rect key="frame" x="10" y="16" width="80" height="18"/>
+                                            <rect key="frame" x="10" y="-9" width="80" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="kgX-W1-GHK"/>
                                             </constraints>
@@ -91,33 +93,30 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="uck-xJ-5ao">
-                                            <rect key="frame" x="359" y="19" width="6" height="12"/>
+                                            <rect key="frame" x="359" y="-6" width="6" height="12"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="12" id="cqZ-33-hOl"/>
                                                 <constraint firstAttribute="width" constant="6" id="zFh-oF-Nzc"/>
                                             </constraints>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsQ-XU-gzJ">
-                                            <rect key="frame" x="0.0" y="49" width="375" height="1"/>
+                                            <rect key="frame" x="0.0" y="-1" width="375" height="1"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="0JN-wt-xsf"/>
                                             </constraints>
                                         </view>
                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择身份类型" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hLk-Oe-Qep">
-                                            <rect key="frame" x="100" y="0.0" width="249" height="50"/>
+                                            <rect key="frame" x="100" y="0.0" width="249" height="0.0"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="-1" id="b6g-1L-mFE"/>
-                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <gestureRecognizers/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="2XZ-Ez-PGV"/>
+                                        <constraint firstAttribute="height" id="2XZ-Ez-PGV"/>
                                         <constraint firstItem="hLk-Oe-Qep" firstAttribute="top" secondItem="GX2-JT-lks" secondAttribute="top" id="68M-GK-Xsa"/>
                                         <constraint firstAttribute="bottom" secondItem="vsQ-XU-gzJ" secondAttribute="bottom" id="Cus-j5-flm"/>
                                         <constraint firstItem="uck-xJ-5ao" firstAttribute="leading" secondItem="hLk-Oe-Qep" secondAttribute="trailing" constant="10" id="G7M-fo-PZd"/>
@@ -135,7 +134,7 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BO-aa-nHR">
-                                    <rect key="frame" x="0.0" y="250" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="200" width="375" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在地区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dze-XN-ahj">
                                             <rect key="frame" x="10" y="16" width="80" height="18"/>
@@ -165,9 +164,6 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="-1" id="b6i-dA-pcH"/>
-                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,7 +187,7 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVT-Sm-EQM">
-                                    <rect key="frame" x="0.0" y="300" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="250" width="375" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fA4-BR-UPo">
                                             <rect key="frame" x="10" y="16" width="80" height="18"/>
@@ -206,7 +202,7 @@
                                             <rect key="frame" x="100" y="0.0" width="265" height="50"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="kLg-BV-7gv"/>
                                             </connections>
@@ -234,7 +230,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6N-yT-NbF">
-                                    <rect key="frame" x="0.0" y="350" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="300" width="375" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-Pt-uJ7">
                                             <rect key="frame" x="10" y="16" width="80" height="18"/>
@@ -249,7 +245,7 @@
                                             <rect key="frame" x="100" y="0.0" width="265" height="50"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="i7l-8o-YpW"/>
                                             </connections>
@@ -277,13 +273,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*初始二级密码默认为手机号后6位数字*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ui9-wq-m9Z">
-                                    <rect key="frame" x="10" y="410" width="355" height="14.5"/>
+                                    <rect key="frame" x="10" y="360" width="355" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-wm-2M7">
-                                    <rect key="frame" x="40" y="544.5" width="295" height="45"/>
+                                    <rect key="frame" x="40" y="494.5" width="295" height="45"/>
                                     <color key="backgroundColor" red="0.99801856279373169" green="0.39901572465896606" blue="0.39816218614578247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="7Sh-3W-j9H"/>
@@ -299,7 +295,7 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSZ-kK-qL6">
-                                    <rect key="frame" x="104" y="504.5" width="167" height="30"/>
+                                    <rect key="frame" x="104" y="454.5" width="167" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3o-JF-98C">
                                             <rect key="frame" x="105" y="0.0" width="62" height="30"/>
@@ -359,7 +355,7 @@
                                             <rect key="frame" x="100" y="0.0" width="165" height="50"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="KIC-wg-eIn"/>
                                             </connections>
@@ -434,9 +430,6 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="-1" id="eUk-Ht-BoQ"/>
-                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

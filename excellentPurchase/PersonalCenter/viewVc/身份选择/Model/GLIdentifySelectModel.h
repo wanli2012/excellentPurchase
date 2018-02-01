@@ -10,7 +10,7 @@
 
 @interface GLIdentifySelectModel : NSObject
 
-@property (nonatomic, copy)NSString *title;
+@property (nonatomic, copy)NSString *group_name;
 
 @property (nonatomic, copy)NSString *group_id;
 

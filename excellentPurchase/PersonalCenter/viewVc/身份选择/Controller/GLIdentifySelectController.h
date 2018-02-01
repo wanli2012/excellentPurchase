@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^selectIDBlock)(NSString *name,NSString *group_id);
+typedef void(^selectIDBlock)(NSString *name,NSString *group_id,NSInteger selectIndex);
 
 @interface GLIdentifySelectController : UIViewController
 
