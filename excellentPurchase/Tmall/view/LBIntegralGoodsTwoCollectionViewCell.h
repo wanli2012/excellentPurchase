@@ -15,4 +15,6 @@
 
 @property (copy , nonatomic)void(^refrshDatasorece)(void);
 
+@property (weak, nonatomic) IBOutlet UILabel *scanNum;
+
 @end

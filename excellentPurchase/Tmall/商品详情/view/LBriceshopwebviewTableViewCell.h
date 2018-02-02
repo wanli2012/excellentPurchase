@@ -14,9 +14,9 @@
 
 @end
 
-@interface LBriceshopwebviewTableViewCell : UITableViewCell
+@interface LBriceshopwebviewTableViewCell : UITableViewCell <UIWebViewDelegate>
 
-//@property (weak, nonatomic) IBOutlet UIWebView *webview;
+@property (weak, nonatomic) IBOutlet UIWebView *webview;
 
 @property (strong , nonatomic)NSString *urlstr;
 

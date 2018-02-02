@@ -12,6 +12,8 @@
 
 @property (assign , nonatomic)NSInteger index;// 0 代表没有编辑 1 代表编辑
 
+@property (assign , nonatomic)NSInteger storeType;// 2海淘商城店铺 3吃喝玩乐店铺
+
 +(LBCollectionManager*)defaultUser;
 
 @end

@@ -84,6 +84,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
         
         dispatch_async(dispatch_get_main_queue(), ^{//返回主线程
              [EasyShowLodingView hidenLoding];
+            [LBDefineRefrsh dismissRefresh:self.tableview];
             //这里就是所有异步任务请求结束后执行的代码
              [_tableview reloadData];
             
@@ -154,7 +155,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     }
     
     [NetworkManager requestPOSTWithURLStr:SeaShoppingSea_index paramDic:dic finish:^(id responseObject) {
-        [LBDefineRefrsh dismissRefresh:self.tableview];
+
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.dataModel = [LBTmallhomepageDataModel mj_objectWithKeyValues:responseObject[@"data"]];
 
@@ -165,7 +166,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
         finish();
     } enError:^(NSError *error) {
         finish();
-        [LBDefineRefrsh dismissRefresh:self.tableview];
+        
     }];
     
 }

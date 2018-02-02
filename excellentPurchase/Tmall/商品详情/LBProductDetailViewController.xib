@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="collectBt" destination="gic-Jr-XDm" id="Z6z-tw-68m"/>
                 <outlet property="merchetBt" destination="Cwd-su-Ogb" id="8wE-Uv-JqI"/>
+                <outlet property="muneViewY" destination="0sK-De-b8k" id="bS9-Rx-Hzz"/>
                 <outlet property="tableview" destination="CbB-Zz-sXY" id="EQn-2N-ck1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyV-vf-Ely">
-                    <rect key="frame" x="0.0" y="543" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="603" width="375" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkG-Pt-2Af">
                             <rect key="frame" x="0.0" y="1" width="375" height="59"/>
@@ -118,7 +119,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="CbB-Zz-sXY">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="fQe-7P-jwh"/>
@@ -128,7 +129,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="OyV-vf-Ely" secondAttribute="bottom" id="0sK-De-b8k"/>
+                <constraint firstAttribute="bottom" secondItem="OyV-vf-Ely" secondAttribute="bottom" constant="-60" id="0sK-De-b8k"/>
                 <constraint firstAttribute="trailing" secondItem="CbB-Zz-sXY" secondAttribute="trailing" id="1JC-3j-iqQ"/>
                 <constraint firstItem="CbB-Zz-sXY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LGu-5J-yDa"/>
                 <constraint firstItem="OyV-vf-Ely" firstAttribute="top" secondItem="CbB-Zz-sXY" secondAttribute="bottom" id="MKE-jF-Pyw"/>

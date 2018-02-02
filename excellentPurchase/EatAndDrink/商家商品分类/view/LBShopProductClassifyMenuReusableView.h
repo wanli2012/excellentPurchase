@@ -10,4 +10,10 @@
 
 @interface LBShopProductClassifyMenuReusableView : UICollectionReusableView
 
+/**
+ index ：1，表示全部 2，表示销量 3，价格
+ status：1升序 2，降序
+ */
+@property (copy , nonatomic)void(^refreshdata)(NSInteger index,NSInteger status);
+
 @end

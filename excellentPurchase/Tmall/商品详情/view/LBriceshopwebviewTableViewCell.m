@@ -12,18 +12,33 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.webview.delegate = self;
+}
+
+-(void)setUrlstr:(NSString *)urlstr{
+    _urlstr = urlstr;
+    if ([NSString StringIsNullOrEmpty:urlstr] ==  NO && self.isload == NO) {
+         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlstr]]];
+    }
 
 }
 
-//-(void)setUrlstr:(NSString *)urlstr{
-//    _urlstr = urlstr;
-//    if (_urlstr.length > 0 && [_urlstr rangeOfString:@"null"].location == NSNotFound) {
-//         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlstr]]];
-//        self.isload = YES;
-//    }
-//
-//}
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    self.isload = YES;
+}
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //  float height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];     //此方法获取webview的内容高度，但是有时获取的不完全
+    //  float height = [webView sizeThatFits:CGSizeZero].height; //此方法获取webview的高度
+    float height = [[self.webview stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollHeight"]floatValue]; //此方法获取webview的内容高度（建议使用）
+    //设置通知或者代理来传高度
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"getCellHightNotification" object:nil  userInfo:@{@"height":[NSNumber numberWithFloat:height]}];
+}
 
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    self.isload = NO;
+}
 
 @end
