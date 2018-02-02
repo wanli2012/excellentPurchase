@@ -8,7 +8,6 @@
 
 #import "LBAddCounterView.h"
 #import "LBAddCounterContainerView.h"
-#import "LBAddOrEditProductChooseView.h"
 
 @interface LBAddCounterView()<UITextFieldDelegate>
 
@@ -21,13 +20,14 @@
 
 @implementation LBAddCounterView
 
-+(LBAddCounterView *)addCounterFrame:(CGRect)frame textfBloack:(void (^)(NSString *))filedBlock{
-    return [self initAddCounterWithFrame:frame textfBloack:filedBlock];
++(LBAddCounterView *)addCounterFrame:(CGRect)frame delegate:(id)delegate textfBloack:(void (^)(NSString *))filedBlock{
+    return [self initAddCounterWithFrame:frame delegate:delegate textfBloack:filedBlock];
 }
 
-+(instancetype)initAddCounterWithFrame:(CGRect)frame textfBloack:(void (^)(NSString *))filedBlock{
++(instancetype)initAddCounterWithFrame:(CGRect)frame delegate:(id)delegate textfBloack:(void (^)(NSString *))filedBlock{
     LBAddCounterView *view = [[LBAddCounterView alloc]initWithFrame:frame];
     [view showView];
+    view.delegate = delegate;
     view.filedBlock = filedBlock;
     return view;
 }
@@ -41,6 +41,8 @@
     return self;
 }
 
+#pragma mark - 初始化界面
+
 -(void)initinterfave{
     
     _containerview =[[NSBundle mainBundle]loadNibNamed:@"LBAddCounterContainerView" owner:nil options:nil].firstObject;
@@ -51,6 +53,7 @@
     [_containerview.surebt addTarget:self action:@selector(sureEvent) forControlEvents:UIControlEventTouchUpInside];
     [_containerview.cancelBt addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
     _containerview.textfiled.delegate = self;
+
     
     UITapGestureRecognizer *tapgestureType = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(choseType)];
     [_containerview.typeView addGestureRecognizer:tapgestureType];
@@ -62,30 +65,29 @@
     
 }
 
+#pragma mark - 类型选择
 -(void)choseType{
-    _containerview.rightbt.selected = !_containerview.rightbt.selected;
     
-    if (_containerview.rightbt.selected == YES) {
-        [LBAddOrEditProductChooseView showWholeClassifyViewBlock:^(NSInteger section) {
-            
-        } cancelBlock:^{
-            
+    WeakSelf;
+    if ([self.delegate respondsToSelector:@selector(popClassifyView:)]) {
+        [self.delegate popClassifyView:^(NSString *text) {
+            weakSelf.containerview.typeTF.text = text;
         }];
     }
-
 }
 
 -(void)sureEvent{
     
     if (self.filedBlock) {
-         self.filedBlock(_containerview.textfiled.text);
+        self.filedBlock(_containerview.textfiled.text);
     }
-
     
+    [self hideView];
 }
 
 
 - (void)showView {
+    
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
     self.backgroundColor = [UIColor clearColor];
@@ -106,4 +108,6 @@
     }];
     
 }
+
+
 @end

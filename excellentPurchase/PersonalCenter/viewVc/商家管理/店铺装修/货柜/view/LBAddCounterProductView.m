@@ -80,6 +80,7 @@
     if (self.selctBlock) {
         self.selctBlock(self.selectindex);
     }
+    [self hideView];
 }
 
 - (void)showView {

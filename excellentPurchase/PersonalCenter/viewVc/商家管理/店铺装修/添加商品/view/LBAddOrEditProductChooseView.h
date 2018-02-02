@@ -10,6 +10,6 @@
 
 @interface LBAddOrEditProductChooseView : UIView
 
-+ (instancetype)showWholeClassifyViewBlock:(void(^)(NSInteger section))bankBlock cancelBlock:(void(^)(void))cancelBlock;
++ (instancetype)showWholeClassifyViewWith:(NSArray *)cateModels Block:(void(^)(NSInteger section,NSInteger row))bankBlock  cancelBlock:(void(^)(void))cancelBlock;
 
 @end

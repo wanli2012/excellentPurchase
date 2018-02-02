@@ -27,8 +27,10 @@ UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
+@property (nonatomic, copy)NSArray *cateModels;
+
 ///选择回调
-@property (nonatomic, copy) void (^bankBlock)(NSInteger section);
+@property (nonatomic, copy) void (^bankBlock)(NSInteger section,NSInteger row);
 ///取消
 @property (nonatomic, copy) void (^cancelBlock)(void);
 
@@ -36,14 +38,20 @@ UICollectionViewDataSource>
 
 @implementation LBAddOrEditProductChooseView
 
-+(instancetype)showWholeClassifyViewBlock:(void (^)(NSInteger ))bankBlock cancelBlock:(void (^)(void))cancelBlock{
-    return [self addWholeClassifyBlock:bankBlock cancelBlock:cancelBlock];
+//+(instancetype)showWholeClassifyViewBlock:(void (^)(NSInteger,NSInteger))bankBlock cancelBlock:(void (^)(void))cancelBlock{
+//    return [self addWholeClassifyBlock:bankBlock cancelBlock:cancelBlock];
+//}
++(instancetype)showWholeClassifyViewWith:(NSArray *)cateModels Block:(void (^)(NSInteger, NSInteger))bankBlock cancelBlock:(void (^)(void))cancelBlock{
+     return [self addWholeClassifyWith:cateModels Block:bankBlock cancelBlock:cancelBlock];
 }
 
-+(instancetype)addWholeClassifyBlock:(void (^)(NSInteger ))bankBlock cancelBlock:(void (^)(void))cancelBlock{
++(instancetype)addWholeClassifyWith:(NSArray *)cateModels Block:(void (^)(NSInteger, NSInteger))bankBlock cancelBlock:(void (^)(void))cancelBlock{
     LBAddOrEditProductChooseView *view = [[LBAddOrEditProductChooseView alloc]init];
+    
     view.bankBlock = bankBlock;
     view.cancelBlock = cancelBlock;
+    view.cateModels = cateModels;
+    
     [view showView];//展示视图
     
     return view;
@@ -88,13 +96,13 @@ UICollectionViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.cateModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left forIndexPath:indexPath];
-    
+    cell.model = self.cateModels[indexPath.row];
     return cell;
 }
 
@@ -131,18 +139,22 @@ UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3;
+    return self.cateModels.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
-    return 10;
+    LBEatClassifyModel *model = self.cateModels[section];
+    return model.two_cate.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LBAddOrEditProductChoosecell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBAddOrEditProductChoosecell" forIndexPath:indexPath];
+    
+    LBEatClassifyModel *model = self.cateModels[indexPath.section];
+    LBEatTwoClassifyModel *two_model = model.two_cate[indexPath.row];
+    cell.model = two_model;
     
     return cell;
 }
@@ -169,8 +181,8 @@ UICollectionViewDataSource>
                                                                                forIndexPath:indexPath];
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        
-        view.title.text = @"哈哈哈";
+        LBEatClassifyModel *model = self.cateModels[indexPath.section];
+        view.title.text = model.catename;
     }
     return view;
 }
@@ -208,7 +220,7 @@ UICollectionViewDataSource>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self hideView];
-    self.bankBlock(indexPath.section);
+    self.bankBlock(indexPath.section,indexPath.row);
 }
 
 #pragma mark - UIScrollView Delegate
@@ -225,6 +237,9 @@ UICollectionViewDataSource>
 }
 
 - (void)showView {
+    
+    [self.collectionView reloadData];
+    
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
     self.backgroundColor = [UIColor clearColor];
@@ -258,7 +273,7 @@ UICollectionViewDataSource>
 {
     if (!_tableView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kCollectionHeaderViewH, kLeftTableViewWidth, UIScreenHeight - SafeAreaTopHeight - kCollectionHeaderViewH)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kCollectionHeaderViewH, kLeftTableViewWidth, UIScreenHeight * 2/3.0 - kCollectionHeaderViewH - 2 * kCollectionViewMargin)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
@@ -303,5 +318,7 @@ UICollectionViewDataSource>
     }
     return _collectionView;
 }
+
+
 
 @end

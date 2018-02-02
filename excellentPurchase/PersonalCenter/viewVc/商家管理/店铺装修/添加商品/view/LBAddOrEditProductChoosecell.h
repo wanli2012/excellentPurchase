@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBEatClassifyModel.h"
 
 @interface LBAddOrEditProductChoosecell : UICollectionViewCell
+
+@property (nonatomic, strong)LBEatTwoClassifyModel *model;
+
 
 @end

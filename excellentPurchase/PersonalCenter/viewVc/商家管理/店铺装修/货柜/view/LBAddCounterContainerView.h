@@ -12,8 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *surebt;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBt;
-@property (weak, nonatomic) IBOutlet UITextField *textfiled;
+@property (weak, nonatomic) IBOutlet UITextField *textfiled;//名称
 @property (weak, nonatomic) IBOutlet UIView *typeView;
 @property (weak, nonatomic) IBOutlet UIButton *rightbt;
+@property (weak, nonatomic) IBOutlet UITextField *typeTF;//类型
 
 @end

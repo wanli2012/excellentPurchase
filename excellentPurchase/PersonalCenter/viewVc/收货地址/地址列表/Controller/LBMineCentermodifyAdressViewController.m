@@ -105,7 +105,7 @@
     dic[@"app_handler"] = @"SEARCH";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"page"] = @(self.page);
+//    dic[@"page"] = @(self.page);
     
     [NetworkManager requestPOSTWithURLStr:kaddresses paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
@@ -352,15 +352,15 @@
     return _models;
 }
 
--(NodataView*)nodataV{
-    
-    if (!_nodataV) {
-        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight-114);
-    }
-    return _nodataV;
-    
-}
+//-(NodataView*)nodataV{
+//    
+//    if (!_nodataV) {
+//        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+//        _nodataV.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight-114);
+//    }
+//    return _nodataV;
+//    
+//}
 
 
 @end

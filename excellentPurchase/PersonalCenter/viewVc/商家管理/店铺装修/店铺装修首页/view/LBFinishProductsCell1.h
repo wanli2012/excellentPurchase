@@ -1,5 +1,5 @@
 //
-//  LBFinishProductsViewController.h
+//  LBFinishProductsCell1.h
 //  excellentPurchase
 //
 //  Created by 四川三君科技有限公司 on 2018/1/24.
@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBBaseFinishProductsViewController.h"
+#import "GLFinishGoodsDetailModel.h"
 
-@interface LBFinishProductsViewController : LBBaseFinishProductsViewController
+@interface LBFinishProductsCell1 : UICollectionViewCell
+
+@property (nonatomic, strong)GLFinishGoodsDetailModel *model;
 
 @end

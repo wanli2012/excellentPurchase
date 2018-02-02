@@ -21,7 +21,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C5j-n2-bYD">
                             <rect key="frame" x="10" y="10" width="48" height="48"/>
-                            <color key="backgroundColor" red="0.97379392389999997" green="0.7777363062" blue="0.028684267770000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="C5j-n2-bYD" secondAttribute="height" id="y1N-c0-TE1"/>
                             </constraints>
@@ -95,7 +95,14 @@
                 <constraint firstItem="0aK-8R-uIJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ebL-gi-hgY"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-40" y="-144"/>
+            <connections>
+                <outlet property="fansLabel" destination="HfZ-jZ-pu1" id="dqG-lx-8WE"/>
+                <outlet property="nameLabel" destination="Lu5-d0-mc5" id="umO-wZ-p9Z"/>
+                <outlet property="picImageV" destination="C5j-n2-bYD" id="Wcy-df-T0o"/>
+                <outlet property="storeTypeLabel" destination="ukF-XN-YVa" id="7Z9-O1-oct"/>
+                <outlet property="totalSaleLabel" destination="snp-Ya-wgB" id="rx1-CD-y48"/>
+            </connections>
+            <point key="canvasLocation" x="7" y="-121"/>
         </view>
     </objects>
 </document>

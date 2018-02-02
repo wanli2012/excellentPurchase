@@ -27,12 +27,12 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Message_PropertyCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Message_PropertyCell"];
-    [self setupNpdata];//设置无数据的时候展示
     
     self.tableView.tableFooterView = [UIView new];
     self.tableView.estimatedRowHeight = 105;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 
+    [self setupNpdata];//设置无数据的时候展示
     WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
         [weakSelf postRequest:YES];

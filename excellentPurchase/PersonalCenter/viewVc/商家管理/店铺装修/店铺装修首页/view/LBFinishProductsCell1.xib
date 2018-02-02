@@ -108,6 +108,14 @@
                 <constraint firstItem="1FH-lO-ddY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yTT-Uc-lJJ"/>
             </constraints>
             <size key="customSize" width="184" height="367"/>
+            <connections>
+                <outlet property="backMoneyLabel" destination="8cs-gL-2Tl" id="nFS-ks-O6v"/>
+                <outlet property="nameLabel" destination="Umq-oD-K5t" id="1Df-eH-t24"/>
+                <outlet property="paymentLabel" destination="gxC-CR-Kqu" id="2gc-2k-TpR"/>
+                <outlet property="picImageV" destination="hhh-1k-wRV" id="Y5g-iP-F55"/>
+                <outlet property="priceLabel" destination="kdx-ap-TK2" id="45n-T2-kTk"/>
+                <outlet property="scanLabel" destination="yvk-Fe-62S" id="ACE-uO-IrH"/>
+            </connections>
             <point key="canvasLocation" x="-31" y="30.5"/>
         </collectionViewCell>
     </objects>

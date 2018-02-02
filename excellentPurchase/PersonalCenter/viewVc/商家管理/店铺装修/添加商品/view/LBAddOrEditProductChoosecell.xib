@@ -44,6 +44,9 @@
                 <constraint firstAttribute="bottom" secondItem="W3H-CM-3DM" secondAttribute="bottom" id="xa3-ca-v08"/>
             </constraints>
             <size key="customSize" width="85" height="59"/>
+            <connections>
+                <outlet property="titleLabel" destination="NHs-cV-Ozc" id="bUA-nP-HGJ"/>
+            </connections>
             <point key="canvasLocation" x="42.5" y="56.5"/>
         </collectionViewCell>
     </objects>

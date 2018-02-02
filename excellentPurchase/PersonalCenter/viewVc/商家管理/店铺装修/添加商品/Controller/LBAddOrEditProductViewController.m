@@ -18,6 +18,8 @@
 #import "LBAddOrEditProductChooseSingalView.h"
 #import "SXAlertView.h"
 
+#import "GLAddOrEditProductCateModel.h"
+
 @interface LBAddOrEditProductViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,HCBasePopupViewControllerDelegate,ZLPhotoPickerBrowserViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -26,6 +28,9 @@
 @property (nonatomic , strong) NSMutableArray *photos;
 @property (weak, nonatomic) IBOutlet UILabel *limitLb;//现在字数
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+
+@property (nonatomic, strong)NSMutableArray *titlesArr;
+@property (nonatomic, strong)GLAddOrEditProductCateModel *model;
 
 @end
 
@@ -41,47 +46,103 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     __weak typeof(self) wself = self;
     [[self.textView rac_textSignal]subscribeNext:^(NSString *x) {
         NSLog(@"%@",x);
-            wself.limitLb.text = [NSString stringWithFormat:@"还剩%ld字",100 - x.length];
+        
+        wself.limitLb.text = [NSString stringWithFormat:@"还剩%ld字",100 - x.length];
         
     }];
     
+    [self postCate];//请求数据
+    
 }
 
-/**
- 分类
-
- @param sender <#sender description#>
- */
-- (IBAction)tapgestureChoose:(UITapGestureRecognizer *)sender {
+- (void)postCate{
     
-    [LBAddOrEditProductChooseView showWholeClassifyViewBlock:^(NSInteger section) {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"conid"] = self.store_id;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:kgoods_cate_subordinate paramDic:dic finish:^(id responseObject) {
         
-    } cancelBlock:^{
+        [EasyShowLodingView hidenLoding];
         
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            GLAddOrEditProductCateModel *model = [GLAddOrEditProductCateModel mj_objectWithKeyValues:responseObject[@"data"]];
+            
+            self.model = model;
+            
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
 
-/**
- 品牌
-
- @param sender <#sender description#>
- */
+/**品牌*/
 - (IBAction)tapgesturebrand:(UITapGestureRecognizer *)sender {
+    NSLog(@"品牌");
+    NSMutableArray *arrM = [NSMutableArray array];
     
-    [LBAddOrEditProductChooseSingalView showWholeClassifyViewBlock:^(NSInteger section) {
-        
-    } cancelBlock:^{
+    for (GLAddOrEditProductCate_brandModel *model in self.model.brand) {
+        [arrM addObject:model];
+    }
+    ////1:单选  2:复选
+    [LBAddOrEditProductChooseSingalView showWholeClassifyViewWith:arrM type:1 Block:^(NSInteger section) {
+        NSLog(@"%@",self.model.brand[section].brand_name);
+    }cancelBlock:^{
         
     }];
     
+}
+
+/**
+ 标签选择
+ */
+- (IBAction)labelSelection:(id)sender {
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    for (GLAddOrEditProductCate_labeModel *model in self.model.labe) {
+        [arrM addObject:model];
+    }
+    
+    [LBAddOrEditProductChooseSingalView showWholeClassifyViewWith:arrM type:2 Block:^(NSInteger section) {
+        NSLog(@"%@",self.model.labe[section].label_name);
+    }cancelBlock:^{
+        
+    }];
+}
+
+/**
+ 属性选择
+ */
+- (IBAction)attributeSelection:(id)sender {
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    for (GLAddOrEditProductCate_attrModel *model in self.model.attr) {
+        [arrM addObject:model];
+    }
+    
+    [LBAddOrEditProductChooseSingalView showWholeClassifyViewWith:arrM type:3 Block:^(NSInteger section) {
+        NSLog(@"%@",self.model.attr[section].attr_info);
+    }cancelBlock:^{
+        
+    }];
 }
 
 /**
  提示消息
-
- @param sender <#sender description#>
  */
 - (IBAction)noticeEvent:(UIButton *)sender {
+    
     [SXAlertView showWithTitle:@"温馨提示" message:@"我的万册完成范文芳测无法测完饭" cancelButtonTitle:@"取消" otherButtonTitle:nil clickButtonBlock:^(SXAlertView * _Nonnull alertView, NSUInteger buttonIndex) {
         
     }];

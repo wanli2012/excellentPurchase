@@ -38,11 +38,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtP-fd-mFp">
                     <rect key="frame" x="51" y="86" width="450" height="50"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入名称(只支持数字，字母，汉子)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qrd-Pg-EUl">
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入名称(只支持数字，字母，汉子)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qrd-Pg-EUl">
                             <rect key="frame" x="10" y="0.0" width="440" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="iN0-l3-epB" id="32d-hf-XfY"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -113,7 +116,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5m-hi-x30">
                     <rect key="frame" x="51" y="180" width="450" height="50"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入名称(只支持数字，字母，汉子)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Cz-o7-TlU">
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入名称(只支持数字，字母，汉子)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Cz-o7-TlU">
                             <rect key="frame" x="10" y="0.0" width="405" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -181,9 +184,10 @@
                 <outlet property="rightbt" destination="pqO-ni-XeK" id="F1R-RR-qvB"/>
                 <outlet property="surebt" destination="FUQ-7J-Vo5" id="VSD-lo-y2u"/>
                 <outlet property="textfiled" destination="qrd-Pg-EUl" id="M6D-yP-KbU"/>
+                <outlet property="typeTF" destination="5Cz-o7-TlU" id="vaF-9E-Qu4"/>
                 <outlet property="typeView" destination="I5m-hi-x30" id="IUA-BM-14n"/>
             </connections>
-            <point key="canvasLocation" x="93.5" y="63.5"/>
+            <point key="canvasLocation" x="82" y="-55"/>
         </view>
     </objects>
     <resources>

@@ -354,14 +354,12 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
 //获取plist城市数组
 - (NSArray *)getCityNamesFromProvinceIndex:(NSInteger)provinceIndex
 {
-//    NSDictionary * tempDic = [self.dataSource[provinceIndex] objectForKey:self.provinceArray[provinceIndex]];
+
     NSArray *tempArr = self.dataSource[provinceIndex][@"city"];
     NSMutableArray * cityArray = [NSMutableArray array];
     for (NSDictionary * valueDic in tempArr) {
         [cityArray addObject:valueDic[@"name"]];
-//        for (int i = 0; i < valueDic.allKeys.count; i ++) {
-//            [cityArray addObject:valueDic.allKeys[i]];
-//        }
+
     }
     return [cityArray copy];
 }
@@ -388,7 +386,6 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
 }
 
 #pragma mark -- UIPickerView
-
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return self.columnCount;
@@ -413,11 +410,15 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
     label.textAlignment = NSTextAlignmentCenter;
     if (component == 0) {
         label.text = self.provinceArray[row];
+        self.selectProvince_id = self.dataSource[row][@"id"];
     }else if (component == 1){
         label.text = self.cityArray[row];
+        self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][row][@"id"];
     }else if (component == 2){
         label.text = self.areaArray[row];
+        self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][row][@"id"];
     }
+    
     return label;
 }
 

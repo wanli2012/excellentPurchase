@@ -8,11 +8,24 @@
 
 #import "LBAddOrEditProductChoosecell.h"
 
+@interface LBAddOrEditProductChoosecell()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@end
+
+
 @implementation LBAddOrEditProductChoosecell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
 }
+
+- (void)setModel:(LBEatTwoClassifyModel *)model{
+    _model = model;
+    self.titleLabel.text = model.catename;
+}
+
 
 @end

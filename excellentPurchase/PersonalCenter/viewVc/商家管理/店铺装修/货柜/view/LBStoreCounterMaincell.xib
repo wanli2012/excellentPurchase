@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="货柜名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHu-br-z4x">
@@ -47,6 +47,10 @@
                     <constraint firstItem="gIw-rm-uM2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oRQ-0c-HbD"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="countLabel" destination="7uN-zP-g3K" id="aXm-rH-99I"/>
+                <outlet property="nameLabel" destination="OHu-br-z4x" id="J14-ke-Cz9"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

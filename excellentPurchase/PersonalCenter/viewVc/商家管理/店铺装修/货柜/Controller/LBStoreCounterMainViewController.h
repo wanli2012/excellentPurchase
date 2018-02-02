@@ -10,4 +10,6 @@
 
 @interface LBStoreCounterMainViewController : UIViewController
 
+@property (nonatomic, copy)NSString *store_id;
+
 @end
