@@ -12,4 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titileLb;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
+@property (copy , nonatomic)void(^addShopCar)(NSIndexPath *indexpath);
+
+@property (strong , nonatomic)NSIndexPath *indexpath;
+
 @end

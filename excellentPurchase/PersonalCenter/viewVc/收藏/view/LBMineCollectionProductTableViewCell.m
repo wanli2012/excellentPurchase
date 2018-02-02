@@ -14,6 +14,15 @@
     [super awakeFromNib];
  
 }
+//加入购物车
+- (IBAction)addShopCar:(UIButton *)sender {
+    
+    if (self.addShopCar) {
+        self.addShopCar(self.indexpath);
+    }
+    
+}
+
 
 -(void)layoutSubviews
 {

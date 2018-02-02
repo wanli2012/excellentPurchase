@@ -63,6 +63,9 @@
 #define SeaShoppingHot_seach @"SeaShopping/hot_seach"//海淘商城 热门搜索
 #define SeaShoppingGoods_data @"SeaShopping/goods_data"//海淘商城 商品详情
 #define SeaShoppingGoods_comment_list @"SeaShopping/goods_comment_list"//海淘商城 评论更多
-
+#define UserCartAdd_cart @"UserCart/add_cart"//海淘商城 加入购物车
+#define SeaShoppingSea_store @"SeaShopping/sea_store"//海淘商城店铺信息
+#define SeaShoppingStore_goods @"SeaShopping/store_goods"//海淘店铺内-商品列表
+#define UserUser_collect @"User/user_collect"//用户收藏列表
 
 #endif /* scaleHeader_h */

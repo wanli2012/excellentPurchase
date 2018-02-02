@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSArray *menuArr;
 @property(strong,nonatomic)PGGDropView * dropView;
 @property (nonatomic, strong) UIButton *navigationBt;
+@property (nonatomic, strong) NSMutableArray *navtitileArr;
 @end
 
 @implementation LBMineCollectionViewController
@@ -34,12 +35,14 @@
     [self defineNavigationView];
     self.navigationController.navigationBar.hidden = NO;
     [self addMenu];//加载菜单
+    
+    [LBCollectionManager defaultUser].storeType = 2;
+    
 }
 
 /**
  管理
-
- @param sender <#sender description#>
+  index 1表示编辑 0关闭编辑
  */
 -(void)managerEvent:(UIButton*)sender{
     sender.selected = !sender.selected;
@@ -62,15 +65,28 @@
     sender.selected = !sender.selected;
     [self.dropView removeFromSuperview];
     self.dropView = nil;
-        self.dropView = [[PGGDropView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight ,UIScreenWidth, 300) withTitleArray:@[@"淘淘商城"]];
-        self.dropView.delegate = self;
-         [self.dropView beginAnimation];
-        [self.view addSubview:self.dropView];
+    if ([_navigationBt.titleLabel.text isEqualToString:@"海淘商城"]) {
+          self.dropView = [[PGGDropView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight ,UIScreenWidth, 300) withTitleArray:@[@"吃喝玩乐"]];
+    }else{
+          self.dropView = [[PGGDropView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight ,UIScreenWidth, 300) withTitleArray:@[@"淘淘商城"]];
+    }
+    self.dropView.delegate = self;
+     [self.dropView beginAnimation];
+    [self.view addSubview:self.dropView];
     
 }
 - (void)PGGDropView:(PGGDropView *)DropView didSelectAtIndex:(NSInteger )index{
     self.navigationBt.selected = NO;
-
+    if ([_navigationBt.titleLabel.text isEqualToString:@"海淘商城"]) {
+        [_navigationBt setTitle:@"吃喝玩乐" forState:UIControlStateNormal];
+        [LBCollectionManager defaultUser].storeType = 2;
+    }else{
+         [_navigationBt setTitle:@"海淘商城" forState:UIControlStateNormal];
+        [LBCollectionManager defaultUser].storeType = 3;
+    }
+    [_navigationBt horizontalCenterTitleAndImage:5];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshcollectListData" object:nil];//刷新数据
 }
 -(void)dismissMaskview{
     self.navigationBt.selected = NO;
@@ -80,7 +96,7 @@
 -(void)defineNavigationView{
     
     _navigationBt = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 150, 30)];
-    [_navigationBt setTitle:@"诶吃么商城" forState:UIControlStateNormal];
+    [_navigationBt setTitle:@"海淘商城" forState:UIControlStateNormal];
     [_navigationBt setImage:[UIImage imageNamed:@"shoucang-n"] forState:UIControlStateNormal];
     [_navigationBt setImage:[UIImage imageNamed:@"shoucang-y"] forState:UIControlStateSelected];
     [_navigationBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

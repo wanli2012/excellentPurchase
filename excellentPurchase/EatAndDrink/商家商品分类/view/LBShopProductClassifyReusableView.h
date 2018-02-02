@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBStoreInfoModel.h"
 
 @interface LBShopProductClassifyReusableView : UICollectionReusableView
-
+@property (copy , nonatomic)LBStoreInfoModel *model;
 @end

@@ -178,7 +178,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                     @"LBMineOrderManagerViewController",
                     @"GLMine_MyWalletController",
                     @"GLMine_TeamController",
-                    @"LBMineCollectionViewController",
+                    @"LBMineOtherFunctionViewController",
                     @"LBSetUpViewController",
                     @"GLMine_MessageController",nil];
         

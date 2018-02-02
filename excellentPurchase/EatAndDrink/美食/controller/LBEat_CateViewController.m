@@ -52,19 +52,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     
     [self setupNpdata];//设置无数据的时候展示
     [self setuprefrsh];//刷新
-    [self loadData:1 refreshDirect:YES];
-    WeakSelf;
-    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
-           weakSelf.page = 1;
-           [weakSelf loadData:weakSelf.page refreshDirect:YES];
-    } footerRefresh:^{
-        if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
-           [EasyShowTextView showInfoText:@"没有数据了"];
-             [LBDefineRefrsh dismissRefresh:self.tableView];
-        }else{
-            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
-        }
-    }];
+  
     
 }
 
@@ -84,12 +72,25 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     //emptyView内容上的点击事件监听
     [self.tableView.ly_emptyView setTapContentViewBlock:^{
         weakSelf.page = 1;
-        [self loadData:weakSelf.page refreshDirect:YES];
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
     }];
 }
 
 -(void)setuprefrsh{
     
+    [self loadData:1 refreshDirect:YES];
+    WeakSelf;
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    } footerRefresh:^{
+        if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
+            [EasyShowTextView showInfoText:@"没有数据了"];
+            [LBDefineRefrsh dismissRefresh:self.tableView];
+        }else{
+            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
+        }
+    }];
 }
 
 -(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{

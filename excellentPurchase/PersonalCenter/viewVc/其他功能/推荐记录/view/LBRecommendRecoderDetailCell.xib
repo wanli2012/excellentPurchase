@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBRecommendRecoderDetailCell" rowHeight="64" id="KGk-i7-Jjw" customClass="LBRecommendRecoderDetailCell">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="324" height="63.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rz9-s7-chR">
+                        <rect key="frame" x="10" y="0.0" width="304" height="63.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXh-4O-WfZ">
+                                <rect key="frame" x="10" y="10" width="70.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ever v 巴尔巴不方便" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cue-az-gIN">
+                                <rect key="frame" x="10" y="34" width="284" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cue-az-gIN" firstAttribute="top" secondItem="ZXh-4O-WfZ" secondAttribute="bottom" constant="8" id="AAQ-sP-4jB"/>
+                            <constraint firstItem="Cue-az-gIN" firstAttribute="leading" secondItem="Rz9-s7-chR" secondAttribute="leading" constant="10" id="C7N-dz-SDe"/>
+                            <constraint firstAttribute="trailing" secondItem="Cue-az-gIN" secondAttribute="trailing" constant="10" id="Cub-AN-Vro"/>
+                            <constraint firstItem="ZXh-4O-WfZ" firstAttribute="leading" secondItem="Rz9-s7-chR" secondAttribute="leading" constant="10" id="EpD-I2-46f"/>
+                            <constraint firstItem="ZXh-4O-WfZ" firstAttribute="top" secondItem="Rz9-s7-chR" secondAttribute="top" constant="10" id="rCE-CL-sRf"/>
+                            <constraint firstAttribute="bottom" secondItem="Cue-az-gIN" secondAttribute="bottom" constant="12.5" id="rWe-LL-Dja"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Rz9-s7-chR" secondAttribute="trailing" constant="10" id="6XL-zm-JJS"/>
+                    <constraint firstItem="Rz9-s7-chR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="JNb-um-Iyw"/>
+                    <constraint firstAttribute="bottom" secondItem="Rz9-s7-chR" secondAttribute="bottom" id="TWP-LT-DN6"/>
+                    <constraint firstItem="Rz9-s7-chR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mXl-zQ-ZCt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <point key="canvasLocation" x="37" y="64"/>
+        </tableViewCell>
+    </objects>
+</document>

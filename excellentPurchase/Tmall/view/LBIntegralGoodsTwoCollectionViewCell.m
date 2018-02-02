@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titlte;
 @property (weak, nonatomic) IBOutlet UILabel *priceLb;
 @property (weak, nonatomic) IBOutlet UILabel *jifen;
-@property (weak, nonatomic) IBOutlet UILabel *scanNum;
 @property (weak, nonatomic) IBOutlet UIButton *collectionBt;
 
 @end

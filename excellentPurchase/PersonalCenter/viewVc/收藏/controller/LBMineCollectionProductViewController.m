@@ -9,12 +9,15 @@
 #import "LBMineCollectionProductViewController.h"
 #import "LBMineCollectionProductTableViewCell.h"
 #import "POP.h"
+#import "LBMineCollectionProductModel.h"
 
 @interface LBMineCollectionProductViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableview;
-@property (strong, nonatomic) NSMutableArray    *listData;
+@property (strong, nonatomic) NSMutableArray    *dataArr;
 @property (strong, nonatomic) UIView            *editingView;
+@property (nonatomic, assign) NSInteger  allCount;
+@property (nonatomic, assign) NSInteger  page;
 
 @end
 
@@ -28,22 +31,100 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     adjustsScrollViewInsets_NO(self.tableview, self);
     [self Adds];
    
-    self.listData = [NSMutableArray array];
-    for (int i = 0; i<40; i++) {
-        [self.listData addObject:@(i)];
-    }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showEditview) name:@"showEditview" object:nil];//编辑
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissEditview) name:@"dismissEditview" object:nil];//取消编辑
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshcollectListData) name:@"refreshcollectListData" object:nil];//刷新数据
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showEditview) name:@"showEditview" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissEditview) name:@"dismissEditview" object:nil];
+    [self setupNpdata];//设置无数据的时候展示
+    [self setuprefrsh];//刷新
 }
 
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableview.tableFooterView = [UIView new];
+    
+    self.tableview.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableview.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    
+    //emptyView内容上的点击事件监听
+    [self.tableview.ly_emptyView setTapContentViewBlock:^{
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    }];
+}
+
+-(void)setuprefrsh{
+    
+    [self loadData:1 refreshDirect:YES];
+    WeakSelf;
+    [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    } footerRefresh:^{
+        if (weakSelf.allCount == weakSelf.dataArr.count && weakSelf.dataArr.count != 0) {
+            [EasyShowTextView showInfoText:@"没有数据了"];
+            [LBDefineRefrsh dismissRefresh:self.tableview];
+        }else{
+            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
+        }
+    }];
+}
+
+-(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+         dic[@"token"] = [UserModel defaultUser].uid;
+    }
+    dic[@"type"] = @"1";
+    dic[@"page"] = @(page);
+    
+    [NetworkManager requestPOSTWithURLStr:UserUser_collect paramDic:dic finish:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        [LBDefineRefrsh dismissRefresh:self.tableview];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.allCount = [responseObject[@"data"][@"count"] integerValue];
+            
+            if (isDirect) {
+                [self.dataArr removeAllObjects];
+            }
+            
+            for (NSDictionary *dic in responseObject[@"data"][@"page_data"]) {
+                LBMineCollectionProductModel *model = [LBMineCollectionProductModel mj_objectWithKeyValues:dic];
+                [self.dataArr addObject:model];
+            }
+            
+            [self.tableview reloadData];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableview];
+    }];
+    
+}
+//刷新数据
+-(void)refreshcollectListData{
+    
+}
 -(void)dismissEditview{
     [self.tableview setEditing:NO animated:YES];
     
     [self showEitingView:NO];
 }
 -(void)showEditview{
-    if (self.listData.count == 0) {
+    if (self.dataArr.count == 0) {
         return;
     }
     [self.tableview setEditing:YES animated:YES];
@@ -59,11 +140,11 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
         [[self.tableview indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [insets addIndex:obj.row];
         }];
-        [self.listData removeObjectsAtIndexes:insets];
+        [self.dataArr removeObjectsAtIndexes:insets];
         [self.tableview deleteRowsAtIndexPaths:[self.tableview indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
         
         /** 数据清空情况下取消编辑状态*/
-        if (self.listData.count == 0) {
+        if (self.dataArr.count == 0) {
             self.navigationItem.rightBarButtonItem.title = @"编辑";
             [self.tableview setEditing:NO animated:YES];
             [self showEitingView:NO];
@@ -74,7 +155,7 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
         }
         
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
-        [self.listData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.dataArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         }];
         
@@ -123,14 +204,18 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.listData.count;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     LBMineCollectionProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineCollectionProductTableViewCell forIndexPath:indexPath];
+    cell.indexpath = indexPath;
+    //加入购物车
+    cell.addShopCar = ^(NSIndexPath *indexpath) {
+        NSLog(@"efcdefvdev");
+    };
 
-    cell.titileLb.text = @"就睡觉睡觉睡觉";
     
     return cell;
     
@@ -145,11 +230,9 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete;
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
-
 - (UIView *)editingView{
     if (!_editingView) {
         _editingView = [[UIView alloc] init];
@@ -179,5 +262,12 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
          [self.tableview registerNib:[UINib nibWithNibName:mineCollectionProductTableViewCell bundle:nil] forCellReuseIdentifier:mineCollectionProductTableViewCell];
     }
     return _tableview;
+}
+
+-(NSMutableArray*)dataArr{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
 }
 @end
