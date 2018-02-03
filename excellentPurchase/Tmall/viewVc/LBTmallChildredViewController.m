@@ -69,6 +69,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
             dispatch_semaphore_signal(semaphore);
         }];
     });
+    
     //任务二
     dispatch_group_async(group, queue, ^{
         [weakSelf loadData:^{ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.

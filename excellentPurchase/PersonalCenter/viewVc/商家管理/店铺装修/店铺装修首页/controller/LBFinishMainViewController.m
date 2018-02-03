@@ -64,8 +64,12 @@
     [self.view addSubview:self.pageMenu];
     
     // 添加3个子控制器
-    [self addChildViewController:[[LBFinishProductsViewController alloc] init]];
-    [self addChildViewController:[[LBFinishProductsViewController alloc] init]];
+    LBFinishProductsViewController *vc = [[LBFinishProductsViewController alloc] init];
+    vc.type = 1;
+    LBFinishProductsViewController *vc2 = [[LBFinishProductsViewController alloc] init];
+    vc.type = 2;
+    [self addChildViewController:vc];
+    [self addChildViewController:vc2];
 //    [self addChildViewController:[[LBFinishProductsViewController alloc] init]];
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
@@ -124,6 +128,7 @@
 - (IBAction)amendSignEvent:(UIButton *)sender {
     self.hidesBottomBarWhenPushed = YES;
     LBFinishAmendPhotosViewController *vc = [[LBFinishAmendPhotosViewController alloc]init];
+    vc.store_id = self.model.store_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

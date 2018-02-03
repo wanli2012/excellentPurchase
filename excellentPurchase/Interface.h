@@ -68,6 +68,7 @@
 #define kappend_upload @"Upload/append_upload"///上传图片
 
 #define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
+
 #define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
 #define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯
 #define kget_integral_log_list @"Assets/get_integral_log_list"///个人积分变更-王凯
@@ -86,6 +87,11 @@
 #define kstore_goods_list @"Store/store_goods_list"//我的小店/获取商品-江海林
 #define kappend_container @"StoreContainer/append_container"//添加货柜-峰-江海林
 #define kcontainer_list @"StoreContainer/container_list"//货柜列表-峰-江海林
+#define kcontainer_goods_append @"StoreContainer/container_goods_append"//货柜 (添加/编辑)商品-江海林
+#define kcontainer_goods_list @"StoreContainer/container_goods_list"//获取(货柜/商品)数据-江海林
+
+#define kcontainer_goods_lower @"StoreContainer/container_goods_lower"//商品下架-江海林
+#define kstore_receive @"Store/store_receive"//我的小店获取(商铺资料/改牌照资料)-江海林
 
 
 #define kappend_subordinate @"Team/append_subordinate"///人员配置-江海林

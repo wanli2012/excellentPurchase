@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLStoreCounterModel.h"
 
 @protocol LBStoreCounterdelegete<NSObject>
 
@@ -19,5 +20,6 @@
 
 @property (weak , nonatomic)id<LBStoreCounterdelegete>  delegete;
 @property (assign , nonatomic)NSInteger rowindex;
+@property (nonatomic, strong)GLStoreCounter_goodsModel *model;
 
 @end

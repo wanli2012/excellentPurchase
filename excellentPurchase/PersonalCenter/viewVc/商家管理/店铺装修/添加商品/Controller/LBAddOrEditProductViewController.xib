@@ -11,9 +11,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBAddOrEditProductViewController">
             <connections>
+                <outlet property="attrTF" destination="cC2-c3-2HP" id="Z0C-1r-oFR"/>
+                <outlet property="brandTF" destination="GKD-7W-S2N" id="JQL-y3-264"/>
                 <outlet property="collectionH" destination="sZH-rg-4nK" id="phi-V2-JEJ"/>
                 <outlet property="collectionView" destination="RmU-hN-29P" id="RxX-6N-fTN"/>
+                <outlet property="discountTF" destination="2gx-lj-r4x" id="zyw-HT-fEj"/>
+                <outlet property="goodsNameTF" destination="Vdv-Mf-NXs" id="ixo-2w-s8o"/>
+                <outlet property="labelTF" destination="eCo-GH-pgE" id="gOn-iI-1E2"/>
                 <outlet property="limitLb" destination="emD-UD-wv3" id="yVS-qI-pit"/>
+                <outlet property="priceTF" destination="F6v-ZR-a7f" id="3O4-N3-kfs"/>
+                <outlet property="stockTF" destination="Jjn-9o-eI3" id="NW1-SI-6Re"/>
+                <outlet property="submitBtn" destination="MYt-xQ-Xwz" id="7py-EA-633"/>
                 <outlet property="textView" destination="Vuv-l4-UZq" id="rZ6-MR-CSq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -42,7 +50,10 @@
                                             <rect key="frame" x="83" y="0.0" width="261" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="SAL-ru-Qg2"/>
+                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UjL-x3-Aue">
                                             <rect key="frame" x="0.0" y="54" width="354" height="1"/>
@@ -230,6 +241,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="wvM-rq-b8i"/>
+                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgg-4w-nNP">
                                             <rect key="frame" x="0.0" y="54" width="354" height="1"/>
@@ -266,7 +280,10 @@
                                             <rect key="frame" x="69" y="0.0" width="275" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="gsV-tq-GCH"/>
+                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVb-Lj-QVj">
                                             <rect key="frame" x="0.0" y="54" width="354" height="1"/>
@@ -303,7 +320,7 @@
                                             <rect key="frame" x="97.5" y="0.0" width="206.5" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMn-rx-3Zq">
                                             <rect key="frame" x="0.0" y="54" width="354" height="1"/>
@@ -346,7 +363,7 @@
                                     <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="RmU-hN-29P">
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="RmU-hN-29P">
                                     <rect key="frame" x="10" y="452" width="334" height="120"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -425,6 +442,9 @@
                                             <integer key="value" value="3"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="8cB-3m-j2Y"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*当前商品为默认规格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TX-PX-VY8">
                                     <rect key="frame" x="237.5" y="849" width="106.5" height="13.5"/>

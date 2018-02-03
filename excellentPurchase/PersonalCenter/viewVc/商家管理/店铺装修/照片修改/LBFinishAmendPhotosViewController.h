@@ -10,4 +10,6 @@
 
 @interface LBFinishAmendPhotosViewController : UIViewController
 
+@property (nonatomic, copy)NSString *store_id;
+
 @end

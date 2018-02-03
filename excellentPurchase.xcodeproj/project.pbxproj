@@ -124,6 +124,7 @@
 		4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE11200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib */; };
 		4A79EE16200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */; };
 		4A79EE17200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */; };
+		4A7C4F2B2025B0B600196410 /* GLStoreCounterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C4F2A2025B0B600196410 /* GLStoreCounterModel.m */; };
 		4A8DE862201F41A1002585B2 /* LBMineCenterAddAdreassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8DE860201F41A0002585B2 /* LBMineCenterAddAdreassViewController.m */; };
 		4A8DE866201F42A7002585B2 /* LBMineCenterAddAdreassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8DE865201F42A7002585B2 /* LBMineCenterAddAdreassViewController.xib */; };
 		4A9C88F720219C2100EFF9D5 /* GLFinancialCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C88F620219C2000EFF9D5 /* GLFinancialCenterModel.m */; };
@@ -1201,6 +1202,8 @@
 		4A79EE13200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_AchieveManageBaseController.h; sourceTree = "<group>"; };
 		4A79EE14200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_AchieveManageBaseController.m; sourceTree = "<group>"; };
 		4A79EE15200F5EA6001F28D1 /* GLMine_Team_AchieveManageBaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_AchieveManageBaseController.xib; sourceTree = "<group>"; };
+		4A7C4F292025B0B600196410 /* GLStoreCounterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLStoreCounterModel.h; sourceTree = "<group>"; };
+		4A7C4F2A2025B0B600196410 /* GLStoreCounterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLStoreCounterModel.m; sourceTree = "<group>"; };
 		4A8DE85F201F41A0002585B2 /* LBMineCenterAddAdreassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterAddAdreassViewController.h; sourceTree = "<group>"; };
 		4A8DE860201F41A0002585B2 /* LBMineCenterAddAdreassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterAddAdreassViewController.m; sourceTree = "<group>"; };
 		4A8DE865201F42A7002585B2 /* LBMineCenterAddAdreassViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineCenterAddAdreassViewController.xib; sourceTree = "<group>"; };
@@ -2533,7 +2536,7 @@
 		F96CF4A92018B51D0070658C /* LBFinancialCenterRecoderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterRecoderTableViewCell.h; sourceTree = "<group>"; };
 		F96CF4AA2018B51D0070658C /* LBFinancialCenterRecoderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFinancialCenterRecoderTableViewCell.xib; sourceTree = "<group>"; };
 		F96CF4BD2018C44F0070658C /* LBFinishAmendPhotosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinishAmendPhotosViewController.h; sourceTree = "<group>"; };
-		F96CF4BE2018C44F0070658C /* LBFinishAmendPhotosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinishAmendPhotosViewController.m; sourceTree = "<group>"; };
+		F96CF4BE2018C44F0070658C /* LBFinishAmendPhotosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinishAmendPhotosViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		F96CF4BF2018C44F0070658C /* LBFinishAmendPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFinishAmendPhotosViewController.xib; sourceTree = "<group>"; };
 		F9712C7E200460030015037A /* excellentPurchase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excellentPurchase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9712C81200460030015037A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -3998,6 +4001,8 @@
 			children = (
 				4A9CBDBA20246791004623C5 /* GLStoreCounterListModel.h */,
 				4A9CBDBB20246791004623C5 /* GLStoreCounterListModel.m */,
+				4A7C4F292025B0B600196410 /* GLStoreCounterModel.h */,
+				4A7C4F2A2025B0B600196410 /* GLStoreCounterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8384,6 +8389,7 @@
 				F923B1D42020021E00DFEF7C /* ZXImage.m in Sources */,
 				F95B5358200CC38D00A81954 /* LBCommentHeaderTableViewCell.m in Sources */,
 				F971373C2005EE740033F38B /* LBRegisterViewController.m in Sources */,
+				4A7C4F2B2025B0B600196410 /* GLStoreCounterModel.m in Sources */,
 				F923B1FD2020021F00DFEF7C /* ZXDataMatrixDetector.m in Sources */,
 				4A9E18A52011CAED00E1EC05 /* UIButton+CZHExtension.m in Sources */,
 				F97E603B200EE68100C9C4E7 /* JYWeakTimer.m in Sources */,

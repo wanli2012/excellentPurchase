@@ -177,8 +177,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     pickerVc.topShowPhotoPicker = YES;
     pickerVc.isShowCamera = YES;
     // CallBack
+    WeakSelf;
     pickerVc.callBack = ^(NSArray<ZLPhotoAssets *> *status){
-        [self.assets addObject: status.mutableCopy];
+        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:status.count];
+        for (ZLPhotoAssets *assets in status) {
+            ZLPhotoPickerBrowserPhoto *photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:assets];
+            photo.asset = assets;
+            [photos addObject:photo];
+        }
+        
+        weakSelf.assets = [NSMutableArray arrayWithArray:weakSelf.photos];
+        [weakSelf.assets addObjectsFromArray:photos];
+//        [self.assets addObject: status.mutableCopy];
         [self.collectionView reloadData];
     };
     [pickerVc showPickerVc:self];
