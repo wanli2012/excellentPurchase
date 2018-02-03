@@ -12,5 +12,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightimge;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adressConstrait;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImgeW;
+@property (weak, nonatomic) IBOutlet UILabel *namelb;
+@property (weak, nonatomic) IBOutlet UILabel *phonelb;
+@property (weak, nonatomic) IBOutlet UILabel *adresslb;
+
+
 
 @end

@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="357" height="72.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="留言：色彩色彩及王思聪哦你气色风格如果 v 饿人的 v 的 v 认定为" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z65-Rh-vPx">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z65-Rh-vPx">
                         <rect key="frame" x="10" y="25" width="337" height="26.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.6705138087272644" green="0.67063111066818237" blue="0.67050635814666748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

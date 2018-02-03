@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LBTmallhomepageDataModel.h"
 
+@class LBTmallhomepageDataStructureModel;
 @class LBTmallProductDetailgoodsSpecModel;
-@class LBTmallProductDetailgoodsSpecItemModel;
 @class LBTmallProductDetailgoodsCommentModel;
-@class LBTmallProductDetailgoodsSpecOtherModel;
 
 @interface LBTmallProductDetailModel : NSObject
 
@@ -33,8 +32,7 @@
 @property (copy , nonatomic)NSString *addtime;
 @property (copy , nonatomic)NSString *is_collect;
 @property (copy , nonatomic)NSString *comment_count;
-@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecModel*> *goods_speca;//规格
-@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecOtherModel*> *autotrophygoods_spec;//自营商城规格
+@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecModel*> *goods_spec;//规格
 @property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsCommentModel*> *comment_list;//评论
 @property (copy , nonatomic)NSArray<LBTmallhomepageDataStructureModel*> *love;//喜欢
 
@@ -43,24 +41,15 @@
 //规格
 @interface LBTmallProductDetailgoodsSpecModel : NSObject
 
-@property (copy , nonatomic)NSString *specid;
-@property (copy , nonatomic)NSString *title;
-@property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecItemModel*> *items;//规格子类
-
-@end
-
-@interface LBTmallProductDetailgoodsSpecItemModel : NSObject
-
-@property (copy , nonatomic)NSString *itemid;
-@property (copy , nonatomic)NSString *title;
-@property (copy , nonatomic)NSString *spec_thumb;
 @property (copy , nonatomic)NSString *optionid;
+@property (copy , nonatomic)NSString *title;
 @property (copy , nonatomic)NSString *marketprice;
 @property (copy , nonatomic)NSString *stock;
 @property (copy , nonatomic)NSString *rewardspoints;
 @property (copy , nonatomic)NSString *reword_coupons;
 
 @end
+
 
 @interface LBTmallProductDetailgoodsCommentModel : NSObject
 
@@ -80,14 +69,4 @@
 
 @end
 
-//规格
-@interface LBTmallProductDetailgoodsSpecOtherModel : NSObject
 
-@property (copy , nonatomic)NSString *idspec;
-@property (copy , nonatomic)NSString *title;
-@property (copy , nonatomic)NSString *stock;
-@property (copy , nonatomic)NSString *marketprice;
-@property (copy , nonatomic)NSString *rewardspoints;
-@property (copy , nonatomic)NSString *reward_coupons;
-
-@end

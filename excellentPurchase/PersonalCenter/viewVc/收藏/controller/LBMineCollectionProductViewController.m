@@ -10,6 +10,8 @@
 #import "LBMineCollectionProductTableViewCell.h"
 #import "POP.h"
 #import "LBMineCollectionProductModel.h"
+#import "LBCollectionManager.h"
+#import "LBProductDetailViewController.h"
 
 @interface LBMineCollectionProductViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -82,13 +84,13 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     dic[@"app_handler"] = @"SEARCH";
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
-         dic[@"token"] = [UserModel defaultUser].uid;
+         dic[@"token"] = [UserModel defaultUser].token;
     }
     dic[@"type"] = @"1";
     dic[@"page"] = @(page);
     
     [NetworkManager requestPOSTWithURLStr:UserUser_collect paramDic:dic finish:^(id responseObject) {
-        NSLog(@"%@",responseObject);
+  
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.allCount = [responseObject[@"data"][@"count"] integerValue];
@@ -114,14 +116,21 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     }];
     
 }
-//刷新数据
+//刷新数据   2海淘商城店铺 3吃喝玩乐店铺
 -(void)refreshcollectListData{
-    
+    if ([LBCollectionManager defaultUser].storeType == 2) {
+        self.page = 1;
+        [self loadData:self.page refreshDirect:YES];
+    }else{
+        [self.dataArr removeAllObjects];
+        [self.tableview reloadData];
+    }
 }
 -(void)dismissEditview{
     [self.tableview setEditing:NO animated:YES];
     
     [self showEitingView:NO];
+    
 }
 -(void)showEditview{
     if (self.dataArr.count == 0) {
@@ -129,30 +138,41 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     }
     [self.tableview setEditing:YES animated:YES];
     [self showEitingView:YES];
-    
+
 }
 
 #pragma mark -- event response
 
 - (void)p__buttonClick:(UIButton *)sender{
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"取消关注"]) {
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"取消收藏"]) {
         NSMutableIndexSet *insets = [[NSMutableIndexSet alloc] init];
+        NSMutableArray *deleteArr = [[NSMutableArray alloc] init];
+        WeakSelf;
         [[self.tableview indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [insets addIndex:obj.row];
+            [deleteArr addObject:((LBMineCollectionProductModel*)weakSelf.dataArr[obj.row]).collect_id];
         }];
-        [self.dataArr removeObjectsAtIndexes:insets];
-        [self.tableview deleteRowsAtIndexPaths:[self.tableview indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
-        
-        /** 数据清空情况下取消编辑状态*/
-        if (self.dataArr.count == 0) {
-            self.navigationItem.rightBarButtonItem.title = @"编辑";
-            [self.tableview setEditing:NO animated:YES];
-            [self showEitingView:NO];
-            /** 带MJ刷新控件重置状态
-             [self.tableView.footer resetNoMoreData];
-             [self.tableView reloadData];
-             */
+        if ([UserModel defaultUser].loginstatus == NO) {
+            [EasyShowTextView showInfoText:@"请先登录"];
+            return;
         }
+        if (insets.count <=0) {
+            [EasyShowTextView showInfoText:@"未选中商品"];
+            return;
+        }
+        
+        [self userCancelCollection:insets deleteArr:deleteArr];
+        
+//        /** 数据清空情况下取消编辑状态*/
+//        if (self.dataArr.count == 0) {
+//            self.navigationItem.rightBarButtonItem.title = @"编辑";
+//            [self.tableview setEditing:NO animated:YES];
+//            [self showEitingView:NO];
+//            /** 带MJ刷新控件重置状态
+//             [self.tableView.footer resetNoMoreData];
+//             [self.tableView reloadData];
+//             */
+//        }
         
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
         [self.dataArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -179,7 +199,8 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     [self.view addSubview:self.tableview];
 
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
+        make.top.equalTo(@1);
+        make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.editingView.mas_top);
     }];
     
@@ -201,8 +222,6 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
 }
 
 #pragma mark -- UITabelViewDelegate And DataSource
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArr.count;
 }
@@ -211,11 +230,8 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
     
     LBMineCollectionProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineCollectionProductTableViewCell forIndexPath:indexPath];
     cell.indexpath = indexPath;
-    //加入购物车
-    cell.addShopCar = ^(NSIndexPath *indexpath) {
-        NSLog(@"efcdefvdev");
-    };
-
+    cell.model = self.dataArr[indexPath.row];
+    
     
     return cell;
     
@@ -229,16 +245,55 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
         return;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    if ([LBCollectionManager defaultUser].storeType == 2) {
+         self.hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = ((LBMineCollectionProductModel*)self.dataArr[indexPath.row]).goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        
+    }
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+}
+
+//取消收藏
+-(void)userCancelCollection:(NSMutableIndexSet*)insets deleteArr:(NSMutableArray*)deleteArr{
+    
+    NSString *strid = [deleteArr componentsJoinedByString:@","];//#为分隔符
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"DELETE";
+    dic[@"collect_id"] = strid;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    dic[@"type"] = @(1); //1收藏商品 2海淘商城店铺 3吃喝玩乐店铺
+    
+    [NetworkManager requestPOSTWithURLStr:SeaShoppingNot_collect paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [self.dataArr removeObjectsAtIndexes:insets];
+            [self.tableview deleteRowsAtIndexPaths:[self.tableview indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 - (UIView *)editingView{
     if (!_editingView) {
         _editingView = [[UIView alloc] init];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = MAIN_COLOR;
-        [button setTitle:@"取消关注" forState:UIControlStateNormal];
+        [button setTitle:@"取消收藏" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [_editingView addSubview:button];

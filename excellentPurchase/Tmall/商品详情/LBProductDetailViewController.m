@@ -25,7 +25,7 @@
 #import "LBTmallProductDetailModel.h"
 #import "LBEatShopProdcutClassifyViewController.h"
 
-@interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate>
+@interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete>
 @property(nonatomic,strong)NSArray *subViewControllers;
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
 @property (weak, nonatomic) IBOutlet UIButton *merchetBt;//商家
@@ -131,22 +131,8 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
             
             if (self.ptype == 5) {
                 self.merchetBt.hidden = YES;
-                NSMutableArray *arr = [NSMutableArray array];
-                for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
-                    LBTmallProductDetailgoodsSpecModel * model = [LBTmallProductDetailgoodsSpecModel mj_objectWithKeyValues:dic];
-                    [arr addObject:model];
-                }
-                
-                self.model.goods_speca = arr;
             }else{
                  self.merchetBt.hidden = NO;
-                NSMutableArray *arr = [NSMutableArray array];
-                for (NSDictionary *dic in responseObject[@"data"][@"goods_spec"]) {
-                    LBTmallProductDetailgoodsSpecOtherModel * model = [LBTmallProductDetailgoodsSpecOtherModel mj_objectWithKeyValues:dic];
-                    [arr addObject:model];
-                }
-                
-                self.model.autotrophygoods_spec = arr;
             }
             self.muneViewY.constant = 0;
             [UIView animateWithDuration:0.5 animations:^{
@@ -221,10 +207,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 - (IBAction)buyNow:(id)sender {
     
     [self chooseSpecification];
-//    self.hidesBottomBarWhenPushed = YES;
-//    LBMineSureOrdersViewController *sureOrderVC = [[LBMineSureOrdersViewController alloc] init];
-//    [self.navigationController pushViewController:sureOrderVC animated:YES];
-    
+
 }
 #pragma mark - 加入购物车
 - (IBAction)addShopCar:(UIButton *)sender {
@@ -246,8 +229,13 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-
-
+//跳转商品详情
+-(void)clickCheckGoodsinfo:(NSString *)goodid{
+    self.hidesBottomBarWhenPushed = YES;
+    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+    vc.goods_id = goodid;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - tableview滚动联动导航栏标签
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
@@ -297,41 +285,17 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     
     standview.customBtns = @[@"加入购物车",@"立即购买"];
     
-    if (self.ptype == 5) {
-        if (self.model.goods_speca.count != 0) {
-            NSMutableArray *arr1 = [NSMutableArray array];
-            for (int i = 0; i < self.model.goods_speca.count; i++) {
-                LBTmallProductDetailgoodsSpecModel *model = self.model.goods_speca[i];
-                NSMutableArray *arr = [NSMutableArray array];
-                for (int j = 0; j < model.items.count ; j++ ) {
-                    LBTmallProductDetailgoodsSpecItemModel *model1 = model.items[j];
-                    standardClassInfo *tempClassInfo = [standardClassInfo StandardClassInfoWith:model1.itemid andStandClassName:model1.title];
-                    [arr addObject:tempClassInfo];
-                }
-                StandardModel *tempModel = [StandardModel StandardModelWith:arr andStandName:model.title];
-                [arr1 addObject:tempModel];
-            }
-            standview.standardArr = [arr1 copy];
-        }
-    }else{
-        if (self.model.autotrophygoods_spec.count != 0) {
+        if (self.model.goods_spec.count != 0) {
             NSMutableArray *arr = [NSMutableArray array];
-            for (int i = 0; i < self.model.autotrophygoods_spec.count ; i++) {
-                LBTmallProductDetailgoodsSpecOtherModel *model = self.model.autotrophygoods_spec[i];
-                standardClassInfo *tempClassInfo;
-                if (model.idspec.length <= 0) {
-                    tempClassInfo = [standardClassInfo StandardClassInfoWith:@"10000" andStandClassName:@"默认1"];
-                }else{
-                    tempClassInfo = [standardClassInfo StandardClassInfoWith:model.idspec andStandClassName:model.title];
-                }
+            for (int i = 0; i < self.model.goods_spec.count; i++) {
+                LBTmallProductDetailgoodsSpecModel *model = self.model.goods_spec[i];
+                standardClassInfo *tempClassInfo = [standardClassInfo StandardClassInfoWith:model.optionid andStandClassName:model.title];
                 [arr addObject:tempClassInfo];
             }
-            
             StandardModel *tempModel = [StandardModel StandardModelWith:arr andStandName:@"规格"];
             standview.standardArr = @[tempModel];
         }
-    }
-
+    
     return standview;
 }
 #pragma mark - standardView  delegate
@@ -355,44 +319,16 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     }
     else
     {
-        [standardView dismiss];
+        [self rightNoewbuy];//立即购买
     }
 }
 
 //点击规格代理
 -(void)Standards:(StandardsView *)standardView SelectBtnClick:(UIButton *)sender andSelectID:(NSString *)selectID andStandName:(NSString *)standName andIndex:(NSInteger)index
 {
-    if (self.ptype == 5) {
-        if (self.model.goods_speca.count != 0) {
-            LBTmallProductDetailgoodsSpecModel *model = self.model.goods_speca[index];
-            for (int i = 0; i < model.items.count ; i++ ) {
-                LBTmallProductDetailgoodsSpecItemModel *model1 = model.items[i];
-                if ([model1.itemid isEqualToString:selectID]) {
-                    if ([NSString StringIsNullOrEmpty:model1.spec_thumb] == NO) {
-                        [_mystandardsView.mainImgView sd_setImageWithURL:[NSURL URLWithString:model1.spec_thumb] placeholderImage:nil];
-                    }
-                    if ([NSString StringIsNullOrEmpty:model1.marketprice] == NO) {
-                       _mystandardsView.priceLab.text = [NSString stringWithFormat:@"¥%@",model1.marketprice];
-                    }
-                    if ([NSString StringIsNullOrEmpty:model1.title] == NO) {
-                        _mystandardsView.tipLab.text = [NSString stringWithFormat:@"%@",model1.title];
-                    }
-                    if ([NSString StringIsNullOrEmpty:model1.stock] == NO) {
-                        _mystandardsView.goodNum.text =  [NSString stringWithFormat:@"库存 %@",model1.stock];
-                    }
-                    
-                    self.specid = [model.specid integerValue];
-                    self.itemid = [model1.itemid integerValue];
-                    self.goods_option_id = [model1.itemid integerValue];
-                    
-                    break;
-                }
-            }
-        }
-    }else{
-        if (self.model.autotrophygoods_spec.count != 0) {
-            LBTmallProductDetailgoodsSpecOtherModel *model1 = self.model.autotrophygoods_spec[index];
-            //[_mystandardsView.mainImgView sd_setImageWithURL:[NSURL URLWithString:model1.spec_thumb] placeholderImage:nil];
+
+        if (self.model.goods_spec.count != 0) {
+            LBTmallProductDetailgoodsSpecModel *model1 = self.model.goods_spec[index];
             if ([NSString StringIsNullOrEmpty:model1.marketprice] == NO) {
                 _mystandardsView.priceLab.text = [NSString stringWithFormat:@"¥%@",model1.marketprice];
             }
@@ -405,10 +341,10 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
             
             self.specid = 0;
             self.itemid = 0;
-            self.goods_option_id = [model1.idspec integerValue];
+            self.goods_option_id = [model1.optionid integerValue];
         }
     }
-}
+
 //设置自定义btn的属性
 -(void)StandardsView:(StandardsView *)standardView SetBtn:(UIButton *)btn
 {
@@ -534,6 +470,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
             GLIntegralGoodsTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsDetailRecommendListCell forIndexPath:indexPath];
             [cell refreshdataSource:self.model.love];
             self.shiftGoodsH = cell.beautfHeight;
+            cell.delegate = self;
 
             return cell;
         }
@@ -581,6 +518,35 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     popoverView.style = PopoverViewStyleDefault;
     // 在没有系统控件的情况下调用可以使用显示在指定的点坐标的方法弹出菜单控件.
     [popoverView showToPoint:CGPointMake(UIScreenWidth - 20, SafeAreaTopHeight) withActions:@[action1, action2, action3, action4]];
+}
+#pragma mark ------- 立即购买
+-(void)rightNoewbuy{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"goods_str"] = self.model.goods_id;
+    dic[@"spec_str"] = @(self.goods_option_id);
+    dic[@"count_str"] = @(_mystandardsView.buyNum);
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:OrderConfirm_product_order paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.hidesBottomBarWhenPushed = YES;
+            LBMineSureOrdersViewController *sureOrderVC = [[LBMineSureOrdersViewController alloc] init];
+            sureOrderVC.DataArr = responseObject[@"data"];
+            [self.navigationController pushViewController:sureOrderVC animated:YES];
+            [_mystandardsView dismiss];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 #pragma mark ------- 加入购物车
 -(void)addShopCar{

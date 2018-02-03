@@ -67,5 +67,6 @@
 #define SeaShoppingSea_store @"SeaShopping/sea_store"//海淘商城店铺信息
 #define SeaShoppingStore_goods @"SeaShopping/store_goods"//海淘店铺内-商品列表
 #define UserUser_collect @"User/user_collect"//用户收藏列表
+#define OrderConfirm_product_order @"Order/confirm_product_order"//用户确认订单
 
 #endif /* scaleHeader_h */

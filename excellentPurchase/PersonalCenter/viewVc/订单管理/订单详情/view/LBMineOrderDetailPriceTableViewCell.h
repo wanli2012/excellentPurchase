@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMineOrderDetailPriceTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *titile;
+@property (weak, nonatomic) IBOutlet UILabel *valuelb;
 
 @end

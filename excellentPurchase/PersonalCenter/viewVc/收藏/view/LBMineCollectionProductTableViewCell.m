@@ -8,6 +8,15 @@
 
 #import "LBMineCollectionProductTableViewCell.h"
 
+@interface LBMineCollectionProductTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UILabel *titileLb;
+@property (weak, nonatomic) IBOutlet UILabel *pricelb;
+@property (weak, nonatomic) IBOutlet UILabel *ratelb;
+
+@end
+
 @implementation LBMineCollectionProductTableViewCell
 
 - (void)awakeFromNib {
@@ -21,6 +30,14 @@
         self.addShopCar(self.indexpath);
     }
     
+}
+
+-(void)setModel:(LBMineCollectionProductModel *)model{
+    _model = model;
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_model.thumb] placeholderImage:nil];
+    self.titileLb.text = [NSString stringWithFormat:@"%@",_model.goods_name];
+    self.pricelb.text = [NSString stringWithFormat:@"%@",_model.discount];
+    self.ratelb.text = [NSString stringWithFormat:@"%@积分; %@优券",_model.bonuspoints,_model.reword_coupons];
 }
 
 

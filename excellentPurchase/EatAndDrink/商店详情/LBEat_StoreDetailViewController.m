@@ -49,7 +49,7 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = self.title;
+    self.navigationItem.title = self.titilestr;
     
     [self addRightItems];
     

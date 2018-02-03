@@ -79,10 +79,10 @@
     self.navigationBt.selected = NO;
     if ([_navigationBt.titleLabel.text isEqualToString:@"海淘商城"]) {
         [_navigationBt setTitle:@"吃喝玩乐" forState:UIControlStateNormal];
-        [LBCollectionManager defaultUser].storeType = 2;
+        [LBCollectionManager defaultUser].storeType = 3;
     }else{
          [_navigationBt setTitle:@"海淘商城" forState:UIControlStateNormal];
-        [LBCollectionManager defaultUser].storeType = 3;
+        [LBCollectionManager defaultUser].storeType = 2;
     }
     [_navigationBt horizontalCenterTitleAndImage:5];
     

@@ -13,7 +13,8 @@
 + (NSDictionary *)mj_objectClassInArray{
     return @{
                      @"comment_list" : @"LBTmallProductDetailgoodsCommentModel",
-                     @"love" : @"LBTmallhomepageDataStructureModel"
+                     @"love" : @"LBTmallhomepageDataStructureModel",
+                     @"goods_spec" : @"LBTmallProductDetailgoodsSpecModel"
               };
 }
 
@@ -77,11 +78,6 @@
 
 @implementation LBTmallProductDetailgoodsSpecModel
 
-+ (NSDictionary *)mj_objectClassInArray{
-    return @{  @"items" : @"LBTmallProductDetailgoodsSpecItemModel"
-               };
-}
-
 - (void)setValue:(id)value forKey:(NSString *)key {
     
     if ([value isKindOfClass:[NSNull class]]) {
@@ -93,20 +89,9 @@
 
 @end
 
-@implementation LBTmallProductDetailgoodsSpecItemModel
-
-@end
 
 @implementation LBTmallProductDetailgoodsCommentModel
 
 @end
 
 
-@implementation LBTmallProductDetailgoodsSpecOtherModel
-
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key  {
-    if([key isEqualToString:@"id"])
-        self.idspec = value;
-}
-
-@end

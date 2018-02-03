@@ -166,7 +166,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBEat_StoreDetailViewController *vc = [[LBEat_StoreDetailViewController alloc]init];
     vc.store_id = ((LBEat_cateDataModel*)self.dataArr[indexPath.section]).store_id;
-    vc.title = ((LBEat_cateDataModel*)self.dataArr[indexPath.section]).store_name;
+    vc.titilestr = ((LBEat_cateDataModel*)self.dataArr[indexPath.section]).store_name;
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
   

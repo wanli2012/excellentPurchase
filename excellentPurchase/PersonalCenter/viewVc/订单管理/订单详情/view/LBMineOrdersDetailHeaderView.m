@@ -10,8 +10,6 @@
 
 @interface LBMineOrdersDetailHeaderView()
 
-@property (strong , nonatomic)UILabel *storeLb;//店名
-@property (strong , nonatomic)UILabel *statusLb;//描述
 @property (strong , nonatomic)UIView *lineview;//
 
 @end
@@ -57,7 +55,6 @@
 -(UILabel*)storeLb{
     if (!_storeLb) {
         _storeLb = [[UILabel alloc]init];
-        _storeLb.text = @"吕兵的店";
         _storeLb.textColor = LBHexadecimalColor(0x333333);
         _storeLb.font = [UIFont systemFontOfSize:13];
         _storeLb.textAlignment = NSTextAlignmentLeft;
@@ -68,7 +65,6 @@
 -(UILabel*)statusLb{
     if (!_statusLb) {
         _statusLb = [[UILabel alloc]init];
-        _statusLb.text = @"交易完成";
         _statusLb.textColor = MAIN_COLOR;
         _statusLb.font = [UIFont systemFontOfSize:13];
         _statusLb.textAlignment = NSTextAlignmentRight;

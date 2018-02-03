@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineCollectionStoreModel.h"
 
 @interface LBMineCollectionStoreTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *backView;
+@property (strong , nonatomic)LBMineCollectionStoreModel *model;
 
 @end
