@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineSureOrdersViewController">
             <connections>
+                <outlet property="allPrice" destination="nr1-0W-59Q" id="ZfS-B0-t8Q"/>
                 <outlet property="tableview" destination="Wqh-hg-U9P" id="OOL-ri-JXH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

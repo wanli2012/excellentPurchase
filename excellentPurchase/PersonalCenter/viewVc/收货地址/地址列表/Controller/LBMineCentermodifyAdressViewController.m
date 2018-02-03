@@ -8,7 +8,6 @@
 
 #import "LBMineCentermodifyAdressViewController.h"
 #import "LBMineCentermodifyAdressTableViewCell.h"
-#import "GLMine_AddressModel.h"
 
 #import "LBMineCenterAddAdreassViewController.h"
 
@@ -241,18 +240,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    LBMineCentermodifyAdressTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//
-//    NSArray *vcsArray = [self.navigationController viewControllers];
-//    NSInteger vcCount = vcsArray.count;
-//    UIViewController *lastVC = vcsArray[vcCount-2];//最后一个vc是自己，倒数第二个是上一个控制器。
-//
-//    if([lastVC isKindOfClass:[GLConfirmOrderController class]]){
-//
-//        self.block(cell.nameLb.text,cell.phoneLb.text,cell.adressLn.text);
-//         [self.navigationController popViewControllerAnimated:YES];
-//    }
-//
+      GLMine_AddressModel  *model = self.models[indexPath.row];
+    WeakSelf;
+    if (weakSelf.block) {
+        weakSelf.block(model);
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }
+
 }
 //添加地址
 -(void)addAdressEvent{

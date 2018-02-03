@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_AddressModel.h"
 
-typedef void (^returnAddressBlock)(NSString *name,NSString *phoneNum,NSString *address);
+typedef void (^returnAddressBlock)(GLMine_AddressModel *adressmodel);
+
 @interface LBMineCentermodifyAdressViewController : UIViewController
 
 @property (nonatomic, copy)returnAddressBlock block;

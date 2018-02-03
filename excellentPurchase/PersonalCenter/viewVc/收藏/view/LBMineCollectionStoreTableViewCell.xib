@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A58-w3-Gh7">
-                                <rect key="frame" x="297" y="14" width="60" height="30"/>
+                                <rect key="frame" x="297" y="24" width="60" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="dys-fy-qLa"/>
@@ -68,23 +68,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000粉丝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1b-v9-dsy">
-                                <rect key="frame" x="312.5" y="52" width="44.5" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SsY-T6-fqv" firstAttribute="leading" secondItem="GZQ-JK-fhH" secondAttribute="trailing" constant="10" id="4to-aR-GVd"/>
                             <constraint firstItem="GZQ-JK-fhH" firstAttribute="leading" secondItem="uSa-Eg-KNa" secondAttribute="leading" constant="10" id="D9w-SD-m3E"/>
                             <constraint firstItem="GZQ-JK-fhH" firstAttribute="centerY" secondItem="uSa-Eg-KNa" secondAttribute="centerY" id="DIb-mV-lkt"/>
-                            <constraint firstItem="n1b-v9-dsy" firstAttribute="top" secondItem="A58-w3-Gh7" secondAttribute="bottom" constant="8" id="Oj3-pl-BFq"/>
                             <constraint firstItem="yZM-IQ-I42" firstAttribute="leading" secondItem="GZQ-JK-fhH" secondAttribute="trailing" constant="10" id="ehG-Wd-gU6"/>
-                            <constraint firstAttribute="trailing" secondItem="n1b-v9-dsy" secondAttribute="trailing" constant="10" id="k5s-OL-OBi"/>
                             <constraint firstAttribute="trailing" secondItem="yZM-IQ-I42" secondAttribute="trailing" constant="10" id="nvk-BD-C4P"/>
-                            <constraint firstItem="A58-w3-Gh7" firstAttribute="centerY" secondItem="GZQ-JK-fhH" secondAttribute="centerY" constant="-10" id="u5B-PA-IPd"/>
+                            <constraint firstItem="A58-w3-Gh7" firstAttribute="centerY" secondItem="GZQ-JK-fhH" secondAttribute="centerY" id="u5B-PA-IPd"/>
                             <constraint firstItem="yZM-IQ-I42" firstAttribute="top" secondItem="GZQ-JK-fhH" secondAttribute="top" id="u9w-2m-5aZ"/>
                             <constraint firstAttribute="trailing" secondItem="A58-w3-Gh7" secondAttribute="trailing" constant="10" id="wne-tH-zzE"/>
                             <constraint firstItem="SsY-T6-fqv" firstAttribute="top" secondItem="yZM-IQ-I42" secondAttribute="bottom" constant="15" id="xda-Ai-HzF"/>
@@ -101,6 +93,9 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="backView" destination="uSa-Eg-KNa" id="rY1-ep-4oz"/>
+                <outlet property="fans" destination="SsY-T6-fqv" id="iun-e4-dg8"/>
+                <outlet property="imagev" destination="GZQ-JK-fhH" id="4NW-yr-lRY"/>
+                <outlet property="storename" destination="yZM-IQ-I42" id="P7S-yk-6Oe"/>
             </connections>
             <point key="canvasLocation" x="49.5" y="72"/>
         </tableViewCell>

@@ -10,4 +10,6 @@
 
 @interface LBMineSureOrdersViewController : UIViewController
 
+@property (strong , nonatomic)NSArray *DataArr;
+
 @end

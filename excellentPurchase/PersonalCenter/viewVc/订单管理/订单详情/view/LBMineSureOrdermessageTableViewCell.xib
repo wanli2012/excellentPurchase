@@ -24,12 +24,15 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="可填写需要向商家备注的信息" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="anL-U0-GBP">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="anL-U0-GBP">
                         <rect key="frame" x="47" y="3" width="310" height="101.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                        <connections>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="Yta-lU-Csi"/>
+                        </connections>
                     </textView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ke3-Zo-8Io">
                         <rect key="frame" x="0.0" y="112.5" width="367" height="1"/>
@@ -38,9 +41,18 @@
                             <constraint firstAttribute="height" constant="1" id="04V-Y9-Ivk"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="可填写需要向商家备注的信息" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scQ-cB-oTB">
+                        <rect key="frame" x="57" y="10" width="290" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="8Xk-cw-hn7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="1QP-Pg-1N1"/>
+                    <constraint firstItem="scQ-cB-oTB" firstAttribute="trailing" secondItem="anL-U0-GBP" secondAttribute="trailing" constant="-10" id="26u-fI-Zco"/>
+                    <constraint firstItem="scQ-cB-oTB" firstAttribute="leading" secondItem="anL-U0-GBP" secondAttribute="leading" constant="10" id="96L-7w-cjA"/>
+                    <constraint firstItem="scQ-cB-oTB" firstAttribute="top" secondItem="anL-U0-GBP" secondAttribute="top" constant="7" id="9QJ-1i-jBj"/>
                     <constraint firstItem="Ke3-Zo-8Io" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CaI-T0-pG6"/>
                     <constraint firstAttribute="trailing" secondItem="anL-U0-GBP" secondAttribute="trailing" constant="10" id="LWy-sM-Mea"/>
                     <constraint firstItem="anL-U0-GBP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="Lcz-vo-mom"/>
@@ -51,6 +63,10 @@
                     <constraint firstAttribute="bottom" secondItem="Ke3-Zo-8Io" secondAttribute="bottom" constant="1" id="wld-eC-kXq"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="placeholderLb" destination="scQ-cB-oTB" id="XzU-qY-mv6"/>
+                <outlet property="textView" destination="anL-U0-GBP" id="ez3-sa-XIJ"/>
+            </connections>
             <point key="canvasLocation" x="48.5" y="87.5"/>
         </tableViewCell>
     </objects>

@@ -73,7 +73,9 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [NetworkManager requestPOSTWithURLStr:HappyHotSearch paramDic:dic finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            [weakSelf.reCommendSource addObjectsFromArray:responseObject[@"data"]];
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                [weakSelf.reCommendSource addObject:dic[@"content"]];
+            }
             [weakSelf hotOptions ];
 
         }else{

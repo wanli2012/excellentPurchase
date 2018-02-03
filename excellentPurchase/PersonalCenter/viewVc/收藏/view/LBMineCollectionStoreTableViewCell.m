@@ -8,11 +8,25 @@
 
 #import "LBMineCollectionStoreTableViewCell.h"
 
+@interface LBMineCollectionStoreTableViewCell()
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UILabel *storename;
+@property (weak, nonatomic) IBOutlet UILabel *fans;
+
+@end
+
 @implementation LBMineCollectionStoreTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 
+}
+
+-(void)setModel:(LBMineCollectionStoreModel *)model{
+    _model = model;
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_model.store_thumb] placeholderImage:nil];
+    self.storename.text = [NSString stringWithFormat:@"%@",_model.store_name];
+    self.fans.text = [NSString stringWithFormat:@"%@粉丝",_model.fans_count];
 }
 
 -(void)layoutSubviews

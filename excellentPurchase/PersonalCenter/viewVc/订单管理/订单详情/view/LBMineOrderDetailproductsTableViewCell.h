@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineSureOrdersModel.h"
 
 @interface LBMineOrderDetailproductsTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *replayBt;
+@property (strong , nonatomic)LBMineSureOrdersGoodInfoModel *model;
 
 @end

@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMineSureOrdermessageTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLb;
+
+@property (strong , nonatomic)NSIndexPath *indexpath;
+
+@property (copy , nonatomic)void(^returntextview)(NSString *text , NSIndexPath *indexpath);
 
 @end
