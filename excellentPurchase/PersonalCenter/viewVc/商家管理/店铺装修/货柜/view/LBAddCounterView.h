@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LBAddCounterViewDelegate <NSObject>
+
+- (void)popClassifyView:(void(^)(NSString *textfiled))filedBlock;
+
+
+@end
+
 @interface LBAddCounterView : UIView
 
-+(LBAddCounterView*)addCounterFrame:(CGRect)frame textfBloack:(void(^)(NSString *textfiled))filedBlock;
+@property (nonatomic, weak)id <LBAddCounterViewDelegate>delegate;
+
++(LBAddCounterView*)addCounterFrame:(CGRect)frame delegate:(id)delegate textfBloack:(void(^)(NSString *textfiled))filedBlock;
+
 
 @end

@@ -9,16 +9,16 @@
 #import "LBStoreCounterViewController.h"
 #import "LBStoreCounterTableViewCell.h"
 #import "UIButton+SetEdgeInsets.h"
-#import "LBCounterStutasView.h"
-#import "LBAddCounterProductView.h"
-#import "LBAddOrEditProductViewController.h"
+#import "LBAddCounterProductView.h"//
+
+#import "LBCounterStutasView.h"//状态选择
+#import "LBAddOrEditProductViewController.h"//添加商品
 
 @interface LBStoreCounterViewController ()<UITableViewDataSource,UITableViewDelegate,LBStoreCounterdelegete>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-/**
- 数据
- */
+
+/** 数据*/
 @property (strong, nonatomic) NSArray *dataArr;
 
 @property (strong, nonatomic) UIButton *rightbutton;
@@ -35,10 +35,24 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"货柜";
+    
+    [self setNav];
+    
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+
+    [self.view addSubview:self.masckView];
+    [self.view addSubview:self.counterStutasView];
     
+    self.masckView.hidden = YES;
+    self.counterStutasView.hidden = YES;
+    
+}
+/**
+ 设置导航栏
+ */
+- (void)setNav{
+    self.navigationItem.title = @"货柜";
     _rightbutton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
     [_rightbutton setTitle:@"全部" forState:UIControlStateNormal];
     [_rightbutton setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
@@ -49,19 +63,6 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
     [_rightbutton horizontalCenterTitleAndImageRight:5];
     UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:_rightbutton];
     self.navigationItem.rightBarButtonItem = ba;
-    
-    _counterStutasView = [[LBCounterStutasView alloc]initWithFrame:CGRectMake(UIScreenWidth - 150, SafeAreaTopHeight, 150, 250) dataSorce:@[@"全部",@"上架中",@"审核中",@"审核失败",@"已下架"] cellHeight:50 selectindex:^(NSInteger index, NSString *text) {
-        NSLog(@"%ld",index);
-    }];
-    _counterStutasView.layer.position = CGPointMake(UIScreenWidth, SafeAreaTopHeight);
-    _counterStutasView.layer.anchorPoint = CGPointMake(1,0);
-    
-    
-    [self.view addSubview:self.masckView];
-    [self.view addSubview:self.counterStutasView];
-    self.masckView.hidden = YES;
-    self.counterStutasView.hidden = YES;
-    
 }
 
 /**
@@ -103,40 +104,40 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 }
 
 #pragma mark --- LBStoreCounterdelegete
-
 /**
  下架
-
- @param index <#index description#>
  */
 -(void)saleOutProduct:(NSInteger)index{
     
     
 }
+
 /**
  编辑
- 
- @param index <#index description#>
  */
 -(void)EditProduct:(NSInteger)index{
     
     
 }
+
 /**
  添加商品
- 
- @param index <#index description#>
  */
 - (IBAction)addProducts:(UIButton *)sender {
     
+    WeakSelf;
     [LBAddCounterProductView addCounterProductloack:^(NSInteger index) {
-        NSLog(@"%ld",index);
+
+        LBAddOrEditProductViewController *vc = [[LBAddOrEditProductViewController alloc] init];
+        vc.type = index;
+        vc.store_id = self.store_id;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
     }];
 }
+
 /**
 删除商品
- 
- @param index <#index description#>
  */
 - (IBAction)deleteProducts:(UIButton *)sender {
     
@@ -172,5 +173,18 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
     return _masckView;
 }
 
+- (LBCounterStutasView *)counterStutasView{
+    if (!_counterStutasView) {
+
+        _counterStutasView = [[LBCounterStutasView alloc]initWithFrame:CGRectMake(UIScreenWidth - 150, SafeAreaTopHeight, 150, 250) dataSorce:@[@"全部",@"上架中",@"审核中",@"审核失败",@"已下架"] cellHeight:50 selectindex:^(NSInteger index, NSString *text) {
+            
+            NSLog(@"%ld",index);
+        }];
+        
+        _counterStutasView.layer.position = CGPointMake(UIScreenWidth, SafeAreaTopHeight);
+        _counterStutasView.layer.anchorPoint = CGPointMake(1,0);
+    }
+    return _counterStutasView;
+}
 
 @end

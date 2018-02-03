@@ -365,19 +365,9 @@
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            
-            //            GLMine_Team_OpenSetModel *model = [GLMine_Team_OpenSetModel mj_objectWithKeyValues:responseObject[@"data"]];
-            //
-            //            self.model = model;
-            
-            [self.setModels removeAllObjects];
-            for (NSDictionary *dict in responseObject[@"data"][@"setup"]) {
-                GLMine_Team_OpenSet_subModel *model = [GLMine_Team_OpenSet_subModel mj_objectWithKeyValues:dict];
-                [self.setModels addObject:model];
-            }
-            
-            self.subordinateLabel.text = responseObject[@"data"][@"sub"][0][@"name"];
-            self.remainderLabel.text = responseObject[@"data"][@"sub"][0][@"msg"];
+     
+            [EasyShowTextView showSuccessText:@"提交成功"];
+            [self.navigationController popViewControllerAnimated:YES];
             
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -390,9 +380,7 @@
     
 }
 
-
 #pragma mark - UITextFieldDelegate 输入限制 输入判断
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField == self.phoneTF) {
         [self.codeTF becomeFirstResponder];
@@ -422,10 +410,13 @@
     return YES;
 }
 
+#pragma mark - 懒加载
+
 - (NSMutableArray *)setModels{
     if (!_setModels) {
         _setModels = [NSMutableArray array];
     }
     return _setModels;
 }
+
 @end

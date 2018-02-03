@@ -8,13 +8,32 @@
 
 #import "LBAddCounterContainerView.h"
 
-@interface LBAddCounterContainerView()
+@interface LBAddCounterContainerView()<UITextFieldDelegate>
 
 
 @end
 
 @implementation LBAddCounterContainerView
 
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [self endEditing:YES];
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    
+    if ([NSString StringIsNullOrEmpty:string]) {
+        [self endEditing:YES];
+        [EasyShowTextView showInfoText:@"不能输入空格"];
+        return NO;
+    }
+    
+    return YES;
+}
 
 
 

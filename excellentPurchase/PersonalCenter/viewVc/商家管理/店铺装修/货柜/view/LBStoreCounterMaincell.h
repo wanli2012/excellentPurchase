@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLStoreCounterListModel.h"
 
 @interface LBStoreCounterMaincell : UITableViewCell
+
+@property (nonatomic, strong)GLStoreCounterListModel *model;
 
 @end

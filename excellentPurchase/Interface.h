@@ -48,33 +48,48 @@
 #define kForget_Second_Password_URL @"User/find_two_pwd"//找回二级密码
 #define kUpdate_Phone_First_Password_URL @"User/check_user_phone"//修改绑定手机号第一步
 #define kUpdate_Phone_Second_Password_URL @"User/update_user_phone"//修改绑定手机号
+#define kget_user_info @"User/get_user_info"//个人资料-峰
+#define kuser_relevant @"User/user_relevant"///账号管理
+#define kperfect_get_info @"User/perfect_get_info"///完善或修改信息-峰
+
+
 #define kBankList_URL @"Bank/get_bank_list"//银行卡列表
 #define kBank_NameList_URL @"Bank/bank_name_list"//银行列表
 #define kBank_addCard_URL @"Bank/add_bank"//添加银行卡
 #define kUnbind_Bank_URL @"Bank/unbind_bank"//解除银行卡绑定
 #define kSetDefaultCard_URL @"Bank/set_default_bank"//设置默认银行卡
+
 #define kShop_index_URL @"SeaShopping/shop_index"//商城首页
-#define kget_user_info @"User/get_user_info"//个人资料-峰
-#define kuser_relevant @"User/user_relevant"///账号管理
-#define kperfect_get_info @"User/perfect_get_info"///完善或修改信息-峰
+
 #define kaddresses @"Address/addresses"///收货地址列表-峰
 #define kAddressed @"Address/addressed"///添加或编辑地址-峰
-#define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
+
+#define kgoods_brand_list @"GoodsCate/goods_brand_list"///获取品牌列表
 #define kappend_upload @"Upload/append_upload"///上传图片
+
+#define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
+#define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
+#define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯
+#define kget_integral_log_list @"Assets/get_integral_log_list"///个人积分变更-王凯
+#define kget_balance_log_list @"Assets/get_balance_log_list"///余额消息记录-王凯
+
 #define kget_money_list @"MoneyCenter/get_money_list"///优购币市值列表
 #define kget_back_list @"MoneyCenter/get_back_list"///优购币出售记录
 #define kget_mark_list @"MoneyCenter/get_mark_list"///购物券兑换记录
 #define kwithdraw_cash @"MoneyCenter/withdraw_cash"///优购币出售
 #define ksell_mark @"MoneyCenter/sell_mark"///购物券兑换
+
+
 #define kstore_type_list @"StoreType/store_type_list"///获取商铺类型-江海林
-#define kgoods_brand_list @"GoodsCate/goods_brand_list"///获取品牌列表
 #define kappend_shop @"Store/append_shop"///开通商家-峰-江海林
-#define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
-#define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯
-#define kget_integral_log_list @"Assets/get_integral_log_list"///个人积分变更-王凯
-#define kget_balance_log_list @"Assets/get_balance_log_list"///余额消息记录-王凯
+#define kstore_info @"Store/store_info"///我的小店 /商铺信息-江海林
+#define kstore_goods_list @"Store/store_goods_list"//我的小店/获取商品-江海林
+#define kappend_container @"StoreContainer/append_container"//添加货柜-峰-江海林
+#define kcontainer_list @"StoreContainer/container_list"//货柜列表-峰-江海林
+
+
 #define kappend_subordinate @"Team/append_subordinate"///人员配置-江海林
 #define kappend_lower @"Team/append_lower"///开通下级-江海林
-
+#define kgoods_cate_subordinate @"GoodsCate/goods_cate_subordinate"//获取,标签,品牌,属性-江海林
 
 #endif /* Interface_h */

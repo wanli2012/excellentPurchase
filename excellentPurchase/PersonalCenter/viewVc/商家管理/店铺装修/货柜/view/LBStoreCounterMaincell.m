@@ -8,6 +8,13 @@
 
 #import "LBStoreCounterMaincell.h"
 
+@interface LBStoreCounterMaincell()
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
+@end
+
 @implementation LBStoreCounterMaincell
 
 - (void)awakeFromNib {
@@ -15,4 +22,11 @@
     // Initialization code
 }
 
+- (void)setModel:(GLStoreCounterListModel *)model{
+    _model = model;
+    
+    self.nameLabel.text = model.conname;
+    self.countLabel.text = [NSString stringWithFormat:@"共%@件商品",model.point];
+    
+}
 @end

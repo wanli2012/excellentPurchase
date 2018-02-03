@@ -12,6 +12,7 @@
 #import "GLMine_Branch_OnlineOrderController.h"//线上订单
 #import "GLMine_Branch_OfflineOrderController.h"//线下订单
 #import "GLMine_Seller_IncomeCodeController.h"//收款二维码
+#import "LBFinishMainViewController.h"
 
 @interface GLMine_ManagementController ()
 
@@ -81,7 +82,10 @@
  店铺装修
   */
 - (IBAction)storeDecorate:(id)sender {
-    NSLog(@"店铺装修");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBFinishMainViewController * vc = [[LBFinishMainViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
