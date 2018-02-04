@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_Branch_OrderModel.h"
 
 @protocol GLMine_Branch_OnlineHeaderDelegate <NSObject>
 
@@ -19,5 +20,7 @@
 @property (nonatomic, weak)id <GLMine_Branch_OnlineHeaderDelegate> delegate;
 
 @property (nonatomic, assign)NSInteger section;
+
+@property (nonatomic, strong)GLMine_Branch_OrderModel *model;
 
 @end

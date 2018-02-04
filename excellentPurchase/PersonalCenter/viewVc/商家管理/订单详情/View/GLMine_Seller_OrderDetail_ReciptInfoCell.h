@@ -10,4 +10,7 @@
 
 @interface GLMine_Seller_OrderDetail_ReciptInfoCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *receiverLabel;//收货人名字和电话
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;//地址
+
 @end

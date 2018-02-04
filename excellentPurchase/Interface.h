@@ -93,9 +93,17 @@
 #define kcontainer_goods_lower @"StoreContainer/container_goods_lower"//商品下架-江海林
 #define kstore_receive @"Store/store_receive"//我的小店获取(商铺资料/改牌照资料)-江海林
 
+#define kstore_info_edit @"Store/store_info_edit"//修改商铺资料/修改招牌照 - 江海林
 
 #define kappend_subordinate @"Team/append_subordinate"///人员配置-江海林
 #define kappend_lower @"Team/append_lower"///开通下级-江海林
 #define kgoods_cate_subordinate @"GoodsCate/goods_cate_subordinate"//获取,标签,品牌,属性-江海林
+
+#define kstore_line_list @"OrderLine/store_line_list"//商家线下订单列表
+#define kagain_commit_order @"OrderLine/again_commit_order"//线下下单重新提交
+#define kstore_product_orders @"Order/store_product_orders"//商户订单列表-峰
+#define kstore_order_send @"OrderHandler/store_order_send"//商家发货-周永峰
+#define kstore_achievement_line @"Store/store_achievement_line"//商家线下订单业绩
+#define kstore_achievement @"Store/store_achievement"//商家线上订单业绩
 
 #endif /* Interface_h */

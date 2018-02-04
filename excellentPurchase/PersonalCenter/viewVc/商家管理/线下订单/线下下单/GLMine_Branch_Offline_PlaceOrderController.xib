@@ -16,9 +16,10 @@
                 <outlet property="checkCodeLabel" destination="LrS-oJ-p4S" id="gme-bg-lcr"/>
                 <outlet property="consumeTF" destination="lgP-Ci-yrh" id="YXP-Xd-8HT"/>
                 <outlet property="contentViewHeight" destination="B6f-9u-2mC" id="iXL-gn-3BF"/>
-                <outlet property="noProfitTF" destination="O5k-GE-E6j" id="B3y-hh-OuV"/>
-                <outlet property="proofLabel" destination="Tlo-m9-RXq" id="lOz-86-LhX"/>
+                <outlet property="noProfitTF" destination="O5k-GE-E6j" id="KOJ-ej-yUS"/>
+                <outlet property="proofTF" destination="EZi-0R-bLE" id="KJ1-OG-mAh"/>
                 <outlet property="signImageV" destination="tcR-4R-DoA" id="hmG-Js-kuB"/>
+                <outlet property="submitBtn" destination="NdY-ep-i7W" id="IB7-XH-euX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -181,7 +182,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="Ah2-SR-bor"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YK6M6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrS-oJ-p4S">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YK6M6M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrS-oJ-p4S">
                                             <rect key="frame" x="100" y="0.0" width="175" height="50"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,12 +242,6 @@
                                                 <constraint firstAttribute="width" constant="6" id="cOS-Tk-Isg"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请上传打款凭证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tlo-m9-RXq">
-                                            <rect key="frame" x="100" y="0.0" width="218" height="50"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMH-2Y-Ekc">
                                             <rect key="frame" x="0.0" y="49" width="375" height="1"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -261,32 +256,38 @@
                                                 <constraint firstAttribute="width" constant="21" id="y7b-VS-t1q"/>
                                             </constraints>
                                         </imageView>
+                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请上传打款凭证" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EZi-0R-bLE">
+                                            <rect key="frame" x="100" y="0.0" width="218" height="50"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <gestureRecognizers/>
                                     <constraints>
+                                        <constraint firstItem="EZi-0R-bLE" firstAttribute="top" secondItem="FOK-Ci-wDJ" secondAttribute="top" id="4cD-TH-deA"/>
+                                        <constraint firstAttribute="bottom" secondItem="EZi-0R-bLE" secondAttribute="bottom" id="4gA-7u-84A"/>
+                                        <constraint firstItem="EZi-0R-bLE" firstAttribute="leading" secondItem="FOK-Ci-wDJ" secondAttribute="leading" constant="100" id="9xU-2M-NKx"/>
                                         <constraint firstItem="6G4-dv-Gi3" firstAttribute="centerY" secondItem="FOK-Ci-wDJ" secondAttribute="centerY" id="CQu-FC-yOS"/>
                                         <constraint firstAttribute="height" constant="50" id="EuE-XS-xZf"/>
                                         <constraint firstAttribute="trailing" secondItem="QMH-2Y-Ekc" secondAttribute="trailing" id="H8K-FB-m4N"/>
-                                        <constraint firstAttribute="bottom" secondItem="Tlo-m9-RXq" secondAttribute="bottom" id="Iib-kk-I6T"/>
                                         <constraint firstAttribute="bottom" secondItem="QMH-2Y-Ekc" secondAttribute="bottom" id="P3I-pI-tBM"/>
                                         <constraint firstItem="lwS-uj-rkR" firstAttribute="centerY" secondItem="FOK-Ci-wDJ" secondAttribute="centerY" id="PG1-TZ-eyY"/>
-                                        <constraint firstItem="lwS-uj-rkR" firstAttribute="leading" secondItem="Tlo-m9-RXq" secondAttribute="trailing" constant="10" id="Vpw-Qd-XbK"/>
+                                        <constraint firstItem="lwS-uj-rkR" firstAttribute="leading" secondItem="EZi-0R-bLE" secondAttribute="trailing" constant="10" id="UvH-XN-eey"/>
                                         <constraint firstItem="6G4-dv-Gi3" firstAttribute="leading" secondItem="FOK-Ci-wDJ" secondAttribute="leading" constant="10" id="bBz-xa-72D"/>
-                                        <constraint firstItem="Tlo-m9-RXq" firstAttribute="leading" secondItem="FOK-Ci-wDJ" secondAttribute="leading" constant="100" id="eWb-EN-Cwr"/>
                                         <constraint firstAttribute="trailing" secondItem="uKq-j9-icY" secondAttribute="trailing" constant="10" id="i76-Fq-nem"/>
                                         <constraint firstItem="uKq-j9-icY" firstAttribute="centerY" secondItem="FOK-Ci-wDJ" secondAttribute="centerY" id="ihb-ds-Mm3"/>
                                         <constraint firstItem="uKq-j9-icY" firstAttribute="leading" secondItem="lwS-uj-rkR" secondAttribute="trailing" constant="10" id="oy9-XY-J57"/>
-                                        <constraint firstItem="Tlo-m9-RXq" firstAttribute="top" secondItem="FOK-Ci-wDJ" secondAttribute="top" id="sNq-bt-LFD"/>
                                         <constraint firstItem="QMH-2Y-Ekc" firstAttribute="leading" secondItem="FOK-Ci-wDJ" secondAttribute="leading" id="vlQ-XV-b3b"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="In4-Up-dKP" appends="YES" id="mBq-MI-c9J"/>
                                     </connections>
                                 </view>
-                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdY-ep-i7W">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdY-ep-i7W">
                                     <rect key="frame" x="40" y="508" width="295" height="45"/>
-                                    <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="BA1-32-uLd"/>
                                     </constraints>
@@ -296,6 +297,9 @@
                                             <integer key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="0cC-QT-kKy"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0Y-Ed-rvq" userLabel="protocolView">
                                     <rect key="frame" x="98" y="468" width="179" height="30"/>

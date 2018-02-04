@@ -44,8 +44,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     [super viewDidLoad];
     
     [self setNav];
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"照片修改";
+
     [self.collectionview1 registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
     [self.collectionview2 registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
 
@@ -86,10 +85,11 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [self.assets1 removeAllObjects];
+            [self.assets2 removeAllObjects];
+            [self.assets1 addObject:responseObject[@"data"][@"store_thumb"]];
+            [self.assets2 addObjectsFromArray:responseObject[@"data"][@"store_homepage"]];
             
-            self.picUrl = responseObject[@"data"][@"store_thumb"];
-//            self.picUrlArr = responseObject[@"data"][@"store_homepage"];
-            [self.picUrlArr addObjectsFromArray:responseObject[@"data"][@"store_homepage"]];
             [self assignment];
             
         }else{
@@ -107,8 +107,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 #pragma mark - 赋值
 - (void)assignment{
     
-    [self.assets1 addObject:self.picUrl];
-    [self.assets2 addObjectsFromArray:self.picUrlArr];
     [self.collectionview1 reloadData];
     [self.collectionview2 reloadData];
     
@@ -141,6 +139,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     
     //创建任务
     NSInteger count1 = 0;
+    self.picUrl = nil;
     for (int i = 0; i < self.assets1.count ; i++) {
         
         UIImage *image;
@@ -171,6 +170,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         
     }
     NSInteger count2 = 0;
+    [self.picUrlArr removeAllObjects];
+    
     for (int i = 0; i < self.assets2.count ; i++) {
         
         UIImage *image;
@@ -213,15 +214,10 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         dispatch_async(dispatch_get_main_queue(), ^{//返回主线程
             
             //这里就是所有异步任务请求结束后执行的代码
-            
-            [EasyShowLodingView hidenLoding];
-            [EasyShowTextView showSuccessText:@"已保存"];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-            
+            [weakSelf modifyPic];
             
         });
     });
-    
 }
 
 /**
@@ -278,6 +274,54 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     
 }
 
+/**
+ 修改内景照和招牌照
+ */
+- (void)modifyPic{
+    
+    if (self.picUrl.length == 0) {
+        [EasyShowTextView showInfoText:@"请重新上传招牌照"];
+        return;
+    }
+    if (self.picUrlArr.count == 0) {
+        [EasyShowTextView showInfoText:@"请至少上传一张内景照"];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"store_id"] = self.store_id;
+    dic[@"type"] = @"2";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"thumb"] = self.picUrl;
+    
+    for (int i = 0; i < self.picUrlArr.count; i++) {
+        NSString *str = [NSString stringWithFormat:@"homepage[%zd]",i];
+        dic[str] = self.picUrlArr[i];
+    }
+    
+    [NetworkManager requestPOSTWithURLStr:kstore_info_edit paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+
+            [EasyShowTextView showSuccessText:@"已保存"];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+
+}
+
 #pragma UICollectionDelegate UICollectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -324,8 +368,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 cell.imagev.image = [self.assets1 objectAtIndex:indexPath.row];
                 
             } else{
-//                ZLPhotoPickerBrowserPhoto *photo = self.assets1[indexPath.row];
-//                [cell.imagev sd_setImageWithURL:photo.photoURL];
+
                 NSString *url = [self.assets1 objectAtIndex:indexPath.row];
                 [cell.imagev sd_setImageWithURL:[NSURL URLWithString:url]];
                 
@@ -359,7 +402,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 cell.imagev.image = [self.assets2 objectAtIndex:indexPath.row];
                 
             } else{
-//                ZLPhotoPickerBrowserPhoto *photo = self.assets2[indexPath.row];
+
                 NSString *url = [self.assets2 objectAtIndex:indexPath.row];
                 [cell.imagev sd_setImageWithURL:[NSURL URLWithString:url]];
                 

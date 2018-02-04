@@ -138,6 +138,7 @@
 - (IBAction)amendinfoEvent:(UIButton *)sender {
     self.hidesBottomBarWhenPushed = YES;
     LBStoreInformationViewController *vc = [[LBStoreInformationViewController alloc]init];
+    vc.store_id = self.model.store_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

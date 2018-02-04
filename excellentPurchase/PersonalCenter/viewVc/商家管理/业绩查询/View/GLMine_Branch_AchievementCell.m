@@ -28,18 +28,23 @@
 - (void)setModel:(GLMine_Branch_AchievementModel *)model{
     _model = model;
     
-    self.orderNumLabel.text = model.orderNum;
-    self.dateLabel.text = model.date;
-    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
-    
     if (model.type == 1) {//1:线上业绩  0:线下业绩
-        self.lastNameLabel.text = @"买家备注";
-        self.lastLabel.text = model.submitDate;
-    }else{
-        self.lastNameLabel.text = @"提单时间";
-        self.lastLabel.text = model.remark;
         
+        self.orderNumLabel.text = model.order_num;
+        self.dateLabel.text = [formattime formateTimeOfDate4:model.ord_suretime];
+        self.lastNameLabel.text = @"买家备注";
+        self.lastLabel.text = model.ord_remark;
+        self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
+        
+    }else{
+        
+        self.orderNumLabel.text = model.line_order_num;
+        self.dateLabel.text = [formattime formateTimeOfDate4:model.line_addtime];
+        self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.line_money];
+        self.lastNameLabel.text = @"提单时间";
+        self.lastLabel.text = [formattime formateTimeOfDate4:model.line_updatetime];
     }
+   
 }
 
 @end

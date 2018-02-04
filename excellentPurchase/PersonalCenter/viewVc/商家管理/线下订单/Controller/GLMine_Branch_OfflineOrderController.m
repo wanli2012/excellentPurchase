@@ -65,7 +65,13 @@
             
             GLMine_Branch_OfflineStatusController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
             
-            baseVc.type = i;
+            if(i == 0){//0:"审核中",1:"已完成",2:"已失败"
+                baseVc.type = 2;//0失败 1成功 2未审核 状态类型
+            }else if(i == 1){
+                baseVc.type = 1;
+            }else if(i == 2){
+                baseVc.type = 0;
+            }
             
             [self addChildViewController:baseVc];
            

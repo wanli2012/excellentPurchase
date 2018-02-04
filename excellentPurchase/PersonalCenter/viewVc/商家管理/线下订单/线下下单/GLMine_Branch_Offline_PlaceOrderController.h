@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_Branch_OfflineOrderModel.h"
 
 @interface GLMine_Branch_Offline_PlaceOrderController : UIViewController
+
+@property (nonatomic, assign)NSInteger type;//1:线下下单 2:线下订单失败 重新下单
+
+@property (nonatomic, strong)GLMine_Branch_OfflineOrderModel *model;
 
 @end

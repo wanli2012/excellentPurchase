@@ -31,18 +31,20 @@
 - (void)setModel:(GLMine_Branch_OfflineOrderModel *)model{
     _model = model;
     
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.orderNumLabel.text = model.orderNum;
-    self.dateLabel.text = model.date;
-    self.IDNumberLabel.text = model.IDNum;
-    self.consumeLabel.text = [NSString stringWithFormat:@"¥%@",model.consume];
-    self.noProfitLabel.text = [NSString stringWithFormat:@"¥%@",model.noPorfit];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.line_dkpz_pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.orderNumLabel.text = model.line_order_num;
+    self.dateLabel.text = model.time;
+    self.IDNumberLabel.text = model.user_name;
+    self.consumeLabel.text = [NSString stringWithFormat:@"¥%@",model.line_money];
+    self.noProfitLabel.text = [NSString stringWithFormat:@"¥%@",model.line_rl_money];
     
-    if (model.type == 2) {
+    if (model.type == 0) {////0失败 1成功 2未审核 状态类型
         self.signImageV.hidden = NO;
     }else{
         self.signImageV.hidden = YES;
     }
+    
+    
 }
 
 @end

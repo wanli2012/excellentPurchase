@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_Branch_OrderModel.h"
 
 @interface GLMine_Seller_OrderDetailController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;//1:已下单 2:待发货 3:已发货
+@property (nonatomic, assign)NSInteger type;;//查询状态 2.待发货 3.已发货 11.已取消
+@property (nonatomic, strong)GLMine_Branch_OrderModel *model;
 
 @end

@@ -18,8 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="337" height="67.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优券抵扣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6R-f2-hdK">
-                        <rect key="frame" x="10" y="11" width="61.5" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物券抵扣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6R-f2-hdK">
+                        <rect key="frame" x="10" y="11" width="76.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -73,6 +73,10 @@
                     <constraint firstItem="kii-pf-DoN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xdI-pz-NjZ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="discountLabel" destination="bMw-nm-vya" id="8Uu-jV-g5S"/>
+                <outlet property="reallyPayLabel" destination="3Jb-2T-3Wq" id="WgK-Qh-Nvq"/>
+            </connections>
             <point key="canvasLocation" x="47.5" y="68.5"/>
         </tableViewCell>
     </objects>

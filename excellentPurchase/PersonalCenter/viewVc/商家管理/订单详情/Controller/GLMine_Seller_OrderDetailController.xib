@@ -14,9 +14,14 @@
                 <outlet property="bottomHeight" destination="IoG-lo-2IN" id="nht-6b-wbY"/>
                 <outlet property="bottomView" destination="JEP-1l-aUe" id="GWG-bY-CqF"/>
                 <outlet property="cancelOrderBtn" destination="9cL-jG-dAU" id="ypa-eB-ULD"/>
+                <outlet property="dateLabel" destination="Qee-hQ-bEy" id="w6T-h3-GCR"/>
                 <outlet property="ensureDeliveryBtn" destination="O5e-jM-SUo" id="Q36-hs-WcZ"/>
                 <outlet property="ensureOrderBtn" destination="0Vf-U5-x5q" id="smA-AQ-qfO"/>
+                <outlet property="freightLabel" destination="fQp-YG-HgI" id="gyC-10-3Mn"/>
+                <outlet property="numLabel" destination="j9k-bo-XJz" id="lJE-Ql-c0O"/>
+                <outlet property="orderNumLabel" destination="qFW-ug-hfY" id="jhG-Eb-QAI"/>
                 <outlet property="tableView" destination="1fZ-5w-cnX" id="TdH-pF-Tw8"/>
+                <outlet property="totalPriceLabel" destination="31N-Tp-FqR" id="CQR-Hp-Ku3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -230,6 +235,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="确认发货(2)"/>
+                            <connections>
+                                <action selector="ensureDelivery:" destination="-1" eventType="touchUpInside" id="1A3-pk-9k2"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

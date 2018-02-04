@@ -126,13 +126,15 @@
 -(void)okBtnClick{
 
     [self dismiss];
+    
     //获取当前时间
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    [formatter setDateFormat:@"YYYY年MM月"];
+    [formatter setDateFormat:@"yyyy年MM月"];
     NSString *DateTime = [formatter stringFromDate:date];
     //判断 进来时currentDate是否==nil 如果是空 赋值当前时间 如果不是就拿从currentDate获取到的值进行赋值
     if (currentDate == nil) {

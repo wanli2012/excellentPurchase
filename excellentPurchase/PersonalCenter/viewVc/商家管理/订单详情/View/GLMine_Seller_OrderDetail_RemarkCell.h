@@ -10,4 +10,6 @@
 
 @interface GLMine_Seller_OrderDetail_RemarkCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *markLabel;//备注
+
 @end
