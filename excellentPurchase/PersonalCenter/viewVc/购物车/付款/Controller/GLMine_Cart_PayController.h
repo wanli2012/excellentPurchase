@@ -10,4 +10,5 @@
 
 @interface GLMine_Cart_PayController : UIViewController
 
+@property (strong , nonatomic)NSDictionary *datadic;
 @end

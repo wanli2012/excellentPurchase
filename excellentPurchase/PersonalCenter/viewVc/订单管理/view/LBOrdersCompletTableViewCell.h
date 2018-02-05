@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineOrderObligationmodel.h"
 
 @interface LBOrdersCompletTableViewCell : UITableViewCell
+
+
+@property (strong , nonatomic)LBMineOrderObligationGoodsmodel *model;
 
 @end

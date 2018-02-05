@@ -8,8 +8,21 @@
 
 #import "NodataView.h"
 
-@implementation NodataView
+@interface NodataView()
 
+
+
+@end
+
+@implementation NodataView
+//重新加载
+- (IBAction)reconfigureNetworking:(UIButton *)sender {
+    
+    if (self.cancekBlock) {
+        self.cancekBlock();
+    }
+    
+}
 
 
 @end

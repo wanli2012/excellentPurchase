@@ -18,5 +18,8 @@
 @interface GLMine_PaySuccessView : UICollectionReusableView
 
 @property (nonatomic, weak)id <GLMine_PaySuccessViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *orderNum;
+@property (weak, nonatomic) IBOutlet UILabel *method;
+@property (weak, nonatomic) IBOutlet UILabel *price;
 
 @end

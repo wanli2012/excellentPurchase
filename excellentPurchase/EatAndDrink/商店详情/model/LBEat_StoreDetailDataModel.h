@@ -14,6 +14,8 @@
 @property (copy , nonatomic)NSString *is_collect;//是否收藏
 @property (copy , nonatomic)NSString *store_address;
 @property (copy , nonatomic)NSString *store_id;
+@property (copy , nonatomic)NSString *lat;
+@property (copy , nonatomic)NSString *lng;
 @property (copy , nonatomic)NSString *store_name;//店名
 @property (copy , nonatomic)NSString *store_phone;//手机号
 @property (copy , nonatomic)NSString *store_score;//分数

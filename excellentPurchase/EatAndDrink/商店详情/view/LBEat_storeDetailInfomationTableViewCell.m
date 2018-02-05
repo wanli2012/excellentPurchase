@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLb;
 @property (weak, nonatomic) IBOutlet UILabel *adressLb;
 @property (weak, nonatomic) IBOutlet UILabel *repalyNum;
+@property (weak, nonatomic) IBOutlet UIView *adressView;
 
 @end
 
@@ -36,11 +37,18 @@
 
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesturecomments)];
     [self.commentView addGestureRecognizer:tapgesture];
+    UITapGestureRecognizer *adresstapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesturecadress)];
+    [self.adressView addGestureRecognizer:adresstapgesture];
 }
 
 -(void)tapgesturecomments{
     [self.delegate tapgesturecomments];
 }
+
+-(void)tapgesturecadress{
+     [self.delegate gotoStoreAdress];
+}
+
 - (IBAction)ComeStorePay:(UIButton *)sender {
     
     [self.delegate ComeStorePay];

@@ -21,21 +21,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdx-kx-SHe">
                         <rect key="frame" x="0.0" y="1" width="358" height="106.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="矩形25拷贝" translatesAutoresizingMaskIntoConstraints="NO" id="uz8-Fo-HHX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uz8-Fo-HHX">
                                 <rect key="frame" x="10" y="10" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="GIV-ME-Pk2"/>
                                     <constraint firstAttribute="width" constant="70" id="XYC-rp-IHf"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我 i 从那次你为此呢我 i 从那次你为此呢我 i 从那次你为此呢我 i 从那次你为此呢我 i 从那次你为此呢我 i 从那次你为此呢" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJV-qv-8y9">
-                                <rect key="frame" x="90" y="10" width="258" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJV-qv-8y9">
+                                <rect key="frame" x="90" y="10" width="258" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mD-ZG-S14">
-                                <rect key="frame" x="90" y="62" width="29" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mD-ZG-S14">
+                                <rect key="frame" x="90" y="62" width="31" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVp-RM-kuh">
-                                <rect key="frame" x="129" y="63" width="13" height="16"/>
+                                <rect key="frame" x="131" y="63" width="13" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -96,10 +96,13 @@
                     <constraint firstItem="tdx-kx-SHe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="xZ2-5l-lZh"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="goodName" destination="tJV-qv-8y9" id="FXg-Wk-kdK"/>
+                <outlet property="imagev" destination="uz8-Fo-HHX" id="JAc-JO-YOt"/>
+                <outlet property="numlb" destination="ZVp-RM-kuh" id="mX6-qp-8rY"/>
+                <outlet property="pricelb" destination="8mD-ZG-S14" id="RaV-il-MwW"/>
+            </connections>
             <point key="canvasLocation" x="53" y="86.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="矩形25拷贝" width="113" height="93"/>
-    </resources>
 </document>

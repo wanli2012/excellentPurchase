@@ -77,7 +77,7 @@
             model.account = [NSString stringWithFormat:@"100%zd",i];
             if(i == 3){
                 
-                model.reason = @"代理费婚纱礼服经理说的返利哈三联的返回拉师傅拉还是是的发发发";
+                model.reason = @"代理费婚纱礼服经理说的奖励哈三联的返回拉师傅拉还是是的发发发";
             }else{
                 model.reason = @"代理费婚纱礼服经理";
             }

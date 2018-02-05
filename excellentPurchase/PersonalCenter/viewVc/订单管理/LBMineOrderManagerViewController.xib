@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kA-Of-GSu">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWA-Nz-DRe">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -109,19 +109,20 @@
                                 <constraint firstItem="qWA-Nz-DRe" firstAttribute="top" secondItem="7kA-Of-GSu" secondAttribute="top" id="92J-rM-dxF"/>
                                 <constraint firstAttribute="trailing" secondItem="qWA-Nz-DRe" secondAttribute="trailing" id="9JE-6v-hPc"/>
                                 <constraint firstItem="qWA-Nz-DRe" firstAttribute="leading" secondItem="7kA-Of-GSu" secondAttribute="leading" id="BGH-CF-OGy"/>
+                                <constraint firstAttribute="height" constant="400" id="J3G-fQ-KC6"/>
                                 <constraint firstItem="Ety-xw-CgC" firstAttribute="top" secondItem="qWA-Nz-DRe" secondAttribute="bottom" id="mpN-A4-HDV"/>
                                 <constraint firstItem="Ety-xw-CgC" firstAttribute="leading" secondItem="7kA-Of-GSu" secondAttribute="leading" id="r6w-5C-sGf"/>
                                 <constraint firstAttribute="trailing" secondItem="Ety-xw-CgC" secondAttribute="trailing" id="w3I-gB-d90"/>
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="7kA-Of-GSu" firstAttribute="leading" secondItem="Vvw-KM-gcV" secondAttribute="leading" id="8fT-Du-oVs"/>
                         <constraint firstItem="7kA-Of-GSu" firstAttribute="top" secondItem="Vvw-KM-gcV" secondAttribute="top" id="BVm-pg-ZEW"/>
                         <constraint firstItem="7kA-Of-GSu" firstAttribute="centerX" secondItem="Vvw-KM-gcV" secondAttribute="centerX" id="FSN-Ta-BFr"/>
                         <constraint firstAttribute="bottom" secondItem="7kA-Of-GSu" secondAttribute="bottom" id="H5x-i4-eMm"/>
                         <constraint firstAttribute="trailing" secondItem="7kA-Of-GSu" secondAttribute="trailing" id="RE2-1j-ZaU"/>
-                        <constraint firstItem="7kA-Of-GSu" firstAttribute="centerY" secondItem="Vvw-KM-gcV" secondAttribute="centerY" id="WF8-Mr-Web"/>
                     </constraints>
                 </scrollView>
             </subviews>

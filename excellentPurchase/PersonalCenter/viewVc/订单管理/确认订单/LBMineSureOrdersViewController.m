@@ -58,6 +58,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     self.goods_Arr = [NSMutableArray array];
     self.count_arr = [NSMutableArray array];
     self.spec_arr = [NSMutableArray array];
+    self.remarkdic = [NSMutableDictionary dictionary];
     [self registertableviewcell];//注册cell
     self.navigationItem.title = @"确认订单";
     for (NSDictionary *dic in self.DataArr) {
@@ -69,11 +70,10 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             [self.count_arr addObject:pmodel.goods_num];
             [self.spec_arr addObject:pmodel.spec_id];
         }
+        [_remarkdic setObject:@"" forKey:model.shop_uid];
         [self.modelArr addObject:model];
     }
     self.allPrice.text = [NSString stringWithFormat:@"合计: ¥%.2f",self.totallPrice];
-    
-    
     
 }
 
@@ -112,7 +112,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
                 }
             }];
             
-            if (Stop == NO && [responseObject[@"page_data"]count]>0) {
+            if (Stop == NO && [responseObject[@"data"][@"page_data"]count]>0) {
                 self.addressModel = [GLMine_AddressModel mj_objectWithKeyValues:responseObject[@"data"][@"page_data"][0]];
             }
             
@@ -131,10 +131,54 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 
 #pragma mark - 提交订单
 - (IBAction)submitOrder:(id)sender {
+
+    if (!self.addressModel) {
+        [EasyShowTextView showText:@"请填写收货地址"];
+        return;
+    }
+    NSString *goods_str = [_goods_Arr componentsJoinedByString:@"_"];
+    NSString *count_str = [_count_arr componentsJoinedByString:@"_"];
+    NSString *spec_str = [_spec_arr componentsJoinedByString:@"_"];
+    NSMutableArray *remarkarr = [[NSMutableArray alloc]init];
+    for (NSString *key in self.remarkdic.allKeys) {
+        NSString *str = @"";
+        if ([NSString StringIsNullOrEmpty:_remarkdic[key]]) {
+            str = [NSString stringWithFormat:@"%@: ",key];
+        }else{
+            str = [NSString stringWithFormat:@"%@:%@",key,_remarkdic[key]];
+        }
+        [remarkarr addObject:str];
+    }
+    NSString *remarkstr = [remarkarr componentsJoinedByString:@"_"];
     
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Cart_PayController *payVC = [[GLMine_Cart_PayController alloc] init];
-    [self.navigationController pushViewController:payVC animated:YES];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    dic[@"goods_str"] = goods_str;
+    dic[@"count_str"] = count_str;
+    dic[@"spec_str"] = spec_str;
+    dic[@"remark_str"] = remarkstr;
+    dic[@"address_id"] = self.addressModel.address_id;
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:OrderAppend_order paramDic:dic finish:^(id responseObject) {
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.hidesBottomBarWhenPushed = YES;
+            GLMine_Cart_PayController *payVC = [[GLMine_Cart_PayController alloc] init];
+            payVC.datadic = responseObject[@"data"];
+            [self.navigationController pushViewController:payVC animated:YES];
+        }else{
+
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
     
 }
 
@@ -205,8 +249,8 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             LBMineSureOrdersModel *model =self.modelArr[indexPath.section-1];
             if (indexPath.row == self.modelArr.count) {
                  cell.valueLb.textColor = MAIN_COLOR;
-                cell.titileLb.text = @"返利";
-                cell.valueLb.text = [NSString stringWithFormat:@"%@积分+%@优券",model.reword_mark,model.reword_coupons];
+                cell.titileLb.text = @"奖励";
+                cell.valueLb.text = [NSString stringWithFormat:@"%@积分+%@购物券",model.reword_mark,model.reword_coupons];
             }else{
                 cell.valueLb.textColor = LBHexadecimalColor(0x333333);
                 cell.titileLb.text = @"商品金额";
@@ -223,7 +267,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
                 cell.titile.text = @"运费";
                 cell.valuelb.text = [NSString stringWithFormat:@"¥%@",((LBMineSureOrdersModel*)self.modelArr[indexPath.section-1]).send_price];
             }else{
-                cell.titile.text = @"优券抵扣";
+                cell.titile.text = @"购物券抵扣";
                 cell.valuelb.text = [NSString stringWithFormat:@"¥%@",((LBMineSureOrdersModel*)self.modelArr[indexPath.section-1]).offset_coupons];
             }
             return cell;
@@ -232,8 +276,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.indexpath = indexPath;
             cell.returntextview = ^(NSString *text, NSIndexPath *indexpath) {
-                LBMineSureOrdersModel *model = _modelArr[indexPath.row];
+                LBMineSureOrdersModel *model = _modelArr[indexPath.section-1];
                 [_remarkdic removeObjectForKey:model.shop_uid];
+                
                 [_remarkdic setObject:text forKey:model.shop_uid];
                 
             };
@@ -311,14 +356,14 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 
 -(NSArray*)titileArr{
     if (!_titileArr) {
-        _titileArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"优券抵扣", nil];
+        _titileArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"购物券抵扣", nil];
     }
     return _titileArr;
 }
 
 -(NSArray*)productArr{
     if (!_productArr) {
-        _productArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"优券抵扣", nil];
+        _productArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"购物券抵扣", nil];
     }
     return _productArr;
 }

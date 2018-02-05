@@ -10,6 +10,8 @@
 
 @interface LBMineOrderDetailViewController : UIViewController
 
-@property (assign , nonatomic)NSInteger typeindex;//1 表示待付款 2 表示待收货 3 表示已完成 4 表示已取消
+@property (assign , nonatomic)NSInteger typeindex;//1:待付款 3.待收货 5.已完成 10.已取消
+@property (strong , nonatomic)NSString *ord_str;//订单
+@property (strong , nonatomic)NSString *shop_uid;//商家uid
 
 @end

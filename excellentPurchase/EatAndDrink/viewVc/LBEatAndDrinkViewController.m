@@ -15,6 +15,7 @@
 #import "LBSaveLocationInfoModel.h"
 #import "LBEat_cateModel.h"
 #import "LBHistoryHotSerachViewController.h"
+#import "NodataView.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *menuArr;
 @property (nonatomic, strong) NSArray *dataArr;
 @property (weak, nonatomic) IBOutlet UILabel *cityLb;
+@property (nonatomic, strong) NodataView *nodataView;//无数据的时候
 
 @end
 
@@ -35,13 +37,19 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    self.cityLb.text =  [LBSaveLocationInfoModel defaultUser].currentCity;
+    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity] == NO) {
+         self.cityLb.text =  [LBSaveLocationInfoModel defaultUser].currentCity;
+    }
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.nodataView];
     [self loadData];//加载数据
-    
+    WeakSelf;
+    _nodataView.cancekBlock = ^{
+        [weakSelf loadData];//加载数据
+    };
 }
 
 -(void)loadData{
@@ -58,6 +66,7 @@
             if (self.dataArr.count > 0) {
                 [LBEat_cateModel defaultUser].cate_id = self.dataArr[0][@"cate_id"];
                 [LBEat_cateModel defaultUser].cate_banners = self.dataArr[0][@"cate_banners"];
+                [self.nodataView removeFromSuperview];
             }
              [self addMenu];//加载菜单
         }else{
@@ -66,7 +75,7 @@
         }
         
     } enError:^(NSError *error) {
-       
+       [EasyShowTextView showErrorText:error.localizedDescription];
     }];
     
 }
@@ -217,5 +226,14 @@
     self.navigationH.constant = SafeAreaTopHeight;
 }
 
+-(NodataView*)nodataView{
+    if (!_nodataView) {
+        _nodataView = [[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:nil options:nil].firstObject;
+        _nodataView.autoresizingMask = 0;
+        _nodataView.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - 49);
+        
+    }
+    return _nodataView;
+}
 
 @end

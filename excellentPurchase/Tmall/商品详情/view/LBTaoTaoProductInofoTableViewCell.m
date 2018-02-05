@@ -51,9 +51,9 @@
         self.rateView.hidden = NO;
         self.rateViewH.constant = 50;
         if ([_model.bonuspoints floatValue] > 0 && [_model.reword_coupons floatValue] > 0) {
-            self.ratelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"商品成交后可奖励%@积分，%@优券",_model.bonuspoints,_model.reword_coupons] specilstr:@[_model.bonuspoints,_model.reword_coupons]];
+            self.ratelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"商品成交后可奖励%@积分，%@购物券",_model.bonuspoints,_model.reword_coupons] specilstr:@[_model.bonuspoints,_model.reword_coupons]];
         }else  if ([_model.bonuspoints floatValue] <= 0 && [_model.reword_coupons floatValue] > 0) {
-            self.ratelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"商品成交后可奖励%@优券",_model.reword_coupons] specilstr:@[_model.reword_coupons]];
+            self.ratelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"商品成交后可奖励%@购物券",_model.reword_coupons] specilstr:@[_model.reword_coupons]];
         }else  if ([_model.bonuspoints floatValue] > 0 && [_model.reword_coupons floatValue] <= 0) {
             self.ratelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"商品成交后可奖励%@积分",_model.bonuspoints] specilstr:@[_model.bonuspoints]];
         }

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineOrderObligationmodel.h"
 
 @interface LBMineOrdersHeaderViewTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *stausLb;
 
+@property (strong , nonatomic)LBMineOrderObligationGoodsmodel *model;
 @end

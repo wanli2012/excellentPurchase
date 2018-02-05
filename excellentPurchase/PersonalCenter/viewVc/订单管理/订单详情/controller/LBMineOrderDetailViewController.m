@@ -15,6 +15,7 @@
 #import "LBMineOrderNumbersTableViewCell.h"
 #import "LBMineOrderDetailPriceTableViewCell.h"
 #import "LBMineOrdersDetailHeaderView.h"
+#import "LBMyOrdersDetailModel.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -33,6 +34,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTwoTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewThreeTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomVH;
+@property (strong, nonatomic) LBMyOrdersDetailModel *dataModel;//数据模型
 
 @end
 
@@ -40,9 +42,34 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self registertableviewcell];//注册cell
     self.navigationItem.title = @"订单详情";
+    [self registertableviewcell];//注册cell
+    [self loadData];//加载数据
+
 }
+
+-(void)loadData{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"shop_uid"] = self.shop_uid;
+    dic[@"ord_str"] = self.ord_str;
+    
+    [NetworkManager requestPOSTWithURLStr:OrderUser_product_order_detail paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.dataModel = [LBMyOrdersDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [self.tableview reloadData];
+    } enError:^(NSError *error) {
+            [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+
 
 -(void)registertableviewcell{
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailAdressTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailAdressTableViewCell];
@@ -51,13 +78,16 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailpdiscountsTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailpdiscountsTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailpmessageTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailpmessageTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderNumbersTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderNumbersTableViewCell];
-     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailPriceTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailPriceTableViewCell];
+    [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailPriceTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailPriceTableViewCell];
     
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 2; //返回值是多少既有几个分区
+    if (self.dataModel) {
+        return 2;
+    }
+    return 0; //返回值是多少既有几个分区
 }
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -65,7 +95,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     if (section == 0) {
         return 1;
     }else{
-        return 6 + self.productArr.count;
+        return 6 + self.dataModel.goods_info.count;
     }
     return 0;
 }
@@ -106,9 +136,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     if (indexPath.section == 0) {
         LBMineOrderDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailAdressTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.rightimge.hidden = YES;
-        cell.rightImgeW.constant = 0;
-        cell.adressConstrait.constant = 0;
+
         return cell;
     }else{
         if (indexPath.row >= 0 && indexPath.row < self.productArr.count) {
@@ -206,14 +234,14 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 
 -(NSArray*)titileArr{
     if (!_titileArr) {
-        _titileArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"优券抵扣", nil];
+        _titileArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"购物券抵扣", nil];
     }
     return _titileArr;
 }
 
 -(NSArray*)productArr{
     if (!_productArr) {
-        _productArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"优券抵扣", nil];
+        _productArr = [NSArray arrayWithObjects:@"商品金额",@"运费",@"购物券抵扣", nil];
     }
     return _productArr;
 }

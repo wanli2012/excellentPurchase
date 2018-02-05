@@ -11,8 +11,9 @@
 
 @protocol LBEat_storeDetailInfomationdelegete<NSObject>
 
--(void)tapgesturecomments;
--(void)ComeStorePay;
+-(void)tapgesturecomments;// 点击评论
+-(void)ComeStorePay;// 面对面支付
+-(void)gotoStoreAdress;//导航
 
 @end
 

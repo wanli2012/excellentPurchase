@@ -29,7 +29,7 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Fpw-L4-9xC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9LN-IW-8Ta"/>
                 <constraint firstAttribute="trailing" secondItem="Fpw-L4-9xC" secondAttribute="trailing" id="NZv-gN-phT"/>
