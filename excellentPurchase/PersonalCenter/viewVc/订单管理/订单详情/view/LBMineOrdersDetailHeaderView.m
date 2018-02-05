@@ -25,6 +25,15 @@
     return self;
 }
 
+-(void)setModel:(LBMyOrdersDetailModel *)model{
+    _model = model;
+    if ([NSString StringIsNullOrEmpty:_model.shop_name]) {
+        self.storeLb.text = @"未知商家";
+    }else{
+        self.storeLb.text = [NSString stringWithFormat:@"%@",_model.shop_name];
+    }
+}
+
 -(void)initInterFace{
     [self addSubview:self.statusLb];
     [self addSubview:self.storeLb];

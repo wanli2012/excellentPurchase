@@ -24,6 +24,16 @@
     
     UICollectionViewFlowLayout *flowLayout  = [[UICollectionViewFlowLayout alloc] init];
     
+    //    返回按钮
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 70, 40)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//左对齐
+    [button setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(10, -5, 10, 65)];
+    button.backgroundColor=[UIColor clearColor];
+    [button addTarget:self action:@selector(popself) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = ba;
+    
     if(self.type == 1){
         
         flowLayout.headerReferenceSize = CGSizeMake(0, 430);
@@ -60,7 +70,7 @@
  完成
  */
 - (void)completed{
-     NSLog(@"完成");
+    [self popself];
 }
 /**
  查看订单
@@ -117,6 +127,9 @@
         GLMine_PaySuccessView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMine_PaySuccessView"
                                                                                     forIndexPath:indexPath];
         headView.delegate = self;
+        headView.price.text = self.piece;
+        headView.orderNum.text = self.odernum;
+        headView.method.text = self.method;
         return headView;
     }else{
         GLMine_PayFailedView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMine_PayFailedView"
@@ -143,5 +156,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     }
 }
 
-
+-(void)popself{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

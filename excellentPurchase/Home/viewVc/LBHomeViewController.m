@@ -262,7 +262,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
        self.weatherImage.image = [UIImage imageNamed:@"天气8"];
     }
     else if (type >= 10 && type < 20) { //雨
-      self.weatherImage.image = [UIImage imageNamed:@"天气10"];
+      self.weatherImage.image = [UIImage imageNamed:@"组2拷贝@3x(1)"];
     }
     else if (type >= 20 && type < 26) { //雪
        self.weatherImage.image = [UIImage imageNamed:@"天气37"];

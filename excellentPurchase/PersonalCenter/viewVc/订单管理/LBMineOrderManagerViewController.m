@@ -8,6 +8,7 @@
 
 #import "LBMineOrderManagerViewController.h"
 #import "LBMineOrderMainViewController.h"
+#import "LBUerUnderlineOrdersViewController.h"
 
 @interface LBMineOrderManagerViewController ()
 
@@ -40,7 +41,9 @@
  @param sender <#sender description#>
  */
 - (IBAction)tapgestureEatOrders:(UITapGestureRecognizer *)sender {
-    
+    self.hidesBottomBarWhenPushed = YES;
+    LBUerUnderlineOrdersViewController *vc =[[LBUerUnderlineOrdersViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

@@ -51,18 +51,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FqX-kU-uld">
-                        <rect key="frame" x="313" y="78.5" width="70" height="30"/>
+                        <rect key="frame" x="313" y="83.5" width="70" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="J3G-PX-GK4"/>
+                            <constraint firstAttribute="height" constant="25" id="J3G-PX-GK4"/>
                             <constraint firstAttribute="width" constant="70" id="MGv-zr-Uq5"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="待评论">
                             <color key="titleColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="15"/>
+                                <real key="value" value="12.5"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.borderUIWidth">
                                 <integer key="value" value="1"/>
@@ -71,6 +71,9 @@
                                 <color key="value" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="waitRepaly:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kna-b2-k4x"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

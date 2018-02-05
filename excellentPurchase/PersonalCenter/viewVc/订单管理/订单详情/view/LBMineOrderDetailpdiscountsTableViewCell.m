@@ -15,10 +15,25 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+-(void)setModel:(LBMyOrdersDetailModel *)model{
+    _model = model;
+    if ([_model.coupons floatValue] <= 0) {
+        self.discountlb.text = [NSString stringWithFormat:@"¥0"];
+    }else{
+        self.discountlb.text = [NSString stringWithFormat:@"¥-%@",_model.coupons];
+    }
+    self.allpricelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"合计: ¥%.2f",[_model.money floatValue] - [_model.coupons floatValue]] specilstr:@[@"合计: "]];
+}
 
-    // Configure the view for the selected state
+-(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
+    
+    NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:originstr];
+    for (int i = 0; i < specilstrArr.count; i++) {
+        NSRange rang = [originstr rangeOfString:specilstrArr[i]];
+        [noteStr addAttributes:@{NSForegroundColorAttributeName:LBHexadecimalColor(0x333333)} range:rang];
+        [noteStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} range:rang];
+    }
+    return noteStr;
 }
 
 @end

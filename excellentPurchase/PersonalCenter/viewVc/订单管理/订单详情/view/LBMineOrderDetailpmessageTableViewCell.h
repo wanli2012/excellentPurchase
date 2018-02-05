@@ -10,4 +10,7 @@
 
 @interface LBMineOrderDetailpmessageTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *remark;
+
+
 @end

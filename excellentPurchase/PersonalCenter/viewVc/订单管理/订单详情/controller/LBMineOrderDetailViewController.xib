@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineOrderDetailViewController">
             <connections>
                 <outlet property="bottomVH" destination="lc6-iZ-fKa" id="Atx-Kb-Emg"/>
+                <outlet property="orderMoney" destination="uLg-Xq-W1F" id="hDc-Ph-r2T"/>
                 <outlet property="tableview" destination="GqL-RS-u0B" id="6Xj-J2-PhW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewThreeTop" destination="xsh-hZ-dxx" id="nyk-Xi-j0B"/>
@@ -46,19 +47,22 @@
                             <rect key="frame" x="0.0" y="51" width="375" height="49"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ6-TP-uR8">
-                                    <rect key="frame" x="275" y="0.0" width="100" height="49"/>
+                                    <rect key="frame" x="255" y="0.0" width="120" height="49"/>
                                     <color key="backgroundColor" red="0.96078431369999995" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="100" id="IL4-Rl-4D0"/>
+                                        <constraint firstAttribute="width" constant="120" id="IL4-Rl-4D0"/>
                                     </constraints>
                                     <state key="normal" title="立即付款">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="rightNewpay:" destination="-1" eventType="touchUpInside" id="kIh-XN-otB"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLg-Xq-W1F">
-                                    <rect key="frame" x="10" y="16.5" width="255" height="17"/>
+                                    <rect key="frame" x="10" y="16.5" width="235" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -92,6 +96,9 @@
                                             <integer key="value" value="15"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="sureReceiving:" destination="-1" eventType="touchUpInside" id="Hxc-Tc-m6c"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dk-Rf-acc">
                                     <rect key="frame" x="185" y="9.5" width="80" height="30"/>
@@ -109,6 +116,9 @@
                                             <integer key="value" value="15"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="checkfly:" destination="-1" eventType="touchUpInside" id="4WR-93-ghu"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,10 +135,13 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdw-pY-jmy">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                                    <color key="backgroundColor" red="0.99401646850000003" green="0.40313595530000002" blue="0.39819234609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <state key="normal" title="重新下单">
+                                    <color key="backgroundColor" red="0.97379392389999997" green="0.7777363062" blue="0.028684267770000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="查看物流">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="checkfly:" destination="-1" eventType="touchUpInside" id="hfo-OE-Yr1"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -12,6 +12,7 @@
 #import "LBTmallProductListViewController.h"
 #import "LBTmallFirstCalssifymodel.h"
 #import "LBTmallHotsearchViewController.h"
+#import "NodataView.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) NSMutableArray *controllerClassNames;
 @property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) NodataView *nodataView;//无数据的时候
 
 @end
 
@@ -44,8 +46,12 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"taotao-xiaoxi"] style:UIBarButtonItemStylePlain target:self action:@selector(messageEvent)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    [self addMenu];//加载菜单
-     [self loadData];//加载数据
+    [self.view addSubview:self.nodataView];
+    [self loadData];//加载数据
+    WeakSelf;
+    _nodataView.cancekBlock = ^{
+        [weakSelf loadData];//加载数据
+    };
 }
 
 -(void)loadData{
@@ -62,6 +68,7 @@
             if ( self.dataArr.count > 0) {
                 [LBTmallFirstCalssifymodel defaultUser].type_id = self.dataArr[0][@"type_id"];
                 [LBTmallFirstCalssifymodel defaultUser].typeName = self.dataArr[0][@"typename"];
+                [self.nodataView removeFromSuperview];
             }
     
             [self addMenu];//加载菜单
@@ -200,5 +207,14 @@
     
     return _controllerClassNames;
     
+}
+-(NodataView*)nodataView{
+    if (!_nodataView) {
+        _nodataView = [[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:nil options:nil].firstObject;
+        _nodataView.autoresizingMask = 0;
+        _nodataView.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - 49);
+        
+    }
+    return _nodataView;
 }
 @end

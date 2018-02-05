@@ -10,6 +10,7 @@
 #import "XC_label.h"
 #import "LBSaveLocationInfoModel.h"
 #import "LBIntegralGoodsTwoCollectionViewCell.h"
+#import "LBProductDetailViewController.h"
 
 @interface LBTmallHotsearchViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,selectHotOrHistoryDelegate,UITextFieldDelegate>
 
@@ -106,6 +107,7 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
         dic[@"token"] = @"";
     }
     WeakSelf;
+    [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:SeaShoppingGoods_search paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -128,9 +130,10 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
                 self.collectionV.hidden = NO;
                 self.xcLabel.hidden = YES;
             }
+            [EasyShowLodingView hidenLoding];
             [self.collectionV reloadData];
         }else{
-            
+            [EasyShowLodingView hidenLoding];
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
         
@@ -200,7 +203,12 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    LBTmallhomepageDataStructureModel *model = self.dataSource[indexPath.item];
+    self.hidesBottomBarWhenPushed = YES;
+    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+    vc.goods_id = model.goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

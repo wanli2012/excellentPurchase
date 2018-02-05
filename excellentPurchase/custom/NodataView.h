@@ -10,4 +10,11 @@
 
 @interface NodataView : UIView
 
+
+@property (weak, nonatomic) IBOutlet UILabel *statusLb;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+
+///选择回调
+@property (nonatomic, copy) void (^cancekBlock)(void);
+
 @end

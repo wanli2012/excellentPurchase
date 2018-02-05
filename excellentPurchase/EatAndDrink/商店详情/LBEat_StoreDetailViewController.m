@@ -20,6 +20,8 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 #import "LBEatProductDetailViewController.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MapKit/MapKit.h>
 
 static NSString *eat_storeDetailInfodiscountTableViewCell = @"LBEat_storeDetailInfodiscountTableViewCell";
 static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfoOtherTableViewCell";
@@ -123,6 +125,30 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
     vc.store_id = self.model.store_id;
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+-(void)gotoStoreAdress{
+    CGFloat lat = [self.model.lat floatValue];
+    CGFloat lng = [self.model.lng floatValue];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
+    {
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f | name:%@&mode=driving&coord_type=bd0911",lat, lng,self.model.store_address] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        
+    }else{
+        //使用自带地图导航
+        CLLocationCoordinate2D destCoordinate;
+        // 将数据传到反地址编码模型
+        destCoordinate = AMapCoordinateConvert(CLLocationCoordinate2DMake(lat,lng), AMapCoordinateTypeBaidu);
+        
+        MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
+        
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
+        toLocation.name = self.model.store_address;
+        
+        [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
+    }
 }
 #pragma mark - 到店支付
 -(void)ComeStorePay{

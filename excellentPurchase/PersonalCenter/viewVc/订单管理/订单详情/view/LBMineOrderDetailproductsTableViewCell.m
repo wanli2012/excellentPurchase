@@ -24,6 +24,14 @@
     [super awakeFromNib];
     // Initialization code
 }
+//待评论
+- (IBAction)waitRepaly:(UIButton *)sender {
+    
+    if (self.waitReply) {
+        self.waitReply(self.indexpath);
+    }
+}
+
 
 -(void)setModel:(LBMineSureOrdersGoodInfoModel *)model{
     _model = model;
@@ -41,5 +49,14 @@
     self.specLb.text = [NSString stringWithFormat:@"规格：%@",goodsModel.ord_spec_info];
     self.discountlb.text = [NSString stringWithFormat:@"¥ %@",goodsModel.ord_goods_price];
     self.numlb.text = [NSString stringWithFormat:@"x%@",goodsModel.ord_goods_num];
+}
+
+-(void)setOrderModel:(LBMyOrdersDetailGoodsListModel *)orderModel{
+    _orderModel = orderModel;
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_orderModel.thumb] placeholderImage:nil];
+    self.namelb.text = [NSString stringWithFormat:@"%@",_orderModel.goods_name];
+    self.specLb.text = [NSString stringWithFormat:@"规格：%@",_orderModel.ord_spec_info];
+    self.discountlb.text = [NSString stringWithFormat:@"¥ %@",_orderModel.ord_goods_price];
+    self.numlb.text = [NSString stringWithFormat:@"x%@",_orderModel.ord_goods_num];
 }
 @end

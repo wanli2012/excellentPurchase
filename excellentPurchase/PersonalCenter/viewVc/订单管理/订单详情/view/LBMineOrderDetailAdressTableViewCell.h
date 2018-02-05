@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMyOrdersDetailModel.h"
 
 @interface LBMineOrderDetailAdressTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *rightimge;
@@ -16,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *phonelb;
 @property (weak, nonatomic) IBOutlet UILabel *adresslb;
 
-
+@property (strong , nonatomic)LBMyOrdersDetailModel *model;
 
 @end

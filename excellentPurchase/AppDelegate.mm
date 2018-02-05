@@ -13,12 +13,18 @@
 #import "LBLoginViewController.h"//登录注册
 #import "Reachability.h"//网络监测
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
+#import "UMessage.h"
 
-@interface AppDelegate ()<BMKGeneralDelegate>
+#define WEIXI_APPKEY @"wx01b5d9da6a88048c"
+
+@interface AppDelegate ()<BMKGeneralDelegate,WXApiDelegate>
 {
 @private  Reachability *hostReach;
 }
 @property(strong,nonatomic)BMKMapManager* mapManager;
+@property(strong,nonatomic)NSDictionary* userInfo;
 
 - (void) reachabilityChanged: (NSNotification* )note;//网络连接改变
 - (void) updateInterfaceWithReachability: (Reachability*) curReach;//处理连接改变后的情况
@@ -42,6 +48,10 @@
         [EasyShowTextView showInfoText:@"启动百度地图失败"];
     }
     
+    /**
+     *微信支付
+     */
+    [WXApi registerApp:WEIXI_APPKEY withDescription:@"sjyg"];
     
 //    self.window.rootViewController = [[BasetabbarViewController alloc]init];
     
@@ -61,6 +71,183 @@
     
     return YES;
 }
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // 1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
+    [UMessage registerDeviceToken:deviceToken];
+   
+    //        NSString * token = [[[[deviceToken description]
+    //                              stringByReplacingOccurrencesOfString: @"<" withString: @""]
+    //                             stringByReplacingOccurrencesOfString: @">" withString: @""]
+    //                            stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+}
+//iOS10以下使用这个方法接收通知
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+    [UMessage didReceiveRemoteNotification:userInfo];
+    
+    self.userInfo = userInfo;
+    //定制自定的的弹出框
+    NSString *str = [NSString stringWithFormat:@"%@",userInfo[@"nim"]];
+    
+    if (![str isEqualToString:@"1"]) {//表示不是网易云推送
+        if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+        {
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新"
+                                                                message:userInfo[@"aps"][@"alert"]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"立即更新", nil];
+            
+            [alertView show];
+            
+        }else{
+           
+        }
+        
+    }
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }else{
+        //return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    }
+    
+    return NO;
+}
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }else if ([url.host isEqualToString:@"safepay"]){
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+            if (orderState==9000) {
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
+                
+            }else{
+                NSString *returnStr;
+                switch (orderState) {
+                    case 8000:
+                        returnStr=@"订单正在处理中";
+                        break;
+                    case 4000:
+                        returnStr=@"订单支付失败";
+                        break;
+                    case 6001:
+                        returnStr=@"订单取消";
+                        break;
+                    case 6002:
+                        returnStr=@"网络连接出错";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                [EasyShowTextView showText:returnStr];
+                
+            }
+        }];
+    }else{
+        //return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    }
+    
+    return YES;
+}
+// NOTE: 9.0以后使用新API接口
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    else if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+            if (orderState==9000) {
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
+                
+            }else{
+                NSString *returnStr;
+                switch (orderState) {
+                    case 8000:
+                        returnStr=@"订单正在处理中";
+                        break;
+                    case 4000:
+                        returnStr=@"订单支付失败";
+                        break;
+                    case 6001:
+                        returnStr=@"订单取消";
+                        break;
+                    case 6002:
+                        returnStr=@"网络连接出错";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                  [EasyShowTextView showText:returnStr];
+                
+            }
+        }];
+    }
+    
+    return YES;
+    
+}
+
+/**
+ *微信支付
+ */
+-(void) onResp:(BaseResp*)resp
+{
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    NSString *strTitle;
+    
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+    }
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+                strMsg = @"支付结果：成功！";
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"wxpaysucess" object:nil];
+                break;
+            case WXErrCodeUserCancel:
+                strMsg = @"支付结果：取消！";
+                break;
+                
+            default:
+                strMsg = [NSString stringWithFormat:@"支付结果：失败"];
+                break;
+        }
+    }
+    [EasyShowTextView showText:strMsg];
+}
+
+
+
+
 
 -(void)ListenNetWork{
     //开启网络状况的监听

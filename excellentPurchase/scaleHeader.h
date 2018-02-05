@@ -68,5 +68,13 @@
 #define SeaShoppingStore_goods @"SeaShopping/store_goods"//海淘店铺内-商品列表
 #define UserUser_collect @"User/user_collect"//用户收藏列表
 #define OrderConfirm_product_order @"Order/confirm_product_order"//用户确认订单
+#define OrderAppend_order @"Order/append_order"//用户提交下单
+#define PayOrder_payment @"Pay/order_payment"//支付
+#define OrderUser_face_order_list @"Order/user_face_order_list"//面对面订单
+#define OrderUser_product_order @"Order/user_product_order"//用户商品订单列表
+#define OrderHandlerUser_cancel_order @"OrderHandler/user_cancel_order"//用户取消商品订单
+#define OrderHandlerUser_order_confirm_get @"OrderHandler/user_order_confirm_get"//用户确认收货
+#define OrderUser_product_order_detail @"Order/user_product_order_detail"//用户确认收货
+#define OrderAppend_order_wait_pay @"Order/append_order_wait_pay"//待付款重新下单
 
 #endif /* scaleHeader_h */

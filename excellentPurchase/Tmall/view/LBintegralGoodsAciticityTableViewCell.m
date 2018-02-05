@@ -55,7 +55,7 @@
         _cycleScrollView.showPageControl = NO;
         _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.localizationImageNamesGroup = self.imagearr;
-        
+        _cycleScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     
     return _cycleScrollView;

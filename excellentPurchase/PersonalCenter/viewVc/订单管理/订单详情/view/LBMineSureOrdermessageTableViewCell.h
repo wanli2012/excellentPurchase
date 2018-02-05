@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineSureOrdersModel.h"
 
 @interface LBMineSureOrdermessageTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLb;
