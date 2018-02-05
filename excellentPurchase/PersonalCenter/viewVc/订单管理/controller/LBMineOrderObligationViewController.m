@@ -102,7 +102,6 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
             }
             if (self.dataArr.count <= 0) {
                 [EasyShowTextView showInfoText:@"没有数据啦!!!"];
-                
             }
             
         }else{
@@ -158,6 +157,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         cell.button2.backgroundColor = MAIN_COLOR;
         [cell.button1 setTitle:@"取消订单" forState:UIControlStateNormal];
         [cell.button2 setTitle:@"去付款" forState:UIControlStateNormal];
+        cell.button2.userInteractionEnabled = NO;
         cell.indexpath = indexPath;
         cell.model = model;
         WeakSelf;
@@ -263,7 +263,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     NSMutableArray *arr = [[NSMutableArray alloc]init];
     for (int i = 0; i< model.goods_data.count; i++) {
         LBMineOrderObligationGoodsmodel *goodmdel = model.goods_data[i];
-        [arr addObject:goodmdel.goods_id];
+        [arr addObject:goodmdel.ord_id];
     }
     
     NSString *ord_str = [arr componentsJoinedByString:@"_"];
@@ -279,7 +279,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.page = 1;
             [self loadData:self.page refreshDirect:YES];
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            [EasyShowTextView showSuccessText:responseObject[@"message"]];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];

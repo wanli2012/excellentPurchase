@@ -75,5 +75,6 @@
 #define OrderHandlerUser_cancel_order @"OrderHandler/user_cancel_order"//用户取消商品订单
 #define OrderHandlerUser_order_confirm_get @"OrderHandler/user_order_confirm_get"//用户确认收货
 #define OrderUser_product_order_detail @"Order/user_product_order_detail"//用户确认收货
+#define OrderAppend_order_wait_pay @"Order/append_order_wait_pay"//待付款重新下单
 
 #endif /* scaleHeader_h */

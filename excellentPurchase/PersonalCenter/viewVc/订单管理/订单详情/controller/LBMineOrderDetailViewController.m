@@ -16,6 +16,9 @@
 #import "LBMineOrderDetailPriceTableViewCell.h"
 #import "LBMineOrdersDetailHeaderView.h"
 #import "LBMyOrdersDetailModel.h"
+#import "LBMineCentermodifyAdressViewController.h"
+#import "LBProductDetailViewController.h"
+#import "GLMine_Cart_PayController.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -34,6 +37,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTwoTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewThreeTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomVH;
+
+@property (weak, nonatomic) IBOutlet UILabel *orderMoney;//订单金额
+
 @property (strong, nonatomic) LBMyOrdersDetailModel *dataModel;//数据模型
 
 @end
@@ -60,6 +66,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     [NetworkManager requestPOSTWithURLStr:OrderUser_product_order_detail paramDic:dic finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.dataModel = [LBMyOrdersDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.orderMoney.attributedText = [self addoriginstr:[NSString stringWithFormat:@"合计：¥%@",self.dataModel.money] specilstr:@[self.dataModel.money]];
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
@@ -69,8 +76,6 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     }];
     
 }
-
-
 -(void)registertableviewcell{
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailAdressTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailAdressTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailproductsTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailproductsTableViewCell];
@@ -81,6 +86,49 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     [self.tableview registerNib:[UINib nibWithNibName:mineOrderDetailPriceTableViewCell bundle:nil] forCellReuseIdentifier:mineOrderDetailPriceTableViewCell];
     
 }
+//立即付款
+- (IBAction)rightNewpay:(UIButton *)sender {
+    NSMutableArray *ord_strArr = [NSMutableArray array];
+    for (int i = 0; i < self.dataModel.goods_info.count; i++) {
+        LBMyOrdersDetailGoodsListModel *goodModel = self.dataModel.goods_info[i];
+        [ord_strArr addObject:goodModel.ord_id];
+    }
+    NSString *ord_str = [ord_strArr componentsJoinedByString:@"_"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    dic[@"address_id"] = self.dataModel.address_id;
+    dic[@"ord_str"] = ord_str;
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:OrderAppend_order_wait_pay paramDic:dic finish:^(id responseObject) {
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.hidesBottomBarWhenPushed = YES;
+            GLMine_Cart_PayController *payVC = [[GLMine_Cart_PayController alloc] init];
+            payVC.datadic = responseObject[@"data"];
+            [self.navigationController pushViewController:payVC animated:YES];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+//确认收货
+- (IBAction)sureReceiving:(UIButton *)sender {
+}
+//查看物流
+- (IBAction)checkfly:(UIButton *)sender {
+    
+}
+
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
@@ -107,20 +155,23 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         tableView.rowHeight = UITableViewAutomaticDimension;
         return UITableViewAutomaticDimension;
     }else{
-        if (indexPath.row >= 0 && indexPath.row < self.productArr.count) {
+        if (indexPath.row >= 0 && indexPath.row < self.dataModel.goods_info.count) {
             return 90;
-        }else if ((indexPath.row >= self.productArr.count) && (indexPath.row < self.productArr.count + 2)){
+        }else if ((indexPath.row >= self.dataModel.goods_info.count) && (indexPath.row < self.dataModel.goods_info.count + 2)){
             return 60;
-        }else if ((indexPath.row >= self.productArr.count+2) && (indexPath.row < self.productArr.count + 4)){
-            if (self.typeindex != 1 && indexPath.row == self.productArr.count + 3) {
+        }else if ((indexPath.row >= self.dataModel.goods_info.count+2) && (indexPath.row < self.dataModel.goods_info.count + 4)){
+            if (self.typeindex == 3 && indexPath.row == self.dataModel.goods_info.count + 3) {
                 return 80;
             }
             return 50;
-        }else if (indexPath.row == self.productArr.count+4){
+        }else if (indexPath.row == self.dataModel.goods_info.count+4){
+            if ([NSString StringIsNullOrEmpty:self.dataModel.remark]) {
+                return 0;
+            }
             tableView.estimatedRowHeight = 20;
             tableView.rowHeight = UITableViewAutomaticDimension;
             return UITableViewAutomaticDimension;
-        }else if (indexPath.row == self.productArr.count+5){
+        }else if (indexPath.row == self.dataModel.goods_info.count+5){
             tableView.estimatedRowHeight = 40;
             tableView.rowHeight = UITableViewAutomaticDimension;
             return UITableViewAutomaticDimension;
@@ -136,50 +187,74 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     if (indexPath.section == 0) {
         LBMineOrderDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailAdressTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        cell.model = self.dataModel;
         return cell;
     }else{
-        if (indexPath.row >= 0 && indexPath.row < self.productArr.count) {
+        if (indexPath.row >= 0 && indexPath.row < self.dataModel.goods_info.count) {
             LBMineOrderDetailproductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailproductsTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.typeindex == 3){
                 cell.replayBt.hidden = NO;
             }
+            cell.indexpath = indexPath;
+            cell.orderModel = self.dataModel.goods_info[indexPath.row];
+            cell.waitReply = ^(NSIndexPath *indexpath) {//待评论
+                
+            };
             return cell;
-        }else if ((indexPath.row >= self.productArr.count) && (indexPath.row < self.productArr.count + 2)){
+        }else if ((indexPath.row >= self.dataModel.goods_info.count) && (indexPath.row < self.dataModel.goods_info.count + 2)){
             LBMineOrderDetailprateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailprateTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.titileLb.text = @"让利";
-            cell.valueLb.textColor = MAIN_COLOR;
+            if (indexPath.row == self.dataModel.goods_info.count) {
+                cell.titileLb.text = @"奖励";
+                cell.valueLb.textColor = MAIN_COLOR;
+                 cell.valueLb.text = [NSString stringWithFormat:@"%@积分+%@购物券",self.dataModel.reward_mark,self.dataModel.reward_coupons];
+            }else{
+                cell.titileLb.text = @"商品金额";
+                cell.valueLb.textColor = LBHexadecimalColor(0x333333);
+                cell.valueLb.text = [NSString stringWithFormat:@"¥%@",self.dataModel.money];
+            }
             return cell;
-        }else if ((indexPath.row >= self.productArr.count+2) && (indexPath.row < self.productArr.count + 4)){
-            if (self.typeindex != 1 && indexPath.row == self.productArr.count + 3) {
+        }else if ((indexPath.row >= self.dataModel.goods_info.count+2) && (indexPath.row < self.dataModel.goods_info.count + 4)){
+            if (self.typeindex == 3 && indexPath.row == self.dataModel.goods_info.count + 3) {
                 LBMineOrderDetailpdiscountsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailpdiscountsTableViewCell forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.model = self.dataModel;
+                return cell;
+            }else{
+                LBMineOrderDetailPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailPriceTableViewCell forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.valuelb.textColor = LBHexadecimalColor(0x333333);
+                if (indexPath.row == self.dataModel.goods_info.count+2 ) {
+                    cell.titile.text = @"运费";
+                    cell.valuelb.text = [NSString stringWithFormat:@"¥%@",self.dataModel.send_price];
+                }else{
+                    cell.titile.text = @"购物券抵扣";
+                    cell.valuelb.text = [NSString stringWithFormat:@"¥%@",self.dataModel.coupons];
+                }
+                
                 return cell;
             }
-            
-            LBMineOrderDetailPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailPriceTableViewCell forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.titileLb.text = self.titileArr[indexPath.row];
-//            cell.valueLb.textColor = LBHexadecimalColor(0x333333);
-            return cell;
-        }else if (indexPath.row == self.productArr.count+4){
+        }else if (indexPath.row == self.dataModel.goods_info.count+4){
             LBMineOrderDetailpmessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailpmessageTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if ([NSString StringIsNullOrEmpty:self.dataModel.remark]) {
+               cell.hidden = YES;
+            }
+            cell.remark.text = [NSString stringWithFormat:@"留言：%@",self.dataModel.remark];
             return cell;
-        }else if (indexPath.row == self.productArr.count+5){
+        }else if (indexPath.row == self.dataModel.goods_info.count+5){
             LBMineOrderNumbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderNumbersTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.typeindex == 3){
+            if (self.typeindex == 5){
                 cell.wuliuBt.hidden = NO;
             }
+            cell.orderNum.text = [NSString stringWithFormat:@"订单号: %@",self.dataModel.order_num];
+            cell.timelb.text = [NSString stringWithFormat:@"下单时间: %@",[formattime formateTimeYM:self.dataModel.time]];
             return cell;
         }
     }
-
     return [[UITableViewCell alloc]init];
-    
 }
 
 #pragma mark - 重写----设置自定义的标题和标注
@@ -192,12 +267,16 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         if (!headerview) {
             headerview = [[LBMineOrdersDetailHeaderView alloc]initWithReuseIdentifier:ID];
         }
+        headerview.model = self.dataModel;
+        if (self.typeindex == 1) {
+            headerview.statusLb.text = @"等待买家付款";
+        }else if (self.typeindex == 3){
+            headerview.statusLb.text = @"待收货";
+        }
         
         return headerview;
     }
-    
     return nil;
-    
 }
 
 #pragma mark - 重写----设置标题和标注的高度
@@ -215,7 +294,25 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 }
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 0) {
+        self.hidesBottomBarWhenPushed =YES;
+        LBMineCentermodifyAdressViewController *vc =[[LBMineCentermodifyAdressViewController alloc]init];
+        WeakSelf;
+        vc.block = ^(GLMine_AddressModel *adressmodel) {
+            weakSelf.dataModel.get_user = adressmodel.truename;
+            weakSelf.dataModel.get_phone = adressmodel.phone;
+            weakSelf.dataModel.get_address = adressmodel.address_address;
+            [_tableview reloadData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        if (indexPath.row >= 0 && indexPath.row < self.dataModel.goods_info.count) {
+            self.hidesBottomBarWhenPushed = YES;
+            LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+            vc.goods_id = ((LBMyOrdersDetailGoodsListModel*)self.dataModel.goods_info[indexPath.row]).ord_goods_id;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 -(void)updateViewConstraints{
@@ -223,13 +320,24 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     
     if (self.typeindex == 1) {
         self.viewoneTop.constant = 0;
-    }else if (self.typeindex == 2){
-        self.viewTwoTop.constant = 0;
     }else if (self.typeindex == 3){
+        self.viewTwoTop.constant = 0;
+    }else if (self.typeindex == 5){
+         self.viewThreeTop.constant = 0;
+    }else if (self.typeindex == 10){
         self.bottomVH.constant = 0;
-    }else if (self.typeindex == 4){
-        self.viewThreeTop.constant = 0;
     }
+}
+
+-(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
+    
+    NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:originstr];
+    for (int i = 0; i < specilstrArr.count; i++) {
+        NSRange rang = [originstr rangeOfString:specilstrArr[i]];
+        [noteStr addAttributes:@{NSForegroundColorAttributeName:MAIN_COLOR} range:rang];
+        [noteStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} range:rang];
+    }
+    return noteStr;
 }
 
 -(NSArray*)titileArr{

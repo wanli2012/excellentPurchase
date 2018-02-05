@@ -188,8 +188,19 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterReasonViewCell";
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    LBMineOrderObligationmodel *model = self.dataArr[indexPath.section];
+    NSMutableArray *goodidArr = [NSMutableArray array];
+    for (int i = 0; i < model.goods_data.count; i++) {
+        LBMineOrderObligationGoodsmodel  *gmodel = model.goods_data[i];
+        [goodidArr addObject:gmodel.ord_id];
+    }
+    
+    NSString *ord_str = [goodidArr componentsJoinedByString:@"_"];
     self.hidesBottomBarWhenPushed = YES;
-    LBMineSureOrdersViewController *vc = [[LBMineSureOrdersViewController alloc]init];
+    LBMineOrderDetailViewController *vc = [[LBMineOrderDetailViewController alloc]init];
+    vc.ord_str = ord_str;
+    vc.typeindex = 5;
+    vc.shop_uid = model.ord_shop_uid;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

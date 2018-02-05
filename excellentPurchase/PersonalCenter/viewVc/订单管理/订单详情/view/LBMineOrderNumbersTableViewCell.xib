@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="346" height="87"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单编号: 99999999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvc-Or-wpV">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvc-Or-wpV">
                         <rect key="frame" x="10" y="30" width="246" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="rs6-j1-vPM"/>
@@ -27,7 +27,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单时间: 2017-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZp-RK-sWK">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZp-RK-sWK">
                         <rect key="frame" x="10" y="56" width="246" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="L0B-Sp-raN"/>
@@ -82,6 +82,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="orderNum" destination="Xvc-Or-wpV" id="57G-MY-HgE"/>
+                <outlet property="timelb" destination="tZp-RK-sWK" id="Anr-Ju-FSA"/>
                 <outlet property="wuliuBt" destination="zAq-YZ-gPH" id="EJt-Aj-6V7"/>
             </connections>
             <point key="canvasLocation" x="38" y="73.5"/>

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMyOrdersDetailModel.h"
 
 @interface LBMineOrderDetailpdiscountsTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBMyOrdersDetailModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *discountlb;
+@property (weak, nonatomic) IBOutlet UILabel *allpricelb;
+
 
 @end

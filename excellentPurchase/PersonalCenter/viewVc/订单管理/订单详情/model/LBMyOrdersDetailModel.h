@@ -40,5 +40,6 @@
 @property (copy , nonatomic)NSString *ord_order_id;
 @property (copy , nonatomic)NSString *ord_spec_info;
 @property (copy , nonatomic)NSString *thumb;
+@property (copy , nonatomic)NSString *ord_id;
 
 @end

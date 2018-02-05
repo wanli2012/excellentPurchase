@@ -57,7 +57,7 @@
 - (void)setModel:(GLMine_AddressModel *)model{
     _model = model;
     self.nameLb.text = model.truename;
-    self.adressLn.text = [NSString stringWithFormat:@"%@%@%@%@",model.address_province,model.address_city,model.address_area,model.address_address];
+    self.adressLn.text = [NSString stringWithFormat:@"%@",model.address_address];
     self.phoneLb.text = model.phone;
     
     if ([model.is_default integerValue] == 1) { //是否默认  1是 0否
