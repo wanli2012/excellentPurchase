@@ -32,6 +32,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LBSetUpTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBSetUpTableViewCell"];
     
+//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -72,7 +74,6 @@
     return 60;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *vcstr = self.userVcArr[indexPath.row];
@@ -84,7 +85,6 @@
 
 }
 
-
 #pragma mark - 懒加载
 
 -(NSMutableArray*)userVcArr{
@@ -94,7 +94,6 @@
                     @"LBDonationViewController",
                     @"LBVoucherCenterViewController",
                     @"GLMine_MyWallet_CashController",nil];
-        
     }
     
     return _userVcArr;

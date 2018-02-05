@@ -21,11 +21,12 @@ static NSString *voucherCenterRecoderTableViewCell = @"LBVoucherCenterRecoderTab
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"充值记录";
+    
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:voucherCenterRecoderTableViewCell bundle:nil] forCellReuseIdentifier:voucherCenterRecoderTableViewCell];
-    
-    adjustsScrollViewInsets_NO(self.tableview, self);
-    
+
+//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark - 重写----设置每个分区有几个单元格

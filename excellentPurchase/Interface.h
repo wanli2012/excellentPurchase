@@ -122,7 +122,7 @@
 #define kteam_achievement @"Team/team_achievement"//团队列表-王凯
 #define kuser_cart_data @"UserCart/user_cart_data"//用户购物车数据
 #define kdel_user_cart @"UserCart/del_user_cart"//用户删除购物车
-
+#define kuser_recharge @"UserRecharge/user_recharge"//用户余额充值-江海林-未完成
 
 
 #endif /* Interface_h */
