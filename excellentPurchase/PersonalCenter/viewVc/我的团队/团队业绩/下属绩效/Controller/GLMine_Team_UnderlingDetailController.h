@@ -10,4 +10,6 @@
 
 @interface GLMine_Team_UnderlingDetailController : UIViewController
 
+@property (nonatomic, copy)NSString *cid;//被查找用户ID
+
 @end

@@ -31,43 +31,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setNav];
+    self.navigationItem.title = @"团队成员";
+//    [self setNav];
     [self addMenu];//加载菜单
 }
-- (void)setNav{
-    
-    self.navigationItem.title = @"团队成员";
-    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
-    
-    [button setTitle:@"筛选" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-    button.backgroundColor = [UIColor clearColor];
-    [button addTarget:self action:@selector(filter) forControlEvents:UIControlEventTouchUpInside];
-    self.rightBtn = button;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBtn];
-}
+//- (void)setNav{
+//
+//    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
+//    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
+//
+//    [button setTitle:@"筛选" forState:UIControlStateNormal];
+//    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+//    button.backgroundColor = [UIColor clearColor];
+//    [button addTarget:self action:@selector(filter) forControlEvents:UIControlEventTouchUpInside];
+//    self.rightBtn = button;
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBtn];
+//}
 
 /**
  筛选
  */
-- (void)filter{
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLIdentifySelectController *idSelectVC = [[GLIdentifySelectController alloc] init];
-    idSelectVC.selectIndex = [self.group_id integerValue];
-    __weak typeof(self) weakSelf = self;
-    idSelectVC.block = ^(NSString *name,NSString *group_id,NSInteger selectIndex) {
-        
-        [weakSelf.rightBtn setTitle:name forState:UIControlStateNormal];
-        weakSelf.group_id = group_id;
-        weakSelf.selectIndex = selectIndex;
-        
-    };
-    
-    [self.navigationController pushViewController:idSelectVC animated:YES];
-}
+//- (void)filter{
+//
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLIdentifySelectController *idSelectVC = [[GLIdentifySelectController alloc] init];
+//    idSelectVC.selectIndex = [self.group_id integerValue];
+//    __weak typeof(self) weakSelf = self;
+//    idSelectVC.block = ^(NSString *name,NSString *group_id,NSInteger selectIndex) {
+//
+//        [weakSelf.rightBtn setTitle:name forState:UIControlStateNormal];
+//        weakSelf.group_id = group_id;
+//        weakSelf.selectIndex = selectIndex;
+//        
+//    };
+//
+//    [self.navigationController pushViewController:idSelectVC animated:YES];
+//}
 
 //加载菜单
 -(void)addMenu{
@@ -93,9 +93,16 @@
     for (int i = 0; i < self.menuArr.count; i++) {
         if (self.controllerClassNames.count > i) {
             GLMine_Team_MemberListController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
-            //            NSString *text = [self.pageMenu titleForItemAtIndex:i];
+            
+            if (i == 0) {//@"审核中",@"审核成功",@"审核失败"
+                baseVc.type = [NSString stringWithFormat:@"2"];//1 通过 2审核中 3失败
+            }else if(i == 1){
+                baseVc.type = [NSString stringWithFormat:@"1"];//1 通过 2审核中 3失败
+            }else if(i == 2){
+                baseVc.type = [NSString stringWithFormat:@"3"];//1 通过 2审核中 3失败
+            }
             [self addChildViewController:baseVc];
-            // 控制器本来自带childViewControllers,但是遗憾的是该数组的元素顺序永远无法改变，只要是addChildViewController,都是添加到最后一个，而控制器不像数组那样，可以插入或删除任意位置，所以这里自己定义可变数组，以便插入(删除)(如果没有插入(删除)功能，直接用自带的childViewControllers即可)
+        
             [self.myChildViewControllers addObject:baseVc];
         }
     }
@@ -165,6 +172,7 @@
     return _myChildViewControllers;
     
 }
+
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {

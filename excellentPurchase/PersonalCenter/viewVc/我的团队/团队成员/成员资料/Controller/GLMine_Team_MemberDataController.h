@@ -10,4 +10,6 @@
 
 @interface GLMine_Team_MemberDataController : UIViewController
 
+@property (nonatomic, copy)NSString *leaguer_uid;//倍查看人的UID
+
 @end

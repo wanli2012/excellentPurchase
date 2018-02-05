@@ -25,6 +25,17 @@
 //#define LOGIC_ERROR_CODE 405  //请求方法不被允许(验证post和get或其他方式的请求)
 //#define LOGIC_ERROR_CODE 500  //服务器内部错误
 
+
+#define GROUP_SD 2 //省代
+#define GROUP_CD 3 //市代
+#define GROUP_QY 4 //区代
+#define GROUP_DQ 5 //创客中心
+#define GROUP_GJTG 6 //高级创客
+#define GROUP_TG 7 //创客
+#define GROUP_SHOP 8 //商家
+#define GROUP_USER 9 //会员
+
+
 //captchaid的值是每个产品从后台生成的,
 #define CAPTCHAID @"e81c8a046b5e4d08999ef30e01999e35"
 
@@ -92,7 +103,6 @@
 
 #define kcontainer_goods_lower @"StoreContainer/container_goods_lower"//商品下架-江海林
 #define kstore_receive @"Store/store_receive"//我的小店获取(商铺资料/改牌照资料)-江海林
-
 #define kstore_info_edit @"Store/store_info_edit"//修改商铺资料/修改招牌照 - 江海林
 
 #define kappend_subordinate @"Team/append_subordinate"///人员配置-江海林
@@ -105,5 +115,14 @@
 #define kstore_order_send @"OrderHandler/store_order_send"//商家发货-周永峰
 #define kstore_achievement_line @"Store/store_achievement_line"//商家线下订单业绩
 #define kstore_achievement @"Store/store_achievement"//商家线上订单业绩
+#define kmy_team @"Team/my_team"//团队首页-王凯Team/leaguer_index
+#define kleaguer_index @"Team/leaguer_index"//查看下级成员列表--黄炜
+#define kleaguer_info @"Team/leaguer_info"//成员资料--黄炜
+#define kmen_achievement @"Team/men_achievement"//下级团队业绩列表-王凯
+#define kteam_achievement @"Team/team_achievement"//团队列表-王凯
+#define kuser_cart_data @"UserCart/user_cart_data"//用户购物车数据
+#define kdel_user_cart @"UserCart/del_user_cart"//用户删除购物车
+
+
 
 #endif /* Interface_h */

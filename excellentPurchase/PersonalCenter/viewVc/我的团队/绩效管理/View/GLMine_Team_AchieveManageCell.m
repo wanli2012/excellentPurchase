@@ -38,8 +38,7 @@
 
 - (void)setModel:(GLMine_Team_AchieveManageModel *)model{
     _model = model;
-    
-    if (model.cellType == 0) {//0:绩效管理
+   
         self.typeView.hidden = NO;
         self.dateLabel.hidden = YES;
         
@@ -48,24 +47,33 @@
         
         self.valueLabel.text = model.setType;
         self.valueLabel2.text = model.done_Achieve;
-        
-    }else{//1:团队成员
-        self.typeView.hidden = YES;
-        self.dateLabel.hidden = NO;
-        
-        self.attributeNameLabel.text = @"身份";
-        self.attributeNameLabel2.text = @"手机号";
-        
-        self.valueLabel.text = model.group_id;
-        self.valueLabel2.text = model.phone;
-    }
+
     
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.picName] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.nameLabel.text = model.name;
+//    self.nameLabel.text = model.name;
     self.IDNumberLabel.text = model.IDNumber;
     
     self.dateLabel.text = model.date;
     self.groupTypeLabel.text = model.group_id;
+    
+}
+- (void)setMemberModel:(GLMine_Team_MemberModel *)memberModel{
+    _memberModel = memberModel;
+    self.typeView.hidden = YES;
+    self.dateLabel.hidden = NO;
+    
+    self.attributeNameLabel.text = @"身份";
+    self.attributeNameLabel2.text = @"手机号";
+    
+    self.valueLabel.text = memberModel.group_name;
+    self.valueLabel2.text = memberModel.phone;
+    
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:memberModel.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+//    self.nameLabel.text = memberModel.truename;
+    self.IDNumberLabel.text = memberModel.user_name;
+    
+    self.dateLabel.text = [formattime formateTimeOfDate4:memberModel.regtime];
+
     
 }
 

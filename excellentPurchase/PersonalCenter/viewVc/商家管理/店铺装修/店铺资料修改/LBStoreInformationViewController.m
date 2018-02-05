@@ -121,6 +121,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     WeakSelf;
     //信号量
     [EasyShowLodingView showLoding];
+    
+    self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+    self.submitBtn.enabled = NO;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     //创建全局并行
     dispatch_group_t group = dispatch_group_create();
@@ -255,6 +258,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     
     [NetworkManager requestPOSTWithURLStr:kstore_info_edit paramDic:dic finish:^(id responseObject) {
         
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
+        
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -269,13 +275,16 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         }
         
     } enError:^(NSError *error) {
+        
         [EasyShowLodingView hidenLoding];
+        
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
+        
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
     
 }
-
-
 
 #pragma mark - HCBasePopupViewControllerDelegate 个协议方法来自定义你的弹出框内容
 - (void)setupSubViewWithPopupView:(UIView *)popupView withController:(UIViewController *)controller{
@@ -348,13 +357,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
             [wself photoSelectet];
         } withType:HCBottomPopupActionSelectItemTypeDefault];
 
-        HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//        HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
 
         HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
 
         [pc addAction:action1];
         [pc addAction:action2];
-        [pc addAction:action3];
+//        [pc addAction:action3];
         [pc addAction:action4];
 
         [self presentViewController:pc animated:YES completion:nil];
@@ -417,11 +426,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }else {
             data = UIImageJPEGRepresentation(image, 0.2);
         }
+        
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
-        
         [self.assets addObject:image];
     
+        [self.collectionView reloadData];
+        
         [picker dismissViewControllerAnimated:YES completion:nil];
         
     }
@@ -472,7 +483,23 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
      pickerBrowser.status = UIViewAnimationAnimationStatusFade;
     // 数据源/delegate
     pickerBrowser.editing = YES;
-    pickerBrowser.photos = self.photos;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (id photo in self.assets) {
+        ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+        if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
+            
+            ZLPhotoAssets *assets = [self.assets objectAtIndex:index];
+            photoNew.asset = assets;
+            
+        }else{
+            
+            photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+        }
+        [arrM addObject:photoNew];
+    }
+    
+    pickerBrowser.photos = arrM;
     // 能够删除
     pickerBrowser.delegate = self;
     // 当前选中的值
@@ -481,11 +508,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [pickerBrowser showPickerVc:self];
 }
 
-- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
-    if (self.assets.count > index) {
-      
-    }
-}
+//- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
+//
+//    [self.assets removeAllObjects];
+//
+//    [self.assets addObjectsFromArray:photoBrowser.photos];
+//
+////    if (self.assets.count > index) {
+////        [self.assets removeObjectAtIndex:index];
+//        [self.collectionView reloadData];
+////    }
+//}
 
 - (NSMutableArray *)assets{
     if (!_assets) {

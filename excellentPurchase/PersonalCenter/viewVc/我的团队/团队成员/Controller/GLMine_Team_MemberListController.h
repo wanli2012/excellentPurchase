@@ -10,4 +10,6 @@
 
 @interface GLMine_Team_MemberListController : UIViewController
 
+@property (nonatomic, copy)NSString *type;//1 通过 2审核中 3失败
+
 @end

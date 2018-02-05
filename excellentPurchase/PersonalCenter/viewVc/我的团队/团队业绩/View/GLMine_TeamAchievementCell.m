@@ -25,34 +25,25 @@
     
 }
 
-- (void)setModel:(GLMine_TeamAchievementModel *)model{
+- (void)setModel:(GLMine_TeamUnderLing_data_upModel *)model{
     _model = model;
     
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.picName] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.nameLabel.text = model.name;
-    self.IDLabel.text = model.ID;
-    self.consumeLabel.text = model.consume;
-    
-    switch ([model.type integerValue]) {
-        case 0:
-        {
-            self.typeLabel.text = @"创客";
-        }
-            break;
-        case 1:
-        {
-            self.typeLabel.text = @"高级创客";
-        }
-            break;
-        case 2:
-        {
-            self.typeLabel.text = @"会员";
-        }
-            break;
-            
-        default:
-            break;
-    }
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.nameLabel.text = model.truename;
+    self.IDLabel.text = model.user_name;
+    self.consumeLabel.text = model.performance;
+    self.typeLabel.text = model.group_name;
     
 }
+
+//- (void)setUnderModel:(GLMine_TeamUnderLing_data_upModel *)underModel{
+//    _underModel = underModel;
+//
+//    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:underModel.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+//    self.nameLabel.text = underModel.truename;
+//    self.IDLabel.text = underModel.user_name;
+//    self.consumeLabel.text = underModel.performance;
+//    self.typeLabel.text = underModel.group_name;
+//}
+
 @end

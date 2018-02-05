@@ -23,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIView *numberChangeView;//数量加减
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *picImageVWidth;
 
-
-
 @end
 
 @implementation GLMine_ShoppingCartCell
@@ -38,7 +36,7 @@
     
     ///响应式编程  即时获取textfield输入值
     [[self.amountTF rac_textSignal] subscribeNext:^(id x) {
-        _model.amount = x;
+        _model.buy_num = x;
     }];
     
 }
@@ -49,7 +47,6 @@
         [self.delegate changeStatus:self.index andSection:self.section];
     }
 }
-
 
 /**
  数量加减
@@ -86,24 +83,25 @@
         self.selectedImageV.image = [UIImage imageNamed:@"pay-select-n"];
     }
     
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.goodsNameLabel.text = model.goodsName;
-    self.specLabel.text = [NSString stringWithFormat:@"规格:%@",model.spec];
-    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",model.price];
-    self.rebateLabel.text = [NSString stringWithFormat:@"%@积分; %@购物券",model.jifen,model.coupon];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.goodsNameLabel.text = model.goods_name;
+    self.specLabel.text = [NSString stringWithFormat:@"规格:%@",model.title];
+    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",model.marketprice];
+    self.rebateLabel.text = [NSString stringWithFormat:@"%@积分; %@购物券",model.rewardspoints,model.reward_coupons];
     
-    self.amountTF.text = model.amount;
-    self.amountLabel.text = [NSString stringWithFormat:@"x%@",model.amount];
+    self.amountTF.text = model.buy_num;
+    self.amountLabel.text = [NSString stringWithFormat:@"x%@",model.buy_num];
     
-    if (model.isDone) {
-        self.priceLabel.hidden = NO;
-        self.amountLabel.hidden = NO;
-        self.numberChangeView.hidden = YES;
-    }else{
+    if (model.isEdit) {
         self.priceLabel.hidden = YES;
         self.amountLabel.hidden = YES;
         self.numberChangeView.hidden = NO;
+    }else{
+        self.priceLabel.hidden = NO;
+        self.amountLabel.hidden = NO;
+        self.numberChangeView.hidden = YES;
     }
+    
     self.index = model.index;
     self.section = model.section;
     

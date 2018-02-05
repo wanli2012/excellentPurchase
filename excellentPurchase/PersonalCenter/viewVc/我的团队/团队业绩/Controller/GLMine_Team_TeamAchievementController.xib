@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_Team_TeamAchievementController">
             <connections>
                 <outlet property="tableView" destination="80V-Bg-gjc" id="OSG-oj-7mP"/>
+                <outlet property="teamAchievementLabel" destination="8eW-54-kWL" id="UmY-Qc-VE0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

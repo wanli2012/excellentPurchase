@@ -38,7 +38,6 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"修改收货地址";
     
-    [self setupNpdata];//设置无数据的时候展示
     
     self.tableview.tableFooterView = [UIView new];
     self.tableview.estimatedRowHeight = 105;
@@ -50,6 +49,7 @@
     
     self.navigationItem.rightBarButtonItem = ba;
     
+    [self setupNpdata];//设置无数据的时候展示
     WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
         [weakSelf postRequest:YES];
@@ -170,7 +170,9 @@
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
         
-    }];}
+    }];
+    
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     

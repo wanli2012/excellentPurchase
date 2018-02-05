@@ -12,6 +12,8 @@
 #import "GLMine_ShoppingCartHeader.h"
 #import "GLMine_ShoppingCartGuessCell.h"
 
+#import "GLMine_ShoppingCartModel.h"
+
 #import "LBMineSureOrdersViewController.h"//提交订单
 #import "LBProductDetailViewController.h"//海淘商城-商品详情
 
@@ -22,11 +24,9 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (weak, nonatomic) IBOutlet UIButton *clearBtn;//结算按钮
 
 @property (nonatomic, strong)UIButton *rightBtn;//导航栏右键
-
 @property (nonatomic, strong)NSMutableArray *models;//数据源
 
 @property (weak, nonatomic) IBOutlet UIView *clearView;//结算view
@@ -34,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//选中标志(完成)
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV2;//选中标志(编辑)
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;//总价
+
+
+@property (strong, nonatomic)NodataView *nodataV;
+
 
 @end
 
@@ -47,6 +51,83 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_ShoppingCartGuessCell" bundle:nil] forCellReuseIdentifier:@"GLMine_ShoppingCartGuessCell"];
     
      [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    [self setupNpdata];//设置无数据的时候展示
+    
+    WeakSelf;
+
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [weakSelf postRequest:YES];
+    }];
+    
+    [self postRequest:YES];
+
+}
+
+//刷新
+-(void)refreshReceivingAddress{
+    [self postRequest:YES];
+}
+
+/**
+ 设置无数据图
+ */
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableView.tableFooterView = [UIView new];
+    
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableView.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableView.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    //emptyView内容上的点击事件监听
+    [self.tableView.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf postRequest:YES];
+    }];
+}
+
+
+#pragma mark - 请求数据
+-(void)postRequest:(BOOL)isRefresh{
+
+    [EasyShowLodingView showLodingText:@"数据请求中"];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    [NetworkManager requestPOSTWithURLStr:kuser_cart_data paramDic:dic finish:^(id responseObject) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if (isRefresh == YES) {
+                [self.models removeAllObjects];
+            }
+            
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                GLMine_ShoppingCartDataModel *model = [GLMine_ShoppingCartDataModel mj_objectWithKeyValues:dict];
+                [self.models addObject:model];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -96,11 +177,11 @@
     
     for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
         
-        for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr) {
-            model.isDone = !model.isDone;
+        for (GLMine_ShoppingCartModel *model in sectionModel.goods) {
+            model.isEdit = !model.isEdit;
             if (model.isSelected) {
                 num += 1;
-                totalPrice = totalPrice + [model.amount integerValue] * [model.price floatValue];
+                totalPrice = totalPrice + [model.buy_num integerValue] * [model.marketprice floatValue];
             }
             
         }
@@ -135,7 +216,7 @@
     
     
     for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
-        for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr) {
+        for (GLMine_ShoppingCartModel *model in sectionModel.goods) {
             if (_isSelectedAll) {
                 model.isSelected = YES;
             }else{
@@ -161,63 +242,118 @@
  */
 - (IBAction)clearCart:(id)sender {
     
+    NSMutableArray *idArr = [NSMutableArray array];
+    
+    for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
+        for (GLMine_ShoppingCartModel *model in sectionModel.goods)
+        {
+            if (model.isSelected)
+            {
+                [idArr addObject:model];
+            }
+        }
+    }
+    
+    if(idArr.count == 0){
+        [EasyShowTextView showInfoText:@"还未选中商品"];
+        return;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     LBMineSureOrdersViewController *payVC = [[LBMineSureOrdersViewController alloc] init];
     [self.navigationController pushViewController:payVC animated:YES];
     
 }
 #pragma mark -  移入收藏夹
-/**
- 移入收藏夹
- */
+
 - (IBAction)moveToCollector:(id)sender {
     NSLog(@"移入收藏夹");
 }
+
 #pragma mark - 删除
-/**
- 删除
- */
+
 - (IBAction)deleteGoods:(id)sender {
 
+    WeakSelf;
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要删除这些商品吗?" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    
-    __weak __typeof__(self) weakSelf = self;
+
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+ 
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"app_handler"] = @"DELETE";
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
         
-         NSMutableArray *buyerTempArr = [[NSMutableArray alloc] init];
+        NSMutableArray *idArr = [NSMutableArray array];
         
         for (GLMine_ShoppingCartDataModel *sectionModel in weakSelf.models) {
-            if (sectionModel.shopIsSelected)
+            for (GLMine_ShoppingCartModel *model in sectionModel.goods)
             {
-                [buyerTempArr addObject:sectionModel];
-            }
-            else
-            {
-                NSMutableArray *productTempArr = [[NSMutableArray alloc] init];
-                for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr)
+                if (model.isSelected)
                 {
-                    if (model.isSelected)
-                    {
-                        [productTempArr addObject:model];
-                    }
-                }
-               
-                if (productTempArr.count != 0) {
-                    
-                    NSMutableArray *tempM = [NSMutableArray array];
-                    [tempM addObjectsFromArray:sectionModel.goodsArr];
-                    [tempM removeObjectsInArray:productTempArr];
-                    
-                    sectionModel.goodsArr = tempM;
+                    [idArr addObject:model.id];
                 }
             }
         }
+        if(idArr.count == 0){
+            [EasyShowTextView showInfoText:@"还未选中商品"];
+            return;
+        }
         
-        [self.models removeObjectsInArray:buyerTempArr];
+        dic[@"cart_id"] = [idArr componentsJoinedByString:@","];
         
-        [self updateInfomation];//删除之后一些列更新操作
+        [EasyShowLodingView showLoding];
+        [NetworkManager requestPOSTWithURLStr:kdel_user_cart paramDic:dic finish:^(id responseObject) {
+           
+            [EasyShowLodingView hidenLoding];
+            if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+             
+                NSMutableArray *buyerTempArr = [[NSMutableArray alloc] init];
+                
+                for (GLMine_ShoppingCartDataModel *sectionModel in weakSelf.models) {
+                    if (sectionModel.shopIsSelected)
+                    {
+                        [buyerTempArr addObject:sectionModel];
+                        
+                    }else{
+                        
+                        NSMutableArray *productTempArr = [[NSMutableArray alloc] init];
+                        for (GLMine_ShoppingCartModel *model in sectionModel.goods)
+                        {
+                            if (model.isSelected)
+                            {
+                                [productTempArr addObject:model];
+                            }
+                        }
+                        
+                        if (productTempArr.count != 0) {
+                            
+                            NSMutableArray *tempM = [NSMutableArray array];
+                            [tempM addObjectsFromArray:sectionModel.goods];
+                            [tempM removeObjectsInArray:productTempArr];
+                            
+                            sectionModel.goods = tempM;
+                        }
+                    }
+                }
+                
+                [EasyShowTextView showSuccessText:@"删除成功"];
+                [weakSelf.models removeObjectsInArray:buyerTempArr];
+                
+                [weakSelf updateInfomation];//删除之后一些列更新操作
+                
+            }else{
+                [EasyShowTextView showErrorText:responseObject[@"message"]];
+            }
+       
+        } enError:^(NSError *error) {
+       
+            [EasyShowLodingView hidenLoding];
+            [EasyShowTextView showErrorText:error.localizedDescription];
+          
+        }];
 
         
     }];
@@ -233,12 +369,12 @@
     // 会影响到对应的买手选择
     for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
         NSInteger count = 0;
-        for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr){
+        for (GLMine_ShoppingCartModel *model in sectionModel.goods){
             if (model.isSelected) {
                 count ++;
             }
         }
-        if (count == sectionModel.goodsArr.count) {
+        if (count == sectionModel.goods.count) {
             sectionModel.shopIsSelected = YES;
         }
     }
@@ -265,11 +401,11 @@
     NSInteger num = 0;
     CGFloat totalPrice = 0.00;
     for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
-        for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr) {
+        for (GLMine_ShoppingCartModel *model in sectionModel.goods) {
             
             if (model.isSelected) {
                 num += 1;
-                totalPrice = totalPrice + [model.amount integerValue] * [model.price floatValue];
+                totalPrice = totalPrice + [model.buy_num integerValue] * [model.marketprice floatValue];
             }
         }
     }
@@ -286,7 +422,7 @@
     NSInteger selectedNum = 0;
     for (GLMine_ShoppingCartDataModel *sectionM in self.models) {
         
-        for (GLMine_ShoppingCartModel *model in sectionM.goodsArr) {
+        for (GLMine_ShoppingCartModel *model in sectionM.goods) {
             if (model.isSelected) {
                 selectedNum += 1;
             }
@@ -322,20 +458,20 @@
     NSLog(@"---%zd------%zd",section,index);
     
     GLMine_ShoppingCartDataModel *sectionModel = self.models[section];
-    GLMine_ShoppingCartModel *model = sectionModel.goodsArr[index];
+    GLMine_ShoppingCartModel *model = sectionModel.goods[index];
     
     ///改变cell的选中状态
     model.isSelected = !model.isSelected;
     
     ///判断出店铺的选中图标是否为选中状态
     NSInteger sectionNum = 0;
-    for (GLMine_ShoppingCartModel *model in sectionModel.goodsArr) {
+    for (GLMine_ShoppingCartModel *model in sectionModel.goods) {
         if (model.isSelected) {
             sectionNum += 1;
         }
     }
     
-    if (sectionNum == sectionModel.goodsArr.count) {
+    if (sectionNum == sectionModel.goods.count) {
         sectionModel.shopIsSelected = YES;
     }else{
         sectionModel.shopIsSelected = NO;
@@ -365,9 +501,9 @@
  */
 - (void)changeNum:(NSInteger)index andSection:(NSInteger)section andIsAdd:(BOOL)isAdd{
     GLMine_ShoppingCartDataModel *sectionModel = self.models[section];
-    GLMine_ShoppingCartModel *model = sectionModel.goodsArr[index];
+    GLMine_ShoppingCartModel *model = sectionModel.goods[index];
     
-    NSInteger number = [model.amount integerValue];
+    NSInteger number = [model.buy_num integerValue];
     
     if (isAdd) {
         number += 1;
@@ -379,7 +515,7 @@
         }
     }
     
-    model.amount = [NSString stringWithFormat:@"%zd",number];
+    model.buy_num = [NSString stringWithFormat:@"%zd",number];
     
     [self.tableView reloadData];
 
@@ -398,11 +534,11 @@
     
     if (dataModel.shopIsSelected) {
         
-        for (GLMine_ShoppingCartModel *model in dataModel.goodsArr) {
+        for (GLMine_ShoppingCartModel *model in dataModel.goods) {
             model.isSelected = YES;
         }
     }else{
-        for (GLMine_ShoppingCartModel *model in dataModel.goodsArr) {
+        for (GLMine_ShoppingCartModel *model in dataModel.goods) {
             model.isSelected = NO;
         }
     }
@@ -435,103 +571,38 @@
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.models.count == 0) {//没有商品的时候
-        return 2;
-    }else{//有商品的时候
-        
-        return self.models.count + 1;
-    }
+
+        return self.models.count;
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (self.models.count == 0) {//没有商品的时候
-        return 1;
-    }else{//有商品的时候
-        if (section < self.models.count) {
-            
-            GLMine_ShoppingCartDataModel *model = self.models[section];
-            return model.goodsArr.count;
-        }else{
-            return 1;
-        }
-    }
+    GLMine_ShoppingCartDataModel *model = self.models[section];
+    return model.goods.count;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.models.count == 0) {//没有商品的时候
-        if (indexPath.section == 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] init];
-            cell.backgroundColor = [UIColor redColor];
-            return cell;
-        }else{   ///有商品的时候
-            GLMine_ShoppingCartGuessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ShoppingCartGuessCell"];
-            cell.selectionStyle = 0;
-            cell.delegate = self;
-            return cell;
-        }
-    }else{
-        
-        if (indexPath.section < self.models.count) {
-            
-            GLMine_ShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ShoppingCartCell"];
-            
-            GLMine_ShoppingCartDataModel *model = self.models[indexPath.section];
-            
-            GLMine_ShoppingCartModel *goodsModel = model.goodsArr[indexPath.row];
-            goodsModel.index = indexPath.row;
-            goodsModel.section = indexPath.section;
-            
-            cell.model = goodsModel;
-            cell.delegate = self;
-            cell.selectionStyle = 0;
-            
-            return cell;
-            
-        }else{
-            GLMine_ShoppingCartGuessCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ShoppingCartGuessCell"];
-            cell.selectionStyle = 0;
-            cell.delegate = self;
-            return cell;
-        }
-    }
+    GLMine_ShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ShoppingCartCell"];
+    
+    GLMine_ShoppingCartDataModel *model = self.models[indexPath.section];
+    
+    GLMine_ShoppingCartModel *goodsModel = model.goods[indexPath.row];
+    
+    goodsModel.index = indexPath.row;
+    goodsModel.section = indexPath.section;
+    
+    cell.model = goodsModel;
+    cell.delegate = self;
+    cell.selectionStyle = 0;
+    
+    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    if (self.models.count == 0) {//没有商品的时候
-        if (section == 0) {
-            
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 0.0001)];
-            view.backgroundColor = [UIColor clearColor];
-            return view;
-        }else{
-            UIView *guessView;
-            if (!guessView) {
-                
-                guessView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 50)];
-                guessView.backgroundColor = [UIColor whiteColor];
-                
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 50)];
-                label.font = [UIFont systemFontOfSize:15];
-                label.textColor = LBHexadecimalColor(0x333333);
-                label.text = @"猜你喜欢";
-                
-                UIView *lineV = [[UIView alloc] initWithFrame:CGRectMake(0, 50 -1, UIScreenWidth, 1)];
-                lineV.backgroundColor = [UIColor groupTableViewBackgroundColor];
-                
-                [guessView addSubview:label];
-                [guessView addSubview:lineV];
-                
-            }
-            
-            return guessView;
-        }
-    }else{//有商品的时候
-        if (section < self.models.count) {
-            
-            GLMine_ShoppingCartHeader *headerView;
+  GLMine_ShoppingCartHeader *headerView;
             
             if (!headerView) {
                 headerView = [[GLMine_ShoppingCartHeader alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 50)];
@@ -545,76 +616,32 @@
             
             return headerView;
             
-        }else{
-            
-            UIView *guessView;
-            if (!guessView) {
-                
-                guessView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 50)];
-                guessView.backgroundColor = [UIColor whiteColor];
-                
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 50)];
-                label.font = [UIFont systemFontOfSize:15];
-                label.textColor = LBHexadecimalColor(0x333333);
-                label.text = @"猜你喜欢";
-                
-                UIView *lineV = [[UIView alloc] initWithFrame:CGRectMake(0, 50 -1, UIScreenWidth, 1)];
-                lineV.backgroundColor = [UIColor groupTableViewBackgroundColor];
-                
-                [guessView addSubview:label];
-                [guessView addSubview:lineV];
-                
-            }
-            
-            return guessView;
-        }
-    }
+//
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (self.models.count == 0) {//没有商品的时候
-        if (section == 0) {
-            return 0.0001;
-        }else{
-            return 50;
-        }
-    }else{//有商品的时候
-        
+
         return 50;
-    }
+
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSInteger goodsNum = 6;
-    CGFloat collectionCellWidth = (UIScreenWidth - 30)/2;
-    CGFloat collecitonCellHeight = collectionCellWidth + 85;
-    
-    CGFloat cellHeight = goodsNum/2 * collecitonCellHeight + (goodsNum/2 + 1)* 10;
-    
-    if (self.models.count == 0) {//没有商品的时候
-        if (indexPath.section == 0) {
-            return 200;
-        }else{
-            
-            return cellHeight;
-        }
-    }else{//有商品的时候
-        if (indexPath.section < self.models.count) {
-            
-            return 130;
-        }else{
-            return cellHeight;
-        }
-    }
+
+    return 130;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    GLMine_ShoppingCartDataModel *sectionModel = self.models[indexPath.section];
+    GLMine_ShoppingCartModel *model = sectionModel.goods[indexPath.row];
+    
     self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController *payVC = [[LBProductDetailViewController alloc] init];
-    [self.navigationController pushViewController:payVC animated:YES];
+    LBProductDetailViewController *vc = [[LBProductDetailViewController alloc] init];
+    vc.goods_id = model.goods_id;
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -622,44 +649,9 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [[NSMutableArray alloc] init];
-        for(int j = 0;j < 2;j++){
-            GLMine_ShoppingCartDataModel *model = [[GLMine_ShoppingCartDataModel alloc] init];
-        
-            NSMutableArray *goodsArr = [NSMutableArray array];
-            
-            for (int i = 0; i < 3; i++) {
-                GLMine_ShoppingCartModel * model = [[GLMine_ShoppingCartModel alloc] init];
-                model.goodsName = [NSString stringWithFormat:@"商品%zd,该商品你值得拥有商品你值得拥有商品你值得拥",i];
-                model.spec = [NSString stringWithFormat:@"绿色 M"];
-                model.price = [NSString stringWithFormat:@"%zd",(i+1)*2];
-                model.jifen = [NSString stringWithFormat:@"1%zd",i];
-                model.coupon = [NSString stringWithFormat:@"2%zd",i];
-                
-                model.stock = [NSString stringWithFormat:@"10%zd",i];
-                model.amount = [NSString stringWithFormat:@"%zd",i+1];
-                model.isSelected = NO;
-                model.isDone = YES;
-                [goodsArr addObject:model];
-            }
-            
-            model.goodsArr = goodsArr;
-            model.shopName = [NSString stringWithFormat:@"店铺%zd",j];
-            model.shopIsSelected = NO;
-            model.shopSection = j;
-            
-            [_models addObject:model];
-        }
     }
     return _models;
 }
 
-//- (GLMine_ShoppineCartHeader *)headerView {
-//
-//    if (!_headerView) {
-//        _headerView = [[GLMine_ShoppineCartHeader alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, _kHeaderViewH)];
-//        _headerView.delegate = self;
-//    }
-//    return _headerView;
-//}
 
 @end

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GLMine_TeamAchievementModel.h"
+#import "GLMine_Team_UnderLingModel.h"
 
 @interface GLMine_TeamAchievementCell : UITableViewCell
 
-@property (nonatomic, strong)GLMine_TeamAchievementModel *model;
+@property (nonatomic, strong)GLMine_TeamUnderLing_data_upModel *model;
+//@property (nonatomic, strong)GLMine_TeamUnderLing_data_upModel *underModel;
 
 @end

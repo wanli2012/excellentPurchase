@@ -10,5 +10,6 @@
 
 @interface LBProductDetailViewController : UIViewController
 
-@property (strong , nonatomic)NSString *goods_id;//商店id
+@property (strong , nonatomic)NSString *goods_id;//商品id
+
 @end

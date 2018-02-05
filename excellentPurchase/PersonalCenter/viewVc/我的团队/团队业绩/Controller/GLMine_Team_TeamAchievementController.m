@@ -7,6 +7,9 @@
 //
 
 #import "GLMine_Team_TeamAchievementController.h"
+//#import "GLMine_TeamAchievementModel.h"
+#import "GLMine_Team_UnderLingModel.h"
+
 #import "GLMine_TeamAchievementCell.h"
 #import "GLIdentifySelectController.h"
 #import "GLMine_Team_UnderlingDetailController.h"//下属绩效
@@ -14,6 +17,7 @@
 @interface GLMine_Team_TeamAchievementController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *teamAchievementLabel;//团队总业绩
 
 @property (nonatomic, strong)NSMutableArray *models;
 
@@ -22,6 +26,7 @@
 @property (nonatomic, strong)UIButton *rightBtn;
 @property (nonatomic, assign)NSInteger selectIndex;//选中身份下标
 
+
 @end
 
 @implementation GLMine_Team_TeamAchievementController
@@ -29,10 +34,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setNav];
-    
+    self.navigationItem.title = @"团队业绩";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_TeamAchievementCell" bundle:nil] forCellReuseIdentifier:@"GLMine_TeamAchievementCell"];
+    [self postRequest];
+}
+
+#pragma mark 请求数据
+- (void)postRequest{
     
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"group_id"] = [UserModel defaultUser].group_id;
+    
+    [EasyShowLodingView showLodingText:@"数据请求中"];
+    [NetworkManager requestPOSTWithURLStr:kteam_achievement paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.teamAchievementLabel.text = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"team_performancer"]];
+            
+            if([responseObject[@"data"][@"data_up"] count] != 0){
+                
+                for (NSDictionary *dict in responseObject[@"data"][@"data_up"]) {
+                    GLMine_TeamUnderLing_data_upModel *model = [GLMine_TeamUnderLing_data_upModel mj_objectWithKeyValues:dict];
+                    [self.models addObject:model];
+                }
+            }
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [self.tableView reloadData];
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 
 /**
@@ -74,6 +116,7 @@
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
 }
@@ -93,8 +136,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    GLMine_TeamAchievementModel *model = self.models[indexPath.row];
+    
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_UnderlingDetailController *vc = [[GLMine_Team_UnderlingDetailController alloc] init];
+    vc.cid = model.uid;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -102,15 +148,7 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-        for (int i = 0; i < 10 ; i ++) {
-            GLMine_TeamAchievementModel *model = [[GLMine_TeamAchievementModel alloc] init];
-            model.name = [NSString stringWithFormat:@"磊哥%zd",i];
-            model.picName = [NSString stringWithFormat:@"磊哥%zd",i];
-            model.ID = [NSString stringWithFormat:@"DY1000%zd",i];
-            model.consume = [NSString stringWithFormat:@"778%zd",i];
-            model.type = [NSString stringWithFormat:@"%zd",i%3];
-            [_models addObject:model];
-        }
+       
     }
     return _models;
 }
