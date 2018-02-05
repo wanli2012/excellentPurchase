@@ -73,6 +73,10 @@
                     <constraint firstItem="kii-pf-DoN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xdI-pz-NjZ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="discountLabel" destination="bMw-nm-vya" id="8Uu-jV-g5S"/>
+                <outlet property="reallyPayLabel" destination="3Jb-2T-3Wq" id="WgK-Qh-Nvq"/>
+            </connections>
             <point key="canvasLocation" x="47.5" y="68.5"/>
         </tableViewCell>
     </objects>

@@ -14,12 +14,25 @@
 #import "ZLPhoto.h"
 #import "UIImage+ZLPhotoLib.h"
 
+#import "GLStoreInfomationModel.h"
+
 @interface LBStoreInformationViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,HCBasePopupViewControllerDelegate,ZLPhotoPickerBrowserViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , strong) NSMutableArray *assets;
 @property (nonatomic , strong) NSMutableArray *photos;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionH;
+
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;//提交
+@property (weak, nonatomic) IBOutlet UITextField *shopNameTF;//店铺名
+@property (weak, nonatomic) IBOutlet UITextField *shopAddressTF;//店铺地址
+@property (weak, nonatomic) IBOutlet UITextField *phoneTF;//联系电话
+@property (weak, nonatomic) IBOutlet UITextField *coordinateTF;//坐标
+
+@property (nonatomic, strong)GLStoreInfomationModel *model;
+@property (nonatomic, copy)NSString *picUrl;//招牌图片url
+@property (nonatomic, copy)NSString *longitude;//经度
+@property (nonatomic, copy)NSString *latitude;//纬度
 
 @end
 
@@ -29,21 +42,241 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"店铺资料修改";
     
-     [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
+    [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
+    [self postRequest];
+    
+}
+
+#pragma mark - 请求数据
+- (void)postRequest{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"type"] = @"1";//1获取店铺资料 2获取商铺牌照
+    dic[@"store_id"] = self.store_id;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:kstore_receive paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            GLStoreInfomationModel *model = [GLStoreInfomationModel mj_objectWithKeyValues:responseObject[@"data"]];
+            self.model = model;
+            
+            [self assignment];//赋值
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
 }
 
 /**
- 修改营业执照
-
- @param sender <#sender description#>
+ 赋值
  */
-- (IBAction)tapgesturePhoto:(UITapGestureRecognizer *)sender {
+- (void)assignment{
     
-   
+    self.shopNameTF.text = self.model.store_name;
+    self.shopAddressTF.text = self.model.store_address;
+    self.phoneTF.text = self.model.store_phone;
+    
+    self.longitude = self.model.store_longitude;
+    self.latitude = self.model.store_latitude;
+    
+    self.coordinateTF.text = [NSString stringWithFormat:@"%@,%@",self.model.store_longitude,self.model.store_latitude];
+    
+    [self.assets removeAllObjects];
+    [self.assets addObject:self.model.store_license_pic];
+    [self.collectionView reloadData];
 }
+
+/**
+ 坐标选择
+ */
+- (IBAction)coordinateChoose:(id)sender {
+    NSLog(@" 坐标选择");
+}
+
+#pragma mark - 提交
+- (IBAction)submit:(id)sender {
+    
+    [self creatDispathGroup];
+}
+
+#pragma mark -  上传图片 操作
+-(void)creatDispathGroup{
+    WeakSelf;
+    //信号量
+    [EasyShowLodingView showLoding];
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    //创建全局并行
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    //创建任务
+    NSInteger count1 = 0;
+    self.picUrl = nil;
+    for (int i = 0; i < self.assets.count ; i++) {
+        
+        UIImage *image;
+        if([[self.assets objectAtIndex:i] isKindOfClass:[NSString class]]){
+            
+            self.picUrl = [self.assets objectAtIndex:i];
+        }else{
+            count1 ++;
+            if ([self.assets objectAtIndex:i] != nil && [[self.assets objectAtIndex:i] isKindOfClass:[ZLPhotoAssets class]]) {
+                
+                ZLPhotoAssets *assets = [self.assets objectAtIndex:i];
+                
+                image = [assets originImage];
+                
+            }else if([[self.assets objectAtIndex:i] isKindOfClass:[UIImage class]]){
+                
+                image = [self.assets objectAtIndex:i];
+            }
+            //            type 1:招牌照 2:内景照
+            dispatch_group_async(group, queue, ^{
+                [weakSelf uploadImageV:image type:1 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
+                    
+                    //一个任务结束时标记一个信号量
+                    dispatch_semaphore_signal(semaphore);
+                }];
+            });
+        }
+    }
+    
+    dispatch_group_notify(group, queue, ^{
+        //2个任务,2个信号等待.
+        for (int i = 0; i < count1 ; i++) {
+            
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{//返回主线程
+            
+            //这里就是所有异步任务请求结束后执行的代码
+            [weakSelf submitRequest];
+            
+        });
+    });
+}
+
+/**
+ 上传图片请求
+ 
+  @param image 需要上传的图片
+ @param finish 请求结束信号
+ */
+-(void)uploadImageV:(UIImage *)image type:(NSInteger)type block:(void(^)(void))finish
+{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"type"] = @"2";//图片保存文件区别 1goods 2store 3user
+    dic[@"port"] = kPORT;//端口 1.pc 2.安卓 3.ios 4.H5手机网站
+    dic[@"app_version"] = kAPP_VERSION;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20;
+    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
+        NSString *title = [NSString stringWithFormat:@"uploadfile"];
+        
+        NSData *data;
+        
+        data = UIImageJPEGRepresentation(image,1);
+        
+        [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.picUrl = responseObject[@"data"][@"url"];
+        }
+        
+        finish();
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        finish();
+    }];
+}
+
+/**
+ 提交
+ */
+- (void)submitRequest{
+    
+    if (self.picUrl.length == 0) {
+        
+        [EasyShowTextView showInfoText:@"请重新上传招牌照"];
+        [EasyShowLodingView showLoding];
+        
+        return;
+    }
+
+    self.longitude = @"116.39507";
+    self.latitude = @"39.966935";
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"store_id"] = self.store_id;
+    dic[@"type"] = @"1";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"name"] = self.shopNameTF.text;
+    dic[@"address"] = self.shopAddressTF.text;
+    dic[@"store_pre"] = @"+86";
+    dic[@"phone"] = self.phoneTF.text;
+    dic[@"lng"] = self.longitude;
+    dic[@"lat"] = self.latitude;
+    dic[@"license_pic"] = self.picUrl;
+    
+    [NetworkManager requestPOSTWithURLStr:kstore_info_edit paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showSuccessText:@"修改资料成功"];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+
+
+
 #pragma mark - HCBasePopupViewControllerDelegate 个协议方法来自定义你的弹出框内容
 - (void)setupSubViewWithPopupView:(UIView *)popupView withController:(UIViewController *)controller{
     
@@ -52,25 +285,52 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (void)didTapMaskViewWithMaskView:(UIView *)maskView withController:(UIViewController *)controller{
     
 }
+
 #pragma UICollectionDelegate UICollectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.assets.count + 1;
+    
+    return 1;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     LBStoreAmendPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.index = indexPath.row;
+    
     //删除
-    if (indexPath.item == self.assets.count) {
+    if (self.assets.count == 0) {
         cell.deleteBt.hidden = YES;
         cell.imagev.image = [UIImage imageNamed:@"addphotograph"];
+        
     }else{
+        
+        if ([self.assets objectAtIndex:indexPath.row] != nil && [[self.assets objectAtIndex:indexPath.row] isKindOfClass:[ZLPhotoAssets class]]) {
+            
+            ZLPhotoAssets *assets = [self.assets objectAtIndex:indexPath.row];
+            cell.imagev.image = [assets thumbImage];
+            
+        }else if([[self.assets objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
+            
+            cell.imagev.image = [self.assets objectAtIndex:indexPath.row];
+            
+        }else{
+            
+            NSString *url = [self.assets objectAtIndex:indexPath.row];
+            if (url.length != 0) {
+                
+                [cell.imagev sd_setImageWithURL:[NSURL URLWithString:url]];
+            }
+            
+        }
+        
         cell.deleteBt.hidden = NO;
-        cell.imagev.image = [UIImage imageNamed:self.assets[indexPath.item]];
     }
+    
     cell.deleteBlock = ^(NSInteger index) {
         [self.assets removeObjectAtIndex:index];
         [self.collectionView reloadData];
     };
+    
     return cell;
 }
 
@@ -102,7 +362,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         [self tapBrowser:indexPath.row];
 
     }
-    
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -117,16 +376,19 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 0.0f;
 }
+
 - (CGFloat) collectionView:(UICollectionView *)collectionView
                     layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 0.0f;
 }
+
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
+
 #pragma mark -拍照
 -(void)getcamera{
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -142,20 +404,23 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
     }
 }
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
             data = UIImageJPEGRepresentation(image, 0.2);
         }else {
-            data=    UIImageJPEGRepresentation(image, 0.2);
+            data = UIImageJPEGRepresentation(image, 0.2);
         }
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
+        
+        [self.assets addObject:image];
     
         [picker dismissViewControllerAnimated:YES completion:nil];
         
@@ -164,24 +429,39 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - 选择图片
 - (void)photoSelectet{
+    
     ZLPhotoPickerViewController *pickerVc = [[ZLPhotoPickerViewController alloc] init];
-    // MaxCount, Default = 9
+    
     pickerVc.maxCount = 1;
-    // Jump AssetsVc
+    
+    [self.assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIImage class]] || [obj isKindOfClass:[NSString class]]) {
+            pickerVc.maxCount = pickerVc.maxCount - 1;
+        }
+    }];
+
     pickerVc.status = PickerViewShowStatusCameraRoll;
-    // Filter: PickerPhotoStatusAllVideoAndPhotos, PickerPhotoStatusVideos, PickerPhotoStatusPhotos.
     pickerVc.photoStatus = PickerPhotoStatusPhotos;
-    // Recoder Select Assets
     pickerVc.selectPickers = self.assets;
-    // Desc Show Photos, And Suppor Camera
+
     pickerVc.topShowPhotoPicker = YES;
     pickerVc.isShowCamera = YES;
-    // CallBack
+
+    WeakSelf;
     pickerVc.callBack = ^(NSArray<ZLPhotoAssets *> *status){
-        [self.assets addObject: status.mutableCopy];
-        [self.collectionView reloadData];
+        
+        for (int i = 0; i < weakSelf.assets.count; i ++) {
+            if([weakSelf.assets[i] isKindOfClass:[ZLPhotoAssets class]]){
+                [weakSelf.assets removeObject:weakSelf.assets[i]];
+            }
+        }
+        
+        [weakSelf.assets addObjectsFromArray:status.mutableCopy];
+        [weakSelf.collectionView reloadData];
     };
+    
     [pickerVc showPickerVc:self];
+    
 }
 
 - (void)tapBrowser:(NSInteger)index{
@@ -209,33 +489,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (NSMutableArray *)assets{
     if (!_assets) {
-        _assets = [NSMutableArray arrayWithObject:@"1"];
+        _assets = [NSMutableArray array];
     }
     return _assets;
-}
-- (NSMutableArray *)photos{
-    if (!_photos) {
-        NSArray *urls = @[
-                          @"http://imgsrc.baidu.com/forum/w%3D580/sign=515dae6de7dde711e7d243fe97eecef4/6c236b600c3387446fc73114530fd9f9d72aa05b.jpg",
-                          @"http://imgsrc.baidu.com/forum/w%3D580/sign=1875d6474334970a47731027a5cbd1c0/51e876094b36acaf9e7b88947ed98d1000e99cc2.jpg",
-                          @"http://imgsrc.baidu.com/forum/w%3D580/sign=67ef9ea341166d223877159c76230945/e2f7f736afc3793138419f41e9c4b74543a911b7.jpg",
-                          @"http://imgsrc.baidu.com/forum/w%3D580/sign=a18485594e086e066aa83f4332087b5a/4a110924ab18972bcd1a19a2e4cd7b899e510ab8.jpg",
-                          @"http://imgsrc.baidu.com/forum/w%3D580/sign=42d17a169058d109c4e3a9bae159ccd0/61f5b2119313b07e550549600ed7912397dd8c21.jpg",
-                          ];
-        
-        _photos = [NSMutableArray arrayWithCapacity:urls.count];
-        for (NSString *url in urls) {
-            ZLPhotoPickerBrowserPhoto *photo = [[ZLPhotoPickerBrowserPhoto alloc] init];
-            photo.photoURL = [NSURL URLWithString:url];
-            [_photos addObject:photo];
-        }
-    
-    }
-    return _photos;
 }
 
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.collectionH.constant = (UIScreenWidth - 20)/3.0;
 }
+
+
 @end

@@ -8,11 +8,37 @@
 
 #import "GLMine_Seller_OrderDetail_ExpressCell.h"
 
+@interface GLMine_Seller_OrderDetail_ExpressCell()<UITextFieldDelegate>
+
+
+@end
+
 @implementation GLMine_Seller_OrderDetail_ExpressCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    
+    if (self.block) {
+        self.block(self.expressNumberTF.text);
+    }
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self endEditing:YES];
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (![predicateModel inputShouldLetterOrNum:string]) {
+        [EasyShowTextView showInfoText:@"物流单号只能输入数字和字母"];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

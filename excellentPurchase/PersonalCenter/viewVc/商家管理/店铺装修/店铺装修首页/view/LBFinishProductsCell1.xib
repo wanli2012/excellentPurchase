@@ -13,24 +13,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LBFinishProductsCell1">
-            <rect key="frame" x="0.0" y="0.0" width="184" height="367"/>
+            <rect key="frame" x="0.0" y="0.0" width="190" height="275"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="184" height="367"/>
+                <rect key="frame" x="0.0" y="0.0" width="190" height="275"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1FH-lO-ddY">
-                        <rect key="frame" x="0.0" y="0.0" width="184" height="367"/>
+                        <rect key="frame" x="0.0" y="0.0" width="190" height="275"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-1k-wRV">
-                                <rect key="frame" x="0.0" y="0.0" width="184" height="184"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-1k-wRV">
+                                <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
                                 <color key="backgroundColor" red="0.97379392389999997" green="0.7777363062" blue="0.028684267770000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hhh-1k-wRV" secondAttribute="height" id="hRJ-QJ-f9b"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umq-oD-K5t">
-                                <rect key="frame" x="10" y="189" width="164" height="20"/>
+                                <rect key="frame" x="10" y="195" width="170" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="wkJ-x2-wXT"/>
                                 </constraints>
@@ -39,14 +39,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taotao-fan" translatesAutoresizingMaskIntoConstraints="NO" id="7CH-tw-LaC">
-                                <rect key="frame" x="82" y="219" width="20" height="20"/>
+                                <rect key="frame" x="85" y="225" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="9Zo-uN-DcJ"/>
                                     <constraint firstAttribute="width" constant="20" id="9wb-eI-rDE"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cs-gL-2Tl">
-                                <rect key="frame" x="107" y="219" width="67" height="20"/>
+                                <rect key="frame" x="110" y="225" width="70" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="uzF-jF-efq"/>
                                 </constraints>
@@ -55,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdx-ap-TK2">
-                                <rect key="frame" x="10" y="219" width="62" height="20"/>
+                                <rect key="frame" x="10" y="225" width="65" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="i3G-4W-P2C"/>
                                 </constraints>
@@ -64,14 +64,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111万人浏览" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvk-Fe-62S">
-                                <rect key="frame" x="10" y="249" width="55.5" height="12"/>
+                                <rect key="frame" x="10" y="255" width="55.5" height="12"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.46661311389999999" green="0.4666974545" blue="0.4666077495" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="111人付款" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxC-CR-Kqu">
-                                <rect key="frame" x="128.5" y="249" width="45.5" height="12"/>
+                                <rect key="frame" x="134.5" y="255" width="45.5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.46661311389999999" green="0.4666974545" blue="0.4666077495" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                 <constraint firstAttribute="bottom" secondItem="1FH-lO-ddY" secondAttribute="bottom" id="qrg-E0-iGw"/>
                 <constraint firstItem="1FH-lO-ddY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yTT-Uc-lJJ"/>
             </constraints>
-            <size key="customSize" width="184" height="367"/>
+            <size key="customSize" width="191" height="277"/>
             <connections>
                 <outlet property="backMoneyLabel" destination="8cs-gL-2Tl" id="nFS-ks-O6v"/>
                 <outlet property="nameLabel" destination="Umq-oD-K5t" id="1Df-eH-t24"/>
@@ -116,7 +116,7 @@
                 <outlet property="priceLabel" destination="kdx-ap-TK2" id="45n-T2-kTk"/>
                 <outlet property="scanLabel" destination="yvk-Fe-62S" id="ACE-uO-IrH"/>
             </connections>
-            <point key="canvasLocation" x="-31" y="30.5"/>
+            <point key="canvasLocation" x="-28" y="-14.5"/>
         </collectionViewCell>
     </objects>
     <resources>

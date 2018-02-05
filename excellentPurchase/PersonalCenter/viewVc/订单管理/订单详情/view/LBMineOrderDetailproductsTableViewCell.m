@@ -34,4 +34,12 @@
     self.numlb.text = [NSString stringWithFormat:@"x%@",_model.goods_num];
 }
 
+- (void)setGoodsModel:(GLMine_Branch_Order_goodsModel *)goodsModel{
+    _goodsModel = goodsModel;
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:goodsModel.thumb] placeholderImage:nil];
+    self.namelb.text = [NSString stringWithFormat:@"%@",goodsModel.goods_name];
+    self.specLb.text = [NSString stringWithFormat:@"规格：%@",goodsModel.ord_spec_info];
+    self.discountlb.text = [NSString stringWithFormat:@"¥ %@",goodsModel.ord_goods_price];
+    self.numlb.text = [NSString stringWithFormat:@"x%@",goodsModel.ord_goods_num];
+}
 @end

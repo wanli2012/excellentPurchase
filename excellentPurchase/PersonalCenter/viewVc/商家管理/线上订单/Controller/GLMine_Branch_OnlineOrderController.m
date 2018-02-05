@@ -35,6 +35,7 @@
     [self setNav];
     [self addMenu];//加载菜单
 }
+
 - (void)setNav{
     
     self.navigationItem.title = @"线上订单";
@@ -65,9 +66,25 @@
     for (int i = 0; i < self.menuArr.count; i++) {
         if (self.controllerClassNames.count > i) {
             UIViewController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
-            //            NSString *text = [self.pageMenu titleForItemAtIndex:i];
+            
+            if([self.controllerClassNames[i] isEqualToString:@"GLMine_Branch_OnLine_AlreadyOrderedController"]){
+                
+                GLMine_Branch_OnLine_AlreadyOrderedController *vc = (GLMine_Branch_OnLine_AlreadyOrderedController *)baseVc;
+                vc.status = @"11";
+                
+            }else if([self.controllerClassNames[i] isEqualToString:@"GLMine_Branch_Online_PendingController"]){
+                
+                GLMine_Branch_Online_PendingController *vc = (GLMine_Branch_Online_PendingController *)baseVc;
+                vc.status = @"2";
+                
+             }else if([self.controllerClassNames[i] isEqualToString:@"GLMine_Branch_Online_DeliveredController"]){
+                 GLMine_Branch_Online_DeliveredController *vc = (GLMine_Branch_Online_DeliveredController *)baseVc;
+                 vc.status = @"3";
+                 
+            }
+            
             [self addChildViewController:baseVc];
-            // 控制器本来自带childViewControllers,但是遗憾的是该数组的元素顺序永远无法改变，只要是addChildViewController,都是添加到最后一个，而控制器不像数组那样，可以插入或删除任意位置，所以这里自己定义可变数组，以便插入(删除)(如果没有插入(删除)功能，直接用自带的childViewControllers即可)
+            
             [self.myChildViewControllers addObject:baseVc];
         }
     }
@@ -122,7 +139,7 @@
 -(NSArray*)menuArr{
     
     if (!_menuArr) {
-        _menuArr = [NSArray arrayWithObjects:@"已下单",@"待发货",@"已发货",nil];
+        _menuArr = [NSArray arrayWithObjects:@"已取消",@"待发货",@"已发货",nil];
     }
     
     return _menuArr;

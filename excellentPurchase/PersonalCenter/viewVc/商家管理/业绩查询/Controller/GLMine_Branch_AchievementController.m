@@ -14,7 +14,11 @@
 
 @property (nonatomic, assign) NSInteger rowCount;
 
-@property (nonatomic, strong)NSMutableArray *models;
+@property (strong, nonatomic)NSMutableArray *models;
+@property (assign, nonatomic)NSInteger page;//页数默认为1
+@property (strong, nonatomic)NodataView *nodataV;
+
+@property (nonatomic, copy)NSString *date;
 
 @end
 
@@ -30,32 +34,111 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
     self.tableView.delegate = self;
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:donationTableViewCell bundle:nil] forCellReuseIdentifier:donationTableViewCell];
+//    [self setupNpdata];//设置无数据的时候展示
+    
+    WeakSelf;
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [weakSelf postRequest:YES];
+    } footerRefresh:^{
+        [weakSelf postRequest:NO];
+    }];
+    
+    self.page = 1;
+    [self postRequest:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:@"AchievementNotification" object:nil];
+    
 }
 
+//刷新
+-(void)refresh:(NSNotification *)noti{
+    
+    self.date = noti.userInfo[@"month"];
+    
+    [self postRequest:YES];
+    
+}
 
-// 下拉刷新
-- (void)downPullUpdateData {
-    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(YES)}];
-    // 模拟网络请求，1秒后结束刷新
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.rowCount = 20;
+//请求数据
+-(void)postRequest:(BOOL)isRefresh{
+    
+    if(isRefresh){
+        self.page = 1;
+    }else{
+        self.page ++;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"page"] = @(self.page);
+    dic[@"time"] = self.date;
+    
+    NSString *url;
+    if (self.type == 1) {////1:线上业绩  0:线下业绩
+        url = kstore_achievement;
+    }else{
+        url = kstore_achievement_line;
+    }
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:url paramDic:dic finish:^(id responseObject) {
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(NO)}];
-    });
+        [EasyShowLodingView hidenLoding];
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if (isRefresh == YES) {
+                [self.models removeAllObjects];
+            }
+            
+            for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
+                GLMine_Branch_AchievementModel *model = [GLMine_Branch_AchievementModel mj_objectWithKeyValues:dict];
+                model.type = self.type;
+                [self.models addObject:model];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
 }
 
-// 上拉加载
-- (void)upPullLoadMoreData {
-    self.rowCount = 30;
-    [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(YES)}];
-    // 模拟网络请求，1秒后结束刷新
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.rowCount = 20;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(NO)}];
-    });
-}
+//// 下拉刷新
+//- (void)downPullUpdateData {
+//    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(YES)}];
+//    // 模拟网络请求，1秒后结束刷新
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.rowCount = 20;
+//
+//        [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(NO)}];
+//    });
+//}
+//
+//// 上拉加载
+//- (void)upPullLoadMoreData {
+//    self.rowCount = 30;
+//    [self.tableView reloadData];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(YES)}];
+//    // 模拟网络请求，1秒后结束刷新
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.rowCount = 20;
+//
+//        [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(NO)}];
+//    });
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.models.count;
@@ -85,16 +168,7 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
     if (!_models) {
         _models = [NSMutableArray array];
         
-        for (int i = 0; i <7; i ++) {
-            GLMine_Branch_AchievementModel *model = [[GLMine_Branch_AchievementModel alloc] init];
-            model.date = [NSString stringWithFormat:@"2018-01-0%zd",i];
-            model.price = @"3333";
-            model.remark = @"d搭建浪费时间代理费家拉设计费加啊;地方家拉设计费静安寺防火卷帘撒回复";
-            model.submitDate = @"2018-01-02";
-            model.type = self.type;
-            
-            [_models addObject:model];
-        }
+      
     }
     return _models;
 }

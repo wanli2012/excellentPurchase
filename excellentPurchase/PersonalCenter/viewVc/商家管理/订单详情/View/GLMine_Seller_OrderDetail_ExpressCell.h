@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^GLMine_Seller_OrderDetail_ExpressCellBlock)(NSString *wl_odd_num);
+
 @interface GLMine_Seller_OrderDetail_ExpressCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextField *expressNumberTF;//快递单号
+
+@property (nonatomic, copy) GLMine_Seller_OrderDetail_ExpressCellBlock block;
 
 @end

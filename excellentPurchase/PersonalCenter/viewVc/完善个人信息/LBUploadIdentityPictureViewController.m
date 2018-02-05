@@ -100,8 +100,8 @@
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"type"] = @"3";
-    dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
-    dic[@"app_version"] = @"1.0.0";
+    dic[@"port"] = kPORT;//端口 1.pc 2.安卓 3.ios 4.H5手机网站
+    dic[@"app_version"] = kAPP_VERSION;
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 20;
@@ -128,9 +128,9 @@
     }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showSuccessText:@"上传成功"];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showSuccessText:@"上传成功"];
             
             if (self.isFacePic) {
                 self.faceUrl = responseObject[@"data"][@"url"];

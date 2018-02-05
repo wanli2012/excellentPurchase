@@ -131,8 +131,6 @@ static NSString *ID = @"LBStoreCounterMaincell";
 }
 
 
-
-
 #pragma mark - 设置导航栏
 
 - (void)setNav{
@@ -295,9 +293,10 @@ static NSString *ID = @"LBStoreCounterMaincell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    GLStoreCounterListModel *model = self.models[indexPath.section];
     self.hidesBottomBarWhenPushed = YES;
     LBStoreCounterViewController *vc = [[LBStoreCounterViewController alloc]init];
-    vc.store_id = self.store_id;
+    vc.store_id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

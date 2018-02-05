@@ -10,6 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 typedef void(^callBackImage)(UIImage *image);
+
 @interface ZLPhotoAssets : NSObject
 
 + (instancetype)assetWithImage:(UIImage *)image;

@@ -14,8 +14,8 @@
 
 #import "GLAddOrEditProductChooseSingalCell.h"
 
-static float kLeftTableViewWidth = 0.f;
-static float kCollectionViewMargin = 3.f;
+//static float kLeftTableViewWidth = 0.f;
+//static float kCollectionViewMargin = 3.f;
 static float kCollectionHeaderViewH = 45.f;
 static float kbottomViewH = 50.f;
 
@@ -34,10 +34,11 @@ UICollectionViewDataSource>
 @property (nonatomic, strong)UIView *headView;
 @property (nonatomic, strong)UIView *bottomView;
 @property (nonatomic, copy)NSArray *titlesArr;
+@property (nonatomic, strong)NSMutableArray *selectArr;
 @property (nonatomic, assign)NSInteger type;//1:单选  2:复选
 
 ///选择回调
-@property (nonatomic, copy) void (^bankBlock)(NSInteger section);
+@property (nonatomic, copy) void (^bankBlock)(NSArray *arr);
 ///取消
 @property (nonatomic, copy) void (^cancelBlock)(void);
 
@@ -45,11 +46,11 @@ UICollectionViewDataSource>
 
 @implementation LBAddOrEditProductChooseSingalView
 
-+(instancetype)showWholeClassifyViewWith:(NSArray *)titlesArr type:(NSInteger)type Block:(void (^)(NSInteger ))bankBlock cancelBlock:(void (^)(void))cancelBlock{
++(instancetype)showWholeClassifyViewWith:(NSArray *)titlesArr type:(NSInteger)type Block:(void (^)(NSArray *arr))bankBlock cancelBlock:(void (^)(void))cancelBlock{
     return [self addWholeClassifyWith:titlesArr type:type Block:bankBlock cancelBlock:cancelBlock];
 }
 
-+(instancetype)addWholeClassifyWith:(NSArray *)titlesArr type:(NSInteger)type Block:(void (^)(NSInteger ))bankBlock cancelBlock:(void (^)(void))cancelBlock{
++(instancetype)addWholeClassifyWith:(NSArray *)titlesArr type:(NSInteger)type Block:(void (^)(NSArray *arr))bankBlock cancelBlock:(void (^)(void))cancelBlock{
     LBAddOrEditProductChooseSingalView *view = [[LBAddOrEditProductChooseSingalView alloc]init];
     view.bankBlock = bankBlock;
     view.cancelBlock = cancelBlock;
@@ -101,13 +102,49 @@ UICollectionViewDataSource>
 }
 
 - (void)ensureChoose{
-    NSLog(@"确定");
+
+    [self.selectArr removeAllObjects];
+    
+    if (self.type == 1) {
+        
+        for (int i = 0; i < self.titlesArr.count; i++ ) {
+            GLAddOrEditProductCate_brandModel *model = self.titlesArr[i];
+            if (model.isSelected) {
+                [self.selectArr addObject:@(i)];
+            }
+        }
+        
+        
+    }else if(self.type == 2){
+
+        for (int i = 0; i < self.titlesArr.count; i++ ) {
+            GLAddOrEditProductCate_labeModel *model = self.titlesArr[i];
+            if (model.isSelected) {
+                [self.selectArr addObject:@(i)];
+            }
+        }
+        
+    }else if(self.type == 3){
+        
+        for (int i = 0; i < self.titlesArr.count; i++ ) {
+            GLAddOrEditProductCate_labeModel *model = self.titlesArr[i];
+            if (model.isSelected) {
+                [self.selectArr addObject:@(i)];
+            }
+        }
+
+    }
+    
+    if (self.bankBlock) {
+        self.bankBlock(self.selectArr);
+    }
+    
     [self hideView];
     
 }
 
 - (void)cancelChoose{
-    NSLog(@"取消");
+
     [self hideView];
 }
 
@@ -124,27 +161,23 @@ UICollectionViewDataSource>
     return self.titlesArr.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     GLAddOrEditProductChooseSingalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GLAddOrEditProductChooseSingalCell" forIndexPath:indexPath];
     
     if (self.type == 1) {
         
         cell.brandModel = self.titlesArr[indexPath.row];
+        
     }else if (self.type == 2){
         
         cell.labeModel = self.titlesArr[indexPath.row];
+        
     }else if(self.type == 3){
         
         cell.attrModel = self.titlesArr[indexPath.row];
+        
     }
-    
-//    cell.titleLabel.text = self.titlesArr[indexPath.row];
-    
-//    cell.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-//    cell.contentView.layer.cornerRadius = 5.f;
-//    cell.contentView.clipsToBounds = YES;
     
     return cell;
 }
@@ -177,15 +210,32 @@ UICollectionViewDataSource>
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (self.type == 1) {
-        [self hideView];
-    }else{
         
+        for (int i = 0; i < self.titlesArr.count; i++ ) {
+            GLAddOrEditProductCate_brandModel *model = self.titlesArr[i];
+            if (i == indexPath.row) {
+                model.isSelected =! model.isSelected;
+            }else{
+                model.isSelected = NO;
+            }
+        }
+
+    }else if (self.type == 2){
+        
+         GLAddOrEditProductCate_labeModel *labeModel = self.titlesArr[indexPath.row];
+        labeModel.isSelected =! labeModel.isSelected;
+
+        
+    }else if(self.type == 3){
+        
+         GLAddOrEditProductCate_attrModel *attrModel = self.titlesArr[indexPath.row];
+         attrModel.isSelected =! attrModel.isSelected;
+
     }
     
-    if (self.bankBlock) {
-        self.bankBlock(indexPath.row);
-    }
+    [collectionView reloadData];
 }
 
 #pragma mark - UIScrollView Delegate
@@ -327,5 +377,13 @@ UICollectionViewDataSource>
                    withReuseIdentifier:@"CollectionViewHeaderView"];
     }
     return _collectionView;
+}
+
+
+- (NSMutableArray *)selectArr{
+    if (!_selectArr) {
+        _selectArr = [NSMutableArray array];
+    }
+    return _selectArr;
 }
 @end

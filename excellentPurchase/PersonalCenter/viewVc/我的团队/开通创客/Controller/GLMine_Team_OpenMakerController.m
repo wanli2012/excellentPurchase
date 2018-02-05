@@ -97,9 +97,12 @@
                 [self.setModels addObject:model];
             }
             
-            self.subordinateLabel.text = responseObject[@"data"][@"sub"][0][@"name"];
-            self.remainderLabel.text = responseObject[@"data"][@"sub"][0][@"msg"];
-            self.group_id = responseObject[@"data"][@"sub"][0][@"group_id"];
+            if ([responseObject[@"data"][@"sub"] count] != 0) {
+                
+                self.subordinateLabel.text = responseObject[@"data"][@"sub"][0][@"name"];
+                self.remainderLabel.text = responseObject[@"data"][@"sub"][0][@"msg"];
+                self.group_id = responseObject[@"data"][@"sub"][0][@"group_id"];
+            }
             
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];

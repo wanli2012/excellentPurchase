@@ -10,4 +10,7 @@
 
 @interface GLMine_Seller_OrderDetail_DiscountCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *discountLabel;//购物券抵扣
+@property (weak, nonatomic) IBOutlet UILabel *reallyPayLabel;//实付款
+
 @end

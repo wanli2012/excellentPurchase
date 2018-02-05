@@ -10,4 +10,6 @@
 
 @interface GLMine_Branch_OnLine_AlreadyOrderedController : UIViewController
 
+@property (nonatomic, copy)NSString *status;//查询状态 2.待发货 3.已发货 11.已取消
+
 @end

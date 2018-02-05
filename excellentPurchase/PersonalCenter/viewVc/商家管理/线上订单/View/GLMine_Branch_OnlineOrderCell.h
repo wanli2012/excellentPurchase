@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_Branch_OrderModel.h"
 
 @interface GLMine_Branch_OnlineOrderCell : UITableViewCell
+
+@property (nonatomic, strong)GLMine_Branch_Order_goodsModel *model;
 
 @end

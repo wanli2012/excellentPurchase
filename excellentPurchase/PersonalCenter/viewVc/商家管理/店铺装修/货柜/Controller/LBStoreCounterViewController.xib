@@ -11,6 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBStoreCounterViewController">
             <connections>
+                <outlet property="aduitLabel" destination="79I-of-eXu" id="buM-BY-JHd"/>
+                <outlet property="containerNameLabel" destination="Tv0-Od-5r5" id="HfL-Yz-HQB"/>
+                <outlet property="goodsNumLabel" destination="yk2-dv-i1d" id="x2H-I9-nCB"/>
+                <outlet property="offShelfLabel" destination="sOy-1h-JeC" id="W9e-bg-hMu"/>
+                <outlet property="onShelfLabel" destination="hLa-hf-yI6" id="gJz-jI-MWh"/>
                 <outlet property="tableview" destination="dUM-3K-ovi" id="U4k-3G-bvC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

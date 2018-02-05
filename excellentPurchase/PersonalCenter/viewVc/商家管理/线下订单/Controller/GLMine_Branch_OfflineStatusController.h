@@ -10,6 +10,6 @@
 
 @interface GLMine_Branch_OfflineStatusController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;//0:审核中 1:已完成 2:已失败
+@property (nonatomic, assign)NSInteger type;//0失败 1成功 2未审核 状态类型
 
 @end

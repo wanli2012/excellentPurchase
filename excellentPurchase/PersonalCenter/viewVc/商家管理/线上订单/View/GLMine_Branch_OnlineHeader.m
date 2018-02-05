@@ -8,6 +8,13 @@
 
 #import "GLMine_Branch_OnlineHeader.h"
 
+@interface GLMine_Branch_OnlineHeader()
+
+@property (weak, nonatomic) IBOutlet UILabel *orderNumLabel;//订单号
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;//日期
+
+@end
+
 @implementation GLMine_Branch_OnlineHeader
 
 -(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -27,6 +34,15 @@
     if ([self.delegate respondsToSelector:@selector(toOrderDetail:)]) {
         [self.delegate toOrderDetail:self.section];
     }
+}
+
+- (void)setModel:(GLMine_Branch_OrderModel *)model{
+    _model = model;
+    
+    self.orderNumLabel.text = model.order_num;
+    
+    self.dateLabel.text = [formattime formateTimeOfDate4:model.time];
+    
 }
 
 @end

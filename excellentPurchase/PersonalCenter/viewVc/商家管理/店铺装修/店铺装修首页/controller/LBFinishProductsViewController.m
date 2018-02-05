@@ -8,6 +8,7 @@
 
 #import "LBFinishProductsViewController.h"
 #import "LBFinishProductsCell1.h"
+#import "GLFinishGoodsDetailModel.h"
 
 @interface LBFinishProductsViewController ()
 
@@ -72,7 +73,6 @@ static NSString *ID = @"finishProductsCell1";
         self.page ++;
     }
     
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     dic[@"uid"] = [UserModel defaultUser].uid;
@@ -94,12 +94,11 @@ static NSString *ID = @"finishProductsCell1";
             
             if ([responseObject[@"data"][@"page_data"] count] != 0) {
                 
-//                for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
-//                    GLMine_Message_PropertyModel *model = [GLMine_Message_PropertyModel mj_objectWithKeyValues:dict];
-//                    model.infoType = self.infoType;
-//                    
-//                    [self.models addObject:model];
-//                }
+                for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
+                    GLFinishGoodsDetailModel *model = [GLFinishGoodsDetailModel mj_objectWithKeyValues:dict];
+                    
+                    [self.models addObject:model];
+                }
             }
             
         }else{
@@ -139,7 +138,7 @@ static NSString *ID = @"finishProductsCell1";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((UIScreenWidth - 5)/2.0, (UIScreenWidth - 5)/2.0  + 85);
+    return CGSizeMake((UIScreenWidth - 5)/2.0, (UIScreenWidth - 5)/2.0 + 85);
     
 }
 

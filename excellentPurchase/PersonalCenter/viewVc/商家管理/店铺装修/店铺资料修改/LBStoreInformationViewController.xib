@@ -13,6 +13,11 @@
             <connections>
                 <outlet property="collectionH" destination="7cm-dv-pfw" id="ce1-p2-WzO"/>
                 <outlet property="collectionView" destination="VFh-rV-wiM" id="u5H-SV-doR"/>
+                <outlet property="coordinateTF" destination="V50-hN-8lG" id="uPj-Dg-5mR"/>
+                <outlet property="phoneTF" destination="Vlp-T3-Klz" id="ZVk-Pj-Apf"/>
+                <outlet property="shopAddressTF" destination="Y54-gU-jhE" id="XLI-zx-Izo"/>
+                <outlet property="shopNameTF" destination="59u-Aw-Mu6" id="l8U-eL-pH1"/>
+                <outlet property="submitBtn" destination="MrP-Cb-rQN" id="Rex-ub-ShF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -49,7 +54,10 @@
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="k5B-KH-bju"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,7 +95,10 @@
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="FwM-v0-C4I"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,7 +136,10 @@
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="7lr-zR-8Ki"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,16 +170,33 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择地图坐标" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V50-hN-8lG">
+                                            <rect key="frame" x="81.5" y="0.0" width="283.5" height="59"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="fLe-d2-gld"/>
+                                            </connections>
+                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="kw1-T8-O9K" firstAttribute="leading" secondItem="6WU-2l-Zm6" secondAttribute="leading" id="ED0-zk-zAN"/>
+                                        <constraint firstItem="V50-hN-8lG" firstAttribute="top" secondItem="6WU-2l-Zm6" secondAttribute="top" id="GN1-WD-CRa"/>
+                                        <constraint firstAttribute="trailing" secondItem="V50-hN-8lG" secondAttribute="trailing" constant="10" id="GrG-Y1-ICI"/>
+                                        <constraint firstItem="kw1-T8-O9K" firstAttribute="top" secondItem="V50-hN-8lG" secondAttribute="bottom" id="MOJ-CS-nrY"/>
+                                        <constraint firstItem="V50-hN-8lG" firstAttribute="leading" secondItem="DhM-xG-pdS" secondAttribute="trailing" constant="10" id="NML-5Y-jOp"/>
                                         <constraint firstAttribute="height" constant="60" id="Sms-4I-Kdg"/>
                                         <constraint firstAttribute="bottom" secondItem="kw1-T8-O9K" secondAttribute="bottom" id="Tfk-f0-qWZ"/>
                                         <constraint firstItem="DhM-xG-pdS" firstAttribute="centerY" secondItem="6WU-2l-Zm6" secondAttribute="centerY" id="cZx-x5-Arq"/>
                                         <constraint firstAttribute="trailing" secondItem="kw1-T8-O9K" secondAttribute="trailing" id="i8G-wH-Ogk"/>
                                         <constraint firstItem="DhM-xG-pdS" firstAttribute="leading" secondItem="6WU-2l-Zm6" secondAttribute="leading" constant="10" id="kqa-gX-YMv"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="06A-8L-TMj" appends="YES" id="IRL-xc-yWy"/>
+                                    </connections>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="营业执照" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKd-2e-unb">
                                     <rect key="frame" x="10" y="257" width="57.5" height="17"/>
@@ -187,6 +218,9 @@
                                             <integer key="value" value="3"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="EPZ-KA-WfQ"/>
+                                    </connections>
                                 </button>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VFh-rV-wiM">
                                     <rect key="frame" x="10" y="294" width="355" height="120"/>
@@ -253,9 +287,9 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <point key="canvasLocation" x="26.5" y="52.5"/>
         </view>
-        <tapGestureRecognizer id="AYT-6m-YOC">
+        <tapGestureRecognizer id="06A-8L-TMj" userLabel="地图坐标选择">
             <connections>
-                <action selector="tapgesturePhoto:" destination="-1" id="loB-JB-3UN"/>
+                <action selector="coordinateChoose:" destination="-1" id="B8H-fl-ABw"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
