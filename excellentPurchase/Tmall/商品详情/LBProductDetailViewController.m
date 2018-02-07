@@ -661,6 +661,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
             carouselConfig.pageContollType = LabelPageControl;
             carouselConfig.interValTime = 3;
+            carouselConfig.placeholder = [UIImage imageNamed:@"shangpinxiangqing"];
             return carouselConfig;
         } clickBlock:^(NSInteger index) {
             

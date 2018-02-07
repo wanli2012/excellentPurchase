@@ -213,7 +213,7 @@
 //余额支付
 -(void)balanceMethod{
 
-        if ([self.money floatValue] > [self.balance floatValue]) {
+        if ([self.money floatValue] > [[UserModel defaultUser].balance floatValue]) {
             [EasyShowTextView showInfoText:@"余额不足，请充值"];
             return;
         }
@@ -297,10 +297,9 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-        
         NSArray *picArr = @[@"pay-zjifubao",@"pay-weixin",@"pay_jifen"];
         NSArray *titleArr = @[@"支付宝支付",@"微信支付",@"余额支付"];
-        NSString *str = [NSString stringWithFormat:@"余额：%@",self.balance];
+        NSString *str = [NSString stringWithFormat:@"余额：%@",[UserModel defaultUser].balance];
         NSArray *detailArr = @[@"推荐已安装支付宝的用户使用",@"推荐已安装微信的用户使用",str];
         
         for (int i = 0; i < 3; i ++) {

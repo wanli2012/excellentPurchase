@@ -47,9 +47,9 @@
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, 80)
                                                               delegate:self
-                                                      placeholderImage:[UIImage imageNamed:@""]];//当一张都没有的时候的 占位图
+                                                      placeholderImage:[UIImage imageNamed:@"haitaoshouye_guanggao"]];//当一张都没有的时候的 占位图
         //每一张图的占位图
-        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"haitao_banner"];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"haitaoshouye_guanggao"];
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.showPageControl = NO;

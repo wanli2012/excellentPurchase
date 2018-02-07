@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];;
      [self addMenu];//加载菜单
 }
 -(void)addMenu{
