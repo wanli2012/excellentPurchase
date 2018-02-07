@@ -16,6 +16,7 @@
 
 #import "LBMineSureOrdersViewController.h"//提交订单
 #import "LBProductDetailViewController.h"//海淘商城-商品详情
+#import "LBEatShopProdcutClassifyViewController.h"//店铺详情
 
 @interface GLMine_ShoppingCartController ()<UITableViewDelegate,UITableViewDataSource,GLMine_ShoppingCartCellDelegate,GLMine_ShoppingCartHeaderDelegate,GLMine_ShoppingCartGuessCellDelegate>
 {
@@ -132,6 +133,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     self.navigationController.navigationBar.hidden = NO;
 
 }
@@ -195,9 +197,6 @@
 }
 
 #pragma mark -  全选
-/**
- 全选
- */
 - (IBAction)selectAll:(id )sender {
     
     if (self.models.count == 0) {
@@ -237,41 +236,73 @@
     
 }
 #pragma mark - 结算
-/**
- 结算
- */
 - (IBAction)clearCart:(id)sender {
     
-    NSMutableArray *idArr = [NSMutableArray array];
+    NSMutableArray *goods_idArr = [NSMutableArray array];
+    NSMutableArray *specArr = [NSMutableArray array];
+    NSMutableArray *countArr = [NSMutableArray array];
     
     for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
+
         for (GLMine_ShoppingCartModel *model in sectionModel.goods)
         {
             if (model.isSelected)
             {
-                [idArr addObject:model];
+                [goods_idArr addObject:model.goods_id];
+                [specArr addObject:model.goods_option_id];
+                [countArr addObject:model.buy_num];
             }
         }
     }
     
-    if(idArr.count == 0){
+    if(goods_idArr.count == 0){
         [EasyShowTextView showInfoText:@"还未选中商品"];
         return;
     }
     
-    self.hidesBottomBarWhenPushed = YES;
-    LBMineSureOrdersViewController *payVC = [[LBMineSureOrdersViewController alloc] init];
-    [self.navigationController pushViewController:payVC animated:YES];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"goods_str"] = [goods_idArr componentsJoinedByString:@"_"];
+    dic[@"spec_str"] = [specArr componentsJoinedByString:@"_"];
+    dic[@"count_str"] = [countArr componentsJoinedByString:@"_"];
+    
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:OrderConfirm_product_order paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.hidesBottomBarWhenPushed = YES;
+            LBMineSureOrdersViewController *sureOrderVC = [[LBMineSureOrdersViewController alloc] init];
+            sureOrderVC.DataArr = responseObject[@"data"];
+            [self.navigationController pushViewController:sureOrderVC animated:YES];
+         
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+    
+//    self.hidesBottomBarWhenPushed = YES;
+//    LBMineSureOrdersViewController *payVC = [[LBMineSureOrdersViewController alloc] init];
+//    [self.navigationController pushViewController:payVC animated:YES];
     
 }
-#pragma mark -  移入收藏夹
 
+#pragma mark -  移入收藏夹
 - (IBAction)moveToCollector:(id)sender {
     NSLog(@"移入收藏夹");
 }
 
 #pragma mark - 删除
-
 - (IBAction)deleteGoods:(id)sender {
 
     WeakSelf;
@@ -354,8 +385,6 @@
             [EasyShowTextView showErrorText:error.localizedDescription];
           
         }];
-
-        
     }];
     
     [alertVC addAction:cancel];
@@ -393,7 +422,7 @@
 }
 
 /**
- 算出商品的总价格 和 商品数  并显示
+ 算出商品的总价格 和 商品数 并显示
  */
 - (void)caculateThePriceAndGoodsNum{
     
@@ -446,7 +475,6 @@
         _isSelectedAll = NO;
     }
 }
-
 
 #pragma mark - GLMine_ShoppingCartCellDelegate 选中或取消 加减数量
 /**
@@ -522,9 +550,18 @@
 }
 
 #pragma mark - GLMine_ShoppingCartHeaderDelegate 进店 选中该店所有商品
+
 - (void)goToStore:(NSInteger)section{
-    NSLog(@"店铺名---%zd",section);
+    
+    GLMine_ShoppingCartDataModel *model = self.models[section];
+
+    LBEatShopProdcutClassifyViewController *vc = [[LBEatShopProdcutClassifyViewController alloc] init];
+    vc.store_id = model.store_id;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
+
 ///选中该商店所有商品
 - (void)selectStoreGoods:(NSInteger)section{
 

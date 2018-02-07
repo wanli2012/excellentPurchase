@@ -16,11 +16,11 @@
 
 @property (nonatomic,strong) XC_label  *xcLabel ;
 
-@property (nonatomic,strong)NSMutableArray *reCommendSource ;//推荐搜索
+@property (nonatomic,strong)NSMutableArray *reCommendSource;//推荐搜索
 
-@property (nonatomic,strong)NSMutableArray *historySource ;//历史搜索
+@property (nonatomic,strong)NSMutableArray *historySource;//历史搜索
 @property (nonatomic, assign) NSInteger  allCount;//总数
-@property (nonatomic,strong)NSMutableArray *dataSource ;//数据源
+@property (nonatomic,strong)NSMutableArray *dataSource;//数据源
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;
 @property (weak, nonatomic) IBOutlet UITextField *keyTextfiled;

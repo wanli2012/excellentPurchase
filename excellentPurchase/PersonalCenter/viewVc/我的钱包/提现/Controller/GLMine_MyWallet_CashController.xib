@@ -16,6 +16,9 @@
                 <outlet property="cardNumLabel" destination="DrW-fJ-sL3" id="Ubj-xx-Mxs"/>
                 <outlet property="contentViewHeight" destination="qy7-O5-Q99" id="orm-ah-fc9"/>
                 <outlet property="iconImageV" destination="dJq-uU-3Rv" id="2if-qK-Y6W"/>
+                <outlet property="moneyLabel" destination="iFq-L1-X7c" id="ycU-9M-Vhs"/>
+                <outlet property="moneyTF" destination="zMg-mV-5Cc" id="8g8-K0-O9z"/>
+                <outlet property="signImageV" destination="HMJ-kJ-X5u" id="fXc-Tm-q0J"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -201,7 +204,10 @@
                                             <rect key="frame" x="105.5" y="10" width="258.5" height="50"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="4Y7-br-FVU"/>
+                                            </connections>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0T-Y4-9M3">
                                             <rect key="frame" x="0.0" y="69" width="374" height="1"/>
@@ -240,6 +246,9 @@
                                             <integer key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="W0d-qK-PeT"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFy-52-ROH">
                                     <rect key="frame" x="104" y="468" width="167" height="30"/>
@@ -250,6 +259,9 @@
                                             <state key="normal" title="创客承诺书">
                                                 <color key="titleColor" red="0.96078431369999995" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="toProtocol:" destination="-1" eventType="touchUpInside" id="gis-8f-XOe"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已阅读并同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGp-xF-fNH">
                                             <rect key="frame" x="26" y="0.0" width="74" height="30"/>
@@ -279,6 +291,9 @@
                                         <constraint firstAttribute="trailing" secondItem="6ah-XI-L1N" secondAttribute="trailing" id="rZg-iG-7Dt"/>
                                         <constraint firstItem="hGp-xF-fNH" firstAttribute="leading" secondItem="HMJ-kJ-X5u" secondAttribute="trailing" constant="5" id="tKt-fO-hN0"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="DZk-au-Q2z" appends="YES" id="Mc0-dF-yJZ"/>
+                                    </connections>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -321,6 +336,11 @@
             <point key="canvasLocation" x="38.5" y="54.5"/>
         </view>
         <tapGestureRecognizer id="ieB-Va-eDe" userLabel="添加银行卡"/>
+        <tapGestureRecognizer id="DZk-au-Q2z" userLabel="是否同意创客承诺书">
+            <connections>
+                <action selector="isAgreeProtocol:" destination="-1" id="Dw1-Hi-hSn"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="greetselect-n" width="11" height="11"/>
