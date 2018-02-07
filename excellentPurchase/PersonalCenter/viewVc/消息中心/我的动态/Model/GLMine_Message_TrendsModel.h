@@ -10,9 +10,9 @@
 
 @interface GLMine_Message_TrendsModel : NSObject
 
-@property (nonatomic, copy)NSString *typeName;//类型
-@property (nonatomic, copy)NSString *date;//日期
-@property (nonatomic, copy)NSString *content;//内容
+@property (nonatomic, copy)NSString *type;//类型
+@property (nonatomic, copy)NSString *addtime;//日期
+@property (nonatomic, copy)NSString *msg;//内容
 
 
 @end

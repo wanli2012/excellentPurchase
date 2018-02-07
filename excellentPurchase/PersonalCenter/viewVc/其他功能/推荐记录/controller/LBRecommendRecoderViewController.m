@@ -119,6 +119,7 @@
     
     LBRecommendRecoderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBRecommendRecoderCell"];
     cell.selectionStyle = 0;
+    cell.model = self.userArr[indexPath.row];
     
     return cell;
 }
@@ -130,9 +131,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    LBRecommendRecoderModel *model = self.userArr[indexPath.row];
     self.hidesBottomBarWhenPushed = YES;
     LBRecommendRecoderDtailViewController *vc = [[LBRecommendRecoderDtailViewController alloc]init];
+    vc.g_uid = model.uid;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

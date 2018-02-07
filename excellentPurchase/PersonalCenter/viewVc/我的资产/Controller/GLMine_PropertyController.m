@@ -25,12 +25,20 @@
     
     self.navigationItem.title = @"我的资产";
 
-    self.titlesArr = @[@"积分",@"余额",@"购物券",@"优宝",@"优宝单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
-    self.valuesArr = @[@"23222",@"11",@"0",@"1",@"1",@"2",@"3",@"4444"];
+    self.titlesArr = @[@"积分",@"余额",@"购物券",@"优购币",@"优购币单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
+    self.valuesArr = @[[UserModel defaultUser].mark,//用户积分
+                       [UserModel defaultUser].balance,//用户余额
+                       [UserModel defaultUser].shopping_voucher,//用户购物券
+                       [UserModel defaultUser].keti_bean,//用户优购币
+                       [UserModel defaultUser].currency,//优购币单价
+                       [UserModel defaultUser].Total_money,//平台昨日营业额总量
+                       [UserModel defaultUser].Total_mark,//平台昨日新增积分总量
+                       [UserModel defaultUser].Total_currency,//平台昨日优购币新增
+                       ];
+    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PropertyCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PropertyCell"];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

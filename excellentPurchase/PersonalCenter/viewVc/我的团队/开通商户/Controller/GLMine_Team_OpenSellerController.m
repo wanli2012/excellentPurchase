@@ -152,7 +152,7 @@
     
     self.pickerView.valueDidSelect = ^(NSString *value){
         
-        NSArray * stateArr = [value componentsSeparatedByString:@"/"];
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
         NSInteger index = [stateArr[1] integerValue];
         if (index == 0) {
             index = 1;
@@ -225,7 +225,7 @@
     
     self.pickerView.valueDidSelect = ^(NSString *value){
         
-        NSArray * stateArr = [value componentsSeparatedByString:@"/"];
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
         NSInteger index = [stateArr[1] integerValue];
         if (index == 0) {
             index = 1;

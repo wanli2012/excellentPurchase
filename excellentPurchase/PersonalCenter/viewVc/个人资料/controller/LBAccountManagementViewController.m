@@ -385,7 +385,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             {
                 self.hidesBottomBarWhenPushed = YES;
                 GLMine_Seller_IncomeCodeController *vc = [[GLMine_Seller_IncomeCodeController alloc] init];
-                
+                vc.type = 1;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

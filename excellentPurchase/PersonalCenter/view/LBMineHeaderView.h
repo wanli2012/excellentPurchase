@@ -25,7 +25,14 @@
 
 @property (nonatomic, weak)id <LBMineHeaderViewDelegate> delegate;
 
+@property (nonatomic, copy)NSArray *noticeArr;//通知数组
+
 @property (nonatomic, copy)NSArray *titleArr;
 @property (nonatomic, copy)NSArray *valueArr;
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageV;//头像
+@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;//昵称
+@property (weak, nonatomic) IBOutlet UILabel *IDNumberLabel;//id号
+@property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;//身份类型
 
 @end

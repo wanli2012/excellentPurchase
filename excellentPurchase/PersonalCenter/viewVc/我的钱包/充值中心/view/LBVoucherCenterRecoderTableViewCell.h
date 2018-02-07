@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLVoucherRecordModel.h"
 
 @interface LBVoucherCenterRecoderTableViewCell : UITableViewCell
+
+@property (nonatomic, strong)GLVoucherRecordModel *model;
 
 @end

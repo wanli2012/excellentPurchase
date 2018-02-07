@@ -14,8 +14,11 @@
             <connections>
                 <outlet property="IDLabel" destination="NB6-UW-BOV" id="U40-bk-GiX"/>
                 <outlet property="codeImageV" destination="Ppz-Uf-Nzz" id="4tk-5e-tT5"/>
+                <outlet property="moneyLabel" destination="ahI-vB-EoM" id="JqQ-Ws-rgp"/>
+                <outlet property="moneyView" destination="PJe-R3-8cm" id="dby-JH-SyA"/>
+                <outlet property="moneyViewHeight" destination="azE-Z3-1yd" id="h72-e4-Ikz"/>
                 <outlet property="nameLabel" destination="tAS-Vo-l5R" id="0rU-Bd-E9z"/>
-                <outlet property="noticeLabel" destination="UJh-pM-wHZ" id="HmA-P3-hBe"/>
+                <outlet property="noprofitLabel" destination="WXl-wD-9Jj" id="NnL-Ke-UKW"/>
                 <outlet property="picImageV" destination="ulj-Xg-S8X" id="g9Z-aY-xdW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFP-08-SwY">
-                    <rect key="frame" x="30" y="138" width="315" height="327"/>
+                    <rect key="frame" x="30" y="119" width="315" height="365"/>
                     <subviews>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ppz-Uf-Nzz">
                             <rect key="frame" x="78" y="120" width="160" height="160"/>
@@ -35,15 +38,6 @@
                                 <constraint firstAttribute="width" secondItem="Ppz-Uf-Nzz" secondAttribute="height" id="hQo-xA-g7Q"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用世纪优购扫二维码，向商家付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-pM-wHZ">
-                            <rect key="frame" x="10" y="290" width="295" height="17"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="17" id="oTD-3o-K8d"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.50190365309999996" green="0.50199371579999996" blue="0.50189799069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZ1-5j-v68">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="110"/>
                             <subviews>
@@ -94,18 +88,43 @@
                                 <constraint firstAttribute="trailing" secondItem="tAS-Vo-l5R" secondAttribute="trailing" constant="10" id="zne-IS-3CN"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJe-R3-8cm">
+                            <rect key="frame" x="0.0" y="300" width="315" height="45"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 333" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahI-vB-EoM">
+                                    <rect key="frame" x="134.5" y="0.0" width="46" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让利金额:¥ 333" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXl-wD-9Jj">
+                                    <rect key="frame" x="115" y="30.5" width="86.5" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="WXl-wD-9Jj" firstAttribute="centerX" secondItem="PJe-R3-8cm" secondAttribute="centerX" id="VJ4-6r-QqK"/>
+                                <constraint firstItem="ahI-vB-EoM" firstAttribute="centerX" secondItem="PJe-R3-8cm" secondAttribute="centerX" id="ZAl-C7-QgC"/>
+                                <constraint firstAttribute="height" constant="45" id="azE-Z3-1yd"/>
+                                <constraint firstItem="ahI-vB-EoM" firstAttribute="top" secondItem="PJe-R3-8cm" secondAttribute="top" id="mT4-1D-sKJ"/>
+                                <constraint firstAttribute="bottom" secondItem="WXl-wD-9Jj" secondAttribute="bottom" id="w4S-yz-cIF"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="OZ1-5j-v68" secondAttribute="trailing" id="3SN-6f-IPl"/>
                         <constraint firstItem="OZ1-5j-v68" firstAttribute="top" secondItem="QFP-08-SwY" secondAttribute="top" id="7zj-UE-2d8"/>
-                        <constraint firstAttribute="trailing" secondItem="UJh-pM-wHZ" secondAttribute="trailing" constant="10" id="Amc-Ox-9mK"/>
                         <constraint firstItem="OZ1-5j-v68" firstAttribute="leading" secondItem="QFP-08-SwY" secondAttribute="leading" id="Qyd-Fq-fEM"/>
-                        <constraint firstItem="UJh-pM-wHZ" firstAttribute="leading" secondItem="QFP-08-SwY" secondAttribute="leading" constant="10" id="VnL-gn-LAP"/>
+                        <constraint firstItem="PJe-R3-8cm" firstAttribute="top" secondItem="Ppz-Uf-Nzz" secondAttribute="bottom" constant="20" id="RKT-rh-FHe"/>
                         <constraint firstItem="Ppz-Uf-Nzz" firstAttribute="centerX" secondItem="QFP-08-SwY" secondAttribute="centerX" id="WNZ-W1-neh"/>
                         <constraint firstItem="Ppz-Uf-Nzz" firstAttribute="top" secondItem="OZ1-5j-v68" secondAttribute="bottom" constant="10" id="aJg-mM-vge"/>
-                        <constraint firstItem="UJh-pM-wHZ" firstAttribute="top" secondItem="Ppz-Uf-Nzz" secondAttribute="bottom" constant="10" id="fT6-jw-lN1"/>
-                        <constraint firstAttribute="bottom" secondItem="UJh-pM-wHZ" secondAttribute="bottom" constant="20" id="uzb-df-aZV"/>
+                        <constraint firstAttribute="trailing" secondItem="PJe-R3-8cm" secondAttribute="trailing" id="bkc-9i-TCE"/>
+                        <constraint firstItem="PJe-R3-8cm" firstAttribute="leading" secondItem="QFP-08-SwY" secondAttribute="leading" id="d1F-2u-vM9"/>
+                        <constraint firstAttribute="bottom" secondItem="PJe-R3-8cm" secondAttribute="bottom" constant="20" id="jlY-oi-fFw"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

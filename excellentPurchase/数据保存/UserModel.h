@@ -19,7 +19,7 @@
 @property (nonatomic, copy)NSString *user_name;//用户ID
 @property (nonatomic, copy)NSString *phone;//手机号 账号
 @property (nonatomic, copy)NSString *pic;//头像
-@property (nonatomic, copy)NSString *trueName;//真实姓名
+@property (nonatomic, copy)NSString *truename;//真实姓名
 @property (nonatomic, copy)NSString *group_id;//用户组
 @property (nonatomic, copy)NSString *group_name;//用户分组名称
 
@@ -36,7 +36,12 @@
 @property (nonatomic, copy)NSString *shopping_voucher;//用户购物券
 @property (nonatomic, copy)NSString *cion_price;//优购币出售市值
 @property (nonatomic, copy)NSString *voucher_ratio;//购物券兑换比例
-
+@property (nonatomic, copy)NSString *tg_status;//创客审核状态 1 通过 2审核中 3失败
+@property (nonatomic, copy)NSString *currency;//创客审核状态
+@property (nonatomic, copy)NSString *Total_money;//创客审核状态
+@property (nonatomic, copy)NSString *Total_mark;//创客审核状态
+@property (nonatomic, copy)NSString *Total_currency;//创客审核状态
+@property (nonatomic, copy)NSString *money_sum;//创客审核状态
 
 
 +(UserModel*)defaultUser;

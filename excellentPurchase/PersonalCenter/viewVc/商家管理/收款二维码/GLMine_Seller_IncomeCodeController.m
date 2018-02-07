@@ -15,7 +15,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *IDLabel;//ID号
 
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;//二维码
-@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;//提示Label
+
+//@property (weak, nonatomic) IBOutlet UIButton *setMoneyBtn;//设置金额
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *setMoneyHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moneyViewHeight;//金额view 高度
+@property (weak, nonatomic) IBOutlet UIView *moneyView;//金额view
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noprofitLabel;
 
 @end
 
@@ -26,19 +33,41 @@
     
     if(self.type == 1){
         self.navigationItem.title = @"我的二维码";
-        self.noticeLabel.hidden = YES;
+        self.moneyViewHeight.constant = 0;
+        self.moneyView.hidden = YES;
+        
     }else{
         self.navigationItem.title = @"商家收款二维码";
-        self.noticeLabel.hidden = NO;
+        self.moneyViewHeight.constant = 45;
+        self.moneyView.hidden = NO;
+        
+        self.moneyLabel.text = [NSString stringWithFormat:@"¥ %@",self.moneyCount];
+        self.noprofitLabel.text = [NSString stringWithFormat:@"让利金额:¥%@",self.noProfitMoney];
+        
     }
     
     [self logoQrCode];
     
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.nameLabel.text = [UserModel defaultUser].trueName;
     self.IDLabel.text = [UserModel defaultUser].user_name;
     
+    if([UserModel defaultUser].truename.length == 0){
+        self.nameLabel.text = @"真实姓名:未完善";
+        
+    }else{
+        self.nameLabel.text = [UserModel defaultUser].truename;
+    }
+    
 }
+
+/**
+ 设置金额
+ */
+- (IBAction)setMoney:(id)sender {
+    NSLog(@" 设置金额");
+    
+}
+
 //MARK: 二维码中间内置图片,可以是公司logo
 -(void)logoQrCode{
     

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GLMine_Message_TrendsModel.h"
+#import "GLMine_Message_SystemModel.h"
 
 @interface GLMine_Message_TrendsCell : UITableViewCell
 
 @property (nonatomic, strong)GLMine_Message_TrendsModel *model;
 
+@property (nonatomic, strong)GLMine_Message_SystemModel *systemModel;
 
 @end

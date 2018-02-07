@@ -7,7 +7,7 @@
 //
 
 #import "GLRecommendController.h"
-
+#import "LBRecommendRecoderViewController.h"
 
 @interface GLRecommendController ()
 
@@ -24,99 +24,30 @@
     
     [super viewDidLoad];
 
-    self.navigationItem.title = @"我的二维码";
+    self.navigationItem.title = @"推荐";
 
     self.contentV.layer.cornerRadius = 5.f;
     self.contentV.clipsToBounds = YES;
-    
-//    self.recommendUrl = [NSString stringWithFormat:@"%@%@",RECOMMEND_REGISTER_URL,[UserModel defaultUser].name];
+
     //自定义导航栏右键
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(UIScreenWidth - 60, 14, 60, 30);
     [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
     [rightBtn setTitle:@"推荐记录" forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [rightBtn addTarget:self  action:@selector(recommendRecord) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     [self logoQrCode];
-    UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(share:)];
-    [self.codeImageV addGestureRecognizer:ges];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
-    
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    CFShow((__bridge CFTypeRef)(infoDictionary));
-    // app版本
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    
-    self.versionLb.text = [NSString stringWithFormat:@"当前版本: v%@",app_Version];
-    
-//     [self Postpath:GET_VERSION];
-}
 
-- (void)dealloc{
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
--(void)Postpath:(NSString *)path
-{
-    
-    NSURL *url = [NSURL URLWithString:path];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                                       timeoutInterval:10];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    
-    NSOperationQueue *queue = [NSOperationQueue new];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
-        NSMutableDictionary *receiveStatusDic=[[NSMutableDictionary alloc]init];
-        if (data) {
-            
-            NSDictionary *receiveDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-            if ([[receiveDic valueForKey:@"resultCount"] intValue]>0) {
-                
-                [receiveStatusDic setValue:@"1" forKey:@"status"];
-                [receiveStatusDic setValue:[[[receiveDic valueForKey:@"results"] objectAtIndex:0] valueForKey:@"version"]   forKey:@"version"];
-            }else{
-                
-                [receiveStatusDic setValue:@"-1" forKey:@"status"];
-            }
-        }else{
-            [receiveStatusDic setValue:@"-1" forKey:@"status"];
-        }
-        
-        [self performSelectorOnMainThread:@selector(receiveData:) withObject:receiveStatusDic waitUntilDone:NO];
-    }];
-    
-}
-
--(void)receiveData:(id)sender
-{
-//    self.NewVersionLb.text = [NSString stringWithFormat:@"最新版本: v%@",sender[@"version"]];
-    
-}
-
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    
-//    CGFloat shareVH = SCREEN_HEIGHT /5;
-//    [UIView animateWithDuration:0.2 animations:^{
-//        
-//        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, shareVH);
-//        
-//    }completion:^(BOOL finished) {
-//        [_shareV removeFromSuperview];
-//        _shareV = nil;
-//    }];
-//}
 
 //跳转到推荐记录
 - (void)recommendRecord {
-   
+    self.hidesBottomBarWhenPushed = YES;
+    LBRecommendRecoderViewController *recordVC = [[LBRecommendRecoderViewController alloc] init];
+    [self.navigationController pushViewController:recordVC animated:YES];
 }
 
 //设置导航栏
@@ -136,7 +67,7 @@
     [qrImageFilter setDefaults];
     
     //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
-    NSString *contentStr = [NSString stringWithFormat:@"%@",self.recommendUrl];
+    NSString *contentStr = [NSString stringWithFormat:@"%@%@",RECOMMEND_URL,[UserModel defaultUser].user_name];
 //    NSString *contentStr = @"";
     NSData *qrImageData = [contentStr dataUsingEncoding:NSUTF8StringEncoding];
     

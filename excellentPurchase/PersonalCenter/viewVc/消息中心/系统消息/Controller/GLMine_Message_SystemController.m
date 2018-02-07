@@ -8,12 +8,13 @@
 
 #import "GLMine_Message_SystemController.h"
 #import "GLMine_Message_TrendsCell.h"
-#import "GLMine_Message_TrendsModel.h"
+#import "GLMine_Message_SystemModel.h"
 
 @interface GLMine_Message_SystemController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (assign, nonatomic)NSInteger page;//页数默认为1
 @property (nonatomic, strong)NSMutableArray *models;
 
 @end
@@ -25,19 +26,114 @@
     
     self.navigationItem.title = @"系统消息";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Message_TrendsCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Message_TrendsCell"];
+
+    [self setupNpdata];//设置无数据的时候展示
+    WeakSelf;
+//    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+//        [weakSelf postRequest:YES];
+//    } footerRefresh:^{
+////        [weakSelf postRequest:NO];
+//    }];
+    
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [weakSelf postRequest:YES];
+    }];
+    
+//    self.page = 1;
+    [self postRequest:YES];
+    
 }
+
+//刷新
+-(void)refreshReceivingAddress{
+    [self postRequest:YES];
+}
+
+/**
+ 设置无数据图
+ */
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableView.tableFooterView = [UIView new];
+    
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableView.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableView.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    //emptyView内容上的点击事件监听
+    [self.tableView.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf postRequest:YES];
+    }];
+}
+
+//请求数据
+-(void)postRequest:(BOOL)isRefresh{
+//    if(isRefresh){
+//        self.page = 1;
+//    }else{
+//        self.page ++;
+//    }
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+//    dic[@"page"] = @(self.page);
+    
+    [EasyShowLodingView showLoding];
+    
+    [NetworkManager requestPOSTWithURLStr:ksystem_bulletin paramDic:dic finish:^(id responseObject) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if (isRefresh == YES) {
+                [self.models removeAllObjects];
+            }
+            
+            if ([responseObject[@"data"][@"page_data"] count] != 0) {
+                
+                for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
+                    GLMine_Message_SystemModel *model = [GLMine_Message_SystemModel mj_objectWithKeyValues:dict];
+                    
+                    [self.models addObject:model];
+                }
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
+}
+
 
 #pragma mark -UITableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 6;
+    return self.models.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GLMine_Message_TrendsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Message_TrendsCell"];
     cell.selectionStyle = 0;
-    cell.model = self.models[indexPath.row];
+    cell.systemModel = self.models[indexPath.row];
     
     return cell;
 }
@@ -59,20 +155,7 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-        for (int i = 0; i < 10; i ++) {
-            GLMine_Message_TrendsModel *model = [[GLMine_Message_TrendsModel alloc] init];
-            model.typeName = [NSString stringWithFormat:@"通知"];
-            model.date =[NSString stringWithFormat:@"2018-01-0%zd",i];
-            model.content = [NSString stringWithFormat:@"世纪优购1.1.1版本更新啦!请下载最新版本以获取最好的购物体验"];
-            if(i== 2){
-                model.content = @"你好,我是一条短消息";
-                model.typeName = @"测试";
-            }
-            
-            
-            [_models addObject:model];
-            
-        }
+        
     }
     return _models;
 }

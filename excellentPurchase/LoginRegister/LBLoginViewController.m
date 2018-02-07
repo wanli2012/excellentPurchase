@@ -255,28 +255,28 @@
             
             [UserModel defaultUser].loginstatus = YES;
             
-            [UserModel defaultUser].token = [self judgeStr:responseObject[@"data"][@"token"]];
-            [UserModel defaultUser].uid = [self judgeStr:responseObject[@"data"][@"uid"]];
-            [UserModel defaultUser].user_name = [self judgeStr:responseObject[@"data"][@"user_name"]];
-            [UserModel defaultUser].group_id = [self judgeStr:responseObject[@"data"][@"group_id"]];
-            [UserModel defaultUser].group_name = [self judgeStr:responseObject[@"data"][@"group_name"]];
+            [UserModel defaultUser].token = [self judgeStringIsNull:responseObject[@"data"][@"token"]  andDefault:NO];
+            [UserModel defaultUser].uid = [self judgeStringIsNull:responseObject[@"data"][@"uid"]   andDefault:NO];
+            [UserModel defaultUser].user_name = [self judgeStringIsNull:responseObject[@"data"][@"user_name"] andDefault:NO];
+            [UserModel defaultUser].group_id = [self judgeStringIsNull:responseObject[@"data"][@"group_id"] andDefault:NO];
+            [UserModel defaultUser].group_name = [self judgeStringIsNull:responseObject[@"data"][@"group_name"] andDefault:NO];
             
-            [UserModel defaultUser].phone = [self judgeStr:responseObject[@"data"][@"phone"]];
-            [UserModel defaultUser].pic = [self judgeStr:responseObject[@"data"][@"pic"]];
-            [UserModel defaultUser].trueName = [self judgeStr:responseObject[@"data"][@"trueName"]];
-            [UserModel defaultUser].im_id = [self judgeStr:responseObject[@"data"][@"im_id"]];
-            [UserModel defaultUser].im_token = [self judgeStr:responseObject[@"data"][@"im_token"]];
-            [UserModel defaultUser].nick_name = [self judgeStr:responseObject[@"data"][@"nick_name"]];
-            [UserModel defaultUser].rzstatus = [self judgeStr:responseObject[@"data"][@"rzstatus"]];
-            [UserModel defaultUser].del = [self judgeStr:responseObject[@"data"][@"del"]];
-            [UserModel defaultUser].tjr_group = [self judgeStr:responseObject[@"data"][@"tjr_group"]];
-            [UserModel defaultUser].tjr_name = [self judgeStr:responseObject[@"data"][@"tjr_name"]];
-            [UserModel defaultUser].mark = [self judgeStr:responseObject[@"data"][@"mark"]];
-            [UserModel defaultUser].balance = [self judgeStr:responseObject[@"data"][@"balance"]];
-            [UserModel defaultUser].keti_bean = [self judgeStr:responseObject[@"data"][@"keti_bean"]];
-            [UserModel defaultUser].shopping_voucher = [self judgeStr:responseObject[@"data"][@"shopping_voucher"]];
-            [UserModel defaultUser].cion_price = [self judgeStr:responseObject[@"data"][@"cion_price"]];
-            [UserModel defaultUser].voucher_ratio = [self judgeStr:responseObject[@"data"][@"voucher_ratio"]];
+            [UserModel defaultUser].phone = [self judgeStringIsNull:responseObject[@"data"][@"phone"] andDefault:NO];
+            [UserModel defaultUser].pic = [self judgeStringIsNull:responseObject[@"data"][@"pic"] andDefault:NO];
+            [UserModel defaultUser].truename = [self judgeStringIsNull:responseObject[@"data"][@"truename"] andDefault:NO];
+            [UserModel defaultUser].im_id = [self judgeStringIsNull:responseObject[@"data"][@"im_id"] andDefault:NO];
+            [UserModel defaultUser].im_token = [self judgeStringIsNull:responseObject[@"data"][@"im_token"] andDefault:NO];
+            [UserModel defaultUser].nick_name = [self judgeStringIsNull:responseObject[@"data"][@"nick_name"] andDefault:NO];
+            [UserModel defaultUser].rzstatus = [self judgeStringIsNull:responseObject[@"data"][@"rzstatus"] andDefault:NO];
+            [UserModel defaultUser].del = [self judgeStringIsNull:responseObject[@"data"][@"del"] andDefault:NO];
+            [UserModel defaultUser].tjr_group = [self judgeStringIsNull:responseObject[@"data"][@"tjr_group"] andDefault:NO];
+            [UserModel defaultUser].tjr_name = [self judgeStringIsNull:responseObject[@"data"][@"tjr_name"] andDefault:NO];
+            [UserModel defaultUser].mark = [self judgeStringIsNull:responseObject[@"data"][@"mark"] andDefault:YES];
+            [UserModel defaultUser].balance = [self judgeStringIsNull:responseObject[@"data"][@"balance"] andDefault:YES];
+            [UserModel defaultUser].keti_bean = [self judgeStringIsNull:responseObject[@"data"][@"keti_bean"] andDefault:YES];
+            [UserModel defaultUser].shopping_voucher = [self judgeStringIsNull:responseObject[@"data"][@"shopping_voucher"] andDefault:YES];
+            [UserModel defaultUser].cion_price = [self judgeStringIsNull:responseObject[@"data"][@"cion_price"] andDefault:YES];
+            [UserModel defaultUser].voucher_ratio = [self judgeStringIsNull:responseObject[@"data"][@"voucher_ratio"] andDefault:YES];
 
             [usermodelachivar achive];
             
@@ -298,17 +298,24 @@
     }];
 }
 
-- (NSString *)judgeStr:(id )str{
+//判空 给数字设置默认值
+- (NSString *)judgeStringIsNull:(id )sender andDefault:(BOOL)isNeedDefault{
     
-    str = [NSString stringWithFormat:@"%@",str];
+    NSString *str = [NSString stringWithFormat:@"%@",sender];
     
     if ([NSString StringIsNullOrEmpty:str]) {
-        return @"";
+        
+        if (isNeedDefault) {
+            return @"0.00";
+        }else{
+            return @"";
+            
+        }
     }else{
         return str;
     }
-   
 }
+
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

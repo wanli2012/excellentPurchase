@@ -8,6 +8,7 @@
 
 #import "LBMineOtherFunctionViewController.h"
 #import "LBSetUpTableViewCell.h"
+//#import "GLRecommendController.h"
 
 @interface LBMineOtherFunctionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -74,7 +75,7 @@
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"LBRecommendRecoderViewController",
+                    @"GLRecommendController",
                     @"LBMineCollectionViewController",nil];
         
     }

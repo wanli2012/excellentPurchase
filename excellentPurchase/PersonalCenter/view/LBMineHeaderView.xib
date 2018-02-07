@@ -90,7 +90,7 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine-Header-Background" translatesAutoresizingMaskIntoConstraints="NO" id="Xgo-YI-jrI">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-kP-uNo">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-kP-uNo">
                             <rect key="frame" x="10" y="65" width="80" height="80"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
@@ -212,10 +212,14 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="IDNumberLabel" destination="uFc-48-vpp" id="hva-Ri-EyS"/>
                 <outlet property="alertImage" destination="1li-tq-qTk" id="2ht-N9-BIb"/>
                 <outlet property="changeBt" destination="2NG-cq-igm" id="MjF-bS-et9"/>
                 <outlet property="colletionView" destination="Gre-Jk-tjZ" id="f2o-n7-OEQ"/>
                 <outlet property="dataView" destination="Hw9-mh-y3l" id="gZT-lF-pd8"/>
+                <outlet property="groupTypeLabel" destination="dG2-gT-1zI" id="3WR-kc-Ff5"/>
+                <outlet property="iconImageV" destination="YYo-kP-uNo" id="RTv-T8-uuK"/>
+                <outlet property="nicknameLabel" destination="ZQm-NI-Vcs" id="dLV-C5-dsH"/>
                 <outlet property="noticeView" destination="6OG-KV-QPj" id="53F-Ha-BaU"/>
                 <outlet property="topView" destination="Csk-ma-0Ie" id="XmW-vW-hs5"/>
             </connections>

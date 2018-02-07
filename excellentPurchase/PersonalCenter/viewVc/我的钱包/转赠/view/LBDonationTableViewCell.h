@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GLDonationRecordModel.h"
+
 @interface LBDonationTableViewCell : UITableViewCell
+
+@property (nonatomic, strong)GLDonationRecordModel *model;
 
 @end

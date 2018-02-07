@@ -52,6 +52,6 @@ typedef void(^clickLabelBlock)(NSInteger index,NSString *titleString);
  *  label的点击事件
  */
 
-- (void) clickTitleLabel:(clickLabelBlock) clickLabelBlock;
+- (void)clickTitleLabel:(clickLabelBlock) clickLabelBlock;
 
 @end

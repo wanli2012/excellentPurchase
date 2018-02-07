@@ -74,14 +74,18 @@
 
 - (NSMutableArray *)titleArr{
     if (!_titleArr) {
-        _titleArr = [NSMutableArray arrayWithObjects:@"物流信息",@"我的资产",@"我的动态",@"系统消息",@"互动消息", nil];
+        _titleArr = [NSMutableArray arrayWithObjects:@"我的资产",@"我的动态",@"系统消息", nil];
         
     }
     return _titleArr;
 }
+
 - (NSMutableArray *)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"message_logistics",@"message_property",@"message_newsfeed",@"message_system",@"message_Interactive", nil];
+        
+//        _imageArr = [NSMutableArray arrayWithObjects:@"message_logistics",@"message_property",@"message_newsfeed",@"message_system",@"message_Interactive", nil];
+        
+        _imageArr = [NSMutableArray arrayWithObjects:@"message_property",@"message_newsfeed",@"message_system", nil];
     }
     return _imageArr;
 }
@@ -90,11 +94,9 @@
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"GLMine_Message_LogisticsController",
                     @"GLMine_Message_PropertyController",
                     @"GLMine_Message_TrendsController",
-                    @"GLMine_Message_SystemController",
-                    @"GLMine_Message_InteractController",nil];
+                    @"GLMine_Message_SystemController",nil];
         
     }
     

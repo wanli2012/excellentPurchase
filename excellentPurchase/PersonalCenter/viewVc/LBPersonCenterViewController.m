@@ -53,7 +53,99 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     adjustsScrollViewInsets_NO(self.tableview, self);
+    
+    [self refreshRequest];
 }
+
+#pragma mark - 刷新接口
+- (void)refreshRequest{
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"SEARCH";
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+   
+    [NetworkManager requestPOSTWithURLStr:krefresh paramDic:dict finish:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [UserModel defaultUser].phone = [self judgeStringIsNull:responseObject[@"data"][@"phone"] andDefault:NO];
+            [UserModel defaultUser].user_name = [self judgeStringIsNull:responseObject[@"data"][@"user_name"] andDefault:NO];
+            [UserModel defaultUser].truename = [self judgeStringIsNull:responseObject[@"data"][@"truename"] andDefault:NO];
+            [UserModel defaultUser].tg_status = [self judgeStringIsNull:responseObject[@"data"][@"tg_status"] andDefault:NO];
+            [UserModel defaultUser].del = [self judgeStringIsNull:responseObject[@"data"][@"del"] andDefault:NO];
+            [UserModel defaultUser].pic = [self judgeStringIsNull:responseObject[@"data"][@"pic"] andDefault:NO];
+            [UserModel defaultUser].group_id = [self judgeStringIsNull:responseObject[@"data"][@"group_id"] andDefault:NO];
+            [UserModel defaultUser].group_name = [self judgeStringIsNull:responseObject[@"data"][@"group_name"] andDefault:NO];
+            [UserModel defaultUser].nick_name = [self judgeStringIsNull:responseObject[@"data"][@"nick_name"] andDefault:NO];
+            [UserModel defaultUser].rzstatus = [self judgeStringIsNull:responseObject[@"data"][@"rzstatus"] andDefault:NO];
+            [UserModel defaultUser].tjr_name = [self judgeStringIsNull:responseObject[@"data"][@"tjr_name"] andDefault:NO];
+            [UserModel defaultUser].tjr_group = [self judgeStringIsNull:responseObject[@"data"][@"tjr_group"] andDefault:NO];
+            [UserModel defaultUser].voucher_ratio = [self judgeStringIsNull:responseObject[@"data"][@"voucher_ratio"] andDefault:NO];
+            [UserModel defaultUser].mark = [self judgeStringIsNull:responseObject[@"data"][@"mark"] andDefault:YES];
+            [UserModel defaultUser].balance = [self judgeStringIsNull:responseObject[@"data"][@"balance"] andDefault:YES];
+            [UserModel defaultUser].shopping_voucher = [self judgeStringIsNull:responseObject[@"data"][@"shopping_voucher"] andDefault:YES];
+            [UserModel defaultUser].keti_bean = [self judgeStringIsNull:responseObject[@"data"][@"keti_bean"] andDefault:YES];
+            [UserModel defaultUser].currency = [self judgeStringIsNull:responseObject[@"data"][@"currency"] andDefault:YES];
+            [UserModel defaultUser].Total_money = [self judgeStringIsNull:responseObject[@"data"][@"Total_money"] andDefault:YES];
+            [UserModel defaultUser].Total_mark = [self judgeStringIsNull:responseObject[@"data"][@"Total_mark"] andDefault:YES];
+            [UserModel defaultUser].Total_currency = [self judgeStringIsNull:responseObject[@"data"][@"Total_currency"] andDefault:YES];
+            [UserModel defaultUser].money_sum = [self judgeStringIsNull:responseObject[@"money_sum"] andDefault:YES];
+
+            [usermodelachivar achive];
+            
+            [self assignmentHeader];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
+}
+
+//头视图赋值
+- (void)assignmentHeader {
+    
+    [self.headerView.iconImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.headerView.nicknameLabel.text = [UserModel defaultUser].nick_name;
+    self.headerView.IDNumberLabel.text = [UserModel defaultUser].user_name;
+    self.headerView.groupTypeLabel.text = [UserModel defaultUser].group_name;
+    
+    self.headerView.noticeArr = @[@"你",@"号",@"啊"];
+    self.headerView.valueArr = @[[UserModel defaultUser].mark,//用户积分
+                                [UserModel defaultUser].balance,//用户余额
+                                [UserModel defaultUser].shopping_voucher,//用户购物券
+                                [UserModel defaultUser].keti_bean,//用户优购币
+                                [UserModel defaultUser].currency,//优购币单价
+                                [UserModel defaultUser].Total_money,//平台昨日营业额总量
+                                [UserModel defaultUser].Total_mark,//平台昨日新增积分总量
+                                [UserModel defaultUser].Total_currency,//平台昨日优购币新增
+                              ];
+    
+}
+
+//判空 给数字设置默认值
+- (NSString *)judgeStringIsNull:(id )sender andDefault:(BOOL)isNeedDefault{
+    
+    NSString *str = [NSString stringWithFormat:@"%@",sender];
+    
+    if ([NSString StringIsNullOrEmpty:str]) {
+      
+        if (isNeedDefault) {
+            return @"0.00";
+        }else{
+            return @"";
+            
+        }
+    }else{
+        return str;
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -161,10 +253,9 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     }
     
     NSArray *arr = @[@"积分",@"余额",@"购物券",@"优宝",@"优宝单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
-    NSArray *valueArr = @[@"23222",@"11",@"0",@"1",@"1",@"2",@"3",@"4444"];
     
     _headerView.titleArr = arr;
-    _headerView.valueArr = valueArr;
+ 
     
     return _headerView;
 }

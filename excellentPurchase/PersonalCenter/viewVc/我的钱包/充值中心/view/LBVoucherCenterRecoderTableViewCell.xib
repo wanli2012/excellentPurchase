@@ -59,6 +59,11 @@
                     <constraint firstItem="WFw-Ng-RQz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yw4-On-zhe"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="JCe-or-5p4" id="jhj-NN-cqv"/>
+                <outlet property="moneyLabel" destination="LIh-iC-oCi" id="3FY-Jg-UJW"/>
+                <outlet property="rechargeTypeLabel" destination="mUl-m3-beq" id="wxf-Ge-A96"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
