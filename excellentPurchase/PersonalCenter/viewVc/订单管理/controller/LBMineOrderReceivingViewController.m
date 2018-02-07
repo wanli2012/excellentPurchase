@@ -13,6 +13,7 @@
 #import "LBMineOrderObligationmodel.h"
 #import "LBMineOrdersHeaderViewOneCell.h"
 #import "LBMineOrdersFooterViewCell.h"
+#import "LBMineCenterFlyNoticeDetailViewController.h"
 
 static NSString *mineOrdersHeaderViewTableViewCell = @"LBMineOrdersHeaderViewTableViewCell";
 static NSString *mineOrdersHeaderViewOneCell = @"LBMineOrdersHeaderViewOneCell";
@@ -152,7 +153,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         cell.model = model;
         WeakSelf;
         cell.clickbuttonOneEvent = ^(NSIndexPath *indexpath) {//查看物流
-            
+            [self CheckFly:indexpath];
         };
         cell.clickbuttonTwoEvent = ^(NSIndexPath *indexpath) {//确认收货
             [weakSelf sureorders:indexPath];
@@ -249,27 +250,12 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     
 }
 
--(void)repayOders:(NSIndexPath*)indexpath{
-    
-    //    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    //    dic[@"app_handler"] = @"SEARCH";
-    //    dic[@"uid"] = [UserModel defaultUser].uid;
-    //    dic[@"token"] = [UserModel defaultUser].token;
-    //    dic[@"ord_str"] = ord_str;
-    //
-    //    [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_cancel_order paramDic:dic finish:^(id responseObject) {
-    //
-    //        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-    //            self.page = 1;
-    //            [self loadData:self.page refreshDirect:YES];
-    //        }else{
-    //
-    //            [EasyShowTextView showErrorText:responseObject[@"message"]];
-    //        }
-    //
-    //    } enError:^(NSError *error) {
-    //        [EasyShowTextView showErrorText:error.localizedDescription];
-    //    }];
+-(void)CheckFly:(NSIndexPath*)indexpath{
+    LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
+    vc.codestr = model.odd_num;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{

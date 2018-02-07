@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBRecommendRecoderModel.h"
 
 @interface LBRecommendRecoderCell : UITableViewCell
 
+@property (strong , nonatomic)LBRecommendRecoderModel *model;
 @end

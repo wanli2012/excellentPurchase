@@ -58,11 +58,10 @@
     BaseNavigationViewController *eatNav = [[BaseNavigationViewController alloc] initWithRootViewController:eatVc];
     eatNav.tabBarItem = [self barTitle:@"吃喝玩乐" image:@"play" selectImage:@"choiceplay"];
     
-    
     //淘宝商城
     LBTmallViewController *tmallVC = [[LBTmallViewController alloc] init];
     BaseNavigationViewController *tmallNav = [[BaseNavigationViewController alloc] initWithRootViewController:tmallVC];
-    tmallNav.tabBarItem = [self barTitle:@"淘淘商城" image:@"store" selectImage:@"choicestore"];
+    tmallNav.tabBarItem = [self barTitle:@"海淘商城" image:@"store" selectImage:@"choicestore"];
     
     //理财中心
     LBFinancialCenterViewController *financialVC = [[LBFinancialCenterViewController alloc] init];

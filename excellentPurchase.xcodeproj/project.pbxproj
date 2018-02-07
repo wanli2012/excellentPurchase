@@ -843,6 +843,9 @@
 		F955D1812008AEFD001EEC81 /* LBAddBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F955D17F2008AEFD001EEC81 /* LBAddBankCardViewController.m */; };
 		F955D1822008AEFD001EEC81 /* LBAddBankCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F955D1802008AEFD001EEC81 /* LBAddBankCardViewController.xib */; };
 		F955D1932008CABC001EEC81 /* LBChooseBankTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F955D1922008CABC001EEC81 /* LBChooseBankTypeView.m */; };
+		F95A72A2202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A1202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m */; };
+		F95A72A6202AAC3A001445E6 /* LBRecommendRecoderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A5202AAC3A001445E6 /* LBRecommendRecoderModel.m */; };
+		F95A72A9202AAC57001445E6 /* LBRecommendRecoderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */; };
 		F95B5319200C83ED00A81954 /* LBMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */; };
 		F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */; };
 		F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B531B200C8E1000A81954 /* LBRiceShopTagView.m */; };
@@ -2526,6 +2529,12 @@
 		F955D1802008AEFD001EEC81 /* LBAddBankCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBAddBankCardViewController.xib; sourceTree = "<group>"; };
 		F955D1912008CABC001EEC81 /* LBChooseBankTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBChooseBankTypeView.h; sourceTree = "<group>"; };
 		F955D1922008CABC001EEC81 /* LBChooseBankTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBChooseBankTypeView.m; sourceTree = "<group>"; };
+		F95A72A0202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineCenterFlyNoticeModel.h; sourceTree = "<group>"; };
+		F95A72A1202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterFlyNoticeModel.m; sourceTree = "<group>"; };
+		F95A72A4202AAC3A001445E6 /* LBRecommendRecoderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRecommendRecoderModel.h; sourceTree = "<group>"; };
+		F95A72A5202AAC3A001445E6 /* LBRecommendRecoderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBRecommendRecoderModel.m; sourceTree = "<group>"; };
+		F95A72A7202AAC57001445E6 /* LBRecommendRecoderListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRecommendRecoderListModel.h; sourceTree = "<group>"; };
+		F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBRecommendRecoderListModel.m; sourceTree = "<group>"; };
 		F95B5316200C83ED00A81954 /* LBMineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineTableViewCell.h; sourceTree = "<group>"; };
 		F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineTableViewCell.m; sourceTree = "<group>"; };
 		F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineTableViewCell.xib; sourceTree = "<group>"; };
@@ -6196,6 +6205,7 @@
 		F93D5DFF20247A51002E8FA7 /* 推荐记录 */ = {
 			isa = PBXGroup;
 			children = (
+				F95A72A3202AAC21001445E6 /* model */,
 				F93D5E0520247A9F002E8FA7 /* controller */,
 				F93D5E0920247A9F002E8FA7 /* view */,
 			);
@@ -6998,6 +7008,26 @@
 			path = "选择银行卡类型";
 			sourceTree = "<group>";
 		};
+		F95A729F202A9EA7001445E6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F95A72A0202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.h */,
+				F95A72A1202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F95A72A3202AAC21001445E6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F95A72A4202AAC3A001445E6 /* LBRecommendRecoderModel.h */,
+				F95A72A5202AAC3A001445E6 /* LBRecommendRecoderModel.m */,
+				F95A72A7202AAC57001445E6 /* LBRecommendRecoderListModel.h */,
+				F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		F95B5321200C9BDB00A81954 /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7314,6 +7344,7 @@
 		F96CF43220181A870070658C /* 物流信息 */ = {
 			isa = PBXGroup;
 			children = (
+				F95A729F202A9EA7001445E6 /* model */,
 				F96CF43320181A870070658C /* LBMineCenterFlyNoticeDetailOneTableViewCell.h */,
 				F96CF43420181A870070658C /* LBMineCenterFlyNoticeDetailOneTableViewCell.m */,
 				F96CF43520181A870070658C /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib */,
@@ -8458,6 +8489,7 @@
 				F9426B09201ABC200054417E /* ZLPhotoPickerAssetsViewController.m in Sources */,
 				4A9CBD9F20240AB3004623C5 /* LBFinishMainHeaderView.m in Sources */,
 				F97CDC7B201576A20036B8E0 /* LBFinancialCenterExchangeRecodervc.m in Sources */,
+				F95A72A9202AAC57001445E6 /* LBRecommendRecoderListModel.m in Sources */,
 				4A0EDF8320189BAD0037D47A /* GLMine_Manage_Branch_DoneController.m in Sources */,
 				F93D5E1420247C12002E8FA7 /* LBRecommendRecoderDetailCell.m in Sources */,
 				4A20E98F2012EA0500E091EA /* GLMine_Message_LogisticsModel.m in Sources */,
@@ -8571,6 +8603,7 @@
 				F9426AF0201ABC200054417E /* EasyShowLodingView.m in Sources */,
 				F96971D12011849A00966E26 /* LeftTableViewCell.m in Sources */,
 				4A0EDF61201883EC0037D47A /* LBAccountManagementTableViewCell.m in Sources */,
+				F95A72A2202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m in Sources */,
 				F923B23D2020021F00DFEF7C /* ZXMultiFormatOneDReader.m in Sources */,
 				4AFC0EA7201573AF004518F4 /* LB_EatCommentFrameModel.m in Sources */,
 				F955D14920089676001EEC81 /* LBResetOldPhoneViewController.m in Sources */,
@@ -8760,6 +8793,7 @@
 				F923B1982020021E00DFEF7C /* ZXingWrapper.m in Sources */,
 				F923B2842020032600DFEF7C /* LBEatClassifyModel.m in Sources */,
 				F923B1F42020021F00DFEF7C /* ZXPlanarYUVLuminanceSource.m in Sources */,
+				F95A72A6202AAC3A001445E6 /* LBRecommendRecoderModel.m in Sources */,
 				4A20E9B220132A3300E091EA /* GLMine_Message_SystemController.m in Sources */,
 				F923B25C2020021F00DFEF7C /* ZXPDF417ErrorCorrection.m in Sources */,
 				F95073112004C2700026D28F /* LBHorseGroupTableViewCell.m in Sources */,

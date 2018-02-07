@@ -76,10 +76,10 @@
 }
 
 -(void)pushFailVc{
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
-    vc.type = 2;
-    [self.navigationController pushViewController:vc animated:YES];
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
+//    vc.type = 2;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

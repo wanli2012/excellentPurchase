@@ -17,6 +17,10 @@
     self.image.clipsToBounds = YES;
 }
 
-
+-(void)setModel:(LBMineCenterFlyNoticeDetailModel *)model{
+    _model = model;
+    self.contentlb.text = [NSString stringWithFormat:@"%@",_model.status];
+    self.timelb.text = [NSString stringWithFormat:@"%@",_model.time];
+}
 
 @end

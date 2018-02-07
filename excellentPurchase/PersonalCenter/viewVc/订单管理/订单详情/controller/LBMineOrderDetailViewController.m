@@ -20,6 +20,7 @@
 #import "LBProductDetailViewController.h"
 #import "GLMine_Cart_PayController.h"
 #import "LBMineEvaluateViewController.h"
+#import "LBMineCenterFlyNoticeDetailViewController.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -156,7 +157,10 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 }
 //查看物流
 - (IBAction)checkfly:(UIButton *)sender {
-    
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
+    vc.codestr = self.dataModel.odd_num;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 //待评论
 -(void)replayComment:(NSIndexPath*)indexpath{
@@ -233,6 +237,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         LBMineOrderDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailAdressTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.dataModel;
+        if (self.typeindex == 10) {
+            cell.rightimge.hidden = YES;
+        }
         return cell;
     }else{
         if (indexPath.row >= 0 && indexPath.row < self.dataModel.goods_info.count) {
@@ -339,6 +346,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        if (self.typeindex == 10) {
+            return;
+        }
         self.hidesBottomBarWhenPushed =YES;
         LBMineCentermodifyAdressViewController *vc =[[LBMineCentermodifyAdressViewController alloc]init];
         WeakSelf;

@@ -10,4 +10,6 @@
 
 @interface LBRecommendRecoderDtailViewController : UIViewController
 
+@property (strong , nonatomic)NSString *g_uid;//被推荐人uid
+
 @end

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMineCenterFlyNoticeDetailViewController : UIViewController
+
 @property (strong , nonatomic)NSString *codestr;
+
 @end
