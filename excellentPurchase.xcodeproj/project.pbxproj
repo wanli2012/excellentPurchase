@@ -817,6 +817,8 @@
 		F95A72A2202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A1202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m */; };
 		F95A72A6202AAC3A001445E6 /* LBRecommendRecoderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A5202AAC3A001445E6 /* LBRecommendRecoderModel.m */; };
 		F95A72A9202AAC57001445E6 /* LBRecommendRecoderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */; };
+		F95A72B5202AED4D001445E6 /* LLWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72AD202AED4D001445E6 /* LLWebProgressLayer.m */; };
+		F95A72BA202AED4D001445E6 /* LLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72B4202AED4D001445E6 /* LLWebViewController.m */; };
 		F95B5319200C83ED00A81954 /* LBMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */; };
 		F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */; };
 		F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B531B200C8E1000A81954 /* LBRiceShopTagView.m */; };
@@ -2449,6 +2451,10 @@
 		F95A72A5202AAC3A001445E6 /* LBRecommendRecoderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBRecommendRecoderModel.m; sourceTree = "<group>"; };
 		F95A72A7202AAC57001445E6 /* LBRecommendRecoderListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRecommendRecoderListModel.h; sourceTree = "<group>"; };
 		F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBRecommendRecoderListModel.m; sourceTree = "<group>"; };
+		F95A72AC202AED4D001445E6 /* LLWebProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWebProgressLayer.h; sourceTree = "<group>"; };
+		F95A72AD202AED4D001445E6 /* LLWebProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWebProgressLayer.m; sourceTree = "<group>"; };
+		F95A72B3202AED4D001445E6 /* LLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWebViewController.h; sourceTree = "<group>"; };
+		F95A72B4202AED4D001445E6 /* LLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWebViewController.m; sourceTree = "<group>"; };
 		F95B5316200C83ED00A81954 /* LBMineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineTableViewCell.h; sourceTree = "<group>"; };
 		F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineTableViewCell.m; sourceTree = "<group>"; };
 		F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineTableViewCell.xib; sourceTree = "<group>"; };
@@ -4299,6 +4305,7 @@
 		4AA3A1692019892500C94E49 /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				F95A72AA202AED4D001445E6 /* LLWebViewController */,
 				4A9C88FC2021B6D000EFF9D5 /* ValuePickerView.h */,
 				4A9C88FB2021B6CF00EFF9D5 /* ValuePickerView.m */,
 				4AA3A16D2019894700C94E49 /* FullTimeView.h */,
@@ -6808,6 +6815,25 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		F95A72AA202AED4D001445E6 /* LLWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F95A72AB202AED4D001445E6 /* LLWebProgressLayer */,
+				F95A72B3202AED4D001445E6 /* LLWebViewController.h */,
+				F95A72B4202AED4D001445E6 /* LLWebViewController.m */,
+			);
+			path = LLWebViewController;
+			sourceTree = "<group>";
+		};
+		F95A72AB202AED4D001445E6 /* LLWebProgressLayer */ = {
+			isa = PBXGroup;
+			children = (
+				F95A72AC202AED4D001445E6 /* LLWebProgressLayer.h */,
+				F95A72AD202AED4D001445E6 /* LLWebProgressLayer.m */,
+			);
+			path = LLWebProgressLayer;
+			sourceTree = "<group>";
+		};
 		F95B5321200C9BDB00A81954 /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8476,6 +8502,7 @@
 				F923B20B2020021F00DFEF7C /* ZXDataMatrixWriter.m in Sources */,
 				F923B1B62020021E00DFEF7C /* ZXEmailAddressResultParser.m in Sources */,
 				4A0B140620108F0700AC3334 /* GLMine_Team_AccountChooseCell.m in Sources */,
+				F95A72BA202AED4D001445E6 /* LLWebViewController.m in Sources */,
 				F95FE0B22010328700F39919 /* LBBurstingWithPopularityTableViewCell.m in Sources */,
 				F923B2692020021F00DFEF7C /* ZXQRCodeFormatInformation.m in Sources */,
 				F923B1AF2020021E00DFEF7C /* ZXAddressBookAUResultParser.m in Sources */,
@@ -8733,6 +8760,7 @@
 				F923B2602020021F00DFEF7C /* ZXPDF417ResultMetadata.m in Sources */,
 				F9426B0E201ABC200054417E /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */,
 				F923B2672020021F00DFEF7C /* ZXQRCodeDecoderMetaData.m in Sources */,
+				F95A72B5202AED4D001445E6 /* LLWebProgressLayer.m in Sources */,
 				4AA3A20F201A218200C94E49 /* LBVoucherCenterRecoderViewController.m in Sources */,
 				F9340A1D2009E7A90002DBB8 /* LBIntegralGoodsOneCollectionViewCell.m in Sources */,
 				F9264A23201967A3000A0011 /* LBStoreInformationViewController.m in Sources */,

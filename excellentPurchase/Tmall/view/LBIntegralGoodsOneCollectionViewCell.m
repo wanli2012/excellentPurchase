@@ -41,7 +41,7 @@
 
 -(void)setModel:(LBTmallhomepageDataStructureModel *)model{
     _model = model;
-    [_imagev sd_setImageWithURL:[NSURL URLWithString:_model.thumb] placeholderImage:nil];
+    [_imagev sd_setImageWithURL:[NSURL URLWithString:_model.thumb] placeholderImage:[UIImage imageNamed:@"haitao_dianpu"]];
     self.titlte.text = [NSString stringWithFormat:@"%@",_model.goods_name];
     self.jifen.attributedText = [self addoriginstr:[NSString stringWithFormat:@"%@积分",_model.bonuspoints] specilstr:@[@"积分"]];
     self.priceLb.text = [NSString stringWithFormat:@"¥%@",_model.discount];

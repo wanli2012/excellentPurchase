@@ -59,6 +59,8 @@
 -(void)initDatasorce{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
 
     [NetworkManager requestPOSTWithURLStr:OrderGuess_favorite paramDic:dic finish:^(id responseObject) {
 
