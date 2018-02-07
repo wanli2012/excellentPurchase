@@ -30,7 +30,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
     LBMineOrderMainViewController *vc =[[LBMineOrderMainViewController alloc]init];
-    vc.titilestr = @"淘淘订单";
+    vc.titilestr = @"海淘订单";
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -68,7 +68,7 @@
     if ([_navigationBt.titleLabel.text isEqualToString:@"海淘商城"]) {
           self.dropView = [[PGGDropView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight ,UIScreenWidth, 300) withTitleArray:@[@"吃喝玩乐"]];
     }else{
-          self.dropView = [[PGGDropView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight ,UIScreenWidth, 300) withTitleArray:@[@"淘淘商城"]];
+          self.dropView = [[PGGDropView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight ,UIScreenWidth, 300) withTitleArray:@[@"海淘商城"]];
     }
     self.dropView.delegate = self;
      [self.dropView beginAnimation];

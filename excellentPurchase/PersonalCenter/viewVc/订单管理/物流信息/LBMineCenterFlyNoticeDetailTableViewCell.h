@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineCenterFlyNoticeModel.h"
 
 @interface LBMineCenterFlyNoticeDetailTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *statusLb;
 @property (weak, nonatomic) IBOutlet UILabel *codelb;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+
+@property (strong , nonatomic)LBMineCenterFlyNoticeModel *model;
 
 @end

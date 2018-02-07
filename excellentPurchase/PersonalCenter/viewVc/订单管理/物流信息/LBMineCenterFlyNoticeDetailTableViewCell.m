@@ -15,5 +15,9 @@
     // Initialization code
 }
 
-
+-(void)setModel:(LBMineCenterFlyNoticeModel *)model{
+    _model = model;
+    self.statusLb.text = [NSString stringWithFormat:@"物流状态: %@",_model.wl_status];
+    self.codelb.text = [NSString stringWithFormat:@"物流单号: %@",_model.wl_num];
+}
 @end

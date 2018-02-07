@@ -85,5 +85,8 @@
 #define CommentLine_store_reply @"Comment/line_store_reply"//线下订单商家回复评论
 #define CommentStore_order_reply @"Comment/store_order_reply"//商家回复线上订单评论
 #define PayFace_pay @"Pay/face_pay"//面对面支付
+#define OrderGuess_favorite @"Order/guess_favorite"//支付界面猜你喜欢
+#define UserGroomUser_groom_list @"UserGroom/user_groom_list"//用户推荐列表
+#define UserGroomGroom_gain @"UserGroom/groom_gain"//查看推荐收益
 
 #endif /* scaleHeader_h */

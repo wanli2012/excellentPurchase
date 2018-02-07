@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBRecommendRecoderListModel.h"
 
 @interface LBRecommendRecoderDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *timelb;
+@property (weak, nonatomic) IBOutlet UILabel *contentlb;
+
+@property (strong , nonatomic)LBRecommendRecoderListModel *model;
 
 @end

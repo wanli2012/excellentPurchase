@@ -10,10 +10,13 @@
 #import "LBIntegralGoodsTwoCollectionViewCell.h"
 #import "GLMine_PaySuccessView.h"
 #import "GLMine_PayFailedView.h"
+#import "LBTmallhomepageDataModel.h"
+#import "LBProductDetailViewController.h"
 
 @interface GLMine_PaySucessController ()<GLMine_PayFailedViewDelegate,GLMine_PaySuccessViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong)NSMutableArray *dataArr;//数组
 
 @end
 
@@ -49,6 +52,31 @@
     
     //注册cell
     [self.collectionView registerNib:[UINib nibWithNibName:@"LBIntegralGoodsTwoCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LBIntegralGoodsTwoCollectionViewCell"];
+    
+    [self initDatasorce];//加载数据
+}
+
+-(void)initDatasorce{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+
+    [NetworkManager requestPOSTWithURLStr:OrderGuess_favorite paramDic:dic finish:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                LBTmallhomepageDataStructureModel *model = [LBTmallhomepageDataStructureModel mj_objectWithKeyValues:dic];
+                [self.dataArr addObject:model];
+            }
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [self.collectionView reloadData];
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
 }
 
 #pragma mark - GLMine_PayFailedViewDelegate
@@ -82,7 +110,8 @@
 #pragma mark - UICollectionDelegate
 //返回对应section的item 的数量
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    
+    return self.dataArr.count;
 }
 //创建和复用cell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -90,7 +119,7 @@
     //重用cell
     LBIntegralGoodsTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBIntegralGoodsTwoCollectionViewCell" forIndexPath:indexPath];
     //赋值给cell
-    
+    cell.model = self.dataArr[indexPath.item];
     return cell;
 }
 
@@ -114,6 +143,11 @@
 //选择了某个cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //在这里进行点击cell后的操作
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+    vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -158,5 +192,12 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 
 -(void)popself{
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(NSMutableArray *)dataArr{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
 }
 @end

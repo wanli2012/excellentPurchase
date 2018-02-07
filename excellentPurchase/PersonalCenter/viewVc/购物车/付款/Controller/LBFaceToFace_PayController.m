@@ -52,14 +52,14 @@
  支付宝支付成功回调
  */
 -(void)Alipaysucess{
-    [self pushsucessVc];
+    
 }
 
 /**
  微信支付成功回调
  */
 -(void)wxpaysucess{
-    [self pushsucessVc];
+   
 }
 
 -(void)pushsucessVc{
@@ -71,10 +71,7 @@
 }
 
 -(void)pushFailVc{
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
-    vc.type = 2;
-    [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 /**
@@ -139,7 +136,7 @@
                 
                 NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                 if (orderState==9000) {
-                    [self pushsucessVc];
+                   
                 }else{
                     NSString *returnStr;
                     switch (orderState) {

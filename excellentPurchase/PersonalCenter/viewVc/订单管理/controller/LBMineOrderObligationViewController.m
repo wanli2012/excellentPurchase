@@ -289,8 +289,6 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
-    
-    
 }
 
 -(void)repayOders:(NSIndexPath*)indexpath{

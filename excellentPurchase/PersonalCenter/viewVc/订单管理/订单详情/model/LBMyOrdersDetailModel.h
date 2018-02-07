@@ -26,6 +26,7 @@
 @property (copy , nonatomic)NSString *send_price;
 @property (copy , nonatomic)NSString *shop_name;
 @property (copy , nonatomic)NSString *time;
+@property (copy , nonatomic)NSString *odd_num;
 @property (copy , nonatomic)NSArray<LBMyOrdersDetailGoodsListModel*> *goods_info;
 
 @end

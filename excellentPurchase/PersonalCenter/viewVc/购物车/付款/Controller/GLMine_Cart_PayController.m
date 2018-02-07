@@ -36,7 +36,6 @@
     self.navigationItem.title = @"付款";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Cart_PayCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Cart_PayCell"];
     
-    
     self.orderAllPrice.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"order_money"]];
     self.couponSum.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"shopping_voucher"]];
     self.deductionSum.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"dk_pay_coupons"]];
@@ -74,10 +73,10 @@
 }
 
 -(void)pushFailVc{
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
-    vc.type = 2;
-    [self.navigationController pushViewController:vc animated:YES];
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
+//    vc.type = 2;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

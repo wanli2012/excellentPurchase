@@ -14,6 +14,7 @@
 #import "LBMineOrdersHeaderViewOneCell.h"
 #import "LBMineOrdersFooterViewCell.h"
 #import "LBMineEvaluateViewController.h"
+#import "LBMineCenterFlyNoticeDetailViewController.h"
 
 static NSString *mineOrdersHeaderViewTableViewCell = @"LBOrdersCompletTableViewCell";
 static NSString *mineOrdersHeaderViewOneCell = @"LBMineOrdersHeaderViewOneCell";
@@ -214,7 +215,11 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
  @param indexpath 第几列
  */
 -(void)checkFly:(NSIndexPath*)indexpath{
-   
+    LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
+    vc.codestr = model.odd_num;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 //发布评论
