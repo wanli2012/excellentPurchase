@@ -30,6 +30,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseSpecification:)];
     [self.specilView addGestureRecognizer:tapgesture];
     UITapGestureRecognizer *sharetapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(shareInfo:)];

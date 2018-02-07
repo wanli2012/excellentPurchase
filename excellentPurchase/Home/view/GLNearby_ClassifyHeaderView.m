@@ -20,8 +20,6 @@
 
 @property (assign, nonatomic)NSInteger SCR_conW;
 
-
-
 @end
 
 @implementation GLNearby_ClassifyHeaderView
@@ -42,11 +40,12 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        
         self = [[NSBundle mainBundle]loadNibNamed:@"GLNearby_ClassifyHeaderView" owner:self options:nil].firstObject;
         self.frame = frame;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
         self.autoresizingMask = UIViewAutoresizingNone;
-        self.SCR_conW = UIScreenWidth ;
+        self.SCR_conW = UIScreenWidth;
         [self initerface];
     }
     
@@ -66,9 +65,9 @@
     _pageControl.hidesForSinglePage = YES;
     _pageControl.currentPageIndicatorTintColor = MAIN_COLOR;
     _pageControl.pageIndicatorTintColor = [UIColor groupTableViewBackgroundColor];
-    _pageControl.backgroundColor = [UIColor clearColor];
-    [_pageControl setValue:[UIImage imageNamed:@"banner未选中"] forKeyPath:@"pageImage"];
-    [_pageControl setValue:[UIImage imageNamed:@"banner选中"] forKeyPath:@"currentPageImage"];
+    _pageControl.backgroundColor = [UIColor blackColor];
+//    [_pageControl setValue:[UIImage imageNamed:@"banner未选中"] forKeyPath:@"pageImage"];
+//    [_pageControl setValue:[UIImage imageNamed:@"banner选中"] forKeyPath:@"currentPageImage"];
     [_pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
     
     _scorllView = [[UIScrollView alloc] init];
@@ -205,7 +204,7 @@
         _cycleScrollView = [[SDCycleScrollView alloc]init];//当一张都没有的时候的 占位图
         //每一张图的占位图
         _cycleScrollView.delegate = self;
-        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"banner"];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"PlaceHolder"];
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角

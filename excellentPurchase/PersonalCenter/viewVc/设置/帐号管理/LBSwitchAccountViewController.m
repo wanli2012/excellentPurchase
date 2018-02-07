@@ -9,9 +9,14 @@
 #import "LBSwitchAccountViewController.h"
 #import "LBSwitchAccountTableViewCell.h"
 
+#import "GLAccountModel.h"//数据库模型
+
 @interface LBSwitchAccountViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (nonatomic,strong) GLAccountModel *projiectmodel;//综合项目本地保存
+@property (nonatomic, strong)NSMutableArray *fmdbArr;
 
 @end
 
@@ -26,11 +31,23 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     self.navigationController.navigationBar.hidden = NO;
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:switchAccountTableViewCell bundle:nil] forCellReuseIdentifier:switchAccountTableViewCell];
+    
+    [self getFmdbDatasoruce];//获取数据库信息
+}
+
+- (void)getFmdbDatasoruce{
+    //获取本地搜索记录
+    _projiectmodel = [GLAccountModel greateTableOfFMWithTableName:@"GLAccountModel"];
+    
+    self.fmdbArr = [NSMutableArray arrayWithArray:[_projiectmodel queryAllDataOfFMDB]];
+    
+    [self.tableview reloadData];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 4;
+    return self.fmdbArr.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
@@ -41,7 +58,13 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     LBSwitchAccountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:switchAccountTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    NSDictionary *dic = self.fmdbArr[indexPath.row];
     
+    [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:dic[@"headPic"]] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    cell.IDNumberLabel.text = dic[@"userName"];
+    cell.groupNameLabel.text = dic[@"groupName"];
+    cell.phoneLabel.text = dic[@"phone"];
+    cell.nickNameLabel.text = dic[@"nickName"];
     
     return cell;
 }

@@ -9,8 +9,11 @@
 #import "GLMine_Cart_PayController.h"
 #import "GLMine_Cart_PayCell.h"
 #import "GLMine_Cart_PayModel.h"
+
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
+#import "WXApiObject.h"
+
 #import "GLMine_PaySucessController.h"//付款状态
 #import "HHPayPasswordView.h"
 
@@ -203,7 +206,8 @@
     [NetworkManager requestPOSTWithURLStr:PayOrder_payment paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            //调起微信支付
+//            //调起微信支付
+           
             PayReq* req = [[PayReq alloc] init];
             req.openID=responseObject[@"data"][@"wxPay"][@"appid"];
             req.partnerId = responseObject[@"data"][@"wxPay"][@"partnerid"];
@@ -211,7 +215,7 @@
             req.nonceStr = responseObject[@"data"][@"wxPay"][@"noncestr"];
             req.timeStamp = [responseObject[@"data"][@"wxPay"][@"timestamp"] intValue];
             req.package = responseObject[@"data"][@"wxPay"][@"package"];
-            req.sign = responseObject[@"data"][@"wxPay"][@"sign"];
+            req.sign = responseObject[@"data"][@ "wxPay"][@"sign"];
             [WXApi sendReq:req];
         }else{
             

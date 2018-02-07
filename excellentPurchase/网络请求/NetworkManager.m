@@ -37,13 +37,13 @@
 + (void)requestPOSTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
+//    manager.baseURL = @"https://";
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
     
     manager.requestSerializer.timeoutInterval=20;
     // 加上这行代码，https ssl 验证。
-    [manager setSecurityPolicy:[self customSecurityPolicy]];
-    
+//    [manager setSecurityPolicy:[self customSecurityPolicy]];
+
     NSString *urlStr1 = [NSString stringWithFormat:@"%@%@",URL_Base,urlStr];
     
     NSMutableDictionary  *newDic = [NSMutableDictionary dictionaryWithDictionary:paramDic];

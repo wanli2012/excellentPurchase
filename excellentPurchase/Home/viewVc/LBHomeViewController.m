@@ -76,7 +76,15 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     adjustsScrollViewInsets_NO(self.tableview, self);
     self.tableview.tableHeaderView = self.classfyHeaderV;
     
-    self.tradeArr = @[@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"}];
+    self.tradeArr = @[@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
+                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"}];
+    
     [self.classfyHeaderV initdatasorece:self.tradeArr];
     //   底部视图高度
     self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
