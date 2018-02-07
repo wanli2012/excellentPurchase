@@ -64,6 +64,7 @@
 @property (copy , nonatomic)NSString *user_name;
 @property (copy , nonatomic)NSString *pic;
 @property (copy , nonatomic)NSString *group_name;
+@property (copy , nonatomic)NSString *order_goods_id;
 
 @property(nonatomic,assign)CGFloat  cellH;//评论cell的高度
 

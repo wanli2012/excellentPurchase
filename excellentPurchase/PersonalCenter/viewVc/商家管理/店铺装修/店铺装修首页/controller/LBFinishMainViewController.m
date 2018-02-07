@@ -63,7 +63,7 @@
     // 添加悬浮菜单
     [self.view addSubview:self.pageMenu];
     
-    // 添加3个子控制器
+    // 添加2个子控制器
     LBFinishProductsViewController *vc = [[LBFinishProductsViewController alloc] init];
     vc.type = 1;
     LBFinishProductsViewController *vc2 = [[LBFinishProductsViewController alloc] init];
@@ -158,6 +158,8 @@
 - (IBAction)replyEvent:(UIButton *)sender {
     self.hidesBottomBarWhenPushed = YES;
     LBEat_StoreCommentsViewController *vc = [[LBEat_StoreCommentsViewController alloc]init];
+    vc.store_id = self.model.store_id;
+    vc.isstore = 1;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

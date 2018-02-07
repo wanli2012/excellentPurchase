@@ -10,8 +10,9 @@
 #import "XHStarRateView.h"
 #import "formattime.h"
 #import "LBEat_StoreCommentsTableViewCell.h"
+#import "XHInputView.h"
 
-@interface LBCommentListsTableViewCell()<UITableViewDataSource,UITableViewDelegate>
+@interface LBCommentListsTableViewCell()<UITableViewDataSource,UITableViewDelegate,XHInputViewDelagete>
 
 @property (strong , nonatomic)UIImageView *headimage;//头像
 
@@ -24,8 +25,6 @@
 @property (strong , nonatomic)UILabel *contentLb;//内容
 
 @property (strong , nonatomic)UILabel *timeLb;//时间
-
-@property (strong , nonatomic)UIButton *replayBt;//回复按钮
 
 @property (strong , nonatomic)UILabel *ord_spec_info;//规格名称
 
@@ -42,6 +41,43 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
     [self.replaytableview registerNib:[UINib nibWithNibName:eat_StoreCommentsTableViewCell bundle:nil] forCellReuseIdentifier:eat_StoreCommentsTableViewCell];
     [self initInterFace];
 }
+
+-(void)showComment{
+    [self showXHInputViewWithStyle:InputViewStyleLarge plaecholderStr:@"评论"];
+}
+
+-(void)showXHInputViewWithStyle:(InputViewStyle)style plaecholderStr:(NSString*)plaecholderStr{
+    
+    [XHInputView showWithStyle:style configurationBlock:^(XHInputView *inputView) {
+        /** 请在此block中设置inputView属性 */
+        
+        /** 代理 */
+        inputView.delegate = self;
+        
+        /** 占位符文字 */
+        inputView.placeholder = plaecholderStr;
+        /** 设置最大输入字数 */
+        inputView.maxCount = 100;
+        /** 输入框颜色 */
+        inputView.textViewBackgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        /** 更多属性设置,详见XHInputView.h文件 */
+        
+    } sendBlock:^BOOL(NSString *text) {
+        if(text.length){
+            if (self.replyComment) {
+                self.replyComment(self.indexpath, text);
+            }
+            
+            return YES;//return YES,收起键盘
+        }else{
+            [EasyShowTextView showErrorText:@"请输入评论信息"];
+            return NO;//return NO,不收键盘
+        }
+    }];
+    
+}
+
 
 -(void)setModel:(LBTmallProductDetailgoodsCommentModel *)model{
     _model = model;
@@ -161,7 +197,7 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
     [self addSubview:self.ord_spec_info];
     [self addSubview:self.replaytableview];
     
-    //[self addSubview:self.replayBt];
+    [self addSubview:self.replayBt];
     
     [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -209,12 +245,12 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
         
     }];
     
-    //    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
-    //
-    //        make.trailing.equalTo(self).offset(-10);
-    //        make.centerY.equalTo(self.timeLb);
-    //
-    //    }];
+        [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+            make.trailing.equalTo(self).offset(-10);
+            make.centerY.equalTo(self.timeLb);
+    
+        }];
     
 }
 
@@ -274,17 +310,17 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
     return _headimage;
 }
 
-//-(UIButton*)replayBt{
-//    if (!_replayBt) {
-//        _replayBt = [[UIButton alloc]init];
-//        _replayBt.bounds = CGRectMake(0, 0, 35, 25);
-//        _replayBt.backgroundColor = [UIColor whiteColor];
-//        [_replayBt setImage:[UIImage imageNamed:@"eat-pinglun"] forState:UIControlStateNormal];
-//        [_replayBt addTarget:self action:@selector(showComment) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//
-//    return _replayBt;
-//}
+-(UIButton*)replayBt{
+    if (!_replayBt) {
+        _replayBt = [[UIButton alloc]init];
+        _replayBt.bounds = CGRectMake(0, 0, 35, 25);
+        _replayBt.backgroundColor = [UIColor whiteColor];
+        [_replayBt setImage:[UIImage imageNamed:@"eat-pinglun"] forState:UIControlStateNormal];
+        [_replayBt addTarget:self action:@selector(showComment) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    return _replayBt;
+}
 
 -(UITableView*)replaytableview{
     if (!_replaytableview) {

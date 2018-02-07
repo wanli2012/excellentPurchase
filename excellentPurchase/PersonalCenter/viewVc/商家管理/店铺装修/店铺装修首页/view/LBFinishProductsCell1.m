@@ -26,6 +26,13 @@
   
 }
 
+- (IBAction)replycomment:(UIButton *)sender {
+    if (self.replyComment) {
+        self.replyComment(self.indexpath);
+    }
+}
+
+
 - (void)setModel:(GLFinishGoodsDetailModel *)model{
     _model = model;
     

@@ -13,4 +13,8 @@
 
 @property (strong , nonatomic)LBUerUnderLineOrderModel *model;
 
+@property (strong , nonatomic)NSIndexPath *inexpath;
+
+@property (copy , nonatomic)void (^replyFinish)(NSIndexPath *indexpath);//评论
+
 @end

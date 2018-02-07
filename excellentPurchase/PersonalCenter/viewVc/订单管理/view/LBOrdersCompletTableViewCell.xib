@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="358" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="358" height="108.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="358" height="109"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdx-kx-SHe">
@@ -68,6 +68,9 @@
                                         <real key="value" value="12.5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="postComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mDW-Ml-mi4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,6 +104,7 @@
                 <outlet property="imagev" destination="uz8-Fo-HHX" id="JAc-JO-YOt"/>
                 <outlet property="numlb" destination="ZVp-RM-kuh" id="mX6-qp-8rY"/>
                 <outlet property="pricelb" destination="8mD-ZG-S14" id="RaV-il-MwW"/>
+                <outlet property="replybt" destination="nox-HZ-Tva" id="FV3-TU-spg"/>
             </connections>
             <point key="canvasLocation" x="53" y="86.5"/>
         </tableViewCell>

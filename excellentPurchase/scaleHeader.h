@@ -28,6 +28,10 @@
  吃喝玩乐-精品推荐图片比例
  */
 #define EatrecommendScle   93 / 113.0
+/**
+ 吃喝玩乐-吃喝玩乐活动banner图片比例
+ */
+#define EatActBannerScle   100 / 375.0
 
 /**
  吃喝玩乐-cell的高度
@@ -76,5 +80,10 @@
 #define OrderHandlerUser_order_confirm_get @"OrderHandler/user_order_confirm_get"//用户确认收货
 #define OrderUser_product_order_detail @"Order/user_product_order_detail"//用户确认收货
 #define OrderAppend_order_wait_pay @"Order/append_order_wait_pay"//待付款重新下单
+#define CommentUser_comment @"Comment/user_comment"//用户评论线上已完成订单商品
+#define CommentStore_comment @"Comment/store_comment"//线下订单对店家进行评论
+#define CommentLine_store_reply @"Comment/line_store_reply"//线下订单商家回复评论
+#define CommentStore_order_reply @"Comment/store_order_reply"//商家回复线上订单评论
+#define PayFace_pay @"Pay/face_pay"//面对面支付
 
 #endif /* scaleHeader_h */

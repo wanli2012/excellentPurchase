@@ -9,6 +9,7 @@
 #import "HHPayPasswordView.h"
 #import "HHTextField.h"
 #import "HHPasswordErrorView.h"
+#import "IQKeyboardManager.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -119,7 +120,8 @@ static CGFloat const kDotWith_height = 10;
 
 - (void)showInView:(UIView *)view{
     [view addSubview:self];
-    
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    [IQKeyboardManager sharedManager].enable = NO;
     [self.passwordField becomeFirstResponder];
 }
 - (void)hide{
@@ -129,9 +131,11 @@ static CGFloat const kDotWith_height = 10;
     [self.passwordField resignFirstResponder];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 
-        self.backView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH - 40, 210);
+        self.backView.frame = CGRectMake(20, SCREEN_HEIGHT, SCREEN_WIDTH - 40, 210);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+        [IQKeyboardManager sharedManager].enable = YES;
     }];
 }
 -(void)sureEvent{
@@ -247,7 +251,7 @@ static CGFloat const kDotWith_height = 10;
     }
     
     if (_passwordField.text.length == 6){
-        NSLog(@"密码 %@",_passwordField.text);
+
         [self startLoading];
         [self.passwordField resignFirstResponder];
         if ([_delegate respondsToSelector:@selector(passwordView:didFinishInputPayPassword:)]) {

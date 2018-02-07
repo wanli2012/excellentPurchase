@@ -83,7 +83,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     dic[@"page"] = @(page);
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"status"] = @"1";
+    dic[@"status"] = @"3";
     [NetworkManager requestPOSTWithURLStr:OrderUser_product_order paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -200,6 +200,11 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     vc.ord_str = ord_str;
     vc.typeindex = 3;
     vc.shop_uid = model.ord_shop_uid;
+    WeakSelf;
+    vc.refreshDatasource = ^{
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    };
     [self.navigationController pushViewController:vc animated:YES];
     
 }

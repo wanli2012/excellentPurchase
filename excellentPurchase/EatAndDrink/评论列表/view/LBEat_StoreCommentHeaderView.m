@@ -25,8 +25,6 @@
 
 @property (strong , nonatomic)UILabel *timeLb;//时间
 
-@property (strong , nonatomic)UIButton *replayBt;//回复按钮
-
 @end
 
 @implementation LBEat_StoreCommentHeaderView
@@ -77,7 +75,7 @@
     [self addSubview:self.contentLb];
     [self addSubview:self.timeLb];
     
-    //[self addSubview:self.replayBt];
+    [self addSubview:self.replayBt];
     
     [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -109,12 +107,12 @@
         
     }];
     
-//    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.trailing.equalTo(self).offset(-10);
-//        make.centerY.equalTo(self.timeLb);
-//
-//    }];
+    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.trailing.equalTo(self).offset(-10);
+        make.centerY.equalTo(self.timeLb);
+
+    }];
     
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureSelf)];
     [self addGestureRecognizer:tapgesture];

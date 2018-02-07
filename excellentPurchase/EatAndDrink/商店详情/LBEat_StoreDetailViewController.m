@@ -22,6 +22,7 @@
 #import "LBEatProductDetailViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MapKit/MapKit.h>
+#import "LBFaceToFace_PayController.h"
 
 static NSString *eat_storeDetailInfodiscountTableViewCell = @"LBEat_storeDetailInfodiscountTableViewCell";
 static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfoOtherTableViewCell";
@@ -201,6 +202,20 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
 }
 
 -(void)getStoreInfo:(NSString*)str{
+    
+    NSDictionary *dic = str.mj_JSONObject;
+    
+    if (![dic.allKeys containsObject:@"shopuid"] || ![dic.allKeys containsObject:@"money"] || ![dic.allKeys containsObject:@"rlmoney"]) {
+        [EasyShowTextView showErrorText:@"请扫正确的二维码"];
+        return;
+    }
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBFaceToFace_PayController *vc = [LBFaceToFace_PayController new];
+    vc.money  = [NSString stringWithFormat:@"%@",dic[@"money"]];
+     vc.rlmoney  = [NSString stringWithFormat:@"%@",dic[@"rlmoney"]];//返利
+     vc.shopuid  = [NSString stringWithFormat:@"%@",dic[@"shopuid"]];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

@@ -15,5 +15,10 @@
 @property (copy , nonatomic)NSString *face_addtime;
 @property (copy , nonatomic)NSString *face_back_mark;
 @property (copy , nonatomic)NSString *face_back_coupons;
+@property (copy , nonatomic)NSString *face_id;//订单id
+@property (copy , nonatomic)NSString *face_shop_uid;//店铺uid
+@property (copy , nonatomic)NSString *store_name;//店铺名称
+@property (copy , nonatomic)NSString *store_thumb;//店铺头像
+@property (copy , nonatomic)NSString *is_comment;//是否评论
 
 @end

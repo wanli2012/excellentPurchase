@@ -1,12 +1,12 @@
 //
-//  GLMine_Cart_PayController.m
+//  LBFaceToFace_PayController.m
 //  excellentPurchase
 //
-//  Created by 龚磊 on 2018/1/23.
+//  Created by 四川三君科技有限公司 on 2018/2/6.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_Cart_PayController.h"
+#import "LBFaceToFace_PayController.h"
 #import "GLMine_Cart_PayCell.h"
 #import "GLMine_Cart_PayModel.h"
 #import <AlipaySDK/AlipaySDK.h>
@@ -14,21 +14,20 @@
 #import "GLMine_PaySucessController.h"//付款状态
 #import "HHPayPasswordView.h"
 
-@interface GLMine_Cart_PayController ()<UITableViewDelegate,UITableViewDataSource,HHPayPasswordViewDelegate>
+@interface LBFaceToFace_PayController ()<UITableViewDelegate,UITableViewDataSource,HHPayPasswordViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *models;
 
 @property (weak, nonatomic) IBOutlet UILabel *orderAllPrice;//订单总价
-@property (weak, nonatomic) IBOutlet UILabel *couponSum;//购物券余额
-@property (weak, nonatomic) IBOutlet UILabel *deductionSum;//可抵扣购物券
+@property (weak, nonatomic) IBOutlet UILabel *deductionSum;//让利
 
 @property (nonatomic, strong)NSString *payStr;
 
 @end
 
-@implementation GLMine_Cart_PayController
+@implementation LBFaceToFace_PayController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,9 +36,9 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Cart_PayCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Cart_PayCell"];
     
     
-    self.orderAllPrice.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"order_money"]];
-    self.couponSum.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"shopping_voucher"]];
-    self.deductionSum.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"dk_pay_coupons"]];
+    self.orderAllPrice.text = [NSString stringWithFormat:@"¥ %@",self.money];
+    
+    self.deductionSum.text = [NSString stringWithFormat:@"¥ %@",self.rlmoney];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
     /**
@@ -50,7 +49,7 @@
 }
 
 /**
-  支付宝支付成功回调
+ 支付宝支付成功回调
  */
 -(void)Alipaysucess{
     [self pushsucessVc];
@@ -67,8 +66,6 @@
     self.hidesBottomBarWhenPushed = YES;
     GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
     vc.type = 1;
-    vc.piece =  [NSString stringWithFormat:@"¥ %@",self.datadic[@"order_money"]];
-    vc.odernum =  [NSString stringWithFormat:@"%@",self.datadic[@"order_num"]];
     vc.method = self.payStr;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -123,21 +120,19 @@
  */
 -(void)alipayMethod{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"UPDATE";
+    dic[@"app_handler"] = @"ADD";
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
     }
-    dic[@"order_id"] = self.datadic[@"order_id"];
     dic[@"payment_type"] = @"101";
-    if ([self.datadic[@"shopping_voucher"] floatValue] <= 0 || [self.datadic[@"dk_pay_coupons"] floatValue] <= 0) {
-        dic[@"turn_type"] = @"201";
-    }else{
-        dic[@"turn_type"] = @"204";
-    }
+     dic[@"turn_type"] = @"201";
+    dic[@"money"] = self.money;
+   dic[@"rl_money"] = self.rlmoney;
+     dic[@"shop_uid"] = self.shopuid;
     
     [EasyShowLodingView showLoding];
-    [NetworkManager requestPOSTWithURLStr:PayOrder_payment paramDic:dic finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:PayFace_pay paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
@@ -183,21 +178,19 @@
 //微信支付
 -(void)wechatMethod{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"UPDATE";
+    dic[@"app_handler"] = @"ADD";
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
     }
-    dic[@"order_id"] = self.datadic[@"order_id"];
+    dic[@"turn_type"] = @"202";
     dic[@"payment_type"] = @"101";
-    if ([self.datadic[@"shopping_voucher"] floatValue] <= 0 || [self.datadic[@"dk_pay_coupons"] floatValue] <= 0) {
-        dic[@"turn_type"] = @"202";
-    }else{
-        dic[@"turn_type"] = @"205";
-    }
+    dic[@"money"] = self.money;
+    dic[@"rl_money"] = self.rlmoney;
+     dic[@"shop_uid"] = self.shopuid;
     
     [EasyShowLodingView showLoding];
-    [NetworkManager requestPOSTWithURLStr:PayOrder_payment paramDic:dic finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:PayFace_pay paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             //调起微信支付
@@ -222,19 +215,11 @@
 }
 //余额支付
 -(void)balanceMethod{
-   
-    
-    if ([self.datadic[@"shopping_voucher"]floatValue] >= [self.datadic[@"dk_pay_coupons"]floatValue]) {
-        if (([self.datadic[@"order_money"]floatValue] - [self.datadic[@"dk_pay_coupons"]floatValue]) > [self.datadic[@"balance"] floatValue]) {
+
+        if ([self.money floatValue] > [self.balance floatValue]) {
             [EasyShowTextView showInfoText:@"余额不足，请充值"];
             return;
         }
-    }else{
-        if (([self.datadic[@"order_money"]floatValue] - [self.datadic[@"shopping_voucher"]floatValue]) > [self.datadic[@"balance"] floatValue]) {
-            [EasyShowTextView showInfoText:@"余额不足，请充值"];
-            return;
-        }
-    }
     
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
@@ -245,32 +230,31 @@
 -(void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"UPDATE";
+    dic[@"app_handler"] = @"ADD";
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
     }
-    dic[@"order_id"] = self.datadic[@"order_id"];
+    dic[@"turn_type"] = @"203";
     dic[@"payment_type"] = @"105";
-    if ([self.datadic[@"shopping_voucher"] floatValue] <= 0 || [self.datadic[@"dk_pay_coupons"] floatValue] <= 0) {
-        dic[@"turn_type"] = @"203";
-    }else{
-        dic[@"turn_type"] = @"206";
-    }
+    dic[@"money"] = self.money;
+    dic[@"rl_money"] = self.rlmoney;
     dic[@"pass"] = password;
-
-    [NetworkManager requestPOSTWithURLStr:PayOrder_payment paramDic:dic finish:^(id responseObject) {
+     dic[@"shop_uid"] = self.shopuid;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:PayFace_pay paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [passwordView paySuccess];
             [self pushsucessVc];
         }else{
             [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
 
     } enError:^(NSError *error) {
-         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
-    
+        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
     
 }
@@ -319,7 +303,7 @@
         
         NSArray *picArr = @[@"pay-zjifubao",@"pay-weixin",@"pay_jifen"];
         NSArray *titleArr = @[@"支付宝支付",@"微信支付",@"余额支付"];
-        NSString *str = [NSString stringWithFormat:@"余额：%@",self.datadic[@"balance"]];
+        NSString *str = [NSString stringWithFormat:@"余额：%@",self.balance];
         NSArray *detailArr = @[@"推荐已安装支付宝的用户使用",@"推荐已安装微信的用户使用",str];
         
         for (int i = 0; i < 3; i ++) {

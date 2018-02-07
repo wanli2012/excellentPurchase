@@ -1,21 +1,20 @@
 //
-//  LBCommentListsView.m
+//  LBReplyProductListsViewController.m
 //  excellentPurchase
 //
-//  Created by 四川三君科技有限公司 on 2018/1/16.
+//  Created by 四川三君科技有限公司 on 2018/2/6.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "LBCommentListsView.h"
+#import "LBReplyProductListsViewController.h"
 #import "LBCommentHeaderTableViewCell.h"
 #import "LBCommentListsTableViewCell.h"
 #import "LBTmallProductDetailModel.h"
 #import "LBTmallDetailgoodsCommentFrameModel.h"
 
-@interface LBCommentListsView()<UITableViewDelegate,UITableViewDataSource>
+@interface LBReplyProductListsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (strong , nonatomic)UIView *MainView;
-@property (strong , nonatomic)UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong , nonatomic)NSMutableArray *commentdataArr;
 @property (nonatomic, assign) NSInteger  page;
 @property (nonatomic, assign) NSInteger  allCount;
@@ -25,31 +24,28 @@
 static NSString *commentHeaderTableViewCell = @"LBCommentHeaderTableViewCell";
 static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
 
-@implementation LBCommentListsView
+@implementation LBReplyProductListsViewController
 
--(void)setGoods_id:(NSString *)goods_id{
-    _goods_id = goods_id;
-    [self loadData:self.page refreshDirect:YES];
-}
-
--(instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor clearColor];
-         [self lb_setView];//加载视图
-        [self showView];//展示视图
-        [self setupNpdata];//设置无数据的时候展示
-        [self refreshdata];//刷新数据
-
-    }
-    return self;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.title = @"商品评价列表";
+    
+    [self.tableview registerNib:[UINib nibWithNibName:commentHeaderTableViewCell bundle:nil] forCellReuseIdentifier:commentHeaderTableViewCell];
+    [self.tableview registerNib:[UINib nibWithNibName:commentListsTableViewCell bundle:nil] forCellReuseIdentifier:commentListsTableViewCell];
+    
+    [self setupNpdata];//设置无数据的时候展示
+    [self refreshdata];//刷新数据
+    self.page = 1;
+     [self loadData:self.page refreshDirect:YES];
+    
 }
 
 -(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
-    dic[@"goods_id"] = self.goods_id;
+    dic[@"goods_id"] = self.good_id;
     dic[@"page"] = @(page);
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
@@ -121,23 +117,6 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
     }];
 }
 
--(void)lb_setView{
-    [self.tableview registerNib:[UINib nibWithNibName:commentHeaderTableViewCell bundle:nil] forCellReuseIdentifier:commentHeaderTableViewCell];
-    [self.tableview registerNib:[UINib nibWithNibName:commentListsTableViewCell bundle:nil] forCellReuseIdentifier:commentListsTableViewCell];
-    
-    [self addSubview:self.MainView];
-    [self.MainView addSubview:self.tableview];
-    
-    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.trailing.equalTo(self.MainView).offset(0);
-        make.leading.equalTo(self.MainView).offset(0);
-        make.top.equalTo(self.MainView).offset(0);
-        make.bottom.equalTo(self.MainView).offset(0);
-    }];
-    
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return 1 + self.commentdataArr.count;
@@ -147,7 +126,7 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
     if (indexPath.row == 0) {
         return 40;
     }
-   
+    
     return  ((LBTmallDetailgoodsCommentFrameModel*)self.commentdataArr[indexPath.row - 1]).cellH;
 }
 
@@ -162,58 +141,45 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
         LBCommentListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:commentListsTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = ((LBTmallDetailgoodsCommentFrameModel*)self.commentdataArr[indexPath.row - 1]).CommentModel;
-        cell.replayBt.hidden = YES;
+        cell.replayBt.hidden = NO;
+        cell.replyComment = ^(NSIndexPath *indexpath, NSString *str) {
+            
+        };
         return cell;
     }
 }
 
-- (void)showView {
-
-    self.backgroundColor = [UIColor clearColor];
+-(void)replyCommentinde:(NSIndexPath*)indexpath str:(NSString*)str{
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.MainView.x = 0;
+    LBTmallProductDetailgoodsCommentModel * model = self.commentdataArr[indexpath.row - 1];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"order_goods_id"] = model.order_goods_id;
+    dic[@"reply"] = str;
+    dic[@"comment_id"] = model.comment_id;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    
+    [EasyShowLodingView showLodingText:@"正在加载"];
+    [NetworkManager requestPOSTWithURLStr:CommentStore_order_reply paramDic:dic finish:^(id responseObject) {
+        [LBDefineRefrsh dismissRefresh:self.tableview];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            model.reply = str;
+            [self.tableview reloadData];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [LBDefineRefrsh dismissRefresh:self.tableview];
+        
     }];
-}
-- (void)hideView {
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.backgroundColor = [UIColor clearColor];
-        self.MainView.x = UIScreenWidth;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
     
 }
 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
--(UIView*)MainView{
-    if (!_MainView) {
-        _MainView = [[UIView alloc]initWithFrame:CGRectMake(UIScreenWidth, SafeAreaTopHeight , UIScreenWidth, UIScreenHeight - (SafeAreaTopHeight + 60))];
-        _MainView.backgroundColor = [UIColor whiteColor];
-    }
-    return _MainView;
-}
-
--(UITableView*)tableview{
-    if (!_tableview) {
-        _tableview = [[UITableView alloc]init];
-        _tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableview.separatorColor = [UIColor groupTableViewBackgroundColor];
-        _tableview.dataSource = self;
-        _tableview.delegate = self;
-        _tableview.tableFooterView = [UIView new];
-    }
-    return _tableview;
-}
-
--(NSMutableArray*)commentdataArr{
-    if (!_commentdataArr) {
-        _commentdataArr  = [[NSMutableArray alloc]init];
-    }
-    return _commentdataArr;
-}
 @end

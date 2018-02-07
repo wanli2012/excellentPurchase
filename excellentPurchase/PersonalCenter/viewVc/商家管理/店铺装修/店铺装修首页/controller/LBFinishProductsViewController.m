@@ -117,6 +117,10 @@ static NSString *ID = @"finishProductsCell1";
     }];
 }
 
+-(void)pushReplyProducts:(NSIndexPath*)indexpath{
+    
+    
+}
 #pragma UICollectionDelegate UICollectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -125,8 +129,16 @@ static NSString *ID = @"finishProductsCell1";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     LBFinishProductsCell1 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    
     cell.model = self.models[indexPath.row];
+    cell.indexpath = indexPath;
+    if (self.type == 1) {
+        cell.replyBt.hidden = NO;
+    }else{
+        cell.replyBt.hidden = YES;
+    }
+    cell.replyComment = ^(NSIndexPath *indexpath) {
+        [self pushReplyProducts:indexpath];
+    };
     
     return cell;
 }

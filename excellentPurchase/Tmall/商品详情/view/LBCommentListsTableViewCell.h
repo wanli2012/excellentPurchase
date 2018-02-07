@@ -13,4 +13,9 @@
 
 @property (strong , nonatomic)LBTmallProductDetailgoodsCommentModel *model;
 
+@property (strong , nonatomic)NSIndexPath *indexpath;
+
+@property (copy , nonatomic)void(^replyComment)(NSIndexPath *indexpath,NSString *str);
+
+@property (strong , nonatomic)UIButton *replayBt;//回复按钮
 @end

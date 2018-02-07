@@ -110,7 +110,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         }
          [self.tableview reloadData];
     } enError:^(NSError *error) {
-        
+        [EasyShowTextView showErrorText:error.localizedDescription];
         [LBDefineRefrsh dismissRefresh:self.tableview];
     }];
     

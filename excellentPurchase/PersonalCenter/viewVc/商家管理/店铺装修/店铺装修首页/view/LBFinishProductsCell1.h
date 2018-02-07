@@ -13,4 +13,11 @@
 
 @property (nonatomic, strong)GLFinishGoodsDetailModel *model;
 
+@property (strong , nonatomic)NSIndexPath *indexpath;
+
+@property (copy , nonatomic)void(^replyComment)(NSIndexPath *indexpath);
+
+@property (weak, nonatomic) IBOutlet UIButton *replyBt;
+
+
 @end

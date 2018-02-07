@@ -14,6 +14,7 @@
 #import "LBTmallhomepageDataModel.h"
 #import "LBEat_WholeClassifyView.h"
 #import "LBTmallHotsearchViewController.h"
+#import "LBProductDetailViewController.h"
 
 typedef NS_ENUM(NSInteger, CollectionViewType) {
     LBCollectionViewTypeDefault ,   // 默认一排两个item
@@ -274,10 +275,9 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     }
     
 }
-
 #pragma mark --- 商品列表展示效果
 - (IBAction)productsListShowType:(UIButton *)sender {
-    
+    sender.selected = !sender.selected;
     if (self.showType == LBCollectionViewTypeDefault) {
         self.showType = LBCollectionViewTypeOne;
         [self.collectionView setCollectionViewLayout:self.tableFlowLayout];
@@ -319,12 +319,16 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
         };
         return cell;
     }
-   
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
-    
+    LBTmallhomepageDataStructureModel *model = self.dataArr[indexPath.item];
+    self.hidesBottomBarWhenPushed = YES;
+    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+    vc.goods_id = model.goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
