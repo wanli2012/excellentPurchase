@@ -33,10 +33,14 @@ static NSString *voucherCenterRecoderTableViewCell = @"LBVoucherCenterRecoderTab
 
     [self setupNpdata];//设置无数据的时候展示
     WeakSelf;
+//    [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
+//        [weakSelf postRequest:YES];
+//    } footerRefresh:^{
+////        [weakSelf postRequest:NO];
+//    }];
+    
     [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
         [weakSelf postRequest:YES];
-    } footerRefresh:^{
-//        [weakSelf postRequest:NO];
     }];
     
     self.page = 1;

@@ -170,7 +170,7 @@
 //    __weak typeof(self) weakSelf = self;
     
     self.pickerView.valueDidSelect = ^(NSString *value){
-        NSArray * stateArr = [value componentsSeparatedByString:@"/"];
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
 //        weakSelf.sexTF.text= stateArr[0];
         NSLog(@"-----%@",stateArr[0]);
     };

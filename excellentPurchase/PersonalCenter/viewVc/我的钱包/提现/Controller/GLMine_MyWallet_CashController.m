@@ -18,6 +18,8 @@
     BOOL _isAgreeProtocol;
 }
 
+
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;//contentView高度
 
 @property (weak, nonatomic) IBOutlet UILabel *bankNameLabel;//银行名
@@ -44,6 +46,16 @@
     [self setNav];
     
     self.contentViewHeight.constant = UIScreenHeight - SafeAreaTopHeight;
+    
+    self.moneyLabel.text = [UserModel defaultUser].balance;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDismiss)];
+    [self.contentView addGestureRecognizer:tap];
+    
+}
+
+- (void)keyBoardDismiss{
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -178,6 +190,11 @@
         return;
     }
     
+    if([self.moneyTF.text floatValue] > [self.moneyLabel.text floatValue]){
+        [EasyShowTextView showInfoText:@"余额不足,请充值"];
+        return;
+    }
+    
     [IQKeyboardManager sharedManager].enable = NO;
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
@@ -196,24 +213,31 @@
     dict[@"agreement"] = @"1";
     dict[@"paypswd"] = password;
     
-    [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:kstore_balance paramDic:dict finish:^(id responseObject) {
-        
-        [EasyShowLodingView hidenLoding];
+
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-            [EasyShowTextView showInfoText:responseObject[@"message"]];
+            [passwordView paySuccess];
+            
+            ///本地处理数据
+            CGFloat input = [self.moneyTF.text floatValue];
+            CGFloat own = [[UserModel defaultUser].balance floatValue];
+            
+            NSString *str = [NSString stringWithFormat:@"%.2f",own - input];
+            [UserModel defaultUser].balance = str;
+            
+            [usermodelachivar achive];
+            
             [self.navigationController popViewControllerAnimated:YES];
             
         }else{
             
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
         }
         
     } enError:^(NSError *error) {
-        
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
+
+        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
 
@@ -252,13 +276,14 @@
             // 不能输入.0-9以外的字符
             if (!((single >= '0' && single <= '9') || single == '.' || single == '\n'))
             {
+                [self.view endEditing:YES];
                 [EasyShowTextView showInfoText:@"您的输入格式不正确"];
                 return NO;
             }
             
             // 只能有一个小数点
             if (self.isHaveDian && single == '.') {
-                
+                [self.view endEditing:YES];
                 [EasyShowTextView showInfoText:@"最多只能输入一个小数点"];
                 return NO;
             }
@@ -273,13 +298,13 @@
                 if (textField.text.length > 1) {
                     NSString *secondStr = [textField.text substringWithRange:NSMakeRange(1, 1)];
                     if (![secondStr isEqualToString:@"."]) {
-                        
+                        [self.view endEditing:YES];
                         [EasyShowTextView showInfoText:@"第二个字符需要是小数点"];
                         return NO;
                     }
                 }else{
                     if (![string isEqualToString:@"."]) {
-                        
+                        [self.view endEditing:YES];
                         [EasyShowTextView showInfoText:@"第二个字符需要是小数点"];
                         return NO;
                     }
@@ -292,7 +317,7 @@
                 // 由于range.location是NSUInteger类型的，所以这里不能通过(range.location - ran.location)>2来判断
                 if (range.location > ran.location) {
                     if ([textField.text pathExtension].length > 1) {
-                        
+                        [self.view endEditing:YES];
                         [EasyShowTextView showInfoText:@"小数点后最多有两位小数"];
                         return NO;
                     }

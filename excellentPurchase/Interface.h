@@ -44,6 +44,8 @@
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1300026210?mt=8"
 
+#define RECOMMEND_URL @"http://cs5.hytc.gs/Home/User/Register?tjrid="
+
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"

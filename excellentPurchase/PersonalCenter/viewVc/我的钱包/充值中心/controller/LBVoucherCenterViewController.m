@@ -17,6 +17,7 @@
 {
     BOOL _isAgreeProtocol;
 }
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -49,6 +50,13 @@
     
     [self setNav];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDismiss)];
+    [self.contentView addGestureRecognizer:tap];
+    
+}
+
+- (void)keyBoardDismiss{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - 设置导航栏
@@ -198,9 +206,6 @@
                     if (orderState == 9000) {
                         self.hidesBottomBarWhenPushed = YES;
                         [self pushsucessVc];
-//                        [self.navigationController popToRootViewControllerAnimated:YES];
-                        
-//                        self.hidesBottomBarWhenPushed = NO;
                         
                     }else{
                         NSString *returnStr;

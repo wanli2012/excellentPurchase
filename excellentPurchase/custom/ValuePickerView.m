@@ -127,7 +127,7 @@
     }
     
     //设置返回默认值
-    self.stateStr = [NSString stringWithFormat:@"%@/%@",_dataSource[0],@(1)];
+    self.stateStr = [NSString stringWithFormat:@"%@-%@",_dataSource[0],@(1)];
     
     //刷新布局
     [self layoutSelfSubviews];
@@ -143,7 +143,7 @@
     _defaultStr = defaultStr;
     
     self.stateStr = defaultStr;
-    NSArray * selectArr = [defaultStr componentsSeparatedByString:@"/"];
+    NSArray * selectArr = [defaultStr componentsSeparatedByString:@"-"];
     [self.statePicker selectRow:[selectArr[1] integerValue] - 1 inComponent:0 animated:NO];
 }
 
@@ -174,7 +174,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.stateStr = [NSString stringWithFormat:@"%@/%@",self.dataSource[row], @(row + 1)];
+    self.stateStr = [NSString stringWithFormat:@"%@-%@",self.dataSource[row], @(row + 1)];
 }
 
 #pragma mark - 按钮相关

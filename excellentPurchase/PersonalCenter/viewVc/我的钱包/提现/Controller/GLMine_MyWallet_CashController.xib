@@ -14,6 +14,7 @@
                 <outlet property="addCardView" destination="jWF-id-vTi" id="KDG-mp-97m"/>
                 <outlet property="bankNameLabel" destination="Ssi-Um-cBc" id="n8t-eP-zw7"/>
                 <outlet property="cardNumLabel" destination="DrW-fJ-sL3" id="Ubj-xx-Mxs"/>
+                <outlet property="contentView" destination="e6l-3W-MHp" id="zV7-48-JXR"/>
                 <outlet property="contentViewHeight" destination="qy7-O5-Q99" id="orm-ah-fc9"/>
                 <outlet property="iconImageV" destination="dJq-uU-3Rv" id="2if-qK-Y6W"/>
                 <outlet property="moneyLabel" destination="iFq-L1-X7c" id="ycU-9M-Vhs"/>

@@ -21,6 +21,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//是否同意标志
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;//提交
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;//积分
@@ -52,6 +53,17 @@
     
     [self setNav];
     
+    self.integralLabel.text = [UserModel defaultUser].mark;
+    self.coinLabel.text = [UserModel defaultUser].shopping_voucher;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDismiss)];
+    
+    [self.contentView addGestureRecognizer:tap];
+    
+}
+
+- (void)keyBoardDismiss{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - 设置导航栏
@@ -83,10 +95,6 @@
     
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [IQKeyboardManager sharedManager].enable = YES;
-}
 #pragma mark - 确认转赠
 - (IBAction)submit:(id)sender {
     
@@ -95,25 +103,46 @@
         [EasyShowTextView showInfoText:@"请填写转赠金额"];
         return;
     }
-    if(self.receiveManTF.text.length == 0){
-        [EasyShowTextView showInfoText:@"请填写接收人ID或者手机号"];
-        return;
-    }
     if (self.type == 0) {
         [EasyShowTextView showInfoText:@"请选择转赠类型"];
         return;
     }
+    
+    
+    if(self.receiveManTF.text.length == 0){
+        [EasyShowTextView showInfoText:@"请填写接收人ID或者手机号"];
+        return;
+    }
+    
     if (self.group_id == 0) {
         [EasyShowTextView showInfoText:@"请选择接收人身份类型"];
         return;
     }
     
-    [IQKeyboardManager sharedManager].enable = NO;
+    if (self.type == 1) {
+        
+        if ([self.coinLabel.text floatValue] < [self.moneyTF.text floatValue]) {
+            [EasyShowTextView showInfoText:@"优购劵不足"];
+            return;
+        }
+        
+    }else if(self.type == 2){
+        
+        if ([self.integralLabel.text floatValue] < [self.moneyTF.text floatValue]) {
+            [EasyShowTextView showInfoText:@"积分余额不足"];
+            return;
+        }
+    }
+    if(!_isAgreeProtocol){
+        [EasyShowTextView showInfoText:@"请先同意转赠须知"];
+        return;
+    }
+    
+
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
     [payPasswordView showInView:self.view];
 
-    
 }
 
 -(void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password{
@@ -124,28 +153,43 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"obtain_user"] = self.receiveManTF.text;
     dict[@"numbers"] = self.moneyTF.text;
-    dict[@"type"] = @(self.type);//货币类型 1优购币 2积分’,
+    dict[@"type"] = @(self.type);//货币类型 1优购币 2积分
     dict[@"group_id"] = self.group_id;
     dict[@"password"] = password;
     
-    [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:kgive paramDic:dict finish:^(id responseObject) {
         
-        [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-//
-//            [EasyShowTextView showInfoText:responseObject[@"message"]];
+            
+            [passwordView paySuccess];
+
+            if (self.type == 1) {//货币类型 1优购币 2积分’,
+                
+                CGFloat shopping_voucher = [self.moneyTF.text floatValue];
+                CGFloat voucher = [[UserModel defaultUser].shopping_voucher floatValue];
+                NSString *str = [NSString stringWithFormat:@"%.2f",voucher - shopping_voucher];
+                [UserModel defaultUser].shopping_voucher = str;
+                
+            }else if(self.type == 2) {//货币类型 1优购币 2积分’,
+                
+                CGFloat shopping_voucher = [self.moneyTF.text floatValue];
+                CGFloat voucher = [[UserModel defaultUser].mark floatValue];
+                NSString *str = [NSString stringWithFormat:@"%.2f",voucher - shopping_voucher];
+                [UserModel defaultUser].mark = str;
+                
+            }
+            
+            [usermodelachivar achive];
             [self.navigationController popViewControllerAnimated:YES];
             
         }else{
             
-//            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
         }
         
     } enError:^(NSError *error) {
         
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
+        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
 
@@ -182,10 +226,10 @@
     
     self.pickerView.valueDidSelect = ^(NSString *value){
         
-        NSArray * stateArr = [value componentsSeparatedByString:@"/"];
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
         NSInteger index = [stateArr[1] integerValue];
 
-        weakSelf.type = index + 1;
+        weakSelf.type = index;
         weakSelf.donationTypeTF.text = stateArr[0];
        
     };
@@ -245,11 +289,17 @@
     
     self.pickerView.valueDidSelect = ^(NSString *value){
         
-        NSArray * stateArr = [value componentsSeparatedByString:@"/"];
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
         NSInteger index = [stateArr[1] integerValue];
         
-        GLIdentifySelectModel *model = weakSelf.groupArr[index];
-        weakSelf.group_id = model.group_id;
+        if (index >= 1) {
+            
+            GLIdentifySelectModel *model = weakSelf.groupArr[index - 1];
+            weakSelf.group_id = model.group_id;
+        }else{
+            weakSelf.group_id = @"";
+        }
+        
         weakSelf.receiveManGroupTypeTF.text = stateArr[0];
         
     };

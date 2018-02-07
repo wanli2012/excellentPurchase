@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="accountTF" destination="wa3-f9-Utk" id="S9S-6P-VpB"/>
                 <outlet property="alipayBtn" destination="Rg5-A7-ArN" id="icd-Oj-wBh"/>
+                <outlet property="contentView" destination="zMa-Gq-bze" id="1c1-q6-1gb"/>
                 <outlet property="moneyTF" destination="k18-jp-5tH" id="ode-5X-iE9"/>
                 <outlet property="scrollView" destination="p1d-IY-Nzr" id="hvJ-n6-YiL"/>
                 <outlet property="signImageV" destination="jkF-kw-SYQ" id="Hct-Z3-N7H"/>

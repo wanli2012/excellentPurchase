@@ -24,6 +24,7 @@
 
 -(void)setModel:(LBRecommendRecoderModel *)model{
     _model = model;
+    
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:_model.pic] placeholderImage:nil];
     self.trueNme.text = [NSString stringWithFormat:@"%@",_model.truename];
     self.userId.text = [NSString stringWithFormat:@"%@",_model.user_name];
