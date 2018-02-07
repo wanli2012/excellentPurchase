@@ -14,4 +14,6 @@
 @property (strong , nonatomic)NSString *ord_str;//订单
 @property (strong , nonatomic)NSString *shop_uid;//商家uid
 
+@property (copy , nonatomic)void(^refreshDatasource)(void);
+
 @end

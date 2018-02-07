@@ -13,7 +13,9 @@
             <connections>
                 <outlet property="imagev" destination="sNB-cu-Nr6" id="dKk-mY-bht"/>
                 <outlet property="noticelb" destination="JZM-Rp-fdI" id="0DZ-mh-cSO"/>
+                <outlet property="placeholderlb" destination="HBL-ER-BoE" id="l7b-mS-ByK"/>
                 <outlet property="starView" destination="EJK-TL-Cs0" id="sNB-mV-w3Q"/>
+                <outlet property="submit" destination="xvd-vG-XPF" id="B8T-kD-93b"/>
                 <outlet property="textview" destination="WM9-0A-Cd0" id="2zj-VW-GaN"/>
                 <outlet property="titlelb" destination="Xri-hL-ZQ0" id="BLG-mW-uCz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -41,9 +43,9 @@
                                                 <constraint firstAttribute="height" constant="60" id="UQ0-g6-kRR"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星巴克咖啡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xri-hL-ZQ0">
-                                            <rect key="frame" x="80" y="30" width="265" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星巴克咖啡" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xri-hL-ZQ0">
+                                            <rect key="frame" x="80" y="31.5" width="265" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -109,26 +111,35 @@
                                                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="  请写下对我的服务评论" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WM9-0A-Cd0">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WM9-0A-Cd0">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="133"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="-1" id="rHN-dT-5yj"/>
                                                     </connections>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBL-ER-BoE">
+                                                    <rect key="frame" x="10" y="8" width="325" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
+                                                <constraint firstItem="HBL-ER-BoE" firstAttribute="trailing" secondItem="WM9-0A-Cd0" secondAttribute="trailing" id="5Xp-3Y-a6N"/>
                                                 <constraint firstAttribute="height" constant="160" id="6LE-g6-lTn"/>
                                                 <constraint firstItem="WM9-0A-Cd0" firstAttribute="top" secondItem="QMz-Sq-HVr" secondAttribute="top" id="Cah-RZ-Zy1"/>
                                                 <constraint firstItem="JZM-Rp-fdI" firstAttribute="top" secondItem="WM9-0A-Cd0" secondAttribute="bottom" constant="5" id="Pyh-Gk-w6O"/>
+                                                <constraint firstItem="HBL-ER-BoE" firstAttribute="leading" secondItem="WM9-0A-Cd0" secondAttribute="leading" constant="10" id="QsK-0y-EQG"/>
                                                 <constraint firstAttribute="trailing" secondItem="JZM-Rp-fdI" secondAttribute="trailing" constant="10" id="XLL-kw-IiI"/>
                                                 <constraint firstAttribute="trailing" secondItem="WM9-0A-Cd0" secondAttribute="trailing" id="XMg-8g-Hrw"/>
                                                 <constraint firstAttribute="bottom" secondItem="JZM-Rp-fdI" secondAttribute="bottom" constant="5" id="XnP-U8-3du"/>
                                                 <constraint firstItem="WM9-0A-Cd0" firstAttribute="leading" secondItem="QMz-Sq-HVr" secondAttribute="leading" id="lsV-TX-YWk"/>
+                                                <constraint firstItem="HBL-ER-BoE" firstAttribute="top" secondItem="WM9-0A-Cd0" secondAttribute="top" constant="8" id="n6R-fW-nJa"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderUIWidth">
@@ -139,7 +150,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-bB-ldM">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-bB-ldM">
                                             <rect key="frame" x="10" y="170" width="83" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="  匿名评价" image="MyTeam_select-n2">
@@ -163,7 +174,7 @@
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvd-vG-XPF">
                                     <rect key="frame" x="30" y="461" width="315" height="50"/>
-                                    <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="8Uv-Zf-lJf"/>
                                     </constraints>

@@ -19,6 +19,7 @@
 #import "LBMineCentermodifyAdressViewController.h"
 #import "LBProductDetailViewController.h"
 #import "GLMine_Cart_PayController.h"
+#import "LBMineEvaluateViewController.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -123,13 +124,57 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 }
 //确认收货
 - (IBAction)sureReceiving:(UIButton *)sender {
+    NSMutableArray *goodidArr = [NSMutableArray array];
+    for (int i = 0; i < self.dataModel.goods_info.count; i++) {
+        LBMyOrdersDetailGoodsListModel  *gmodel = self.dataModel.goods_info[i];
+        [goodidArr addObject:gmodel.ord_id];
+    }
+    NSString *ord_str = [goodidArr componentsJoinedByString:@"_"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"ord_str"] = ord_str;
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_order_confirm_get paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            if (self.refreshDatasource) {
+                self.refreshDatasource();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 //查看物流
 - (IBAction)checkfly:(UIButton *)sender {
     
 }
-
-
+//待评论
+-(void)replayComment:(NSIndexPath*)indexpath{
+    LBMyOrdersDetailGoodsListModel  *gmodel = self.dataModel.goods_info[indexpath.row];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineEvaluateViewController *vc = [[LBMineEvaluateViewController alloc]init];
+    vc.goods_id = gmodel.ord_goods_id;
+    vc.order_goods_id = gmodel.ord_id;
+    vc.replyType = 1;
+    vc.goods_name = gmodel.goods_name;
+    vc.goods_pic = gmodel.thumb;
+    vc.replyFinish = ^{
+        gmodel.is_comment = @"1";
+        [_tableview reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     if (self.dataModel) {
@@ -193,13 +238,14 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         if (indexPath.row >= 0 && indexPath.row < self.dataModel.goods_info.count) {
             LBMineOrderDetailproductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailproductsTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.typeindex == 3){
+            if (self.typeindex == 5){
                 cell.replayBt.hidden = NO;
             }
+            WeakSelf;
             cell.indexpath = indexPath;
             cell.orderModel = self.dataModel.goods_info[indexPath.row];
             cell.waitReply = ^(NSIndexPath *indexpath) {//待评论
-                
+                [weakSelf replayComment:indexPath];
             };
             return cell;
         }else if ((indexPath.row >= self.dataModel.goods_info.count) && (indexPath.row < self.dataModel.goods_info.count + 2)){
@@ -246,9 +292,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         }else if (indexPath.row == self.dataModel.goods_info.count+5){
             LBMineOrderNumbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderNumbersTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.typeindex == 5){
-                cell.wuliuBt.hidden = NO;
-            }
+            cell.wuliuBt.hidden = YES;
             cell.orderNum.text = [NSString stringWithFormat:@"订单号: %@",self.dataModel.order_num];
             cell.timelb.text = [NSString stringWithFormat:@"下单时间: %@",[formattime formateTimeYM:self.dataModel.time]];
             return cell;

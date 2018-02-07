@@ -11,4 +11,7 @@
 @interface LBEat_StoreCommentsViewController : UIViewController
 
 @property (strong , nonatomic)NSString *store_id;
+
+@property (assign , nonatomic)NSInteger isstore;//判断是否是商家跳过去 1为商家 0为用户
+
 @end

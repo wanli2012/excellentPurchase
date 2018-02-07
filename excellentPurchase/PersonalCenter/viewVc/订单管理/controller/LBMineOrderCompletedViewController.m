@@ -13,6 +13,7 @@
 #import "LBMineOrderObligationmodel.h"
 #import "LBMineOrdersHeaderViewOneCell.h"
 #import "LBMineOrdersFooterViewCell.h"
+#import "LBMineEvaluateViewController.h"
 
 static NSString *mineOrdersHeaderViewTableViewCell = @"LBOrdersCompletTableViewCell";
 static NSString *mineOrdersHeaderViewOneCell = @"LBMineOrdersHeaderViewOneCell";
@@ -83,7 +84,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     dic[@"page"] = @(page);
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"status"] = @"1";
+    dic[@"status"] = @"5";
     [NetworkManager requestPOSTWithURLStr:OrderUser_product_order paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -153,7 +154,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         cell.model = model;
         WeakSelf;
         cell.clickbuttonTwoEvent = ^(NSIndexPath *indexpath) {//查看物流
-            [weakSelf sureorders:indexPath];
+            [weakSelf checkFly:indexPath];
         };
         return cell;
     }else{
@@ -161,6 +162,11 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         LBMineOrderObligationGoodsmodel *goodmodel = model.goods_data[indexPath.row-1];
         cell.model = goodmodel;
+        cell.indexpath = indexPath;
+        WeakSelf;
+        cell.postComment = ^(NSIndexPath *indexpath) {//发表评论
+            [weakSelf postComment:indexpath];
+        };
 
         return cell;
     }
@@ -185,73 +191,50 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    LBMineOrderObligationmodel *model = self.dataArr[indexPath.section];
+    NSMutableArray *goodidArr = [NSMutableArray array];
+    for (int i = 0; i < model.goods_data.count; i++) {
+        LBMineOrderObligationGoodsmodel  *gmodel = model.goods_data[i];
+        [goodidArr addObject:gmodel.ord_id];
+    }
+    
+    NSString *ord_str = [goodidArr componentsJoinedByString:@"_"];
     self.hidesBottomBarWhenPushed = YES;
-    LBMineSureOrdersViewController *vc = [[LBMineSureOrdersViewController alloc]init];
+    LBMineOrderDetailViewController *vc = [[LBMineOrderDetailViewController alloc]init];
+    vc.ord_str = ord_str;
+    vc.typeindex = 5;
+    vc.shop_uid = model.ord_shop_uid;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 /**
- 确认收货
+查看物流
  
  @param indexpath 第几列
  */
--(void)sureorders:(NSIndexPath*)indexpath{
-    LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
-    NSMutableArray *arr = [[NSMutableArray alloc]init];
-    for (int i = 0; i< model.goods_data.count; i++) {
-        LBMineOrderObligationGoodsmodel *goodmdel = model.goods_data[i];
-        [arr addObject:goodmdel.goods_id];
-    }
-    
-    NSString *ord_str = [arr componentsJoinedByString:@"_"];
-    
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"UPDATE";
-    dic[@"uid"] = [UserModel defaultUser].uid;
-    dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"ord_str"] = ord_str;
-    [EasyShowLodingView showLoding];
-    [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_order_confirm_get paramDic:dic finish:^(id responseObject) {
-        
-        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            self.page = 1;
-            [self loadData:self.page refreshDirect:YES];
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }else{
-            
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }
-        [EasyShowLodingView hidenLoding];
-    } enError:^(NSError *error) {
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
-    }];
-    
+-(void)checkFly:(NSIndexPath*)indexpath{
+   
     
 }
-
--(void)repayOders:(NSIndexPath*)indexpath{
+//发布评论
+-(void)postComment:(NSIndexPath*)indexpath{
+     LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
+    LBMineOrderObligationGoodsmodel  *gmodel = model.goods_data[indexpath.row-1];
     
-    //    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    //    dic[@"app_handler"] = @"SEARCH";
-    //    dic[@"uid"] = [UserModel defaultUser].uid;
-    //    dic[@"token"] = [UserModel defaultUser].token;
-    //    dic[@"ord_str"] = ord_str;
-    //
-    //    [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_cancel_order paramDic:dic finish:^(id responseObject) {
-    //
-    //        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-    //            self.page = 1;
-    //            [self loadData:self.page refreshDirect:YES];
-    //        }else{
-    //
-    //            [EasyShowTextView showErrorText:responseObject[@"message"]];
-    //        }
-    //
-    //    } enError:^(NSError *error) {
-    //        [EasyShowTextView showErrorText:error.localizedDescription];
-    //    }];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineEvaluateViewController *vc = [[LBMineEvaluateViewController alloc]init];
+    vc.goods_id = gmodel.goods_id;
+    vc.order_goods_id = gmodel.ord_id;
+    vc.replyType = 1;
+    vc.goods_name = gmodel.goods_name;
+    vc.goods_pic = gmodel.thumb;
+    vc.replyFinish = ^{
+        gmodel.is_comment = @"1";
+        [_tableview reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 -(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{

@@ -340,7 +340,8 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         self.hidesBottomBarWhenPushed =YES;
         LBMineCentermodifyAdressViewController *vc =[[LBMineCentermodifyAdressViewController alloc]init];
         vc.block = ^(GLMine_AddressModel *adressmodel) {
-            _addressModel = adressmodel;
+            self.addressModel = adressmodel;
+            [_tableview reloadData];
         };
         [self.navigationController pushViewController:vc animated:YES];
     }else{

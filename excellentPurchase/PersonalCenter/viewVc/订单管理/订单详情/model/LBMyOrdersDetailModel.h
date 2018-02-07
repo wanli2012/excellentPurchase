@@ -38,8 +38,9 @@
 @property (copy , nonatomic)NSString *ord_goods_num;
 @property (copy , nonatomic)NSString *ord_goods_price;
 @property (copy , nonatomic)NSString *ord_order_id;
-@property (copy , nonatomic)NSString *ord_spec_info;
+@property (copy , nonatomic)NSString *ord_spec_info;//规格描述
 @property (copy , nonatomic)NSString *thumb;
 @property (copy , nonatomic)NSString *ord_id;
+@property (copy , nonatomic)NSString *is_comment;//是否已经评价 1是 0否
 
 @end

@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface LB_Eat_commentDataModel : NSObject
 
-@property (copy , nonatomic)NSString *store_comment_id;
+@property (copy , nonatomic)NSString *store_comment_id;//评论ID
+
+@property (copy , nonatomic)NSString *line_id;//吃喝玩乐订单ID
 
 @property (copy , nonatomic)NSString *comment;//内容
 

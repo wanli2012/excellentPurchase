@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodName;
 @property (weak, nonatomic) IBOutlet UILabel *numlb;
 @property (weak, nonatomic) IBOutlet UILabel *pricelb;
+@property (weak, nonatomic) IBOutlet UIButton *replybt;
 
 @end
 
@@ -30,6 +31,21 @@
     self.numlb.text = [NSString stringWithFormat:@"x%@",_model.ord_goods_num];
     self.pricelb.text = [NSString stringWithFormat:@"¥%@",_model.ord_goods_price];
     
+    if ([_model.is_comment integerValue]==1) {
+        [self.replybt setTitle:@"已评论" forState:UIControlStateNormal];
+        self.replybt.backgroundColor = [UIColor darkGrayColor];
+        self.replybt.userInteractionEnabled = NO;
+    }else{
+        [self.replybt setTitle:@"发表评论" forState:UIControlStateNormal];
+        self.replybt.backgroundColor = MAIN_COLOR;
+        self.replybt.userInteractionEnabled = YES;
+    }
+    
+}
+- (IBAction)postComment:(UIButton *)sender {
+    if (self.postComment) {
+        self.postComment(self.indexpath);
+    }
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "LBUerUnderlineOrdersViewController.h"
 #import "LBUerUnderLineOrdersCell.h"
 #import "LBUerUnderLineOrderModel.h"
+#import "LBMineEvaluateViewController.h"
 
 @interface LBUerUnderlineOrdersViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -102,6 +103,22 @@ static NSString *uerUnderLineOrdersCell = @"LBUerUnderLineOrdersCell";
     }];
     
 }
+
+-(void)replyComment:(NSIndexPath*)indexpath{
+    LBUerUnderLineOrderModel *model = self.dataArr[indexpath.section];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineEvaluateViewController *vc = [[LBMineEvaluateViewController alloc]init];
+    vc.line_id = model.face_id;
+    vc.line_store_uid = model.face_shop_uid;
+    vc.replyType = 2;
+    vc.goods_name = model.store_name;
+    vc.goods_pic = model.store_thumb;
+    vc.replyFinish = ^{
+         model.is_comment = @"1";
+        [_tableview reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return self.dataArr.count; //返回值是多少既有几个分区
@@ -120,8 +137,12 @@ static NSString *uerUnderLineOrdersCell = @"LBUerUnderLineOrdersCell";
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
         LBUerUnderLineOrdersCell *cell = [tableView dequeueReusableCellWithIdentifier:uerUnderLineOrdersCell forIndexPath:indexPath];
-    
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = self.dataArr[indexPath.section];
+    cell.inexpath = indexPath;
+    cell.replyFinish = ^(NSIndexPath *indexpath) {
+        [self replyComment:indexPath];
+    };
     
         return cell;
     

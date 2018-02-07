@@ -32,8 +32,9 @@
 @property (copy , nonatomic)NSString *ord_goods_price;
 @property (copy , nonatomic)NSString *ord_id;
 @property (copy , nonatomic)NSString *goods_id;
-@property (copy , nonatomic)NSArray *ord_order_id;
+@property (copy , nonatomic)NSString *ord_order_id;
 @property (copy , nonatomic)NSString *time;
-@property (copy , nonatomic)NSString *ord_odd_num;
-@property (copy , nonatomic)NSArray *ord_cancel_reason;
+@property (copy , nonatomic)NSString *ord_odd_num;//物流单号
+@property (copy , nonatomic)NSString *is_comment;//是否评论 1是0否
+@property (copy , nonatomic)NSString *ord_cancel_reason;//取消订单原因
 @end

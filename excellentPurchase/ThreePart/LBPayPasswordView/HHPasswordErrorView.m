@@ -45,7 +45,7 @@
 }
 - (void)setLimit:(NSInteger )limit{
     _limit = limit;
-    self.titleLabel.text = [NSString stringWithFormat:@"支付密码不正确,请重新输入"];
+    self.titleLabel.text = [NSString stringWithFormat:@"支付密码不正确,或者网络请求失败,请重新输入"];
 }
 - (void)showInView:(UIView *)view{
     [view addSubview:self];

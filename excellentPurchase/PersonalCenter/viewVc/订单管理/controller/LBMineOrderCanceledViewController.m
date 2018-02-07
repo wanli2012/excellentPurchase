@@ -199,7 +199,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterReasonViewCell";
     self.hidesBottomBarWhenPushed = YES;
     LBMineOrderDetailViewController *vc = [[LBMineOrderDetailViewController alloc]init];
     vc.ord_str = ord_str;
-    vc.typeindex = 5;
+    vc.typeindex = 10;
     vc.shop_uid = model.ord_shop_uid;
     [self.navigationController pushViewController:vc animated:YES];
     

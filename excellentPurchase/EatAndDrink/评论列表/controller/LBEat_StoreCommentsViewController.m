@@ -30,6 +30,7 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
 @property (strong , nonatomic)NSMutableArray *commentdataArr;
 @property (nonatomic, assign) NSInteger  page;
 @property (nonatomic, assign) NSInteger  allCount;
+@property (assign , nonatomic)NSInteger  index;//记录评论的那一列
 
 @end
 
@@ -138,20 +139,53 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
         
     } sendBlock:^BOOL(NSString *text) {
         if(text.length){
-            
-
+            [self replyComment:text];
             return YES;//return YES,收起键盘
         }else{
-            
+            [EasyShowTextView showErrorText:@"请输入评论内容"];
             return NO;//return NO,不收键盘
         }
+    }];
+    
+}
+//评论
+-(void)replyComment:(NSString*)text{
+    
+    LB_EatCommentFrameModel *model = self.commentdataArr[self.index];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"UPDATE";
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+    }
+    dic[@"reply"] = text;
+    dic[@"line_id"] = model.HomeInvestModel.line_id;
+    dic[@"store_comment_id"] = model.HomeInvestModel.store_comment_id;
+    
+    [EasyShowLodingView showLodingText:@"正在加载"];
+    [NetworkManager requestPOSTWithURLStr:CommentLine_store_reply paramDic:dic finish:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            model.HomeInvestModel.reply = text;
+            [self.tableview reloadData];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
     }];
     
 }
 
 #pragma mark - 弹出评论输入框
 -(void)showCommentInput:(NSInteger)section{
-    
+    self.index = section;
     [self showXHInputViewWithStyle:InputViewStyleLarge plaecholderStr:@"评论"];
    
 }
@@ -175,9 +209,7 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
         return UITableViewAutomaticDimension;
     }
     return 0;
-    
 }
-
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
@@ -209,12 +241,18 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
         headerview = [[LBEat_StoreCommentHeaderView alloc]initWithReuseIdentifier:ID];
 
     }
-//    __weak typeof(self) wself = self;
+    WeakSelf;
     headerview.HomeInvestModel = self.commentdataArr[section];
     headerview.section = section;
-//    headerview.showComments = ^(NSInteger section) {
-//        [wself showCommentInput:section];
-//    };
+     LB_EatCommentFrameModel *modelF = self.commentdataArr[section];
+    if (self.isstore == 1 && [NSString StringIsNullOrEmpty:modelF.HomeInvestModel.reply]) {
+        headerview.replayBt.hidden = NO;
+    }else{
+        headerview.replayBt.hidden = YES;
+    }
+    headerview.showComments = ^(NSInteger section) {
+        [weakSelf showCommentInput:section];
+    };
 //    跳转评论详情
 //    headerview.pushCommentsListVc = ^{
 //        wself.hidesBottomBarWhenPushed = YES;

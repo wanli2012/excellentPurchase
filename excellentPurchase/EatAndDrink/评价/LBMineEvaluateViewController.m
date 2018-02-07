@@ -8,6 +8,7 @@
 
 #import "LBMineEvaluateViewController.h"
 #import "LCStarRatingView.h"
+#import "ReactiveCocoa.h"
 
 @interface LBMineEvaluateViewController ()<UITextViewDelegate>
 
@@ -16,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titlelb;
 @property (weak, nonatomic) IBOutlet UITextView *textview;
 @property (weak, nonatomic) IBOutlet UILabel *noticelb;
-
+@property (weak, nonatomic) IBOutlet UILabel *placeholderlb;
+@property (weak, nonatomic) IBOutlet UIButton *submit;
+@property (assign, nonatomic) CGFloat  mark;//分数
 @end
 
 @implementation LBMineEvaluateViewController
@@ -25,6 +28,26 @@
     [super viewDidLoad];
     self.navigationItem.title = @"评价";
     self.navigationController.navigationBar.hidden = NO;
+    
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.goods_pic] placeholderImage:nil];
+    self.titlelb.text = self.goods_name;
+    self.starView.type = LCStarRatingViewCountingTypeHalfCutting;
+    //评论
+    self.starView.progressDidChangedByUser = ^(CGFloat progress) {
+        _mark = progress;
+    };
+    
+    [[self.textview rac_textSignal]subscribeNext:^(NSString *x) {
+        
+        if (x.length  >=8) {
+            self.submit.backgroundColor = MAIN_COLOR;
+            self.submit.userInteractionEnabled = YES;
+        }else{
+            self.submit.backgroundColor = [UIColor lightGrayColor];
+            self.submit.userInteractionEnabled = NO;
+        }
+        
+    }];
     
 }
 
@@ -44,6 +67,97 @@
  @param sender <#sender description#>
  */
 - (IBAction)submitEvent:(UIButton *)sender {
+    
+    if (self.replyType == 1) {
+        [self replyProducts];
+    }else if (self.replyType == 2){
+        [self replyMerchant];
+    }
+    
 }
 
+-(void)replyMerchant{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"comment"] = self.textview.text;
+    dic[@"mark"] = @(_mark);
+    dic[@"line_id"] = self.line_id;
+    dic[@"line_store_uid"] = self.line_store_uid;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:CommentStore_comment paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            if (self.replyFinish) {
+                self.replyFinish();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+//评论商品
+-(void)replyProducts{
+
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"comment"] = self.textview.text;
+    dic[@"mark"] = @(_mark);
+    dic[@"order_goods_id"] = self.order_goods_id;
+    dic[@"goods_id"] = self.goods_id;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:CommentUser_comment paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            if (self.replyFinish) {
+                self.replyFinish();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+          [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    self.placeholderlb.hidden = YES;
+    
+}
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if (textView.text.length <= 0) {
+        self.placeholderlb.hidden = NO;
+    }else{
+        self.placeholderlb.hidden = YES;
+    }
+    
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
 @end

@@ -13,5 +13,8 @@
 
 
 @property (strong , nonatomic)LBMineOrderObligationGoodsmodel *model;
+@property (strong , nonatomic)NSIndexPath *indexpath;
+@property (copy , nonatomic)void(^postComment)(NSIndexPath *indexpath);
+
 
 @end

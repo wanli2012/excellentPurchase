@@ -18,6 +18,8 @@
 
 @property (copy , nonatomic)void(^pushCommentsListVc)(void);
 
+@property (strong , nonatomic)UIButton *replayBt;//回复按钮
+
 @property (assign , nonatomic)NSInteger section;
 
 @end

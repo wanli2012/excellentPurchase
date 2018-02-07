@@ -211,7 +211,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
             return 150 * 2/3.0 + 110;
         }
     }else if (indexPath.section == 2){
-        return 100;
+        return EatActBannerScle * UIScreenWidth;
     }else if (indexPath.section == 3){
         if (indexPath.row == 0) {
             return 50;

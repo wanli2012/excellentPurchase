@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pricelb;
 @property (weak, nonatomic) IBOutlet UILabel *marklb;
 @property (weak, nonatomic) IBOutlet UILabel *couponlb;
+@property (weak, nonatomic) IBOutlet UIButton *postBt;
 
 @end
 
@@ -21,8 +22,17 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
 }
+
+- (IBAction)replyComment:(UIButton *)sender {
+    
+    if (self.replyFinish) {
+        self.replyFinish(self.inexpath);
+    }
+    
+}
+
 
 -(void)setModel:(LBUerUnderLineOrderModel *)model{
     _model = model;
@@ -32,6 +42,15 @@
     self.marklb.text = [NSString stringWithFormat:@"%@",_model.face_back_mark];
     self.couponlb.text = [NSString stringWithFormat:@"¥%@",_model.face_back_coupons];
     
+    if ([_model.is_comment integerValue] == 1) {
+        self.postBt.userInteractionEnabled = NO;
+        self.postBt.backgroundColor = [UIColor lightGrayColor];
+        [self.postBt setTitle:@"已评论" forState:UIControlStateNormal];
+    }else{
+        self.postBt.userInteractionEnabled = YES;
+        self.postBt.backgroundColor = MAIN_COLOR;
+        [self.postBt setTitle:@"发表评论" forState:UIControlStateNormal];
+    }
 }
 
 @end
