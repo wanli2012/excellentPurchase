@@ -8,11 +8,33 @@
 
 #import "LBVoucherCenterRecoderTableViewCell.h"
 
+@interface LBVoucherCenterRecoderTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *rechargeTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+
+@end
+
 @implementation LBVoucherCenterRecoderTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 
+}
+
+- (void)setModel:(GLVoucherRecordModel *)model{
+    _model = model;
+    
+    if([model.type integerValue] == 1){//充值方式 1微信 2支付宝
+        self.rechargeTypeLabel.text = @"微信充值";
+    }else{
+        self.rechargeTypeLabel.text = @"支付宝充值";
+    }
+    self.dateLabel.text = [formattime formateTimeOfDate4:model.addtime];
+    self.moneyLabel.text = model.money;
+    
+    
 }
 
 @end

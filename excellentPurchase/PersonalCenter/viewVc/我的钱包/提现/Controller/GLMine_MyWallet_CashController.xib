@@ -75,12 +75,12 @@
                                         <constraint firstAttribute="bottom" secondItem="mle-uy-Lt2" secondAttribute="bottom" id="rr1-To-zrr"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvx-Aw-s5j">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvx-Aw-s5j" userLabel="bankView">
                                     <rect key="frame" x="0.0" y="150" width="374" height="70"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dJq-uU-3Rv">
                                             <rect key="frame" x="10" y="10" width="50" height="50"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="FRc-ta-LxO"/>
                                                 <constraint firstAttribute="width" constant="50" id="oK2-Ot-Bou"/>
@@ -118,10 +118,10 @@
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-id-vTi">
+                                        <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-id-vTi">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="69"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-Yg-fO4">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-Yg-fO4">
                                                     <rect key="frame" x="137" y="0.0" width="100" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击添加银行卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auh-Tg-7uw">
@@ -140,20 +140,18 @@
                                                         <constraint firstAttribute="bottom" secondItem="auh-Tg-7uw" secondAttribute="bottom" constant="5" id="ldL-IG-afJ"/>
                                                         <constraint firstItem="auh-Tg-7uw" firstAttribute="leading" secondItem="aDX-Yg-fO4" secondAttribute="leading" id="qr9-H3-I2l"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="ieB-Va-eDe" appends="YES" id="Hke-RJ-R8W"/>
-                                                    </connections>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzs-1j-jTE">
-                                                    <rect key="frame" x="167" y="4.5" width="40" height="40"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_huigou_add" translatesAutoresizingMaskIntoConstraints="NO" id="kzs-1j-jTE">
+                                                    <rect key="frame" x="172" y="9.5" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="1CX-tT-8Do"/>
-                                                        <constraint firstAttribute="height" constant="40" id="Jrm-e2-5J1"/>
+                                                        <constraint firstAttribute="width" constant="30" id="1CX-tT-8Do"/>
+                                                        <constraint firstAttribute="height" constant="30" id="Jrm-e2-5J1"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="kzs-1j-jTE" firstAttribute="centerX" secondItem="aDX-Yg-fO4" secondAttribute="centerX" id="80u-l2-3ah"/>
                                                 <constraint firstItem="aDX-Yg-fO4" firstAttribute="centerX" secondItem="jWF-id-vTi" secondAttribute="centerX" id="9SI-Pv-yIj"/>
@@ -184,6 +182,9 @@
                                         <constraint firstItem="o70-Kj-v3N" firstAttribute="leading" secondItem="EcU-8w-6C0" secondAttribute="trailing" constant="5" id="tfS-dd-Euv"/>
                                         <constraint firstItem="dJq-uU-3Rv" firstAttribute="centerY" secondItem="uvx-Aw-s5j" secondAttribute="centerY" id="zvf-B1-pcH"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="ieB-Va-eDe" appends="YES" id="Vos-wz-LGR"/>
+                                    </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA3-SB-yV5">
                                     <rect key="frame" x="0.0" y="220" width="374" height="70"/>
@@ -335,7 +336,11 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <point key="canvasLocation" x="38.5" y="54.5"/>
         </view>
-        <tapGestureRecognizer id="ieB-Va-eDe" userLabel="添加银行卡"/>
+        <tapGestureRecognizer id="ieB-Va-eDe" userLabel="添加银行卡">
+            <connections>
+                <action selector="bankCardChoose:" destination="-1" id="t1T-FB-iuF"/>
+            </connections>
+        </tapGestureRecognizer>
         <tapGestureRecognizer id="DZk-au-Q2z" userLabel="是否同意创客承诺书">
             <connections>
                 <action selector="isAgreeProtocol:" destination="-1" id="Dw1-Hi-hSn"/>
@@ -344,6 +349,7 @@
     </objects>
     <resources>
         <image name="greetselect-n" width="11" height="11"/>
+        <image name="mine_huigou_add" width="32" height="32"/>
         <image name="right_arrow_big" width="9" height="17"/>
         <image name="吃喝玩乐-出售" width="373" height="133"/>
     </resources>

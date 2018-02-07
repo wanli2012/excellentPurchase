@@ -30,6 +30,7 @@
     self.contentV.clipsToBounds = YES;
     
 //    self.recommendUrl = [NSString stringWithFormat:@"%@%@",RECOMMEND_REGISTER_URL,[UserModel defaultUser].name];
+    
     //自定义导航栏右键
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(UIScreenWidth - 60, 14, 60, 30);

@@ -26,12 +26,12 @@ UICollectionViewDataSource,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *topView;//个人信息 view
 
-
 @property (strong, nonatomic)CCPScrollView *ccpView;//跑马灯view
 
 @property (weak, nonatomic) IBOutlet UIImageView *alertImage;
 
 @property (weak, nonatomic)IBOutlet UICollectionView *colletionView;
+
 
 @end
 
@@ -60,7 +60,7 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toMyInfomation)];
     [self.topView addGestureRecognizer:tap];
     
-    _ccpView.titleArray = [NSArray arrayWithObjects:@"iPhone6s上线32G内存手机你怎么看？",@"亲爱的朋友们2016年还有100天就要过去了,2017年您准备好了吗?",@"今年双11您预算了几个月的工资？",@"高德与百度互掐，你更看好哪方？", nil];
+//    _ccpView.titleArray = self.noticeArr;
     
     _ccpView.titleFont = 14;
     
@@ -69,7 +69,7 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
     _ccpView.BGColor = [UIColor whiteColor];
     
     [_ccpView clickTitleLabel:^(NSInteger index,NSString *titleString) {
-        
+        NSLog(@"index = %zd---titlesString = %@",index,titleString);
     }];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -85,6 +85,17 @@ static NSString *ID = @"LBMineDataCollectionViewCell";
         
     });
     
+}
+
+- (void)setNoticeArr:(NSArray *)noticeArr{
+    _noticeArr = noticeArr;
+    
+    _ccpView.titleArray = noticeArr;
+}
+- (void)setValueArr:(NSArray *)valueArr{
+    _valueArr = valueArr;
+    
+    [self.colletionView reloadData];
 }
 
 /**

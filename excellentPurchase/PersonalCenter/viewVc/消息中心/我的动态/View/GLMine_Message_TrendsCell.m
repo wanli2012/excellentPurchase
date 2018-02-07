@@ -25,8 +25,39 @@
 
 - (void)setModel:(GLMine_Message_TrendsModel *)model{
     _model = model;
-    self.typeLabel.text = model.typeName;
-    self.dateLabel.text = model.date;
-    self.contentLabel.text = model.content;
+    
+    self.dateLabel.text = [formattime formateTimeOfDate4:model.addtime];
+    self.contentLabel.text = model.msg;
+    
+    //1 关注 2商品评论 3商铺评论
+    switch ([model.type integerValue]) {
+        case 1:
+        {
+            self.typeLabel.text = @"关注";
+        }
+            break;
+        case 2:
+        {
+             self.typeLabel.text = @"商品评论";
+        }
+            break;
+        case 3:
+        {
+             self.typeLabel.text = @"商铺评论";
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
+- (void)setSystemModel:(GLMine_Message_SystemModel *)systemModel{
+    _systemModel = systemModel;
+    
+    self.dateLabel.text = [formattime formateTimeOfDate4:systemModel.addtime];
+    self.contentLabel.text = systemModel.content;
+    self.typeLabel.text = systemModel.title;
+   
+}
+
 @end

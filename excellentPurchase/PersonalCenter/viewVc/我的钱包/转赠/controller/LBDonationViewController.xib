@@ -13,8 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBDonationViewController">
             <connections>
                 <outlet property="coinLabel" destination="9fz-VC-qyH" id="CJb-Id-mhJ"/>
+                <outlet property="donationTypeTF" destination="U8C-xX-b8L" id="RgT-Nm-ohF"/>
                 <outlet property="integralLabel" destination="4c9-pe-DPc" id="p6N-Cr-DrC"/>
                 <outlet property="moneyTF" destination="eJq-LX-zfa" id="ueG-k7-MOI"/>
+                <outlet property="receiveManGroupTypeTF" destination="jzC-Tp-nw6" id="3TF-6U-sNy"/>
                 <outlet property="receiveManTF" destination="ecC-Gs-mqn" id="IQt-8T-Jer"/>
                 <outlet property="scrollView" destination="Zxe-Lz-P0C" id="LTS-nN-fZB"/>
                 <outlet property="signImageV" destination="sZm-Iz-AJY" id="zTq-Pw-iCS"/>
@@ -239,7 +241,7 @@
                                                     <color key="textColor" red="0.43921568630000002" green="0.43924486639999999" blue="0.43915987010000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择红包类型" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U8C-xX-b8L">
+                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择转赠类型" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U8C-xX-b8L">
                                                     <rect key="frame" x="90" y="0.0" width="276" height="49"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

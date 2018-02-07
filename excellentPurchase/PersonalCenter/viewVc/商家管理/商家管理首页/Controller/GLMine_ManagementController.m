@@ -11,7 +11,8 @@
 #import "GLMine_Branch_QueryAchievementController.h"//业绩查询
 #import "GLMine_Branch_OnlineOrderController.h"//线上订单
 #import "GLMine_Branch_OfflineOrderController.h"//线下订单
-#import "GLMine_Seller_IncomeCodeController.h"//收款二维码
+//#import "GLMine_Seller_IncomeCodeController.h"
+#import "GLMine_Seller_SetMoneyController.h"//收款二维码
 #import "LBFinishMainViewController.h"
 
 @interface GLMine_ManagementController ()
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商家管理";
-    self.contentViewWidth.constant = UIScreenWidth * 2 - 50.0/750.0 * UIScreenWidth;
+    self.contentViewWidth.constant = UIScreenWidth * 2 - 120.0/750.0 * UIScreenWidth;
     
     self.todayView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
     self.todayView.layer.shadowOffset = CGSizeMake(0,0);//
@@ -104,7 +105,7 @@
 - (IBAction)incomeCode:(id)sender {
     
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_Seller_IncomeCodeController *vc = [[GLMine_Seller_IncomeCodeController alloc] init];
+    GLMine_Seller_SetMoneyController *vc = [[GLMine_Seller_SetMoneyController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

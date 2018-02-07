@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_MyWallet_CashRecordModel.h"
 
 @interface GLMine_MyWallet_CashRecordCell : UITableViewCell
+
+@property (nonatomic, strong)GLMine_MyWallet_CashRecordModel *model;
 
 @end

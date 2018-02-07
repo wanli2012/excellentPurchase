@@ -7,6 +7,11 @@
 //
 
 #import "LBVoucherCenterViewController.h"
+#import "GLMine_PaySucessController.h"//付款状态
+#import "LBVoucherCenterRecoderViewController.h"
+
+#import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
 
 @interface LBVoucherCenterViewController ()<UITextFieldDelegate>
 {
@@ -31,10 +36,79 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    /**
+     *支付宝成功 回调
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
+    
+    /**
+     *微信支付成功 回调
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
+    
+    [self setNav];
+    
+}
+
+#pragma mark - 设置导航栏
+- (void)setNav{
     
     self.navigationItem.title = @"充值中心";
     
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
+    
+    [button setTitle:@"记录" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(record) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    
+}
 
+- (void)record{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    LBVoucherCenterRecoderViewController *vc = [[LBVoucherCenterRecoderViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+/**
+ 支付宝支付成功回调
+ */
+-(void)Alipaysucess{
+    [self pushsucessVc];
+}
+
+/**
+ 微信支付成功回调
+ */
+-(void)wxpaysucess{
+    [self pushsucessVc];
+}
+
+-(void)pushsucessVc{
+    
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
+//    vc.type = 1;
+//    vc.piece =  [NSString stringWithFormat:@"¥ %@",self.datadic[@"order_money"]];
+//    vc.odernum =  [NSString stringWithFormat:@"%@",self.datadic[@"order_num"]];
+//    vc.method = self.payStr;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+-(void)pushFailVc{
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_PaySucessController *vc =[[GLMine_PaySucessController alloc]init];
+    vc.type = 2;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)payTypeChoose:(UITapGestureRecognizer *)tap {
@@ -46,15 +120,17 @@
     switch (tap.view.tag) {
         case 11:
         {
-        
+            
             [self.weixinPayBtn setImage:[UIImage imageNamed:@"pay-select-y"] forState:UIControlStateNormal];
+            self.payType = 1;
             
         }
             break;
         case 12:
         {
-           
+            
             [self.alipayBtn setImage:[UIImage imageNamed:@"pay-select-y"] forState:UIControlStateNormal];
+            self.payType = 2;
         }
             break;
             
@@ -82,36 +158,98 @@
 
 #pragma mark - 确认充值
 - (IBAction)submit:(id)sender {
-    //kuser_recharge
+    
+    [self.view endEditing:YES];
+    
+    if(self.moneyTF.text.length == 0){
+        [EasyShowTextView showInfoText:@"请填写充值金额"];
+        return;
+    }
+    
+    if(self.payType == 0){
+        [EasyShowTextView showInfoText:@"请填写充值金额"];
+        return;
+    }
+    
+    if(!_isAgreeProtocol){
+        [EasyShowTextView showInfoText:@"请先同意承诺书"];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"ADD";
-    dict[@"account"] = self.accountTF.text;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"account"] = self.accountTF.text;
     dict[@"money"] = self.moneyTF.text;
-    dict[@"type"] = @(self.payType);
-
-//    [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
-//        //        [_loadV removeloadview];
-//        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-//
-//            [EasyShowTextView showSuccessText:@"注册成功"];
-//
-//            [UIView animateWithDuration:0.3 animations:^{
-//
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }];
-//
-//        }else{
-//            [EasyShowTextView showErrorText:responseObject[@"message"]];
-//        }
-//
-//    } enError:^(NSError *error) {
-//
-//        //[_loadV removeloadview];
-//        [EasyShowTextView showErrorText:error.localizedDescription];
-//
-//    }];
+    dict[@"type"] = @(self.payType);//1微信支付 2支付宝支付
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:kuser_recharge paramDic:dict finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if(self.payType == 2){//支付宝支付
+                
+                [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"url"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
+                    
+                    NSInteger orderState = [resultDic[@"resultStatus"] integerValue];
+                    if (orderState == 9000) {
+                        self.hidesBottomBarWhenPushed = YES;
+                        [self pushsucessVc];
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        
+//                        self.hidesBottomBarWhenPushed = NO;
+                        
+                    }else{
+                        NSString *returnStr;
+                        switch (orderState) {
+                            case 8000:
+                                returnStr=@"订单正在处理中";
+                                break;
+                            case 4000:
+                                returnStr=@"订单支付失败";
+                                break;
+                            case 6001:
+                                returnStr=@"订单取消";
+                                break;
+                            case 6002:
+                                returnStr=@"网络连接出错";
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                        [EasyShowTextView showErrorText:returnStr];
+                    }
+                }];
+                
+            }else{//微信支付
+                
+                //调起微信支付
+                PayReq* req = [[PayReq alloc] init];
+                req.openID=responseObject[@"data"][@"url"][@"appid"];
+                req.partnerId = responseObject[@"data"][@"url"][@"partnerid"];
+                req.prepayId = responseObject[@"data"][@"url"][@"prepayid"];
+                req.nonceStr = responseObject[@"data"][@"url"][@"noncestr"];
+                req.timeStamp = [responseObject[@"data"][@"url"][@"timestamp"] intValue];
+                req.package = responseObject[@"data"][@"url"][@"package"];
+                req.sign = responseObject[@"data"][@"url"][@"sign"];
+                [WXApi sendReq:req];
+            }
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
     
 }
 
@@ -127,7 +265,7 @@
     return YES;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-
+    
     if (textField == self.accountTF) {
         
     }

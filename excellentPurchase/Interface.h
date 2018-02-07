@@ -25,7 +25,6 @@
 //#define LOGIC_ERROR_CODE 405  //请求方法不被允许(验证post和get或其他方式的请求)
 //#define LOGIC_ERROR_CODE 500  //服务器内部错误
 
-
 #define GROUP_SD 2 //省代
 #define GROUP_CD 3 //市代
 #define GROUP_QY 4 //区代
@@ -37,7 +36,7 @@
 
 
 //captchaid的值是每个产品从后台生成的,
-#define CAPTCHAID @"e81c8a046b5e4d08999ef30e01999e35"
+#define CAPTCHAID @"f878a21255674cdcb8e3564e06e73473"
 
 
 //获取appStore上的最新版本号地址
@@ -122,7 +121,14 @@
 #define kteam_achievement @"Team/team_achievement"//团队列表-王凯
 #define kuser_cart_data @"UserCart/user_cart_data"//用户购物车数据
 #define kdel_user_cart @"UserCart/del_user_cart"//用户删除购物车
-#define kuser_recharge @"UserRecharge/user_recharge"//用户余额充值-江海林-未完成
-
+#define kuser_recharge @"UserRecharge/user_recharge"//用户余额充值-江海林
+#define kuser_recharge_list @"UserRecharge/user_recharge_list"//获取充值记录-江海林
+#define kgive @"UserGive/give"//转赠-峰
+#define kreceive_list @"UserGive/receive_list"//转赠和获赠列表-峰
+#define kstore_balance @"MoneyCenter/store_balance"//商铺用户余额提现-江海林
+#define kstore_balance_list @"MoneyCenter/store_balance_list"//商铺用户余额提现记录-江海林
+#define krefresh @"Access/refresh"//数据刷新 - 陈明真
+#define kactive_messaging @"Assets/active_messaging"//用户动态消息-江海林
+#define ksystem_bulletin @"Assets/system_bulletin"//系统公告-王凯
 
 #endif /* Interface_h */

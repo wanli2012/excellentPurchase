@@ -36,11 +36,13 @@
     self.navigationItem.title = @"付款";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Cart_PayCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Cart_PayCell"];
     
-    
     self.orderAllPrice.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"order_money"]];
     self.couponSum.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"shopping_voucher"]];
     self.deductionSum.text = [NSString stringWithFormat:@"¥ %@",self.datadic[@"dk_pay_coupons"]];
     
+    /**
+     *支付宝成功 回调
+     */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
     /**
      *微信支付成功 回调
@@ -121,6 +123,7 @@
  const PAY_WXPAY_COUPONS  = 205;//微信+购物券
  const PAY_YUE_COUPONS    = 206;//余额+购物券
  */
+
 -(void)alipayMethod{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"UPDATE";

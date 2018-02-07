@@ -13,7 +13,7 @@ typedef void(^cardChooseBlock)(GLMine_CardModel *model);
 
 @interface LBBankCardListViewController : UIViewController
 
-@property (nonatomic, assign)NSInteger pushType;//1:出售界面 跳转过来的 2:
+@property (nonatomic, assign)NSInteger pushType;//1:选择银行卡  2:修改银行卡
 
 @property (nonatomic, copy)cardChooseBlock block;
 

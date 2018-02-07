@@ -1,47 +1,42 @@
 //
-//  GLMine_Message_SystemController.m
+//  GLDonationRecordListController.m
 //  excellentPurchase
 //
-//  Created by 龚磊 on 2018/1/20.
+//  Created by 龚磊 on 2018/2/6.
 //  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_Message_SystemController.h"
-#import "GLMine_Message_TrendsCell.h"
-#import "GLMine_Message_SystemModel.h"
+#import "GLDonationRecordListController.h"
+#import "GLDonationRecordModel.h"
+#import "LBDonationTableViewCell.h"
 
-@interface GLMine_Message_SystemController ()
+@interface GLDonationRecordListController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (assign, nonatomic)NSInteger page;//页数默认为1
+@property (nonatomic, assign)NSInteger page;//页数
 @property (nonatomic, strong)NSMutableArray *models;
+
+
 
 @end
 
-@implementation GLMine_Message_SystemController
+@implementation GLDonationRecordListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
+    [self.tableView registerNib:[UINib nibWithNibName:@"LBDonationTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBDonationTableViewCell"];
     
-    self.navigationItem.title = @"系统消息";
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Message_TrendsCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Message_TrendsCell"];
-
     [self setupNpdata];//设置无数据的时候展示
-    WeakSelf;
-//    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
-//        [weakSelf postRequest:YES];
-//    } footerRefresh:^{
-////        [weakSelf postRequest:NO];
-//    }];
     
+    WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
         [weakSelf postRequest:YES];
     }];
     
-//    self.page = 1;
     [self postRequest:YES];
-    
+   
 }
 
 //刷新
@@ -72,37 +67,34 @@
 
 //请求数据
 -(void)postRequest:(BOOL)isRefresh{
-//    if(isRefresh){
-//        self.page = 1;
-//    }else{
-//        self.page ++;
-//    }
     
+    if(isRefresh){
+        self.page = 1;
+    }else{
+        self.page ++;
+    }
+    
+    [EasyShowLodingView showLodingText:@"数据请求中"];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-//    dic[@"page"] = @(self.page);
+    dic[@"page"] = @(self.page);
+    dic[@"type"] = @(self.type);//转赠还是获赠 1.获赠 2.转赠
     
-    [EasyShowLodingView showLoding];
-    
-    [NetworkManager requestPOSTWithURLStr:ksystem_bulletin paramDic:dic finish:^(id responseObject) {
-        
+    [NetworkManager requestPOSTWithURLStr:kreceive_list paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableView];
         [EasyShowLodingView hidenLoding];
-        
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             if (isRefresh == YES) {
                 [self.models removeAllObjects];
             }
-            
-            if ([responseObject[@"data"][@"page_data"] count] != 0) {
+            if ([responseObject[@"data"] count] != 0) {
                 
                 for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
-                    GLMine_Message_SystemModel *model = [GLMine_Message_SystemModel mj_objectWithKeyValues:dict];
-                    
+                    GLDonationRecordModel *model = [GLDonationRecordModel mj_objectWithKeyValues:dict];
                     [self.models addObject:model];
                 }
             }
@@ -122,7 +114,6 @@
     }];
 }
 
-
 #pragma mark -UITableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -131,32 +122,30 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GLMine_Message_TrendsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Message_TrendsCell"];
+    LBDonationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Team_AchieveManageCell"];
     cell.selectionStyle = 0;
-    cell.systemModel = self.models[indexPath.row];
+    cell.model = self.models[indexPath.row];
     
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    tableView.rowHeight = UITableViewAutomaticDimension;
-    tableView.estimatedRowHeight = 44;
-    return tableView.rowHeight;
-    //    return 95;
+    return 90;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    self.hidesBottomBarWhenPushed = YES;
-    //    GLMine_Team_MemberDataController *dataVC = [[GLMine_Team_MemberDataController alloc] init];
-    //    [self.navigationController pushViewController:dataVC animated:YES];
+
+    
 }
 
 #pragma mark - 懒加载
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-        
     }
     return _models;
 }
+
+
 @end
