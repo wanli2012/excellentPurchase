@@ -17,6 +17,13 @@ target 'excellentPurchase' do
     pod 'SSZipArchive', '>= 1.8.1'
     pod 'Toast', '>= 3.0'
     pod 'Reachability', '>= 3.2'
-    pod 'pop', ’~> 1.0.8'
+    pod 'pop', '~> 1.0.8'
     pod 'MJRefresh'
+    # 集成微信(完整版14.4M)
+    pod 'UMengUShare/Social/WeChat','6.4.5'
+    # 集成新浪微博(完整版25.3M)
+    pod 'UMengUShare/Social/Sina'
+    # U-Share SDK UI模块（分享面板，建议添加）
+    pod 'UMengUShare/UI'
+    
 end

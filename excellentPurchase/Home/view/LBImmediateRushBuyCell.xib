@@ -32,11 +32,19 @@
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="ZZu-uQ-1qM"/>
                         </connections>
                     </collectionView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vdb-4o-ycr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.57972547740000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="vdb-4o-ycr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Af0-8d-esq"/>
                     <constraint firstAttribute="trailing" secondItem="zQK-sO-PYH" secondAttribute="trailing" id="X4P-Jy-R3z"/>
+                    <constraint firstAttribute="bottom" secondItem="vdb-4o-ycr" secondAttribute="bottom" id="aMY-au-zni"/>
+                    <constraint firstItem="vdb-4o-ycr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lWa-WL-Srx"/>
                     <constraint firstItem="zQK-sO-PYH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oN4-UH-zDo"/>
                     <constraint firstItem="zQK-sO-PYH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ofv-eM-TBL"/>
+                    <constraint firstAttribute="trailing" secondItem="vdb-4o-ycr" secondAttribute="trailing" id="tPr-1D-c4W"/>
                     <constraint firstAttribute="bottom" secondItem="zQK-sO-PYH" secondAttribute="bottom" id="yCt-uc-UEh"/>
                 </constraints>
             </tableViewCellContentView>

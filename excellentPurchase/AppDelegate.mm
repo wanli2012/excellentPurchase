@@ -13,11 +13,15 @@
 #import "LBLoginViewController.h"//登录注册
 #import "Reachability.h"//网络监测
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+//#import "UMessage.h"
+
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
-#import "UMessage.h"
+
+#import <UMSocialCore/UMSocialCore.h>
 
 #define WEIXI_APPKEY @"wx01b5d9da6a88048c"
+#define WEIXIN_APPSECRET @"5b3cbdab8d6d0464566ac0af66c59390"
 
 @interface AppDelegate ()<BMKGeneralDelegate,WXApiDelegate>
 {
@@ -51,8 +55,9 @@
     /**
      *微信支付
      */
-    [WXApi registerApp:WEIXI_APPKEY withDescription:@"sjyg"];
     
+//    [WXApi registerApp:WEIXI_APPKEY withDescription:@"sjyg"];
+    [WXApi registerApp:WEIXIN_APPSECRET];
 //    self.window.rootViewController = [[BasetabbarViewController alloc]init];
     
     BaseNavigationViewController *loginNav = [[BaseNavigationViewController alloc] initWithRootViewController:[[LBLoginViewController alloc] init]];
@@ -69,14 +74,34 @@
 //    }
 
     
+    /* 打开调试日志 */
+    [[UMSocialManager defaultManager] openLog:YES];
+
+    /* 设置友盟appkey */
+    [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];
+
+    [self configUSharePlatforms];
+
     return YES;
 }
-
+- (void)configUSharePlatforms
+{
+    /*
+     设置微信的appKey和appSecret
+     [微信平台从U-Share 4/5升级说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_1
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WEIXI_APPKEY appSecret:WEIXIN_APPSECRET redirectURL:nil];
+    
+    
+    /* 支付宝的appKey */
+    //    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_AlipaySession appKey:@"2015111700822536" appSecret:nil redirectURL:nil];
+    
+}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // 1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
-    [UMessage registerDeviceToken:deviceToken];
+//    [UMessage registerDeviceToken:deviceToken];
    
     //        NSString * token = [[[[deviceToken description]
     //                              stringByReplacingOccurrencesOfString: @"<" withString: @""]
@@ -88,7 +113,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
-    [UMessage didReceiveRemoteNotification:userInfo];
+//    [UMessage didReceiveRemoteNotification:userInfo];
     
     self.userInfo = userInfo;
     //定制自定的的弹出框
@@ -127,47 +152,54 @@
 // 支持所有iOS系统
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     
-    if ([url.host isEqualToString:@"pay"]) {
-        return [WXApi handleOpenURL:url delegate:self];
-    }else if ([url.host isEqualToString:@"safepay"]){
-        //跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
-            if (orderState==9000) {
-                
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
-                
-            }else{
-                NSString *returnStr;
-                switch (orderState) {
-                    case 8000:
-                        returnStr=@"订单正在处理中";
-                        break;
-                    case 4000:
-                        returnStr=@"订单支付失败";
-                        break;
-                    case 6001:
-                        returnStr=@"订单取消";
-                        break;
-                    case 6002:
-                        returnStr=@"网络连接出错";
-                        break;
-                        
-                    default:
-                        break;
+    if (!result) {
+        // 其他如支付等SDK的回调
+        
+        if ([url.host isEqualToString:@"pay"]) {
+            return [WXApi handleOpenURL:url delegate:self];
+        }else if ([url.host isEqualToString:@"safepay"]){
+            //跳转支付宝钱包进行支付，处理支付结果
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+                if (orderState==9000) {
+                    
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
+                    
+                }else{
+                    NSString *returnStr;
+                    switch (orderState) {
+                        case 8000:
+                            returnStr=@"订单正在处理中";
+                            break;
+                        case 4000:
+                            returnStr=@"订单支付失败";
+                            break;
+                        case 6001:
+                            returnStr=@"订单取消";
+                            break;
+                        case 6002:
+                            returnStr=@"网络连接出错";
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                    [EasyShowTextView showText:returnStr];
+                    
                 }
-                
-                [EasyShowTextView showText:returnStr];
-                
-            }
-        }];
-    }else{
-        //return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+            }];
+        }else{
+            //return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+        }
+        
     }
-    
-    return YES;
+    return result;
+
 }
+
 // NOTE: 9.0以后使用新API接口
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
     
@@ -215,11 +247,11 @@
 /**
  *微信支付
  */
--(void) onResp:(BaseResp*)resp
+-(void)onResp:(BaseResp*)resp
 {
     NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
     NSString *strTitle;
-    
+
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
@@ -227,7 +259,7 @@
     if([resp isKindOfClass:[PayResp class]]){
         //支付返回结果，实际支付结果需要去微信服务器端查询
         strTitle = [NSString stringWithFormat:@"支付结果"];
-        
+
         switch (resp.errCode) {
             case WXSuccess:
                 strMsg = @"支付结果：成功！";
@@ -236,7 +268,7 @@
             case WXErrCodeUserCancel:
                 strMsg = @"支付结果：取消！";
                 break;
-                
+
             default:
                 strMsg = [NSString stringWithFormat:@"支付结果：失败"];
                 break;

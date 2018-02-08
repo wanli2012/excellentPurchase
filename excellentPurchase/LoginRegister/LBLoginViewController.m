@@ -12,6 +12,7 @@
 #import "LBFasterLoginViewController.h"//快捷登录
 #import "LBForgetSecretViewController.h"//忘记密码
 
+#import "GLAccountModel.h"//数据库模型
 #import "DropMenu.h"
 #import "GLGroupModel.h"
 
@@ -38,6 +39,13 @@
 @property (nonatomic, strong)NSMutableArray *groupModels;//身份类型数组
 @property (nonatomic, copy)NSString *group_id;//用户组id
 
+@property (nonatomic, strong)NSMutableArray *fmdbArr;
+//@property (nonatomic, strong)NSMutableArray *phoneArr;
+//@property (nonatomic, strong)NSMutableArray *groupIDArr;
+//@property (nonatomic, strong)NSMutableArray *passwordArr;
+@property (nonatomic,strong) GLAccountModel *projiectmodel;//综合项目本地保存
+
+
 @end
 
 @implementation LBLoginViewController
@@ -46,6 +54,8 @@
     [super viewDidLoad];
     
     self.registerLb.attributedText = [self addoriginstr:self.registerLb.text specilstr:@[@"注册"]];
+    
+    [self getFmdbDatasoruce];//获取数据库信息
     
 }
 
@@ -65,7 +75,15 @@
         [self.signBtn setImage:[UIImage imageNamed:@"greetselect-n"] forState:UIControlStateNormal];
     }
 }
+//获取数据库的数据
+-(void)getFmdbDatasoruce{
+    
+    //获取本地搜索记录
+    _projiectmodel = [GLAccountModel greateTableOfFMWithTableName:@"GLAccountModel"];
+   
+    self.fmdbArr = [NSMutableArray arrayWithArray:[_projiectmodel queryAllDataOfFMDB]];
 
+}
 #pragma mark - 身份选择
 /**
  身份选择
@@ -152,6 +170,7 @@
     LBRegisterViewController *registVC = [[LBRegisterViewController alloc] init];
     [self.navigationController pushViewController:registVC animated:YES];
 }
+
 #pragma mark -忘记密码
 /**
 忘记密码
@@ -166,17 +185,21 @@
 
 /**
  展示身份信息
-
  */
 - (IBAction)showIdentifyListEvent:(UIButton *)sender {
+    
 }
 
 /**
  密码是否可见
-
  */
 - (IBAction)showSecretEvent:(UIButton *)sender {
     sender.selected = !sender.selected;
+    if (sender.isSelected) {
+        self.passwordTF.secureTextEntry = NO;
+    }else{
+        self.passwordTF.secureTextEntry = YES;
+    }
 }
 
 /**
@@ -279,7 +302,22 @@
             [UserModel defaultUser].voucher_ratio = [self judgeStringIsNull:responseObject[@"data"][@"voucher_ratio"] andDefault:YES];
 
             [usermodelachivar achive];
+         
+            [self.fmdbArr insertObject:@{@"headPic":[UserModel defaultUser].pic,
+                                         @"userName":[UserModel defaultUser].user_name,
+                                         @"phone":self.accountTF.text,
+                                         @"password":self.passwordTF.text,
+                                         @"groupID":self.group_id,
+                                         @"groupName":[UserModel defaultUser].group_name,
+                                         @"nickName":[UserModel defaultUser].nick_name,
+                                         } atIndex:0];
             
+            NSSet *set = [NSSet setWithArray:self.fmdbArr];
+            NSArray *arr = [set allObjects];
+            
+            [_projiectmodel deleteAllDataOfFMDB];
+            [_projiectmodel insertOfFMWithDataArray:arr];
+    
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
             
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -378,6 +416,13 @@
         
     }
     return _groupModels;
+}
+
+- (NSMutableArray *)fmdbArr{
+    if (!_fmdbArr) {
+        _fmdbArr = [NSMutableArray array];
+    }
+    return _fmdbArr;
 }
 
 @end

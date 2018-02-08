@@ -37,7 +37,7 @@
 
 //captchaid的值是每个产品从后台生成的,
 #define CAPTCHAID @"f878a21255674cdcb8e3564e06e73473"
-
+#define USHARE_APPKEY @"59e7060a310c931f5a000745"
 
 //获取appStore上的最新版本号地址
 #define GET_VERSION  @"https://itunes.apple.com/lookup?id=1300026210"

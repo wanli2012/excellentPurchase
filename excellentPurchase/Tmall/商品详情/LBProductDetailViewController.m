@@ -25,6 +25,8 @@
 #import "LBTmallProductDetailModel.h"
 #import "LBEatShopProdcutClassifyViewController.h"
 
+#import <UShareUI/UShareUI.h>
+
 @interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete>
 @property(nonatomic,strong)NSArray *subViewControllers;
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
@@ -257,10 +259,55 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         self.isTapMenu = NO;
     }
 }
+
 #pragma mark - 分享
 -(void)shareInfo{
     
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]];
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        
+        [self shareWebPageToPlatformType:platformType];
+        
+    }];
 }
+
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+
+    //创建网页内容对象
+    UIImage *thumbURL = [UIImage imageNamed:@"ios-template-1024"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"蓝众创客注册分享" descr:@"欢迎使用蓝众创客" thumImage:thumbURL];
+    //设置网页地址
+    shareObject.webpageUrl = [NSString stringWithFormat:@"https://www.baidu.com"];
+
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+
+    }];
+}
+
+
 #pragma mark - 选择规格
 -(void)chooseSpecification{
 

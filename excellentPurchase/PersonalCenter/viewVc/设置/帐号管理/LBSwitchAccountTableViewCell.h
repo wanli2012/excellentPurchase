@@ -10,4 +10,10 @@
 
 @interface LBSwitchAccountTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;//图片
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;//昵称
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;//身份名
+@property (weak, nonatomic) IBOutlet UILabel *IDNumberLabel;//ID号
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;//手机号
+
 @end
