@@ -36,7 +36,10 @@
     self.delegate=self;
     [self addViewControllers];
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(exitLogin) name:@"exitLogin" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(refreshInterface) name:@"refreshInterface" object:nil];
     
 }
 
@@ -44,6 +47,13 @@
 -(void)exitLogin{
     
     self.selectedIndex = 0;
+}
+//刷新界面
+-(void)refreshInterface{
+    
+    [self.viewControllers reverseObjectEnumerator];
+    [self addViewControllers];
+    
 }
 
 - (void)addViewControllers {

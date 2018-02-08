@@ -110,6 +110,8 @@
 //    vc.method = self.payStr;
 //    [self.navigationController pushViewController:vc animated:YES];
     
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 -(void)pushFailVc{
@@ -123,7 +125,6 @@
     
     [self.weixinPayBtn setImage:[UIImage imageNamed:@"pay-select-n"] forState:UIControlStateNormal];
     [self.alipayBtn setImage:[UIImage imageNamed:@"pay-select-n"] forState:UIControlStateNormal];
-    
     
     switch (tap.view.tag) {
         case 11:
@@ -200,7 +201,7 @@
             
             if(self.payType == 2){//支付宝支付
                 
-                [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"url"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
+                [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"aliPay"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
                     
                     NSInteger orderState = [resultDic[@"resultStatus"] integerValue];
                     if (orderState == 9000) {
@@ -234,13 +235,13 @@
                 
                 //调起微信支付
                 PayReq* req = [[PayReq alloc] init];
-                req.openID=responseObject[@"data"][@"url"][@"appid"];
-                req.partnerId = responseObject[@"data"][@"url"][@"partnerid"];
-                req.prepayId = responseObject[@"data"][@"url"][@"prepayid"];
-                req.nonceStr = responseObject[@"data"][@"url"][@"noncestr"];
-                req.timeStamp = [responseObject[@"data"][@"url"][@"timestamp"] intValue];
-                req.package = responseObject[@"data"][@"url"][@"package"];
-                req.sign = responseObject[@"data"][@"url"][@"sign"];
+                req.openID=responseObject[@"data"][@"wxPay"][@"appid"];
+                req.partnerId = responseObject[@"data"][@"wxPay"][@"partnerid"];
+                req.prepayId = responseObject[@"data"][@"wxPay"][@"prepayid"];
+                req.nonceStr = responseObject[@"data"][@"wxPay"][@"noncestr"];
+                req.timeStamp = [responseObject[@"data"][@"wxPay"][@"timestamp"] intValue];
+                req.package = responseObject[@"data"][@"wxPay"][@"package"];
+                req.sign = responseObject[@"data"][@"wxPay"][@"sign"];
                 [WXApi sendReq:req];
             }
             

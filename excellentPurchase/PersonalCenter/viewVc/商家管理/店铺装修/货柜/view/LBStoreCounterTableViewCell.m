@@ -47,21 +47,36 @@
     self.priceLabel.text = [NSString stringWithFormat:@"价格:¥%@",model.discount];
     self.stockLabel.text = [NSString stringWithFormat:@"库存:%@件",model.goods_num];
     
-    if([model.status integerValue] == 1){////商品上下架状态 1上架，2下架
-        self.statusLabel.text = [NSString stringWithFormat:@"状态:上架中"];
-        [self.offShelfBtn setTitle:@"下架" forState:UIControlStateNormal];
-        [self.offShelfBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
-        self.offShelfBtn.layer.borderColor = MAIN_COLOR.CGColor;
-        self.editBtn.hidden = NO;
-        self.editBtn.enabled = YES;
-        
-    }else{
-        self.statusLabel.text = [NSString stringWithFormat:@"状态:下架"];
-        [self.offShelfBtn setTitle:@"已下架" forState:UIControlStateNormal];
-        [self.offShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        self.offShelfBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    if ([model.sh_status integerValue] == 1 || [model.sh_status integerValue] == 3) {//商品审核状态 1审核失败 2审核成功 3未审核
+        if ([model.sh_status integerValue] == 1) {
+            
+            self.statusLabel.text = [NSString stringWithFormat:@"状态:审核失败"];
+        }else{
+            self.statusLabel.text = [NSString stringWithFormat:@"状态:审核中"];
+        }
+     
+        self.offShelfBtn.hidden = YES;
         self.editBtn.hidden = YES;
-        self.editBtn.enabled = NO;
+
+    }else{
+        
+        if([model.status integerValue] == 1){////商品上下架状态 1上架，2下架
+            self.statusLabel.text = [NSString stringWithFormat:@"状态:上架中"];
+            [self.offShelfBtn setTitle:@"下架" forState:UIControlStateNormal];
+            [self.offShelfBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
+            self.offShelfBtn.layer.borderColor = MAIN_COLOR.CGColor;
+            self.editBtn.hidden = NO;
+            self.editBtn.enabled = YES;
+            
+        }else{
+            
+            self.statusLabel.text = [NSString stringWithFormat:@"状态:下架"];
+            [self.offShelfBtn setTitle:@"已下架" forState:UIControlStateNormal];
+            [self.offShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            self.offShelfBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
+            self.editBtn.hidden = YES;
+            self.editBtn.enabled = NO;
+        }
     }
 }
 

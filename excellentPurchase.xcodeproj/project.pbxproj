@@ -51,6 +51,7 @@
 		4A0EDFAF2018C8A70037D47A /* GLMine_Branch_DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0EDFAD2018C8A70037D47A /* GLMine_Branch_DetailController.xib */; };
 		4A0EDFB72018CED00037D47A /* GLMine_Branch_OpenStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0EDFB52018CED00037D47A /* GLMine_Branch_OpenStoreController.m */; };
 		4A0EDFB82018CED00037D47A /* GLMine_Branch_OpenStoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0EDFB62018CED00037D47A /* GLMine_Branch_OpenStoreController.xib */; };
+		4A15317C202BF9F300168F4C /* GLMine_ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A15317B202BF9F300168F4C /* GLMine_ManagementModel.m */; };
 		4A19C36E20170B3000D15D82 /* GLMine_Cart_PayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A19C36C20170B3000D15D82 /* GLMine_Cart_PayCell.m */; };
 		4A19C36F20170B3000D15D82 /* GLMine_Cart_PayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A19C36D20170B3000D15D82 /* GLMine_Cart_PayCell.xib */; };
 		4A19C37220170D2600D15D82 /* GLMine_Cart_PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A19C37120170D2600D15D82 /* GLMine_Cart_PayModel.m */; };
@@ -1100,6 +1101,8 @@
 		4A0EDFB42018CECF0037D47A /* GLMine_Branch_OpenStoreController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_OpenStoreController.h; sourceTree = "<group>"; };
 		4A0EDFB52018CED00037D47A /* GLMine_Branch_OpenStoreController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_OpenStoreController.m; sourceTree = "<group>"; };
 		4A0EDFB62018CED00037D47A /* GLMine_Branch_OpenStoreController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Branch_OpenStoreController.xib; sourceTree = "<group>"; };
+		4A15317A202BF9F300168F4C /* GLMine_ManagementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_ManagementModel.h; sourceTree = "<group>"; };
+		4A15317B202BF9F300168F4C /* GLMine_ManagementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_ManagementModel.m; sourceTree = "<group>"; };
 		4A19C36B20170B3000D15D82 /* GLMine_Cart_PayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Cart_PayCell.h; sourceTree = "<group>"; };
 		4A19C36C20170B3000D15D82 /* GLMine_Cart_PayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Cart_PayCell.m; sourceTree = "<group>"; };
 		4A19C36D20170B3000D15D82 /* GLMine_Cart_PayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Cart_PayCell.xib; sourceTree = "<group>"; };
@@ -3223,6 +3226,8 @@
 		4A19C37620171F9500D15D82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A15317A202BF9F300168F4C /* GLMine_ManagementModel.h */,
+				4A15317B202BF9F300168F4C /* GLMine_ManagementModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8806,6 +8811,7 @@
 				F923B23C2020021F00DFEF7C /* ZXITFWriter.m in Sources */,
 				4AA3A16E2019894700C94E49 /* GLMine_Team_HistoryDateChooseView.m in Sources */,
 				F923B2BD202070AF00DFEF7C /* LBEatProductDetailTitleTableViewCell.m in Sources */,
+				4A15317C202BF9F300168F4C /* GLMine_ManagementModel.m in Sources */,
 				4AC74DB6201C36B7006B0F5C /* DropMenu.m in Sources */,
 				F923B1CF2020021E00DFEF7C /* ZXVINResultParser.m in Sources */,
 				F95073062004BB110026D28F /* LBHorseRaceLampCell.m in Sources */,
@@ -9111,7 +9117,7 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9144,7 +9150,7 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

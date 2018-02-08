@@ -11,7 +11,6 @@
 #import "GLMine_Branch_QueryAchievementController.h"//业绩查询
 #import "GLMine_Branch_OnlineOrderController.h"//线上订单
 #import "GLMine_Branch_OfflineOrderController.h"//线下订单
-//#import "GLMine_Seller_IncomeCodeController.h"
 #import "GLMine_Seller_SetMoneyController.h"//收款二维码
 #import "LBFinishMainViewController.h"
 
@@ -20,6 +19,18 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 @property (weak, nonatomic) IBOutlet UIView *todayView;//当天
 @property (weak, nonatomic) IBOutlet UIView *monthView;//当月
+
+@property (weak, nonatomic) IBOutlet UILabel *todayTotalLabel;//当天营业总额
+@property (weak, nonatomic) IBOutlet UILabel *today_OnlineLabel;//当天线上营业总额
+@property (weak, nonatomic) IBOutlet UILabel *today_OfflineLabel;//当天线下营业总额
+@property (weak, nonatomic) IBOutlet UILabel *monthTotalLabel;//当月营业总额
+@property (weak, nonatomic) IBOutlet UILabel *month_OnlineLabel;//当月线上营业总额
+@property (weak, nonatomic) IBOutlet UILabel *month_OfflineLabel;//当月线下营业总额
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;//头像
+@property (weak, nonatomic) IBOutlet UILabel *trueNameLabel;//真实姓名
+@property (weak, nonatomic) IBOutlet UILabel *IDNumberLabel;//ID号
+
+@property (nonatomic, strong)NSDictionary *dataDic;//数据源
 
 @end
 
@@ -41,6 +52,91 @@
     self.monthView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
     self.monthView.layer.shadowRadius = 6;//阴影半径，默认3
 
+    [self postRequest];
+}
+
+/**
+ 请求数据
+ */
+- (void)postRequest{
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"SEARCH";
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:kstore_find paramDic:dict finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.dataDic = responseObject[@"data"];
+            
+            [self assignment];//赋值
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
+    
+}
+
+/**
+ 赋值
+ */
+- (void)assignment{
+    
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:self.dataDic[@"pic"]] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    
+    NSString *truename = [self judgeStringIsNull:self.dataDic[@"truename"] andDefault:NO];
+    NSString *user_name = [self judgeStringIsNull:self.dataDic[@"user_name"] andDefault:NO];
+    NSString *store_today_money = [self judgeStringIsNull:self.dataDic[@"store_today_money"] andDefault:YES];
+    NSString *store_up_money = [self judgeStringIsNull:self.dataDic[@"store_up_money"] andDefault:YES];
+    NSString *store_earth_money = [self judgeStringIsNull:self.dataDic[@"store_earth_money"] andDefault:YES];
+    NSString *data_month_up = [self judgeStringIsNull:self.dataDic[@"data_month_up"] andDefault:YES];
+    NSString *data_month_earth = [self judgeStringIsNull:self.dataDic[@"data_month_earth"] andDefault:YES];
+    NSString *data_month = [self judgeStringIsNull:self.dataDic[@"data_month"] andDefault:YES];
+    
+    if (truename.length == 0) {
+        self.trueNameLabel.text = @"真实姓名:未设置";
+    }else{
+        self.trueNameLabel.text = truename;
+    }
+    
+    self.IDNumberLabel.text = user_name;
+    self.todayTotalLabel.text = [NSString stringWithFormat:@"¥ %@",store_today_money];
+    self.today_OnlineLabel.text = [NSString stringWithFormat:@"¥ %@",store_up_money];
+    self.today_OfflineLabel.text = [NSString stringWithFormat:@"¥ %@",store_earth_money];
+    self.monthTotalLabel.text = [NSString stringWithFormat:@"¥ %@",data_month];
+    self.month_OnlineLabel.text = [NSString stringWithFormat:@"¥ %@",data_month_up];
+    self.month_OfflineLabel.text = [NSString stringWithFormat:@"¥ %@",data_month_earth];
+    
+}
+
+//判空 给数字设置默认值
+- (NSString *)judgeStringIsNull:(id )sender andDefault:(BOOL)isNeedDefault{
+    
+    NSString *str = [NSString stringWithFormat:@"%@",sender];
+    
+    if ([NSString StringIsNullOrEmpty:str]) {
+        
+        if (isNeedDefault) {
+            return @"0.00";
+        }else{
+            return @"";
+            
+        }
+    }else{
+        return str;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{

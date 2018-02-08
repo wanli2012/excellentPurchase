@@ -73,7 +73,6 @@
 //        self.window.rootViewController = [[yindaotuViewController alloc]init];
 //    }
 
-    
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];
 
@@ -84,6 +83,7 @@
 
     return YES;
 }
+
 - (void)configUSharePlatforms
 {
     /*

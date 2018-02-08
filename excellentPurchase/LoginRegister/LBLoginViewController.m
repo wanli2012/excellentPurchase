@@ -36,13 +36,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *signBtn;//是否记住密码
 
+@property (weak, nonatomic) IBOutlet UIButton *selectAccountBtn;//选择账号
+
+
+
 @property (nonatomic, strong)NSMutableArray *groupModels;//身份类型数组
 @property (nonatomic, copy)NSString *group_id;//用户组id
 
 @property (nonatomic, strong)NSMutableArray *fmdbArr;
-//@property (nonatomic, strong)NSMutableArray *phoneArr;
-//@property (nonatomic, strong)NSMutableArray *groupIDArr;
-//@property (nonatomic, strong)NSMutableArray *passwordArr;
 @property (nonatomic,strong) GLAccountModel *projiectmodel;//综合项目本地保存
 
 
@@ -84,11 +85,19 @@
     self.fmdbArr = [NSMutableArray arrayWithArray:[_projiectmodel queryAllDataOfFMDB]];
 
 }
+
+#pragma mark - 账号选择
+
+- (IBAction)selectAcoount:(id)sender {
+    NSLog(@"账号选择");
+    
+}
+
 #pragma mark - 身份选择
-/**
- 身份选择
- */
+
 - (IBAction)groupTypeChoose:(id)sender {
+    
+    [self.view endEditing:YES];
     
     if(self.groupModels.count != 0){
         [self popGroupChooseView];
@@ -138,6 +147,7 @@
     }
     
     [DropMenu showMenu:arrM controlFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 5) MenuMaxHeight:150 cellHeight:40 isHaveMask:NO andReturnBlock:^(NSString *selectName, NSString *type_id) {
+        
         self.group_idTF.text = selectName;
         self.group_id = type_id;
         
@@ -303,17 +313,26 @@
 
             [usermodelachivar achive];
          
-            [self.fmdbArr insertObject:@{@"headPic":[UserModel defaultUser].pic,
-                                         @"userName":[UserModel defaultUser].user_name,
-                                         @"phone":self.accountTF.text,
-                                         @"password":self.passwordTF.text,
-                                         @"groupID":self.group_id,
-                                         @"groupName":[UserModel defaultUser].group_name,
-                                         @"nickName":[UserModel defaultUser].nick_name,
-                                         } atIndex:0];
+            NSDictionary *dataDic = @{@"headPic":[UserModel defaultUser].pic,
+                                      @"userName":[UserModel defaultUser].user_name,
+                                      @"phone":[UserModel defaultUser].phone,
+                                      @"password":self.passwordTF.text,
+                                      @"groupID":[UserModel defaultUser].group_id,
+                                      @"groupName":[UserModel defaultUser].group_name,
+                                      @"nickName":[UserModel defaultUser].nick_name,
+                                         };
+ 
+            for (int i = 0; i < self.fmdbArr.count; i++) {
+                NSDictionary *tempDic = self.fmdbArr[i];
+                if ([tempDic[@"userName"] isEqualToString:dataDic[@"userName"]]) {
+                    [self.fmdbArr replaceObjectAtIndex:i withObject:dataDic];
+                }
+            }
             
+            [self.fmdbArr insertObject:dataDic atIndex:0];
             NSSet *set = [NSSet setWithArray:self.fmdbArr];
             NSArray *arr = [set allObjects];
+            
             
             [_projiectmodel deleteAllDataOfFMDB];
             [_projiectmodel insertOfFMWithDataArray:arr];

@@ -22,11 +22,11 @@
     [database setShouldCacheStatements:YES];
     if([database open]){
         BOOL result = [database executeUpdate:@"CREATE TABLE IF NOT EXISTS NEW_LIST (SID integer PRIMARY KEY AUTOINCREMENT,headPic text NOT NULL,`userName` text NOT NULL,phone text NOT NULL,password text NOT NULL,groupID text NOT NULL,`groupName` text NOT NULL,`nickName` text NOT NULL);"];
-        if (result){
-            NSLog(@"%@",@"创建表成功");
-        }else{
-            NSLog(@"创建表失败");
-        }
+//        if (result){
+//            NSLog(@"%@",@"创建表成功");
+//        }else{
+//            NSLog(@"创建表失败");
+//        }
     }
     
     dataPeristent.dataBase = database;
@@ -42,11 +42,11 @@
             
             BOOL res = [_dataBase executeUpdate:insertSql];
             
-            if (res) {
-                NSLog(@"插入成功");
-            }else{
-                NSLog(@"插入失败");
-            }
+//            if (res) {
+//                NSLog(@"插入成功");
+//            }else{
+//                NSLog(@"插入失败");
+//            }
         }];
     }
     [_dataBase close];
@@ -58,11 +58,11 @@
     if ([_dataBase open]) {
         NSString *deleteSql = [NSString stringWithFormat:@"delete from NEW_LIST where name = '%@'",userName];
         BOOL res = [_dataBase executeUpdate:deleteSql];
-        if (!res) {
-            NSLog(@"删除失败");
-        } else {
-            NSLog(@"删除成功");
-        }
+//        if (!res) {
+//            NSLog(@"删除失败");
+//        } else {
+//            NSLog(@"删除成功");
+//        }
         [_dataBase close];
     }
     

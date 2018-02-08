@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_PropertyController">
             <connections>
                 <outlet property="tableView" destination="RCz-8b-r6n" id="j6w-Iq-fe9"/>
+                <outlet property="totalSumLabel" destination="cMR-dE-1in" id="ii2-TK-4s3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -15,6 +15,7 @@
 
 @property (nonatomic, copy)NSArray *titlesArr;
 @property (nonatomic, copy)NSArray *valuesArr;
+@property (weak, nonatomic) IBOutlet UILabel *totalSumLabel;//总收益
 
 @end
 
@@ -24,6 +25,8 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"我的资产";
+    
+    self.totalSumLabel.text = [UserModel defaultUser].money_sum;
 
     self.titlesArr = @[@"积分",@"余额",@"购物券",@"优购币",@"优购币单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
     self.valuesArr = @[[UserModel defaultUser].mark,//用户积分

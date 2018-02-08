@@ -34,10 +34,14 @@
 
     [self setupNpdata];//设置无数据的时候展示
     WeakSelf;
+//    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+//        [weakSelf postRequest:YES];
+//    } footerRefresh:^{
+//        [weakSelf postRequest:NO];
+//    }];
+    
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
         [weakSelf postRequest:YES];
-    } footerRefresh:^{
-        [weakSelf postRequest:NO];
     }];
     
     self.page = 1;
@@ -73,11 +77,12 @@
 
 //请求数据
 -(void)postRequest:(BOOL)isRefresh{
-    if(isRefresh){
-        self.page = 1;
-    }else{
-        self.page ++;
-    }
+    
+//    if(isRefresh){
+//        self.page = 1;
+//    }else{
+//        self.page ++;
+//    }
     
     [EasyShowLodingView showLodingText:@"数据请求中"];
     
