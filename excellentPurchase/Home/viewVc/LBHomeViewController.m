@@ -148,9 +148,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
                 for (GLHome_bannerModel *model in self.model.banner) {
                     [arrM addObject:model.banner_pic];
                 }
-        
-//                self.classfyHeaderV.cycleScrollView.imageURLStringsGroup = arrM;
-//                [self.classfyHeaderV.carouselView startCarouselWithArray:arrM];
+
                 self.classfyHeaderV.imageArr = arrM;
                 [self.classfyHeaderV reloadScorlvoewimages:arrM];
                 

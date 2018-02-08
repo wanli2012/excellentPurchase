@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;//身份名
 @property (weak, nonatomic) IBOutlet UILabel *IDNumberLabel;//ID号
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;//手机号
+@property (weak, nonatomic) IBOutlet UIButton *isSelfBtn;//是否是本账号标记
 
 @end

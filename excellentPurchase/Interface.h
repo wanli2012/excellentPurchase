@@ -132,5 +132,8 @@
 #define krefresh @"Access/refresh"//数据刷新 - 陈明真
 #define kactive_messaging @"Assets/active_messaging"//用户动态消息-江海林
 #define ksystem_bulletin @"Assets/system_bulletin"//系统公告-王凯
+#define kstore_find @"Store/store_find"//店铺管理 营业额*--黄炜
+
+
 
 #endif /* Interface_h */

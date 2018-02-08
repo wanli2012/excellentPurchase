@@ -18,6 +18,8 @@
 @property (nonatomic,strong) GLAccountModel *projiectmodel;//综合项目本地保存
 @property (nonatomic, strong)NSMutableArray *fmdbArr;
 
+@property (nonatomic, strong)NSMutableArray *boolArr;
+
 @end
 
 static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
@@ -26,7 +28,7 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.navigationItem.title = @"帐号管理";
     self.navigationController.navigationBar.hidden = NO;
     //注册cell
@@ -49,6 +51,7 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     
     return self.fmdbArr.count;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
 }
@@ -68,18 +71,159 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     NSString *str = dic[@"nickName"];
     
     if(str.length == 0){
+        
         str = [NSString stringWithFormat:@"昵称:(未设置)"];
+        
     }else{
+        
         str = dic[@"nickName"];
     }
     
     cell.nickNameLabel.text = str;
+    
+    BOOL isSelf = [self.boolArr[indexPath.row] boolValue];
+    
+    if([dic[@"userName"] isEqualToString:[UserModel defaultUser].user_name]){
+        isSelf = YES;
+        [self.boolArr replaceObjectAtIndex:indexPath.row withObject:@(isSelf)];
+    }
+    
+    
+    if([self.boolArr[indexPath.row] boolValue]){
+        cell.isSelfBtn.hidden = NO;
+    }else{
+        cell.isSelfBtn.hidden = YES;
+    }
+    
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [self login:self.fmdbArr[indexPath.row]];
     
 }
+
+- (void)login:(NSDictionary *)dataDic{
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"SEARCH";
+    dict[@"phone"] = dataDic[@"phone"];
+    dict[@"group_id"] = dataDic[@"groupID"];
+    dict[@"password"] = dataDic[@"password"];
+
+    [EasyShowLodingView showLodingText:@"登录中..."];
+    
+    [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:dict finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+    
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            
+            [UserModel defaultUser].loginstatus = YES;
+            
+            [UserModel defaultUser].token = [self judgeStringIsNull:responseObject[@"data"][@"token"]  andDefault:NO];
+            [UserModel defaultUser].uid = [self judgeStringIsNull:responseObject[@"data"][@"uid"]   andDefault:NO];
+            [UserModel defaultUser].user_name = [self judgeStringIsNull:responseObject[@"data"][@"user_name"] andDefault:NO];
+            [UserModel defaultUser].group_id = [self judgeStringIsNull:responseObject[@"data"][@"group_id"] andDefault:NO];
+            [UserModel defaultUser].group_name = [self judgeStringIsNull:responseObject[@"data"][@"group_name"] andDefault:NO];
+            
+            [UserModel defaultUser].phone = [self judgeStringIsNull:responseObject[@"data"][@"phone"] andDefault:NO];
+            [UserModel defaultUser].pic = [self judgeStringIsNull:responseObject[@"data"][@"pic"] andDefault:NO];
+            [UserModel defaultUser].truename = [self judgeStringIsNull:responseObject[@"data"][@"truename"] andDefault:NO];
+            [UserModel defaultUser].im_id = [self judgeStringIsNull:responseObject[@"data"][@"im_id"] andDefault:NO];
+            [UserModel defaultUser].im_token = [self judgeStringIsNull:responseObject[@"data"][@"im_token"] andDefault:NO];
+            [UserModel defaultUser].nick_name = [self judgeStringIsNull:responseObject[@"data"][@"nick_name"] andDefault:NO];
+            [UserModel defaultUser].rzstatus = [self judgeStringIsNull:responseObject[@"data"][@"rzstatus"] andDefault:NO];
+            [UserModel defaultUser].del = [self judgeStringIsNull:responseObject[@"data"][@"del"] andDefault:NO];
+            [UserModel defaultUser].tjr_group = [self judgeStringIsNull:responseObject[@"data"][@"tjr_group"] andDefault:NO];
+            [UserModel defaultUser].tjr_name = [self judgeStringIsNull:responseObject[@"data"][@"tjr_name"] andDefault:NO];
+            [UserModel defaultUser].mark = [self judgeStringIsNull:responseObject[@"data"][@"mark"] andDefault:YES];
+            [UserModel defaultUser].balance = [self judgeStringIsNull:responseObject[@"data"][@"balance"] andDefault:YES];
+            [UserModel defaultUser].keti_bean = [self judgeStringIsNull:responseObject[@"data"][@"keti_bean"] andDefault:YES];
+            [UserModel defaultUser].shopping_voucher = [self judgeStringIsNull:responseObject[@"data"][@"shopping_voucher"] andDefault:YES];
+            [UserModel defaultUser].cion_price = [self judgeStringIsNull:responseObject[@"data"][@"cion_price"] andDefault:YES];
+            [UserModel defaultUser].voucher_ratio = [self judgeStringIsNull:responseObject[@"data"][@"voucher_ratio"] andDefault:YES];
+            
+            [usermodelachivar achive];
+            
+    
+            NSDictionary *newDic = @{@"headPic":[UserModel defaultUser].pic,
+                                      @"userName":[UserModel defaultUser].user_name,
+                                      @"phone":[UserModel defaultUser].phone,
+                                      @"password":dataDic[@"password"],
+                                      @"groupID":[UserModel defaultUser].group_id,
+                                      @"groupName":[UserModel defaultUser].group_name,
+                                      @"nickName":[UserModel defaultUser].nick_name,
+                                      };
+            
+            
+            [self.fmdbArr insertObject:newDic atIndex:0];
+            NSSet *set = [NSSet setWithArray:self.fmdbArr];
+            NSArray *arr = [set allObjects];
+            
+            for (int i = 0; i < self.fmdbArr.count; i++) {
+                NSDictionary *tempDic = self.fmdbArr[i];
+                if ([tempDic[@"userName"] isEqualToString:newDic[@"userName"]]) {
+                    [self.fmdbArr replaceObjectAtIndex:i withObject:tempDic];
+                }
+            }
+            
+            [_projiectmodel deleteAllDataOfFMDB];
+            [_projiectmodel insertOfFMWithDataArray:arr];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+      
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+
+//判空 给数字设置默认值
+- (NSString *)judgeStringIsNull:(id )sender andDefault:(BOOL)isNeedDefault{
+    
+    NSString *str = [NSString stringWithFormat:@"%@",sender];
+    
+    if ([NSString StringIsNullOrEmpty:str]) {
+        
+        if (isNeedDefault) {
+            return @"0.00";
+        }else{
+            return @"";
+            
+        }
+    }else{
+        return str;
+    }
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray *)fmdbArr{
+    if (!_fmdbArr) {
+        _fmdbArr = [NSMutableArray array];
+    }
+    return _fmdbArr;
+}
+
+- (NSMutableArray *)boolArr{
+    if (!_boolArr) {
+        _boolArr = [NSMutableArray array];
+        for (int i = 0; i < self.fmdbArr.count; i ++) {
+            BOOL isSelf = NO;
+            [_boolArr addObject:@(isSelf)];
+        }
+    }
+    
+    return _boolArr;
+}
+
 @end

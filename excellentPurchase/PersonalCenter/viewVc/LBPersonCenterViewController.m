@@ -90,8 +90,8 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
             [UserModel defaultUser].Total_money = [self judgeStringIsNull:responseObject[@"data"][@"Total_money"] andDefault:YES];
             [UserModel defaultUser].Total_mark = [self judgeStringIsNull:responseObject[@"data"][@"Total_mark"] andDefault:YES];
             [UserModel defaultUser].Total_currency = [self judgeStringIsNull:responseObject[@"data"][@"Total_currency"] andDefault:YES];
-            [UserModel defaultUser].money_sum = [self judgeStringIsNull:responseObject[@"money_sum"] andDefault:YES];
-
+            [UserModel defaultUser].money_sum = [self judgeStringIsNull:responseObject[@"data"][@"money_sum"] andDefault:YES];
+            
             [usermodelachivar achive];
             
             [self assignmentHeader];
@@ -111,11 +111,13 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 - (void)assignmentHeader {
     
     [self.headerView.iconImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    
     if ([NSString StringIsNullOrEmpty:[UserModel defaultUser].nick_name]) {
         self.headerView.nicknameLabel.text = @"暂无呢称";
     }else{
         self.headerView.nicknameLabel.text = [UserModel defaultUser].nick_name;
     }
+    
     self.headerView.IDNumberLabel.text = [UserModel defaultUser].user_name;
     self.headerView.groupTypeLabel.text = [UserModel defaultUser].group_name;
     

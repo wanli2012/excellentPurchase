@@ -67,10 +67,11 @@
     LBFinishProductsViewController *vc = [[LBFinishProductsViewController alloc] init];
     vc.type = 1;
     LBFinishProductsViewController *vc2 = [[LBFinishProductsViewController alloc] init];
-    vc.type = 2;
+    vc2.type = 2;
+    
     [self addChildViewController:vc];
     [self addChildViewController:vc2];
-//    [self addChildViewController:[[LBFinishProductsViewController alloc] init]];
+
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
     
@@ -343,6 +344,7 @@
     }
     return _headerView;
 }
+
 - (SPPageMenu *)pageMenu{
     
     if (!_pageMenu) {
