@@ -5874,13 +5874,6 @@
 			path = "店铺资料修改";
 			sourceTree = "<group>";
 		};
-		F9288235201C6EDA000B0474 /* 百度地图 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "百度地图";
-			sourceTree = "<group>";
-		};
 		F9288244201C7C8C000B0474 /* GYZChooseCity */ = {
 			isa = PBXGroup;
 			children = (
@@ -5937,7 +5930,6 @@
 				F923AFA42020021C00DFEF7C /* ZXingObjC */,
 				F923AF9D2020021B00DFEF7C /* ZYCornerRadius */,
 				F9288244201C7C8C000B0474 /* GYZChooseCity */,
-				F9288235201C6EDA000B0474 /* 百度地图 */,
 				F9426B95201B2E0E0054417E /* LBPayPasswordView */,
 				F9426AA9201ABC1F0054417E /* Classes */,
 				F9426A94201ABC1F0054417E /* EasyShowView */,

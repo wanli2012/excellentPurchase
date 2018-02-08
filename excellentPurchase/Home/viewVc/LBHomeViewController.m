@@ -30,6 +30,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *activityImage;//底部活动图片
 
 @property (nonatomic,strong ) CLLocationManager *locationManager;//定位服务
+/** 地理编码 */
+@property (nonatomic, strong) CLGeocoder *geoC;
+
 @property (weak, nonatomic) IBOutlet UILabel *cityLb;//城市展示
 //天气图片
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
@@ -56,7 +59,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    
+     [self locatemap];//定位
     //kShop_index_URL
 }
 
@@ -69,8 +72,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self locatemap];//定位
+
      [self.tableview registerNib:[UINib nibWithNibName:immediateRushBuyCell bundle:nil] forCellReuseIdentifier:immediateRushBuyCell];
     
     adjustsScrollViewInsets_NO(self.tableview, self);
@@ -395,10 +397,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     GYZChooseCityController *cityPickerVC = [[GYZChooseCityController alloc] init];
     [cityPickerVC setDelegate:self];
     
-    //    cityPickerVC.locationCityID = @"1400010000";
-    //    cityPickerVC.commonCitys = [[NSMutableArray alloc] initWithArray: @[@"1400010000", @"100010000"]];        // 最近访问城市，如果不设置，将自动管理
-    //    cityPickerVC.hotCitys = @[@"100010000", @"200010000", @"300210000", @"600010000", @"300110000"];
-    
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:cityPickerVC] animated:YES completion:^{
         
     }];
@@ -406,6 +404,29 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 //选择城市
 - (void) cityPickerController:(GYZChooseCityController *)chooseCityController
                 didSelectCity:(GYZCity *)city{
+    
+    self.cityLb.text = city.cityName;
+    [self.geoC geocodeAddressString:city.cityName completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        // CLPlacemark : 地标
+        // location : 位置对象
+        // addressDictionary : 地址字典
+        // name : 地址详情
+        // locality : 城市
+        
+        if(error == nil)
+        {
+            CLPlacemark *pl = [placemarks firstObject];
+            [LBSaveLocationInfoModel defaultUser].currentCity = pl.locality;
+            [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.latitude).stringValue;
+            [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
+            NSLog(@"%@",[LBSaveLocationInfoModel defaultUser].currentCity );
+            [self getWeatherInfo];
+        }else
+        {
+            NSLog(@"错误");
+        }
+    }];
     
     [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
         
@@ -462,5 +483,12 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     }
     return _models;
 }
-
+#pragma mark -懒加载
+-(CLGeocoder *)geoC
+{
+    if (!_geoC) {
+        _geoC = [[CLGeocoder alloc] init];
+    }
+    return _geoC;
+}
 @end
