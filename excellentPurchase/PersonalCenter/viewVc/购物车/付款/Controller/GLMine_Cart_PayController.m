@@ -143,7 +143,7 @@
     [NetworkManager requestPOSTWithURLStr:PayOrder_payment paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
+            [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"aliPay"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
                 
                 NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                 if (orderState==9000) {

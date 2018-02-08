@@ -111,6 +111,7 @@ static NSString *uerUnderLineOrdersCell = @"LBUerUnderLineOrdersCell";
     vc.line_id = model.face_id;
     vc.line_store_uid = model.face_shop_uid;
     vc.replyType = 2;
+    vc.is_face = model.is_face;
     vc.goods_name = model.store_name;
     vc.goods_pic = model.store_thumb;
     vc.replyFinish = ^{
@@ -130,7 +131,7 @@ static NSString *uerUnderLineOrdersCell = @"LBUerUnderLineOrdersCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 120;
+    return 140;
 }
 
 #pragma mark - 重写----设置每个分组单元格中显示的内容

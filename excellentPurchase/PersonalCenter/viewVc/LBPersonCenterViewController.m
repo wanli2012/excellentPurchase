@@ -111,7 +111,11 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 - (void)assignmentHeader {
     
     [self.headerView.iconImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.headerView.nicknameLabel.text = [UserModel defaultUser].nick_name;
+    if ([NSString StringIsNullOrEmpty:[UserModel defaultUser].nick_name]) {
+        self.headerView.nicknameLabel.text = @"暂无呢称";
+    }else{
+        self.headerView.nicknameLabel.text = [UserModel defaultUser].nick_name;
+    }
     self.headerView.IDNumberLabel.text = [UserModel defaultUser].user_name;
     self.headerView.groupTypeLabel.text = [UserModel defaultUser].group_name;
     

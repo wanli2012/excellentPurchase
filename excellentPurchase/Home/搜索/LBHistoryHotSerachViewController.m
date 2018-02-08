@@ -10,6 +10,8 @@
 #import "XC_label.h"
 #import "GLNearby_classifyCell.h"
 #import "LBSaveLocationInfoModel.h"
+#import "LBHistoryHotSerachDataBase.h"
+#import "LBEat_StoreDetailViewController.h"
 
 @interface LBHistoryHotSerachViewController ()<selectHotOrHistoryDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -20,6 +22,7 @@
 @property (nonatomic,strong)NSMutableArray *historySource ;//历史搜索
 
 @property (nonatomic,strong)NSMutableArray *dataSource ;//数据源
+@property (nonatomic,strong)LBHistoryHotSerachDataBase *DataBase ;//历史数据源
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -63,7 +66,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     }else if (self.type == 3){
         
     }
-    
 }
 //获取数据
 -(void)loadData{
@@ -164,6 +166,15 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 -(void)hotOptions
 {
    
+    //获取本地搜索记录
+    self.DataBase = [LBHistoryHotSerachDataBase greateTableOfFMWithTableName:@"LBHistoryHotSerachViewController"];
+    if ([self.DataBase isDataInTheTable]) {
+        [self.historySource removeAllObjects];
+        for (int i = 0; i < [[self.DataBase queryAllDataOfFMDB]count]; i++) {
+            [self.historySource addObject:[_DataBase queryAllDataOfFMDB][i]];
+        }
+    }
+    
     _xcLabel = [[XC_label alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight-SafeAreaTopHeight) AndTitleArr:self.reCommendSource AndhistoryArr:self.historySource AndTitleFont:14 AndScrollDirection:UICollectionViewScrollDirectionVertical];
     _xcLabel.delegate = self ;
     _xcLabel.opetionsHeight = 30;
@@ -196,9 +207,13 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.hidesBottomBarWhenPushed = YES;
+    LBEat_StoreDetailViewController *vc = [[LBEat_StoreDetailViewController alloc]init];
+    vc.store_id = ((LBEat_cateDataModel*)self.dataSource[indexPath.section]).store_id;
+    vc.titilestr = ((LBEat_cateDataModel*)self.dataSource[indexPath.section]).store_name;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
-
 
 #pragma mark selectHotOrHistoryDelegate
 //选中某个选项
@@ -213,9 +228,21 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 -(void)deleteHistoryOptions:(NSString *)historyOrHot AndIndex:(NSInteger)index AndTitile:(NSString * _Nullable)selectTitle AndNSdataSource:(NSMutableArray * _Nullable)dataSource{
     [self.view endEditing:YES];
     
-    
-    
+    [_DataBase deleteAllDataOfFMDB];
+    [_DataBase insertOfFMWithDataArray:dataSource];
+
     //这里可以删除本地数据 逻辑 UI 已经处理好了。只需要删除暴露在外面对应的数据源就可以了
+    
+}
+
+-(void)returnHistoryDataArr:(NSArray *)historyArr{
+    
+    NSSet *set = [NSSet setWithArray:historyArr];
+    // 3.2集合转换为数组
+    NSArray * changeArray2 = [set allObjects];
+    
+    [_DataBase deleteAllDataOfFMDB];
+    [_DataBase insertOfFMWithDataArray:changeArray2];
     
 }
 

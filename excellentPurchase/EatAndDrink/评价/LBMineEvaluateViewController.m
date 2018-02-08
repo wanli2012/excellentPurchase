@@ -85,6 +85,9 @@
     dic[@"mark"] = @(_mark);
     dic[@"line_id"] = self.line_id;
     dic[@"line_store_uid"] = self.line_store_uid;
+    if (self.is_face) {
+        dic[@"is_face"] = self.is_face;
+    }
     
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:CommentStore_comment paramDic:dic finish:^(id responseObject) {

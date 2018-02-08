@@ -11,6 +11,7 @@
 #import "LBSaveLocationInfoModel.h"
 #import "LBIntegralGoodsTwoCollectionViewCell.h"
 #import "LBProductDetailViewController.h"
+#import "LBHistoryHotSerachDataBase.h"
 
 @interface LBTmallHotsearchViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,selectHotOrHistoryDelegate,UITextFieldDelegate>
 
@@ -21,6 +22,7 @@
 @property (nonatomic,strong)NSMutableArray *historySource;//历史搜索
 @property (nonatomic, assign) NSInteger  allCount;//总数
 @property (nonatomic,strong)NSMutableArray *dataSource;//数据源
+@property (nonatomic,strong)LBHistoryHotSerachDataBase *DataBase ;//历史数据源
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;
 @property (weak, nonatomic) IBOutlet UITextField *keyTextfiled;
@@ -174,7 +176,14 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
 
 -(void)hotOptions
 {
-    
+    //获取本地搜索记录
+    self.DataBase = [LBHistoryHotSerachDataBase greateTableOfFMWithTableName:@"LBTmallHotsearchViewController"];
+    if ([self.DataBase isDataInTheTable]) {
+        [self.historySource removeAllObjects];
+        for (int i = 0; i < [[self.DataBase queryAllDataOfFMDB]count]; i++) {
+            [self.historySource addObject:[_DataBase queryAllDataOfFMDB][i]];
+        }
+    }
     _xcLabel = [[XC_label alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight-SafeAreaTopHeight) AndTitleArr:self.reCommendSource AndhistoryArr:self.historySource AndTitleFont:14 AndScrollDirection:UICollectionViewScrollDirectionVertical];
     _xcLabel.delegate = self ;
     _xcLabel.opetionsHeight = 30;
@@ -259,7 +268,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     
     //这里可以删除热搜数据 逻辑 UI 已经处理好了。只需要删除暴露在外面对应的数据源就可以了
+    [_DataBase deleteAllDataOfFMDB];
+    [_DataBase insertOfFMWithDataArray:dataSource];
     
+}
+-(void)returnHistoryDataArr:(NSArray *)historyArr{
+    
+    NSSet *set = [NSSet setWithArray:historyArr];
+    // 3.2集合转换为数组
+    NSArray * changeArray2 = [set allObjects];
+    
+    [_DataBase deleteAllDataOfFMDB];
+    [_DataBase insertOfFMWithDataArray:changeArray2];
     
 }
 

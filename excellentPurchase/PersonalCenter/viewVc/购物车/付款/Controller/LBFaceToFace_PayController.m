@@ -35,7 +35,6 @@
     self.navigationItem.title = @"付款";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Cart_PayCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Cart_PayCell"];
     
-    
     self.orderAllPrice.text = [NSString stringWithFormat:@"¥ %@",self.money];
     
     self.deductionSum.text = [NSString stringWithFormat:@"¥ %@",self.rlmoney];
@@ -52,14 +51,14 @@
  支付宝支付成功回调
  */
 -(void)Alipaysucess{
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /**
  微信支付成功回调
  */
 -(void)wxpaysucess{
-   
+   [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)pushsucessVc{
@@ -136,7 +135,7 @@
                 
                 NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                 if (orderState==9000) {
-                   
+                   [self.navigationController popViewControllerAnimated:YES];
                 }else{
                     NSString *returnStr;
                     switch (orderState) {
@@ -244,7 +243,10 @@
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [passwordView paySuccess];
-            [self pushsucessVc];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+           
         }else{
             [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
             [EasyShowTextView showErrorText:responseObject[@"message"]];

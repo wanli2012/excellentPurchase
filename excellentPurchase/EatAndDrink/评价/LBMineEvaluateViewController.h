@@ -18,6 +18,7 @@
 @property (strong , nonatomic)NSString *line_id;//线下订单ID
 @property (strong , nonatomic)NSString *line_store_uid;//商家uid
 
+@property (strong , nonatomic)NSString *is_face;//1面对面订单 2线下订单
 @property (assign , nonatomic)NSInteger replyType;//评论商品 1 商店为2
 
 @property (copy , nonatomic)void (^replyFinish)(void);//评论成功
