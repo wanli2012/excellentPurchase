@@ -11,6 +11,7 @@
 #import "GYZCityHeaderView.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "LBSaveLocationInfoModel.h"
 
 @interface GYZChooseCityController ()<GYZCityGroupCellDelegate,UISearchBarDelegate,CLLocationManagerDelegate>
 /**
@@ -433,7 +434,6 @@ NSString *const cityCell = @"CityCell";
     }
 }
 #pragma mark - CoreLocation Delegate
-
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 
 {
@@ -441,6 +441,7 @@ NSString *const cityCell = @"CityCell";
     [self.locationManager stopUpdatingLocation];
     //此处locations存储了持续更新的位置坐标值，取最后一个值为最新位置，如果不想让其持续更新位置，则在此方法中获取到一个值之后让locationManager stopUpdatingLocation
     CLLocation *currentLocation = [locations lastObject];
+    
     
     //获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -461,7 +462,9 @@ NSString *const cityCell = @"CityCell";
                  city.cityName = currCity;
                  city.shortName = currCity;
                  [self.localCityData addObject:city];
-                 
+                 [LBSaveLocationInfoModel defaultUser].currentCity = currCity;
+                 [LBSaveLocationInfoModel defaultUser].strLatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
+                 [LBSaveLocationInfoModel defaultUser].strLongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
                  [self.tableView reloadData];
              }
              
