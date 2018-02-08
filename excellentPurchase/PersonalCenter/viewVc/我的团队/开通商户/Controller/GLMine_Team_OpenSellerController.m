@@ -9,7 +9,7 @@
 #import "GLMine_Team_OpenSellerController.h"
 #import "GLMine_Team_UploadLicenseController.h"//单张图片上传
 #import "LBUploadIdentityPictureViewController.h"//身份证正反面上传
-
+#import "LBBaiduMapViewController.h"
 ///地址选择
 #import "CZHAddressPickerView.h"
 #import "AddressPickerHeader.h"
@@ -88,7 +88,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.hidden = NO;
     if(self.pushType == 2){//1:开通商户 2:注册页跳转过来的
         self.navigationItem.title = @"注册商家";
         self.recommendViewHeight.constant = 50;
@@ -346,13 +346,20 @@
 }
 #pragma mark - 地图定位
 - (IBAction)mapLocation:(id)sender {
-    NSLog(@"地图定位");
+    self.hidesBottomBarWhenPushed = YES;
+    WeakSelf;
+    LBBaiduMapViewController *vc = [[LBBaiduMapViewController alloc]init];
+    vc.returePositon = ^(NSString *strposition, NSString *pro, NSString *city, NSString *area, CLLocationCoordinate2D coors) {
+        weakSelf.mapLoacationTF.text = strposition;
+        weakSelf.lat = coors.latitude;
+        weakSelf.lng = coors.longitude;
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - 提交
 - (IBAction)submit:(id)sender {
-    self.lng = 105.7788574553;
-    self.lat = 32.3211344234;
 
     [self.view endEditing:YES];
     

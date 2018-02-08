@@ -632,6 +632,15 @@
 		F9288252201C7C8D000B0474 /* GYZCityGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */; };
 		F9288253201C7C8D000B0474 /* GYZCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */; };
 		F929D20F20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */; };
+		F9309485202BEEB4004763A1 /* LBBaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F930947A202BEEB3004763A1 /* LBBaiduMapViewController.m */; };
+		F9309486202BEEB4004763A1 /* LBBaiduMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F930947B202BEEB3004763A1 /* LBBaiduMapViewController.xib */; };
+		F9309487202BEEB4004763A1 /* RouteAnnotation.mm in Sources */ = {isa = PBXBuildFile; fileRef = F930947D202BEEB3004763A1 /* RouteAnnotation.mm */; };
+		F9309488202BEEB4004763A1 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F930947F202BEEB3004763A1 /* SearchModel.m */; };
+		F9309489202BEEB4004763A1 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9309481202BEEB3004763A1 /* SearchViewController.m */; };
+		F930948A202BEEB4004763A1 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9309482202BEEB3004763A1 /* SearchViewController.xib */; };
+		F930948B202BEEB4004763A1 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9309484202BEEB3004763A1 /* UIImage+Rotate.m */; };
+		F930948D202BFB7F004763A1 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F930948C202BFB7F004763A1 /* mapapi.bundle */; };
+		F930948F202BFEAB004763A1 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F930948E202BFEAA004763A1 /* AdSupport.framework */; };
 		F932322C2026B926007E669A /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932322B2026B924007E669A /* AMapFoundationKit.framework */; };
 		F932322E2026D3AA007E669A /* 组2拷贝@3x(1).png in Resources */ = {isa = PBXBuildFile; fileRef = F932322D2026D3AA007E669A /* 组2拷贝@3x(1).png */; };
 		F93232742026EEE1007E669A /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F93232302026EEC8007E669A /* AlipaySDK.bundle */; };
@@ -2144,6 +2153,20 @@
 		F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCityHeaderView.m; sourceTree = "<group>"; };
 		F929D20D20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallDetailgoodsCommentFrameModel.h; sourceTree = "<group>"; };
 		F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallDetailgoodsCommentFrameModel.m; sourceTree = "<group>"; };
+		F9309479202BEEB3004763A1 /* LBBaiduMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBaiduMapViewController.h; sourceTree = "<group>"; };
+		F930947A202BEEB3004763A1 /* LBBaiduMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBaiduMapViewController.m; sourceTree = "<group>"; };
+		F930947B202BEEB3004763A1 /* LBBaiduMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBaiduMapViewController.xib; sourceTree = "<group>"; };
+		F930947C202BEEB3004763A1 /* RouteAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteAnnotation.h; sourceTree = "<group>"; };
+		F930947D202BEEB3004763A1 /* RouteAnnotation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RouteAnnotation.mm; sourceTree = "<group>"; };
+		F930947E202BEEB3004763A1 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		F930947F202BEEB3004763A1 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		F9309480202BEEB3004763A1 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		F9309481202BEEB3004763A1 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		F9309482202BEEB3004763A1 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		F9309483202BEEB3004763A1 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		F9309484202BEEB3004763A1 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		F930948C202BFB7F004763A1 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		F930948E202BFEAA004763A1 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		F932322B2026B924007E669A /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		F932322D2026D3AA007E669A /* 组2拷贝@3x(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组2拷贝@3x(1).png"; sourceTree = "<group>"; };
 		F93232302026EEC8007E669A /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -2781,6 +2804,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F930948F202BFEAB004763A1 /* AdSupport.framework in Frameworks */,
+				F9288221201C62D5000B0474 /* CoreLocation.framework in Frameworks */,
 				F932329D2026F62A007E669A /* UserNotifications.framework in Frameworks */,
 				F93232972026F091007E669A /* CoreMotion.framework in Frameworks */,
 				F9288234201C6EB5000B0474 /* QuartzCore.framework in Frameworks */,
@@ -2797,7 +2822,6 @@
 				F9288228201C6E72000B0474 /* CoreTelephony.framework in Frameworks */,
 				F928823D201C6FC2000B0474 /* BaiduMapAPI_Search.framework in Frameworks */,
 				F9288226201C6E67000B0474 /* libstdc++.6.0.9.tbd in Frameworks */,
-				F9288221201C62D5000B0474 /* CoreLocation.framework in Frameworks */,
 				4AB5889C201B315B009ADC9A /* JavaScriptCore.framework in Frameworks */,
 				4AB5889A201B312A009ADC9A /* WebKit.framework in Frameworks */,
 				F93232752026EEE1007E669A /* AlipaySDK.framework in Frameworks */,
@@ -5879,6 +5903,25 @@
 			path = GYZChooseCity;
 			sourceTree = "<group>";
 		};
+		F9309478202BEEB3004763A1 /* 地图 */ = {
+			isa = PBXGroup;
+			children = (
+				F9309479202BEEB3004763A1 /* LBBaiduMapViewController.h */,
+				F930947A202BEEB3004763A1 /* LBBaiduMapViewController.m */,
+				F930947B202BEEB3004763A1 /* LBBaiduMapViewController.xib */,
+				F930947C202BEEB3004763A1 /* RouteAnnotation.h */,
+				F930947D202BEEB3004763A1 /* RouteAnnotation.mm */,
+				F930947E202BEEB3004763A1 /* SearchModel.h */,
+				F930947F202BEEB3004763A1 /* SearchModel.m */,
+				F9309480202BEEB3004763A1 /* SearchViewController.h */,
+				F9309481202BEEB3004763A1 /* SearchViewController.m */,
+				F9309482202BEEB3004763A1 /* SearchViewController.xib */,
+				F9309483202BEEB3004763A1 /* UIImage+Rotate.h */,
+				F9309484202BEEB3004763A1 /* UIImage+Rotate.m */,
+			);
+			path = "地图";
+			sourceTree = "<group>";
+		};
 		F932322F2026EEC8007E669A /* 支付宝 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7239,6 +7282,7 @@
 		F9712C80200460030015037A /* excellentPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				F9309478202BEEB3004763A1 /* 地图 */,
 				F923B2852020035A00DFEF7C /* 扫码 */,
 				F97137312005DF3F0033F38B /* LoginRegister */,
 				F9712CB52004654A0015037A /* EatAndDrink */,
@@ -7395,6 +7439,8 @@
 		F9712CDF200488C60015037A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F930948E202BFEAA004763A1 /* AdSupport.framework */,
+				F930948C202BFB7F004763A1 /* mapapi.bundle */,
 				F932329C2026F62A007E669A /* UserNotifications.framework */,
 				F93232962026F091007E669A /* CoreMotion.framework */,
 				F932322B2026B924007E669A /* AMapFoundationKit.framework */,
@@ -8037,6 +8083,7 @@
 				4AA3A1CD201A086C00C94E49 /* GLMine_Seller_OrderDetail_ReciptInfoCell.xib in Resources */,
 				F97CDC8A201591BE0036B8E0 /* LBFinancialExchangeViewController.xib in Resources */,
 				F93409FA2009CFDD0002DBB8 /* LBTmallChildredViewController.xib in Resources */,
+				F930948A202BEEB4004763A1 /* SearchViewController.xib in Resources */,
 				F96CF49A2018AB180070658C /* LBMineEvaluateViewController.xib in Resources */,
 				4AA3A21E201A218200C94E49 /* LBSendRedPackViewController.xib in Resources */,
 				4A0B140720108F0700AC3334 /* GLMine_Team_AccountChooseCell.xib in Resources */,
@@ -8084,6 +8131,7 @@
 				4AB3DCB72016C4CA00099650 /* LBMineOrderDetailpdiscountsTableViewCell.xib in Resources */,
 				F9426B53201ABC810054417E /* LBStoreCounterMaincell.xib in Resources */,
 				F9633D7F200C3E00001B545A /* Mine.xcassets in Resources */,
+				F9309486202BEEB4004763A1 /* LBBaiduMapViewController.xib in Resources */,
 				4A9E18D82012105900E1EC05 /* GLMine_Team_UnderLingAchieveController.xib in Resources */,
 				F95B535E200CD16200A81954 /* LBCommentListsTableViewCell.xib in Resources */,
 				4A02ABE820174F66009213AD /* GLMine_PaySucessController.xib in Resources */,
@@ -8126,6 +8174,7 @@
 				4AB58870201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib in Resources */,
 				F98D1A26201DA3A80021D3B1 /* 天气37.png in Resources */,
 				F98D1A1F201DA3A80021D3B1 /* 天气30.png in Resources */,
+				F930948D202BFB7F004763A1 /* mapapi.bundle in Resources */,
 				F96971CC2011849A00966E26 /* LBEat_StoreClassifyViewController.xib in Resources */,
 				4A8DE866201F42A7002585B2 /* LBMineCenterAddAdreassViewController.xib in Resources */,
 				4A20E97D2012E04E00E091EA /* GLMine_MessageController.xib in Resources */,
@@ -8361,6 +8410,7 @@
 				F96CF44C201824540070658C /* LBMineOrderDetailPriceTableViewCell.m in Sources */,
 				F923B2012020021F00DFEF7C /* ZXDataMatrixDefaultPlacement.m in Sources */,
 				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
+				F930948B202BEEB4004763A1 /* UIImage+Rotate.m in Sources */,
 				F923B2462020021F00DFEF7C /* ZXUPCEANReader.m in Sources */,
 				4AB58883201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m in Sources */,
 				4AA3A1962019B8D500C94E49 /* GLMine_Branch_Online_DeliveredController.m in Sources */,
@@ -8422,6 +8472,7 @@
 				F937877E2029A1FE0022E864 /* LBReplyProductListsViewController.m in Sources */,
 				F9426B00201ABC200054417E /* ZLPhotoPickerBrowserPhotoImageView.m in Sources */,
 				F923B2142020021F00DFEF7C /* ZXAI01320xDecoder.m in Sources */,
+				F9309485202BEEB4004763A1 /* LBBaiduMapViewController.m in Sources */,
 				4A0EDF922018B5080037D47A /* GLMine_Manage_Branch_FailedController.m in Sources */,
 				F97E606C200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m in Sources */,
 				F923B2AB2020398500DFEF7C /* NSString+LBNullOrEmpty.m in Sources */,
@@ -8571,6 +8622,7 @@
 				4A0B140120108E8200AC3334 /* GLMine_Team_AccountChooseController.m in Sources */,
 				F96971D02011849A00966E26 /* LBEat_WholeClassifyView.m in Sources */,
 				F923B1FB2020021F00DFEF7C /* ZXDataMatrixDecoder.m in Sources */,
+				F9309487202BEEB4004763A1 /* RouteAnnotation.mm in Sources */,
 				4A79EDF5200F1F6C001F28D1 /* GLIdentifySelectController.m in Sources */,
 				F923B2572020021F00DFEF7C /* ZXPDF417DetectorResult.m in Sources */,
 				4AA3A15D20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.m in Sources */,
@@ -8725,6 +8777,7 @@
 				4AFC0EA220157387004518F4 /* LB_Eat_commentOneDataModel.m in Sources */,
 				4A20E9A5201322F300E091EA /* GLMine_Message_TrendsController.m in Sources */,
 				4A02ABF72017576C009213AD /* GLMine_PropertyController.m in Sources */,
+				F9309488202BEEB4004763A1 /* SearchModel.m in Sources */,
 				4A02ABE920174F66009213AD /* GLMine_PaySuccessView.m in Sources */,
 				F923B1902020021E00DFEF7C /* LBXScanNetAnimation.m in Sources */,
 				F923B2342020021F00DFEF7C /* ZXCode39Writer.m in Sources */,
@@ -8777,6 +8830,7 @@
 				F923B1A72020021E00DFEF7C /* ZXAztecHighLevelEncoder.m in Sources */,
 				F923B2532020021F00DFEF7C /* ZXPDF417DetectionResultColumn.m in Sources */,
 				F923B2602020021F00DFEF7C /* ZXPDF417ResultMetadata.m in Sources */,
+				F9309489202BEEB4004763A1 /* SearchViewController.m in Sources */,
 				F9426B0E201ABC200054417E /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */,
 				F923B2672020021F00DFEF7C /* ZXQRCodeDecoderMetaData.m in Sources */,
 				F95A72B5202AED4D001445E6 /* LLWebProgressLayer.m in Sources */,
