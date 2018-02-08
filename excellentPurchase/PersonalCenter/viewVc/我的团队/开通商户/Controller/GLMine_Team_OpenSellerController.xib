@@ -47,7 +47,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="957"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJQ-g0-emy">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="809.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="814.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJT-GT-0bN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -432,6 +432,7 @@
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="4IQ-DM-PaQ" firstAttribute="leading" secondItem="aKt-e8-ban" secondAttribute="leading" constant="10" id="7q9-ww-Czn"/>
                                         <constraint firstAttribute="bottom" secondItem="LcU-e4-mUf" secondAttribute="bottom" id="BCx-J4-BQg"/>
@@ -495,10 +496,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBs-32-t5F">
-                                    <rect key="frame" x="0.0" y="764.5" width="375" height="45"/>
+                                    <rect key="frame" x="0.0" y="764.5" width="375" height="50"/>
                                     <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="iQx-A5-hxG"/>
+                                        <constraint firstAttribute="height" constant="50" id="iQx-A5-hxG"/>
                                     </constraints>
                                     <state key="normal" title="提交申请"/>
                                     <connections>

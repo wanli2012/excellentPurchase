@@ -47,7 +47,7 @@
     [self ListenNetWork];//监听网络
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"YDpxkRgH1YcLhjuvGq3OD4RPGqeS8swt" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"HFg81pQ2m97GLX0DCudONsWmmKhl9Pdc" generalDelegate:self];
     if (!ret) {
         [EasyShowTextView showInfoText:@"启动百度地图失败"];
     }
