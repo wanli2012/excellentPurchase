@@ -47,6 +47,7 @@
 -(void)deleteHotOptions:(NSString * _Nullable)historyOrHot AndIndex:(NSInteger)index AndTitile:(NSString * _Nullable)selectTitle AndNSdataSource:(NSMutableArray *_Nullable)dataSource;
 
 
+-(void)returnHistoryDataArr:(NSArray * _Nullable)historyArr;
 
 @end
 

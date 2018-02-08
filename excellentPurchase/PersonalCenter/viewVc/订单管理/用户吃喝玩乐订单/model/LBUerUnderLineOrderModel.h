@@ -20,5 +20,6 @@
 @property (copy , nonatomic)NSString *store_name;//店铺名称
 @property (copy , nonatomic)NSString *store_thumb;//店铺头像
 @property (copy , nonatomic)NSString *is_comment;//是否评论
+@property (copy , nonatomic)NSString *is_face;//1面对面订单 2线下订单
 
 @end

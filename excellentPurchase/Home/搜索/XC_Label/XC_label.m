@@ -83,12 +83,21 @@ typedef NS_ENUM(NSInteger,EditorStateHot){
     }
     return self ;
 }
-
-
 #pragma mark 插入历史记录
 -(void)insertHistorOptions:(NSString *)options
 {
+    
     [self.historySource insertObject:options atIndex:0];
+    
+    NSSet *set = [NSSet setWithArray:self.historySource];
+    // 3.2集合转换为数组
+    NSArray * changeArray2 = [set allObjects];
+    [self.historySource removeAllObjects];
+    [self.historySource addObjectsFromArray:changeArray2];
+    
+    
+    [self.delegate returnHistoryDataArr:self.historySource];
+    
     [self.collectionView reloadData];
 }
 

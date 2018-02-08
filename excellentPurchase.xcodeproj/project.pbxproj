@@ -819,6 +819,7 @@
 		F95A72A9202AAC57001445E6 /* LBRecommendRecoderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */; };
 		F95A72B5202AED4D001445E6 /* LLWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72AD202AED4D001445E6 /* LLWebProgressLayer.m */; };
 		F95A72BA202AED4D001445E6 /* LLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72B4202AED4D001445E6 /* LLWebViewController.m */; };
+		F95A72BE202AF74D001445E6 /* LBHistoryHotSerachDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72BD202AF74D001445E6 /* LBHistoryHotSerachDataBase.m */; };
 		F95B5319200C83ED00A81954 /* LBMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */; };
 		F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */; };
 		F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B531B200C8E1000A81954 /* LBRiceShopTagView.m */; };
@@ -2455,6 +2456,8 @@
 		F95A72AD202AED4D001445E6 /* LLWebProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWebProgressLayer.m; sourceTree = "<group>"; };
 		F95A72B3202AED4D001445E6 /* LLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWebViewController.h; sourceTree = "<group>"; };
 		F95A72B4202AED4D001445E6 /* LLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWebViewController.m; sourceTree = "<group>"; };
+		F95A72BC202AF74D001445E6 /* LBHistoryHotSerachDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBHistoryHotSerachDataBase.h; sourceTree = "<group>"; };
+		F95A72BD202AF74D001445E6 /* LBHistoryHotSerachDataBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBHistoryHotSerachDataBase.m; sourceTree = "<group>"; };
 		F95B5316200C83ED00A81954 /* LBMineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineTableViewCell.h; sourceTree = "<group>"; };
 		F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineTableViewCell.m; sourceTree = "<group>"; };
 		F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineTableViewCell.xib; sourceTree = "<group>"; };
@@ -6370,6 +6373,7 @@
 		F9426BA8201B33A10054417E /* 搜索 */ = {
 			isa = PBXGroup;
 			children = (
+				F95A72BB202AF737001445E6 /* model */,
 				F9D7CA9F201B44C100C87C58 /* XC_Label */,
 				F9426BA9201B33BD0054417E /* LBHistoryHotSerachViewController.h */,
 				F9426BAA201B33BD0054417E /* LBHistoryHotSerachViewController.m */,
@@ -6832,6 +6836,15 @@
 				F95A72AD202AED4D001445E6 /* LLWebProgressLayer.m */,
 			);
 			path = LLWebProgressLayer;
+			sourceTree = "<group>";
+		};
+		F95A72BB202AF737001445E6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F95A72BC202AF74D001445E6 /* LBHistoryHotSerachDataBase.h */,
+				F95A72BD202AF74D001445E6 /* LBHistoryHotSerachDataBase.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		F95B5321200C9BDB00A81954 /* 商品详情 */ = {
@@ -8439,6 +8452,7 @@
 				F9D7CAB9201B44C100C87C58 /* XC_LabelHeaderCollectionReusableView.m in Sources */,
 				F96971E0201195E000966E26 /* LBEat_StoreCommentHeaderView.m in Sources */,
 				F95035FC2021DBEA00093644 /* LBTmallHotsearchViewController.m in Sources */,
+				F95A72BE202AF74D001445E6 /* LBHistoryHotSerachDataBase.m in Sources */,
 				4A9CBDA120240AB3004623C5 /* LBFinishProductsCell1.m in Sources */,
 				F923B2292020021F00DFEF7C /* ZXAbstractRSSReader.m in Sources */,
 				F9340A39200A200A0002DBB8 /* LBFiltrateProductViewController.m in Sources */,

@@ -122,6 +122,9 @@
     LBIntegralGoodsTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBIntegralGoodsTwoCollectionViewCell" forIndexPath:indexPath];
     //赋值给cell
     cell.model = self.dataArr[indexPath.item];
+    cell.refrshDatasorece = ^{
+        [_collectionView reloadData];
+    };
     return cell;
 }
 
@@ -182,7 +185,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         if (self.type == 1) {
             
-            return CGSizeMake(self.view.frame.size.width, 430);
+            return CGSizeMake(self.view.frame.size.width, 376);
         }else{
             return CGSizeMake(self.view.frame.size.width, 340);
         }
