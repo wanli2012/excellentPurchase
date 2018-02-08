@@ -11,7 +11,13 @@
 
 #import "GLAccountModel.h"//数据库模型
 
+#import "HCBasePopupViewController.h"
+#import "HCBottomPopupViewController.h"
+
 @interface LBSwitchAccountViewController ()
+{
+    BOOL _isCanClick;//是否可以点击cell
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
@@ -33,6 +39,8 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     self.navigationController.navigationBar.hidden = NO;
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:switchAccountTableViewCell bundle:nil] forCellReuseIdentifier:switchAccountTableViewCell];
+    
+    _isCanClick = YES;//cell默认设置可以点击
     
     [self getFmdbDatasoruce];//获取数据库信息
 }
@@ -95,13 +103,72 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
         cell.isSelfBtn.hidden = YES;
     }
     
-    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self login:self.fmdbArr[indexPath.row]];
+    NSDictionary *dic = self.fmdbArr[indexPath.row];
+    
+    if (_isCanClick) {
+        
+        if (![dic[@"userName"] isEqualToString:[UserModel defaultUser].user_name]) {
+            
+            [self login:self.fmdbArr[indexPath.row]];
+        }
+    }
+}
+
+//指定哪些行的 cell 可以进行编辑 (UITableViewDataSource 协议方法)
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    return YES;
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ 
+    return UITableViewCellEditingStyleDelete;
+  
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /**   点击 删除 按钮的操作 */
+    if (editingStyle == UITableViewCellEditingStyleDelete) { /**< 判断编辑状态是删除时. */
+ 
+        HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
+   
+        __weak typeof(self) wself = self;
+        HCBottomPopupAction * action0 = [HCBottomPopupAction actionWithTitle:@"你确定要删除吗?" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+        
+        HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"确定" withSelectedBlock:^{
+            
+            [wself.fmdbArr removeObjectAtIndex:indexPath.row];
+            
+            NSSet *set = [NSSet setWithArray:self.fmdbArr];
+            NSArray *arr = [set allObjects];
+            
+            [_projiectmodel deleteAllDataOfFMDB];
+            [_projiectmodel insertOfFMWithDataArray:arr];
+            
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+            
+            [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+ 
+        } withType:HCBottomPopupActionSelectItemTypeDefault];
+        
+        HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
+        
+        [pc addAction:action0];
+        
+        [pc addAction:action1];
+
+        [pc addAction:action4];
+        
+        [self presentViewController:pc animated:YES completion:nil];
+
+    }
     
 }
 
@@ -114,9 +181,10 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     dict[@"password"] = dataDic[@"password"];
 
     [EasyShowLodingView showLodingText:@"登录中..."];
+    _isCanClick = NO;
     
     [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:dict finish:^(id responseObject) {
-        
+        _isCanClick = YES;
         [EasyShowLodingView hidenLoding];
     
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -149,7 +217,6 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
             [UserModel defaultUser].voucher_ratio = [self judgeStringIsNull:responseObject[@"data"][@"voucher_ratio"] andDefault:YES];
             
             [usermodelachivar achive];
-            
     
             NSDictionary *newDic = @{@"headPic":[UserModel defaultUser].pic,
                                       @"userName":[UserModel defaultUser].user_name,
@@ -160,17 +227,16 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
                                       @"nickName":[UserModel defaultUser].nick_name,
                                       };
             
+            for (int i = 0; i < self.fmdbArr.count; i++) {
+                NSDictionary *tempDic = self.fmdbArr[i];
+                if ([tempDic[@"userName"] isEqualToString:newDic[@"userName"]]) {
+                    [self.fmdbArr removeObject:tempDic];
+                }
+            }
             
             [self.fmdbArr insertObject:newDic atIndex:0];
             NSSet *set = [NSSet setWithArray:self.fmdbArr];
             NSArray *arr = [set allObjects];
-            
-            for (int i = 0; i < self.fmdbArr.count; i++) {
-                NSDictionary *tempDic = self.fmdbArr[i];
-                if ([tempDic[@"userName"] isEqualToString:newDic[@"userName"]]) {
-                    [self.fmdbArr replaceObjectAtIndex:i withObject:tempDic];
-                }
-            }
             
             [_projiectmodel deleteAllDataOfFMDB];
             [_projiectmodel insertOfFMWithDataArray:arr];
@@ -182,7 +248,7 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
         }
         
     } enError:^(NSError *error) {
-      
+        _isCanClick = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];

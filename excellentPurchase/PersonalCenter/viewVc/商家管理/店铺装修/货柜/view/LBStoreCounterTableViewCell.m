@@ -56,7 +56,7 @@
         }
      
         self.offShelfBtn.hidden = YES;
-        self.editBtn.hidden = YES;
+//        self.editBtn.hidden = YES;
 
     }else{
         
@@ -65,8 +65,8 @@
             [self.offShelfBtn setTitle:@"下架" forState:UIControlStateNormal];
             [self.offShelfBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
             self.offShelfBtn.layer.borderColor = MAIN_COLOR.CGColor;
-            self.editBtn.hidden = NO;
-            self.editBtn.enabled = YES;
+//            self.editBtn.hidden = NO;
+//            self.editBtn.enabled = YES;
             
         }else{
             
@@ -74,8 +74,8 @@
             [self.offShelfBtn setTitle:@"已下架" forState:UIControlStateNormal];
             [self.offShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             self.offShelfBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
-            self.editBtn.hidden = YES;
-            self.editBtn.enabled = NO;
+//            self.editBtn.hidden = YES;
+//            self.editBtn.enabled = NO;
         }
     }
 }

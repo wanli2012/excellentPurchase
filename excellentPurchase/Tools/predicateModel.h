@@ -35,4 +35,7 @@
 +(BOOL)inputShouldNumber:(NSString *)inputString;
 //只能输入汉字
 +(BOOL)inputShouldChinese:(NSString *)inputString;
+//只能输入数字和x X
++ (BOOL)inputShouldIDNumber:(NSString *)inputString;
+
 @end

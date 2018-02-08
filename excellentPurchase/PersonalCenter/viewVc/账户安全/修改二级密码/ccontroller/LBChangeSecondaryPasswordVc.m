@@ -65,6 +65,7 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
         self.hidesBottomBarWhenPushed = YES;
         LBChangePasswordViewController *vc =[[LBChangePasswordViewController alloc]init];
         vc.naviStr = @"重置二级密码";
+        vc.type = 2;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *weixinPayBtn;//微信支付标志
 @property (weak, nonatomic) IBOutlet UIButton *alipayBtn;//支付宝支付标志
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @property (nonatomic, assign)NSInteger payType;//1微信支付 2支付宝支付
 
@@ -154,7 +155,9 @@
     
     if(_isAgreeProtocol){
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
     }else{
+        self.submitBtn.backgroundColor = [UIColor lightGrayColor];
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
     }
 }
@@ -194,9 +197,13 @@
     dict[@"type"] = @(self.payType);//1微信支付 2支付宝支付
     
     [EasyShowLodingView showLoding];
+    self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+    self.submitBtn.enabled = NO;
     [NetworkManager requestPOSTWithURLStr:kuser_recharge paramDic:dict finish:^(id responseObject) {
         
         [EasyShowLodingView hidenLoding];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             if(self.payType == 2){//支付宝支付
@@ -251,7 +258,8 @@
         }
         
     } enError:^(NSError *error) {
-        
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
         

@@ -249,26 +249,18 @@
     
     if (textField == self.IDTF) {
         
-        if(![predicateModel inputShouldNumber:string]){
-            
-            [EasyShowTextView showInfoText:@"此处只能输入数字！"];
+        if(![predicateModel inputShouldIDNumber:string]){
+            [self.view endEditing:YES];
+            [EasyShowTextView showInfoText:@"身份证号只能输入数字和X,x"];
             return NO;
         }
         if (textField.text.length > 17) {
             textField.text = [textField.text substringToIndex:18];
+            [self.view endEditing:YES];
             [EasyShowTextView showInfoText:@"身份证号长度超过限制"];
             return NO;
         }
-        
-    }else if(textField == self.nameTF){
-        
-        if(![predicateModel inputShouldChinese:string]){
-            
-            [EasyShowTextView showInfoText:@"收货人请填写中文"];
-            return NO;
-        }
     }
-    
     return YES;
 }
 

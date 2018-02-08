@@ -54,7 +54,7 @@
     [self setNav];
     
     self.integralLabel.text = [UserModel defaultUser].mark;
-    self.coinLabel.text = [UserModel defaultUser].shopping_voucher;
+    self.coinLabel.text = [UserModel defaultUser].keti_bean;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDismiss)];
     
@@ -122,7 +122,7 @@
     if (self.type == 1) {
         
         if ([self.coinLabel.text floatValue] < [self.moneyTF.text floatValue]) {
-            [EasyShowTextView showInfoText:@"优购劵不足"];
+            [EasyShowTextView showInfoText:@"优购币不足"];
             return;
         }
         
@@ -156,9 +156,12 @@
     dict[@"type"] = @(self.type);//货币类型 1优购币 2积分
     dict[@"group_id"] = self.group_id;
     dict[@"password"] = password;
-    
+ 
+    self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+    self.submitBtn.enabled = NO;
     [NetworkManager requestPOSTWithURLStr:kgive paramDic:dict finish:^(id responseObject) {
-        
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [passwordView paySuccess];
@@ -166,9 +169,9 @@
             if (self.type == 1) {//货币类型 1优购币 2积分’,
                 
                 CGFloat shopping_voucher = [self.moneyTF.text floatValue];
-                CGFloat voucher = [[UserModel defaultUser].shopping_voucher floatValue];
+                CGFloat voucher = [[UserModel defaultUser].keti_bean floatValue];
                 NSString *str = [NSString stringWithFormat:@"%.2f",voucher - shopping_voucher];
-                [UserModel defaultUser].shopping_voucher = str;
+                [UserModel defaultUser].keti_bean = str;
                 
             }else if(self.type == 2) {//货币类型 1优购币 2积分’,
                 
@@ -188,7 +191,8 @@
         }
         
     } enError:^(NSError *error) {
-        
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
@@ -199,15 +203,16 @@
     
     if(_isAgreeProtocol){
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
+        self.submitBtn.backgroundColor = [UIColor lightGrayColor];
     }
-    
 }
 
-#pragma mark - 充值须知
+#pragma mark - 转赠须知
 - (IBAction)toProtocol:(id)sender {
-    
+    NSLog(@"转赠须知");
 }
 
 #pragma mark - 转赠类型选择

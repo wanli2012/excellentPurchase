@@ -232,10 +232,10 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
 
 
 #pragma mark - UITabelviewDelegate
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
 }
@@ -247,7 +247,7 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
     cell.titleLb.text = self.dataArr[indexPath.row];
     
     if ([self.dataArr[indexPath.row] isEqualToString:@"账户管理"]) {
-        cell.headimage.hidden = NO;
+        cell.headimage.hidden = YES;
         cell.arrowImage.hidden = NO;
         cell.cacheLB.hidden = YES;
     }else if ([self.dataArr[indexPath.row] isEqualToString:@"清除缓存"]){

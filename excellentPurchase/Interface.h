@@ -92,7 +92,6 @@
 #define kwithdraw_cash @"MoneyCenter/withdraw_cash"///优购币出售
 #define ksell_mark @"MoneyCenter/sell_mark"///购物券兑换
 
-
 #define kstore_type_list @"StoreType/store_type_list"///获取商铺类型-江海林
 #define kappend_shop @"Store/append_shop"///开通商家-峰-江海林
 #define kstore_info @"Store/store_info"///我的小店 /商铺信息-江海林
@@ -133,6 +132,8 @@
 #define kactive_messaging @"Assets/active_messaging"//用户动态消息-江海林
 #define ksystem_bulletin @"Assets/system_bulletin"//系统公告-王凯
 #define kstore_find @"Store/store_find"//店铺管理 营业额*--黄炜
+#define kfast_login @"User/fast_login"//店铺管理 营业额*--黄炜
+
 
 
 

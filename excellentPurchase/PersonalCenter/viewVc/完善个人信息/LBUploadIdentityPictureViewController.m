@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *oppositeSignImageV;
 @property (weak, nonatomic) IBOutlet UIImageView *faceSignImageV;
 
+@property (nonatomic, strong)UIButton *saveBtn;//保存
+
 @property (nonatomic, assign)BOOL isFacePic;//是否为正面照
 
 @end
@@ -47,7 +49,6 @@
             self.oppositeSignImageV.hidden = YES;
         }
     }
-
 }
 
 /**
@@ -64,6 +65,7 @@
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
     button.backgroundColor = [UIColor clearColor];
+    self.saveBtn = button;
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
 }
@@ -73,81 +75,130 @@
  */
 - (void)save{
     
-    if (self.faceUrl.length == 0) {
+    if (self.faceImageV.image == nil) {
         [EasyShowTextView showInfoText:@"请上传身份证正面照"];
         return;
     }
     
-    if (self.oppositeUrl.length == 0) {
+    if (self.oppositeImageV.image == nil) {
         [EasyShowTextView showInfoText:@"请上传身份证反面照"];
         return;
     }
     
-    if(self.block){
-        self.block(self.faceUrl, self.oppositeUrl);
-    }
-    [self.navigationController popViewControllerAnimated:YES];
+    [self creatDispathGroup];
     
 }
-
-/**
- 上传图片
- */
-- (void)uploadImage{
+#pragma mark -  上传图片 操作
+-(void)creatDispathGroup{
+    WeakSelf;
+    //信号量
+    [EasyShowLodingView showLodingText:@"图片上传中"];
     
+    self.saveBtn.enabled = NO;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    //创建全局并行
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    //创建任务
+    UIImage *image = self.faceImageV.image;
+    
+    dispatch_group_async(group, queue, ^{
+        [weakSelf uploadImageV:image type:1 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
+            
+            //一个任务结束时标记一个信号量
+            dispatch_semaphore_signal(semaphore);
+        }];
+    });
+    
+    
+    UIImage *image2 = self.oppositeImageV.image;
+    
+    dispatch_group_async(group, queue, ^{
+        [weakSelf uploadImageV:image2 type:2 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
+            
+            //一个任务结束时标记一个信号量
+            dispatch_semaphore_signal(semaphore);
+        }];
+    });
+    
+    dispatch_group_notify(group, queue, ^{
+        //2个任务,2个信号等待.
+      
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+      
+        
+        dispatch_async(dispatch_get_main_queue(), ^{//返回主线程
+            [EasyShowLodingView hidenLoding];
+            if(weakSelf.faceUrl.length == 0){
+                [EasyShowTextView showInfoText:@"身份证正面照上传失败"];
+                return;
+            }
+            if(weakSelf.oppositeUrl.length == 0){
+                [EasyShowTextView showInfoText:@"身份证反面照上传失败"];
+                return;
+            }
+            
+            //这里就是所有异步任务请求结束后执行的代码
+            if(weakSelf.block){
+                weakSelf.block(weakSelf.faceUrl, weakSelf.oppositeUrl);
+            }
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+        });
+    });
+}
+
+///**
+// 上传图片请求
+//
+// @param image 需要上传的图片
+// @param finish 请求结束信号
+// */
+-(void)uploadImageV:(UIImage *)image type:(NSInteger)type block:(void(^)(void))finish
+{
+
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"ADD";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"type"] = @"3";
+    dic[@"type"] = @"3";//图片保存文件区别 1goods 2store 3user
     dic[@"port"] = kPORT;//端口 1.pc 2.安卓 3.ios 4.H5手机网站
     dic[@"app_version"] = kAPP_VERSION;
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 20;
-    
-    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"yyyyMMddHHmmss";
         NSString *str = [formatter stringFromDate:[NSDate date]];
         NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
         NSString *title = [NSString stringWithFormat:@"uploadfile"];
-        
+
         NSData *data;
-        
-        if(self.isFacePic){
-            data = UIImageJPEGRepresentation(self.faceImageV.image,1);
-        }else{
-            data = UIImageJPEGRepresentation(self.oppositeImageV.image,1);
-        }
-    
+
+        data = UIImageJPEGRepresentation(image,1);
+
         [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
 
-        [EasyShowLodingView showLodingText:@"图片上传中"];
-    }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [EasyShowLodingView hidenLoding];
-        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            [EasyShowTextView showSuccessText:@"上传成功"];
-            
-            if (self.isFacePic) {
+
+            if(type == 1){
                 self.faceUrl = responseObject[@"data"][@"url"];
-            }else{
+            }else if(type == 2){
                 self.oppositeUrl = responseObject[@"data"][@"url"];
             }
-            
-        }else{
-
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [EasyShowTextView showErrorText:error.localizedDescription];
-        
-        [EasyShowLodingView hidenLoding];
 
+        finish();
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        finish();
     }];
 }
 
@@ -155,7 +206,7 @@
  上传正面照 和 反面
  */
 - (IBAction)uploadIDPic:(UITapGestureRecognizer *)sender {
-
+    
     HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
     
     if (sender.view.tag == 11) {//正面
@@ -174,7 +225,7 @@
         [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
         [wself getImageFromIpc];
     } withType:HCBottomPopupActionSelectItemTypeDefault];
-
+    
     HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
     
     [pc addAction:action1];
@@ -201,6 +252,7 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
@@ -224,7 +276,7 @@
             }
             
         }else{
-
+            
             self.oppositeImageV.image = [UIImage imageWithData:data];
             
             if (self.oppositeSignImageV.image == nil) {
@@ -233,8 +285,7 @@
                 self.oppositeSignImageV.hidden = YES;
             }
         }
-        [self uploadImage];
-        
+
         [picker dismissViewControllerAnimated:YES completion:nil];
         
     }
@@ -264,17 +315,6 @@
     // 5.modal出这个控制器
     [self presentViewController:ipc animated:YES completion:nil];
 }
-
-#pragma mark -- <UIImagePickerControllerDelegate>--
-//// 获取图片后的操作
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-//{
-//    // 销毁控制器
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//
-//    // 设置图片
-//    self.imageView.image = info[UIImagePickerControllerOriginalImage];
-//}
 
 
 @end

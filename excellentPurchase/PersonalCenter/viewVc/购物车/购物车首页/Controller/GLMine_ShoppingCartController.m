@@ -272,7 +272,13 @@
     }
     
     [EasyShowLodingView showLoding];
+    self.clearBtn.backgroundColor = [UIColor lightGrayColor];
+    self.clearBtn.enabled = NO;
     [NetworkManager requestPOSTWithURLStr:OrderConfirm_product_order paramDic:dic finish:^(id responseObject) {
+        
+        self.clearBtn.backgroundColor = MAIN_COLOR;
+        self.clearBtn.enabled = YES;
+        
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             self.hidesBottomBarWhenPushed = YES;
@@ -284,16 +290,16 @@
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
+        
         [EasyShowLodingView hidenLoding];
+        
     } enError:^(NSError *error) {
+        
+        self.clearBtn.backgroundColor = MAIN_COLOR;
+        self.clearBtn.enabled = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
-    
-    
-//    self.hidesBottomBarWhenPushed = YES;
-//    LBMineSureOrdersViewController *payVC = [[LBMineSureOrdersViewController alloc] init];
-//    [self.navigationController pushViewController:payVC animated:YES];
     
 }
 

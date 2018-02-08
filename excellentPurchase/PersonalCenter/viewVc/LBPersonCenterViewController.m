@@ -66,7 +66,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     dict[@"token"] = [UserModel defaultUser].token;
    
     [NetworkManager requestPOSTWithURLStr:krefresh paramDic:dict finish:^(id responseObject) {
-
+        
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [UserModel defaultUser].phone = [self judgeStringIsNull:responseObject[@"data"][@"phone"] andDefault:NO];
@@ -97,6 +97,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
             [self assignmentHeader];
             
         }else{
+            
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
         
