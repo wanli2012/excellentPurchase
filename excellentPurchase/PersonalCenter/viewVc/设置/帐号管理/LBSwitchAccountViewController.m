@@ -63,8 +63,17 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:dic[@"headPic"]] placeholderImage:[UIImage imageNamed:PlaceHolder]];
     cell.IDNumberLabel.text = dic[@"userName"];
     cell.groupNameLabel.text = dic[@"groupName"];
+    
     cell.phoneLabel.text = dic[@"phone"];
-    cell.nickNameLabel.text = dic[@"nickName"];
+    NSString *str = dic[@"nickName"];
+    
+    if(str.length == 0){
+        str = [NSString stringWithFormat:@"昵称:(未设置)"];
+    }else{
+        str = dic[@"nickName"];
+    }
+    
+    cell.nickNameLabel.text = str;
     
     return cell;
 }
