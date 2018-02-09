@@ -49,7 +49,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [self addCarouselView1];
     [self.tableView registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
-    
     [self setupNpdata];//设置无数据的时候展示
     [self setuprefrsh];//刷新
   

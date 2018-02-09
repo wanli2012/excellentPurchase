@@ -15,9 +15,9 @@
 //点击轮播图
 -(void)tapgestureImage:(NSInteger)index;
 //点击扫码
--(void)clickSacnEvent;
-//点击搜索
--(void)clickSerachevent;
+//-(void)clickSacnEvent;
+////点击搜索
+//-(void)clickSerachevent;
 
 @end
 

@@ -28,6 +28,7 @@
     // AFNetworking请求结果回调时,failure方法会在两种情况下回调:1.请求服务器失败,服务器返回失败信息;2.服务器返回数据成功,AFN解析返回的数据失败.
     [manager GET:urlStr parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         finish(responseObject);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         enError(error);
     }];
@@ -52,6 +53,7 @@
     
     [manager POST:urlStr1 parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         finish(responseObject);
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         enError(error);
     }];

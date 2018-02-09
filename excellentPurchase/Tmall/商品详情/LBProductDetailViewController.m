@@ -26,6 +26,8 @@
 #import "LBEatShopProdcutClassifyViewController.h"
 
 #import <UShareUI/UShareUI.h>
+#import "GLMine_MessageController.h"//消息
+#import "GLMine_ShoppingCartController.h"//购物车
 
 @interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete>
 @property(nonatomic,strong)NSArray *subViewControllers;
@@ -61,6 +63,8 @@
 @property (nonatomic ,assign) NSInteger goods_option_id;//规格参数id
 @property (nonatomic ,assign) NSInteger buy_num;//商品数量
 
+@property (nonatomic ,assign) BOOL isShowSpec;//是否展示规格
+
 @end
 
 static NSString *taoTaoProductInofoTableViewCell = @"LBTaoTaoProductInofoTableViewCell";
@@ -79,7 +83,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = self.navigationTabBar;
     [self registerTablecell];
@@ -207,13 +210,16 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 
 #pragma mark - 立即购买
 - (IBAction)buyNow:(id)sender {
-    
-    [self chooseSpecification];
 
+         [self chooseSpecification];
+    
 }
 #pragma mark - 加入购物车
 - (IBAction)addShopCar:(UIButton *)sender {
-     [self chooseSpecification];
+    
+
+        [self chooseSpecification];
+    
 }
 #pragma mark - 收藏
 - (IBAction)colllectProduct:(UIButton *)sender {
@@ -279,10 +285,10 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
 
     //创建网页内容对象
-    UIImage *thumbURL = [UIImage imageNamed:@"ios-template-1024"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"蓝众创客注册分享" descr:@"欢迎使用蓝众创客" thumImage:thumbURL];
+//    UIImage *thumbURL = [UIImage imageNamed:@"ios-template-1024"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"联合优购商品分享" descr:@"点击查看详情" thumImage:self.model.thumb];
     //设置网页地址
-    shareObject.webpageUrl = [NSString stringWithFormat:@"https://www.baidu.com"];
+    shareObject.webpageUrl = [NSString stringWithFormat:@"%@%@%@",share_URL_Base,shareMalldetail,self.goods_id];
 
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -310,9 +316,8 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 
 #pragma mark - 选择规格
 -(void)chooseSpecification{
-
         _mystandardsView = [self buildStandardView:self.model.thumb andIndex:-1];
-        _mystandardsView.GoodDetailView = self.view;//设置该属性 对应的view 会缩小
+//        _mystandardsView.GoodDetailView = self.view;//设置该属性 对应的view 会缩小
         _mystandardsView.showAnimationType = StandsViewShowAnimationShowFromLeft;
         _mystandardsView.dismissAnimationType = StandsViewDismissAnimationDisToRight;
         [_mystandardsView show];
@@ -503,8 +508,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         }else if (indexPath.row == 1){
             LBriceshopwebviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:riceshopwebviewTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = 0;
-            cell.urlstr = [NSString stringWithFormat:@"%@%@.html",TmallPdetail,self.goods_id];
-
+            cell.urlstr = [NSString stringWithFormat:@"%@%@%@",URL_Base,TmallPdetail,self.goods_id];
             return cell;
         }
     }else if (indexPath.section == 3){
@@ -548,23 +552,33 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 
 #pragma mark - 展示更多选项
 -(void)showMoreInfo{
+    WeakSelf;
     PopoverAction *action1 = [PopoverAction actionWithImage:[UIImage imageNamed:@"taotao-more-xiaoxi"] title:@"消息" handler:^(PopoverAction *action) {
-        
+        self.hidesBottomBarWhenPushed = YES;
+        GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+
     }];
     PopoverAction *action2 = [PopoverAction actionWithImage:[UIImage imageNamed:@"taotao-more-shouye"] title:@"首页" handler:^(PopoverAction *action) {
-        
-    }];
-    PopoverAction *action3 = [PopoverAction actionWithImage:[UIImage imageNamed:@"taotao-more-kefu"] title:@"客服" handler:^(PopoverAction *action) {
-        
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.3;
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.type = @"rippleEffect";
+        [self.view.window.layer addAnimation:animation forKey:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }];
     PopoverAction *action4 = [PopoverAction actionWithImage:[UIImage imageNamed:@"taotao-more-gouwuche"] title:@"购物车  " handler:^(PopoverAction *action) {
+        self.hidesBottomBarWhenPushed = YES;
+        GLMine_ShoppingCartController *vc = [[GLMine_ShoppingCartController alloc]init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
         
     }];
     
     PopoverView *popoverView = [PopoverView popoverView];
     popoverView.style = PopoverViewStyleDefault;
     // 在没有系统控件的情况下调用可以使用显示在指定的点坐标的方法弹出菜单控件.
-    [popoverView showToPoint:CGPointMake(UIScreenWidth - 20, SafeAreaTopHeight) withActions:@[action1, action2, action3, action4]];
+    [popoverView showToPoint:CGPointMake(UIScreenWidth - 20, SafeAreaTopHeight) withActions:@[action1, action2, action4]];
 }
 #pragma mark ------- 立即购买
 -(void)rightNoewbuy{
@@ -697,9 +711,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 }
 
 - (void)addCarouselView1{
-    
-    //block方式创建
-    __weak typeof(self) weakSelf = self;
 
       NSMutableArray   *imageArray  = [[NSMutableArray alloc] initWithArray: _model.thumb_url];
 

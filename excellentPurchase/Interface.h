@@ -47,6 +47,7 @@
 #define RECOMMEND_URL @"http://cs5.hytc.gs/Home/User/Register?tjrid="
 
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
+#define share_URL_Base @"http://cs5.hytc.gs/index.php/"//分享
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"
 

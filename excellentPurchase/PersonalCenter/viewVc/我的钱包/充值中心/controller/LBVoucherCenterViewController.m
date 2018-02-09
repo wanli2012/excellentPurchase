@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationController.navigationBar.hidden = NO;
     /**
      *支付宝成功 回调
      */

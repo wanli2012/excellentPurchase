@@ -40,6 +40,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:nil style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationController.navigationBar.hidden = YES;
     adjustsScrollViewInsets_NO(self.scrollView, self);
+    [self loadData];//加载数据
 }
 
 - (void)viewDidLoad {
@@ -80,6 +81,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
     LBFinancialCenetrSaleViewController *vc = [[LBFinancialCenetrSaleViewController alloc]init];
+    vc.yougoubi = self.headerView.yougoubiLb.text;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -90,8 +92,33 @@
 -(void)financialExchangeEvent{
     self.hidesBottomBarWhenPushed = YES;
     LBFinancialExchangeViewController *vc = [[LBFinancialExchangeViewController alloc]init];
+    vc.coupon = self.headerView.jifenLb.text;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+}
+//更新购物券 和 优购币
+-(void)loadData{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+  
+    WeakSelf;
+    [NetworkManager requestPOSTWithURLStr:MoneyCenterUser_money paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            weakSelf.headerView.jifenLb.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shopping_voucher"]];
+            weakSelf.headerView.yougoubiLb.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"keti_bean"]];
+            [UserModel defaultUser].shopping_voucher = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shopping_voucher"]];
+             [UserModel defaultUser].keti_bean = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"keti_bean"]];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+
+    }];
 }
 
 #pragma mark - 通知

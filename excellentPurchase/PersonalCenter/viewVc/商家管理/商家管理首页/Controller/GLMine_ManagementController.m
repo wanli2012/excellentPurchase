@@ -13,6 +13,7 @@
 #import "GLMine_Branch_OfflineOrderController.h"//线下订单
 #import "GLMine_Seller_SetMoneyController.h"//收款二维码
 #import "LBFinishMainViewController.h"
+#import "LBMerChatFaceToFaceViewController.h"//面对面订单
 
 @interface GLMine_ManagementController ()
 
@@ -204,5 +205,13 @@
     GLMine_Seller_SetMoneyController *vc = [[GLMine_Seller_SetMoneyController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+//面对面订单
+- (IBAction)faceToFaceOrders:(UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBMerChatFaceToFaceViewController *vc = [[LBMerChatFaceToFaceViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 @end

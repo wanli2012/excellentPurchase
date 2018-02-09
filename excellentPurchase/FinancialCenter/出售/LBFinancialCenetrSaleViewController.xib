@@ -374,9 +374,9 @@
                                                 <outletCollection property="gestureRecognizers" destination="TvH-qp-NuB" appends="YES" id="rkr-ik-Brr"/>
                                             </connections>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ZR-j9-0ig">
+                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ZR-j9-0ig">
                                             <rect key="frame" x="30" y="346" width="315" height="50"/>
-                                            <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="056-e6-aM2"/>
                                             </constraints>

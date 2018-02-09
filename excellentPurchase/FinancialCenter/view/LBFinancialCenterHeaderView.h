@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titileLb;
 @property (weak, nonatomic) IBOutlet UIButton *saleBt;
 @property (weak, nonatomic) IBOutlet UIButton *exchangeBt;
+@property (weak, nonatomic) IBOutlet UILabel *jifenLb;
+@property (weak, nonatomic) IBOutlet UILabel *yougoubiLb;
 
 @end

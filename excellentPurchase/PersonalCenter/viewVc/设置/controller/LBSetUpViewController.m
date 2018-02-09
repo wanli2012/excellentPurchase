@@ -142,7 +142,7 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
         
         CATransition *animation = [CATransition animation];
         animation.duration = 0.3;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         animation.type = @"suckEffect";
         [self.view.window.layer addAnimation:animation forKey:nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];

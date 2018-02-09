@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLb;
 @property (weak, nonatomic) IBOutlet UILabel *jifen;
 @property (weak, nonatomic) IBOutlet UIButton *collectionBt;
+@property (weak, nonatomic) IBOutlet UIImageView *typeImge;
 
 @end
 
@@ -50,6 +51,26 @@
         self.collectionBt.selected = NO;
     }else{
         self.collectionBt.selected = YES;
+    }
+    
+    switch ([_model.channel integerValue]) {
+        case 1:
+            self.typeImge.image = [UIImage imageNamed:@"厂家直供"];
+            break;
+        case 2:
+            self.typeImge.image = [UIImage imageNamed:@"产地直供"];
+            break;
+        case 3:
+            self.typeImge.image = [UIImage imageNamed:@"品牌加盟"];
+            break;
+        case 4:
+            self.typeImge.image = [UIImage imageNamed:@"微商清仓"];
+            break;
+        case 5:
+            self.typeImge.image = [UIImage imageNamed:@"自营商城"];
+            break;
+        default:
+            break;
     }
     
 }

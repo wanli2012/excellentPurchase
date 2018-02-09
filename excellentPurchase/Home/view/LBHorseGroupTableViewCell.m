@@ -57,7 +57,7 @@
     
     /** Step3: 设置代理进行回调 */
     _scrollLabelView.scrollLabelViewDelegate = self;
-    _scrollLabelView.frame = CGRectMake(50, 15, UIScreenWidth  - 60, 50);
+    _scrollLabelView.frame = CGRectMake(50, 5, UIScreenWidth  - 60, 50);
     [self addSubview:_scrollLabelView];
     /** Step4: 布局(Required) */
 
@@ -65,10 +65,10 @@
 //    _scrollLabelView.tx_centerX  = [UIScreen mainScreen].bounds.size.width * 0.5;
     _scrollLabelView.scrollInset = UIEdgeInsetsMake(0, 10 , 0, 10);
     _scrollLabelView.scrollSpace = 10;
-    _scrollLabelView.font = [UIFont systemFontOfSize:15];
+    _scrollLabelView.font = [UIFont systemFontOfSize:14];
     _scrollLabelView.textAlignment = NSTextAlignmentLeft;
-    _scrollLabelView.scrollTitleColor = [UIColor blackColor];
-    _scrollLabelView.backgroundColor = [UIColor redColor];
+    _scrollLabelView.scrollTitleColor =LBHexadecimalColor(0x333333);
+    _scrollLabelView.backgroundColor = [UIColor clearColor];
     _scrollLabelView.layer.cornerRadius = 5;
     
     /** Step5: 开始滚动(Start scrolling!) */
@@ -102,7 +102,7 @@
 }
 
 - (void)scrollLabelView:(TXScrollLabelView *)scrollLabelView didClickWithText:(NSString *)text atIndex:(NSInteger)index{
-    NSLog(@"%@--%ld",text, index);
+    [self.delegate toDetail:self.index infoIndex:index];
 }
 
 -(UIImageView*)imagev{

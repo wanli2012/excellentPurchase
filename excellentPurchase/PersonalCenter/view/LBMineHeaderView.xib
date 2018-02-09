@@ -111,7 +111,7 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NG-cq-igm">
-                            <rect key="frame" x="110" y="53.5" width="70" height="22"/>
+                            <rect key="frame" x="167.5" y="62.5" width="70" height="22"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="6n0-8E-kOb"/>
@@ -131,23 +131,23 @@
                                 <action selector="changeAccountEvent:" destination="iN0-l3-epB" eventType="touchUpInside" id="stm-9g-b6T"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQm-NI-Vcs">
-                            <rect key="frame" x="100" y="65" width="0.0" height="0.0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无呢称" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQm-NI-Vcs">
+                            <rect key="frame" x="100" y="65" width="57.5" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="8ii-qt-CPd"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DY11111" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFc-48-vpp">
-                            <rect key="frame" x="100" y="85" width="185" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户ID" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFc-48-vpp">
+                            <rect key="frame" x="100" y="94" width="185" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sG-dg-xhi">
-                            <rect key="frame" x="100" y="112" width="49" height="20"/>
+                            <rect key="frame" x="100" y="121" width="49" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创客" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG2-gT-1zI">
                                     <rect key="frame" x="10" y="0.0" width="29" height="20"/>

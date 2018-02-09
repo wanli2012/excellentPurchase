@@ -30,7 +30,7 @@
 
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"兑换";
-    
+    self.sumLabel.text = self.coupon;
 }
 
 /**
@@ -57,7 +57,7 @@
         dic[@"sell_num"] = self.exchangeNumTF.text;
         
         weakSelf.ensureBtn.enabled = NO;
-        weakSelf.ensureBtn.backgroundColor = [UIColor grayColor];
+        weakSelf.ensureBtn.backgroundColor = [UIColor lightGrayColor];
         [EasyShowLodingView showLoding];
         [NetworkManager requestPOSTWithURLStr:ksell_mark paramDic:dic finish:^(id responseObject) {
             weakSelf.ensureBtn.enabled = YES;
@@ -104,8 +104,12 @@
     _isAgreeProtocol = !_isAgreeProtocol;
     if (_isAgreeProtocol) {
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
+        self.ensureBtn.userInteractionEnabled = YES;
+        self.ensureBtn.backgroundColor = MAIN_COLOR;
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
+        self.ensureBtn.userInteractionEnabled = NO;
+        self.ensureBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
 }
 

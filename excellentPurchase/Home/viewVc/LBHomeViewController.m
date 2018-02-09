@@ -22,6 +22,12 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 #import "LBFaceToFace_PayController.h"
+#import "LLWebViewController.h"
+#import "LBHomeViewActivityViewController.h"
+#import "LBVoucherCenterViewController.h"//充值
+#import "LBTmallProductListViewController.h"
+#import "LBEat_StoreClassifyViewController.h"
+#import "GLMine_MessageController.h"
 
 @interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,GYZChooseCityDelegate,LBHorseGroupTableViewCellDelegate,ClassifyHeaderViewdelegete>
 
@@ -64,7 +70,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity]) {
-        [self locatemap];//定位
+         [_locationManager startUpdatingLocation];;//定位
     }
     //kShop_index_URL
 }
@@ -84,8 +90,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     
     adjustsScrollViewInsets_NO(self.tableview, self);
     self.tableview.tableHeaderView = self.classfyHeaderV;
-    
-    self.tradeArr = @[@{@"trade_name":@"滔滔商城",@"thumb":@"Home-haitaoshangcheng"},
+    WeakSelf;
+    self.tradeArr = @[@{@"trade_name":@"海淘商城",@"thumb":@"Home-haitaoshangcheng"},
                       @{@"trade_name":@"微商清仓",@"thumb":@"Home-weishangqingcang"},
                       @{@"trade_name":@"厂家直销",@"thumb":@"Home-ziyingshangcheng"},
                       @{@"trade_name":@"自营商城",@"thumb":@"Home-ziying"},
@@ -96,7 +102,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     
     [self.classfyHeaderV initdatasorece:self.tradeArr];
     //   底部视图高度
-    self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
+//    self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
+    self.tableview.tableFooterView.height = 10;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 处理耗时操作的代码块...
@@ -106,13 +113,14 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         //通知主线程刷新
         dispatch_async(dispatch_get_main_queue(), ^{
             //回调或者说是通知主线程刷新，
-            self.activityImage.image = image;
+            weakSelf.activityImage.image = image;
         });
         
     });
     
     [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
-        [self postRequest:YES];
+        [weakSelf postRequest:YES];
+         [_locationManager startUpdatingLocation];//定位
     }];
     
     self.page = 1;
@@ -305,14 +313,109 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 }
 
 #pragma mark - LBHorseGroupTableViewCellDelegate
-- (void)toDetail:(NSInteger)index infoIndex:(NSInteger)infoIndex{
-    
-    NSLog(@"---cellIndex = %zd-----infoIndex = %zd",index,infoIndex);
+-(void)toDetail:(NSInteger)index infoIndex:(NSInteger)infoIndex{
+    if (index == 0) {
+        GLHome_newsModel *model = self.model.news[infoIndex];
+        self.hidesBottomBarWhenPushed = YES;
+        LLWebViewController *vc = [[LLWebViewController alloc]initWithUrl:[NSString stringWithFormat:@"%@%@%@%@",URL_Base,DataNew_data,@"/news_id/",model.news_id]];
+        vc.titilestr = @"公告详情";
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
 }
 
 #pragma mark - 点击轮播图回调
 - (void)tapgestureImage:(NSInteger)index{
     NSLog(@"----%zd",index);
+}
+-(void)tapgesture:(NSInteger)tag{
+    switch (tag) {
+        case 0:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
+            vc.catename = @"海淘商城";
+            vc.goods_type = 1;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 1:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
+            vc.catename = @"微商清仓";
+            vc.goods_type = 2;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 2:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
+            vc.catename = @"厂家直销";
+            vc.goods_type = 2;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 3:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
+            vc.catename = @"自营商城";
+            vc.goods_type = 1;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 4:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBEat_StoreClassifyViewController *vc = [[LBEat_StoreClassifyViewController alloc]init];
+            vc.cate_name = @"吃喝玩乐";
+
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 5:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
+            vc.titileStr = @"秒杀拼团";
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 6:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
+            vc.titileStr = @"一元购";
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 7:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBVoucherCenterViewController *vc = [[LBVoucherCenterViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+            break;
+        }
+        default:
+            break;
+    }
+}
+#pragma mark - 跳转消息
+- (IBAction)jumpMessage:(UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区

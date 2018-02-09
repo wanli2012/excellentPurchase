@@ -132,7 +132,7 @@
         int  H = i % num;
         NSInteger sep = self.SCR_conW * (i / 10);
         
-        item.tag = 10 + i;
+        item.tag = 100 + i;
         item.frame = CGRectMake(sep + padding_x + (itemW + item_dis) * H,  padding_top + (padding_y + itemH) * (V % 2), itemW , itemH);
         item.autoresizingMask = UIViewAutoresizingNone;
         item.backgroundColor = [UIColor clearColor];
@@ -176,7 +176,7 @@
 -(void)tapgestureClassfty:(UITapGestureRecognizer*)tap{
 
     if([self.delegete respondsToSelector:@selector(tapgesture:)]){
-        [self.delegete tapgesture:tap.view.tag];
+        [self.delegete tapgesture:tap.view.tag - 100];
         
     }
 }
@@ -189,11 +189,11 @@
 
 //扫码
 - (IBAction)clickScan:(id)sender {
-    [self.delegete clickSacnEvent];
+   // [self.delegete clickSacnEvent];
 }
 //搜索
 - (IBAction)clickSearch:(id)sender {
-    [self.delegete clickSerachevent];
+    //[self.delegete clickSerachevent];
 }
 
 -(SDCycleScrollView*)cycleScrollView{
@@ -209,7 +209,7 @@
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.backgroundColor = [UIColor whiteColor];
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
-        _cycleScrollView.localizationImageNamesGroup = @[PlaceHolder,PlaceHolder];
+        _cycleScrollView.localizationImageNamesGroup = @[@" ",@" "];
         _cycleScrollView.showPageControl = NO;
     }
 

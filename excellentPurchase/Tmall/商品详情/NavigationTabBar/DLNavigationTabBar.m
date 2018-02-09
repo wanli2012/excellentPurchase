@@ -23,7 +23,13 @@
 
 -(instancetype)initWithTitles:(NSArray *)titles
 {
-    if (self = [super initWithFrame:CGRectMake(0, 0, 150, 44)]) {
+    CGRect frame = CGRectZero;
+    if (UIScreenWidth <= 320.0) {
+        frame = CGRectMake(0, 0, 100, 44);
+    }else{
+        frame = CGRectMake(0, 0, 150, 44);
+    }
+    if (self = [super initWithFrame:frame]) {
         self.buttonNormalTitleColor = [UIColor colorWithRed:0.40f green:0.40f blue:0.41f alpha:1.00f];
         self.buttonSelectedTileColor = [UIColor colorWithRed:0.86f green:0.39f blue:0.30f alpha:1.00f];
         [self setSubViewWithTitles:titles];
@@ -41,7 +47,12 @@
         [btn setTitleColor:self.buttonSelectedTileColor forState:UIControlStateSelected];
         [btn setTitleColor:self.buttonSelectedTileColor forState:UIControlStateHighlighted | UIControlStateSelected];
         [btn setTitle:titleString forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:16];
+        if (UIScreenWidth <= 320.0) {
+             btn.titleLabel.font = [UIFont systemFontOfSize:13];
+        }else{
+             btn.titleLabel.font = [UIFont systemFontOfSize:16];
+        }
+       
         if(buttonIndex == 0) {btn.selected = YES; self.selectedButton = btn;};
         [btn addTarget:self action:@selector(subButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 100 + buttonIndex;

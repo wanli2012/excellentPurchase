@@ -31,4 +31,6 @@ typedef enum : NSInteger {
 - (void)webGoback;
 - (void)loadUrl:(NSString *)url;
 
+@property (strong , nonatomic)NSString *titilestr;
+
 @end

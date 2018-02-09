@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XBTextLoopView.h"
 #import "GLHomeModel.h"
 
 
@@ -20,7 +19,6 @@
 
 @interface LBHorseGroupTableViewCell : UITableViewCell
 
-@property (nonatomic, strong)XBTextLoopView *loopView;
 @property (strong , nonatomic)UIImageView *imagev;
 @property (nonatomic, assign)NSInteger index;
 

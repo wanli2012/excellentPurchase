@@ -20,7 +20,7 @@ static NSTimeInterval const LLFastTimeInterval = 0.01;
     self = [super init];
     if (self) {
         self.lineWidth = 2;
-        self.strokeColor = [UIColor blueColor].CGColor;
+        self.strokeColor = MAIN_COLOR.CGColor;
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         [path moveToPoint:CGPointMake(0, 2)];

@@ -79,6 +79,14 @@
                         <color key="textColor" red="0.46661311389999999" green="0.4666974545" blue="0.4666077495" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KZN-wn-tKX">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="KZN-wn-tKX" secondAttribute="height" id="2la-Va-ipH"/>
+                            <constraint firstAttribute="width" constant="50" id="upl-p5-8Wq"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,6 +94,7 @@
                 <constraint firstItem="av3-IU-uDb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0k2-gK-trA"/>
                 <constraint firstItem="dZO-ug-5bq" firstAttribute="centerY" secondItem="khz-gv-FFZ" secondAttribute="centerY" id="3TX-Fz-IqN"/>
                 <constraint firstAttribute="trailing" secondItem="av3-IU-uDb" secondAttribute="trailing" id="58r-hv-1UC"/>
+                <constraint firstItem="KZN-wn-tKX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8LA-zd-Plr"/>
                 <constraint firstItem="khz-gv-FFZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="BAv-oK-TaD"/>
                 <constraint firstItem="7FM-FB-80v" firstAttribute="leading" secondItem="rjn-MT-wnG" secondAttribute="trailing" constant="10" id="FdR-qP-RoA"/>
                 <constraint firstItem="IZ2-iC-Oe1" firstAttribute="leading" secondItem="dZO-ug-5bq" secondAttribute="trailing" constant="5" id="Jz1-F1-Gtc"/>
@@ -93,6 +102,7 @@
                 <constraint firstAttribute="trailing" secondItem="7FM-FB-80v" secondAttribute="trailing" constant="10" id="NoM-2E-EAZ"/>
                 <constraint firstAttribute="trailing" secondItem="IZ2-iC-Oe1" secondAttribute="trailing" id="Qfs-49-nBT"/>
                 <constraint firstItem="av3-IU-uDb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QmP-Ge-Wgt"/>
+                <constraint firstItem="KZN-wn-tKX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Xzh-du-LQ1"/>
                 <constraint firstItem="7FM-FB-80v" firstAttribute="centerY" secondItem="rjn-MT-wnG" secondAttribute="centerY" id="cF8-OG-2Kz"/>
                 <constraint firstItem="rjn-MT-wnG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cKW-a3-Ht8"/>
                 <constraint firstAttribute="trailing" secondItem="9Nl-Kc-xIT" secondAttribute="trailing" id="chN-ym-uUP"/>
@@ -111,6 +121,7 @@
                 <outlet property="priceLb" destination="khz-gv-FFZ" id="FGt-qC-OdC"/>
                 <outlet property="scanNum" destination="rjn-MT-wnG" id="YCc-Uq-HEk"/>
                 <outlet property="titlte" destination="9Nl-Kc-xIT" id="0fG-4q-2hc"/>
+                <outlet property="typeImge" destination="KZN-wn-tKX" id="4kR-Bv-beg"/>
             </connections>
             <point key="canvasLocation" x="72.5" y="71"/>
         </collectionViewCell>
@@ -118,6 +129,6 @@
     <resources>
         <image name="taotao-collect-n" width="22" height="20"/>
         <image name="taotao-collect-y" width="22" height="20"/>
-        <image name="taotao-fan" width="17" height="17"/>
+        <image name="taotao-fan" width="13" height="13"/>
     </resources>
 </document>

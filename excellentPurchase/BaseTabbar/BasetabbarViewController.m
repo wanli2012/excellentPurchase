@@ -40,6 +40,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(exitLogin) name:@"exitLogin" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(refreshInterface) name:@"refreshInterface" object:nil];
+
     
 }
 
@@ -48,6 +49,7 @@
     
     self.selectedIndex = 0;
 }
+
 //刷新界面
 -(void)refreshInterface{
     

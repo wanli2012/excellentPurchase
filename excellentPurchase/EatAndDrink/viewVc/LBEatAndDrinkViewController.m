@@ -16,10 +16,13 @@
 #import "LBEat_cateModel.h"
 #import "LBHistoryHotSerachViewController.h"
 #import "NodataView.h"
+#import "GYZChooseCityController.h"
+#import "LBSaveLocationInfoModel.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define pageMenuH 50   //菜单高度
 
-@interface LBEatAndDrinkViewController ()<SPPageMenuDelegate,UIScrollViewDelegate>
+@interface LBEatAndDrinkViewController ()<SPPageMenuDelegate,UIScrollViewDelegate,GYZChooseCityDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationH;
 @property (nonatomic, weak) SPPageMenu *pageMenu;
@@ -30,6 +33,9 @@
 @property (nonatomic, strong) NSArray *dataArr;
 @property (weak, nonatomic) IBOutlet UILabel *cityLb;
 @property (nonatomic, strong) NodataView *nodataView;//无数据的时候
+/** 地理编码 */
+@property (nonatomic, strong) CLGeocoder *geoC;
+@property (weak, nonatomic) IBOutlet UIView *navigationView;
 
 @end
 
@@ -37,7 +43,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity] == NO) {
+    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity] == NO && ![[LBSaveLocationInfoModel defaultUser].currentCity isEqualToString:self.cityLb.text]) {
          self.cityLb.text =  [LBSaveLocationInfoModel defaultUser].currentCity;
     }
     
@@ -59,6 +65,9 @@
    
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.dataArr  = responseObject[@"data"];
+            [self.controllerClassNames removeAllObjects];
+            [self.menuArr removeAllObjects];
+            [self.myChildViewControllers removeAllObjects];
             for (int i = 0; i < self.dataArr.count; i++) {
                 [self.controllerClassNames addObject:@"LBEat_CateViewController"];
                 [self.menuArr addObject:self.dataArr[i][@"catename"]];
@@ -81,7 +90,12 @@
 }
 //选择城市
 - (IBAction)tapgestureChooseCity:(UITapGestureRecognizer *)sender {
+    GYZChooseCityController *cityPickerVC = [[GYZChooseCityController alloc] init];
+    [cityPickerVC setDelegate:self];
     
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:cityPickerVC] animated:YES completion:^{
+        
+    }];
 }
 //搜索
 - (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {
@@ -93,7 +107,12 @@
 }
 
 -(void)addMenu{
-    
+    [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![obj isMemberOfClass:[self.navigationView class]]) {
+            [obj removeFromSuperview];
+        }
+    }];
+ 
     // trackerStyle:跟踪器的样式
     SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLineAttachment];
     // 传递数组，默认选中第1个
@@ -184,6 +203,45 @@
     
 }
 
+//选择城市
+- (void) cityPickerController:(GYZChooseCityController *)chooseCityController
+                didSelectCity:(GYZCity *)city{
+    
+    [self.geoC geocodeAddressString:city.cityName completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        // CLPlacemark : 地标
+        // location : 位置对象
+        // addressDictionary : 地址字典
+        // name : 地址详情
+        // locality : 城市
+        
+        if(error == nil)
+        {
+            CLPlacemark *pl = [placemarks firstObject];
+            [LBSaveLocationInfoModel defaultUser].currentCity = pl.locality;
+            [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.latitude).stringValue;
+            [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
+            self.cityLb.text = city.cityName;
+            [self loadData];
+        }else
+        {
+            NSLog(@"错误");
+        }
+    }];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+//取消
+- (void) cityPickerControllerDidCancel:(GYZChooseCityController *)chooseCityController{
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+}
+
 -(NSArray*)dataArr{
     
     if (!_dataArr) {
@@ -235,5 +293,12 @@
     }
     return _nodataView;
 }
-
+#pragma mark -懒加载
+-(CLGeocoder *)geoC
+{
+    if (!_geoC) {
+        _geoC = [[CLGeocoder alloc] init];
+    }
+    return _geoC;
+}
 @end

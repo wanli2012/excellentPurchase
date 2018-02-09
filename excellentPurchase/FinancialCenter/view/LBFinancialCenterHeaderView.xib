@@ -42,13 +42,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KO5-wf-qzS">
                             <rect key="frame" x="0.0" y="0.0" width="180" height="70"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分余额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulE-wx-WOu">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物券余额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulE-wx-WOu">
                                     <rect key="frame" x="10" y="16.5" width="160" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mT-Jh-pCP">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mT-Jh-pCP">
                                     <rect key="frame" x="10" y="53.5" width="160" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,7 +74,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTB-fZ-OX2">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTB-fZ-OX2">
                                     <rect key="frame" x="10" y="53.5" width="160" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -180,9 +180,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="exchangeBt" destination="ecj-rb-d2Y" id="fUN-OR-tZz"/>
+                <outlet property="jifenLb" destination="8mT-Jh-pCP" id="D6o-7h-Ks1"/>
                 <outlet property="navigationH" destination="olD-aW-w6p" id="eUD-ut-ctt"/>
                 <outlet property="saleBt" destination="yox-Y8-c5c" id="Pgx-gl-KbX"/>
                 <outlet property="titileLb" destination="Dfa-4v-AUZ" id="tWT-af-c6q"/>
+                <outlet property="yougoubiLb" destination="vTB-fZ-OX2" id="Y5e-tD-swC"/>
             </connections>
             <point key="canvasLocation" x="17" y="17"/>
         </view>

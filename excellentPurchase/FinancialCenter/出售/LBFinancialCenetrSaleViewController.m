@@ -45,6 +45,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"出售";
+    self.myCoinLabel.text = self.yougoubi;
 
 }
 
@@ -173,8 +174,12 @@
     _isAgreeProtocol = !_isAgreeProtocol;
     if (_isAgreeProtocol) {
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
+        self.ensureSellBtn.userInteractionEnabled = YES;
+        self.ensureSellBtn.backgroundColor = MAIN_COLOR;
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
+        self.ensureSellBtn.userInteractionEnabled = NO;
+        self.ensureSellBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
 }
 
@@ -192,7 +197,7 @@
     
     [EasyShowLodingView showLoding];
     self.ensureSellBtn.enabled = NO;
-    self.ensureSellBtn.backgroundColor = [UIColor grayColor];
+    self.ensureSellBtn.backgroundColor = [UIColor lightGrayColor];
     [NetworkManager requestPOSTWithURLStr:kwithdraw_cash paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];
         self.ensureSellBtn.enabled = YES;

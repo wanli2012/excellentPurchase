@@ -8,7 +8,6 @@
 
 #import "LBPersonCenterViewController.h"
 #import "LBMineHeaderView.h"
-#import "CCPScrollView.h"
 #import "LBMineTableViewCell.h"
 
 #import "LBAccountManagementViewController.h"//个人资料
@@ -259,7 +258,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
         _headerView.autoresizingMask = 0;
     }
     
-    NSArray *arr = @[@"积分",@"余额",@"购物券",@"优宝",@"优宝单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
+    NSArray *arr = @[@"积分",@"余额",@"购物券",@"优购币",@"优购币单价",@"昨日营业额总量",@"新增积分总量",@"昨日优购币转化"];
     
     _headerView.titleArr = arr;
  

@@ -693,56 +693,56 @@
     switch (self.dismissAnimationType) {
         case StandsViewDismissAnimationFlash:
         {
-            CGAffineTransform t ;
-            if (self.GoodDetailView != nil) {
-                t = self.GoodDetailView.transform;
-            }
-            
-            [UIView animateWithDuration:0.5 animations:^{
-                coverView.alpha = 0.0;
-                showView.alpha = 0.0;
-                self.mainImgView.alpha = 0.0;
-                
-                if (self.GoodDetailView != nil) {
-                    CGAffineTransform tempTransform = CGAffineTransformScale(t, 1/GoodDetailScaleValue, 1/GoodDetailScaleValue);
-                    self.GoodDetailView.transform = tempTransform;
-                }
-                
-            } completion:^(BOOL finished) {
-                [self removeFromSuperview];
-            }];
+//            CGAffineTransform t;
+//            if (self.GoodDetailView != nil) {
+//                t = self.GoodDetailView.transform;
+//            }
+//
+//            [UIView animateWithDuration:0.5 animations:^{
+//                coverView.alpha = 0.0;
+//                showView.alpha = 0.0;
+//                self.mainImgView.alpha = 0.0;
+//
+//                if (self.GoodDetailView != nil) {
+//                    CGAffineTransform tempTransform = CGAffineTransformScale(t, 1/GoodDetailScaleValue, 1/GoodDetailScaleValue);
+//                    self.GoodDetailView.transform = tempTransform;
+//                }
+//
+//            } completion:^(BOOL finished) {
+//                [self removeFromSuperview];
+//            }];
 
         }
             break;
         case StandsViewDismissAnimationDisFrombelow:
         {
-            CGAffineTransform t ;
-            if (self.GoodDetailView != nil) {
-                t = self.GoodDetailView.transform;
-            }
-            
-            
-            [UIView animateWithDuration:0.5 animations:^{
-
-                
-                CGPoint mainImgCenter = self.mainImgView.center;
-                self.mainImgView.center  = CGPointMake(mainImgCenter.x, mainImgCenter.y+SCREEN_HEIGHT);
-                
-                CGPoint tempPoint = showView.center;
-                showView.center = CGPointMake(SCREEN_WIDTH/2, tempPoint.y+SCREEN_HEIGHT);
-                
-                if (self.GoodDetailView != nil) {
-                    CGAffineTransform tempTransform = CGAffineTransformScale(t, 1/GoodDetailScaleValue, 1/GoodDetailScaleValue);
-                    self.GoodDetailView.transform = tempTransform;
-                }
-                
-                coverView.alpha = 0.0;
-                showView.alpha = 0.0;
-                
-            } completion:^(BOOL finished) {
-                
-                [self removeFromSuperview];
-            }];
+//            CGAffineTransform t ;
+//            if (self.GoodDetailView != nil) {
+//                t = self.GoodDetailView.transform;
+//            }
+//
+//
+//            [UIView animateWithDuration:0.5 animations:^{
+//
+//
+//                CGPoint mainImgCenter = self.mainImgView.center;
+//                self.mainImgView.center  = CGPointMake(mainImgCenter.x, mainImgCenter.y+SCREEN_HEIGHT);
+//
+//                CGPoint tempPoint = showView.center;
+//                showView.center = CGPointMake(SCREEN_WIDTH/2, tempPoint.y+SCREEN_HEIGHT);
+//
+//                if (self.GoodDetailView != nil) {
+//                    CGAffineTransform tempTransform = CGAffineTransformScale(t, 1/GoodDetailScaleValue, 1/GoodDetailScaleValue);
+//                    self.GoodDetailView.transform = tempTransform;
+//                }
+//
+//                coverView.alpha = 0.0;
+//                showView.alpha = 0.0;
+//
+//            } completion:^(BOOL finished) {
+//
+//                [self removeFromSuperview];
+//            }];
 
         }
             break;

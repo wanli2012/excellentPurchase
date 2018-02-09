@@ -13,6 +13,7 @@
 #import "LBTmallFirstCalssifymodel.h"
 #import "LBTmallHotsearchViewController.h"
 #import "NodataView.h"
+#import "GLMine_MessageController.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -140,7 +141,10 @@
 }
 #pragma mark -----xiao xi
 -(void)messageEvent{
-   
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - SPPageMenu的代理方法

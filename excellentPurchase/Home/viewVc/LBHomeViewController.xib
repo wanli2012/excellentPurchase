@@ -30,7 +30,7 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RbJ-Lf-Ma1">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <view key="tableFooterView" contentMode="scaleToFill" id="kb2-6i-cee">
+                    <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="kb2-6i-cee">
                         <rect key="frame" x="0.0" y="896.5" width="375" height="120"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -64,6 +64,9 @@
                                 <constraint firstAttribute="width" constant="30" id="t5y-fu-qfx"/>
                             </constraints>
                             <state key="normal" image="news"/>
+                            <connections>
+                                <action selector="jumpMessage:" destination="-1" eventType="touchUpInside" id="vAV-wM-zbh"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4x0-LI-vvj">
                             <rect key="frame" x="100" y="27" width="220" height="30"/>

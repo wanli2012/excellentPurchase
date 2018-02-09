@@ -55,7 +55,7 @@
     _systemModel = systemModel;
     
     self.dateLabel.text = [formattime formateTimeOfDate4:systemModel.addtime];
-    self.contentLabel.text = systemModel.content;
+    self.contentLabel.text = @"点击查看详情";
     self.typeLabel.text = systemModel.title;
    
 }

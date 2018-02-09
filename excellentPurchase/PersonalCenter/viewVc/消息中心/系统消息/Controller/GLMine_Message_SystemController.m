@@ -9,6 +9,7 @@
 #import "GLMine_Message_SystemController.h"
 #import "GLMine_Message_TrendsCell.h"
 #import "GLMine_Message_SystemModel.h"
+#import "LLWebViewController.h"
 
 @interface GLMine_Message_SystemController ()
 
@@ -143,12 +144,15 @@
     tableView.rowHeight = UITableViewAutomaticDimension;
     tableView.estimatedRowHeight = 44;
     return tableView.rowHeight;
-    //    return 95;
+
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    self.hidesBottomBarWhenPushed = YES;
-    //    GLMine_Team_MemberDataController *dataVC = [[GLMine_Team_MemberDataController alloc] init];
-    //    [self.navigationController pushViewController:dataVC animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
+      GLMine_Message_SystemModel *model =  self.models[indexPath.row];
+    LLWebViewController *vc = [[LLWebViewController alloc]initWithUrl:[NSString stringWithFormat:@"%@%@%@%@",URL_Base,DataNew_data,@"/news_id/",model.news_id]];
+    vc.titilestr = @"公告详情";
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 #pragma mark - 懒加载

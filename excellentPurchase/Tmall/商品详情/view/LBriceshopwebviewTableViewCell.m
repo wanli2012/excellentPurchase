@@ -17,6 +17,7 @@
 
 -(void)setUrlstr:(NSString *)urlstr{
     _urlstr = urlstr;
+    self.isload = YES;
     if ([NSString StringIsNullOrEmpty:urlstr] ==  NO && self.isload == NO) {
          [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlstr]]];
     }
@@ -24,7 +25,7 @@
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    self.isload = YES;
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -38,7 +39,7 @@
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    self.isload = NO;
+   
 }
 
 @end

@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="cityLb" destination="Vrf-2j-XAH" id="HBw-lo-dGb"/>
                 <outlet property="navigationH" destination="YW3-18-ofg" id="kMk-j5-Qdw"/>
+                <outlet property="navigationView" destination="u1u-x3-EIJ" id="Cnw-Fk-5sJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

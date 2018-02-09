@@ -110,7 +110,8 @@
 #pragma mark - life cyclic
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.title = self.titilestr;
     if (self.loadType == LLWebViewLoadTypeAuto) {
         _isWKWebView = ([UIDevice currentDevice].systemVersion.floatValue >= 8.0);
     }
@@ -242,13 +243,13 @@ CGRect LLRectBottomArea() {
                        context:(void *)context
 {
     if ([keyPath isEqualToString:@"loading"]) {
-        NSLog(@"loading...");
+//        NSLog(@"loading...");
     }
     else if ([keyPath isEqualToString:@"title"]) {
         self.title = self.webView_WK.title;
     }
     else if ([keyPath isEqualToString:@"estimatedProgress"]) {
-        NSLog(@"progress: %f", self.webView_WK.estimatedProgress);
+//        NSLog(@"progress: %f", self.webView_WK.estimatedProgress);
     }
     // 加载完成
     if (self.webView_WK.loading == NO) {
@@ -449,7 +450,7 @@ CGRect LLRectBottomArea() {
 }
 
 - (void)dealloc {
-    NSLog(@"webVC释放");
+    
     [self removeObserver];
 }
 
