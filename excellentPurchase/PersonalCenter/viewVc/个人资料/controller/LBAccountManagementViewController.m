@@ -35,7 +35,7 @@
 @property (nonatomic, strong)GLAccountManagementModel *model;
 @property (nonatomic, strong)NSDictionary *dataDic;
 
-//@property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
+@property (nonatomic, copy)NSString *headImageUrl;//头像地址
 
 @end
 
@@ -187,14 +187,14 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
         self.headImge.image = [UIImage imageWithData:data];
-        
+            
         }
+    
         [self modifyPic];
     
         [picker dismissViewControllerAnimated:YES completion:nil];
         
 }
-
 
 #pragma mark - 相册读取
 - (void)getImageFromIpc

@@ -17,7 +17,6 @@
 //单项Picker
 #import "ValuePickerView.h"
 
-
 #import "GLMine_stroeTypeModel.h"//店铺类型模型
 #import "GLMine_BrandModel.h"//品牌模型
 
@@ -33,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *storeTypeTF;//店铺类型
 
 @property (weak, nonatomic) IBOutlet UITextField *brandTF;//品牌名称
-@property (weak, nonatomic) IBOutlet UITextField *brandCertificateTF;//品牌授权书
+@property (weak, nonatomic) IBOutlet UITextField *brandCertificateTF;//微商授权书
 @property (weak, nonatomic) IBOutlet UITextField *licenseTF;//营业执照
 @property (weak, nonatomic) IBOutlet UITextField *legalPersonIDTF;//法人身份证
 @property (weak, nonatomic) IBOutlet UITextField *areaTF;//地区
@@ -50,7 +49,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *brandNameView;//品牌名view
 @property (weak, nonatomic) IBOutlet UIView *recommendView;//推荐人view
-@property (weak, nonatomic) IBOutlet UIView *brandCertificateView;//品牌授权书 view
+@property (weak, nonatomic) IBOutlet UIView *brandCertificateView;//微商授权书 view
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *recommendViewHeight;//推荐人view 高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *brandNameViewHeight;//品牌名称view 高度
@@ -88,7 +87,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.hidden = NO;
+    
     if(self.pushType == 2){//1:开通商户 2:注册页跳转过来的
         self.navigationItem.title = @"注册商家";
         self.recommendViewHeight.constant = 50;
@@ -98,6 +99,74 @@
         self.recommendViewHeight.constant = 0;
         self.recommendView.hidden = YES;
     }
+}
+
+#pragma mark - 获取验证码
+- (IBAction)getCode:(id)sender {
+    
+    if (self.phoneTF.text.length <=0 ) {
+        [EasyShowTextView showInfoText:@"请输入手机号码"];
+        return;
+    }else{
+        if (![predicateModel valiMobile:self.phoneTF.text]) {
+            [EasyShowTextView showInfoText:@"手机号格式不对"];
+            return;
+        }
+    }
+    
+    [self startTime];//获取倒计时
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"phone"] = self.phoneTF.text;
+    
+    [NetworkManager requestPOSTWithURLStr:kGETCODE_URL paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showSuccessText:@"发送成功"];
+            return ;
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+
+//获取倒计时
+-(void)startTime{
+    
+    __block int timeout = 60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [self.getCodeBtn setTitle:@"重发验证码" forState:UIControlStateNormal];
+                self.getCodeBtn.userInteractionEnabled = YES;
+                self.getCodeBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                [self.getCodeBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
+                self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+            });
+            
+        }else{
+            
+            int seconds = timeout % 61;
+            NSString *strTime = [NSString stringWithFormat:@" %.2d秒后重新发送 ", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.getCodeBtn setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
+                self.getCodeBtn.userInteractionEnabled = NO;
+                self.getCodeBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                [self.getCodeBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
+                self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+    
 }
 
 #pragma mark - 店铺类型选择
@@ -161,13 +230,16 @@
         GLMine_stroeTypeModel *model = weakSelf.storeTypeModels[index - 1];
         weakSelf.storeTypeTF.text = stateArr[0];
         weakSelf.stroeType_id = model.type_id;
-        if ([model.type_id integerValue] == 3) {
+
+        if ([model.type_id integerValue] == 4) {//1:厂家直销 2:产地直供 3:品牌加盟 4:渠道授权
             
-            weakSelf.brandNameViewHeight.constant = 50;
+            weakSelf.brandNameViewHeight.constant = 0;
             weakSelf.brandCertificateViewHeight.constant = 50;
             weakSelf.brandNameView.hidden = NO;
             weakSelf.brandCertificateView.hidden = NO;
+            
         }else{
+            
             weakSelf.brandNameViewHeight.constant = 0;
             weakSelf.brandCertificateViewHeight.constant = 0;
             weakSelf.brandNameView.hidden = YES;
@@ -177,6 +249,7 @@
     
     [self.pickerView show];
 }
+
 #pragma mark - 品牌选择
 - (IBAction)brandNameChoose:(id)sender {
     [self.view endEditing:YES];
@@ -211,6 +284,8 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
+
+
 - (void)popBrandChoose:(NSMutableArray *)brandModels{
     
     NSMutableArray *arrM = [NSMutableArray array];
@@ -238,21 +313,25 @@
     
     [self.pickerView show];
 }
+
+
 #pragma mark - 品牌授权书上传
 - (IBAction)brandCertificateUpload:(id)sender {
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_UploadLicenseController *vc = [[GLMine_Team_UploadLicenseController alloc] init];
-    vc.navigationItem.title = @"品牌授权书上传";
+    vc.navigationItem.title = @"微商授权书上传";
     vc.firstUrl = self.brandCertificateUrl;
     WeakSelf;
     vc.block = ^(NSString *firstUrl) {
         weakSelf.brandCertificateUrl = firstUrl;
+        weakSelf.brandCertificateTF.text = @"已上传";
     };
     
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
 
 #pragma mark - 上传执照
 - (IBAction)uploadLicense:(id)sender {
@@ -263,6 +342,7 @@
     WeakSelf;
     vc.block = ^(NSString *firstUrl) {
         weakSelf.licenseUrl = firstUrl;
+        weakSelf.licenseTF.text = @"已上传";
     };
     vc.navigationItem.title = @"营业执照上传";
     [self.navigationController pushViewController:vc animated:YES];
@@ -280,6 +360,10 @@
     uploadVc.block = ^(NSString *faceUrl, NSString *oppositeUrl) {
         weakSelf.faceUrl = faceUrl;
         weakSelf.oppositeUrl = oppositeUrl;
+        
+        if(weakSelf.faceUrl.length != 0 && weakSelf.oppositeUrl.length != 0){
+            weakSelf.legalPersonIDTF.text = @"已上传";
+        }
     };
     [self.navigationController pushViewController:uploadVc animated:YES];
 }
@@ -344,6 +428,8 @@
     }];
     
 }
+
+
 #pragma mark - 地图定位
 - (IBAction)mapLocation:(id)sender {
     self.hidesBottomBarWhenPushed = YES;
@@ -388,13 +474,15 @@
         [EasyShowTextView showInfoText:@"请选择店铺类型"];
         return;
         
-    }else if([self.stroeType_id integerValue] == 3){//品牌加盟是的判断
-        if(self.brandTF.text.length == 0){
-            [EasyShowTextView showInfoText:@"请选择品牌名称"];
-            return;
-        }
+    }else if([self.stroeType_id integerValue] == 4){//渠道授权
+        
+//        if(self.brandTF.text.length == 0){
+//            [EasyShowTextView showInfoText:@"请选择品牌名称"];
+//            return;
+//        }
+        
         if(self.brandCertificateUrl.length == 0){
-            [EasyShowTextView showInfoText:@"请上传品牌授权书"];
+            [EasyShowTextView showInfoText:@"请上传微商授权书"];
             return;
         }
     }
@@ -441,7 +529,7 @@
     dic[@"append_phone"] = self.phoneTF.text;//开通手机号
     dic[@"yzm"] = self.codeTF.text;
     dic[@"store_name"] = self.shopNameTF.text;
-    dic[@"licensing"] = self.brandCertificateUrl;
+    dic[@"wblicensing"] = self.brandCertificateUrl;
     dic[@"license_pic"] = self.licenseUrl;
     dic[@"con"] = self.oppositeUrl;
     dic[@"face"] = self.faceUrl;

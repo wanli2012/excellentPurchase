@@ -103,6 +103,11 @@
 #pragma mark - 团队业绩
 - (IBAction)teamAchievement:(id)sender {
     
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+        [EasyShowTextView showInfoText:@"权限不足"];
+        return;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_TeamAchievementController *achieveVC = [[GLMine_Team_TeamAchievementController alloc] init];
     [self.navigationController pushViewController:achieveVC animated:YES];
@@ -111,7 +116,10 @@
 
 #pragma mark - 绩效管理
 - (IBAction)achievementManage:(id)sender {
-    
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+        [EasyShowTextView showInfoText:@"权限不足"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_AchievementManageController *achieveVC = [[GLMine_Team_AchievementManageController alloc] init];
     [self.navigationController pushViewController:achieveVC animated:YES];
@@ -119,7 +127,10 @@
 
 #pragma mark - 开通下级
 - (IBAction)openGuest:(id)sender {
-   
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+        [EasyShowTextView showInfoText:@"权限不足"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_OpenMakerController *openVC = [[GLMine_Team_OpenMakerController alloc] init];
     [self.navigationController pushViewController:openVC animated:YES];
@@ -128,6 +139,10 @@
 #pragma mark - 团队成员
 - (IBAction)teamMember:(id)sender {
     
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+        [EasyShowTextView showInfoText:@"权限不足"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_MembersController *vc = [[GLMine_Team_MembersController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -141,6 +156,7 @@
     GLMine_Team_OpenSellerController *vc = [[GLMine_Team_OpenSellerController alloc] init];
     vc.pushType = 1;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 @end
