@@ -79,7 +79,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    
+    [EasyShowLodingView hidenLoding];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

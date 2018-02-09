@@ -326,7 +326,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 #pragma mark - 点击轮播图回调
 - (void)tapgestureImage:(NSInteger)index{
-    NSLog(@"----%zd",index);
+ 
 }
 -(void)tapgesture:(NSInteger)tag{
     switch (tag) {
@@ -400,6 +400,10 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             break;
         case 7:
         {
+            if ( [UserModel defaultUser].loginstatus == NO) {
+                [EasyShowTextView showText:@"请先登录"];
+                return;
+            }
             self.hidesBottomBarWhenPushed = YES;
             LBVoucherCenterViewController *vc = [[LBVoucherCenterViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
