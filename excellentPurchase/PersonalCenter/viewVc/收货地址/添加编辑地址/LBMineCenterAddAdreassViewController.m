@@ -262,14 +262,6 @@
             [EasyShowTextView showInfoText:@"此处只能输入数字！"];
             return NO;
         }
-        
-    }else if(textField == self.nameTf){
-        
-        if(![predicateModel inputShouldChinese:string]){
-            
-            [EasyShowTextView showInfoText:@"收货人请填写中文"];
-            return NO;
-        }
     }
     
     return YES;

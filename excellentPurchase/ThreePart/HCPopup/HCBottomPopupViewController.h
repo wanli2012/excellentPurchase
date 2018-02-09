@@ -10,5 +10,7 @@
 #import "HCBasePopupViewController.h"
 #import "HCBottomPopupAction.h"
 @interface HCBottomPopupViewController : HCBasePopupViewController
+
 - (void)addAction:(HCBottomPopupAction *)action;
+
 @end

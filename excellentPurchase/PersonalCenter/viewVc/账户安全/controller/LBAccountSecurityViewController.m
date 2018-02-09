@@ -61,7 +61,8 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
     if ([self.dataArr[indexPath.row] isEqualToString:@"修改密码"]) {
         self.hidesBottomBarWhenPushed = YES;
         LBChangePasswordViewController *vc =[[LBChangePasswordViewController alloc]init];
-         vc.naviStr = @"修改密码";
+        vc.naviStr = @"修改密码";
+        vc.type = 1;
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([self.dataArr[indexPath.row] isEqualToString:@"修改二级密码"]){
         self.hidesBottomBarWhenPushed = YES;

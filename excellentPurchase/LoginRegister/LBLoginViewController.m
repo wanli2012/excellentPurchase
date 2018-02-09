@@ -293,7 +293,6 @@
             [UserModel defaultUser].user_name = [self judgeStringIsNull:responseObject[@"data"][@"user_name"] andDefault:NO];
             [UserModel defaultUser].group_id = [self judgeStringIsNull:responseObject[@"data"][@"group_id"] andDefault:NO];
             [UserModel defaultUser].group_name = [self judgeStringIsNull:responseObject[@"data"][@"group_name"] andDefault:NO];
-            
             [UserModel defaultUser].phone = [self judgeStringIsNull:responseObject[@"data"][@"phone"] andDefault:NO];
             [UserModel defaultUser].pic = [self judgeStringIsNull:responseObject[@"data"][@"pic"] andDefault:NO];
             [UserModel defaultUser].truename = [self judgeStringIsNull:responseObject[@"data"][@"truename"] andDefault:NO];
@@ -313,29 +312,31 @@
 
             [usermodelachivar achive];
          
-            NSDictionary *dataDic = @{@"headPic":[UserModel defaultUser].pic,
-                                      @"userName":[UserModel defaultUser].user_name,
-                                      @"phone":[UserModel defaultUser].phone,
-                                      @"password":self.passwordTF.text,
-                                      @"groupID":[UserModel defaultUser].group_id,
-                                      @"groupName":[UserModel defaultUser].group_name,
-                                      @"nickName":[UserModel defaultUser].nick_name,
-                                         };
- 
-            for (int i = 0; i < self.fmdbArr.count; i++) {
-                NSDictionary *tempDic = self.fmdbArr[i];
-                if ([tempDic[@"userName"] isEqualToString:dataDic[@"userName"]]) {
-                    [self.fmdbArr replaceObjectAtIndex:i withObject:dataDic];
+            if(_isSaveAccount){
+                
+                NSDictionary *dataDic = @{@"headPic":[UserModel defaultUser].pic,
+                                          @"userName":[UserModel defaultUser].user_name,
+                                          @"phone":[UserModel defaultUser].phone,
+                                          @"password":self.passwordTF.text,
+                                          @"groupID":[UserModel defaultUser].group_id,
+                                          @"groupName":[UserModel defaultUser].group_name,
+                                          @"nickName":[UserModel defaultUser].nick_name,
+                                          };
+                
+                for (int i = 0; i < self.fmdbArr.count; i++) {
+                    NSDictionary *tempDic = self.fmdbArr[i];
+                    if ([tempDic[@"userName"] isEqualToString:dataDic[@"userName"]]) {
+                        [self.fmdbArr removeObject:tempDic];
+                    }
                 }
+                
+                [self.fmdbArr insertObject:dataDic atIndex:0];
+                NSSet *set = [NSSet setWithArray:self.fmdbArr];
+                NSArray *arr = [set allObjects];
+                
+                [_projiectmodel deleteAllDataOfFMDB];
+                [_projiectmodel insertOfFMWithDataArray:arr];
             }
-            
-            [self.fmdbArr insertObject:dataDic atIndex:0];
-            NSSet *set = [NSSet setWithArray:self.fmdbArr];
-            NSArray *arr = [set allObjects];
-            
-            
-            [_projiectmodel deleteAllDataOfFMDB];
-            [_projiectmodel insertOfFMWithDataArray:arr];
     
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
             

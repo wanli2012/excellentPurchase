@@ -54,7 +54,7 @@
 }
 
 //身份证号
-+ (BOOL) validateIdentityCard: (NSString *)value{
++ (BOOL)validateIdentityCard: (NSString *)value{
     
     BOOL flag;
     if (value.length <= 0) {
@@ -68,7 +68,7 @@
     
 }
 
-+(BOOL) IsBankCard:(NSString *)bankCardNumber;
++(BOOL)IsBankCard:(NSString *)bankCardNumber;
 {
     BOOL flag;
     if (bankCardNumber.length <= 0) {
@@ -142,6 +142,15 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [pred evaluateWithObject:inputString];
 }
+
+//只能输入字母或X,x;
++ (BOOL)inputShouldIDNumber:(NSString *)inputString {
+    if (inputString.length == 0) return NO;
+    NSString *regex =@"^[0-9xX]*";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [pred evaluateWithObject:inputString];
+}
+
 //只能输入字母
 + (BOOL)inputShouldLetter:(NSString *)inputString {
     if (inputString.length == 0) return NO;

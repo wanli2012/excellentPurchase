@@ -17,6 +17,7 @@
                 <outlet property="moneyTF" destination="k18-jp-5tH" id="ode-5X-iE9"/>
                 <outlet property="scrollView" destination="p1d-IY-Nzr" id="hvJ-n6-YiL"/>
                 <outlet property="signImageV" destination="jkF-kw-SYQ" id="Hct-Z3-N7H"/>
+                <outlet property="submitBtn" destination="86X-5i-JJb" id="RgE-Zs-fDh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weixinPayBtn" destination="UgX-XF-5ah" id="kay-hr-Sb4"/>
             </connections>
@@ -234,9 +235,9 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UM0-H8-1kp">
                                     <rect key="frame" x="0.0" y="373" width="403" height="128"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86X-5i-JJb">
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86X-5i-JJb">
                                             <rect key="frame" x="35" y="38" width="333" height="50"/>
-                                            <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="w7x-YZ-ewP"/>
                                             </constraints>
@@ -244,6 +245,11 @@
                                             <state key="normal" title="确认充值">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="submit:" destination="-1" eventType="touchUpInside" id="pH8-Hk-cF0"/>
                                             </connections>

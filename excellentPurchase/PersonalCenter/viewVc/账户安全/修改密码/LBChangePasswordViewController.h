@@ -12,4 +12,6 @@
 
 @property (strong , nonatomic)NSString *naviStr;
 
+@property (nonatomic, assign)NSInteger type;//1:修改密码  2:重置二级密码
+
 @end

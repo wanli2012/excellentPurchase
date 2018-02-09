@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *moneyTF;//提现金额
 
 @property (nonatomic, copy)NSString *bank_id;//所选银行卡的id
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;//提交按钮
 
 @property (nonatomic, assign)BOOL isHaveDian;
 
@@ -166,8 +167,10 @@
     
     if(_isAgreeProtocol){
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
+        self.submitBtn.backgroundColor = [UIColor lightGrayColor];
     }
 }
 
@@ -213,8 +216,12 @@
     dict[@"agreement"] = @"1";
     dict[@"paypswd"] = password;
     
+    self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+    self.submitBtn.enabled = NO;
+    
     [NetworkManager requestPOSTWithURLStr:kstore_balance paramDic:dict finish:^(id responseObject) {
-
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [passwordView paySuccess];
@@ -236,7 +243,8 @@
         }
         
     } enError:^(NSError *error) {
-
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }

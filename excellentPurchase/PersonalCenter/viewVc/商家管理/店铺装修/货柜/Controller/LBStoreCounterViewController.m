@@ -217,9 +217,10 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.hidesBottomBarWhenPushed = YES;
-    LBAddOrEditProductViewController *vc = [[LBAddOrEditProductViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    self.hidesBottomBarWhenPushed = YES;
+//    LBAddOrEditProductViewController *vc = [[LBAddOrEditProductViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark --- LBStoreCounterdelegete

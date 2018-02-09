@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordNewTF;//新密码
 @property (weak, nonatomic) IBOutlet UITextField *ensurePasswordTF;//确认密码
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;//提示label
 
 
 @end
@@ -25,6 +26,12 @@
 
     self.navigationItem.title = self.naviStr;
     self.navigationController.navigationBar.hidden = NO;
+    
+    if (self.type == 1) {//1:修改密码  2:重置二级密码
+        self.noticeLabel.text = @"*密码须知：密码必须包含数字和字母,长度6-12位";
+    }else if(self.type == 2){
+        self.noticeLabel.text = @"*二级密码须知：二级密码请设置为6位纯数字";
+    }
 
 }
 
