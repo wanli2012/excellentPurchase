@@ -18,6 +18,10 @@
  首页banner cell的高度
  */
 #define bannerHeiget   60
+/**
+ 首页活动图片比例 cell的高度
+ */
+#define HomeActivityH   292.0/375
 
 /**
  首页底部图片比例

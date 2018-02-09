@@ -32,9 +32,9 @@
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="ZZu-uQ-1qM"/>
                         </connections>
                     </collectionView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vdb-4o-ycr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shouye-huodong" translatesAutoresizingMaskIntoConstraints="NO" id="vdb-4o-ycr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
-                        <color key="backgroundColor" red="0.20000000000000001" green="0.57972547740000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -53,4 +53,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="shouye-huodong" width="375" height="292"/>
+    </resources>
 </document>

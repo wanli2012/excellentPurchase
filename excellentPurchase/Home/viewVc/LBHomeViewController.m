@@ -13,11 +13,15 @@
 #import "UIImage+GIF.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LBSetUpViewController.h"
-#import "LBHistoryHotSerachViewController.h"
+#import "LBTmallHotsearchViewController.h"
 #import "LBSaveLocationInfoModel.h"
 #import "GYZChooseCityController.h"
-
 #import "GLHomeModel.h"
+#import "LBXScanView.h"
+#import "LBXScanResult.h"
+#import "LBXScanWrapper.h"
+#import "SubLBXScanViewController.h"
+#import "LBFaceToFace_PayController.h"
 
 @interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,GYZChooseCityDelegate,LBHorseGroupTableViewCellDelegate,ClassifyHeaderViewdelegete>
 
@@ -59,7 +63,9 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-     [self locatemap];//定位
+    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity]) {
+        [self locatemap];//定位
+    }
     //kShop_index_URL
 }
 
@@ -72,20 +78,21 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self locatemap];//定位
+    
      [self.tableview registerNib:[UINib nibWithNibName:immediateRushBuyCell bundle:nil] forCellReuseIdentifier:immediateRushBuyCell];
     
     adjustsScrollViewInsets_NO(self.tableview, self);
     self.tableview.tableHeaderView = self.classfyHeaderV;
     
-    self.tradeArr = @[@{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"},
-                      @{@"trade_name":@"滔滔商城",@"thumb":@"fenlei"}];
+    self.tradeArr = @[@{@"trade_name":@"滔滔商城",@"thumb":@"Home-haitaoshangcheng"},
+                      @{@"trade_name":@"微商清仓",@"thumb":@"Home-weishangqingcang"},
+                      @{@"trade_name":@"厂家直销",@"thumb":@"Home-ziyingshangcheng"},
+                      @{@"trade_name":@"自营商城",@"thumb":@"Home-ziying"},
+                      @{@"trade_name":@"吃喝玩乐",@"thumb":@"Home-chihewanle"},
+                      @{@"trade_name":@"秒杀拼团",@"thumb":@"Home-miaosha"},
+                      @{@"trade_name":@"一元购",@"thumb":@"Home-yiyuangou-1"},
+                      @{@"trade_name":@"充值中心",@"thumb":@"Home-chongzhi"}];
     
     [self.classfyHeaderV initdatasorece:self.tradeArr];
     //   底部视图高度
@@ -243,7 +250,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 //    newDic[@"city"] = [LBSaveLocationInfoModel defaultUser].currentCity;
     
     NSString *url = [NSString stringWithFormat:@"https://api.thinkpage.cn/v3/weather/daily.json?key=osoydf7ademn8ybv&location=%@&language=zh-Hans&start=0&days=3",[LBSaveLocationInfoModel defaultUser].currentCity];
-    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -326,7 +333,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     if (indexPath.section == 0) {
         return bannerHeiget;
     }else if (indexPath.section == 1){
-        return 130 * 2 + 1;
+        return UIScreenWidth * HomeActivityH;
     }
     return 0;
 }
@@ -382,13 +389,84 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [self.navigationController pushViewController:vc animated:YES];
      self.hidesBottomBarWhenPushed = NO;
 }
-
+//跳搜素
 - (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {
     self.hidesBottomBarWhenPushed = YES;
-    LBHistoryHotSerachViewController *vc =[[LBHistoryHotSerachViewController alloc]init];
+    LBTmallHotsearchViewController *vc =[[LBTmallHotsearchViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
+//扫码
+- (IBAction)jumpScan:(UIButton *)sender {
+    
+    //设置扫码区域参数
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    style.centerUpOffset = 60;
+    style.xScanRetangleOffset = 30;
+    
+    if ([UIScreen mainScreen].bounds.size.height <= 480 )
+    {
+        //3.5inch 显示的扫码缩小
+        style.centerUpOffset = 40;
+        style.xScanRetangleOffset = 20;
+    }
+    
+    style.alpa_notRecoginitonArea = 0.6;
+    
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 2.0;
+    style.photoframeAngleW = 16;
+    style.photoframeAngleH = 16;
+    
+    style.isNeedShowRetangle = NO;
+    
+    style.anmiationStyle = LBXScanViewAnimationStyle_NetGrid;
+    
+    //使用的支付宝里面网格图片
+    UIImage *imgFullNet = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_full_net"];
+    
+    style.animationImage = imgFullNet;
+    
+    [self openScanVCWithStyle:style];
+    
+}
+- (void)openScanVCWithStyle:(LBXScanViewStyle*)style
+{
+    self.hidesBottomBarWhenPushed = YES;
+    SubLBXScanViewController *vc = [SubLBXScanViewController new];
+    vc.style = style;
+    //vc.isOpenInterestRect = YES;
+    __weak typeof(self) weakself = self;
+    vc.retureCode = ^(NSString *codeStr){
+        //跳转
+        [weakself getStoreInfo:codeStr];//返回信息
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+
+-(void)getStoreInfo:(NSString*)str{
+    
+    NSDictionary *dic = str.mj_JSONObject;
+    
+    if (![dic.allKeys containsObject:@"shopuid"] || ![dic.allKeys containsObject:@"money"] || ![dic.allKeys containsObject:@"rlmoney"]) {
+        [EasyShowTextView showErrorText:@"请扫正确的二维码"];
+        return;
+    }
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBFaceToFace_PayController *vc = [LBFaceToFace_PayController new];
+    vc.money  = [NSString stringWithFormat:@"%@",dic[@"money"]];
+    vc.rlmoney  = [NSString stringWithFormat:@"%@",dic[@"rlmoney"]];//返利
+    vc.shopuid  = [NSString stringWithFormat:@"%@",dic[@"shopuid"]];
+    [self.navigationController pushViewController:vc animated:YES];
+     self.hidesBottomBarWhenPushed = NO;
+    
+}
+
+
 //选择城市列表
 - (IBAction)chooseCityGesture:(UITapGestureRecognizer *)sender {
     
@@ -418,7 +496,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             [LBSaveLocationInfoModel defaultUser].currentCity = pl.locality;
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.latitude).stringValue;
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
-            NSLog(@"%@",[LBSaveLocationInfoModel defaultUser].currentCity );
             [self getWeatherInfo];
         }else
         {
@@ -437,7 +514,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         
     }];
 }
-
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat   offset = scrollView.contentOffset.y;
     if (offset < 0) {
@@ -447,7 +523,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     }
     
 }
-
 ///** 点击图片回调 */
 //- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
 //

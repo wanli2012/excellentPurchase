@@ -8,10 +8,12 @@
 
 #import "LBHorseGroupTableViewCell.h"
 #import "LBHorseRaceLampModel.h"
+#import "TXScrollLabelView.h"
 
-@interface LBHorseGroupTableViewCell ()
+@interface LBHorseGroupTableViewCell ()<TXScrollLabelViewDelegate>
 
 @property (nonatomic, copy)NSArray *dataSource;
+@property (nonatomic, strong)TXScrollLabelView *scrollLabelView;
 
 @end
 
@@ -29,47 +31,61 @@
 
 -(void)initDataFace{
     
-    [self.loopView removeFromSuperview];
     [self.imagev removeFromSuperview];
     [self addSubview:self.imagev];
-    
     __weak typeof(self) wself = self;
     [self.imagev mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(10);
-        make.top.equalTo(self).offset(5);
-        make.bottom.equalTo(self).offset(-5);
+        make.height.equalTo(@30);
+        make.centerY.equalTo(self);
         make.width.mas_equalTo(wself.imagev.mas_height).multipliedBy(1);//设置等比宽高
     }];
     
-    if (!self.loopView) {
-        CGFloat h = bannerHeiget;
-        CGFloat w = UIScreenWidth - h;
-        WeakSelf;
-        self.loopView = [XBTextLoopView textLoopViewWith:self.dataSource loopInterval:3.0 initWithFrame:CGRectMake(h , 0, w, h) selectBlock:^(NSString *selectString, NSInteger index) {
-            
-            if([weakSelf.delegate respondsToSelector:@selector(toDetail:infoIndex:)]){
-                [weakSelf.delegate toDetail:self.index infoIndex:index];
-            }
-            
-//            NSLog(@"%@===index%ld", selectString, (long)index);
-        }];
+     [self addWith:TXScrollLabelViewTypeFlipNoRepeat velocity:2 isArray:YES];
+}
+
+- (void)addWith:(TXScrollLabelViewType)type velocity:(CGFloat)velocity isArray:(BOOL)isArray {
+    /** Step1: 滚动文字 */
+    
+    NSArray *scrollTexts = @[@" "];
+    
+    /** Step2: 创建 ScrollLabelView */
+    _scrollLabelView = nil;
+    if (isArray) {
+        _scrollLabelView = [TXScrollLabelView scrollWithTextArray:scrollTexts type:type velocity:velocity options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
     }
     
-    [self addSubview:self.loopView];
+    /** Step3: 设置代理进行回调 */
+    _scrollLabelView.scrollLabelViewDelegate = self;
+    _scrollLabelView.frame = CGRectMake(50, 15, UIScreenWidth  - 60, 50);
+    [self addSubview:_scrollLabelView];
+    /** Step4: 布局(Required) */
+
+    //偏好(Optional), Preference,if you want.
+//    _scrollLabelView.tx_centerX  = [UIScreen mainScreen].bounds.size.width * 0.5;
+    _scrollLabelView.scrollInset = UIEdgeInsetsMake(0, 10 , 0, 10);
+    _scrollLabelView.scrollSpace = 10;
+    _scrollLabelView.font = [UIFont systemFontOfSize:15];
+    _scrollLabelView.textAlignment = NSTextAlignmentLeft;
+    _scrollLabelView.scrollTitleColor = [UIColor blackColor];
+    _scrollLabelView.backgroundColor = [UIColor redColor];
+    _scrollLabelView.layer.cornerRadius = 5;
     
+    /** Step5: 开始滚动(Start scrolling!) */
+    [_scrollLabelView beginScrolling];
 }
+
 
 - (void)setNewsModels:(NSArray<GLHome_newsModel *> *)newsModels{
     _newsModels = newsModels;
 
     NSMutableArray *arrM = [NSMutableArray array];
     for (GLHome_newsModel *model in newsModels) {
-        LBHorseRaceLampModel *newModel = [[LBHorseRaceLampModel alloc] init];
-        newModel.contentstr = model.content;
-        newModel.content_id = model.news_id;
-        [arrM addObject:newModel];
+        [arrM addObject:model.title];
     }
-    self.loopView.dataSource = arrM;
+    _scrollLabelView.dataArr = arrM;
+    /** Step5: 开始滚动(Start scrolling!) */
+    [_scrollLabelView beginScrolling];
 }
 
 
@@ -78,20 +94,24 @@
     
     NSMutableArray *arrM = [NSMutableArray array];
     for (GLHome_ordersModel *model in orderModels) {
-        
-        LBHorseRaceLampModel *newModel = [[LBHorseRaceLampModel alloc] init];
-        newModel.contentstr = model.content;
-        [arrM addObject:newModel];
+        [arrM addObject:model.title];
     }
-    self.loopView.dataSource = arrM;
-    
+    _scrollLabelView.dataArr = arrM;
+    /** Step5: 开始滚动(Start scrolling!) */
+    [_scrollLabelView beginScrolling];
+}
+
+- (void)scrollLabelView:(TXScrollLabelView *)scrollLabelView didClickWithText:(NSString *)text atIndex:(NSInteger)index{
+    NSLog(@"%@--%ld",text, index);
 }
 
 -(UIImageView*)imagev{
     
     if (!_imagev) {
         _imagev = [[UIImageView alloc]init];
-        _imagev.backgroundColor = [UIColor redColor];
+        _imagev.backgroundColor = [UIColor clearColor];
+        _imagev.image = [UIImage imageNamed:@"世纪优购"];
+        _imagev.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imagev;
 }

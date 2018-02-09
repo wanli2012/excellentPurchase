@@ -76,6 +76,9 @@
                                         <constraint firstAttribute="height" constant="30" id="rTc-m4-0w3"/>
                                     </constraints>
                                     <state key="normal" image="RichScan"/>
+                                    <connections>
+                                        <action selector="jumpScan:" destination="-1" eventType="touchUpInside" id="J5c-Ue-4QQ"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zq-XA-Ype">
                                     <rect key="frame" x="8" y="0.0" width="30" height="30"/>
@@ -86,7 +89,7 @@
                                     </constraints>
                                     <state key="normal" image="search"/>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="商务车市场" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex0-tc-DTp">
+                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="搜索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex0-tc-DTp">
                                     <rect key="frame" x="38" y="0.0" width="144" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <nil key="textColor"/>

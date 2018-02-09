@@ -179,9 +179,7 @@
         [self.delegete tapgesture:tap.view.tag];
         
     }
-
 }
-
 #pragma mark - 点击轮播图 回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     if([self.delegete respondsToSelector:@selector(tapgestureImage:)]){
@@ -204,7 +202,7 @@
         _cycleScrollView = [[SDCycleScrollView alloc]init];//当一张都没有的时候的 占位图
         //每一张图的占位图
         _cycleScrollView.delegate = self;
-        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"PlaceHolder"];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"shouye-banner"];
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角

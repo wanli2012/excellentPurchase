@@ -641,6 +641,8 @@
 		F930948B202BEEB4004763A1 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9309484202BEEB3004763A1 /* UIImage+Rotate.m */; };
 		F930948D202BFB7F004763A1 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F930948C202BFB7F004763A1 /* mapapi.bundle */; };
 		F930948F202BFEAB004763A1 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F930948E202BFEAA004763A1 /* AdSupport.framework */; };
+		F9309495202C6A97004763A1 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9309492202C6A96004763A1 /* TXScrollLabelView.m */; };
+		F9309496202C6A97004763A1 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = F9309494202C6A96004763A1 /* UIView+TXFrame.m */; };
 		F932322C2026B926007E669A /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932322B2026B924007E669A /* AMapFoundationKit.framework */; };
 		F932322E2026D3AA007E669A /* 组2拷贝@3x(1).png in Resources */ = {isa = PBXBuildFile; fileRef = F932322D2026D3AA007E669A /* 组2拷贝@3x(1).png */; };
 		F93232742026EEE1007E669A /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F93232302026EEC8007E669A /* AlipaySDK.bundle */; };
@@ -2167,6 +2169,10 @@
 		F9309484202BEEB3004763A1 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		F930948C202BFB7F004763A1 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		F930948E202BFEAA004763A1 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		F9309491202C6A96004763A1 /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
+		F9309492202C6A96004763A1 /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
+		F9309493202C6A96004763A1 /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
+		F9309494202C6A96004763A1 /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
 		F932322B2026B924007E669A /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		F932322D2026D3AA007E669A /* 组2拷贝@3x(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组2拷贝@3x(1).png"; sourceTree = "<group>"; };
 		F93232302026EEC8007E669A /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -5915,6 +5921,17 @@
 			path = "地图";
 			sourceTree = "<group>";
 		};
+		F9309490202C6A96004763A1 /* TXScrollLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				F9309491202C6A96004763A1 /* TXScrollLabelView.h */,
+				F9309492202C6A96004763A1 /* TXScrollLabelView.m */,
+				F9309493202C6A96004763A1 /* UIView+TXFrame.h */,
+				F9309494202C6A96004763A1 /* UIView+TXFrame.m */,
+			);
+			path = TXScrollLabelView;
+			sourceTree = "<group>";
+		};
 		F932322F2026EEC8007E669A /* 支付宝 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6468,6 +6485,7 @@
 		F95072D4200492430026D28F /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F9309490202C6A96004763A1 /* TXScrollLabelView */,
 				F95072FA2004A7620026D28F /* GLNearby_ClassifyHeaderView.h */,
 				F95072FB2004A7620026D28F /* GLNearby_ClassifyHeaderView.m */,
 				F95072F92004A7620026D28F /* GLNearby_ClassifyHeaderView.xib */,
@@ -8720,6 +8738,7 @@
 				F923B26F2020021F00DFEF7C /* ZXQRCodeFinderPattern.m in Sources */,
 				F923B2702020021F00DFEF7C /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				F955D13F200890F5001EEC81 /* LBFindSecondPassWordViewController.m in Sources */,
+				F9309495202C6A97004763A1 /* TXScrollLabelView.m in Sources */,
 				F923B1B72020021E00DFEF7C /* ZXEmailDoCoMoResultParser.m in Sources */,
 				F97E6035200EE68100C9C4E7 /* JYCarousel.m in Sources */,
 				F923B1CC2020021E00DFEF7C /* ZXVCardResultParser.m in Sources */,
@@ -8894,6 +8913,7 @@
 				F923B19A2020021E00DFEF7C /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				4AC971D1201F323500255F05 /* GLMine_AddressModel.m in Sources */,
 				4AA3A225201A218200C94E49 /* LBDonationViewController.m in Sources */,
+				F9309496202C6A97004763A1 /* UIView+TXFrame.m in Sources */,
 				F9426B44201ABC810054417E /* SXAlertView.m in Sources */,
 				4AEA55712023424800129D9A /* GLMine_Team_StaffingTabelController.m in Sources */,
 				4A02ABFC20175ACD009213AD /* GLMine_PropertyCell.m in Sources */,

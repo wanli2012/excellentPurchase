@@ -18,13 +18,13 @@
 @interface GLHome_newsModel : NSObject
 
 @property (nonatomic, copy)NSString *news_id;//公告ID
-@property (nonatomic, copy)NSString *content;//公告内容
+@property (nonatomic, copy)NSString *title;//公告内容
 
 @end
 
 @interface GLHome_ordersModel : NSObject
 
-@property (nonatomic, copy)NSString *content;
+@property (nonatomic, copy)NSString *title;//公告内容
 
 @end
 
