@@ -198,9 +198,9 @@
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"truename"] = self.nameTf.text;
-    dic[@"province"] = self.provinceStr;
-    dic[@"city"] = self.cityStr;
-    dic[@"area"] = self.countryStr;
+    dic[@"province"] = self.provinceStrId;
+    dic[@"city"] = self.cityStrId;
+    dic[@"area"] = self.countryStrId;
     dic[@"is_default"] = @(self.isdeualt);
     dic[@"phone"] = self.phoneTf.text;
     dic[@"address"] = self.adressTf.text;

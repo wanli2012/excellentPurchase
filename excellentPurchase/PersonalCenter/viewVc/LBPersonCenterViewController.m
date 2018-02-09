@@ -209,7 +209,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     NSString *vcstr = self.userVcArr[indexPath.row];
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];

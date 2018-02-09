@@ -372,7 +372,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXW-IZ-7rW">
-                                            <rect key="frame" x="100" y="0.0" width="265" height="50"/>
+                                            <rect key="frame" x="133" y="0.0" width="232" height="50"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
@@ -387,18 +387,27 @@
                                                 <constraint firstAttribute="height" constant="1" id="WJL-ZJ-ebu"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+86" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8G-Pd-ddl">
+                                            <rect key="frame" x="100" y="0.0" width="28" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="q8G-Pd-ddl" firstAttribute="leading" secondItem="ikm-Di-YM8" secondAttribute="leading" constant="100" id="0kg-fX-9O2"/>
+                                        <constraint firstItem="q8G-Pd-ddl" firstAttribute="top" secondItem="ikm-Di-YM8" secondAttribute="top" id="1Ia-Id-glQ"/>
                                         <constraint firstAttribute="trailing" secondItem="2cv-nP-OIX" secondAttribute="trailing" id="5X8-Ea-CAj"/>
                                         <constraint firstAttribute="bottom" secondItem="jXW-IZ-7rW" secondAttribute="bottom" id="5Xz-8h-wl0"/>
                                         <constraint firstItem="jXW-IZ-7rW" firstAttribute="top" secondItem="ikm-Di-YM8" secondAttribute="top" id="5x8-L5-7az"/>
+                                        <constraint firstAttribute="bottom" secondItem="q8G-Pd-ddl" secondAttribute="bottom" id="9sd-Me-Qq7"/>
                                         <constraint firstItem="DYP-FE-aUB" firstAttribute="centerY" secondItem="ikm-Di-YM8" secondAttribute="centerY" id="A4G-Kc-y7U"/>
                                         <constraint firstAttribute="height" constant="50" id="EOv-nT-iJA"/>
                                         <constraint firstItem="DYP-FE-aUB" firstAttribute="leading" secondItem="ikm-Di-YM8" secondAttribute="leading" constant="10" id="bRI-qt-EwT"/>
                                         <constraint firstAttribute="bottom" secondItem="2cv-nP-OIX" secondAttribute="bottom" id="bfB-mh-7jI"/>
-                                        <constraint firstItem="jXW-IZ-7rW" firstAttribute="leading" secondItem="ikm-Di-YM8" secondAttribute="leading" constant="100" id="ezg-Ru-nXr"/>
                                         <constraint firstItem="2cv-nP-OIX" firstAttribute="leading" secondItem="ikm-Di-YM8" secondAttribute="leading" id="jkh-if-J78"/>
+                                        <constraint firstItem="jXW-IZ-7rW" firstAttribute="leading" secondItem="q8G-Pd-ddl" secondAttribute="trailing" constant="5" id="sPO-Or-I1j"/>
                                         <constraint firstAttribute="trailing" secondItem="jXW-IZ-7rW" secondAttribute="trailing" constant="10" id="tGe-p7-kxa"/>
                                     </constraints>
                                 </view>
@@ -592,6 +601,9 @@
                                                     <integer key="value" value="5"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="getCode:" destination="-1" eventType="touchUpInside" id="pNd-XD-KPe"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -753,7 +765,7 @@
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwm-2E-nXs">
                                     <rect key="frame" x="0.0" y="250" width="375" height="0.0"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="品牌授权书" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAH-wV-skb">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微商授权书" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAH-wV-skb">
                                             <rect key="frame" x="10" y="-9" width="80" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="ws5-Uu-h98"/>
@@ -783,7 +795,7 @@
                                                 <constraint firstAttribute="width" constant="21" id="TBx-7t-9c3"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请上传品牌授权书" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ixW-KL-LK4">
+                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请上传微商授权书" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ixW-KL-LK4">
                                             <rect key="frame" x="100" y="0.0" width="218" height="0.0"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

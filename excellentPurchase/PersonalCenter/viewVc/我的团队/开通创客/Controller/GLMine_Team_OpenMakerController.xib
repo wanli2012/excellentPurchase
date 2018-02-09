@@ -19,6 +19,8 @@
                 <outlet property="passWordTF" destination="sb4-5I-F6D" id="Ek2-77-9Wb"/>
                 <outlet property="phoneTF" destination="MCk-5b-6o4" id="h3K-JM-ser"/>
                 <outlet property="remainderLabel" destination="um6-Ig-5NR" id="kr8-Rt-ldI"/>
+                <outlet property="setView" destination="4Bg-e9-VSF" id="eZy-z8-vNz"/>
+                <outlet property="setViewHeight" destination="Kqq-Km-WPl" id="x9B-NB-oXz"/>
                 <outlet property="signImageV" destination="klZ-6j-d5h" id="Yso-sq-FQ4"/>
                 <outlet property="staffingTF" destination="c6r-Ca-vfC" id="aWJ-Gf-wpq"/>
                 <outlet property="submitBtn" destination="zuF-wm-2M7" id="MSt-yv-VIJ"/>
@@ -351,7 +353,7 @@
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入4位验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Um8-gp-ldb">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Um8-gp-ldb">
                                             <rect key="frame" x="100" y="0.0" width="165" height="50"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -380,6 +382,9 @@
                                                     <integer key="value" value="5"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="getCode:" destination="-1" eventType="touchUpInside" id="4fI-NT-dJ3"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

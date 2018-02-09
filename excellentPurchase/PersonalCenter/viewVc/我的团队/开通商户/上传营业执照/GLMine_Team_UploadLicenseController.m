@@ -52,16 +52,7 @@
 //保存
 - (void)save{
     
-    if (self.firstUrl.length == 0) {
-        [EasyShowTextView showInfoText:@"请上传图片"];
-        return;
-    }
-    
-    if(self.block){
-        self.block(self.firstUrl);
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [self uploadImage];
 
 }
 
@@ -80,7 +71,7 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 20;
-    
+    [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -105,6 +96,12 @@
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             self.firstUrl = responseObject[@"data"][@"url"];
+            
+            if(self.block){
+                self.block(self.firstUrl);
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES];
             
         }else{
             
@@ -162,7 +159,6 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage]; //通过key值获取到图片
     self.imageV.image = image;  //给UIimageView赋值已经选择的相片
     
-    [self uploadImage];
     //上传图片到服务器--在这里进行图片上传的网络请求，这里不再介绍
 
 }

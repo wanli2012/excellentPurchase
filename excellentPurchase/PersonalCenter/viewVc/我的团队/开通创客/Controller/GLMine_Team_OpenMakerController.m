@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//同意标记
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;//获取验证码
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;//提交按钮
+@property (weak, nonatomic) IBOutlet UIView *setView;//设置人员view
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *setViewHeight;//设置人员view高度
 
 @property (nonatomic, strong)NSMutableArray *areaDataArr;//三级列表数据
 @property (strong, nonatomic)NSString *provinceStrId;
@@ -43,7 +45,6 @@
 @property (strong, nonatomic)NSString *provinceStr;
 @property (strong, nonatomic)NSString *cityStr;
 @property (strong, nonatomic)NSString *countryStr;
-
 
 @property (nonatomic, copy)NSString *group_id;
 
@@ -66,8 +67,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     self.navigationItem.title = @"开通创客";
+    
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_GJTG){//高级创客身份
+        self.setView.hidden = YES;
+        self.setViewHeight.constant = 0;
+    }
     
     [self requestStaffingPost];
 }
@@ -86,11 +92,7 @@
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            
-//            GLMine_Team_OpenSetModel *model = [GLMine_Team_OpenSetModel mj_objectWithKeyValues:responseObject[@"data"]];
-//
-//            self.model = model;
-            
+
             [self.setModels removeAllObjects];
             for (NSDictionary *dict in responseObject[@"data"][@"setup"]) {
                 GLMine_Team_OpenSet_subModel *model = [GLMine_Team_OpenSet_subModel mj_objectWithKeyValues:dict];
@@ -114,8 +116,75 @@
     }];
 }
 
+- (IBAction)getCode:(id)sender {
+    
+    if (self.phoneTF.text.length <=0 ) {
+        [EasyShowTextView showInfoText:@"请输入手机号码"];
+        return;
+    }else{
+        if (![predicateModel valiMobile:self.phoneTF.text]) {
+            [EasyShowTextView showInfoText:@"手机号格式不对"];
+            return;
+        }
+    }
+    
+    [self startTime];//获取倒计时
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"phone"] = self.phoneTF.text;
+    
+    [NetworkManager requestPOSTWithURLStr:kGETCODE_URL paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showSuccessText:@"发送成功"];
+            return ;
+        }
+    } enError:^(NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+
+//获取倒计时
+-(void)startTime{
+    
+    __block int timeout = 60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [self.getCodeBtn setTitle:@"重发验证码" forState:UIControlStateNormal];
+                self.getCodeBtn.userInteractionEnabled = YES;
+                self.getCodeBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                [self.getCodeBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
+                self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+            });
+            
+        }else{
+            
+            int seconds = timeout % 61;
+            NSString *strTime = [NSString stringWithFormat:@" %.2d秒后重新发送 ", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.getCodeBtn setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
+                self.getCodeBtn.userInteractionEnabled = NO;
+                self.getCodeBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                [self.getCodeBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
+                self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+    
+}
+
 /**
-人员配备
+ 人员配备
  */
 - (IBAction)staffing:(id)sender {
     
@@ -145,7 +214,7 @@
                 break;
             case 3://市级代理
             {
-
+                
                 weakSelf.corenumber = arr[0];
                 weakSelf.regionnumber = arr[1];
                 weakSelf.makernumber = arr[2];
@@ -164,7 +233,7 @@
                 break;
             case 6://城市创客
             {
-              weakSelf.makernumber = @"1";
+                weakSelf.makernumber = @"1";
             }
                 break;
                 
@@ -178,8 +247,10 @@
     for (GLMine_Team_OpenSet_subModel *model in self.setModels) {
         [vc.models addObject:model];
     }
-   
+    
     [self.navigationController pushViewController:vc animated:YES];
+    
+    
     
 }
 
@@ -187,13 +258,13 @@
  身份类型选择
  */
 - (IBAction)group_typeChoose:(id)sender {
-
+    
     self.hidesBottomBarWhenPushed = YES;
     GLIdentifySelectController *vc = [[GLIdentifySelectController alloc] init];
     
     vc.selectIndex = self.selecctTypeIndex;
     
-     __block typeof(self) weakSelf = self;
+    __block typeof(self) weakSelf = self;
     vc.block = ^(NSString *name, NSString *group_id,NSInteger selectIndex) {
         weakSelf.groupTypeTF.text = name;
         weakSelf.group_id = group_id;
@@ -208,7 +279,7 @@
  地区选择
  */
 - (IBAction)areaChoose:(id)sender {
-
+    
     [self.view endEditing:YES];
     
     if(self.areaDataArr.count != 0){
@@ -277,7 +348,7 @@
  是否同意创客承诺书
  */
 - (IBAction)isAgreeProtocol:(id)sender {
-
+    
     _isAgreeProtocol = !_isAgreeProtocol;
     
     if (_isAgreeProtocol) {
@@ -292,7 +363,6 @@
  提交
  */
 - (IBAction)submit:(id)sender {
-//    NSLog(@" 提交  kappend_lower");
     if (![predicateModel valiMobile:self.phoneTF.text]) {
         [EasyShowTextView showInfoText:@"手机号输入不正确"];
         return;
@@ -305,22 +375,20 @@
         [EasyShowTextView showInfoText:@"请填写验证码"];
         return;
     }
-  
-    if (self.staffingTF.text.length == 0) {
-        [EasyShowTextView showInfoText:@"请设置人员配置"];
-        return;
+    
+    if ([[UserModel defaultUser].group_id integerValue] != GROUP_GJTG) {
+        
+        if (self.staffingTF.text.length == 0) {
+            [EasyShowTextView showInfoText:@"请设置人员配置"];
+            return;
+        }
     }
-
     
     if (self.subordinateLabel.text.length == 0) {
         [EasyShowTextView showInfoText:@"未找到你的下级"];
         return;
     }
-    
-//    if (self.group_id.length == 0) {
-//        [EasyShowTextView showInfoText:@"请选择身份类型"];
-//        return;
-//    }
+ 
     if (self.areaTF.text.length == 0) {
         [EasyShowTextView showInfoText:@"请选择地区"];
         return;
@@ -368,7 +436,7 @@
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-     
+            
             [EasyShowTextView showSuccessText:@"提交成功"];
             [self.navigationController popViewControllerAnimated:YES];
             
