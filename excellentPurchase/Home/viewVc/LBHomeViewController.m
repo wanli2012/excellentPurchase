@@ -12,7 +12,6 @@
 #import "LBImmediateRushBuyCell.h"
 #import "UIImage+GIF.h"
 #import <CoreLocation/CoreLocation.h>
-#import "LBSetUpViewController.h"
 #import "LBTmallHotsearchViewController.h"
 #import "LBSaveLocationInfoModel.h"
 #import "GYZChooseCityController.h"
@@ -457,8 +456,10 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         }
         if (indexPath.row == 0) {
             cell.newsModels = self.model.news;
+            cell.imagev.image = [UIImage imageNamed:@"得瑟狗-头条"];
         }else if(indexPath.row == 1){
             cell.orderModels = self.model.orders;
+            cell.imagev.image = [UIImage imageNamed:@"得瑟狗-今日订单"];
         }
         cell.index = indexPath.row;
         cell.delegate = self;
@@ -490,11 +491,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    self.hidesBottomBarWhenPushed = YES;
-    LBSetUpViewController *vc =[[LBSetUpViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-     self.hidesBottomBarWhenPushed = NO;
+
 }
 //跳搜素
 - (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {

@@ -979,14 +979,6 @@
 		F97CDC99201593B30036B8E0 /* LBEat_StoredetailCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC92201593B20036B8E0 /* LBEat_StoredetailCommentsTableViewCell.m */; };
 		F97CDCA12015ACC90036B8E0 /* LBMineOrderManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC9F2015ACC90036B8E0 /* LBMineOrderManagerViewController.m */; };
 		F97CDCA22015ACC90036B8E0 /* LBMineOrderManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CDCA02015ACC90036B8E0 /* LBMineOrderManagerViewController.xib */; };
-		F97E6035200EE68100C9C4E7 /* JYCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6026200EE68000C9C4E7 /* JYCarousel.m */; };
-		F97E6036200EE68100C9C4E7 /* JYConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6028200EE68000C9C4E7 /* JYConfiguration.m */; };
-		F97E6037200EE68100C9C4E7 /* JYImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E602A200EE68000C9C4E7 /* JYImageCache.m */; };
-		F97E6038200EE68100C9C4E7 /* JYImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E602C200EE68000C9C4E7 /* JYImageDownloader.m */; };
-		F97E6039200EE68100C9C4E7 /* JYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E602E200EE68000C9C4E7 /* JYPageControl.m */; };
-		F97E603A200EE68100C9C4E7 /* JYTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6030200EE68000C9C4E7 /* JYTitleLabel.m */; };
-		F97E603B200EE68100C9C4E7 /* JYWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6032200EE68000C9C4E7 /* JYWeakTimer.m */; };
-		F97E603C200EE68100C9C4E7 /* UIImageView+JYImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6034200EE68000C9C4E7 /* UIImageView+JYImageViewManager.m */; };
 		F97E6043200EEAE900C9C4E7 /* LBEat_CateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6041200EEAE900C9C4E7 /* LBEat_CateViewController.m */; };
 		F97E6044200EEAE900C9C4E7 /* LBEat_CateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E6042200EEAE900C9C4E7 /* LBEat_CateViewController.xib */; };
 		F97E6048200EEBD400C9C4E7 /* GLIntegralHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E6045200EEBD200C9C4E7 /* GLIntegralHeaderView.xib */; };
@@ -2729,22 +2721,6 @@
 		F97CDC9E2015ACC90036B8E0 /* LBMineOrderManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineOrderManagerViewController.h; sourceTree = "<group>"; };
 		F97CDC9F2015ACC90036B8E0 /* LBMineOrderManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineOrderManagerViewController.m; sourceTree = "<group>"; };
 		F97CDCA02015ACC90036B8E0 /* LBMineOrderManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineOrderManagerViewController.xib; sourceTree = "<group>"; };
-		F97E6025200EE68000C9C4E7 /* JYCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCarousel.h; sourceTree = "<group>"; };
-		F97E6026200EE68000C9C4E7 /* JYCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCarousel.m; sourceTree = "<group>"; };
-		F97E6027200EE68000C9C4E7 /* JYConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYConfiguration.h; sourceTree = "<group>"; };
-		F97E6028200EE68000C9C4E7 /* JYConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYConfiguration.m; sourceTree = "<group>"; };
-		F97E6029200EE68000C9C4E7 /* JYImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYImageCache.h; sourceTree = "<group>"; };
-		F97E602A200EE68000C9C4E7 /* JYImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYImageCache.m; sourceTree = "<group>"; };
-		F97E602B200EE68000C9C4E7 /* JYImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYImageDownloader.h; sourceTree = "<group>"; };
-		F97E602C200EE68000C9C4E7 /* JYImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYImageDownloader.m; sourceTree = "<group>"; };
-		F97E602D200EE68000C9C4E7 /* JYPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPageControl.h; sourceTree = "<group>"; };
-		F97E602E200EE68000C9C4E7 /* JYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPageControl.m; sourceTree = "<group>"; };
-		F97E602F200EE68000C9C4E7 /* JYTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTitleLabel.h; sourceTree = "<group>"; };
-		F97E6030200EE68000C9C4E7 /* JYTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTitleLabel.m; sourceTree = "<group>"; };
-		F97E6031200EE68000C9C4E7 /* JYWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYWeakTimer.h; sourceTree = "<group>"; };
-		F97E6032200EE68000C9C4E7 /* JYWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYWeakTimer.m; sourceTree = "<group>"; };
-		F97E6033200EE68000C9C4E7 /* UIImageView+JYImageViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+JYImageViewManager.h"; sourceTree = "<group>"; };
-		F97E6034200EE68000C9C4E7 /* UIImageView+JYImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JYImageViewManager.m"; sourceTree = "<group>"; };
 		F97E6040200EEAE900C9C4E7 /* LBEat_CateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_CateViewController.h; sourceTree = "<group>"; };
 		F97E6041200EEAE900C9C4E7 /* LBEat_CateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_CateViewController.m; sourceTree = "<group>"; };
 		F97E6042200EEAE900C9C4E7 /* LBEat_CateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_CateViewController.xib; sourceTree = "<group>"; };
@@ -5974,7 +5950,6 @@
 				F9426A89201ABB520054417E /* HCPopup */,
 				4AFC0EA92015740E004518F4 /* 评论弹出框 */,
 				F97E6059200EF1DB00C9C4E7 /* XHStarRateView */,
-				F97E6024200EE68000C9C4E7 /* JYCarousel */,
 				F95FD42C200DC2C300F6C523 /* Standard */,
 				F95B533F200CAA0000A81954 /* PopoverView */,
 				F93409F22009CF680002DBB8 /* SPPageMenu */,
@@ -7658,29 +7633,6 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		F97E6024200EE68000C9C4E7 /* JYCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				F97E6025200EE68000C9C4E7 /* JYCarousel.h */,
-				F97E6026200EE68000C9C4E7 /* JYCarousel.m */,
-				F97E6027200EE68000C9C4E7 /* JYConfiguration.h */,
-				F97E6028200EE68000C9C4E7 /* JYConfiguration.m */,
-				F97E6029200EE68000C9C4E7 /* JYImageCache.h */,
-				F97E602A200EE68000C9C4E7 /* JYImageCache.m */,
-				F97E602B200EE68000C9C4E7 /* JYImageDownloader.h */,
-				F97E602C200EE68000C9C4E7 /* JYImageDownloader.m */,
-				F97E602D200EE68000C9C4E7 /* JYPageControl.h */,
-				F97E602E200EE68000C9C4E7 /* JYPageControl.m */,
-				F97E602F200EE68000C9C4E7 /* JYTitleLabel.h */,
-				F97E6030200EE68000C9C4E7 /* JYTitleLabel.m */,
-				F97E6031200EE68000C9C4E7 /* JYWeakTimer.h */,
-				F97E6032200EE68000C9C4E7 /* JYWeakTimer.m */,
-				F97E6033200EE68000C9C4E7 /* UIImageView+JYImageViewManager.h */,
-				F97E6034200EE68000C9C4E7 /* UIImageView+JYImageViewManager.m */,
-			);
-			path = JYCarousel;
-			sourceTree = "<group>";
-		};
 		F97E603D200EEAE900C9C4E7 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -8571,7 +8523,6 @@
 				4AA3A17A20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.m in Sources */,
 				4AEA55762023426B00129D9A /* GLMine_Team_StaffingCell.m in Sources */,
 				4A9A8BF2202B22C200DD54CD /* GLAccountModel.m in Sources */,
-				F97E603C200EE68100C9C4E7 /* UIImageView+JYImageViewManager.m in Sources */,
 				4AC971CE201F27AB00255F05 /* LBMineCentermodifyAdressTableViewCell.m in Sources */,
 				F923B1E32020021F00DFEF7C /* ZXDefaultGridSampler.m in Sources */,
 				F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */,
@@ -8652,7 +8603,6 @@
 				4A9CBD9B20240AB3004623C5 /* LBBaseFinishProductsViewController.m in Sources */,
 				4A9CBDC72024AB27004623C5 /* LBAddOrEditProductViewController.m in Sources */,
 				F95072DD200492840026D28F /* LBEatAndDrinkViewController.m in Sources */,
-				F97E6038200EE68100C9C4E7 /* JYImageDownloader.m in Sources */,
 				4A9C88F720219C2100EFF9D5 /* GLFinancialCenterModel.m in Sources */,
 				4A19C37B20171FE300D15D82 /* GLMine_ManagementController.m in Sources */,
 				F923B22A2020021F00DFEF7C /* ZXRSS14Reader.m in Sources */,
@@ -8747,7 +8697,6 @@
 				4A7C4F2B2025B0B600196410 /* GLStoreCounterModel.m in Sources */,
 				F923B1FD2020021F00DFEF7C /* ZXDataMatrixDetector.m in Sources */,
 				4A9E18A52011CAED00E1EC05 /* UIButton+CZHExtension.m in Sources */,
-				F97E603B200EE68100C9C4E7 /* JYWeakTimer.m in Sources */,
 				4AC74DB7201C36B7006B0F5C /* DropMenuModel.m in Sources */,
 				F9288253201C7C8D000B0474 /* GYZCityHeaderView.m in Sources */,
 				F9426B49201ABC810054417E /* LBAddCounterContainerView.m in Sources */,
@@ -8786,7 +8735,6 @@
 				F955D13F200890F5001EEC81 /* LBFindSecondPassWordViewController.m in Sources */,
 				F9309495202C6A97004763A1 /* TXScrollLabelView.m in Sources */,
 				F923B1B72020021E00DFEF7C /* ZXEmailDoCoMoResultParser.m in Sources */,
-				F97E6035200EE68100C9C4E7 /* JYCarousel.m in Sources */,
 				F923B1CC2020021E00DFEF7C /* ZXVCardResultParser.m in Sources */,
 				4A20E95E2012DAAB00E091EA /* GLMine_Team_UnderlingDetailController.m in Sources */,
 				F9426AF6201ABC200054417E /* UIView+EasyShowExt.m in Sources */,
@@ -8798,7 +8746,6 @@
 				4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */,
 				4A9E18C62011F45100E1EC05 /* GLMine_Team_UploadLicenseController.m in Sources */,
 				F923B2592020021F00DFEF7C /* ZXPDF417BarcodeMatrix.m in Sources */,
-				F97E6036200EE68100C9C4E7 /* JYConfiguration.m in Sources */,
 				F923B2472020021F00DFEF7C /* ZXUPCEANWriter.m in Sources */,
 				F94D250B200E01F800381E2A /* LBUploadIdentityPictureViewController.m in Sources */,
 				F923B22D2020021F00DFEF7C /* ZXRSSPair.m in Sources */,
@@ -8898,7 +8845,6 @@
 				F9426B6F201AF74A0054417E /* LBShopProductClassifyMenuReusableView.m in Sources */,
 				F923B21E2020021F00DFEF7C /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				4A20E9BC20132D1700E091EA /* GLMine_Message_InteractCell.m in Sources */,
-				F97E6037200EE68100C9C4E7 /* JYImageCache.m in Sources */,
 				4AE55698202953C1009100B1 /* GLVoucherRecordModel.m in Sources */,
 				F923B2742020021F00DFEF7C /* ZXQRCodeEncoder.m in Sources */,
 				4AB58887201B0197009ADC9A /* yindaotuViewController.m in Sources */,
@@ -8929,7 +8875,6 @@
 				F95073062004BB110026D28F /* LBHorseRaceLampCell.m in Sources */,
 				F97CDC95201593B30036B8E0 /* LBEat_StoreMoreCommentsTableViewCell.m in Sources */,
 				4AB3DCB62016C4CA00099650 /* LBMineOrderDetailpdiscountsTableViewCell.m in Sources */,
-				F97E6039200EE68100C9C4E7 /* JYPageControl.m in Sources */,
 				4A9CBDCB2024AB43004623C5 /* GLAddOrEditProductCateModel.m in Sources */,
 				F923B1BB2020021E00DFEF7C /* ZXGeoResultParser.m in Sources */,
 				F923B1E82020021F00DFEF7C /* ZXIntArray.m in Sources */,
@@ -8950,7 +8895,6 @@
 				F923B1C52020021E00DFEF7C /* ZXSMTPResultParser.m in Sources */,
 				F93D48F02028396E0053F8EF /* LBMyOrdersDetailModel.m in Sources */,
 				F923B2512020021F00DFEF7C /* ZXPDF417DecodedBitStreamParser.m in Sources */,
-				F97E603A200EE68100C9C4E7 /* JYTitleLabel.m in Sources */,
 				F923B1D22020021E00DFEF7C /* ZXCapture.m in Sources */,
 				F923B1A62020021E00DFEF7C /* ZXAztecEncoder.m in Sources */,
 				F923B1A22020021E00DFEF7C /* ZXAztecDecoder.m in Sources */,

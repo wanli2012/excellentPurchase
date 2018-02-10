@@ -27,7 +27,7 @@
 /**
  点击确认
  */
-- (void)actionSure;
+- (void)actionSure:(NSString*)password;
 
 @end
 

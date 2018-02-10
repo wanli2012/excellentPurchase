@@ -248,7 +248,12 @@
         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
-
+-(void)actionSure:(NSString *)password{
+    if (password.length < 6) {
+        [EasyShowTextView showInfoText:@"请输入二级密码"];
+        return;
+    }
+}
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     

@@ -37,7 +37,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6t-dF-g4G">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="世纪优购" translatesAutoresizingMaskIntoConstraints="NO" id="CJX-73-fLB">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="世纪优购" translatesAutoresizingMaskIntoConstraints="NO" id="CJX-73-fLB">
                                     <rect key="frame" x="145" y="70" width="85" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="85" id="Uoy-nv-E4q"/>
@@ -324,6 +324,6 @@
         <image name="identityDown" width="11" height="7"/>
         <image name="loginBack" width="375" height="667"/>
         <image name="return" width="10" height="17"/>
-        <image name="世纪优购" width="82" height="82"/>
+        <image name="世纪优购" width="123" height="37"/>
     </resources>
 </document>

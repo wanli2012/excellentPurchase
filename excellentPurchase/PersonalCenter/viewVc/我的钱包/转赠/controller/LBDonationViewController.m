@@ -108,7 +108,6 @@
         return;
     }
     
-    
     if(self.receiveManTF.text.length == 0){
         [EasyShowTextView showInfoText:@"请填写接收人ID或者手机号"];
         return;
@@ -137,7 +136,6 @@
         [EasyShowTextView showInfoText:@"请先同意转赠须知"];
         return;
     }
-    
 
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
@@ -200,7 +198,12 @@
         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
-
+-(void)actionSure:(NSString *)password{
+    if (password.length < 6) {
+        [EasyShowTextView showInfoText:@"请输入二级密码"];
+        return;
+    }
+}
 #pragma mark - 是否同意协议
 - (IBAction)isAgreeProtocol:(id)sender {
     _isAgreeProtocol =! _isAgreeProtocol;

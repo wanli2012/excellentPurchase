@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "haitaoshouye_guanggao.png",
+      "filename" : "haitaoshangcheng.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "haitaoshouye_guanggao@2x.png",
+      "filename" : "haitaoshangcheng@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "haitaoshouye_guanggao@3x.png",
+      "filename" : "haitaoshangcheng@3x.png",
       "scale" : "3x"
     }
   ],

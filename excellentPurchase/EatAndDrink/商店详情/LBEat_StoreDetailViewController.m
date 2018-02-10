@@ -7,8 +7,6 @@
 //
 
 #import "LBEat_StoreDetailViewController.h"
-#import "JYCarousel.h"
-#import "JYImageCache.h"
 #import "LBEat_storeDetailInfoOtherTableViewCell.h"
 #import "LBEat_storeDetailInfodiscountTableViewCell.h"
 #import "LBEat_storeDetailInfomationHeaderView.h"
@@ -29,7 +27,7 @@ static NSString *eat_storeDetailInfodiscountTableViewCell = @"LBEat_storeDetailI
 static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfoOtherTableViewCell";
 static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInfomationTableViewCell";
 
-@interface LBEat_StoreDetailViewController ()<UITableViewDelegate,UITableViewDataSource,LBEat_storeDetailInfomationdelegete>
+@interface LBEat_StoreDetailViewController ()<UITableViewDelegate,UITableViewDataSource,LBEat_storeDetailInfomationdelegete,SDCycleScrollViewDelegate>
 
 @property (strong , nonatomic)UIButton *collectionButton;
 @property (strong , nonatomic)UIButton *messageButton;
@@ -37,7 +35,7 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
 /**
  头部轮播
  */
-@property (nonatomic, strong) JYCarousel *carouselView;
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property (nonatomic, strong) LBEat_StoreDetailDataModel *model;
@@ -104,7 +102,8 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
             }else{
                 _collectionButton.selected = YES;
             }
-            [self addCarouselView1];//加载头部视图
+            self.tableview.tableHeaderView = self.cycleScrollView;
+            self.cycleScrollView.imageURLStringsGroup = _model.store_pic;
             [self.tableview reloadData];
         }else{
             
@@ -401,25 +400,26 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-
-- (void)addCarouselView1{
+#pragma mark - 点击轮播图 回调
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-    //block方式创建
-    __weak typeof(self) weakSelf = self;
-    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray: _model.store_pic];
-    if (!_carouselView) {
-        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-            carouselConfig.pageContollType = LabelPageControl;
-            carouselConfig.interValTime = 3;
-            carouselConfig.placeholder = [UIImage imageNamed:@"shangpinxiangqing"];
-            return carouselConfig;
-        } clickBlock:^(NSInteger index) {
-
-        }];
-        self.tableview.tableHeaderView = _carouselView;
+}
+-(SDCycleScrollView*)cycleScrollView{
+    
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) delegate:self placeholderImage:[UIImage imageNamed:@"shangpinxiangqing"]];//当一张都没有的时候的 占位图
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;// 翻页 右下角
+        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
+        _cycleScrollView.backgroundColor = [UIColor whiteColor];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(7, 7);
+        _cycleScrollView.localizationImageNamesGroup = @[@" "];
+        _cycleScrollView.showPageControl = NO;
     }
-    //开始轮播
-    [_carouselView startCarouselWithArray:imageArray];
+    
+    return _cycleScrollView;
     
 }
 
