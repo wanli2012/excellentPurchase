@@ -59,6 +59,7 @@ static NSString *voucherCenterRecoderTableViewCell = @"LBVoucherCenterRecoderTab
  设置无数据图
  */
 -(void)setupNpdata{
+    
     WeakSelf;
     self.tableview.tableFooterView = [UIView new];
     
@@ -78,6 +79,7 @@ static NSString *voucherCenterRecoderTableViewCell = @"LBVoucherCenterRecoderTab
 
 //请求数据
 -(void)postRequest:(BOOL)isRefresh{
+    
     if(isRefresh){
         self.page = 1;
     }else{

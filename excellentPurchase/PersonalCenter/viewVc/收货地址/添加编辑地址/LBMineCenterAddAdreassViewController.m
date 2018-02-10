@@ -45,7 +45,7 @@
 @property (strong, nonatomic)NSString *cityStr;
 @property (strong, nonatomic)NSString *countryStr;
 
-@property (nonatomic, strong)NSMutableArray *dataArr;
+@property (nonatomic, strong)NSArray *dataArr;
 
 @end
 
@@ -90,6 +90,15 @@
     //    [self initProvinceCityArea];
     
 }
+// 读取本地JSON文件
+- (NSArray *)readLocalFileWithName:(NSString *)name {
+    // 获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"json"];
+    // 将文件数据化
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    // 对数据进行JSON格式化并返回字典形式
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+}
 
 #pragma mark - 地区选择
 /**
@@ -98,36 +107,13 @@
 - (IBAction)areaChoose:(id)sender {
     
     [self.view endEditing:YES];
-    
-    if(self.dataArr.count != 0){
-        [self popAreaPicker];
-        return;
-    }
-    
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
 
-    [EasyShowLodingView showLodingText:@"数据请求中"];
-    [NetworkManager requestPOSTWithURLStr:kget_city_list paramDic:dic finish:^(id responseObject) {
-        
-        [EasyShowLodingView hidenLoding];
-        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            
-            self.dataArr = responseObject[@"data"];
-            
-            [self popAreaPicker];
-        }else{
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }
+    self.dataArr = [self readLocalFileWithName:@"provincesamy"];
+  
+    [self popAreaPicker];
 
-    } enError:^(NSError *error) {
-        
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
-    
-    }];
-    
 }
+
 #pragma mark - 弹出省市区三级列表
 - (void)popAreaPicker{
     
@@ -277,5 +263,6 @@
     self.savebutoon.clipsToBounds=YES;
     
 }
+
 
 @end

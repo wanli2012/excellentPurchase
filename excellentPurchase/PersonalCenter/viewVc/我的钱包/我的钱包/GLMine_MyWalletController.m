@@ -80,6 +80,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *vcstr = self.userVcArr[indexPath.row];
+    
+    if([vcstr isEqualToString:@"LBDonationViewController"] || [vcstr isEqualToString:@"GLMine_MyWallet_CashController"]){//我的团队
+        
+        if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
+            [EasyShowTextView showInfoText:@"请先实名认证"];
+            return;
+        }else if([[UserModel defaultUser].rzstatus integerValue] == 1){
+            [EasyShowTextView showInfoText:@"实名认证审核中"];
+            return;
+        }else if([[UserModel defaultUser].rzstatus integerValue] == 3){
+            [EasyShowTextView showInfoText:@"实名认证失败"];
+            return;
+        }
+    }
+
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
     
@@ -107,6 +122,7 @@
     
     return _userVcArr;
 }
+
 - (UITableView *)tableView{
     
     if (!_tableView) {

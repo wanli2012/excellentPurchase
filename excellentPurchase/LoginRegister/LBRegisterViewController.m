@@ -206,9 +206,9 @@
     _isAgreeProtocol = !_isAgreeProtocol;
     
     if (_isAgreeProtocol) {
-        [self.signBtn setImage:[UIImage imageNamed:@"choice"] forState:UIControlStateNormal];
+        [self.signBtn setImage:[UIImage imageNamed:@"greetselect-y"] forState:UIControlStateNormal];
     }else{
-        [self.signBtn setImage:[UIImage imageNamed:@"nochoice"] forState:UIControlStateNormal];
+        [self.signBtn setImage:[UIImage imageNamed:@"greetselect-n"] forState:UIControlStateNormal];
     }
 }
 

@@ -28,15 +28,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-or-5p4">
-                                <rect key="frame" x="10" y="34.5" width="60.5" height="13.5"/>
+                                <rect key="frame" x="249.5" y="34.5" width="60.5" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" red="0.61568627450980395" green="0.61568627450980395" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIh-iC-oCi">
-                                <rect key="frame" x="275" y="18.5" width="35" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <rect key="frame" x="280.5" y="10.5" width="29.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmg-yI-EAQ">
+                                <rect key="frame" x="10" y="34.5" width="26" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -44,10 +50,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="LIh-iC-oCi" secondAttribute="trailing" constant="10" id="4op-CI-Yw0"/>
                             <constraint firstItem="mUl-m3-beq" firstAttribute="top" secondItem="WFw-Ng-RQz" secondAttribute="top" constant="10" id="9XY-sa-v3Y"/>
-                            <constraint firstItem="JCe-or-5p4" firstAttribute="leading" secondItem="WFw-Ng-RQz" secondAttribute="leading" constant="10" id="KbX-DL-bfH"/>
                             <constraint firstItem="mUl-m3-beq" firstAttribute="leading" secondItem="WFw-Ng-RQz" secondAttribute="leading" constant="10" id="PAQ-0E-kfw"/>
+                            <constraint firstAttribute="trailing" secondItem="JCe-or-5p4" secondAttribute="trailing" constant="10" id="UT5-vM-h8b"/>
+                            <constraint firstItem="Xmg-yI-EAQ" firstAttribute="centerY" secondItem="JCe-or-5p4" secondAttribute="centerY" id="bKx-F5-voD"/>
+                            <constraint firstItem="LIh-iC-oCi" firstAttribute="centerY" secondItem="mUl-m3-beq" secondAttribute="centerY" id="iu0-LO-5Y5"/>
                             <constraint firstItem="JCe-or-5p4" firstAttribute="top" secondItem="mUl-m3-beq" secondAttribute="bottom" constant="5" id="jgw-Yv-DTr"/>
-                            <constraint firstItem="LIh-iC-oCi" firstAttribute="centerY" secondItem="WFw-Ng-RQz" secondAttribute="centerY" id="kQW-O4-0FB"/>
+                            <constraint firstItem="Xmg-yI-EAQ" firstAttribute="leading" secondItem="WFw-Ng-RQz" secondAttribute="leading" constant="10" id="mSx-xh-5h6"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -60,6 +68,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="accountLabel" destination="Xmg-yI-EAQ" id="fAt-FT-jgv"/>
                 <outlet property="dateLabel" destination="JCe-or-5p4" id="jhj-NN-cqv"/>
                 <outlet property="moneyLabel" destination="LIh-iC-oCi" id="3FY-Jg-UJW"/>
                 <outlet property="rechargeTypeLabel" destination="mUl-m3-beq" id="wxf-Ge-A96"/>

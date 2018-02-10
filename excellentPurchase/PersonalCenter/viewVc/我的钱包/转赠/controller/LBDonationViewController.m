@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *donationTypeTF;//转赠类型
 @property (weak, nonatomic) IBOutlet UITextField *receiveManGroupTypeTF;//接收人身份
 
-
 @property (nonatomic, assign)BOOL isHaveDian;
 
 @property (nonatomic, copy)NSString *group_id;//被转赠人group_id
@@ -113,6 +112,10 @@
         [EasyShowTextView showInfoText:@"请填写接收人ID或者手机号"];
         return;
     }
+    if([self.receiveManTF.text isEqualToString:[UserModel defaultUser].user_name]){
+        [EasyShowTextView showInfoText:@"不能给自己转赠"];
+        return;
+    }
     
     if (self.group_id == 0) {
         [EasyShowTextView showInfoText:@"请选择接收人身份类型"];
@@ -138,7 +141,7 @@
         return;
     }
     
-
+    
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
     [payPasswordView showInView:self.view];

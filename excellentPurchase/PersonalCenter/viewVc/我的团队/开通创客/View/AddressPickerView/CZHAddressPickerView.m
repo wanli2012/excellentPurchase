@@ -13,17 +13,17 @@
 #define TOOLBAR_BUTTON_WIDTH CZH_ScaleWidth(80)
 
 typedef NS_ENUM(NSInteger, CZHAddressPickerViewButtonType) {
-    CZHAddressPickerViewButtonTypeCancle,
-    CZHAddressPickerViewButtonTypeSure
+   CZHAddressPickerViewButtonTypeCancle,
+   CZHAddressPickerViewButtonTypeSure
 };
 
 typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
-    //只显示省
-    CZHAddressPickerViewTypeProvince = 1,
-    //显示省份和城市
-    CZHAddressPickerViewTypeCity,
-    //显示省市区，默认
-    CZHAddressPickerViewTypeArea
+   //只显示省
+   CZHAddressPickerViewTypeProvince = 1,
+   //显示省份和城市
+   CZHAddressPickerViewTypeCity,
+   //显示省市区，默认
+   CZHAddressPickerViewTypeArea
 };
 
 @interface CZHAddressPickerView ()<UIPickerViewDelegate, UIPickerViewDataSource>
@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
 
 @property (nonatomic, copy)NSArray *dataArr;//省市区数据源
 ///省
-@property(nonatomic, strong) NSArray * provinceArray;
+//@property(nonatomic, strong) NSArray * provinceArray;
 ///市
 @property(nonatomic, strong) NSArray * cityArray;
 ///区
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
  * provinceBlock : 回调省份
  */
 + (instancetype)provincePickerViewWithProvinceBlock:(void(^)(NSString *province))provinceBlock {
-    return [CZHAddressPickerView addressPickerViewWithProvince:nil city:nil area:nil provinceBlock:provinceBlock cityBlock:nil areaBlock:nil showType:CZHAddressPickerViewTypeProvince];
+   return [CZHAddressPickerView addressPickerViewWithProvince:nil city:nil area:nil provinceBlock:provinceBlock cityBlock:nil areaBlock:nil showType:CZHAddressPickerViewTypeProvince];
 }
 
 /**
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
  * cityBlock : 回调省份和城市
  */
 + (instancetype)cityPickerViewWithCityBlock:(void(^)(NSString *province, NSString *city))cityBlock {
-    return [CZHAddressPickerView addressPickerViewWithProvince:nil city:nil area:nil provinceBlock:nil cityBlock:cityBlock areaBlock:nil showType:CZHAddressPickerViewTypeCity];
+   return [CZHAddressPickerView addressPickerViewWithProvince:nil city:nil area:nil provinceBlock:nil cityBlock:cityBlock areaBlock:nil showType:CZHAddressPickerViewTypeCity];
 }
 
 /**
@@ -101,14 +101,14 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
  * areaBlock : 回调省份城市和区域
  */
 + (instancetype)areaPickerViewWithAreaBlock:(void(^)(NSString *province, NSString *city, NSString *area))areaBlock {
-    return [CZHAddressPickerView addressPickerViewWithProvince:nil city:nil area:nil provinceBlock:nil cityBlock:nil areaBlock:areaBlock showType:CZHAddressPickerViewTypeArea];
+   return [CZHAddressPickerView addressPickerViewWithProvince:nil city:nil area:nil provinceBlock:nil cityBlock:nil areaBlock:areaBlock showType:CZHAddressPickerViewTypeArea];
 }
 
 
 + (instancetype)areaPickerViewWithDataArr:(NSArray *)dataArr AreaDetailBlock:(void(^)(NSString *province, NSString *city, NSString *area,NSString *province_id,NSString *city_id,NSString *area_id))areaDetailBlock {
-    
-    return [CZHAddressPickerView addressPickerViewWithDataArr:dataArr Province:nil city:nil area:nil provinceBlock:nil cityBlock:nil areaBlock:nil areaDetailBlock:areaDetailBlock showType:CZHAddressPickerViewTypeArea];
-
+   
+   return [CZHAddressPickerView addressPickerViewWithDataArr:dataArr Province:nil city:nil area:nil provinceBlock:nil cityBlock:nil areaBlock:nil areaDetailBlock:areaDetailBlock showType:CZHAddressPickerViewTypeArea];
+   
 }
 
 
@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
  * provinceBlock : 回调省份
  */
 + (instancetype)provincePickerViewWithProvince:(NSString *)province provinceBlock:(void(^)(NSString *province))provinceBlock {
-    return [CZHAddressPickerView addressPickerViewWithProvince:province city:nil area:nil provinceBlock:provinceBlock cityBlock:nil areaBlock:nil showType:CZHAddressPickerViewTypeProvince];
+   return [CZHAddressPickerView addressPickerViewWithProvince:province city:nil area:nil provinceBlock:provinceBlock cityBlock:nil areaBlock:nil showType:CZHAddressPickerViewTypeProvince];
 }
 
 /**
@@ -127,7 +127,7 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
  * cityBlock : 回调省份和城市
  */
 + (instancetype)cityPickerViewWithProvince:(NSString *)province city:(NSString *)city cityBlock:(void(^)(NSString *province, NSString *city))cityBlock {
-    return [CZHAddressPickerView addressPickerViewWithProvince:province city:city area:nil provinceBlock:nil cityBlock:cityBlock areaBlock:nil showType:CZHAddressPickerViewTypeCity];
+   return [CZHAddressPickerView addressPickerViewWithProvince:province city:city area:nil provinceBlock:nil cityBlock:cityBlock areaBlock:nil showType:CZHAddressPickerViewTypeCity];
 }
 
 
@@ -137,446 +137,308 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
  * areaBlock : 回调省份城市和区域
  */
 + (instancetype)areaPickerViewWithProvince:(NSString *)province city:(NSString *)city area:(NSString *)area areaBlock:(void(^)(NSString *province, NSString *city, NSString *area))areaBlock {
-    return [CZHAddressPickerView addressPickerViewWithProvince:province city:city area:area provinceBlock:nil cityBlock:nil areaBlock:areaBlock showType:CZHAddressPickerViewTypeArea];
+   return [CZHAddressPickerView addressPickerViewWithProvince:province city:city area:area provinceBlock:nil cityBlock:nil areaBlock:areaBlock showType:CZHAddressPickerViewTypeArea];
 }
 + (instancetype)areaPickerViewWithDataArr:(NSArray *)dataArr Province:(NSString *)province city:(NSString *)city area:(NSString *)area areaBlock:(void(^)(NSString *province, NSString *city, NSString *area))areaBlock areaDetailBlock:(void(^)(NSString *province, NSString *city, NSString *area,NSString *province_id,NSString *city_id,NSString *area_id))areaDetailBlock {
-    return [CZHAddressPickerView addressPickerViewWithDataArr:(NSArray *)dataArr Province:province city:city area:area  provinceBlock:nil cityBlock:nil areaBlock:nil areaDetailBlock:areaDetailBlock showType:CZHAddressPickerViewTypeArea];
+   return [CZHAddressPickerView addressPickerViewWithDataArr:(NSArray *)dataArr Province:province city:city area:area  provinceBlock:nil cityBlock:nil areaBlock:nil areaDetailBlock:areaDetailBlock showType:CZHAddressPickerViewTypeArea];
 }
 
 
 + (instancetype)addressPickerViewWithProvince:(NSString *)province city:(NSString *)city area:(NSString *)area provinceBlock:(void(^)(NSString *province))provinceBlock cityBlock:(void(^)(NSString *province, NSString *city))cityBlock areaBlock:(void(^)(NSString *province, NSString *city, NSString *area))areaBlock  showType:(CZHAddressPickerViewType)showType{
-    
-    CZHAddressPickerView *_view = [[CZHAddressPickerView alloc] init];
-    
-    _view.showType = showType;
-    
-    _view.selectProvince = province;
-    
-    _view.selectCity = city;
-    
-    _view.selectArea = area;
-    
-    _view.provinceBlock = provinceBlock;
-    
-    _view.cityBlock = cityBlock;
-    
-    _view.areaBlock = areaBlock;
-    
-    [_view czh_getData];
-    
-    [_view showView];
-    
-    return _view;
-    
+   
+   CZHAddressPickerView *_view = [[CZHAddressPickerView alloc] init];
+   
+   _view.showType = showType;
+   
+   _view.selectProvince = province;
+   
+   _view.selectCity = city;
+   
+   _view.selectArea = area;
+   
+   _view.provinceBlock = provinceBlock;
+   
+   _view.cityBlock = cityBlock;
+   
+   _view.areaBlock = areaBlock;
+   
+   [_view czh_getData];
+   
+   [_view showView];
+   
+   return _view;
+   
 }
 
 + (instancetype)addressPickerViewWithDataArr:(NSArray *)dataArr Province:(NSString *)province city:(NSString *)city area:(NSString *)area provinceBlock:(void(^)(NSString *province))provinceBlock cityBlock:(void(^)(NSString *province, NSString *city))cityBlock areaBlock:(void(^)(NSString *province, NSString *city, NSString *area))areaBlock areaDetailBlock:(void(^)(NSString *province, NSString *city, NSString *area,NSString *province_id,NSString *city_id,NSString *area_id))areaDetailBlock showType:(CZHAddressPickerViewType)showType{
-    
-    CZHAddressPickerView *_view = [[CZHAddressPickerView alloc] init];
-    
-    _view.dataSource = dataArr;
-    
-    _view.showType = showType;
-    
-    _view.selectProvince = province;
-    
-    _view.selectCity = city;
-    
-    _view.selectArea = area;
-    
-    _view.provinceBlock = provinceBlock;
-    
-    _view.cityBlock = cityBlock;
-    
-    _view.areaBlock = areaBlock;
-    
-    _view.areaDetailBlock = areaDetailBlock;
-    
-    [_view czh_getData];
-    
-    [_view showView];
-    
-    return _view;
-    
+   
+   CZHAddressPickerView *_view = [[CZHAddressPickerView alloc] init];
+   
+   _view.dataSource = dataArr;
+   
+   _view.showType = showType;
+   
+   _view.selectProvince = province;
+   
+   _view.selectCity = city;
+   
+   _view.selectArea = area;
+   
+   _view.provinceBlock = provinceBlock;
+   
+   _view.cityBlock = cityBlock;
+   
+   _view.areaBlock = areaBlock;
+   
+   _view.areaDetailBlock = areaDetailBlock;
+   
+   [_view czh_getData];
+   
+   [_view showView];
+   
+   return _view;
+   
 }
 
 
 
 - (instancetype)init {
-    if (self = [super init]) {
-        
-        [self czh_setView];
-
-    }
-    return self;
+   if (self = [super init]) {
+      
+      [self czh_setView];
+      
+   }
+   return self;
 }
 
 
 
 - (void)czh_setView {
-    
-    self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-    
-    UIView *containView = [[UIView alloc] init];
-    containView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, CZH_ScaleHeight(270));
-    [self addSubview:containView];
-    self.containView = containView;
-    
-    
-    UIView *toolBar = [[UIView alloc] init];
-    toolBar.frame = CGRectMake(0, 0, ScreenWidth, CZH_ScaleHeight(50));
-    toolBar.backgroundColor = CZHColor(0xf6f6f6);
-    [containView addSubview:toolBar];
-    
-    UIButton *cancleButton = [UIButton czh_buttonWithTarget:self action:@selector(buttonClick:) frame:CGRectMake(0, 0, TOOLBAR_BUTTON_WIDTH, toolBar.czh_height) titleColor:CZHColor(0x333333) titleFont:CZHGlobelNormalFont(14) title:@"取消"];
-
-    cancleButton.tag = CZHAddressPickerViewButtonTypeCancle;
-    [toolBar addSubview:cancleButton];
-    
-    UIButton *sureButton = [UIButton czh_buttonWithTarget:self action:@selector(buttonClick:) frame:CGRectMake(toolBar.czh_width - TOOLBAR_BUTTON_WIDTH, 0, TOOLBAR_BUTTON_WIDTH, toolBar.czh_height) titleColor:CZHThemeColor titleFont:CZHGlobelNormalFont(14) title:@"确定"];
-    sureButton.tag = CZHAddressPickerViewButtonTypeSure;
-    [toolBar addSubview:sureButton];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 50, 0, 100, toolBar.czh_height)];
-    label.text = @"地区选择";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = LBHexadecimalColor(0x333333);
-    label.font = [UIFont systemFontOfSize:16];
-    [toolBar addSubview:label];
-    
-    
-    UIPickerView *pickerView = [[UIPickerView alloc] init];
-    pickerView.backgroundColor = CZHColor(0xffffff);
-    pickerView.frame = CGRectMake(0, toolBar.czh_bottom, ScreenWidth, containView.czh_height - toolBar.czh_height);
-    pickerView.delegate = self;
-    pickerView.dataSource = self;
-    [containView addSubview:pickerView];
-    self.pickerView = pickerView;
-    
+   
+   self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+   
+   UIView *containView = [[UIView alloc] init];
+   containView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, CZH_ScaleHeight(270));
+   [self addSubview:containView];
+   self.containView = containView;
+   
+   
+   UIView *toolBar = [[UIView alloc] init];
+   toolBar.frame = CGRectMake(0, 0, ScreenWidth, CZH_ScaleHeight(50));
+   toolBar.backgroundColor = CZHColor(0xf6f6f6);
+   [containView addSubview:toolBar];
+   
+   UIButton *cancleButton = [UIButton czh_buttonWithTarget:self action:@selector(buttonClick:) frame:CGRectMake(0, 0, TOOLBAR_BUTTON_WIDTH, toolBar.czh_height) titleColor:CZHColor(0x333333) titleFont:CZHGlobelNormalFont(14) title:@"取消"];
+   
+   cancleButton.tag = CZHAddressPickerViewButtonTypeCancle;
+   [toolBar addSubview:cancleButton];
+   
+   UIButton *sureButton = [UIButton czh_buttonWithTarget:self action:@selector(buttonClick:) frame:CGRectMake(toolBar.czh_width - TOOLBAR_BUTTON_WIDTH, 0, TOOLBAR_BUTTON_WIDTH, toolBar.czh_height) titleColor:CZHThemeColor titleFont:CZHGlobelNormalFont(14) title:@"确定"];
+   sureButton.tag = CZHAddressPickerViewButtonTypeSure;
+   [toolBar addSubview:sureButton];
+   
+   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 50, 0, 100, toolBar.czh_height)];
+   label.text = @"地区选择";
+   label.textAlignment = NSTextAlignmentCenter;
+   label.textColor = LBHexadecimalColor(0x333333);
+   label.font = [UIFont systemFontOfSize:16];
+   [toolBar addSubview:label];
+   
+   
+   UIPickerView *pickerView = [[UIPickerView alloc] init];
+   pickerView.backgroundColor = CZHColor(0xffffff);
+   pickerView.frame = CGRectMake(0, toolBar.czh_bottom, ScreenWidth, containView.czh_height - toolBar.czh_height);
+   pickerView.delegate = self;
+   pickerView.dataSource = self;
+   [containView addSubview:pickerView];
+   self.pickerView = pickerView;
+   
 }
 
 //获取数据
 - (void)czh_getData {
-//    NSString * path = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"plist"];
-//    self.dataSource = [NSArray arrayWithContentsOfFile:path];
-    
-    NSMutableArray * tempArray = [NSMutableArray array];
-    
-    for (NSDictionary * tempDic in self.dataSource) {
-        
-        [tempArray addObject:tempDic[@"name"]];
-        
-//        for (int i = 0; i < tempDic.allKeys.count; i ++) {
-//            [tempArray addObject:tempDic.allKeys[i]];
-//        }
-        
-    }
-    
-    //省
-    self.provinceArray = [tempArray copy];
-    //市
-    self.cityArray = [self getCityNamesFromProvinceIndex:0];
-    //区
-    self.areaArray = [self getAreaNamesFromProvinceIndex:0 cityIndex:0];
 
-    //如果没有传入默认选中的省市区，默认选中各个数组的第一个
-    if (!self.selectProvince.length) {
-        self.selectProvince = [self.provinceArray firstObject];
-    }
-    if (!self.selectCity.length) {
-        self.selectCity = [self.cityArray firstObject];
-    }
-    if (!self.selectArea.length) {
-        self.selectArea = [self.areaArray firstObject];
-    }
-    
+   self.selectProvince_id = @"";
+   self.selectCity_id = @"";
+   self.selectArea_id = @"";
+   self.selectProvince = @"";
+   self.selectCity = @"";
+   self.selectArea = @"";
+   self.selectProvinceIndex = 0;
+   self.selectCityIndex = 0;
+   self.selectAreaIndex = 0;
 
-    NSInteger provinceIndex = 0;
-    NSInteger cityIndex = 0;
-    NSInteger areaIndex = 0;
-
-    
-    for (NSInteger p = 0; p < self.provinceArray.count; p++) {
-        if ([self.provinceArray[p] isEqualToString:self.selectProvince]) {
-            self.selectProvinceIndex = p;
-            provinceIndex = p;
-            self.cityArray = [self getCityNamesFromProvinceIndex:p];
-
-            for (NSInteger c = 0; c < self.cityArray.count; c++) {
-                if ([self.cityArray[c] isEqualToString:self.selectCity]) {
-                    self.selectCityIndex = c;
-                    cityIndex = c;
-                    self.areaArray = [self getAreaNamesFromProvinceIndex:p cityIndex:c];
-
-                    for (NSInteger a = 0; a < self.areaArray.count; a++) {
-                        if ([self.areaArray[a] isEqualToString:self.selectArea]) {
-                            self.selectAreaIndex = a;
-                            areaIndex = a;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-
-    if (self.showType == CZHAddressPickerViewTypeProvince) {
-        [self.pickerView selectRow:provinceIndex inComponent:0 animated:YES];
-    } else if (self.showType == CZHAddressPickerViewTypeCity) {
-        [self.pickerView selectRow:provinceIndex inComponent:0 animated:YES];
-        [self.pickerView selectRow:cityIndex inComponent:1 animated:YES];
-    } else if (self.showType == CZHAddressPickerViewTypeArea) {
-        [self.pickerView selectRow:provinceIndex inComponent:0 animated:YES];
-        [self.pickerView selectRow:cityIndex inComponent:1 animated:YES];
-        [self.pickerView selectRow:areaIndex inComponent:2 animated:YES];
-    }
-
-}
-
-//获取plist区域数组
-- (NSArray *)getAreaNamesFromProvinceIndex:(NSInteger)provinceIndex cityIndex:(NSInteger)cityIndex
-{
-
-//    NSDictionary * tempDic = [self.dataSource[provinceIndex] objectForKey:self.provinceArray[provinceIndex]];
-    NSArray *tempArr = self.dataSource[provinceIndex][@"city"][cityIndex][@"city"];
-//    NSArray * array = [NSArray array];
-    NSMutableArray *arrM = [NSMutableArray array];
-    for (NSDictionary *dic in tempArr) {
-        [arrM addObject:dic[@"name"]];
-    }
-    
-//    NSDictionary * dic = tempDic.allValues[cityIndex];
-//    array = [dic objectForKey:self.cityArray[cityIndex]];
-    
-//    return array;
-    return [arrM copy];
-}
-//获取plist城市数组
-- (NSArray *)getCityNamesFromProvinceIndex:(NSInteger)provinceIndex
-{
-
-    NSArray *tempArr = self.dataSource[provinceIndex][@"city"];
-    NSMutableArray * cityArray = [NSMutableArray array];
-    for (NSDictionary * valueDic in tempArr) {
-        [cityArray addObject:valueDic[@"name"]];
-
-    }
-    return [cityArray copy];
+   //市
+   self.cityArray = self.dataSource[0][@"city"];
+   //区
+   self.areaArray = self.dataSource[0][@"city"][0][@"city"];
+   
+   self.selectProvince = self.dataSource[0][@"name"];
+   self.selectCity = self.cityArray[0][@"name"];
+   self.selectArea = self.areaArray[0][@"name"];
+   
+   self.selectProvince_id = self.dataSource[0][@"id"];
+   self.selectCity_id = self.cityArray[0][@"id"];
+   self.selectArea_id = self.areaArray[0][@"id"];
+   
+   [self.pickerView reloadAllComponents];
+   
 }
 
 - (void)buttonClick:(UIButton *)sender {
-    
-    [self hideView];
-    
-    if (sender.tag == CZHAddressPickerViewButtonTypeSure) {
-        
-        if (_provinceBlock) {
-            _provinceBlock(self.selectProvince);
-        }
-        if (_cityBlock) {
-            _cityBlock(self.selectProvince, self.selectCity);
-        }
-        if (_areaBlock) {
-            _areaBlock(self.selectProvince, self.selectCity, self.selectArea);
-        }
-        if(_areaDetailBlock){
-           _areaDetailBlock(self.selectProvince,self.selectCity,self.selectArea, self.selectProvince_id,self.selectCity_id,self.selectArea_id);
-        }
-    }
+   
+   [self hideView];
+   
+   if (sender.tag == CZHAddressPickerViewButtonTypeSure) {
+      
+      if (_provinceBlock) {
+         _provinceBlock(self.selectProvince);
+      }
+      if (_cityBlock) {
+         _cityBlock(self.selectProvince, self.selectCity);
+      }
+      if (_areaBlock) {
+         _areaBlock(self.selectProvince, self.selectCity, self.selectArea);
+      }
+      if(_areaDetailBlock){
+         _areaDetailBlock(self.selectProvince,self.selectCity,self.selectArea, self.selectProvince_id,self.selectCity_id,self.selectArea_id);
+      }
+   }
 }
 
 #pragma mark -- UIPickerView
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return self.columnCount;
+   return self.columnCount;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component == 0) {
-        return self.provinceArray.count;
-    }else if (component == 1){
-        return self.cityArray.count;
-    }else if (component == 2){
-        return self.areaArray.count;
-    }
-    return 0;
+   if (component == 0) {
+      return self.dataSource.count;
+   }else if (component == 1){
+      return self.cityArray.count;
+   }else if (component == 2){
+      return self.areaArray.count;
+   }
+   return 0;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 3, 30)];
-    label.adjustsFontSizeToFitWidth = YES;
-    label.textAlignment = NSTextAlignmentCenter;
-    if (component == 0) {
-        label.text = self.provinceArray[row];
-        self.selectProvince_id = self.dataSource[row][@"id"];
-    }else if (component == 1){
-        label.text = self.cityArray[row];
-        self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][row][@"id"];
-    }else if (component == 2){
-        label.text = self.areaArray[row];
-        self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][row][@"id"];
-    }
-    
-    return label;
+   UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 3, 30)];
+   label.adjustsFontSizeToFitWidth = YES;
+   label.textAlignment = NSTextAlignmentCenter;
+   if (component == 0) {
+      label.text = self.dataSource[row][@"name"];
+      self.selectProvince_id = self.dataSource[row][@"id"];
+   }else if (component == 1){
+      label.text = self.cityArray[row][@"name"];
+      self.selectCity_id = self.cityArray[row][@"id"];
+   }else if (component == 2){
+      label.text = self.areaArray[row][@"name"];
+      self.selectArea_id = self.areaArray[row][@"id"];
+   }
+   
+   return label;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (component == 0) {//选择省
-        self.selectProvinceIndex = row;
-        
-        if (self.showType == CZHAddressPickerViewTypeProvince) {
-            self.selectProvince = self.provinceArray[row];
-            self.selectProvince_id = self.dataSource[row][@"id"];
-            self.selectCity = @"";
-            self.selectArea = @"";
-            self.selectCity_id = @"";
-            self.selectArea_id = @"";
-        } else if (self.showType == CZHAddressPickerViewTypeCity) {
-            self.cityArray = [self getCityNamesFromProvinceIndex:row];
-        
-            [self.pickerView reloadComponent:1];
-            [self.pickerView selectRow:0 inComponent:1 animated:YES];
-            
-            self.selectProvince = self.provinceArray[row];
-            self.selectProvince_id = self.dataSource[row][@"id"];
-            self.selectCity = self.cityArray[0];
-            self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"id"];
-            self.selectArea = @"";
-            self.selectArea_id = @"";
-        } else if (self.showType == CZHAddressPickerViewTypeArea) {
-            
-            self.cityArray = [self getCityNamesFromProvinceIndex:row];
-            self.areaArray = [self getAreaNamesFromProvinceIndex:row cityIndex:0];
-            
-            [self.pickerView reloadComponent:1];
-            [self.pickerView selectRow:0 inComponent:1 animated:YES];
-            [self.pickerView reloadComponent:2];
-            [self.pickerView selectRow:0 inComponent:2 animated:YES];
-            
-            self.selectProvince = self.provinceArray[row];
-            self.selectCity = self.cityArray[0];
-            self.selectArea = self.areaArray[0];
-            
-            self.selectProvince_id = self.dataSource[row][@"id"];
-            
-            self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][0][@"id"];
-            
-            self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][self.selectAreaIndex][@"id"];
-        }
-        
-    }else if (component == 1){//选择市
-        self.selectCityIndex = row;
-        if (self.showType == CZHAddressPickerViewTypeCity) {
-            
-            self.selectCity = self.cityArray[row];
-            self.selectArea = @"";
+   if (component == 0) {//选择省
+      self.selectProvinceIndex = row;
+      
+      self.selectProvinceIndex = row;
+      self.cityArray = self.dataSource[row][@"city"];
+      self.areaArray = self.dataSource[row][@"city"][0][@"city"];
+      
+      self.selectProvince = self.dataSource[row][@"name"];
+      self.selectCity = self.cityArray[0][@"name"];
+      self.selectProvince_id = self.dataSource[row][@"id"];
+      self.selectCity_id = self.cityArray[0][@"id"];
+      
+      if(self.areaArray.count != 0){
+         
+         self.selectArea = self.areaArray[0][@"name"];
+         self.selectArea_id = self.areaArray[0][@"id"];
+      }
+      
+      
+      [pickerView selectRow:0 inComponent:2 animated:YES];
+      
+   }
+   
+   [pickerView selectedRowInComponent:1];
+   [pickerView reloadComponent:1];
+   
+   if (component == 1){//选择市
+      self.selectCityIndex = row;
+      
+      self.areaArray = self.dataSource[self.selectProvinceIndex][@"city"][row][@"city"];
+      
+      if(self.areaArray.count > 0){
+         
+         [pickerView selectRow:0 inComponent:2 animated:YES];
+         
+         self.selectCity = self.cityArray[row][@"name"];
+         self.selectCity_id = self.cityArray[row][@"id"];
+         self.selectArea = self.areaArray[0][@"name"];
+         self.selectArea_id = self.areaArray[0][@"id"];
+         
+      }else{
+         [pickerView selectRow:0 inComponent:2 animated:YES];
+      }
+      
+   }
+   
+   [pickerView reloadComponent:2];
+   
+   if (component == 2){//选择区
+      self.selectAreaIndex = row;
 
-            self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][row][@"id"];
-            self.selectArea_id = @"";
-        } else if (self.showType == CZHAddressPickerViewTypeArea) {
-            
-            self.areaArray = [self getAreaNamesFromProvinceIndex:self.selectProvinceIndex cityIndex:row];
-            [self.pickerView reloadComponent:2];
-            [self.pickerView selectRow:0 inComponent:2 animated:YES];
-            self.selectCity = self.cityArray[row];
-            
-            if (self.areaArray.count != 0) {
-                self.selectArea = self.areaArray[0];
-            }else{
-                self.selectArea = nil;
-            }
-            
-            self.selectCity_id = self.dataSource[self.selectProvinceIndex][@"city"][row][@"id"];
-//            
-//            if (self.areaArray.count != 0) {
-//                self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][row][@"id"];
-//            }
-        }
-    }else if (component == 2){//选择区
-        self.selectAreaIndex = row;
-        if (self.showType == CZHAddressPickerViewTypeArea) {
-            
-            self.selectArea = self.areaArray[row];
-            self.selectArea_id = self.dataSource[self.selectProvinceIndex][@"city"][self.selectCityIndex][@"city"][self.selectAreaIndex][@"id"];
-            
-        }
-    }
+      if (self.areaArray.count != 0) {
+         self.selectArea = self.areaArray[row][@"name"];
+         self.selectArea_id = self.areaArray[row][@"id"];
+      
+      }
+
+   }
 }
 
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 40.0;
+   return 40.0;
 }
-
-
 
 
 - (void)showView {
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
-    
-    self.backgroundColor = [UIColor clearColor];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.backgroundColor = CZHRGBColor(0x000000, 0.3);
-        self.containView.czh_bottom = ScreenHeight;
-    }];
+   [[UIApplication sharedApplication].keyWindow addSubview:self];
+   
+   self.backgroundColor = [UIColor clearColor];
+   
+   [UIView animateWithDuration:0.3 animations:^{
+      self.backgroundColor = CZHRGBColor(0x000000, 0.3);
+      self.containView.czh_bottom = ScreenHeight;
+   }];
 }
 
 - (void)hideView {
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.backgroundColor = [UIColor clearColor];
-        self.containView.czh_y = ScreenHeight;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
-    
+   
+   [UIView animateWithDuration:0.3 animations:^{
+      self.backgroundColor = [UIColor clearColor];
+      self.containView.czh_y = ScreenHeight;
+   } completion:^(BOOL finished) {
+      [self removeFromSuperview];
+   }];
+   
 }
 
 - (void)setShowType:(CZHAddressPickerViewType)showType {
-    _showType = showType;
-    self.columnCount = showType;
-    
-    [self.pickerView reloadAllComponents];
-}
-
-
-
-- (NSArray *)dataSource
-{
-    if (!_dataSource) {
-        _dataSource = [NSArray array];
-    }
-    return _dataSource;
-}
-
-
-- (NSArray *)provinceArray
-{
-    if (!_provinceArray) {
-        _provinceArray = [NSArray array];
-    }
-    return _provinceArray;
-}
-
-- (NSArray *)cityArray
-{
-    if (!_cityArray) {
-        _cityArray = [NSArray array];
-    }
-    return _cityArray;
-}
-
-- (NSArray *)areaArray
-{
-    if (!_areaArray) {
-        _areaArray = [NSArray array];
-    }
-    return _areaArray;
+   _showType = showType;
+   self.columnCount = showType;
+   
+   [self.pickerView reloadAllComponents];
 }
 
 @end
