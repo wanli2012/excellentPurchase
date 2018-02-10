@@ -26,10 +26,17 @@
 
 - (void)setModel:(GLDonationRecordModel *)model{
     _model = model;
-    self.IDNumberLabel.text = model.cname;
+    
+    if (model.recordType == 1) {//转赠还是获赠 1.获赠 2.转赠
+        self.IDNumberLabel.text = [NSString stringWithFormat:@"账号:%@", model.cname];
+    }else{
+        self.IDNumberLabel.text = [NSString stringWithFormat:@"账号:%@", model.uname];
+    }
+    
     self.dateLabel.text = [formattime formateTimeOfDate4:model.time];
     self.typeLabel.text = model.type;
     self.moneyLabel.text = model.money;
     
 }
+
 @end

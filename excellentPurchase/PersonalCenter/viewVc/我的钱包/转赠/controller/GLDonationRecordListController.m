@@ -95,6 +95,8 @@
                 
                 for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
                     GLDonationRecordModel *model = [GLDonationRecordModel mj_objectWithKeyValues:dict];
+                    model.recordType = self.type;
+                    
                     [self.models addObject:model];
                 }
             }
