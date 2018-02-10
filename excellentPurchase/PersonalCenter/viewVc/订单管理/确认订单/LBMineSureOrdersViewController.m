@@ -44,13 +44,17 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 @property (strong, nonatomic) NSMutableArray *spec_arr;// 规格
 @property (strong, nonatomic) NSMutableDictionary *remarkdic;// 备注
 
+@property (assign, nonatomic) BOOL  refreshAdress;//是否需要更新地址
+
 @end
 
 @implementation LBMineSureOrdersViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-     [self getAddressList];//获取收货地址
+    if (self.refreshAdress == NO) {
+         [self getAddressList];//获取收货地址
+    }
 }
 
 - (void)viewDidLoad {
@@ -115,7 +119,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             if (Stop == NO && [responseObject[@"data"][@"page_data"]count]>0) {
                 self.addressModel = [GLMine_AddressModel mj_objectWithKeyValues:responseObject[@"data"][@"page_data"][0]];
             }
-            
+            self.refreshAdress = NO;
             [self.tableview reloadData];
         }else{
             
@@ -340,6 +344,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         self.hidesBottomBarWhenPushed =YES;
         LBMineCentermodifyAdressViewController *vc =[[LBMineCentermodifyAdressViewController alloc]init];
         vc.block = ^(GLMine_AddressModel *adressmodel) {
+             self.refreshAdress = YES;
             self.addressModel = adressmodel;
             [_tableview reloadData];
         };
