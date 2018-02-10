@@ -57,7 +57,7 @@
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"nick_name"] = self.nameTF.text;
     
-    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [EasyShowLodingView showLoding];
 
     [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dic finish:^(id responseObject) {
         

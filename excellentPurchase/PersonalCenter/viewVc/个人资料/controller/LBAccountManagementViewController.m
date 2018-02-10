@@ -17,6 +17,7 @@
 //弹出的选择器 类似alertViewSheet
 #import "HCBasePopupViewController.h"
 #import "HCBottomPopupViewController.h"
+#import <Photos/Photos.h>
 
 //#import "LBMineCenterAddAdreassViewController.h"//修改收货地址
 #import "LBModifyingUsernameViewController.h"//用户名修改
@@ -45,13 +46,16 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     self.navigationController.navigationBar.hidden = NO;
+    //请求数据
+    [self postData];
+    
 }
 
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -71,12 +75,10 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:accountManagementTableViewCell bundle:nil] forCellReuseIdentifier:accountManagementTableViewCell];
-
+    
     //底部视图高度
     self.tableview.tableFooterView.height = 60;
     
-    //请求数据
-    [self postData];
 }
 
 #pragma mark - 请求数据
@@ -96,7 +98,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     }else {
         url = kuser_relevant;
     }
-
+    
     [NetworkManager requestPOSTWithURLStr:url paramDic:dic finish:^(id responseObject) {
         
         [EasyShowLodingView hidenLoding];
@@ -106,9 +108,9 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             self.dataDic = responseObject[@"data"];
             
             self.model = [GLAccountManagementModel mj_objectWithKeyValues:responseObject[@"data"]];
-
+            
             [self.headImge sd_setImageWithURL:[NSURL URLWithString:self.model.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-
+            
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
@@ -125,9 +127,9 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 - (IBAction)editInfo:(id)sender {
     
     if (self.type == 1) {
-
+        
         HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
-
+        
         __weak typeof(self) wself = self;
         HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
             [wself.presentedViewController dismissViewControllerAnimated:NO completion:nil];
@@ -174,26 +176,29 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
-            data = UIImageJPEGRepresentation(image, 0.2);
+            data = UIImageJPEGRepresentation(image, 0.1);
         }else {
-            data = UIImageJPEGRepresentation(image, 0.2);
+            data = UIImageJPEGRepresentation(image, 0.1);
         }
+        
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
-        self.headImge.image = [UIImage imageWithData:data];
-            
-        }
-    
-        [self modifyPic];
-    
-        [picker dismissViewControllerAnimated:YES completion:nil];
+        UIImage *finImage = [UIImage imageWithData:data];
         
+        self.headImge.image = finImage;
+        
+        [self uploadImage:[UIImage imageWithData:data]];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 #pragma mark - 相册读取
@@ -203,14 +208,72 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) return;
     // 2. 创建图片选择控制器
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-
+    
     // 3. 设置打开照片相册类型(显示所有相簿)
     ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-
+    
     // 4.设置代理
     ipc.delegate = self;
     // 5.modal出这个控制器
     [self presentViewController:ipc animated:YES completion:nil];
+}
+
+/**
+ 上传图片
+ */
+- (void)uploadImage:(UIImage *)image{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"type"] = @"3";
+    dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
+    dic[@"app_version"] = @"1.0.0";
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20;
+    
+    
+    [EasyShowLodingView showLoding];
+    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
+        NSString *title = [NSString stringWithFormat:@"uploadfile"];
+        
+        NSData *data;
+        
+        data = UIImageJPEGRepresentation(image,1);
+        
+        [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
+        
+    }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.headImageUrl = responseObject[@"data"][@"url"];
+            
+            if (self.headImageUrl.length != 0) {
+                
+                [self modifyPic];
+            }else{
+                
+                [EasyShowTextView showErrorText:@"图片上传失败"];
+            }
+            
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
 }
 
 #pragma mark - 修改头像
@@ -220,14 +283,17 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     dict[@"app_handler"] = @"UPDATE";
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"pic"] = self.headImge.image;
-    
-    [EasyShowLodingView showLoding];
+    dict[@"pic"] = self.headImageUrl;
     
     [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dict finish:^(id responseObject) {
         
         [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+//            [self.headImge sd_setImageWithURL:[NSURL URLWithString:self.headImageUrl] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+            
+            [UserModel defaultUser].pic = self.headImageUrl;
+            [usermodelachivar achive];
             
             [EasyShowTextView showSuccessText:@"头像修改成功"];
             
@@ -251,7 +317,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  
+    
     if(self.type == 1){
         return self.titleArr2.count;
     }else{
@@ -267,7 +333,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     LBAccountManagementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:accountManagementTableViewCell forIndexPath:indexPath];
     
     if (self.type == 1) {//1:编辑资料 0:不可编辑资料
@@ -377,7 +443,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             {
                 self.hidesBottomBarWhenPushed = YES;
                 LBMineCentermodifyAdressViewController *addListVC = [[LBMineCentermodifyAdressViewController alloc] init];
-
+                
                 [self.navigationController pushViewController:addListVC animated:YES];
             }
                 break;
@@ -392,19 +458,19 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             case 4://所在地区
             {
                 
-//                [CZHAddressPickerView areaPickerViewWithDataArr:(NSArray *) AreaDetailBlock:^(NSString *province, NSString *city, NSString *area, NSString *province_id, NSString *city_id, NSString *area_id) {
-//
-//                }];
+                //                [CZHAddressPickerView areaPickerViewWithDataArr:(NSArray *) AreaDetailBlock:^(NSString *province, NSString *city, NSString *area, NSString *province_id, NSString *city_id, NSString *area_id) {
+                //
+                //                }];
                 
                 
-//                [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
-//                    [weakSelf postData];
-//                    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
-//
-//                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:str];
-//
-//                    [weakSelf.tableview reloadData];
-//                }];
+                //                [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
+                //                    [weakSelf postData];
+                //                    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
+                //
+                //                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:str];
+                //
+                //                    [weakSelf.tableview reloadData];
+                //                }];
             }
                 
             default:
@@ -414,20 +480,5 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
 }
 
 #pragma mark - 懒加载
-//- (NSMutableArray *)valueArr{
-//    if (!_valueArr) {
-//        _valueArr = [NSMutableArray array];
-//
-//    }
-//    return _valueArr;
-//}
-//
-//- (NSMutableArray *)valueArr2{
-//    if (!_valueArr2) {
-//        _valueArr2 = [NSMutableArray array];
-//
-//    }
-//    return _valueArr2;
-//}
 
 @end
