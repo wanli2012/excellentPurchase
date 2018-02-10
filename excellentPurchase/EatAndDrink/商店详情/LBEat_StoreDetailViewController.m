@@ -23,6 +23,7 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MapKit/MapKit.h>
 #import "LBFaceToFace_PayController.h"
+#import "GLMine_MessageController.h"
 
 static NSString *eat_storeDetailInfodiscountTableViewCell = @"LBEat_storeDetailInfodiscountTableViewCell";
 static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfoOtherTableViewCell";
@@ -395,7 +396,9 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
  消息
  */
 -(void)messageButtonEvent{
-    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

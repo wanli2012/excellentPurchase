@@ -237,7 +237,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         LBMineOrderDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailAdressTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.dataModel;
-        if (self.typeindex == 10) {
+        if (self.typeindex != 1) {
             cell.rightimge.hidden = YES;
         }
         return cell;
@@ -346,7 +346,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if (self.typeindex == 10) {
+        if (self.typeindex != 10) {
             return;
         }
         self.hidesBottomBarWhenPushed =YES;
