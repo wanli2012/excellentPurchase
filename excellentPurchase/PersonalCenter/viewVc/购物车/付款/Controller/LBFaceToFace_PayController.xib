@@ -114,6 +114,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toPay:" destination="-1" eventType="touchUpInside" id="EB7-um-Dsx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95664197210000002" green="0.96078699830000003" blue="0.96479767559999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

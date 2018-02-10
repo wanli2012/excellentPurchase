@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *donationTypeTF;//转赠类型
 @property (weak, nonatomic) IBOutlet UITextField *receiveManGroupTypeTF;//接收人身份
 
+
 @property (nonatomic, assign)BOOL isHaveDian;
 
 @property (nonatomic, copy)NSString *group_id;//被转赠人group_id
@@ -107,13 +108,8 @@
         return;
     }
     
-    
     if(self.receiveManTF.text.length == 0){
         [EasyShowTextView showInfoText:@"请填写接收人ID或者手机号"];
-        return;
-    }
-    if([self.receiveManTF.text isEqualToString:[UserModel defaultUser].user_name]){
-        [EasyShowTextView showInfoText:@"不能给自己转赠"];
         return;
     }
     
@@ -140,8 +136,7 @@
         [EasyShowTextView showInfoText:@"请先同意转赠须知"];
         return;
     }
-    
-    
+
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
     [payPasswordView showInView:self.view];
@@ -150,6 +145,10 @@
 
 -(void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password{
     
+    if ([self.moneyTF.text floatValue]  < 100 || [self.moneyTF.text containsString:@"."]) {
+        [EasyShowTextView showInfoText:@"请输入大于100的整数倍"];
+        return;
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"ADD";
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -199,7 +198,12 @@
         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
-
+-(void)actionSure:(NSString *)password{
+    if (password.length < 6) {
+        [EasyShowTextView showInfoText:@"请输入二级密码"];
+        return;
+    }
+}
 #pragma mark - 是否同意协议
 - (IBAction)isAgreeProtocol:(id)sender {
     _isAgreeProtocol =! _isAgreeProtocol;
@@ -207,9 +211,11 @@
     if(_isAgreeProtocol){
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
         self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.userInteractionEnabled = YES;
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
         self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+        self.submitBtn.userInteractionEnabled = NO;
     }
 }
 

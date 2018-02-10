@@ -41,7 +41,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jf6-th-afY">
                             <rect key="frame" x="0.0" y="0.0" width="372" height="620"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="世纪优购" translatesAutoresizingMaskIntoConstraints="NO" id="aon-r6-CcH">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="世纪优购" translatesAutoresizingMaskIntoConstraints="NO" id="aon-r6-CcH">
                                     <rect key="frame" x="143" y="70" width="85" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="85" id="iZu-RI-Nvd"/>
@@ -444,6 +444,6 @@
         <image name="openEye" width="21" height="13"/>
         <image name="password" width="20" height="22"/>
         <image name="return" width="10" height="17"/>
-        <image name="世纪优购" width="82" height="82"/>
+        <image name="世纪优购" width="123" height="37"/>
     </resources>
 </document>

@@ -228,10 +228,11 @@
 /**
  点击确认
  */
-- (void)actionSure{
-    [self.view endEditing:YES];
-    [EasyShowTextView showInfoText:@"请输入6位的二级密码"];
-    return;
+-(void)actionSure:(NSString *)password{
+    if (password.length < 6) {
+        [EasyShowTextView showInfoText:@"请输入二级密码"];
+        return;
+    }
 }
 
 #pragma mark - UITextFieldDelegate

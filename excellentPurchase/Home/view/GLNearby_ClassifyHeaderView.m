@@ -162,7 +162,6 @@
 
     NSInteger page = pageControl.currentPage;
     [self.scorllView setContentOffset:CGPointMake(page * self.SCR_conW, 0) animated:YES];
-
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

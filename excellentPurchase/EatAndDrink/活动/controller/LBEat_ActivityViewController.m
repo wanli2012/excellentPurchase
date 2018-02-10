@@ -7,8 +7,6 @@
 //
 
 #import "LBEat_ActivityViewController.h"
-#import "JYCarousel.h"
-#import "JYImageCache.h"
 #import "GLIntegralHeaderView.h"
 #import "LBBurstingWithPopularityTableViewCell.h"
 #import "GLNearby_classifyCell.h"
@@ -23,11 +21,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-/**
- 头部轮播
- */
-@property (nonatomic, strong) JYCarousel *carouselView;
-
 @end
 
 /**
@@ -41,7 +34,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self addCarouselView1];
     [self.tableview registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
 }
@@ -101,25 +93,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
      [self viewController].hidesBottomBarWhenPushed = NO;
 }
 
-- (void)addCarouselView1{
-    
-    //block方式创建
-    __weak typeof(self) weakSelf = self;
-    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray: @[@"eat-banner",@"eat-banner"]];
-    if (!_carouselView) {
-        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth * carouselViewHScle) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-            carouselConfig.pageContollType = RightPageControl;
-            carouselConfig.interValTime = 3;
-            return carouselConfig;
-        } clickBlock:^(NSInteger index) {
-            NSLog(@"%ld",index);
-        }];
-        self.tableview.tableHeaderView = _carouselView;
-    }
-    //开始轮播
-    [_carouselView startCarouselWithArray:imageArray];
-    
-}
 /**
  *  获取父视图的控制器
  *

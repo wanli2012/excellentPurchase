@@ -281,6 +281,13 @@
     }];
     
 }
+
+-(void)actionSure:(NSString *)password{
+    if (password.length < 6) {
+        [EasyShowTextView showInfoText:@"请输入二级密码"];
+        return;
+    }
+}
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     

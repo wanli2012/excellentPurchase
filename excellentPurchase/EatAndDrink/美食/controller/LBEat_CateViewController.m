@@ -7,8 +7,6 @@
 //
 
 #import "LBEat_CateViewController.h"
-#import "JYCarousel.h"
-#import "JYImageCache.h"
 #import "GLIntegralHeaderView.h"
 #import "LBBurstingWithPopularityTableViewCell.h"
 #import "GLNearby_classifyCell.h"
@@ -21,14 +19,14 @@
 static NSString *burstingWithPopularityTableViewCell = @"LBBurstingWithPopularityTableViewCell";
 static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 
-@interface LBEat_CateViewController ()<JYCarouselDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LBEat_CateViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 /**
  头部轮播
  */
-@property (nonatomic, strong) JYCarousel *carouselView;
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, assign) NSInteger  allCount;
 @property (nonatomic, assign) NSInteger  page;
@@ -46,7 +44,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
-    [self addCarouselView1];
     [self.tableView registerNib:[UINib nibWithNibName:burstingWithPopularityTableViewCell bundle:nil] forCellReuseIdentifier:burstingWithPopularityTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:nearby_classifyCell bundle:nil] forCellReuseIdentifier:nearby_classifyCell];
     [self setupNpdata];//设置无数据的时候展示
@@ -114,7 +111,12 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
                 LBEat_cateDataModel *model = [LBEat_cateDataModel mj_objectWithKeyValues:dic];
                 [self.dataArr addObject:model];
             }
-            
+            self.tableView.tableHeaderView = self.cycleScrollView;
+            if ([LBEat_cateModel defaultUser].cate_banners.count <= 0) {
+                self.cycleScrollView.localizationImageNamesGroup = [[NSMutableArray alloc] initWithArray: @[@"eat-banner"]];
+            }else{
+                self.cycleScrollView.imageURLStringsGroup = [[NSMutableArray alloc] initWithArray: [LBEat_cateModel defaultUser].cate_banners];
+            }
             [self.tableView reloadData];
         }else{
             
@@ -170,31 +172,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     [self viewController].hidesBottomBarWhenPushed = NO;
   
 }
-
-- (void)addCarouselView1{
-    
-    //block方式创建
-//    __weak typeof(self) weakSelf = self;
-    
-    NSMutableArray *imageArray;
-    if ([LBEat_cateModel defaultUser].cate_banners.count <= 0) {
-        imageArray = [[NSMutableArray alloc] initWithArray: @[@"eat-banner"]];
-    }else{
-        imageArray = [[NSMutableArray alloc] initWithArray: [LBEat_cateModel defaultUser].cate_banners];
-    }
-    if (!_carouselView) {
-        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth * carouselViewHScle) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-            carouselConfig.pageContollType = RightPageControl;
-            carouselConfig.interValTime = 3;
-            return carouselConfig;
-        } clickBlock:^(NSInteger index) {
-
-        }];
-        
-        self.tableView.tableHeaderView = _carouselView;
-    }
-    //开始轮播
-    [_carouselView startCarouselWithArray:imageArray];
+#pragma mark - 点击轮播图 回调
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
 }
 /**
@@ -220,6 +199,23 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     }
     
     return _dataArr;
+    
+}
+-(SDCycleScrollView*)cycleScrollView{
+    
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth * carouselViewHScle) delegate:self placeholderImage:[UIImage imageNamed:@"banner(吃喝玩乐）"]];//当一张都没有的时候的 占位图
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
+        _cycleScrollView.backgroundColor = [UIColor whiteColor];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+        _cycleScrollView.localizationImageNamesGroup = @[@" "];
+        _cycleScrollView.showPageControl = NO;
+    }
+    
+    return _cycleScrollView;
     
 }
 @end

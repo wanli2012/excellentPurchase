@@ -36,7 +36,7 @@
     __weak typeof(self) wself = self;
     [self.imagev mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(10);
-        make.height.equalTo(@30);
+        make.height.equalTo(@35);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(wself.imagev.mas_height).multipliedBy(1);//设置等比宽高
     }];
@@ -57,7 +57,7 @@
     
     /** Step3: 设置代理进行回调 */
     _scrollLabelView.scrollLabelViewDelegate = self;
-    _scrollLabelView.frame = CGRectMake(50, 5, UIScreenWidth  - 60, 50);
+    _scrollLabelView.frame = CGRectMake(55, 5, UIScreenWidth  - 60, 50);
     [self addSubview:_scrollLabelView];
     /** Step4: 布局(Required) */
 

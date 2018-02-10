@@ -7,15 +7,14 @@
 //
 
 #import "LBShopProductClassifyReusableView.h"
-#import "JYCarousel.h"
 
-@interface LBShopProductClassifyReusableView()
+@interface LBShopProductClassifyReusableView()<SDCycleScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *bannerView;
 /**
  头部轮播
  */
-@property (nonatomic, strong) JYCarousel *carouselView;
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
 
 @property (weak, nonatomic) IBOutlet UIImageView *imagev;
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -30,7 +29,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.bannerView addSubview:self.carouselView];
+    [self.bannerView addSubview:self.cycleScrollView];
     
 }
 
@@ -50,8 +49,7 @@
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:_model.store_thumb] placeholderImage:nil];
     
     //开始轮播
-    [_carouselView startCarouselWithArray:[_model.store_homepage mutableCopy]];
-    
+    self.cycleScrollView.imageURLStringsGroup =[_model.store_homepage mutableCopy];
     self.title.text = [NSString stringWithFormat:@"%@",_model.store_name];
     
     if ([_model.fans_count floatValue] >= 10000) {
@@ -126,21 +124,26 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
-
-
--(JYCarousel*)carouselView{
-    if (!_carouselView) {
-        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth / 2.0) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-            carouselConfig.pageContollType = LabelPageControl;
-            carouselConfig.interValTime = 3;
-            return carouselConfig;
-        } clickBlock:^(NSInteger index) {
-            NSLog(@"%ld",index);
-        }];
+#pragma mark - 点击轮播图 回调
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+}
+-(SDCycleScrollView*)cycleScrollView{
+    
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth / 2.0) delegate:self placeholderImage:[UIImage imageNamed:@"banner(吃喝玩乐）"]];//当一张都没有的时候的 占位图
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
+        _cycleScrollView.backgroundColor = [UIColor whiteColor];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+        _cycleScrollView.localizationImageNamesGroup = @[@" "];
+        _cycleScrollView.showPageControl = NO;
     }
     
-     return _carouselView;
+    return _cycleScrollView;
+    
 }
-
 
 @end

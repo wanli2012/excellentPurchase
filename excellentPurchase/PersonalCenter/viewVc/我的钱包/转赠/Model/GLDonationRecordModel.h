@@ -14,5 +14,6 @@
 @property (nonatomic, copy)NSString *money;////金额
 @property (nonatomic, copy)NSString *type;////类型
 @property (nonatomic, copy)NSString *time;////时间
+@property (nonatomic, copy)NSString *cname;////时间
 
 @end

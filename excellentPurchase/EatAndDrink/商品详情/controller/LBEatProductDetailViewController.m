@@ -11,18 +11,16 @@
 #import "LBEatProductDetailTitleTableViewCell.h"
 #import "LBEat_storeDetailInfoOtherTableViewCell.h"
 #import "LBEatProductDetailModel.h"
-#import "JYCarousel.h"
-#import "JYImageCache.h"
 #import "LBProductPhotosBrowserVc.h"
 
-@interface LBEatProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBEatProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) LBEatProductDetailModel *model;
 /**
  头部轮播
  */
-@property (nonatomic, strong) JYCarousel *carouselView;
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
 
 @end
 
@@ -77,7 +75,8 @@ static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfo
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
 
             _model =  [LBEatProductDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
-            [self addCarouselView1];//加载头部视图
+            self.tableview.tableHeaderView = self.cycleScrollView;
+            self.cycleScrollView.imageURLStringsGroup = @[_model.thumb];
             [self.tableview reloadData];
         }else{
 
@@ -200,24 +199,27 @@ static NSString *eat_storeDetailInfoOtherTableViewCell = @"LBEat_storeDetailInfo
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-- (void)addCarouselView1{
+
+#pragma mark - 点击轮播图 回调
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-    //block方式创建
-    __weak typeof(self) weakSelf = self;
-    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray: @[_model.thumb]];
-    if (!_carouselView) {
-        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-            carouselConfig.pageContollType = NonePageControl;
-            carouselConfig.interValTime = 3;
-            carouselConfig.placeholder = [UIImage imageNamed:@"shangpinxiangqing"];
-            return carouselConfig;
-        } clickBlock:^(NSInteger index) {
-            
-        }];
-        self.tableview.tableHeaderView = _carouselView;
+}
+-(SDCycleScrollView*)cycleScrollView{
+    
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) delegate:self placeholderImage:[UIImage imageNamed:@"shangpinxiangqing"]];//当一张都没有的时候的 占位图
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;// 翻页 右下角
+        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
+        _cycleScrollView.backgroundColor = [UIColor whiteColor];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(7, 7);
+        _cycleScrollView.localizationImageNamesGroup = @[@" "];
+        _cycleScrollView.showPageControl = NO;
     }
-    //开始轮播
-    [_carouselView startCarouselWithArray:imageArray];
+    
+    return _cycleScrollView;
     
 }
 

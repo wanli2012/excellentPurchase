@@ -19,8 +19,6 @@
 #import "GLIntegralGoodsTwoCell.h"
 #import "StandardsView.h"
 #import "LBCommentListsView.h"
-#import "JYCarousel.h"
-#import "JYImageCache.h"
 #import "LBMineSureOrdersViewController.h"//确认订单
 #import "LBTmallProductDetailModel.h"
 #import "LBEatShopProdcutClassifyViewController.h"
@@ -29,7 +27,7 @@
 #import "GLMine_MessageController.h"//消息
 #import "GLMine_ShoppingCartController.h"//购物车
 
-@interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete>
+@interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete,SDCycleScrollViewDelegate>
 @property(nonatomic,strong)NSArray *subViewControllers;
 @property(nonatomic,strong)DLNavigationTabBar *navigationTabBar;
 @property (weak, nonatomic) IBOutlet UIButton *merchetBt;//商家
@@ -47,10 +45,6 @@
  评论view
  */
 @property (strong , nonatomic)LBCommentListsView *commentView;
-/**
- 头部轮播
- */
-@property (nonatomic, strong) JYCarousel *carouselView;
 
 @property (nonatomic, strong) LBTmallProductDetailModel *model;
 
@@ -64,6 +58,8 @@
 @property (nonatomic ,assign) NSInteger buy_num;//商品数量
 
 @property (nonatomic ,assign) BOOL isShowSpec;//是否展示规格
+
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
 
 @end
 
@@ -144,7 +140,8 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
                 // 对布局进行渲染
                 [self.view layoutIfNeeded]; //layoutIfNeeded方法只会刷新子控件,因此要使用必须通过它的父类
             }];
-            [self addCarouselView1];
+            self.tableview.tableHeaderView = self.cycleScrollView;
+            self.cycleScrollView.imageURLStringsGroup = self.model.thumb_url;
             [self.tableview reloadData];
         }else{
             
@@ -328,7 +325,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     StandardsView *standview = [[StandardsView alloc] init];
     standview.tag = index;
     standview.delegate = self;
-
     [standview.mainImgView sd_setImageWithURL:[NSURL URLWithString:img] placeholderImage:nil];
     standview.mainImgView.backgroundColor = [UIColor whiteColor];
     standview.priceLab.text = [NSString stringWithFormat:@"¥%@",self.model.discount];
@@ -697,7 +693,10 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
-
+#pragma mark - 点击轮播图 回调
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+}
 -(void)popself{
     if (self.isShowComment == YES) {//展示的评论界面
         self.navigationItem.titleView = self.navigationTabBar;
@@ -708,27 +707,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
          [self.navigationController popViewControllerAnimated:YES];
     }
 
-}
-
-- (void)addCarouselView1{
-
-      NSMutableArray   *imageArray  = [[NSMutableArray alloc] initWithArray: _model.thumb_url];
-
-    
-    if (!_carouselView) {
-        _carouselView= [[JYCarousel alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) configBlock:^JYConfiguration *(JYConfiguration *carouselConfig) {
-            carouselConfig.pageContollType = LabelPageControl;
-            carouselConfig.interValTime = 3;
-            carouselConfig.placeholder = [UIImage imageNamed:@"shangpinxiangqing"];
-            return carouselConfig;
-        } clickBlock:^(NSInteger index) {
-            
-        }];
-        self.tableview.tableHeaderView = _carouselView;
-    }
-    //开始轮播
-    [_carouselView startCarouselWithArray:imageArray];
-    
 }
 
 -(DLNavigationTabBar *)navigationTabBar
@@ -753,4 +731,22 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     return _commentView;
 }
 
+-(SDCycleScrollView*)cycleScrollView{
+    
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth) delegate:self placeholderImage:[UIImage imageNamed:@"shangpinxiangqing"]];//当一张都没有的时候的 占位图
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;// 翻页 右下角
+        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
+        _cycleScrollView.backgroundColor = [UIColor whiteColor];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(7, 7);
+        _cycleScrollView.localizationImageNamesGroup = @[@" "];
+        _cycleScrollView.showPageControl = YES;
+    }
+    
+    return _cycleScrollView;
+    
+}
 @end

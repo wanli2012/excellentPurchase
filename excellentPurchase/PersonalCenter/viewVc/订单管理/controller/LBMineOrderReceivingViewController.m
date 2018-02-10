@@ -220,7 +220,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     NSMutableArray *arr = [[NSMutableArray alloc]init];
     for (int i = 0; i< model.goods_data.count; i++) {
         LBMineOrderObligationGoodsmodel *goodmdel = model.goods_data[i];
-        [arr addObject:goodmdel.goods_id];
+        [arr addObject:goodmdel.ord_id];
     }
     
     NSString *ord_str = [arr componentsJoinedByString:@"_"];

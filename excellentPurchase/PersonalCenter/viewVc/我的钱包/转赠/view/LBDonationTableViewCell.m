@@ -26,8 +26,7 @@
 
 - (void)setModel:(GLDonationRecordModel *)model{
     _model = model;
-    
-    self.IDNumberLabel.text = model.uname;
+    self.IDNumberLabel.text = model.cname;
     self.dateLabel.text = [formattime formateTimeOfDate4:model.time];
     self.typeLabel.text = model.type;
     self.moneyLabel.text = model.money;

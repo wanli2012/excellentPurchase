@@ -139,7 +139,7 @@ static CGFloat const kDotWith_height = 10;
     }];
 }
 -(void)sureEvent{
-    [self .delegate actionSure];
+    [self .delegate actionSure:_passwordField.text];
 }
 - (void)startLoading{
     self.loadingImgView.hidden = NO;
