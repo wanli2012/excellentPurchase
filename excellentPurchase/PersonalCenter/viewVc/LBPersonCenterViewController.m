@@ -196,10 +196,10 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     LBAccountManagementViewController *vc = [[LBAccountManagementViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 #pragma mark - UITableViewDelegate
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.titleArr.count;
 }
@@ -211,14 +211,19 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     NSString *vcstr = self.userVcArr[indexPath.row];
-    
+
     if([vcstr isEqualToString:@"GLMine_TeamController"]){//我的团队
-        if([[UserModel defaultUser].group_id integerValue] == GROUP_USER || [[UserModel defaultUser].group_id integerValue] == GROUP_SHOP || [[UserModel defaultUser].group_id integerValue] == GROUP_TG){
-            [EasyShowTextView showInfoText:@"权限不足"];
+        if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
+            [EasyShowTextView showInfoText:@"请先实名认证"];
+            return;
+        }else if([[UserModel defaultUser].rzstatus integerValue] == 1){
+            [EasyShowTextView showInfoText:@"实名认证审核中"];
+            return;
+        }else if([[UserModel defaultUser].rzstatus integerValue] == 3){
+            [EasyShowTextView showInfoText:@"实名认证失败"];
             return;
         }
     }
-    
     
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
@@ -246,16 +251,64 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     
 }
 
+#pragma mark - 懒加载
+
 -(NSMutableArray*)imageArr{
     if (!_imageArr) {
-        _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+        
+        switch ([[UserModel defaultUser].group_id integerValue]) {
+            case GROUP_SHOP://商家
+            {
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"mine-set",@"mine-news", nil];
+            }
+                break;
+            case GROUP_USER: case GROUP_TG://会员 创客
+            {
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"mine-set",@"mine-news", nil];
+            }
+                break;
+            case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
+            {
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
+    
     return _imageArr;
 }
 
 -(NSMutableArray*)titleArr{
     if (!_titleArr) {
+        
         _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+        
+        switch ([[UserModel defaultUser].group_id integerValue]) {
+            case GROUP_SHOP://商家
+            {
+                _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"其他功能",@"设置",@"消息", nil];
+
+            }
+                break;
+            case GROUP_USER: case GROUP_TG://会员 创客
+            {
+                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"其他功能",@"设置",@"消息", nil];
+  
+            }
+                break;
+            case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
+            {
+                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
     return _titleArr;
 }
@@ -278,15 +331,51 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 -(NSMutableArray*)userVcArr{
     
     if (!_userVcArr) {
-        _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"GLMine_ManagementController",
-                    @"GLMine_ShoppingCartController",
-                    @"LBMineOrderManagerViewController",
-                    @"GLMine_MyWalletController",
-                    @"GLMine_TeamController",
-                    @"LBMineOtherFunctionViewController",
-                    @"LBSetUpViewController",
-                    @"GLMine_MessageController",nil];
+
+        
+        switch ([[UserModel defaultUser].group_id integerValue]) {
+            case GROUP_SHOP://商家
+            {
+                _userVcArr=[NSMutableArray arrayWithObjects:
+                            @"GLMine_ManagementController",
+                            @"GLMine_ShoppingCartController",
+                            @"LBMineOrderManagerViewController",
+                            @"GLMine_MyWalletController",
+                            @"LBMineOtherFunctionViewController",
+                            @"LBSetUpViewController",
+                            @"GLMine_MessageController",nil];
+                
+            }
+                break;
+            case GROUP_USER: case GROUP_TG://会员 创客
+            {
+                _userVcArr=[NSMutableArray arrayWithObjects:
+                            @"GLMine_ShoppingCartController",
+                            @"LBMineOrderManagerViewController",
+                            @"GLMine_MyWalletController",
+                            @"LBMineOtherFunctionViewController",
+                            @"LBSetUpViewController",
+                            @"GLMine_MessageController",nil];
+                
+            }
+                break;
+            case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
+            {
+                _userVcArr=[NSMutableArray arrayWithObjects:
+                            @"GLMine_ShoppingCartController",
+                            @"LBMineOrderManagerViewController",
+                            @"GLMine_MyWalletController",
+                            @"GLMine_TeamController",
+                            @"LBMineOtherFunctionViewController",
+                            @"LBSetUpViewController",
+                            @"GLMine_MessageController",nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
         
     }
     

@@ -179,22 +179,25 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         
-        NSData *data;
-        if (UIImagePNGRepresentation(image) == nil) {
-            data = UIImageJPEGRepresentation(image, 0.1);
-        }else {
-            data = UIImageJPEGRepresentation(image, 0.1);
-        }
+//        UIImagePickerControllerOriginalImage
+//        NSData *data;UIImagePickerControllerOriginalImage
+//        if (UIImagePNGRepresentation(image) == nil) {
+//            data = UIImageJPEGRepresentation(image, 0.1);
+//        }else {
+//            data = UIImageJPEGRepresentation(image, 0.1);
+//        }
         
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
-        UIImage *finImage = [UIImage imageWithData:data];
+//        UIImage *finImage = [UIImage imageWithData:data];
+//
+//        self.headImge.image = finImage;
         
-        self.headImge.image = finImage;
+//        self.headImge.image = image;
         
-        [self uploadImage:[UIImage imageWithData:data]];
+        [self uploadImage:image];
     }
     
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -210,8 +213,14 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     
     // 3. 设置打开照片相册类型(显示所有相簿)
-    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
+//    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    //1.获取媒体支持格式
+    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    ipc.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    ipc.mediaTypes = @[mediaTypes[0]];
+    //5.其他配置
+    //allowsEditing是否允许编辑，如果值为no，选择照片之后就不会进入编辑界面
+    ipc.allowsEditing = YES;
     // 4.设置代理
     ipc.delegate = self;
     // 5.modal出这个控制器
@@ -246,7 +255,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         
         NSData *data;
         
-        data = UIImageJPEGRepresentation(image,1);
+        data = UIImageJPEGRepresentation(image,0.1);
         
         [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
         
@@ -290,7 +299,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-//            [self.headImge sd_setImageWithURL:[NSURL URLWithString:self.headImageUrl] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+            [self.headImge sd_setImageWithURL:[NSURL URLWithString:self.headImageUrl] placeholderImage:[UIImage imageNamed:PlaceHolder]];
             
             [UserModel defaultUser].pic = self.headImageUrl;
             [usermodelachivar achive];

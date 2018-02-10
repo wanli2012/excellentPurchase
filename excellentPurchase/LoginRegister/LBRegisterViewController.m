@@ -232,53 +232,53 @@
 
     if (self.phoneTF.text.length <=0 ) {
 
-        [EasyShowTextView showInfoText:@"请输入手机号码" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"请输入手机号码"];
         
         return;
     }else{
         if (![predicateModel valiMobile:self.phoneTF.text]) {
-            [EasyShowTextView showInfoText:@"手机号格式不对" inView:[UIApplication sharedApplication].keyWindow];
+            [EasyShowTextView showInfoText:@"手机号格式不对"];
             return;
         }
     }
     
     if (self.passwordTF.text.length <= 0) {
 
-        [EasyShowTextView showInfoText:@"密码不能为空" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"密码不能为空" ];
         return;
     }
     if (self.passwordTF.text.length < 6 || self.passwordTF.text.length > 12) {
         
-        [EasyShowTextView showInfoText:@"请输入6-12位密码" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"请输入6-12位密码"];
         return;
     }
     
     if ([predicateModel checkIsHaveNumAndLetter:self.passwordTF.text] != 3) {
         
-        [EasyShowTextView showInfoText:@"密码须包含数字和字母" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"密码须包含数字和字母"];
         return;
     }
     
     if (self.ensureTF.text.length <= 0) {
 
-        [EasyShowTextView showInfoText:@"请输入确认密码"inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"请输入确认密码"];
         return;
     }
         
     if (![self.passwordTF.text isEqualToString:self.ensureTF.text]) {
         
-        [EasyShowTextView showInfoText:@"两次输入的密码不一致" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"两次输入的密码不一致"];
         return;
     }
     
     if (self.codeTF.text.length <= 0) {
         
-        [EasyShowTextView showInfoText:@"请输入验证码" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"请输入验证码"];
         return;
     }
     
     if(!_isAgreeProtocol){
-        [EasyShowTextView showInfoText:@"请先同意注册协议" inView:[UIApplication sharedApplication].keyWindow];
+        [EasyShowTextView showInfoText:@"请先同意注册协议"];
         return;
     }
     
@@ -316,8 +316,6 @@
     dict[@"validate"] = self.validate;
     dict[@"group_id"] = self.group_id;
     
-    //    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    
     [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
         //        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -334,8 +332,7 @@
         }
         
     } enError:^(NSError *error) {
-        
-        //[_loadV removeloadview];
+
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];
