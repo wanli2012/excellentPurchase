@@ -8,7 +8,7 @@
 
 #import "LBModifyingUsernameViewController.h"
 
-@interface LBModifyingUsernameViewController ()
+@interface LBModifyingUsernameViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topContrait;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.nameTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     [self setNav];
 }
@@ -81,9 +83,31 @@
 
 }
 
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+}
+
+
+#pragma mark - UITextfieldDelegate
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+
+    if (textField == self.nameTF) {
+        if (textField.text.length > 8) {
+            [self.view endEditing:YES];
+            [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
+            textField.text = [textField.text substringToIndex:8];
+        }
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [self.view endEditing:YES];
+    return YES;
 }
 
 @end
