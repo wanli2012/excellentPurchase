@@ -46,7 +46,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
+        return 3;
+    }else{
+        return 2;
+    }
+
 }
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,9 +68,7 @@
     }else{
         cell.titleLb.text = @"提现";
     }
-    
-    //    cell.model = self.models[indexPath.row];
-    
+
     return cell;
 }
 
@@ -86,14 +89,20 @@
 }
 
 #pragma mark - 懒加载
-
 -(NSMutableArray*)userVcArr{
     
     if (!_userVcArr) {
-        _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"LBDonationViewController",
-                    @"LBVoucherCenterViewController",
-                    @"GLMine_MyWallet_CashController",nil];
+        if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
+            
+            _userVcArr=[NSMutableArray arrayWithObjects:
+                        @"LBDonationViewController",
+                        @"LBVoucherCenterViewController",
+                        @"GLMine_MyWallet_CashController",nil];
+        }else{
+            _userVcArr=[NSMutableArray arrayWithObjects:
+                        @"LBDonationViewController",
+                        @"LBVoucherCenterViewController",nil];
+        }
     }
     
     return _userVcArr;
