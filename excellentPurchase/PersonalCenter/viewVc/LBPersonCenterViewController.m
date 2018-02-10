@@ -24,7 +24,7 @@
 #import "GLMine_MyWalletController.h"//我的钱包
 
 #define kInitHeaderViewOriginY 0
-#define kInitHeaderViewHeight 230 + SafeAreaTopHeight  //tableheaderview高度
+#define kInitHeaderViewHeight 190 + SafeAreaTopHeight  //tableheaderview高度
 
 @interface LBPersonCenterViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,LBMineHeaderViewDelegate>
 /**

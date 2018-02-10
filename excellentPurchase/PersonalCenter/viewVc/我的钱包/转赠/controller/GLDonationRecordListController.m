@@ -122,7 +122,7 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    LBDonationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Team_AchieveManageCell"];
+    LBDonationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBDonationTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = 0;
     cell.model = self.models[indexPath.row];
     
@@ -131,7 +131,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 90;
+    return 70;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -147,6 +147,10 @@
 
 -(void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password{
     
+    if ([self.moneyTF.text floatValue]  < 100 || [self.moneyTF.text containsString:@"."]) {
+        [EasyShowTextView showInfoText:@"请输入大于100的整数倍"];
+        return;
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"ADD";
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -204,9 +208,11 @@
     if(_isAgreeProtocol){
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
         self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.userInteractionEnabled = YES;
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
         self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+        self.submitBtn.userInteractionEnabled = NO;
     }
 }
 

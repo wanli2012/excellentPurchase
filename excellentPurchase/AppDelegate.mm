@@ -19,7 +19,7 @@
 #import "WXApi.h"
 
 #import <UMSocialCore/UMSocialCore.h>
-
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #define WEIXI_APPKEY @"wx01b5d9da6a88048c"
 #define WEIXIN_APPSECRET @"5b3cbdab8d6d0464566ac0af66c59390"
 
@@ -309,7 +309,8 @@
     
     if(status == ReachableViaWWAN)
     {
-        [self showNetworkStatusAlert:@"现在使用的是无线网络"];
+       NSString *netconnType =  [self getNetType];
+        [self showNetworkStatusAlert:[NSString stringWithFormat:@"当前使用的是%@网络,请小心使用",netconnType]];
     }
     else if(status == ReachableViaWiFi)
     {
@@ -320,7 +321,37 @@
     }
     
 }
-
+- (NSString *)getNetType
+{
+    NSString *netconnType = @"";
+    CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
+    NSString *currentStatus = info.currentRadioAccessTechnology;
+    if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyGPRS"]) {
+        netconnType = @"GPRS";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyEdge"]) {
+        netconnType = @"2.75G EDGE";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyWCDMA"]){
+        netconnType = @"3G";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyHSDPA"]){
+        netconnType = @"3.5G HSDPA";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyHSUPA"]){
+        netconnType = @"3.5G HSUPA";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyCDMA1x"]){
+        netconnType = @"2G";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyCDMAEVDORev0"]){
+        netconnType = @"3G";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyCDMAEVDORevA"]){
+        netconnType = @"3G";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyCDMAEVDORevB"]){
+        netconnType = @"3G";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyeHRPD"]){
+        netconnType = @"HRPD";
+    }else if ([currentStatus isEqualToString:@"CTRadioAccessTechnologyLTE"]){
+        netconnType = @"4G";
+    }
+    
+    return netconnType;
+}
 -(void)showNetworkStatusAlert:(NSString *)str{
     //我这里是网络变化弹出一个警报框，由于不知道怎么让widow加载UIAlertController，所以这里用UIAlertView替代了
     UIAlertController *alertc = [UIAlertController alertControllerWithTitle:@"温馨提示" message:str preferredStyle:UIAlertControllerStyleAlert];
