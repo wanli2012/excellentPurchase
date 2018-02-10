@@ -494,10 +494,12 @@
         [EasyShowTextView showInfoText:@"请上传法人身份证照片"];
         return;
     }
+    
     if(self.provinceStrId.length == 0 || self.cityStrId.length == 0 || self.countryStrId.length == 0 ){
         [EasyShowTextView showInfoText:@"请选择地区"];
         return;
     }
+    
     if(self.addressTF.text.length == 0){
         [EasyShowTextView showInfoText:@"请填写详细地址"];
         return;
@@ -517,6 +519,10 @@
     }
     if(![self.ensurepwdTF.text isEqualToString:self.passwordTF.text]){
         [EasyShowTextView showInfoText:@"两次密码输入不一致,请检查"];
+        return;
+    }
+    if(!_isAgreeProtocol){
+        [EasyShowTextView showInfoText:@"请先同意协议"];
         return;
     }
  
@@ -589,7 +595,7 @@
 
 #pragma mark - 跳转到商家承诺书
 - (IBAction)sellerPromise:(id)sender {
-    NSLog(@"跳转到商家承诺书");
+
 }
 
 #pragma mark - UITextfieldDelegate

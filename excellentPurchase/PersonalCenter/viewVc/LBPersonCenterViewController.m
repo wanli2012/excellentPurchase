@@ -211,6 +211,15 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     NSString *vcstr = self.userVcArr[indexPath.row];
+    
+    if([vcstr isEqualToString:@"GLMine_TeamController"]){//我的团队
+        if([[UserModel defaultUser].group_id integerValue] == GROUP_USER || [[UserModel defaultUser].group_id integerValue] == GROUP_SHOP || [[UserModel defaultUser].group_id integerValue] == GROUP_TG){
+            [EasyShowTextView showInfoText:@"权限不足"];
+            return;
+        }
+    }
+    
+    
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
     
