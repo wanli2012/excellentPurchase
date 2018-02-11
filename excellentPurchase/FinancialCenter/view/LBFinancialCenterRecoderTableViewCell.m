@@ -40,7 +40,7 @@
         self.nameLabel2.text = @"当日市值";
         self.nameLabel3.text = @"售出总价";
     }else if(model.cellType == 3) {
-        self.nameLabel1.text = @"兑换积分";
+        self.nameLabel1.text = @"兑换购物券";
         self.nameLabel2.text = @"当日比例";
         self.nameLabel3.text = @"已兑换优购币";
     }

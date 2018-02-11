@@ -140,7 +140,7 @@
 #define ksystem_bulletin @"Assets/system_bulletin"//系统公告-王凯
 #define kstore_find @"Store/store_find"//店铺管理 营业额*--黄炜
 #define kfast_login @"User/fast_login"//店铺管理 营业额*--黄炜
-
+#define kstore_commit @"OrderLine/store_commit"//线下下单
 
 
 

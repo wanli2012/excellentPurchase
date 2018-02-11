@@ -214,6 +214,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 #pragma mark - 提交
 - (IBAction)submit:(id)sender {
+    
     [self.view endEditing:YES];
     if(self.goodsNameTF.text.length == 0){
         [EasyShowTextView showInfoText:@"请填写商品名字"];
@@ -229,8 +230,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         [EasyShowTextView showInfoText:@"请填写商品让利金额"];
         return;
     }
-    if(self.assets.count == 0){
-        [EasyShowTextView showInfoText:@"请上传商品图片"];
+
+    if(self.assets.count != 3){
+        [EasyShowTextView showInfoText:@"请上传3张商品图片"];
         return;
     }
     

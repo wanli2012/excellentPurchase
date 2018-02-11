@@ -14,6 +14,7 @@
 #import "GLMine_Seller_SetMoneyController.h"//收款二维码
 #import "LBFinishMainViewController.h"
 #import "LBMerChatFaceToFaceViewController.h"//面对面订单
+#import "GLMine_Branch_Offline_PlaceOrderController.h"//线下下单
 
 @interface GLMine_ManagementController ()
 
@@ -145,6 +146,17 @@
     
     self.navigationController.navigationBar.hidden = NO;
 }
+
+#pragma mark - 线下提单
+- (IBAction)markOrderOffline:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Branch_Offline_PlaceOrderController *makeOrderVC = [[GLMine_Branch_Offline_PlaceOrderController alloc] init];
+    makeOrderVC.type = 1;////1:线下下单 2:线下订单失败 重新下单
+    [self.navigationController pushViewController:makeOrderVC animated:YES];
+    
+}
+
 
 #pragma mark - 六块主功能
 /**

@@ -9,6 +9,7 @@
 #import "LBMineOtherFunctionViewController.h"
 #import "LBSetUpTableViewCell.h"
 //#import "GLRecommendController.h"
+#import "GLMine_Seller_IncomeCodeController.h"
 
 @interface LBMineOtherFunctionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -56,12 +57,17 @@
     return 60;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *vcstr = self.userVcArr[indexPath.row];
+    
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
+    
+    if([vcstr isEqualToString:@"GLMine_Seller_IncomeCodeController"]){
+        GLMine_Seller_IncomeCodeController *incomeVc = (GLMine_Seller_IncomeCodeController *)vc;
+        incomeVc.type = 1;
+    }
     
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -75,7 +81,7 @@
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"GLRecommendController",
+                    @"GLMine_Seller_IncomeCodeController",
                     @"LBMineCollectionViewController",nil];
         
     }

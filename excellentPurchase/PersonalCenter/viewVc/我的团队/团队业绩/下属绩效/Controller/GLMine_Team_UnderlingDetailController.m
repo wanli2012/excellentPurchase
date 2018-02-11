@@ -23,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *maker_conLabel;//下属业绩
 @property (weak, nonatomic) IBOutlet UILabel *reg_rewardLabel;//获得奖励
 
-
-@property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, copy)NSString *group_id;
 @property (nonatomic, strong)UIButton *rightBtn;
 @property (nonatomic, assign)NSInteger selectIndex;//选中身份下标
@@ -38,8 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-//    [self setNav];
-    
+    self.navigationItem.title = @"下级业绩";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_TeamAchievementCell" bundle:nil] forCellReuseIdentifier:@"GLMine_TeamAchievementCell"];
     
     [self postRequest];
@@ -123,17 +120,17 @@
     
     [self.navigationController pushViewController:idSelectVC animated:YES];
 }
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.model.data_up.count;
-//    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLMine_TeamAchievementCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_TeamAchievementCell" forIndexPath:indexPath];
     
-    cell.model = self.models[indexPath.row];
+    cell.model = self.model.data_up[indexPath.row];
     cell.selectionStyle = 0;
     
     return cell;
@@ -145,18 +142,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    GLMine_TeamUnderLing_data_upModel *model = self.model.data_up[indexPath.row];
+    
+    if([model.group_id integerValue] == GROUP_TG){
+        [EasyShowTextView showInfoText:@"没有更多了"];
+        return;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_UnderlingDetailController *vc = [[GLMine_Team_UnderlingDetailController alloc] init];
+    vc.cid = model.uid;
     [self.navigationController pushViewController:vc animated:YES];
     
-}
-
-#pragma mark - 懒加载
-- (NSMutableArray *)models{
-    if (!_models) {
-        _models = [NSMutableArray array];
-    }
-    return _models;
 }
 
 @end
