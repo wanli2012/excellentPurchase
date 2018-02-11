@@ -87,7 +87,14 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [self.assets1 removeAllObjects];
             [self.assets2 removeAllObjects];
-            [self.assets1 addObject:responseObject[@"data"][@"store_thumb"]];
+            
+            NSString *str = responseObject[@"data"][@"store_thumb"];
+            
+            if(str.length != 0){
+                
+                [self.assets1 addObject:responseObject[@"data"][@"store_thumb"]];
+            }
+            
             [self.assets2 addObjectsFromArray:responseObject[@"data"][@"store_homepage"]];
             
             [self assignment];
@@ -343,14 +350,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     cell.index = indexPath.row;
     
     if (collectionView == self.collectionview1) {
-        //        //删除
-        //        if (indexPath.item == self.assets1.count) {
-        //            cell.deleteBt.hidden = YES;
-        //            cell.imagev.image = [UIImage imageNamed:@"addphotograph"];
-        //        }else{
-        //            cell.deleteBt.hidden = NO;
-        //            cell.imagev.image = [UIImage imageNamed:self.assets1[indexPath.item]];
-        //        }
         
         //删除
         if (indexPath.item == self.assets1.count) {
@@ -422,8 +421,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.collectionview1) {
+        _picIndex = 1;
         if (indexPath.row == self.assets1.count) {//选择照片
-            _picIndex = 1;
             HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
             __weak typeof(self) wself = self;
             HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
@@ -451,8 +450,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
             
         }
     }else{
+        _picIndex = 2;
         if (indexPath.row == self.assets2.count) {//选择照片
-            _picIndex = 2;
             HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
             __weak typeof(self) wself = self;
             HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
@@ -540,8 +539,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 #pragma mark - 选择图片
 - (void)photoSelectet:(NSMutableArray*)assets collectionview:(UICollectionView*)collectionview{
+    
     ZLPhotoPickerViewController *pickerVc = [[ZLPhotoPickerViewController alloc] init];
-    // MaxCount, Default = 9
+    
     if (_picIndex == 1) {
         
         pickerVc.maxCount = 1;
@@ -562,26 +562,30 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     
     pickerVc.topShowPhotoPicker = YES;
     pickerVc.isShowCamera = YES;
-    // CallBack
+    
+    WeakSelf;
     pickerVc.callBack = ^(NSArray<ZLPhotoAssets *> *status){
+        
+        NSMutableArray *arrM = [NSMutableArray array];
         for (int i = 0; i < assets.count; i ++) {
             if([assets[i] isKindOfClass:[ZLPhotoAssets class]]){
-                [assets removeObject:assets[i]];
+                [arrM addObject:assets[i]];
             }
         }
         
+        [assets removeObjectsInArray:arrM];
         [assets addObjectsFromArray:status.mutableCopy];
         [collectionview reloadData];
         
-        if(self.assets2.count >= 4){
-            self.collectionH2.constant = (UIScreenWidth - 20)/2.0 * 2;
+        if(weakSelf.assets2.count >= 4){
+            weakSelf.collectionH2.constant = (UIScreenWidth - 20)/2.0 * 2;
         }else{
-            self.collectionH2.constant = (UIScreenWidth - 20)/2.0 * (self.assets2.count/2 + 1);
+            weakSelf.collectionH2.constant = (UIScreenWidth - 20)/2.0 * (self.assets2.count/2 + 1);
         }
         
         [UIView animateWithDuration:0.2 animations:^{
             
-            [self.view layoutIfNeeded];
+            [weakSelf.view layoutIfNeeded];
         }];
         
     };
@@ -589,61 +593,68 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 }
 
 - (void)tapBrowser:(NSInteger)index andPicIndex:(NSInteger)picIndex{
-    // 图片游览器
-    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
-    // 淡入淡出效果
-    pickerBrowser.status = UIViewAnimationAnimationStatusFade;
-    // 数据源/delegate
-    pickerBrowser.editing = YES;
-    
-    NSMutableArray *arrM = [NSMutableArray array];
-    if (picIndex == 1) {//招牌照
-        
-        for (id photo in self.assets1) {
-            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
-            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
-                
-                ZLPhotoAssets *assets = [self.assets1 objectAtIndex:index];
-                photoNew.asset = assets;
-                
-            }else{
-                
-                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
-            }
-            [arrM addObject:photoNew];
-        }
-        
-    }else{//内景照
-        
-        for (id photo in self.assets2) {
-            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
-            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
-                
-                ZLPhotoAssets *assets = [self.assets2 objectAtIndex:index];
-                photoNew.asset = assets;
-                
-            }else{
-                
-                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
-            }
-            [arrM addObject:photoNew];
-        }
-    }
-    
-    pickerBrowser.photos = arrM;
-    // 能够删除
-    pickerBrowser.delegate = self;
-    // 当前选中的值
-    pickerBrowser.currentIndex = index;
-    // 展示控制器
-    [pickerBrowser showPickerVc:self];
+//    // 图片游览器
+//    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
+//    // 淡入淡出效果
+//    pickerBrowser.status = UIViewAnimationAnimationStatusFade;
+//    // 数据源/delegate
+//    pickerBrowser.editing = YES;
+//    
+//    NSMutableArray *arrM = [NSMutableArray array];
+//    if (picIndex == 1) {//招牌照
+//        for (id photo in self.assets1) {
+//            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+//            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
+//                
+//                ZLPhotoAssets *assets = [self.assets1 objectAtIndex:index];
+//                photoNew.asset = assets;
+//                
+//            }else{
+//                
+//                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+//            }
+//            [arrM addObject:photoNew];
+//        }
+//        
+//    }else{//内景照
+//        
+//        for (id photo in self.assets2) {
+//            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+//            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
+//                
+//                ZLPhotoAssets *assets = [self.assets2 objectAtIndex:index];
+//                photoNew.asset = assets;
+//                
+//            }else{
+//                
+//                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+//            }
+//            [arrM addObject:photoNew];
+//        }
+//    }
+//    
+//    pickerBrowser.photos = arrM;
+//    // 能够删除
+//    pickerBrowser.delegate = self;
+//    // 当前选中的值
+//    pickerBrowser.currentIndex = index;
+//    // 展示控制器
+//    [pickerBrowser showPickerVc:self];
 }
-
-- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
-    if (self.assets1.count > index) {
-        
-    }
-}
+//
+//- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
+//    if (_picIndex == 1) {//招牌照
+//        if (self.assets1.count > index) {
+//            [self.assets1 removeObjectAtIndex:index];
+//            [self.collectionview1 reloadData];
+//        }
+//    }else{
+//        if (self.assets2.count > index) {
+//            [self.assets2 removeObjectAtIndex:index];
+//            [self.collectionview2 reloadData];
+//        }
+//    }
+//}
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.collectionview1) {

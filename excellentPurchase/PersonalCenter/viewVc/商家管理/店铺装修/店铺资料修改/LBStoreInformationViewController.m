@@ -15,8 +15,9 @@
 #import "UIImage+ZLPhotoLib.h"
 
 #import "GLStoreInfomationModel.h"
+#import "LBBaiduMapViewController.h"//地图
 
-@interface LBStoreInformationViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,HCBasePopupViewControllerDelegate,ZLPhotoPickerBrowserViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface LBStoreInformationViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,HCBasePopupViewControllerDelegate,ZLPhotoPickerBrowserViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , strong) NSMutableArray *assets;
@@ -72,6 +73,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
             self.model = model;
             
             [self assignment];//赋值
+            
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -107,7 +109,20 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
  坐标选择
  */
 - (IBAction)coordinateChoose:(id)sender {
-    NSLog(@" 坐标选择");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBBaiduMapViewController *mapVC = [[LBBaiduMapViewController alloc] init];
+    WeakSelf;
+    mapVC.returePositon = ^(NSString *strposition, NSString *pro, NSString *city, NSString *area, CLLocationCoordinate2D coors) {
+      
+        weakSelf.longitude = [NSString stringWithFormat:@"%f",coors.longitude];
+        weakSelf.latitude = [NSString stringWithFormat:@"%f",coors.latitude];
+        
+        weakSelf.coordinateTF.text = [NSString stringWithFormat:@"%@,%@",weakSelf.longitude,weakSelf.latitude];
+    };
+    
+    [self.navigationController pushViewController:mapVC animated:YES];
+    
 }
 
 #pragma mark - 提交
@@ -229,17 +244,33 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
  提交
  */
 - (void)submitRequest{
-    
-    if (self.picUrl.length == 0) {
+
+    if (self.shopNameTF.text.length == 0) {
         
-        [EasyShowTextView showInfoText:@"请重新上传招牌照"];
-        [EasyShowLodingView showLoding];
+        [EasyShowTextView showInfoText:@"请填写店铺名"];
+        return;
+    }
+    
+    if (self.shopAddressTF.text.length == 0) {
+        [EasyShowTextView showInfoText:@"请填写店铺地址"];
+        return;
+    }
+    
+    if (self.phoneTF.text.length == 0) {
+        [EasyShowTextView showInfoText:@"请填写联系电话"];
         
         return;
     }
-
-    self.longitude = @"116.39507";
-    self.latitude = @"39.966935";
+    if(self.longitude.length == 0 || self.latitude.length == 0){
+        [EasyShowTextView showInfoText:@"请定位经纬度"];
+        
+        return;
+    }
+    
+    if (self.picUrl.length == 0) {
+        [EasyShowTextView showInfoText:@"请重新上传营业执照"];
+        return;
+    }
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
@@ -256,6 +287,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     dic[@"lat"] = self.latitude;
     dic[@"license_pic"] = self.picUrl;
     
+    [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:kstore_info_edit paramDic:dic finish:^(id responseObject) {
         
         self.submitBtn.backgroundColor = MAIN_COLOR;
@@ -508,17 +540,28 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [pickerBrowser showPickerVc:self];
 }
 
-//- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
-//
-//    [self.assets removeAllObjects];
-//
-//    [self.assets addObjectsFromArray:photoBrowser.photos];
-//
-////    if (self.assets.count > index) {
-////        [self.assets removeObjectAtIndex:index];
-//        [self.collectionView reloadData];
-////    }
-//}
+- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
+
+    if (self.assets.count > index) {
+        [self.assets removeObjectAtIndex:index];
+    }
+    [self.collectionView reloadData];
+    
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    return YES;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    
+    return YES;
+}
+
+#pragma mark - 懒加载
 
 - (NSMutableArray *)assets{
     if (!_assets) {
