@@ -180,7 +180,7 @@
  店铺装修
   */
 - (IBAction)storeDecorate:(id)sender {
-    
+
     self.hidesBottomBarWhenPushed = YES;
     LBFinishMainViewController * vc = [[LBFinishMainViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];

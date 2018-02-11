@@ -212,7 +212,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
     NSString *vcstr = self.userVcArr[indexPath.row];
 
-    if([vcstr isEqualToString:@"GLMine_TeamController"]){//我的团队
+    if([vcstr isEqualToString:@"GLMine_TeamController"] || [vcstr isEqualToString:@"GLMine_ManagementController"]){//我的团队
         if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
             [EasyShowTextView showInfoText:@"请先实名认证"];
             return;
