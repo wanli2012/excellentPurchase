@@ -261,16 +261,17 @@
         [EasyShowTextView showInfoText:@"请选择身份"];
         return;
     }
-    
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    
+
 //    NSString *encryptsecret = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
+    
+    NSString *account = [self.accountTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *password = [self.passwordTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"SEARCH";
-    dict[@"phone"] = self.accountTF.text;
+    dict[@"phone"] = account;
     dict[@"group_id"] = self.group_id;
-    dict[@"password"] = self.passwordTF.text;
+    dict[@"password"] = password;
     
     self.loginBt.enabled = NO;
     self.loginBt.backgroundColor = [UIColor grayColor];
