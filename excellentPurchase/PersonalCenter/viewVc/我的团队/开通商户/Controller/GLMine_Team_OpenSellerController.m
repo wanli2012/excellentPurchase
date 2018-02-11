@@ -80,7 +80,6 @@
 @property (nonatomic, assign)CGFloat lng;//经度
 @property (nonatomic, assign)CGFloat lat;//纬度
 
-
 @end
 
 @implementation GLMine_Team_OpenSellerController
@@ -99,8 +98,8 @@
         self.recommendViewHeight.constant = 0;
         self.recommendView.hidden = YES;
     }
+    
 }
-
 #pragma mark - 获取验证码
 - (IBAction)getCode:(id)sender {
     
@@ -662,7 +661,6 @@
     return YES;
 }
 
-
 - (ValuePickerView *)pickerView{
     if (!_pickerView) {
         _pickerView = [[ValuePickerView alloc] init];
@@ -682,4 +680,5 @@
     }
     return _brandModels;
 }
+
 @end

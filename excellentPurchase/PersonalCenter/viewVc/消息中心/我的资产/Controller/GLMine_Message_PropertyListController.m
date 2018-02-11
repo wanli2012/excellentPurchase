@@ -166,7 +166,7 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GLMine_Message_PropertyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Message_PropertyCell"];
+    GLMine_Message_PropertyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Message_PropertyCell" forIndexPath:indexPath];
     cell.selectionStyle = 0;
     cell.model = self.models[indexPath.row];
     

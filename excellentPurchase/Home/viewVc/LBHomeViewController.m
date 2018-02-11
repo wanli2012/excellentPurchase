@@ -334,7 +334,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             self.hidesBottomBarWhenPushed = YES;
             LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
             vc.catename = @"海淘商城";
-            vc.goods_type = 1;
+            vc.goods_type = 2;
+            vc.s_type = @"3";
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }
@@ -345,6 +346,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
             vc.catename = @"微商清仓";
             vc.goods_type = 2;
+            vc.s_type = @"4";
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }
@@ -355,6 +357,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
             vc.catename = @"厂家直销";
             vc.goods_type = 2;
+            vc.s_type = @"1";
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }
@@ -364,7 +367,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             self.hidesBottomBarWhenPushed = YES;
             LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
             vc.catename = @"自营商城";
-            vc.goods_type = 1;
+            vc.goods_type = 2;
+            vc.s_type = @"5";
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }
@@ -502,7 +506,10 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 }
 //扫码
 - (IBAction)jumpScan:(UIButton *)sender {
-    
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
     //设置扫码区域参数
     LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
     style.centerUpOffset = 60;
@@ -559,7 +566,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         [EasyShowTextView showErrorText:@"请扫正确的二维码"];
         return;
     }
-    
     self.hidesBottomBarWhenPushed = YES;
     LBFaceToFace_PayController *vc = [LBFaceToFace_PayController new];
     vc.money  = [NSString stringWithFormat:@"%@",dic[@"money"]];

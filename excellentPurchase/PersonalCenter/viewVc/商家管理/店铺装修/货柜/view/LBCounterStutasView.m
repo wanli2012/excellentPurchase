@@ -81,6 +81,7 @@ static NSString *ID = @"LBCounterStutasViewcell";
     
     if (self.indexBlock) {
         self.indexBlock(indexPath.row,self.dataArr[indexPath.row]);
+        
     }
     
 }
