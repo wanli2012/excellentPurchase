@@ -29,7 +29,31 @@
     
     self.timelb.text = [NSString stringWithFormat:@"支付时间: %@",[formattime formateTimeOfDate3:_model.face_addtime]];
     self.ratelb.text = [NSString stringWithFormat:@"让利金额: %@",_model.face_rl_money];
-     self.ratelb.text = [NSString stringWithFormat:@"支付金额: %@",_model.face_money];
+     self.paylb.text = [NSString stringWithFormat:@"支付金额: %@",_model.face_money];
+    switch ([_model.face_paytype integerValue]) {
+        case 201:
+            self.methodlb.text = [NSString stringWithFormat:@"支付方式:  支付宝支付"];
+            break;
+        case 202:
+            self.methodlb.text = [NSString stringWithFormat:@"支付方式:  微信支付"];
+            break;
+        case 203:
+            self.methodlb.text = [NSString stringWithFormat:@"支付方式:  余额支付"];
+            break;
+        case 204:
+            self.methodlb.text = [NSString stringWithFormat:@"支付方式:  支付宝+购物券"];
+            break;
+        case 205:
+            self.methodlb.text = [NSString stringWithFormat:@"支付方式:  微信+购物券"];
+            break;
+        case 206:
+            self.methodlb.text = [NSString stringWithFormat:@"支付方式:  余额+购物券"];
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 -(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{

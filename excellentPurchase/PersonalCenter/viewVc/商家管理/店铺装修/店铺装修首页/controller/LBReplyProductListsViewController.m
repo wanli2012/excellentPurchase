@@ -140,10 +140,17 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
     }else{
         LBCommentListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:commentListsTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = ((LBTmallDetailgoodsCommentFrameModel*)self.commentdataArr[indexPath.row - 1]).CommentModel;
-        cell.replayBt.hidden = NO;
+        LBTmallDetailgoodsCommentFrameModel * model = self.commentdataArr[indexPath.row - 1];
+        cell.model = model.CommentModel;
+        if ([NSString StringIsNullOrEmpty:model.CommentModel.reply] == NO) {
+            cell.replayBt.hidden = YES;
+        }else{
+            cell.replayBt.hidden = NO;
+        }
+        cell.indexpath = indexPath;
+        WeakSelf;
         cell.replyComment = ^(NSIndexPath *indexpath, NSString *str) {
-            
+            [weakSelf replyCommentinde:indexpath str:str];
         };
         return cell;
     }
@@ -151,13 +158,13 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
 
 -(void)replyCommentinde:(NSIndexPath*)indexpath str:(NSString*)str{
     
-    LBTmallProductDetailgoodsCommentModel * model = self.commentdataArr[indexpath.row - 1];
+    LBTmallDetailgoodsCommentFrameModel * model = self.commentdataArr[indexpath.row - 1];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
-    dic[@"order_goods_id"] = model.order_goods_id;
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"order_goods_id"] = model.CommentModel.order_goods_id;
     dic[@"reply"] = str;
-    dic[@"comment_id"] = model.comment_id;
+    dic[@"comment_id"] = model.CommentModel.comment_id;
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
@@ -167,7 +174,7 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
     [NetworkManager requestPOSTWithURLStr:CommentStore_order_reply paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            model.reply = str;
+            model.CommentModel.reply = str;
             [self.tableview reloadData];
         }else{
             
@@ -180,6 +187,13 @@ static NSString *commentListsTableViewCell = @"LBCommentListsTableViewCell";
         
     }];
     
+}
+
+-(NSMutableArray*)commentdataArr{
+    if (!_commentdataArr) {
+        _commentdataArr = [[NSMutableArray alloc]init];
+    }
+    return _commentdataArr;
 }
 
 @end

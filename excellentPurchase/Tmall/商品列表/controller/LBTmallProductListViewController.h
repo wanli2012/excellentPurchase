@@ -12,6 +12,7 @@
 @property (assign , nonatomic)NSInteger jumpType;//1 为首页跳转过来
 //淘淘商城跳转过来
 @property (strong , nonatomic)NSString *cate_id;
+@property (strong , nonatomic)NSString *s_type;
 @property (strong , nonatomic)NSString *catename;
 @property (assign , nonatomic)NSInteger goods_type;//1每日推荐 2精品优选
 //首页跳转过来

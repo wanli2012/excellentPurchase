@@ -161,6 +161,7 @@ static NSString *eat_StoreMoreCommentsTableViewCell = @"LBEat_StoreMoreCommentsT
     }
     dic[@"reply"] = text;
     dic[@"line_id"] = model.HomeInvestModel.line_id;
+    dic[@"is_face"] = model.HomeInvestModel.is_face;
     dic[@"store_comment_id"] = model.HomeInvestModel.store_comment_id;
     
     [EasyShowLodingView showLodingText:@"正在加载"];
