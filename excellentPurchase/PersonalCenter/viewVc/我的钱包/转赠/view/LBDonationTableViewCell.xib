@@ -34,13 +34,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-PM-u7I">
-                                <rect key="frame" x="277" y="20.5" width="35" height="23"/>
+                                <rect key="frame" x="277" y="8.5" width="35" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7u-R6-0sc">
-                                <rect key="frame" x="135.5" y="22.5" width="31" height="18"/>
+                                <rect key="frame" x="281" y="36.5" width="31" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -48,14 +48,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P7u-R6-0sc" firstAttribute="centerX" secondItem="LiH-cT-EVi" secondAttribute="centerX" constant="-10" id="8DL-E3-g6s"/>
-                            <constraint firstItem="i3h-PM-u7I" firstAttribute="centerY" secondItem="LiH-cT-EVi" secondAttribute="centerY" id="CSc-cf-5iZ"/>
                             <constraint firstItem="Uqn-0S-eQA" firstAttribute="leading" secondItem="LiH-cT-EVi" secondAttribute="leading" constant="10" id="H4D-Rp-cyc"/>
                             <constraint firstItem="fmt-zG-2Io" firstAttribute="leading" secondItem="LiH-cT-EVi" secondAttribute="leading" constant="10" id="LUm-dD-feK"/>
                             <constraint firstAttribute="bottom" secondItem="fmt-zG-2Io" secondAttribute="bottom" constant="10" id="Qcr-1k-rEb"/>
                             <constraint firstAttribute="trailing" secondItem="i3h-PM-u7I" secondAttribute="trailing" constant="10" id="RAf-Pq-IJw"/>
                             <constraint firstItem="Uqn-0S-eQA" firstAttribute="top" secondItem="LiH-cT-EVi" secondAttribute="top" constant="10" id="h6K-z4-qhr"/>
-                            <constraint firstItem="P7u-R6-0sc" firstAttribute="centerY" secondItem="LiH-cT-EVi" secondAttribute="centerY" id="qOe-CE-aku"/>
+                            <constraint firstItem="P7u-R6-0sc" firstAttribute="centerY" secondItem="fmt-zG-2Io" secondAttribute="centerY" id="lC3-gW-2JS"/>
+                            <constraint firstAttribute="trailing" secondItem="P7u-R6-0sc" secondAttribute="trailing" constant="10" id="n12-T2-Wag"/>
+                            <constraint firstItem="i3h-PM-u7I" firstAttribute="centerY" secondItem="Uqn-0S-eQA" secondAttribute="centerY" id="rBW-Zr-nfR"/>
                         </constraints>
                     </view>
                 </subviews>

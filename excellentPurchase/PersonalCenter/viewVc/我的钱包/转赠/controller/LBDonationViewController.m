@@ -115,6 +115,14 @@
     if(self.receiveManTF.text.length == 0){
         [EasyShowTextView showInfoText:@"请填写接收人ID或者手机号"];
         return;
+    }else if([self.receiveManTF.text isEqualToString:[UserModel defaultUser].user_name]){
+        [EasyShowTextView showInfoText:@"不能给自己转赠"];
+        return;
+    }
+    
+    if([self.receiveManTF.text isEqualToString:[UserModel defaultUser].phone] && [self.group_id isEqualToString:[UserModel defaultUser].group_id]){
+        [EasyShowTextView showInfoText:@"不能给自己转赠"];
+        return;
     }
     
     if (self.group_id == 0) {
@@ -140,6 +148,11 @@
         [EasyShowTextView showInfoText:@"请先同意转赠须知"];
         return;
     }
+    
+    if ([self.moneyTF.text floatValue]  < 100 || [self.moneyTF.text containsString:@"."]) {
+        [EasyShowTextView showInfoText:@"请输入大于100的整数"];
+        return;
+    }
 
     HHPayPasswordView *payPasswordView = [[HHPayPasswordView alloc] init];
     payPasswordView.delegate = self;
@@ -149,10 +162,6 @@
 
 -(void)passwordView:(HHPayPasswordView *)passwordView didFinishInputPayPassword:(NSString *)password{
     
-    if ([self.moneyTF.text floatValue]  < 100 || [self.moneyTF.text containsString:@"."]) {
-        [EasyShowTextView showInfoText:@"请输入大于100的整数倍"];
-        return;
-    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"ADD";
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -165,12 +174,13 @@
  
     self.submitBtn.backgroundColor = [UIColor lightGrayColor];
     self.submitBtn.enabled = NO;
+    
     [NetworkManager requestPOSTWithURLStr:kgive paramDic:dict finish:^(id responseObject) {
         self.submitBtn.backgroundColor = MAIN_COLOR;
         self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-            [passwordView paySuccess];
+//            [passwordView paySuccess];
 
             if (self.type == 1) {//货币类型 1优购币 2积分’,
                 
@@ -193,13 +203,13 @@
             
         }else{
             
-            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+//            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
         }
         
     } enError:^(NSError *error) {
         self.submitBtn.backgroundColor = MAIN_COLOR;
         self.submitBtn.enabled = YES;
-        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+//        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
 -(void)actionSure:(NSString *)password{
@@ -208,6 +218,7 @@
         return;
     }
 }
+
 #pragma mark - 是否同意协议
 - (IBAction)isAgreeProtocol:(id)sender {
     _isAgreeProtocol =! _isAgreeProtocol;
@@ -230,6 +241,8 @@
 
 #pragma mark - 转赠类型选择
 - (IBAction)donationTypeChoose:(id)sender {
+    
+    [self.view endEditing:YES];
     
     NSMutableArray *arrM = [NSMutableArray array];
     

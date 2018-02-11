@@ -21,16 +21,18 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
+    
+
 }
 
 - (void)setModel:(GLDonationRecordModel *)model{
     _model = model;
     
     if (model.recordType == 1) {//转赠还是获赠 1.获赠 2.转赠
-        self.IDNumberLabel.text = [NSString stringWithFormat:@"账号:%@", model.cname];
-    }else{
         self.IDNumberLabel.text = [NSString stringWithFormat:@"账号:%@", model.uname];
+    }else{
+        self.IDNumberLabel.text = [NSString stringWithFormat:@"账号:%@", model.cname];
     }
     
     self.dateLabel.text = [formattime formateTimeOfDate4:model.time];

@@ -67,6 +67,9 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [EasyShowLodingView hidenLoding];
+    
     self.navigationController.navigationBar.hidden = YES;
     if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity]) {
          [_locationManager startUpdatingLocation];;//定位

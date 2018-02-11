@@ -34,7 +34,6 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
     self.tableView.delegate = self;
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:donationTableViewCell bundle:nil] forCellReuseIdentifier:donationTableViewCell];
-//    [self setupNpdata];//设置无数据的时候展示
     
     WeakSelf;
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{

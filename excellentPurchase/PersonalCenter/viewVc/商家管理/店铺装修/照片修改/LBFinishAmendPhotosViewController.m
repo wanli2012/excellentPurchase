@@ -31,6 +31,8 @@
 @property (nonatomic , strong) NSMutableArray *assets2;
 @property (nonatomic , strong) NSMutableArray *photos2;
 
+@property (nonatomic, strong)UIButton *rightBtn;//右键
+
 @property (nonatomic, copy)NSString *picUrl;//招牌图片url
 @property (nonatomic, strong)NSMutableArray *picUrlArr;//图片url数组
 
@@ -64,8 +66,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     button.titleLabel.font = [UIFont systemFontOfSize:14];
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    
-    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
+    self.rightBtn = button;
+    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:self.rightBtn];
     self.navigationItem.rightBarButtonItem = ba;
 }
 
@@ -87,7 +89,14 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [self.assets1 removeAllObjects];
             [self.assets2 removeAllObjects];
-            [self.assets1 addObject:responseObject[@"data"][@"store_thumb"]];
+            
+            NSString *str = responseObject[@"data"][@"store_thumb"];
+            
+            if(str.length != 0){
+                
+                [self.assets1 addObject:responseObject[@"data"][@"store_thumb"]];
+            }
+            
             [self.assets2 addObjectsFromArray:responseObject[@"data"][@"store_homepage"]];
             
             [self assignment];
@@ -124,6 +133,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 #pragma mark - 保存
 - (void)save{
+    
     [self creatDispathGroup];
 }
 
@@ -132,6 +142,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     WeakSelf;
     //信号量
     [EasyShowLodingView showLoding];
+    self.rightBtn.enabled = NO;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     //创建全局并行
     dispatch_group_t group = dispatch_group_create();
@@ -191,7 +202,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 image = [self.assets2 objectAtIndex:i];
             }
             
-            //            type 1:招牌照 2:内景照
+            //type 1:招牌照 2:内景照
             dispatch_group_async(group, queue, ^{
                 [weakSelf uploadImageV:image type:2 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
                     
@@ -280,10 +291,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (void)modifyPic{
     
     if (self.picUrl.length == 0) {
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showInfoText:@"请重新上传招牌照"];
         return;
     }
+    
     if (self.picUrlArr.count == 0) {
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showInfoText:@"请至少上传一张内景照"];
         return;
     }
@@ -306,7 +320,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-
+            self.rightBtn.enabled = YES;
             [EasyShowTextView showSuccessText:@"已保存"];
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -316,6 +330,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         }
         
     } enError:^(NSError *error) {
+        self.rightBtn.enabled = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
@@ -343,14 +358,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     cell.index = indexPath.row;
     
     if (collectionView == self.collectionview1) {
-        //        //删除
-        //        if (indexPath.item == self.assets1.count) {
-        //            cell.deleteBt.hidden = YES;
-        //            cell.imagev.image = [UIImage imageNamed:@"addphotograph"];
-        //        }else{
-        //            cell.deleteBt.hidden = NO;
-        //            cell.imagev.image = [UIImage imageNamed:self.assets1[indexPath.item]];
-        //        }
         
         //删除
         if (indexPath.item == self.assets1.count) {
@@ -422,8 +429,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.collectionview1) {
+        _picIndex = 1;
         if (indexPath.row == self.assets1.count) {//选择照片
-            _picIndex = 1;
             HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
             __weak typeof(self) wself = self;
             HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
@@ -436,13 +443,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 [wself photoSelectet:self.assets1 collectionview:self.collectionview1];
             } withType:HCBottomPopupActionSelectItemTypeDefault];
             
-            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
             
             HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
             
             [pc addAction:action1];
             [pc addAction:action2];
-            [pc addAction:action3];
+//            [pc addAction:action3];
             [pc addAction:action4];
             
             [self presentViewController:pc animated:YES completion:nil];
@@ -451,8 +458,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
             
         }
     }else{
+        _picIndex = 2;
         if (indexPath.row == self.assets2.count) {//选择照片
-            _picIndex = 2;
             HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
             __weak typeof(self) wself = self;
             HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
@@ -464,13 +471,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 [wself photoSelectet:self.assets2 collectionview:self.collectionview2];
             } withType:HCBottomPopupActionSelectItemTypeDefault];
             
-            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
             
             HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
             
             [pc addAction:action1];
             [pc addAction:action2];
-            [pc addAction:action3];
+//            [pc addAction:action3];
             [pc addAction:action4];
             
             [self presentViewController:pc animated:YES completion:nil];
@@ -540,8 +547,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 #pragma mark - 选择图片
 - (void)photoSelectet:(NSMutableArray*)assets collectionview:(UICollectionView*)collectionview{
+    
     ZLPhotoPickerViewController *pickerVc = [[ZLPhotoPickerViewController alloc] init];
-    // MaxCount, Default = 9
+    
     if (_picIndex == 1) {
         
         pickerVc.maxCount = 1;
@@ -562,26 +570,30 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     
     pickerVc.topShowPhotoPicker = YES;
     pickerVc.isShowCamera = YES;
-    // CallBack
+    
+    WeakSelf;
     pickerVc.callBack = ^(NSArray<ZLPhotoAssets *> *status){
+        
+        NSMutableArray *arrM = [NSMutableArray array];
         for (int i = 0; i < assets.count; i ++) {
             if([assets[i] isKindOfClass:[ZLPhotoAssets class]]){
-                [assets removeObject:assets[i]];
+                [arrM addObject:assets[i]];
             }
         }
         
+        [assets removeObjectsInArray:arrM];
         [assets addObjectsFromArray:status.mutableCopy];
         [collectionview reloadData];
         
-        if(self.assets2.count >= 4){
-            self.collectionH2.constant = (UIScreenWidth - 20)/2.0 * 2;
+        if(weakSelf.assets2.count >= 4){
+            weakSelf.collectionH2.constant = (UIScreenWidth - 20)/2.0 * 2;
         }else{
-            self.collectionH2.constant = (UIScreenWidth - 20)/2.0 * (self.assets2.count/2 + 1);
+            weakSelf.collectionH2.constant = (UIScreenWidth - 20)/2.0 * (self.assets2.count/2 + 1);
         }
         
         [UIView animateWithDuration:0.2 animations:^{
             
-            [self.view layoutIfNeeded];
+            [weakSelf.view layoutIfNeeded];
         }];
         
     };
@@ -589,61 +601,68 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 }
 
 - (void)tapBrowser:(NSInteger)index andPicIndex:(NSInteger)picIndex{
-    // 图片游览器
-    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
-    // 淡入淡出效果
-    pickerBrowser.status = UIViewAnimationAnimationStatusFade;
-    // 数据源/delegate
-    pickerBrowser.editing = YES;
-    
-    NSMutableArray *arrM = [NSMutableArray array];
-    if (picIndex == 1) {//招牌照
-        
-        for (id photo in self.assets1) {
-            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
-            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
-                
-                ZLPhotoAssets *assets = [self.assets1 objectAtIndex:index];
-                photoNew.asset = assets;
-                
-            }else{
-                
-                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
-            }
-            [arrM addObject:photoNew];
-        }
-        
-    }else{//内景照
-        
-        for (id photo in self.assets2) {
-            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
-            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
-                
-                ZLPhotoAssets *assets = [self.assets2 objectAtIndex:index];
-                photoNew.asset = assets;
-                
-            }else{
-                
-                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
-            }
-            [arrM addObject:photoNew];
-        }
-    }
-    
-    pickerBrowser.photos = arrM;
-    // 能够删除
-    pickerBrowser.delegate = self;
-    // 当前选中的值
-    pickerBrowser.currentIndex = index;
-    // 展示控制器
-    [pickerBrowser showPickerVc:self];
+//    // 图片游览器
+//    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
+//    // 淡入淡出效果
+//    pickerBrowser.status = UIViewAnimationAnimationStatusFade;
+//    // 数据源/delegate
+//    pickerBrowser.editing = YES;
+//    
+//    NSMutableArray *arrM = [NSMutableArray array];
+//    if (picIndex == 1) {//招牌照
+//        for (id photo in self.assets1) {
+//            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+//            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
+//                
+//                ZLPhotoAssets *assets = [self.assets1 objectAtIndex:index];
+//                photoNew.asset = assets;
+//                
+//            }else{
+//                
+//                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+//            }
+//            [arrM addObject:photoNew];
+//        }
+//        
+//    }else{//内景照
+//        
+//        for (id photo in self.assets2) {
+//            ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+//            if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
+//                
+//                ZLPhotoAssets *assets = [self.assets2 objectAtIndex:index];
+//                photoNew.asset = assets;
+//                
+//            }else{
+//                
+//                photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+//            }
+//            [arrM addObject:photoNew];
+//        }
+//    }
+//    
+//    pickerBrowser.photos = arrM;
+//    // 能够删除
+//    pickerBrowser.delegate = self;
+//    // 当前选中的值
+//    pickerBrowser.currentIndex = index;
+//    // 展示控制器
+//    [pickerBrowser showPickerVc:self];
 }
-
-- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
-    if (self.assets1.count > index) {
-        
-    }
-}
+//
+//- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
+//    if (_picIndex == 1) {//招牌照
+//        if (self.assets1.count > index) {
+//            [self.assets1 removeObjectAtIndex:index];
+//            [self.collectionview1 reloadData];
+//        }
+//    }else{
+//        if (self.assets2.count > index) {
+//            [self.assets2 removeObjectAtIndex:index];
+//            [self.collectionview2 reloadData];
+//        }
+//    }
+//}
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.collectionview1) {

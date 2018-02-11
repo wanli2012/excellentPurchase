@@ -46,6 +46,9 @@
 
 #define RECOMMEND_URL @"http://cs5.hytc.gs/Home/User/Register?tjrid="
 
+//服务条款
+#define kProtocol_URL @"http://cs5.hytc.gs/H5/all_agreement.html"
+
 #define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 #define share_URL_Base @"http://cs5.hytc.gs/index.php/"//分享
 
@@ -80,7 +83,7 @@
 #define kgoods_brand_list @"GoodsCate/goods_brand_list"///获取品牌列表
 #define kappend_upload @"Upload/append_upload"///上传图片
 
-#define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
+//#define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
 
 #define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
 #define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯

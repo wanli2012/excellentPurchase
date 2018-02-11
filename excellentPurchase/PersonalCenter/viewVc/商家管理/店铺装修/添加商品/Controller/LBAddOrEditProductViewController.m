@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionH;
 @property (nonatomic , strong) NSMutableArray *assets;
-@property (nonatomic , strong) NSMutableArray *photos;
+//@property (nonatomic , strong) NSMutableArray *photos;
 @property (weak, nonatomic) IBOutlet UILabel *limitLb;//现在字数
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
@@ -73,9 +73,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     }];
     
     [self postCate];//请求数据
-    
-    
-    
 }
 
 //请求数据
@@ -456,6 +453,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == self.assets.count) {//选择照片
+        
         HCBottomPopupViewController * pc =  [[HCBottomPopupViewController alloc]init];
         __weak typeof(self) wself = self;
         HCBottomPopupAction * action1 = [HCBottomPopupAction actionWithTitle:@"拍照" withSelectedBlock:^{
@@ -467,17 +465,18 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
             [wself photoSelectet];
         } withType:HCBottomPopupActionSelectItemTypeDefault];
         
-        HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//        HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
         
         HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
         
         [pc addAction:action1];
         [pc addAction:action2];
-        [pc addAction:action3];
+//        [pc addAction:action3];
         [pc addAction:action4];
         
         [self presentViewController:pc animated:YES completion:nil];
     }else{//放大
+        
         [self tapBrowser:indexPath.row];
         
     }
@@ -584,43 +583,65 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     pickerVc.callBack = ^(NSArray<ZLPhotoAssets *> *status){
 
+        NSMutableArray *arrM = [NSMutableArray array];
         for (int i = 0; i < weakSelf.assets.count; i ++) {
             if([weakSelf.assets[i] isKindOfClass:[ZLPhotoAssets class]]){
-                [weakSelf.assets removeObject:weakSelf.assets[i]];
+                [arrM addObject:weakSelf.assets[i]];
             }
         }
-
+        
+        [weakSelf.assets removeObjectsInArray:arrM];
         [weakSelf.assets addObjectsFromArray:status.mutableCopy];
         [weakSelf.collectionView reloadData];
+        
     };
     [pickerVc showPickerVc:self];
 }
 
 - (void)tapBrowser:(NSInteger)index{
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+//
 //    // 图片游览器
 //    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
 //    // 淡入淡出效果
 //    pickerBrowser.status = UIViewAnimationAnimationStatusFade;
 //    // 数据源/delegate
 //    pickerBrowser.editing = YES;
-//    pickerBrowser.photos = self.assets;
+//
+//    NSMutableArray *arrM = [NSMutableArray array];
+//
+//    for (id photo in self.assets) {
+//        ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+//        if (photo != nil && [photo isKindOfClass:[ZLPhotoAssets class]]) {
+//
+//            ZLPhotoAssets *assets = [self.assets objectAtIndex:index];
+//            photoNew.asset = assets;
+//
+//        }else{
+//
+//            photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+//        }
+//
+//        [arrM addObject:photoNew];
+//    }
+//
+//    pickerBrowser.photos = arrM;
 //    // 能够删除
 //    pickerBrowser.delegate = self;
 //    // 当前选中的值
-//    pickerBrowser.currentIndex = indexPath.row;
+//    pickerBrowser.currentIndex = index;
 //    // 展示控制器
 //    [pickerBrowser showPickerVc:self];
-    
+//
 }
-
-- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
-    
-    if (self.assets.count > index) {
-        
-    }
-}
+//
+//- (void)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser removePhotoAtIndex:(NSInteger)index{
+//
+//    if (self.assets.count > index) {
+//        [self.assets removeObjectAtIndex:index];
+//    }
+//    [self.collectionView reloadData];
+//
+//}
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
@@ -763,20 +784,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return _assets;
 }
 
-- (NSMutableArray *)photos{
-    if (!_photos) {
-
-        NSArray *urls = @[];
-        _photos = [NSMutableArray arrayWithCapacity:urls.count];
-        for (NSString *url in urls) {
-            ZLPhotoPickerBrowserPhoto *photo = [[ZLPhotoPickerBrowserPhoto alloc] init];
-            photo.photoURL = [NSURL URLWithString:url];
-            [_photos addObject:photo];
-        }
-        
-    }
-    return _photos;
-}
+//- (NSMutableArray *)photos{
+//    if (!_photos) {
+//
+//        NSArray *urls = @[];
+//        _photos = [NSMutableArray arrayWithCapacity:urls.count];
+//        for (NSString *url in urls) {
+//            ZLPhotoPickerBrowserPhoto *photo = [[ZLPhotoPickerBrowserPhoto alloc] init];
+//            photo.photoURL = [NSURL URLWithString:url];
+//            [_photos addObject:photo];
+//        }
+//        
+//    }
+//    return _photos;
+//}
 
 
 -(void)updateViewConstraints{
