@@ -9,6 +9,7 @@
 #import "LBFinishProductsViewController.h"
 #import "LBFinishProductsCell1.h"
 #import "GLFinishGoodsDetailModel.h"
+#import "LBReplyProductListsViewController.h"
 
 @interface LBFinishProductsViewController ()
 
@@ -118,7 +119,11 @@ static NSString *ID = @"finishProductsCell1";
 }
 
 -(void)pushReplyProducts:(NSIndexPath*)indexpath{
-    
+    GLFinishGoodsDetailModel *model = self.models[indexpath.row];
+    self.hidesBottomBarWhenPushed = YES;
+    LBReplyProductListsViewController *vc = [[LBReplyProductListsViewController alloc]init];
+    vc.good_id = model.goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 #pragma UICollectionDelegate UICollectionDataSource

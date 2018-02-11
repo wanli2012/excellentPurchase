@@ -153,6 +153,7 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     if (self.goods_type != 0) {//1每日推荐 2精品优选 跳转进来请求数据
         urlstr = SeaShoppingMore_goods;
         dic[@"goods_type"] = @(self.goods_type);
+        dic[@"s_type"] = self.s_type;
         if ([NSString StringIsNullOrEmpty:self.cate_id] == NO) {
             dic[@"cate_id"] = self.cate_id;
         }

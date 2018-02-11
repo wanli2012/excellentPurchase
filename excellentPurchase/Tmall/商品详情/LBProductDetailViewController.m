@@ -492,6 +492,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         }else{
             LBCommentListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:commentListsTableViewCell forIndexPath:indexPath];
              cell.selectionStyle = 0;
+            cell.replayBt.hidden = YES;
             cell.model = self.model.comment_list[indexPath.row-1];
             return cell;
         }

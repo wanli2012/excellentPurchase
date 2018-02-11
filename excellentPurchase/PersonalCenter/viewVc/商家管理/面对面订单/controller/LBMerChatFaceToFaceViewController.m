@@ -121,7 +121,7 @@ static NSString *uerUnderLineOrdersCell = @"LBMerChatFaceToFaceCell";
     
     LBMerChatFaceToFaceCell *cell = [tableView dequeueReusableCellWithIdentifier:uerUnderLineOrdersCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  
+    cell.model = self.dataArr[indexPath.row];
     
     return cell;
     

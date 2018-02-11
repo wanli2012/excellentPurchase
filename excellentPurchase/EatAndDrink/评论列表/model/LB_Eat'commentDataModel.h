@@ -32,6 +32,8 @@
 
 @property (copy , nonatomic)NSString *group_name;
 
+@property (copy , nonatomic)NSString *is_face;
+
 
 +(NSArray *)getIndustryModels:(NSArray *)infos;
 

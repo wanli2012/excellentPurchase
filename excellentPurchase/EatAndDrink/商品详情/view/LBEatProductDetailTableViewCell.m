@@ -42,7 +42,7 @@
 -(void)setModel:(LBEatProductDetailModel *)model{
     _model = model;
     self.priceLb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"¥%@",_model.discount] specilstr:@[_model.discount]];
-    self.productName.text = [NSString stringWithFormat:@"%@",_model.goods_info];
+    self.productName.text = [NSString stringWithFormat:@"%@",_model.goods_name];
     self.infoLb.text = [NSString stringWithFormat:@"%@",_model.goods_info];
     self.adressLb.text = [NSString stringWithFormat:@"%@",_model.store_address];
 }
