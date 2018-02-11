@@ -50,7 +50,7 @@
                                             <rect key="frame" x="83" y="0.0" width="261" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="SAL-ru-Qg2"/>
                                             </connections>
@@ -240,7 +240,7 @@
                                             <rect key="frame" x="69" y="0.0" width="275" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="wvM-rq-b8i"/>
                                             </connections>
@@ -280,7 +280,7 @@
                                             <rect key="frame" x="69" y="0.0" width="275" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="gsV-tq-GCH"/>
                                             </connections>
@@ -320,7 +320,7 @@
                                             <rect key="frame" x="97.5" y="0.0" width="206.5" height="55"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMn-rx-3Zq">
                                             <rect key="frame" x="0.0" y="54" width="354" height="1"/>

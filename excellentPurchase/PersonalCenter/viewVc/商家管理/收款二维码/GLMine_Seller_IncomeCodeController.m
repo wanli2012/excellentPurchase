@@ -83,6 +83,7 @@
     }else{
         contentStr = [NSString stringWithFormat:@"%@",@"www.baidu.com"];
     }
+    
     //    NSString *contentStr = @"";
     NSData *qrImageData = [contentStr dataUsingEncoding:NSUTF8StringEncoding];
     

@@ -379,7 +379,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             }
         }else if(indexPath.row == 2){
             
-            cell.valueLabel.text = self.dataDic[@"address"];
+            cell.valueLabel.text = @"";
             
         }else if(indexPath.row == 3){//我的二维码
             cell.type = 2;

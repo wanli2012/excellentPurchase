@@ -20,7 +20,7 @@
 
 #import "GLAddOrEditProductCateModel.h"
 
-@interface LBAddOrEditProductViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,HCBasePopupViewControllerDelegate,ZLPhotoPickerBrowserViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
+@interface LBAddOrEditProductViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,HCBasePopupViewControllerDelegate,ZLPhotoPickerBrowserViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate>
 {
     NSInteger _cameraCount;
 }
@@ -50,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @property (nonatomic, strong)NSMutableArray *picUrlArr;//图片url数组
+
+@property (nonatomic, assign)BOOL isHaveDian;
 
 @end
 
@@ -632,6 +634,121 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NSInteger replaceLength = text.length;
     if (existedLength - selectedLength + replaceLength > 100) {
         return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if(self.goodsNameTF == textField){
+        [self.priceTF becomeFirstResponder];
+    }else if(self.priceTF == textField){
+        [self.stockTF becomeFirstResponder];
+   }else if(self.stockTF == textField){
+        [self.discountTF becomeFirstResponder];
+   }else if(self.discountTF == textField){
+       [self.view endEditing:YES];
+   }
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (range.length == 1 && string.length == 0) {
+        
+        return YES;
+    }
+    
+    if (textField == self.goodsNameTF) {
+        if ([predicateModel inputShouldLetterOrNum:string]) {
+            return YES;
+        }else if ([predicateModel IsChinese:string]) {
+            return YES;
+        }else {
+            
+            [self.view endEditing:YES];
+            [EasyShowTextView showInfoText:@"商品名只能包含汉字,数字,英文"];
+            return NO;
+        }
+    }
+    
+    if (textField == self.stockTF) {
+        if (![predicateModel inputShouldNumber:string]) {
+            [EasyShowTextView showInfoText:@"库存只能输入数字"];
+            return NO;
+        }
+    }
+    
+    if (textField == self.priceTF || textField == self.discountTF) {
+ 
+        // 判断是否有小数点
+        if ([textField.text containsString:@"."]) {
+            self.isHaveDian = YES;
+        }else{
+            self.isHaveDian = NO;
+        }
+        
+        if (string.length > 0) {
+            
+            //当前输入的字符
+            unichar single = [string characterAtIndex:0];
+            
+            // 不能输入.0-9以外的字符
+            if (!((single >= '0' && single <= '9') || single == '.' || single == '\n'))
+            {
+                [self.view endEditing:YES];
+                [EasyShowTextView showInfoText:@"您的输入格式不正确"];
+                return NO;
+            }
+            
+            // 只能有一个小数点
+            if (self.isHaveDian && single == '.') {
+                
+                [self.view endEditing:YES];
+                [EasyShowTextView showInfoText:@"最多只能输入一个小数点"];
+                return NO;
+            }
+            
+            // 如果第一位是.则前面加上0.
+            if ((textField.text.length == 0) && (single == '.')) {
+                textField.text = @"0";
+            }
+            
+            // 如果第一位是0则后面必须输入点，否则不能输入。
+            if ([textField.text hasPrefix:@"0"]) {
+                if (textField.text.length > 1) {
+                    NSString *secondStr = [textField.text substringWithRange:NSMakeRange(1, 1)];
+                    if (![secondStr isEqualToString:@"."]) {
+                        
+                        [self.view endEditing:YES];
+                        [EasyShowTextView showInfoText:@"第二个字符需要是小数点"];
+                        return NO;
+                    }
+                }else{
+                    if (![string isEqualToString:@"."]) {
+                        [self.view endEditing:YES];
+                        [EasyShowTextView showInfoText:@"第二个字符需要是小数点"];
+                        return NO;
+                    }
+                }
+            }
+            
+            // 小数点后最多能输入两位
+            if (self.isHaveDian) {
+                NSRange ran = [textField.text rangeOfString:@"."];
+                // 由于range.location是NSUInteger类型的，所以这里不能通过(range.location - ran.location)>2来判断
+                if (range.location > ran.location) {
+                    if ([textField.text pathExtension].length > 1) {
+                        [self.view endEditing:YES];
+                        [EasyShowTextView showInfoText:@"小数点后最多有两位小数"];
+                        return NO;
+                    }
+                }
+            }
+        }
     }
     
     return YES;

@@ -254,12 +254,12 @@
             [EasyShowTextView showInfoText:@"身份证号只能输入数字和X,x"];
             return NO;
         }
-        if (textField.text.length > 17) {
-            textField.text = [textField.text substringToIndex:18];
-            [self.view endEditing:YES];
-            [EasyShowTextView showInfoText:@"身份证号长度超过限制"];
-            return NO;
-        }
+//        if (textField.text.length > 17) {
+//            textField.text = [textField.text substringToIndex:18];
+//            [self.view endEditing:YES];
+//            [EasyShowTextView showInfoText:@"身份证号长度超过限制"];
+//            return NO;
+//        }
     }
     return YES;
 }
