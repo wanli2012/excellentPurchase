@@ -30,7 +30,7 @@
     
     self.typeLabel.text = model.action;
     self.dateLabel.text = [formattime formateTimeOfDate4:model.log_addtime];
-    self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",@"00000000"];
+    self.orderLabel.text = [NSString stringWithFormat:@""];
     self.detailLabel.text = [NSString stringWithFormat:@"%@",model.log_content];
     
     NSString *str;

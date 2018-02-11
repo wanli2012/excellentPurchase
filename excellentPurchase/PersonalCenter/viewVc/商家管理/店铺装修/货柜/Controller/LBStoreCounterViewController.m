@@ -45,7 +45,7 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.type = 1;
     [self setNav];
     
     //注册cell
@@ -72,20 +72,20 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 
 }
 
-
 /**
  设置导航栏
  */
 - (void)setNav{
     self.navigationItem.title = @"货柜";
-    _rightbutton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+    _rightbutton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 70, 30)];
     [_rightbutton setTitle:@"全部" forState:UIControlStateNormal];
     [_rightbutton setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
     [_rightbutton setImage:[UIImage imageNamed:@"shop-货柜筛选-n"] forState:UIControlStateNormal];
     [_rightbutton setImage:[UIImage imageNamed:@"shop-货柜筛选-y"] forState:UIControlStateSelected];
-    _rightbutton.titleLabel.font = [UIFont systemFontOfSize:15];
+    _rightbutton.titleLabel.font = [UIFont systemFontOfSize:13];
+    _rightbutton.backgroundColor = [UIColor clearColor];
     [_rightbutton addTarget:self action:@selector(shooseStutas:) forControlEvents:UIControlEventTouchUpInside];
-    [_rightbutton horizontalCenterTitleAndImageRight:5];
+    [_rightbutton horizontalCenterTitleAndImage:5];
     UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:_rightbutton];
     self.navigationItem.rightBarButtonItem = ba;
 }
@@ -125,7 +125,6 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
         self.page ++;
     }
     
-    self.type = 1;
     [EasyShowLodingView showLodingText:@"数据请求中"];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -326,10 +325,13 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 
 - (LBCounterStutasView *)counterStutasView{
     if (!_counterStutasView) {
-
-        _counterStutasView = [[LBCounterStutasView alloc]initWithFrame:CGRectMake(UIScreenWidth - 150, SafeAreaTopHeight, 150, 250) dataSorce:@[@"全部",@"上架中",@"审核中",@"审核失败",@"已下架"] cellHeight:50 selectindex:^(NSInteger index, NSString *text) {
-            
-            NSLog(@"%ld",index);
+        WeakSelf;
+        _counterStutasView = [[LBCounterStutasView alloc]initWithFrame:CGRectMake(UIScreenWidth - 150, SafeAreaTopHeight, 150, 250) dataSorce:@[@"全部",@"上架中",@"已下架",@"审核中",@"审核失败"] cellHeight:50 selectindex:^(NSInteger index, NSString *text) {
+            weakSelf.type = index + 1;
+            [weakSelf postRequest:YES];
+            [weakSelf tapgestureMaskView];
+            [_rightbutton setTitle:text forState:UIControlStateNormal];
+             [_rightbutton horizontalCenterTitleAndImage:5];
         }];
         
         _counterStutasView.layer.position = CGPointMake(UIScreenWidth, SafeAreaTopHeight);

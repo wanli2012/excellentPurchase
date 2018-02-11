@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="372" height="660"/>
                     <color key="backgroundColor" red="0.95125693082809448" green="0.85454946756362915" blue="0.85360753536224365" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-LJ-9AG">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-LJ-9AG">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="660"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jf6-th-afY">
