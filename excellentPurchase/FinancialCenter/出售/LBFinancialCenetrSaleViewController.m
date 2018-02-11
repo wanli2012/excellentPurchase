@@ -36,6 +36,7 @@
 @property (nonatomic, assign)NSInteger payType;//类型1:T+1 2:T+2 3:T+3
 @property (nonatomic, assign)BOOL isHaveDian;
 @property (nonatomic, copy)NSString *card_id;
+@property (weak, nonatomic) IBOutlet UILabel *saleKonw;
 
 @end
 
@@ -47,7 +48,9 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"出售";
     self.myCoinLabel.text = self.yougoubi;
+    self.saleKonw.text = [NSString stringWithFormat:@"1，每天共2万额度;\n2，七个工作日内到账，手续费为0.6%%"];
 
+     self.payType = 3;//默认
 }
 
 #pragma mark - 到账时间选择
@@ -184,7 +187,7 @@
     }else{
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
         self.ensureSellBtn.userInteractionEnabled = NO;
-        self.ensureSellBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.ensureSellBtn.backgroundColor = [UIColor lightGrayColor];
     }
 }
 

@@ -15,17 +15,18 @@
                 <outlet property="collectBt" destination="gic-Jr-XDm" id="Z6z-tw-68m"/>
                 <outlet property="merchetBt" destination="Cwd-su-Ogb" id="8wE-Uv-JqI"/>
                 <outlet property="muneViewY" destination="0sK-De-b8k" id="bS9-Rx-Hzz"/>
+                <outlet property="navagationH" destination="eWV-qX-kGL" id="A0q-gv-qkQ"/>
                 <outlet property="tableview" destination="CbB-Zz-sXY" id="EQn-2N-ck1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyV-vf-Ely">
-                    <rect key="frame" x="0.0" y="603" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="667" width="375" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkG-Pt-2Af">
                             <rect key="frame" x="0.0" y="1" width="375" height="59"/>
@@ -119,7 +120,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="CbB-Zz-sXY">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="fQe-7P-jwh"/>
@@ -137,7 +138,6 @@
                 <constraint firstItem="OyV-vf-Ely" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rut-7w-omq"/>
                 <constraint firstAttribute="trailing" secondItem="OyV-vf-Ely" secondAttribute="trailing" id="zQt-7a-k7Q"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <point key="canvasLocation" x="26.5" y="51.5"/>
         </view>
     </objects>

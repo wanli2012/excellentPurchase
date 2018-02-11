@@ -140,7 +140,7 @@
         }
     }
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight+pageMenuH, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight+pageMenuH, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH - 49)];
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
@@ -154,7 +154,7 @@
     if (self.pageMenu.selectedItemIndex < self.myChildViewControllers.count) {
         UIViewController *baseVc = self.myChildViewControllers[self.pageMenu.selectedItemIndex];
         [scrollView addSubview:baseVc.view];
-        baseVc.view.frame = CGRectMake(UIScreenWidth*self.pageMenu.selectedItemIndex, 0, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH);
+        baseVc.view.frame = CGRectMake(UIScreenWidth*self.pageMenu.selectedItemIndex, 0, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH- 49);
         scrollView.contentOffset = CGPointMake(UIScreenWidth*self.pageMenu.selectedItemIndex, 0);
         scrollView.contentSize = CGSizeMake(self.menuArr.count*UIScreenWidth, 0);
     }

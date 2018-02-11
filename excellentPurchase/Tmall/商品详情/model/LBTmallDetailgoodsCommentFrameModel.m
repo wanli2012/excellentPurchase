@@ -40,7 +40,7 @@
         repalycellH = sizeconent.size.height + 10;
         
         
-        self.cellH = self.cellH + repalycellH + 10;
+        self.cellH = self.cellH + repalycellH + 20;
         
     }
     
