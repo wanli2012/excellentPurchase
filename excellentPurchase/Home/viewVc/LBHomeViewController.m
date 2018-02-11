@@ -559,7 +559,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         [EasyShowTextView showErrorText:@"请扫正确的二维码"];
         return;
     }
-    
     self.hidesBottomBarWhenPushed = YES;
     LBFaceToFace_PayController *vc = [LBFaceToFace_PayController new];
     vc.money  = [NSString stringWithFormat:@"%@",dic[@"money"]];

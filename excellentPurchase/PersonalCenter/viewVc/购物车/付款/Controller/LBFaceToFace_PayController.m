@@ -45,20 +45,34 @@
      */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
     
+    
+    //    返回按钮
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 70, 40)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//左对齐
+    [button setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(10, -5, 10, 65)];
+    button.backgroundColor=[UIColor clearColor];
+    [button addTarget:self action:@selector(popself) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = ba;
+    
 }
 
 /**
  支付宝支付成功回调
  */
 -(void)Alipaysucess{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 /**
  微信支付成功回调
  */
 -(void)wxpaysucess{
-   [self.navigationController popViewControllerAnimated:YES];
+   [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)popself{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)pushsucessVc{
@@ -131,11 +145,11 @@
     [NetworkManager requestPOSTWithURLStr:PayFace_pay paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
+            [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"aliPay"] fromScheme:@"excellentAlipay" callback:^(NSDictionary *resultDic) {
                 
                 NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                 if (orderState==9000) {
-                   [self.navigationController popViewControllerAnimated:YES];
+                   [self.navigationController popToRootViewControllerAnimated:YES];
                 }else{
                     NSString *returnStr;
                     switch (orderState) {
@@ -238,13 +252,12 @@
     dic[@"pass"] = password;
      dic[@"shop_uid"] = self.shopuid;
     
-    [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:PayFace_pay paramDic:dic finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [passwordView paySuccess];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             });
            
         }else{
