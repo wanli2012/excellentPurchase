@@ -9,6 +9,7 @@
 #import "LBRegisterViewController.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
 #import "GLMine_Team_OpenSellerController.h"//商家注册
+#import "LLWebViewController.h"//web页面
 
 #import "DropMenu.h"
 #import "GLGroupModel.h"
@@ -210,6 +211,16 @@
     }else{
         [self.signBtn setImage:[UIImage imageNamed:@"greetselect-n"] forState:UIControlStateNormal];
     }
+}
+
+#pragma mark - 跳转到服务条款
+- (IBAction)toProtocol:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
+    
 }
 
 #pragma mark - 商户注册

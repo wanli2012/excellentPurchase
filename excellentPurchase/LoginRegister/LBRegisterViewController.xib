@@ -419,10 +419,10 @@
                                     </connections>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zho-VB-46m">
-                                    <rect key="frame" x="204.5" y="585" width="116.5" height="33"/>
+                                    <rect key="frame" x="201" y="585" width="120" height="33"/>
                                     <subviews>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本人同意注册协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1R-Uk-gzE">
-                                            <rect key="frame" x="18" y="0.0" width="98.5" height="33"/>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本人同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1R-Uk-gzE">
+                                            <rect key="frame" x="18" y="0.0" width="49.5" height="33"/>
                                             <gestureRecognizers/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.54584085940000004" green="0.51362806559999996" blue="0.51327699419999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -438,16 +438,29 @@
                                             <state key="normal" image="greetselect-n"/>
                                             <state key="selected" image="choice"/>
                                         </button>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务条款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gat-bH-tBZ">
+                                            <rect key="frame" x="70.5" y="0.0" width="49.5" height="33"/>
+                                            <gestureRecognizers/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="1pZ-Oy-zvE" appends="YES" id="DaA-wH-ZX5"/>
+                                            </connections>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="v1R-Uk-gzE" firstAttribute="leading" secondItem="4Ld-up-h7I" secondAttribute="trailing" constant="3" id="DbJ-UG-a46"/>
+                                        <constraint firstItem="Gat-bH-tBZ" firstAttribute="top" secondItem="Zho-VB-46m" secondAttribute="top" id="Dv0-Zu-vQ1"/>
                                         <constraint firstItem="v1R-Uk-gzE" firstAttribute="top" secondItem="Zho-VB-46m" secondAttribute="top" id="MzJ-ea-8fU"/>
                                         <constraint firstItem="v1R-Uk-gzE" firstAttribute="centerY" secondItem="4Ld-up-h7I" secondAttribute="centerY" id="bNj-Kp-o4v"/>
                                         <constraint firstItem="4Ld-up-h7I" firstAttribute="leading" secondItem="Zho-VB-46m" secondAttribute="leading" id="cwY-DA-AGh"/>
-                                        <constraint firstAttribute="trailing" secondItem="v1R-Uk-gzE" secondAttribute="trailing" id="kk2-B3-uvo"/>
+                                        <constraint firstAttribute="trailing" secondItem="Gat-bH-tBZ" secondAttribute="trailing" id="hsU-pv-yha"/>
+                                        <constraint firstAttribute="bottom" secondItem="Gat-bH-tBZ" secondAttribute="bottom" id="kRW-s4-QLt"/>
                                         <constraint firstAttribute="bottom" secondItem="v1R-Uk-gzE" secondAttribute="bottom" id="nZ7-Vo-vfV"/>
                                         <constraint firstAttribute="height" constant="33" id="uBx-Zu-3XF"/>
+                                        <constraint firstItem="Gat-bH-tBZ" firstAttribute="leading" secondItem="v1R-Uk-gzE" secondAttribute="trailing" constant="3" id="vSS-Qy-gMN"/>
                                     </constraints>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="Dt2-bR-00X" appends="YES" id="MUq-yS-lJ3"/>
@@ -546,6 +559,11 @@
         <tapGestureRecognizer id="JVa-Za-vOg" userLabel="身份选择">
             <connections>
                 <action selector="groupTypeChoose:" destination="-1" id="ws0-mu-TSS"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="1pZ-Oy-zvE" userLabel="服务条款">
+            <connections>
+                <action selector="toProtocol:" destination="-1" id="zfx-Ff-eNa"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

@@ -12,6 +12,7 @@
 #import "IQKeyboardManager.h"
 #import "GLMine_CardListModel.h"
 
+
 @interface LBFinancialCenetrSaleViewController ()<HHPayPasswordViewDelegate>
 {
     BOOL _isAgreeProtocol;
@@ -166,7 +167,11 @@
 
 #pragma mark - 跳转到出售协议
 - (IBAction)toProtocol:(id)sender {
-    NSLog(@"出售协议");
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - 是否同意出售协议

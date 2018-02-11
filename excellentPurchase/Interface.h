@@ -9,6 +9,9 @@
 #ifndef Interface_h
 #define Interface_h
 
+
+#import "LLWebViewController.h"//web页面
+
 //接口需要的固定值
 #define kPORT @"3"
 #define kAPP_VERSION @"1.0.0"

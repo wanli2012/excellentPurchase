@@ -107,7 +107,11 @@
  商家协议
 */
 - (IBAction)sellerProtocol:(id)sender {
-    NSLog(@"商家协议");
+
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - 提交

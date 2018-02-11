@@ -156,8 +156,10 @@
 
 #pragma mark - 创客承诺书
 - (IBAction)toProtocol:(id)sender {
-    
-    NSLog(@"创客承诺书");
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - 是否同意承诺书
