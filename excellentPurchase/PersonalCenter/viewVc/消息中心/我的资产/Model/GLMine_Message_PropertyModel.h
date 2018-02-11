@@ -23,6 +23,9 @@
 @property (nonatomic, copy)NSString *sign;//0:资金流出 1:资金流入
 @property (nonatomic, copy)NSString *action;//操作
 
+@property (nonatomic, copy)NSString *log_num;//订单号
+
+
 @property (nonatomic, copy)NSString *log_money;//余额数量
 @property (nonatomic, copy)NSString *log_mark;//积分数量
 @property (nonatomic, copy)NSString *log_coupons;//购物券数量

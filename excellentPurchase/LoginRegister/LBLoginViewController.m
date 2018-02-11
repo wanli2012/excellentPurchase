@@ -264,14 +264,14 @@
 
 //    NSString *encryptsecret = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
     
-    NSString *account = [self.accountTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *password = [self.passwordTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    NSString *account = [self.accountTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    NSString *password = [self.passwordTF.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"SEARCH";
-    dict[@"phone"] = account;
+    dict[@"phone"] = self.accountTF.text;
     dict[@"group_id"] = self.group_id;
-    dict[@"password"] = password;
+    dict[@"password"] = self.passwordTF.text;
     
     self.loginBt.enabled = NO;
     self.loginBt.backgroundColor = [UIColor grayColor];
@@ -368,7 +368,6 @@
             return @"0.00";
         }else{
             return @"";
-            
         }
     }else{
         return str;
@@ -388,30 +387,21 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    if (textField == self.accountTF) {
-//        if (range.length == 1 && string.length == 0) {
-//
-//            return YES;
-//        }
-//        if(![predicateModel inputShouldNumber:string]){
-//
-////            [EasyShowTextView showInfoText:@"此处只能输入数字！"];
-//            return NO;
-//        }
-//
-//    }else if(textField == self.passwordTF){
-//        if (range.length == 1 && string.length == 0) {
-//
-//            return YES;
-//        }
-//
-//        if(![predicateModel inputShouldLetterOrNum:string]){
-//            
-////            [EasyShowTextView showInfoText:@"密码只能是数字或字母"];
-//
-//            return NO;
-//        }
-//    }
+    
+    if (range.length == 1 && string.length == 0) {
+        
+        return YES;
+    }
+    
+    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
+    
+    if (![string isEqualToString:tem]) {
+        
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"此处不能输入空格"];
+        
+        return NO;
+    }
     
     return YES;
 }
@@ -424,7 +414,6 @@
         [noteStr addAttributes:@{NSForegroundColorAttributeName:LBHexadecimalColor(0x333333)} range:rang];
         [noteStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} range:rang];
     }
-    
     
     return noteStr;
     

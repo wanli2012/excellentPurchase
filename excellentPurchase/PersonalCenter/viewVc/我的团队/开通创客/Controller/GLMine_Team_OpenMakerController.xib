@@ -297,12 +297,12 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSZ-kK-qL6">
-                                    <rect key="frame" x="104" y="454.5" width="167" height="30"/>
+                                    <rect key="frame" x="110" y="454.5" width="155" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3o-JF-98C">
-                                            <rect key="frame" x="105" y="0.0" width="62" height="30"/>
+                                            <rect key="frame" x="105" y="0.0" width="50" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="创客承诺书">
+                                            <state key="normal" title="服务条款">
                                                 <color key="titleColor" red="0.96078431369999995" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>

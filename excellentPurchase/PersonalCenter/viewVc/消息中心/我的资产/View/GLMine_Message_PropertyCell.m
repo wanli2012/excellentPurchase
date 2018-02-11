@@ -30,14 +30,19 @@
     
     self.typeLabel.text = model.action;
     self.dateLabel.text = [formattime formateTimeOfDate4:model.log_addtime];
-    self.orderLabel.text = [NSString stringWithFormat:@""];
     self.detailLabel.text = [NSString stringWithFormat:@"%@",model.log_content];
+    
+    if (model.log_num.length == 0) {
+        self.orderLabel.text = [NSString stringWithFormat:@""];
+    }else{
+        self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",model.log_num];
+    }
     
     NSString *str;
     if([model.sign integerValue] == 0){//0:资金流出 1:资金流入
-        str = @"+";
-    }else{
         str = @"-";
+    }else{
+        str = @"+";
     }
     switch (model.infoType) {////1:积分 2:余额 3:优购币  4:购物券
         case 1://1:积分
