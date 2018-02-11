@@ -103,6 +103,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     [self.assets removeAllObjects];
     [self.assets addObject:self.model.store_license_pic];
     [self.collectionView reloadData];
+    
 }
 
 /**
@@ -136,7 +137,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     WeakSelf;
     //信号量
     [EasyShowLodingView showLoding];
-    
     self.submitBtn.backgroundColor = [UIColor lightGrayColor];
     self.submitBtn.enabled = NO;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -184,7 +184,37 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{//返回主线程
+            if (weakSelf.shopNameTF.text.length == 0) {
+                [EasyShowLodingView hidenLoding];
+                [EasyShowTextView showInfoText:@"请填写店铺名"];
+                return;
+            }
             
+            if (weakSelf.shopAddressTF.text.length == 0) {
+                [EasyShowLodingView hidenLoding];
+                [EasyShowTextView showInfoText:@"请填写店铺地址"];
+                return;
+            }
+            
+            if (weakSelf.phoneTF.text.length == 0) {
+                [EasyShowLodingView hidenLoding];
+                [EasyShowTextView showInfoText:@"请填写联系电话"];
+                
+                return;
+            }
+            
+            if(weakSelf.longitude.length == 0 || self.latitude.length == 0){
+                [EasyShowLodingView hidenLoding];
+                [EasyShowTextView showInfoText:@"请定位经纬度"];
+                
+                return;
+            }
+            
+            if (weakSelf.picUrl.length == 0) {
+                [EasyShowLodingView hidenLoding];
+                [EasyShowTextView showInfoText:@"请重新上传营业执照"];
+                return;
+            }
             //这里就是所有异步任务请求结束后执行的代码
             [weakSelf submitRequest];
             
@@ -194,12 +224,10 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 /**
  上传图片请求
- 
-  @param image 需要上传的图片
+   @param image 需要上传的图片
  @param finish 请求结束信号
  */
--(void)uploadImageV:(UIImage *)image type:(NSInteger)type block:(void(^)(void))finish
-{
+-(void)uploadImageV:(UIImage *)image type:(NSInteger)type block:(void(^)(void))finish{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"ADD";
@@ -245,32 +273,6 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
  */
 - (void)submitRequest{
 
-    if (self.shopNameTF.text.length == 0) {
-        
-        [EasyShowTextView showInfoText:@"请填写店铺名"];
-        return;
-    }
-    
-    if (self.shopAddressTF.text.length == 0) {
-        [EasyShowTextView showInfoText:@"请填写店铺地址"];
-        return;
-    }
-    
-    if (self.phoneTF.text.length == 0) {
-        [EasyShowTextView showInfoText:@"请填写联系电话"];
-        
-        return;
-    }
-    if(self.longitude.length == 0 || self.latitude.length == 0){
-        [EasyShowTextView showInfoText:@"请定位经纬度"];
-        
-        return;
-    }
-    
-    if (self.picUrl.length == 0) {
-        [EasyShowTextView showInfoText:@"请重新上传营业执照"];
-        return;
-    }
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     

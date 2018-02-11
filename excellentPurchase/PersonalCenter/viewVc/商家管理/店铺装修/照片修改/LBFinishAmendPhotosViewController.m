@@ -31,6 +31,8 @@
 @property (nonatomic , strong) NSMutableArray *assets2;
 @property (nonatomic , strong) NSMutableArray *photos2;
 
+@property (nonatomic, strong)UIButton *rightBtn;//右键
+
 @property (nonatomic, copy)NSString *picUrl;//招牌图片url
 @property (nonatomic, strong)NSMutableArray *picUrlArr;//图片url数组
 
@@ -64,8 +66,8 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     button.titleLabel.font = [UIFont systemFontOfSize:14];
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    
-    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
+    self.rightBtn = button;
+    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:self.rightBtn];
     self.navigationItem.rightBarButtonItem = ba;
 }
 
@@ -131,6 +133,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 
 #pragma mark - 保存
 - (void)save{
+    
     [self creatDispathGroup];
 }
 
@@ -139,6 +142,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     WeakSelf;
     //信号量
     [EasyShowLodingView showLoding];
+    self.rightBtn.enabled = NO;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     //创建全局并行
     dispatch_group_t group = dispatch_group_create();
@@ -198,7 +202,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 image = [self.assets2 objectAtIndex:i];
             }
             
-            //            type 1:招牌照 2:内景照
+            //type 1:招牌照 2:内景照
             dispatch_group_async(group, queue, ^{
                 [weakSelf uploadImageV:image type:2 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
                     
@@ -287,10 +291,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (void)modifyPic{
     
     if (self.picUrl.length == 0) {
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showInfoText:@"请重新上传招牌照"];
         return;
     }
+    
     if (self.picUrlArr.count == 0) {
+        [EasyShowLodingView hidenLoding];
         [EasyShowTextView showInfoText:@"请至少上传一张内景照"];
         return;
     }
@@ -313,7 +320,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-
+            self.rightBtn.enabled = YES;
             [EasyShowTextView showSuccessText:@"已保存"];
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -323,6 +330,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
         }
         
     } enError:^(NSError *error) {
+        self.rightBtn.enabled = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
@@ -435,13 +443,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 [wself photoSelectet:self.assets1 collectionview:self.collectionview1];
             } withType:HCBottomPopupActionSelectItemTypeDefault];
             
-            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
             
             HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
             
             [pc addAction:action1];
             [pc addAction:action2];
-            [pc addAction:action3];
+//            [pc addAction:action3];
             [pc addAction:action4];
             
             [self presentViewController:pc animated:YES completion:nil];
@@ -463,13 +471,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
                 [wself photoSelectet:self.assets2 collectionview:self.collectionview2];
             } withType:HCBottomPopupActionSelectItemTypeDefault];
             
-            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//            HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
             
             HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
             
             [pc addAction:action1];
             [pc addAction:action2];
-            [pc addAction:action3];
+//            [pc addAction:action3];
             [pc addAction:action4];
             
             [self presentViewController:pc animated:YES completion:nil];

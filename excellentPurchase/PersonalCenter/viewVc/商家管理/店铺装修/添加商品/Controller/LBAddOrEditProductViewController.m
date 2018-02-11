@@ -465,13 +465,13 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
             [wself photoSelectet];
         } withType:HCBottomPopupActionSelectItemTypeDefault];
         
-        HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
+//        HCBottomPopupAction * action3 = [HCBottomPopupAction actionWithTitle:@"保存图片" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeDefault];
         
         HCBottomPopupAction * action4 = [HCBottomPopupAction actionWithTitle:@"取消" withSelectedBlock:nil withType:HCBottomPopupActionSelectItemTypeCancel];
         
         [pc addAction:action1];
         [pc addAction:action2];
-        [pc addAction:action3];
+//        [pc addAction:action3];
         [pc addAction:action4];
         
         [self presentViewController:pc animated:YES completion:nil];

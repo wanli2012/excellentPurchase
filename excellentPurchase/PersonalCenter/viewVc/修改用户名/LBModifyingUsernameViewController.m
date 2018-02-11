@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.nameTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+//    [self.nameTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     [self setNav];
 }
@@ -47,10 +47,15 @@
  保存
  */
 - (void)save{
+    [self.view endEditing:YES];
     
     if(self.nameTF.text.length == 0){
-        [self.view endEditing:YES];
         [EasyShowTextView showInfoText:@"请输入你的新昵称"];
+        return;
+    }
+    if (self.nameTF.text.length > 8) {
+        
+        [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
         return;
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -92,21 +97,44 @@
 
 #pragma mark - UITextfieldDelegate
 
-- (void)textFieldDidChange:(UITextField *)textField
-{
-
-    if (textField == self.nameTF) {
-        if (textField.text.length > 8) {
-            [self.view endEditing:YES];
-            [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
-            textField.text = [textField.text substringToIndex:8];
-        }
-    }
-}
+//- (void)textFieldDidChange:(UITextField *)textField
+//{
+//    if (textField == self.nameTF) {
+//        if (textField.text.length > 8) {
+//            [self.view endEditing:YES];
+//            [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
+//            textField.text = [textField.text substringToIndex:8];
+//        }
+//    }
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [self.view endEditing:YES];
+    
+    return YES;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (range.length == 1 && string.length == 0) {
+        
+        return YES;
+    }
+    
+    if (textField.text.length > 8) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
+        textField.text = [textField.text substringToIndex:8];
+    }
+    
+    return YES;
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    
+    if (textField.text.length > 8) {
+        
+        textField.text = [textField.text substringToIndex:8];
+    }
     return YES;
 }
 

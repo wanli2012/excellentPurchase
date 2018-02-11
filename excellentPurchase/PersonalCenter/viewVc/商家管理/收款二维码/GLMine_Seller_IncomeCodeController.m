@@ -80,8 +80,10 @@
     NSString *contentStr;
     if(self.type == 1){
         contentStr = [UserModel defaultUser].user_name;
-    }else{
-        contentStr = [NSString stringWithFormat:@"%@",@"www.baidu.com"];
+        
+    }else{//商家收款码
+        NSString *str = [NSString stringWithFormat:@"{\"shopuid\":%@,\"money\":%@,\"rlmoney\":%@}",[UserModel defaultUser].uid,self.moneyCount,self.noProfitMoney];
+        contentStr = str;
     }
     
     //    NSString *contentStr = @"";
