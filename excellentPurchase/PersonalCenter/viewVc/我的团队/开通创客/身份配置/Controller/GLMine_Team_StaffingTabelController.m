@@ -40,6 +40,7 @@
             return;
         }
     }
+    
     NSMutableArray *arrM = [NSMutableArray array];
     
     for (GLMine_Team_OpenSet_subModel *model in self.models) {

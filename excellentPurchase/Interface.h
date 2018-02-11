@@ -17,7 +17,7 @@
 #define SUCCESS_CODE 200 //请求或处理成功(请求数据，获取列表、删除数据、添加数据...等操作)
 #define PAGE_ERROR_CODE 204//请求成功，未获取到内容(分页未请求到数据,提示已经到底了)
 #define ERROR_CODE 400//参数错误
-#define OVERDUE_CODE 401//未经授权的(登录过期，或其他未经认证的请求)
+#define OVERDUE_CODE 401//登录过期，或其他未经认证的请求
 
 /*以下状态码为错误状态码-将不会返回任何实体数据，它会将错误返回在http响应头*/
 //#define LOGIC_ERROR_CODE 403// 被禁止的 服务器上文件或目录的权限导致

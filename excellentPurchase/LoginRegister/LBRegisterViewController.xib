@@ -435,7 +435,7 @@
                                                 <constraint firstAttribute="height" constant="15" id="Q5Q-Po-HlH"/>
                                                 <constraint firstAttribute="width" constant="15" id="Rmg-qJ-Qdp"/>
                                             </constraints>
-                                            <state key="normal" image="nochoice"/>
+                                            <state key="normal" image="greetselect-n"/>
                                             <state key="selected" image="choice"/>
                                         </button>
                                     </subviews>
@@ -554,9 +554,9 @@
         <image name="choice" width="12" height="12"/>
         <image name="code" width="19" height="22"/>
         <image name="confirm" width="20" height="22"/>
+        <image name="greetselect-n" width="11" height="11"/>
         <image name="identity" width="20" height="22"/>
         <image name="identityDown" width="11" height="7"/>
-        <image name="nochoice" width="12" height="12"/>
         <image name="password" width="20" height="22"/>
         <image name="registerBack" width="375" height="646"/>
         <image name="return" width="10" height="17"/>

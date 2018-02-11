@@ -156,9 +156,11 @@
     if(_isAgreeProtocol){
         self.signImageV.image = [UIImage imageNamed:@"greetselect-y"];
         self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
     }else{
         self.submitBtn.backgroundColor = [UIColor lightGrayColor];
         self.signImageV.image = [UIImage imageNamed:@"greetselect-n"];
+        self.submitBtn.enabled = NO;
     }
 }
 

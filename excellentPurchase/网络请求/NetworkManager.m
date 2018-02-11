@@ -9,6 +9,9 @@
 #import "NetworkManager.h"
 #import "AFNetworking.h"
 
+#import "LBLoginViewController.h"
+#import "BasetabbarViewController.h"
+#import "BaseNavigationViewController.h"
 
 @implementation NetworkManager
 // 参数urlStr表示网络请求url,paramDic表示请求参数,finish回调指网络请求成功回调,enError表示回调失败.
@@ -52,7 +55,22 @@
     newDic[@"port"] = kPORT;
     
     [manager POST:urlStr1 parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        finish(responseObject);
+        
+        if([responseObject[@"code"] integerValue] == OVERDUE_CODE){
+            
+            LBLoginViewController *loginVC = [[LBLoginViewController alloc] init];
+
+            BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+            nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            
+            BasetabbarViewController *tab = (BasetabbarViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+            
+            [tab presentViewController:nav animated:YES completion:nil];
+            
+        }else{
+            
+            finish(responseObject);
+        }
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         enError(error);

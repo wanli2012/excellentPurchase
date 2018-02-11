@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *rechargeTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *accountLabel;
 
 @end
 
@@ -20,7 +21,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
 }
 
 - (void)setModel:(GLVoucherRecordModel *)model{
@@ -31,9 +31,14 @@
     }else{
         self.rechargeTypeLabel.text = @"支付宝充值";
     }
+    
     self.dateLabel.text = [formattime formateTimeOfDate4:model.addtime];
     self.moneyLabel.text = model.money;
-    
+    if (model.cname.length == 0) {
+        self.accountLabel.text = [NSString stringWithFormat:@"账号:%@",model.name];
+    }else{
+        self.accountLabel.text = [NSString stringWithFormat:@"账号:%@",model.cname];
+    }
     
 }
 

@@ -10,10 +10,12 @@
 
 @interface GLDonationRecordModel : NSObject
 
-@property (nonatomic, copy)NSString *uname;////账号
-@property (nonatomic, copy)NSString *money;////金额
-@property (nonatomic, copy)NSString *type;////类型
-@property (nonatomic, copy)NSString *time;////时间
-@property (nonatomic, copy)NSString *cname;////时间
+@property (nonatomic, copy)NSString *uname;//账号
+@property (nonatomic, copy)NSString *money;//金额
+@property (nonatomic, copy)NSString *type;//类型
+@property (nonatomic, copy)NSString *time;//时间
+@property (nonatomic, copy)NSString *cname;//时间
+
+@property (nonatomic, assign)NSInteger recordType;//转赠还是获赠 1.获赠 2.转赠
 
 @end

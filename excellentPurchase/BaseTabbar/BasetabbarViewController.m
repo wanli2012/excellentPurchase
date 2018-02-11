@@ -36,12 +36,10 @@
     self.delegate=self;
     [self addViewControllers];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(exitLogin) name:@"exitLogin" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(refreshInterface) name:@"refreshInterface" object:nil];
 
-    
 }
 
 //退出跳转登录
@@ -87,7 +85,7 @@
     
     self.viewControllers = @[homenav,eatNav,tmallNav,financialNav, personNav];
     
-    self.selectedIndex=0;
+    self.selectedIndex = 0;
     
 }
 

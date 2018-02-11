@@ -10,6 +10,6 @@
 
 @interface LBFinancialExchangeViewController : UIViewController
 
-@property (strong , nonatomic)NSString *coupon;// 优购券
+@property (strong , nonatomic)NSString *coupon;// 购物券
 
 @end

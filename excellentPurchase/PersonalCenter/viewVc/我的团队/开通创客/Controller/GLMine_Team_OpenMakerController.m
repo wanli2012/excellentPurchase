@@ -59,6 +59,8 @@
 
 @property (nonatomic, strong)NSMutableArray *setModels;
 
+@property (nonatomic, copy)NSArray *setArr;
+
 
 
 @end
@@ -92,7 +94,7 @@
         [EasyShowLodingView hidenLoding];
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-
+            
             [self.setModels removeAllObjects];
             for (NSDictionary *dict in responseObject[@"data"][@"setup"]) {
                 GLMine_Team_OpenSet_subModel *model = [GLMine_Team_OpenSet_subModel mj_objectWithKeyValues:dict];
@@ -138,7 +140,7 @@
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [EasyShowTextView showSuccessText:@"发送成功"];
-            return ;
+            return;
         }
     } enError:^(NSError *error) {
         [EasyShowTextView showErrorText:error.localizedDescription];
@@ -198,9 +200,12 @@
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_StaffingTabelController *vc= [[GLMine_Team_StaffingTabelController alloc] init];
     
-    WeakSelf;
+    
+    __block typeof(self) weakSelf = self;
+    
     vc.block = ^(NSArray *arr) {
         weakSelf.staffingTF.text = @"已配置";
+        weakSelf.setArr = arr;
         
         switch ([[UserModel defaultUser].group_id integerValue]) {
             case 2://省级代理
@@ -244,8 +249,16 @@
     
     [vc.models removeAllObjects];
     
-    for (GLMine_Team_OpenSet_subModel *model in self.setModels) {
-        [vc.models addObject:model];
+    for (int i = 0; i < self.setModels.count; i++) {
+        
+        GLMine_Team_OpenSet_subModel *setmodel = self.setModels[i];
+        if (self.setArr.count == self.setModels.count) {
+            
+            setmodel.personNum = [self.setArr[i] integerValue];
+        }
+        
+        [vc.models addObject:setmodel];
+        
     }
     
     [self.navigationController pushViewController:vc animated:YES];

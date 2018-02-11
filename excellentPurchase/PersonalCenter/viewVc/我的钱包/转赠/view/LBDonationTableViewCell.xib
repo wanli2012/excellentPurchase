@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBDonationTableViewCell" id="KGk-i7-Jjw" customClass="LBDonationTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBDonationTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="LBDonationTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <rect key="frame" x="0.0" y="0.0" width="322" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiH-cT-EVi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="62.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付宝充值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqn-0S-eQA">
                                 <rect key="frame" x="10" y="10" width="82" height="19.5"/>
@@ -28,19 +28,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmt-zG-2Io">
-                                <rect key="frame" x="10" y="34.5" width="60.5" height="13.5"/>
+                                <rect key="frame" x="10" y="38.5" width="60.5" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-PM-u7I">
-                                <rect key="frame" x="275" y="18.5" width="35" height="23"/>
+                                <rect key="frame" x="277" y="20.5" width="35" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7u-R6-0sc">
-                                <rect key="frame" x="134.5" y="20.5" width="31" height="18"/>
+                                <rect key="frame" x="135.5" y="22.5" width="31" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -52,8 +52,8 @@
                             <constraint firstItem="i3h-PM-u7I" firstAttribute="centerY" secondItem="LiH-cT-EVi" secondAttribute="centerY" id="CSc-cf-5iZ"/>
                             <constraint firstItem="Uqn-0S-eQA" firstAttribute="leading" secondItem="LiH-cT-EVi" secondAttribute="leading" constant="10" id="H4D-Rp-cyc"/>
                             <constraint firstItem="fmt-zG-2Io" firstAttribute="leading" secondItem="LiH-cT-EVi" secondAttribute="leading" constant="10" id="LUm-dD-feK"/>
+                            <constraint firstAttribute="bottom" secondItem="fmt-zG-2Io" secondAttribute="bottom" constant="10" id="Qcr-1k-rEb"/>
                             <constraint firstAttribute="trailing" secondItem="i3h-PM-u7I" secondAttribute="trailing" constant="10" id="RAf-Pq-IJw"/>
-                            <constraint firstItem="fmt-zG-2Io" firstAttribute="top" secondItem="Uqn-0S-eQA" secondAttribute="bottom" constant="5" id="g31-H8-GLy"/>
                             <constraint firstItem="Uqn-0S-eQA" firstAttribute="top" secondItem="LiH-cT-EVi" secondAttribute="top" constant="10" id="h6K-z4-qhr"/>
                             <constraint firstItem="P7u-R6-0sc" firstAttribute="centerY" secondItem="LiH-cT-EVi" secondAttribute="centerY" id="qOe-CE-aku"/>
                         </constraints>
@@ -73,6 +73,7 @@
                 <outlet property="moneyLabel" destination="i3h-PM-u7I" id="fnh-q0-O0k"/>
                 <outlet property="typeLabel" destination="P7u-R6-0sc" id="ccE-8U-Bf3"/>
             </connections>
+            <point key="canvasLocation" x="36" y="91"/>
         </tableViewCell>
     </objects>
 </document>

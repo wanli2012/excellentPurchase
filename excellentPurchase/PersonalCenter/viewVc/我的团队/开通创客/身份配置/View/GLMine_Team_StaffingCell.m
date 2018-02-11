@@ -35,6 +35,10 @@
     self.titleLabel.text = model.name;
     self.signLabel.text = model.msg;
     
+    if (model.personNum != 0) {
+        self.numberTF.text = [NSString stringWithFormat:@"%zd",model.personNum];
+    }
+    
 }
 
 @end
