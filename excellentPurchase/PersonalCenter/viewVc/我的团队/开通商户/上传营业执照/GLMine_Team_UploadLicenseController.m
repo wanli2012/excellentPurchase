@@ -74,20 +74,18 @@
     [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *str = [formatter stringFromDate:[NSDate date]];
-        NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
-        NSString *title = [NSString stringWithFormat:@"uploadfile"];
-        
-        NSData *data;
-  
-        data = UIImageJPEGRepresentation(self.imageV.image,1);
-        
-        
-        [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
-        
-        [EasyShowLodingView showLodingText:@"图片上传中"];
+        if (self.imageV.image) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *str = [formatter stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
+            NSString *title = [NSString stringWithFormat:@"uploadfile"];
+            NSData *data;
+            data = UIImageJPEGRepresentation(self.imageV.image,1);
+            [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
+            [EasyShowLodingView showLodingText:@"图片上传中"];
+        }
+    
     }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [EasyShowLodingView hidenLoding];

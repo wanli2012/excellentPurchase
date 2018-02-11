@@ -247,17 +247,16 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     [EasyShowLodingView showLoding];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *str = [formatter stringFromDate:[NSDate date]];
-        NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
-        NSString *title = [NSString stringWithFormat:@"uploadfile"];
-        
-        NSData *data;
-        
-        data = UIImageJPEGRepresentation(image,0.1);
-        
-        [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
+        if (image) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *str = [formatter stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
+            NSString *title = [NSString stringWithFormat:@"uploadfile"];
+            NSData *data;
+            data = UIImageJPEGRepresentation(image,0.1);
+            [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
+        }
         
     }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
