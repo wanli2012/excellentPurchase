@@ -29,6 +29,7 @@
 }
 @property(strong,nonatomic)BMKMapManager* mapManager;
 @property(strong,nonatomic)NSDictionary* userInfo;
+@property (nonatomic, strong)UIView *keyMaskView;//退出键盘
 
 - (void) reachabilityChanged: (NSNotification* )note;//网络连接改变
 - (void) updateInterfaceWithReachability: (Reachability*) curReach;//处理连接改变后的情况
@@ -80,6 +81,8 @@
     [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];
 
     [self configUSharePlatforms];
+    
+    [self addKeyBoardNotice];//监听键盘
 
     return YES;
 }
@@ -360,4 +363,45 @@
     [self.window.rootViewController presentViewController:alertc animated:YES completion:nil];
 }
 
+-(void)addKeyBoardNotice{
+    //监听当键盘将要出现时
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    //监听当键将要退出时
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    [self.window addSubview:self.keyMaskView];
+    self.keyMaskView.hidden = YES;
+}
+
+//当键盘出现
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    self.keyMaskView.hidden = NO;
+}
+
+//当键退出
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.keyMaskView.hidden = YES;
+    
+}
+-(void)dissmissKeyBoard{
+    [self.window endEditing:YES];
+}
+-(UIView*)keyMaskView{
+    if (!_keyMaskView) {
+        _keyMaskView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight)];
+        _keyMaskView.backgroundColor = [UIColor clearColor];
+        UITapGestureRecognizer *keytap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dissmissKeyBoard)];
+        [_keyMaskView addGestureRecognizer:keytap];
+    }
+    return _keyMaskView;
+}
 @end
