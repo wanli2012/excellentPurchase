@@ -236,7 +236,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.page = 1;
             [self loadData:self.page refreshDirect:YES];
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            [EasyShowTextView showSuccessText:responseObject[@"message"]];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];

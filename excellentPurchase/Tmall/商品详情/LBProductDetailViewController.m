@@ -60,6 +60,7 @@
 @property (nonatomic ,assign) BOOL isShowSpec;//是否展示规格
 
 @property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navagationH;
 
 @end
 
@@ -697,6 +698,11 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 #pragma mark - 点击轮播图 回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
+}
+
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    self.navagationH.constant = SafeAreaTopHeight;
 }
 -(void)popself{
     if (self.isShowComment == YES) {//展示的评论界面

@@ -64,7 +64,7 @@
     if (indexPath.row == 0) {
         cell.titleLb.text = @"转赠";
     }else if(indexPath.row == 1){
-        cell.titleLb.text = @"充值中心";
+        cell.titleLb.text = @"充值";
     }else{
         cell.titleLb.text = @"提现";
     }

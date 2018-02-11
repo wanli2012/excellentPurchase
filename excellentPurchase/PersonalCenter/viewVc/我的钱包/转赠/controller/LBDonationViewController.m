@@ -44,6 +44,8 @@
 
 @property (nonatomic, strong)ValuePickerView *pickerView;
 
+@property (weak, nonatomic) IBOutlet UILabel *saleKonw;
+
 @end
 
 @implementation LBDonationViewController
@@ -59,6 +61,8 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDismiss)];
     
     [self.contentView addGestureRecognizer:tap];
+    
+    self.saleKonw.text = [NSString stringWithFormat:@"1，各身份可互转，限定大于100的整数;\n2，节假日不限，转赠数量不限"];
     
 }
 
