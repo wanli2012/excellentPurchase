@@ -236,7 +236,11 @@
 
 #pragma mark - 转赠须知
 - (IBAction)toProtocol:(id)sender {
-    NSLog(@"转赠须知");
+
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - 转赠类型选择

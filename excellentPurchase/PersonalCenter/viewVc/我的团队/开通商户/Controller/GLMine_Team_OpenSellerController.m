@@ -580,11 +580,13 @@
 
 #pragma mark - 跳转到商家承诺书
 - (IBAction)sellerPromise:(id)sender {
-
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - UITextfieldDelegate
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     if (textField == self.phoneTF) {

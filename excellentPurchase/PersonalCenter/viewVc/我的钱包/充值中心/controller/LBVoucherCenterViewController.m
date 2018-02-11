@@ -167,7 +167,10 @@
 
 #pragma mark - 须知
 - (IBAction)toProtocol:(id)sender {
-    
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 #pragma mark - 确认充值

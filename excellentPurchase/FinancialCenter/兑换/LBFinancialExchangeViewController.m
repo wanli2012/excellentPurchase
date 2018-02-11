@@ -94,7 +94,11 @@
  兑换协议
  */
 - (IBAction)toProtocol:(id)sender {
-    NSLog(@"兑换协议");
+   
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 /**

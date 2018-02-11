@@ -48,7 +48,10 @@
  免责协议
  */
 - (IBAction)reliefPromise:(id)sender {
-    
+    self.hidesBottomBarWhenPushed = YES;
+    LLWebViewController *webVC = [[LLWebViewController alloc] initWithUrl:kProtocol_URL];
+    webVC.titilestr = @"服务条款";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 /**
