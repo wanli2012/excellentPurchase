@@ -7,6 +7,7 @@
 //
 
 #import "GLMine_Seller_IncomeCodeController.h"
+#import "LBRecommendRecoderViewController.h"
 
 @interface GLMine_Seller_IncomeCodeController ()
 
@@ -58,7 +59,27 @@
         self.nameLabel.text = [UserModel defaultUser].truename;
     }
     
+    //自定义导航栏右键
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(UIScreenWidth - 60, 14, 60, 30);
+    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
+    [rightBtn setTitle:@"推荐记录" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [rightBtn addTarget:self  action:@selector(recommendRecord) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    
+    [self logoQrCode];
+    
 }
+
+//跳转到推荐记录
+- (void)recommendRecord {
+    self.hidesBottomBarWhenPushed = YES;
+    LBRecommendRecoderViewController *recordVC = [[LBRecommendRecoderViewController alloc] init];
+    [self.navigationController pushViewController:recordVC animated:YES];
+}
+
 
 /**
  设置金额

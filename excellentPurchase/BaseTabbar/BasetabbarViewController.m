@@ -92,10 +92,13 @@
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     
+    NSString * b =  [[NSUserDefaults standardUserDefaults]objectForKey:@"iscloseMusic"];
+    if (b == nil || [b isEqualToString:@"YES"]) {
+          [self playSound];//音效
+    }
+    
     NSInteger index = [self.tabBar.items indexOfObject:item];
     [self animationWithIndex:index];//动画
-    [self playSound];//音效
-    
     if([item.title isEqualToString:@"首页"]){
         
     }else if([item.title isEqualToString:@"个人中心"]){

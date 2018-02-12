@@ -11,6 +11,7 @@
 #import "LBAboutUsViewController.h"
 #import "LBAccountSecurityViewController.h"
 #import "LBSwitchAccountViewController.h"
+#import "LBCloseTabbarMusicTableViewCell.h"
 
 @interface LBSetUpViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -34,6 +35,7 @@
 @end
 
 static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
+static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCell";
 
 @implementation LBSetUpViewController
 
@@ -44,6 +46,7 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
     self.navigationController.navigationBar.hidden = NO;
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:setUpTableViewCell bundle:nil] forCellReuseIdentifier:setUpTableViewCell];
+    [self.tableview registerNib:[UINib nibWithNibName:closeTabbarMusicTableViewCell bundle:nil] forCellReuseIdentifier:closeTabbarMusicTableViewCell];
     
     self.memory = [NSString stringWithFormat:@"%.2fM", [self filePath]];
     
@@ -233,7 +236,7 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
 
 #pragma mark - UITabelviewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArr.count;
+    return self.dataArr.count + 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -242,6 +245,11 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.row == self.dataArr.count) {
+        LBCloseTabbarMusicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:closeTabbarMusicTableViewCell forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
     LBSetUpTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:setUpTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLb.text = self.dataArr[indexPath.row];
@@ -263,7 +271,9 @@ static NSString *setUpTableViewCell = @"LBSetUpTableViewCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.row == self.dataArr.count) {
+        return;
+    }
     NSString *vcstr = self.userVcArr[indexPath.row];
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];

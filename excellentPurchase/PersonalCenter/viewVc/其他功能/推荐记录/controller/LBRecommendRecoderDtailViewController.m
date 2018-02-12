@@ -129,6 +129,7 @@
     
     LBRecommendRecoderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBRecommendRecoderDetailCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = self.userArr[indexPath.row];
   
     return cell;
 }
@@ -145,6 +146,13 @@
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0001f;
+}
+
+-(NSMutableArray *)userArr{
+    if (!_userArr) {
+        _userArr = [NSMutableArray array];
+    }
+    return _userArr;
 }
 
 @end

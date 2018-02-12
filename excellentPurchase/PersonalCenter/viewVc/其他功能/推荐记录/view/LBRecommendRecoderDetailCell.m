@@ -18,8 +18,8 @@
 
 -(void)setModel:(LBRecommendRecoderListModel *)model{
     _model = model;
-    self.timelb.text = [NSString stringWithFormat:@"%@",[formattime formateTime:_model.reg_addtime]];
-    self.contentlb.text = [NSString stringWithFormat:@"%@",_model.reg_content];
+    self.timelb.text = [NSString stringWithFormat:@"%@",[formattime formateTime:_model.lf_log_addtime]];
+    self.contentlb.text = [NSString stringWithFormat:@"%@",_model.lf_log_content];
 }
 
 @end
