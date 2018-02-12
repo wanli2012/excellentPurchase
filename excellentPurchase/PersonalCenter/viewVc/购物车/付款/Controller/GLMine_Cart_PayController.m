@@ -186,8 +186,10 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
+
 //微信支付
 -(void)wechatMethod{
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"UPDATE";
     if ([UserModel defaultUser].loginstatus == YES) {

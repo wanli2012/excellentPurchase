@@ -184,7 +184,7 @@
     }
     
     if(self.payType == 0){
-        [EasyShowTextView showInfoText:@"请填写充值金额"];
+        [EasyShowTextView showInfoText:@"请选择支付方式"];
         return;
     }
     

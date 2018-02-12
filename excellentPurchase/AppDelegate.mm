@@ -13,7 +13,6 @@
 #import "LBLoginViewController.h"//登录注册
 #import "Reachability.h"//网络监测
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
-//#import "UMessage.h"
 
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"

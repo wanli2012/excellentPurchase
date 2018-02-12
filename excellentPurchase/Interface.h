@@ -43,7 +43,7 @@
 #define USHARE_APPKEY @"5a8174dfa40fa324d70000c4"
 
 //获取appStore上的最新版本号地址
-#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1300026210"
+#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1347772440"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1347772440?mt=8"
 
