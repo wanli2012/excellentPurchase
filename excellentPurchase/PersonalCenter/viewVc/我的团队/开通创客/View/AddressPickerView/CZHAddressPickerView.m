@@ -370,15 +370,13 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
          self.selectArea = self.areaArray[0][@"name"];
          self.selectArea_id = self.areaArray[0][@"id"];
          
-         [pickerView selectRow:0 inComponent:2 animated:YES];
-         [pickerView selectedRowInComponent:1];
-         [pickerView reloadComponent:1];
-         [pickerView reloadComponent:2];
       }else{
          self.areaArray = nil;
-         [pickerView selectedRowInComponent:1];
-         [pickerView reloadComponent:1];
       }
+      
+      [pickerView selectedRowInComponent:1];
+      [pickerView reloadComponent:1];
+      [pickerView selectedRowInComponent:2];
       
    }
    
@@ -394,18 +392,15 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
       self.selectCity = self.cityArray[row][@"name"];
       self.selectCity_id = self.cityArray[row][@"id"];
       
-      self.areaArray = self.dataSource[self.selectProvinceIndex][@"city"][row][@"city"];
-      
-      if(self.areaArray.count > 0){
-         
-         [pickerView selectRow:0 inComponent:2 animated:YES];
+      if(self.cityArray.count > 0){
+          self.areaArray = self.dataSource[self.selectProvinceIndex][@"city"][row][@"city"];
          self.selectArea = self.areaArray[0][@"name"];
          self.selectArea_id = self.areaArray[0][@"id"];
-         [pickerView selectRow:0 inComponent:2 animated:YES];
-         [pickerView reloadComponent:2];
       }else{
-        
+         self.areaArray = nil;
       }
+      
+      [pickerView selectRow:0 inComponent:2 animated:YES];
       
    }
    
@@ -422,6 +417,8 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
       
       }
    }
+   
+   [pickerView reloadComponent:2];
 }
 
 
