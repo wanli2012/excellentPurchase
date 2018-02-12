@@ -262,11 +262,15 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                 _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"mine-set",@"mine-news", nil];
             }
                 break;
-            case GROUP_USER: case GROUP_TG://会员 创客
+            case GROUP_USER://会员
             {
                 _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"mine-set",@"mine-news", nil];
             }
                 break;
+            case GROUP_TG://创客
+            {
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+            }
             case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
             {
                 _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
@@ -293,12 +297,16 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 
             }
                 break;
-            case GROUP_USER: case GROUP_TG://会员 创客
+            case GROUP_USER://会员
             {
                 _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"其他功能",@"设置",@"消息", nil];
   
             }
                 break;
+            case GROUP_TG://创客
+            {
+                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+            }
             case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
             {
                 _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
@@ -347,7 +355,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                 
             }
                 break;
-            case GROUP_USER: case GROUP_TG://会员 创客
+            case GROUP_USER: //会员 创客
             {
                 _userVcArr=[NSMutableArray arrayWithObjects:
                             @"GLMine_ShoppingCartController",
@@ -359,6 +367,17 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                 
             }
                 break;
+            case GROUP_TG://创客
+            {
+                _userVcArr=[NSMutableArray arrayWithObjects:
+                            @"GLMine_ShoppingCartController",
+                            @"LBMineOrderManagerViewController",
+                            @"GLMine_MyWalletController",
+                            @"GLMine_TeamController",
+                            @"LBMineOtherFunctionViewController",
+                            @"LBSetUpViewController",
+                            @"GLMine_MessageController",nil];
+            }
             case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
             {
                 _userVcArr=[NSMutableArray arrayWithObjects:

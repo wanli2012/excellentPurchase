@@ -45,7 +45,7 @@
 //获取appStore上的最新版本号地址
 #define GET_VERSION  @"https://itunes.apple.com/lookup?id=1300026210"
 //下载地址
-#define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1300026210?mt=8"
+#define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1347772440?mt=8"
 
 #define RECOMMEND_URL @"http://cs5.hytc.gs/Home/User/Register?tjrid="
 

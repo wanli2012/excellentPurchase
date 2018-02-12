@@ -293,7 +293,7 @@
                                             <rect key="frame" x="85.5" y="0.0" width="279.5" height="54"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="hoJ-Qv-ebW"/>
                                             </connections>
