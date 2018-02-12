@@ -69,7 +69,8 @@
     dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
     dic[@"app_version"] = @"1.0.0";
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
+    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     manager.requestSerializer.timeoutInterval = 20;
     [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
