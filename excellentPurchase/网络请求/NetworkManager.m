@@ -18,7 +18,7 @@
 
 + (void)requestGETWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     // 创建一个SessionManager管理对象
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:URL_Base]];
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[self customSecurityPolicy]];
     
@@ -40,13 +40,13 @@
 
 + (void)requestPOSTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.baseURL = @"https://";
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:URL_Base]];
+
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
     
     manager.requestSerializer.timeoutInterval=20;
     // 加上这行代码，https ssl 验证。
-//    [manager setSecurityPolicy:[self customSecurityPolicy]];
+    [manager setSecurityPolicy:[self customSecurityPolicy]];
 
     NSString *urlStr1 = [NSString stringWithFormat:@"%@%@",URL_Base,urlStr];
     
@@ -81,7 +81,7 @@
 //没有延迟时间
 + (void)requestPOSTWithURLStrundelay:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:URL_Base]];
     
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[self customSecurityPolicy]];
@@ -106,7 +106,7 @@
 
 + (NSURLSessionDataTask*)requestGETWithURLStrReture:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     // 创建一个SessionManager管理对象
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:URL_Base]];
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[self customSecurityPolicy]];
     // 指定我们能够解析的数据类型包含html.支持返回类型
@@ -126,7 +126,7 @@
 
 + (NSURLSessionDataTask*)requestPOSTWithURLStrReture:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:URL_Base]];
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[self customSecurityPolicy]];
     
@@ -149,9 +149,8 @@
 + (AFSecurityPolicy*)customSecurityPolicy
 {
     // /先导入证书
-    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"https" ofType:@"cer"];//证书的路径
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"GLhttps" ofType:@"cer"];//证书的路径
     NSData *certData = [NSData dataWithContentsOfFile:cerPath];
-    
     // AFSSLPinningModeCertificate 使用证书验证模式
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     

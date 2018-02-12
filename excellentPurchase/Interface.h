@@ -47,13 +47,13 @@
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1300026210?mt=8"
 
-#define RECOMMEND_URL @"http://cs5.hytc.gs/Home/User/Register?tjrid="
+#define RECOMMEND_URL @"https://app.helloyogo.com/Home/User/Register?tjrid="
 
 //服务条款
-#define kProtocol_URL @"http://cs5.hytc.gs/H5/all_agreement.html"
-
-#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
-#define share_URL_Base @"http://cs5.hytc.gs/index.php/"//分享
+#define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
+#define URL_Base @"https://app.helloyogo.com/index.php/App/"
+//#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
+#define share_URL_Base @"https://app.helloyogo.com/"//分享
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"
 
