@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLAddRecommderController">
+            <connections>
+                <outlet property="recommendTF" destination="Jpg-rb-ipr" id="r43-vB-rQ4"/>
+                <outlet property="topConstrait" destination="upt-2L-ViB" id="FW9-9L-2mM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9S-h7-pc2">
+                    <rect key="frame" x="0.0" y="64" width="375" height="100"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入推荐人ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jpg-rb-ipr">
+                            <rect key="frame" x="10" y="0.0" width="355" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="JKs-Eq-Edh"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*请输入推荐人ID*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDU-DZ-Bjr">
+                            <rect key="frame" x="10" y="60" width="355" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.54584085940000004" green="0.51362806559999996" blue="0.51327699419999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJ7-4O-Flz">
+                            <rect key="frame" x="10" y="50" width="355" height="1"/>
+                            <color key="backgroundColor" red="0.54584085940000004" green="0.51362806559999996" blue="0.51327699419999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="N5w-vQ-RbR"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="4SI-aT-Qbm"/>
+                        <constraint firstItem="YDU-DZ-Bjr" firstAttribute="top" secondItem="Jpg-rb-ipr" secondAttribute="bottom" constant="10" id="59X-BJ-xcv"/>
+                        <constraint firstItem="WJ7-4O-Flz" firstAttribute="top" secondItem="Jpg-rb-ipr" secondAttribute="bottom" id="94p-ND-jlO"/>
+                        <constraint firstItem="WJ7-4O-Flz" firstAttribute="leading" secondItem="c9S-h7-pc2" secondAttribute="leading" constant="10" id="NrM-Ch-ijT"/>
+                        <constraint firstAttribute="trailing" secondItem="Jpg-rb-ipr" secondAttribute="trailing" constant="10" id="XK0-YW-4vM"/>
+                        <constraint firstItem="Jpg-rb-ipr" firstAttribute="leading" secondItem="c9S-h7-pc2" secondAttribute="leading" constant="10" id="XmC-Nn-UeH"/>
+                        <constraint firstItem="Jpg-rb-ipr" firstAttribute="top" secondItem="c9S-h7-pc2" secondAttribute="top" id="mVU-2b-ARD"/>
+                        <constraint firstItem="YDU-DZ-Bjr" firstAttribute="leading" secondItem="c9S-h7-pc2" secondAttribute="leading" constant="10" id="pa1-h9-2fO"/>
+                        <constraint firstAttribute="trailing" secondItem="WJ7-4O-Flz" secondAttribute="trailing" constant="10" id="pr0-em-Onq"/>
+                        <constraint firstAttribute="trailing" secondItem="YDU-DZ-Bjr" secondAttribute="trailing" constant="10" id="xuH-EN-a7B"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="c9S-h7-pc2" secondAttribute="trailing" id="Jy1-3W-W6I"/>
+                <constraint firstItem="c9S-h7-pc2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="upt-2L-ViB"/>
+                <constraint firstItem="c9S-h7-pc2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x6x-9f-daO"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

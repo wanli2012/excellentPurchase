@@ -222,11 +222,9 @@
 }
 
 
-
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-    
-    //iphoneX
+
     if (UIScreenWidth == 812.0) {
         self.navigation.constant = 47;
         self.logoH.constant = 92;
@@ -256,12 +254,12 @@
         [EasyShowTextView showInfoText:@"请输入6-12位密码"];
         return;
     }
+    
     if (self.group_id <= 0) {
         
         [EasyShowTextView showInfoText:@"请选择身份"];
         return;
     }
-
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"app_handler"] = @"SEARCH";
