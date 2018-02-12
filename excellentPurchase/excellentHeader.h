@@ -23,4 +23,7 @@
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 
+//公钥RSA
+#define public_RSA @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDFbG/E41tZhkU0A0a+6TzukEYGns55LSe9yOWo4/0a2Qy6ZoTeujKJAm1CLgSUPH9nYOOMi+g32wIF+FTJfNrsBSKKw66jRefMVO5G0WhQg6k/dG26KoSEpg/fEl7CZKXS0vEzBT6U5eVDplCAt0918Ere5PNujx9GzDOFEKss+QIDAQAB"
+
 #endif /* excellentHeader_h */

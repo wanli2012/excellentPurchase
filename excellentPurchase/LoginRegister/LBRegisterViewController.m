@@ -320,7 +320,7 @@
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"phone"] = self.phoneTF.text;
-    dict[@"password"] = self.passwordTF.text;
+    dict[@"password"] = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
     dict[@"yzm"] = self.codeTF.text;
     dict[@"app_handler"] = @"ADD";
     dict[@"user_name"] = self.recommendTF.text;

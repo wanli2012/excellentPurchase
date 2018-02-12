@@ -422,8 +422,8 @@
     dic[@"internacode"] = @"+86";//国际电话Code码 如中国 +86
     dic[@"append_phone"] = self.phoneTF.text;//手机号码
     dic[@"append_group_id"] = self.group_id;//要开通的用户组 id
-    dic[@"password"] = self.passWordTF.text;//密码
-    dic[@"confirmPass"] = self.ensurePwdTF.text;//确认密码
+    dic[@"password"] = [RSAEncryptor encryptString:self.passWordTF.text publicKey:public_RSA];//密码
+    dic[@"confirmPass"] = [RSAEncryptor encryptString:self.ensurePwdTF.text publicKey:public_RSA];//确认密码
     dic[@"user_province"] = self.provinceStrId;//省 id
     dic[@"user_city"] = self.cityStrId;//市 id
     dic[@"user_area"] = self.countryStrId;//区 id

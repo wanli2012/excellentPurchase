@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"评价";
+    self.mark = 3;
     self.navigationController.navigationBar.hidden = NO;
     
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.goods_pic] placeholderImage:nil];
@@ -85,8 +86,8 @@
     dic[@"mark"] = @(_mark);
     dic[@"line_id"] = self.line_id;
     dic[@"line_store_uid"] = self.line_store_uid;
-    if (self.is_face) {
-        dic[@"is_face"] = self.is_face;
+    if (self.face_order_code) {
+        dic[@"is_face"] = self.face_order_code;
     }
     
     [EasyShowLodingView showLoding];

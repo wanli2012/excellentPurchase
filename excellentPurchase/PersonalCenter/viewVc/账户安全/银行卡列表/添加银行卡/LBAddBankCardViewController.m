@@ -217,7 +217,7 @@
     dic[@"bid"] = self.bid;
     dic[@"bank_adderss"] = self.bankAddressTF.text;
     dic[@"is_default"] = @(_isDefault);
-    dic[@"pwd"] = self.secondPasswordTF.text;
+    dic[@"pwd"] = [RSAEncryptor encryptString:self.secondPasswordTF.text publicKey:public_RSA];
     dic[@"yzm"] = self.codeTF.text;
     
     [NetworkManager requestPOSTWithURLStr:kBank_addCard_URL paramDic:dic finish:^(id responseObject) {

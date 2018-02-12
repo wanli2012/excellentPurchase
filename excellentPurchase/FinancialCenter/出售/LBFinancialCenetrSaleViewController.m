@@ -201,7 +201,7 @@
     dic[@"bank_id"] = self.card_id;
     dic[@"back_money"] = self.sellNumTF.text;
     dic[@"back_choice"] = @(self.payType);
-    dic[@"user_pwd"] = password;
+    dic[@"user_pwd"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
     
     [EasyShowLodingView showLoding];
     self.ensureSellBtn.enabled = NO;

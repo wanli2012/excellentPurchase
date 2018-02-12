@@ -147,8 +147,8 @@
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"yzm"] = self.codeTF.text;
-    dic[@"two_pwd"] = self.passwordNewTF.text;
-    dic[@"sure_pwd"] = self.ensureTF.text;
+    dic[@"two_pwd"] = [RSAEncryptor encryptString:self.passwordNewTF.text publicKey:public_RSA];
+    dic[@"sure_pwd"] = [RSAEncryptor encryptString:self.ensureTF.text publicKey:public_RSA];
     
 //    NSString *url;
     

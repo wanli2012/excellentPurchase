@@ -264,7 +264,7 @@
     }else{
         dic[@"turn_type"] = @"206";
     }
-    dic[@"pass"] = password;
+    dic[@"pass"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
 
     [NetworkManager requestPOSTWithURLStr:PayOrder_payment paramDic:dic finish:^(id responseObject) {
         
