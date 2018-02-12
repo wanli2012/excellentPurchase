@@ -39,6 +39,7 @@
  导航栏设置
  */
 - (void)setNav{
+    
 //    self.navigationItem.title = @"上传营业执照";
     
     UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
@@ -90,7 +91,7 @@
             NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
             NSString *title = [NSString stringWithFormat:@"uploadfile"];
             NSData *data;
-            data = UIImageJPEGRepresentation(self.imageV.image,1);
+            data = UIImageJPEGRepresentation(self.imageV.image,0.1);
             [formData appendPartWithFileData:data name:title fileName:fileName mimeType:@"image/jpeg"];
             [EasyShowLodingView showLodingText:@"图片上传中"];
         }

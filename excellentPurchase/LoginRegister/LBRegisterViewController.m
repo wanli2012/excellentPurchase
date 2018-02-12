@@ -13,6 +13,11 @@
 
 #import "DropMenu.h"
 #import "GLGroupModel.h"
+//扫码
+#import "LBXScanView.h"
+#import "LBXScanResult.h"
+#import "LBXScanWrapper.h"
+#import "SubLBXScanViewController.h"
 
 @interface LBRegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>
 {
@@ -63,6 +68,56 @@
         self.navigation.constant = 47;
         self.logoH.constant = 92;
     }
+}
+
+#pragma mark - 扫描
+- (IBAction)scan:(id)sender {
+    //设置扫码区域参数
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    style.centerUpOffset = 60;
+    style.xScanRetangleOffset = 30;
+    
+    if ([UIScreen mainScreen].bounds.size.height <= 480 )
+    {
+        //3.5inch 显示的扫码缩小
+        style.centerUpOffset = 40;
+        style.xScanRetangleOffset = 20;
+    }
+    
+    style.alpa_notRecoginitonArea = 0.6;
+    
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 2.0;
+    style.photoframeAngleW = 16;
+    style.photoframeAngleH = 16;
+    
+    style.isNeedShowRetangle = NO;
+    
+    style.anmiationStyle = LBXScanViewAnimationStyle_NetGrid;
+    
+    //使用的支付宝里面网格图片
+    UIImage *imgFullNet = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_full_net"];
+    
+    style.animationImage = imgFullNet;
+    
+    [self openScanVCWithStyle:style];
+}
+
+- (void)openScanVCWithStyle:(LBXScanViewStyle*)style
+{
+    self.hidesBottomBarWhenPushed = YES;
+    SubLBXScanViewController *vc = [SubLBXScanViewController new];
+    vc.style = style;
+    
+    __weak typeof(self) weakself = self;
+    vc.retureCode = ^(NSString *codeStr){
+        
+        weakself.recommendTF.text = codeStr;
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 /**
