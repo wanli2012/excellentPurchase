@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *uploadStatusLabel;//上传状态
 @property (weak, nonatomic) IBOutlet UIButton *manBtn;//男
 @property (weak, nonatomic) IBOutlet UIButton *womanBtn;//女
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *areaViewConstrait;//三级列表高度
+@property (weak, nonatomic) IBOutlet UIView *areaView;//三级列表
 
 @property (nonatomic, strong)NSArray *dataArr;
 
@@ -49,6 +51,14 @@
     self.navigationItem.title = @"完善资料";
     
     self.user_sex = @"0";//默认选中男
+    
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_USER){
+        self.areaView.hidden = NO;
+        self.areaViewConstrait.constant = 55;
+    }else{
+        self.areaView.hidden = YES;
+        self.areaViewConstrait.constant = 0;
+    }
 
 }
 
@@ -163,25 +173,31 @@
         [EasyShowTextView showInfoText:@"请上传身份证正反面"];
         return;
     }
-    if (self.areaTF.text.length == 0) {
-        [EasyShowTextView showInfoText:@"请选择地区"];
-        return;
-    }
     if (self.detailAddressTF.text.length == 0) {
         [EasyShowTextView showInfoText:@"请输入详细地址"];
         return;
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_USER){
+        if (self.areaTF.text.length == 0) {
+            [EasyShowTextView showInfoText:@"请选择地区"];
+            return;
+        }
+        
+        dict[@"province_id"] = self.provinceStrId;
+        dict[@"city_id"] = self.cityStrId;
+        dict[@"area_id"] = self.countryStrId;
+        
+    }
+    
     dict[@"app_handler"] = @"UPDATE";
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"face_pic"] = self.faceUrl;
     dict[@"con_pic"] = self.oppositeUrl;
     dict[@"idcard"] = self.IDTF.text;
-    dict[@"province_id"] = self.provinceStrId;
-    dict[@"city_id"] = self.cityStrId;
-    dict[@"area_id"] = self.countryStrId;
     dict[@"address"] = self.detailAddressTF.text;
     dict[@"user_sex"] = self.user_sex;
     dict[@"truename"] = self.nameTF.text;

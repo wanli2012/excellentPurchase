@@ -32,7 +32,7 @@
 @property (nonatomic, assign) CGPoint lastPoint;
 
 @end
-
+ 
 @implementation LBFinancialCenterViewController
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -41,6 +41,9 @@
     self.navigationController.navigationBar.hidden = YES;
     adjustsScrollViewInsets_NO(self.scrollView, self);
     [self loadData];//加载数据
+    
+    [EasyShowLodingView hidenLoding];
+    
 }
 
 - (void)viewDidLoad {
@@ -79,6 +82,17 @@
  */
 -(void)financialSaleEvent{
     
+    if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
+        [EasyShowTextView showInfoText:@"请先实名认证"];
+        return;
+    }else if([[UserModel defaultUser].rzstatus integerValue] == 1){
+        [EasyShowTextView showInfoText:@"实名认证审核中"];
+        return;
+    }else if([[UserModel defaultUser].rzstatus integerValue] == 3){
+        [EasyShowTextView showInfoText:@"实名认证失败"];
+        return;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     LBFinancialCenetrSaleViewController *vc = [[LBFinancialCenetrSaleViewController alloc]init];
     vc.yougoubi = self.headerView.yougoubiLb.text;
@@ -90,6 +104,16 @@
  兑换
  */
 -(void)financialExchangeEvent{
+    if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
+        [EasyShowTextView showInfoText:@"请先实名认证"];
+        return;
+    }else if([[UserModel defaultUser].rzstatus integerValue] == 1){
+        [EasyShowTextView showInfoText:@"实名认证审核中"];
+        return;
+    }else if([[UserModel defaultUser].rzstatus integerValue] == 3){
+        [EasyShowTextView showInfoText:@"实名认证失败"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     LBFinancialExchangeViewController *vc = [[LBFinancialExchangeViewController alloc]init];
     vc.coupon = self.headerView.jifenLb.text;

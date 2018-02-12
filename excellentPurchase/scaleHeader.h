@@ -93,7 +93,7 @@
 #define UserGroomUser_groom_list @"UserGroom/user_groom_list"//用户推荐列表
 #define UserGroomGroom_gain @"UserGroom/groom_gain"//查看推荐收益
 #define DataNew_data @"Data/new_data"//请求H5首页跑马灯详情
-#define shareMalldetail @"home/sea_mall/malldetail/goods_id/"//分享店铺
+#define shareMalldetail @"Home/SeaMall/MallDetail/goods_id/"//分享店铺
 #define MoneyCenterUser_money @"MoneyCenter/user_money"//用户优购币/购物券
 #define OrderStore_face_order_list @"Order/store_face_order_list"//商家面对面订单列表
 

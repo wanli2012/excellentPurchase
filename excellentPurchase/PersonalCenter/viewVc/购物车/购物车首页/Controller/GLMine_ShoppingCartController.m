@@ -311,6 +311,22 @@
 #pragma mark - 删除
 - (IBAction)deleteGoods:(id)sender {
 
+    NSMutableArray *idArr = [NSMutableArray array];
+    
+    for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
+        for (GLMine_ShoppingCartModel *model in sectionModel.goods)
+        {
+            if (model.isSelected)
+            {
+                [idArr addObject:model.id];
+            }
+        }
+    }
+    if(idArr.count == 0){
+        [EasyShowTextView showInfoText:@"还未选中商品"];
+        return;
+    }
+    
     WeakSelf;
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要删除这些商品吗?" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -322,23 +338,7 @@
         dic[@"app_handler"] = @"DELETE";
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
-        
-        NSMutableArray *idArr = [NSMutableArray array];
-        
-        for (GLMine_ShoppingCartDataModel *sectionModel in weakSelf.models) {
-            for (GLMine_ShoppingCartModel *model in sectionModel.goods)
-            {
-                if (model.isSelected)
-                {
-                    [idArr addObject:model.id];
-                }
-            }
-        }
-        if(idArr.count == 0){
-            [EasyShowTextView showInfoText:@"还未选中商品"];
-            return;
-        }
-        
+
         dic[@"cart_id"] = [idArr componentsJoinedByString:@","];
         
         [EasyShowLodingView showLoding];

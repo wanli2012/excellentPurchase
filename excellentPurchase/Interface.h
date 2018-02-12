@@ -40,7 +40,7 @@
 
 //captchaid的值是每个产品从后台生成的,
 #define CAPTCHAID @"f878a21255674cdcb8e3564e06e73473"
-#define USHARE_APPKEY @"59e7060a310c931f5a000745"
+#define USHARE_APPKEY @"5a8174dfa40fa324d70000c4"
 
 //获取appStore上的最新版本号地址
 #define GET_VERSION  @"https://itunes.apple.com/lookup?id=1300026210"
@@ -53,7 +53,7 @@
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
 #define URL_Base @"https://app.helloyogo.com/index.php/App/"
 //#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
-#define share_URL_Base @"https://app.helloyogo.com/"//分享
+#define share_URL_Base @"https://app.helloyogo.com/index.php/"//分享
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"
 

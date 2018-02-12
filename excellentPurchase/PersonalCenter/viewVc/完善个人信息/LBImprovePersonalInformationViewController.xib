@@ -13,6 +13,8 @@
             <connections>
                 <outlet property="IDTF" destination="tbi-xC-8Eu" id="ppt-7h-8PX"/>
                 <outlet property="areaTF" destination="zg8-9N-ZIP" id="qPc-SC-zMl"/>
+                <outlet property="areaView" destination="kTH-eH-Vhb" id="nbC-IJ-eTs"/>
+                <outlet property="areaViewConstrait" destination="ne6-Rt-GW2" id="mEX-xp-oax"/>
                 <outlet property="detailAddressTF" destination="xJJ-12-lVH" id="9Qr-vl-6en"/>
                 <outlet property="manBtn" destination="nGM-YX-37A" id="pFP-Vb-fIq"/>
                 <outlet property="nameTF" destination="8QK-to-jdq" id="rDX-a9-t0c"/>

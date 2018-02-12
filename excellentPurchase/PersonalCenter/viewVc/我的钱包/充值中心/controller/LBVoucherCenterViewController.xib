@@ -159,7 +159,7 @@
                                                 <constraint firstAttribute="height" constant="15" id="xze-Dx-3Zo"/>
                                                 <constraint firstAttribute="width" constant="15" id="zq7-Us-zjp"/>
                                             </constraints>
-                                            <state key="normal" image="pay-select-n"/>
+                                            <state key="normal" image="MyTeam_Select-y2"/>
                                             <state key="selected" image="pay-select-y"/>
                                         </button>
                                     </subviews>
@@ -206,6 +206,7 @@
                                         </label>
                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rg5-A7-ArN">
                                             <rect key="frame" x="378" y="17.5" width="15" height="15"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="JNc-Z4-yAz"/>
                                                 <constraint firstAttribute="height" constant="15" id="ViC-mV-mXx"/>
@@ -374,6 +375,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="MyTeam_Select-y2" width="18" height="18"/>
         <image name="greetselect-n" width="11" height="11"/>
         <image name="pay-select-n" width="25" height="25"/>
         <image name="pay-select-y" width="25" height="25"/>

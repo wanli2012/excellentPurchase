@@ -17,7 +17,6 @@
 @property (strong, nonatomic)UIButton *rightBt;
 @property (strong, nonatomic)NSMutableArray *models;
 @property (assign, nonatomic)NSInteger page;//页数默认为1
-@property (strong, nonatomic)NodataView *nodataV;
 
 @property (assign, nonatomic)NSInteger  deleteIndex;//删除下标
 
@@ -175,14 +174,6 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (self.models.count > 0 ) {
-        
-        self.nodataV.hidden = YES;
-    }else{
-        self.nodataV.hidden = NO;
-        
-    }
     
     return self.models.count;
 }

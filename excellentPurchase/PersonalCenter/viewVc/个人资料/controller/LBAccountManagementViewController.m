@@ -91,8 +91,6 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     
-    [EasyShowLodingView showLodingText:@"正在请求数据"];
-    
     NSString *url;
     if (self.type == 1) {
         url = kget_user_info;

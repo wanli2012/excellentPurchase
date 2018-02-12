@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signBtn;//同意标志
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;//获取验证码
 @property (weak, nonatomic) IBOutlet UITextField *groupTypeTF;//身份类型
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;//注册按钮
 
 @property (nonatomic, copy)NSString *validate;//极验证
 @property(nonatomic,strong)NTESVerifyCodeManager *manager;
@@ -208,8 +209,12 @@
     
     if (_isAgreeProtocol) {
         [self.signBtn setImage:[UIImage imageNamed:@"greetselect-y"] forState:UIControlStateNormal];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
     }else{
         [self.signBtn setImage:[UIImage imageNamed:@"greetselect-n"] forState:UIControlStateNormal];
+        self.submitBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.submitBtn.enabled = NO;
     }
 }
 
@@ -327,8 +332,13 @@
     dict[@"validate"] = self.validate;
     dict[@"group_id"] = self.group_id;
     
+    self.submitBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.submitBtn.enabled = NO;
+    
     [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
         //        [_loadV removeloadview];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [EasyShowTextView showSuccessText:@"注册成功"];
@@ -343,7 +353,9 @@
         }
         
     } enError:^(NSError *error) {
-
+        
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = NO;
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];

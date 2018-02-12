@@ -68,6 +68,8 @@
             
             BasetabbarViewController *tab = (BasetabbarViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
+            
             [tab presentViewController:nav animated:YES completion:nil];
             
         }else{

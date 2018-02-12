@@ -37,6 +37,9 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     
     self.navigationItem.title = @"帐号管理";
     self.navigationController.navigationBar.hidden = NO;
+    
+    [self setupNpdata];//设置无数据的时候展示
+
     //注册cell
     [self.tableview registerNib:[UINib nibWithNibName:switchAccountTableViewCell bundle:nil] forCellReuseIdentifier:switchAccountTableViewCell];
     
@@ -45,11 +48,33 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     [self getFmdbDatasoruce];//获取数据库信息
 }
 
+/**
+ 设置无数据图
+ */
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableview.tableFooterView = [UIView new];
+    
+    self.tableview.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableview.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    //emptyView内容上的点击事件监听
+    [self.tableview.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf getFmdbDatasoruce];
+    }];
+}
+
 - (void)getFmdbDatasoruce{
     //获取本地搜索记录
     _projiectmodel = [GLAccountModel greateTableOfFMWithTableName:@"GLAccountModel"];
     
     self.fmdbArr = [NSMutableArray arrayWithArray:[_projiectmodel queryAllDataOfFMDB]];
+
     
     [self.tableview reloadData];
     
