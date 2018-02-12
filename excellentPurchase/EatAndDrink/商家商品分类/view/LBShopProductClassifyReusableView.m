@@ -131,7 +131,7 @@
 -(SDCycleScrollView*)cycleScrollView{
     
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth / 2.0) delegate:self placeholderImage:[UIImage imageNamed:@"banner(吃喝玩乐）"]];//当一张都没有的时候的 占位图
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenWidth * 400/750.0) delegate:self placeholderImage:[UIImage imageNamed:@"haitao_dianpu"]];//当一张都没有的时候的 占位图
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
@@ -143,7 +143,6 @@
     }
     
     return _cycleScrollView;
-    
 }
 
 @end

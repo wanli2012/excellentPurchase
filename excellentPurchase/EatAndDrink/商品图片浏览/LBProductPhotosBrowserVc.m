@@ -45,12 +45,12 @@
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
-    scrollView.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, self.view.frame.size.height - SafeAreaTopHeight);
+    scrollView.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight);
+    scrollView.backgroundColor = [UIColor redColor];
     [self.view addSubview:scrollView];
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.scrollView = scrollView;
     
-    NSLog(@"%@",self.urls);
 //    // 初始化数据
     [self photos];
 //    // 属性scrollView

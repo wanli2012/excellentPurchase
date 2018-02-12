@@ -395,6 +395,10 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
  消息
  */
 -(void)messageButtonEvent{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];

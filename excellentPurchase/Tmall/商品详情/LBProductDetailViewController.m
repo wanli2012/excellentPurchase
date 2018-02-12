@@ -552,6 +552,10 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 -(void)showMoreInfo{
     WeakSelf;
     PopoverAction *action1 = [PopoverAction actionWithImage:[UIImage imageNamed:@"taotao-more-xiaoxi"] title:@"消息" handler:^(PopoverAction *action) {
+        if ([UserModel defaultUser].loginstatus == NO) {
+            [EasyShowTextView showInfoText:@"请先登录"];
+            return;
+        }
         self.hidesBottomBarWhenPushed = YES;
         GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -567,6 +571,10 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
     PopoverAction *action4 = [PopoverAction actionWithImage:[UIImage imageNamed:@"taotao-more-gouwuche"] title:@"购物车  " handler:^(PopoverAction *action) {
+        if ([UserModel defaultUser].loginstatus == NO) {
+            [EasyShowTextView showInfoText:@"请先登录"];
+            return;
+        }
         self.hidesBottomBarWhenPushed = YES;
         GLMine_ShoppingCartController *vc = [[GLMine_ShoppingCartController alloc]init];
         [weakSelf.navigationController pushViewController:vc animated:YES];

@@ -209,7 +209,7 @@
 {
     
     if (section == 0) {
-        return CGSizeMake(UIScreenWidth,UIScreenWidth/2.0 + 70);
+        return CGSizeMake(UIScreenWidth,UIScreenWidth * 400/750.0 + 70);
     }else {
         return CGSizeMake(UIScreenWidth,60);
     }
@@ -251,7 +251,6 @@
     
 }
 
-
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
@@ -264,7 +263,6 @@
                                                                                   withReuseIdentifier:@"LBShopProductClassifyReusableView"
                                                                                          forIndexPath:indexPath];
             headview.model = self.dataModel;
-            
             collectionReusableView = headview;
         }else{
             
