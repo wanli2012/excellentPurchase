@@ -42,7 +42,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"线下下单";
-    
     self.contentViewHeight.constant = UIScreenHeight - SafeAreaTopHeight;
     
     self.IDNumberTF.text = self.model.user_name;
@@ -51,23 +50,48 @@
     self.proofUrl = self.model.line_dkpz_pic;
     self.line_id = self.model.line_id;
     
+    
+    if([UserModel defaultUser].checkCode.length == 0){
+        [UserModel defaultUser].checkCode = [self getRandomStringWithNum:6];
+    }
+    self.checkCodeLabel.text = [UserModel defaultUser].checkCode;
+    
     if(self.proofUrl.length != 0){
         self.proofTF.text = @"已上传";
     }
+}
+
+
+#pragma mark - 重新生成 校验码
+- (IBAction)rebuild:(id)sender {
+
+    [UserModel defaultUser].checkCode = [self getRandomStringWithNum:6];
+
+    self.checkCodeLabel.text = [UserModel defaultUser].checkCode;
     
 }
 
-
-/**
- 重新生成
- */
-- (IBAction)rebuild:(id)sender {
-    NSLog(@"重新生成");
+- (NSString *)getRandomStringWithNum:(NSInteger)num
+{
+    NSString *string = [[NSString alloc]init];
+    for (int i = 0; i < num; i++) {
+        int number = arc4random() % 36;
+        if (number < 10) {
+            int figure = arc4random() % 10;
+            NSString *tempString = [NSString stringWithFormat:@"%d", figure];
+            string = [string stringByAppendingString:tempString];
+        }else {
+            int figure = (arc4random() % 26) + 65;
+            char character = figure;
+            NSString *tempString = [NSString stringWithFormat:@"%c", character];
+            string = [string stringByAppendingString:tempString];
+        }
+    }
+    return string;
 }
 
-/**
- 上传打卡款凭证
- */
+#pragma mark - 上传打卡款凭证
+
 - (IBAction)uploadProof:(id)sender {
 
     WeakSelf;
@@ -87,9 +111,8 @@
     
 }
 
-/**
- 是否同意协议
- */
+#pragma mark -  是否同意协议
+
 - (IBAction)isAgreeProtocol:(id)sender {
     _isAgreeProtocol = !_isAgreeProtocol;
     if(_isAgreeProtocol){
@@ -162,7 +185,6 @@
     self.submitBtn.enabled = NO;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    dic[@"app_handler"] = @"UPDATE";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"order_money"] = self.consumeTF.text;
@@ -171,10 +193,20 @@
     dic[@"dkpz"] = self.proofUrl;
     dic[@"ylxx"] = self.checkCodeLabel.text;
     dic[@"validate"] = self.validate;
-    dic[@"line_id"] = self.line_id;
+    
+    NSString *url;
+    if(self.type == 1){//1:线下下单 2:线下订单失败 重新下单
+        url = kstore_commit;
+        dic[@"app_handler"] = @"ADD";
+    }else{
+        dic[@"app_handler"] = @"UPDATE";
+        dic[@"line_id"] = self.line_id;
+        url = kagain_commit_order;
+    }
     
     [EasyShowLodingView showLoding];
-    [NetworkManager requestPOSTWithURLStr:kagain_commit_order paramDic:dic finish:^(id responseObject) {
+
+    [NetworkManager requestPOSTWithURLStr:url paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];
         self.submitBtn.backgroundColor = MAIN_COLOR;
         self.submitBtn.enabled = YES;
@@ -211,6 +243,11 @@
     return YES;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (range.length == 1 && string.length == 0) {
+        
+        return YES;
+    }
     
     NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
     if (![string isEqualToString:tem]) {

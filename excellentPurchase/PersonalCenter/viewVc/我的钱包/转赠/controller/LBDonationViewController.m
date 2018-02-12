@@ -180,7 +180,7 @@
         self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-//            [passwordView paySuccess];
+            [passwordView paySuccess];
 
             if (self.type == 1) {//货币类型 1优购币 2积分’,
                 
@@ -203,13 +203,13 @@
             
         }else{
             
-//            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
         }
         
     } enError:^(NSError *error) {
         self.submitBtn.backgroundColor = MAIN_COLOR;
         self.submitBtn.enabled = YES;
-//        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
     }];
 }
 -(void)actionSure:(NSString *)password{

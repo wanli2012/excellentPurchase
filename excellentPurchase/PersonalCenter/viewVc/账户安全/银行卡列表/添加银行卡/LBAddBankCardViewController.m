@@ -264,11 +264,12 @@
         
         return YES;
     }
+    
     if (textField == self.ownerTF) {
         
-        if (![predicateModel IsChinese:string]) {
+        if (![predicateModel IsChinese:string] && ![predicateModel inputShouldLetter:string]) {
             [self.view endEditing:YES];
-            [EasyShowTextView showInfoText:@"真实姓名请输入汉字"];
+            [EasyShowTextView showInfoText:@"真实姓名请输入汉字或字母"];
             return NO;
         }else if(textField.text.length > 15){
             [self.view endEditing:YES];

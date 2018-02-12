@@ -212,8 +212,6 @@
 		4AA3A1A32019C28F00C94E49 /* GLMine_Branch_OfflineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3A1A12019C28F00C94E49 /* GLMine_Branch_OfflineCell.xib */; };
 		4AA3A1A62019C2EE00C94E49 /* GLMine_Branch_OfflineStatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1A52019C2EE00C94E49 /* GLMine_Branch_OfflineStatusController.m */; };
 		4AA3A1A92019C81400C94E49 /* GLMine_Branch_OfflineOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1A82019C81400C94E49 /* GLMine_Branch_OfflineOrderModel.m */; };
-		4AA3A1AE2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1AC2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.m */; };
-		4AA3A1AF2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3A1AD2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.xib */; };
 		4AA3A1B42019D64700C94E49 /* GLMine_Team_StaffingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1B22019D64700C94E49 /* GLMine_Team_StaffingController.m */; };
 		4AA3A1B52019D64700C94E49 /* GLMine_Team_StaffingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3A1B32019D64700C94E49 /* GLMine_Team_StaffingController.xib */; };
 		4AA3A1BD2019FDCB00C94E49 /* GLMine_Seller_OrderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3A1BB2019FDCB00C94E49 /* GLMine_Seller_OrderDetailController.m */; };
@@ -284,6 +282,8 @@
 		4AB3DCC4201700DD00099650 /* GLMine_Cart_ConfirmOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB3DCC2201700DD00099650 /* GLMine_Cart_ConfirmOrderController.xib */; };
 		4AB3DCC82017050000099650 /* GLMine_Cart_PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3DCC62017050000099650 /* GLMine_Cart_PayController.m */; };
 		4AB3DCC92017050000099650 /* GLMine_Cart_PayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB3DCC72017050000099650 /* GLMine_Cart_PayController.xib */; };
+		4AB48EE72030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB48EE52030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.m */; };
+		4AB48EE82030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB48EE62030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.xib */; };
 		4AB5886F201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5886D201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m */; };
 		4AB58870201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB5886E201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib */; };
 		4AB5887E201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5887C201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m */; };
@@ -1376,9 +1376,6 @@
 		4AA3A1A52019C2EE00C94E49 /* GLMine_Branch_OfflineStatusController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_OfflineStatusController.m; sourceTree = "<group>"; };
 		4AA3A1A72019C81400C94E49 /* GLMine_Branch_OfflineOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_OfflineOrderModel.h; sourceTree = "<group>"; };
 		4AA3A1A82019C81400C94E49 /* GLMine_Branch_OfflineOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_OfflineOrderModel.m; sourceTree = "<group>"; };
-		4AA3A1AB2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_Offline_PlaceOrderController.h; sourceTree = "<group>"; };
-		4AA3A1AC2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_Offline_PlaceOrderController.m; sourceTree = "<group>"; };
-		4AA3A1AD2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Branch_Offline_PlaceOrderController.xib; sourceTree = "<group>"; };
 		4AA3A1B12019D64700C94E49 /* GLMine_Team_StaffingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Team_StaffingController.h; sourceTree = "<group>"; };
 		4AA3A1B22019D64700C94E49 /* GLMine_Team_StaffingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Team_StaffingController.m; sourceTree = "<group>"; };
 		4AA3A1B32019D64700C94E49 /* GLMine_Team_StaffingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Team_StaffingController.xib; sourceTree = "<group>"; };
@@ -1486,6 +1483,9 @@
 		4AB3DCC52017050000099650 /* GLMine_Cart_PayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_Cart_PayController.h; sourceTree = "<group>"; };
 		4AB3DCC62017050000099650 /* GLMine_Cart_PayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_Cart_PayController.m; sourceTree = "<group>"; };
 		4AB3DCC72017050000099650 /* GLMine_Cart_PayController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_Cart_PayController.xib; sourceTree = "<group>"; };
+		4AB48EE42030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_Branch_Offline_PlaceOrderController.h; sourceTree = "<group>"; };
+		4AB48EE52030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_Branch_Offline_PlaceOrderController.m; sourceTree = "<group>"; };
+		4AB48EE62030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_Branch_Offline_PlaceOrderController.xib; sourceTree = "<group>"; };
 		4AB5886C201AC0D7009ADC9A /* GLMine_MyWallet_CashController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLMine_MyWallet_CashController.h; sourceTree = "<group>"; };
 		4AB5886D201AC0D7009ADC9A /* GLMine_MyWallet_CashController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLMine_MyWallet_CashController.m; sourceTree = "<group>"; };
 		4AB5886E201AC0D7009ADC9A /* GLMine_MyWallet_CashController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLMine_MyWallet_CashController.xib; sourceTree = "<group>"; };
@@ -3221,6 +3221,7 @@
 				4AA3A1982019C12900C94E49 /* 线下订单 */,
 				4AA3A1B62019FD9100C94E49 /* 订单详情 */,
 				F969F9EC202DAD61000B9805 /* 面对面订单 */,
+				4AB48EE32030816C0025CB32 /* 线下下单 */,
 			);
 			path = "商家管理";
 			sourceTree = "<group>";
@@ -4407,7 +4408,6 @@
 				4AA3A1992019C12900C94E49 /* Controller */,
 				4AA3A19A2019C12900C94E49 /* Model */,
 				4AA3A19B2019C12900C94E49 /* View */,
-				4AA3A1AA2019CBAE00C94E49 /* 线下下单 */,
 			);
 			path = "线下订单";
 			sourceTree = "<group>";
@@ -4440,16 +4440,6 @@
 				4AA3A1A12019C28F00C94E49 /* GLMine_Branch_OfflineCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4AA3A1AA2019CBAE00C94E49 /* 线下下单 */ = {
-			isa = PBXGroup;
-			children = (
-				4AA3A1AB2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.h */,
-				4AA3A1AC2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.m */,
-				4AA3A1AD2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.xib */,
-			);
-			path = "线下下单";
 			sourceTree = "<group>";
 		};
 		4AA3A1B02019D60C00C94E49 /* 身份配置 */ = {
@@ -4700,6 +4690,16 @@
 				F96CF3F8201818370070658C /* LBMineOrdersDetailHeaderView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		4AB48EE32030816C0025CB32 /* 线下下单 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB48EE42030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.h */,
+				4AB48EE52030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.m */,
+				4AB48EE62030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.xib */,
+			);
+			path = "线下下单";
 			sourceTree = "<group>";
 		};
 		4AB58868201ABF66009ADC9A /* 提现 */ = {
@@ -8046,7 +8046,6 @@
 				4A9CBDA420240AB3004623C5 /* LBStoreAmendPhotosCell.xib in Resources */,
 				F95B5354200CBB3200A81954 /* LBTaoTaoProductInofoTableViewCell.xib in Resources */,
 				F923B2B920206A8900DFEF7C /* LBEatProductDetailTableViewCell.xib in Resources */,
-				4AA3A1AF2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.xib in Resources */,
 				4A9CBDC1202498DB004623C5 /* GLAddOrEditProductChooseSingalCell.xib in Resources */,
 				F97E6044200EEAE900C9C4E7 /* LBEat_CateViewController.xib in Resources */,
 				4AFC0E9720157182004518F4 /* LBEat_StoreCommentsViewController.xib in Resources */,
@@ -8074,6 +8073,7 @@
 				F969F9EB202D715F000B9805 /* LBHomeViewActivityViewController.xib in Resources */,
 				F9340A43200A220E0002DBB8 /* LBFilterMailShopCollectionReusableView.xib in Resources */,
 				4AA3A1B52019D64700C94E49 /* GLMine_Team_StaffingController.xib in Resources */,
+				4AB48EE82030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.xib in Resources */,
 				F923B2A320200FDE00DFEF7C /* LoadingImages.xcassets in Resources */,
 				F97CDC94201593B30036B8E0 /* LBEat_StoreCommentsTableViewCell.xib in Resources */,
 				F928821F201C485E000B0474 /* LBOrdersCompletTableViewCell.xib in Resources */,
@@ -8661,6 +8661,7 @@
 				F923B2582020021F00DFEF7C /* ZXPDF417.m in Sources */,
 				F923B1B02020021E00DFEF7C /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				F9426B0C201ABC200054417E /* ZLPhotoPickerCollectionView.m in Sources */,
+				4AB48EE72030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.m in Sources */,
 				F9288219201C241E000B0474 /* LBFasterLoginViewController.m in Sources */,
 				F97137472005FB410033F38B /* LBImprovePersonalInformationViewController.m in Sources */,
 				F98D1A3A201DC68D0021D3B1 /* LBEat_cateModel.m in Sources */,
@@ -8912,7 +8913,6 @@
 				F923B1D22020021E00DFEF7C /* ZXCapture.m in Sources */,
 				F923B1A62020021E00DFEF7C /* ZXAztecEncoder.m in Sources */,
 				F923B1A22020021E00DFEF7C /* ZXAztecDecoder.m in Sources */,
-				4AA3A1AE2019CBF500C94E49 /* GLMine_Branch_Offline_PlaceOrderController.m in Sources */,
 				4AA3A217201A218200C94E49 /* LBSendRedPackRecoderReciveVc.m in Sources */,
 				F923B20E2020021F00DFEF7C /* ZXMaxiCodeDecoder.m in Sources */,
 				F923B19A2020021E00DFEF7C /* UIAlertController+supportedInterfaceOrientations.m in Sources */,

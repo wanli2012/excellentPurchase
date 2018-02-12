@@ -20,6 +20,12 @@
 #import "GLMine_stroeTypeModel.h"//店铺类型模型
 #import "GLMine_BrandModel.h"//品牌模型
 
+//扫码
+#import "LBXScanView.h"
+#import "LBXScanResult.h"
+#import "LBXScanWrapper.h"
+#import "SubLBXScanViewController.h"
+
 @interface GLMine_Team_OpenSellerController ()<UITextFieldDelegate>
 {
     BOOL _isAgreeProtocol;
@@ -165,6 +171,55 @@
         }
     });
     dispatch_resume(_timer);
+    
+}
+#pragma mark - 扫码
+- (IBAction)scan:(id)sender {
+    //设置扫码区域参数
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    style.centerUpOffset = 60;
+    style.xScanRetangleOffset = 30;
+    
+    if ([UIScreen mainScreen].bounds.size.height <= 480 )
+    {
+        //3.5inch 显示的扫码缩小
+        style.centerUpOffset = 40;
+        style.xScanRetangleOffset = 20;
+    }
+    
+    style.alpa_notRecoginitonArea = 0.6;
+    
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 2.0;
+    style.photoframeAngleW = 16;
+    style.photoframeAngleH = 16;
+    
+    style.isNeedShowRetangle = NO;
+    
+    style.anmiationStyle = LBXScanViewAnimationStyle_NetGrid;
+    
+    //使用的支付宝里面网格图片
+    UIImage *imgFullNet = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_full_net"];
+    
+    style.animationImage = imgFullNet;
+    
+    [self openScanVCWithStyle:style];
+}
+
+- (void)openScanVCWithStyle:(LBXScanViewStyle*)style
+{
+    self.hidesBottomBarWhenPushed = YES;
+    SubLBXScanViewController *vc = [SubLBXScanViewController new];
+    vc.style = style;
+
+    __weak typeof(self) weakself = self;
+    vc.retureCode = ^(NSString *codeStr){
+
+        weakself.recommendIDTF.text = codeStr;
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
     
 }
 
@@ -552,7 +607,12 @@
             
             [EasyShowTextView showSuccessText:responseObject[@"message"]];
             
-            [self.navigationController popViewControllerAnimated:YES];
+            if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
          
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];

@@ -41,11 +41,11 @@
     [self.view endEditing:YES];
     
     if (self.exchangeNumTF.text.length == 0) {
-        [EasyShowTextView showInfoText:@"请输入兑换金额"];
+        [EasyShowTextView showInfoText:@"请输入兑换数额"];
         return;
     }
     
-    NSString *str = [NSString stringWithFormat:@"你确定要兑换%@优购劵吗?",self.exchangeNumTF.text];
+    NSString *str = [NSString stringWithFormat:@"你确定要兑换%@购物劵吗?",self.exchangeNumTF.text];
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:str preferredStyle:UIAlertControllerStyleAlert];
     WeakSelf;
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

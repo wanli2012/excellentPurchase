@@ -43,6 +43,8 @@
 @property (nonatomic, copy)NSString *Total_currency;//平台昨日优购币新增
 @property (nonatomic, copy)NSString *money_sum;//总收益
 
+@property (nonatomic, copy)NSString *checkCode;//唯一校验码
+
 
 +(UserModel*)defaultUser;
 

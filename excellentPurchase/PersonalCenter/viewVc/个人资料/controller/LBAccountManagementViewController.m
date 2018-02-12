@@ -365,6 +365,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
                 case 2:
                 {
                     cell.valueLabel.text = @"审核通过";
+                    cell.type = 0;
                 }
                     break;
                 case 3:
@@ -383,7 +384,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         }else if(indexPath.row == 3){//我的二维码
             cell.type = 2;
         }else if(indexPath.row == 4){
-            
+            cell.type = 0;
             cell.valueLabel.text = self.dataDic[@"detail_address"];
         }
         
