@@ -79,12 +79,13 @@
         default:
             break;
     }
-    
-    
 }
 
 - (IBAction)collectionEvent:(UIButton *)sender {
-    
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showText:@"请先登录"];
+        return;
+    }
     if (sender.selected == YES) {//收藏过 ，该取消收藏
         [self userCancelCollection];
     }else{//取消该藏过

@@ -79,7 +79,10 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
 }
 
 -(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
-    
+    if ([LBCollectionManager defaultUser].storeType == 3) {//3吃喝玩乐店铺 没有商品收藏
+         [LBDefineRefrsh dismissRefresh:self.tableview];
+        return;
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     if ([UserModel defaultUser].loginstatus == YES) {
