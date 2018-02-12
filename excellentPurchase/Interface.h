@@ -38,23 +38,22 @@
 #define GROUP_USER 9 //会员
 
 
-//captchaid的值是每个产品从后台生成的
+//captchaid的值是每个产品从后台生成的,
 #define CAPTCHAID @"f878a21255674cdcb8e3564e06e73473"
 #define USHARE_APPKEY @"59e7060a310c931f5a000745"
 
 //获取appStore上的最新版本号地址
-#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1347772440"
+#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1300026210"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1347772440?mt=8"
 
-#define RECOMMEND_URL @"http://cs5.hytc.gs/Home/User/Register?tjrid="
+#define RECOMMEND_URL @"https://app.helloyogo.com/Home/User/Register?tjrid="
 
 //服务条款
-#define kProtocol_URL @"http://cs5.hytc.gs/H5/all_agreement.html"
-
-#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上服务器
-//#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//测试服务器
-#define share_URL_Base @"http://cs5.hytc.gs/index.php/"//分享
+#define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
+#define URL_Base @"https://app.helloyogo.com/index.php/App/"
+//#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
+#define share_URL_Base @"https://app.helloyogo.com/"//分享
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"
 
@@ -142,7 +141,7 @@
 #define kstore_find @"Store/store_find"//店铺管理 营业额*--黄炜
 #define kfast_login @"User/fast_login"//店铺管理 营业额*--黄炜
 #define kstore_commit @"OrderLine/store_commit"//线下下单
-#define kupdate_tjr @"User/update_tjr"//修改用户推荐人
+
 
 
 #endif /* Interface_h */

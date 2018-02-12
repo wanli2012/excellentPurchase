@@ -66,13 +66,13 @@
     
     [self.window makeKeyAndVisible];
     
-//    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
     
         self.window.rootViewController = [[BasetabbarViewController alloc]init];
-        
-//    }else{
-//        self.window.rootViewController = [[yindaotuViewController alloc]init];
-//    }
+    
+    }else{
+        self.window.rootViewController = [[yindaotuViewController alloc]init];
+    }
 
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];

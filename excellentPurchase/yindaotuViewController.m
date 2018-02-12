@@ -2,12 +2,12 @@
 //  yindaotuViewController.m
 //  AngelComing
 //
-//  Created by sm on 16/10/22.
+//  Created by sm on 16/1v0/22.
 //  Copyright © 2016年 ruichikeji. All rights reserved.
 //
 
 #import "yindaotuViewController.h"
-#import "BaseNavigationViewController.h"
+#import "basetabbarViewController.h"
 #import "BasetabbarViewController.h"
 
 @interface yindaotuViewController ()<UIScrollViewDelegate>
@@ -22,47 +22,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   // [self stateOfTheFestival];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
     [self.view addSubview:self.scrollView];
-    //[self.view addSubview:self.pagecontroll];
-        
-        for (int i=0; i<3; i++) {
-            UIImageView  *image=[[UIImageView alloc]initWithFrame:CGRectMake(UIScreenWidth*i, 0, UIScreenWidth, UIScreenHeight)];
-            image.contentMode=UIViewContentModeScaleAspectFill;
-            image.clipsToBounds = YES;
-            if (i==0) {
-                image.image=[UIImage imageNamed:@"引导页1"];
-            }else  if (i==1) {
-                image.image=[UIImage imageNamed:@"引导页2"];
-            }else{
-                image.image=[UIImage imageNamed:@"引导页3"];
-                image.userInteractionEnabled=YES;
-                [image addSubview:self.doneBt];
-            }
+        //[self.view addSubview:self.pagecontroll];
+    [self addimage];
+}
+
+-(void)addimage{
     
-            [self.scrollView addSubview:image];
+    for (int i=0; i<3; i++) {
+        UIImageView  *image=[[UIImageView alloc]initWithFrame:CGRectMake(UIScreenWidth*i, 0, UIScreenWidth, UIScreenHeight)];
+        image.contentMode=UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
+        if (i==0) {
+            
+                image.image=[UIImage imageNamed:@"引导页1"];
+            
+        }else  if (i==1) {
+           
+                image.image=[UIImage imageNamed:@"引导页2"];
+            
+        }else{
+           
+                image.image=[UIImage imageNamed:@"引导页3"];
+            
+            image.userInteractionEnabled=YES;
+            [image addSubview:self.doneBt];
         }
+        
+        [self.scrollView addSubview:image];
+    }
+    
 }
 
 - (IBAction)pidaotu:(UIButton *)sender {
 
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    
+
 }
 #pragma mark - getter
 -(UIScrollView*)scrollView{
    
         if (!_scrollView) {
             _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,UIScreenWidth ,UIScreenHeight)];
-            _scrollView.backgroundColor=[UIColor blackColor];
+            _scrollView.backgroundColor=[UIColor redColor];
             //设置contentsize(内容大小)
             //_scrilview.contentSize=CGSizeMake(8*_scrilview.bounds.size.width, CGRectGetHeight(_scrilview.bounds));
-            _scrollView.contentSize=CGSizeMake(self.view.bounds.size.width*3, 0);
+            _scrollView.contentSize=CGSizeMake(UIScreenWidth*3, 0);
             //设置偏移量0
             _scrollView.contentOffset=CGPointMake(0, 0);
             //设置滚动视图能否回弹
@@ -78,17 +93,18 @@
         }
     
     return _scrollView;
+    
 }
 
 -(UIPageControl *)pagecontroll{
         if (!_pagecontroll) {
             _pagecontroll=[[UIPageControl alloc]init];
-            _pagecontroll.frame=CGRectMake((UIScreenWidth-120)/2,UIScreenHeight - 50, 120, 30);
+            _pagecontroll.frame=CGRectMake((UIScreenWidth-120)/2,UIScreenHeight-50, 120, 30);
             _pagecontroll.numberOfPages=3;
             _pagecontroll.currentPage=0;
             _pagecontroll.backgroundColor=[UIColor clearColor];
             _pagecontroll.pageIndicatorTintColor=YYSRGBColor(165, 165, 165, 1);
-            _pagecontroll.currentPageIndicatorTintColor = MAIN_COLOR;
+            _pagecontroll.currentPageIndicatorTintColor=MAIN_COLOR;
     
         }
     
@@ -102,9 +118,9 @@
 -(UIButton*)doneBt{
 
     if (!_doneBt) {
-        _doneBt=[[UIButton alloc]initWithFrame:CGRectMake((UIScreenWidth - 150)/2,UIScreenHeight - 100, 150, 45)];
+        _doneBt=[[UIButton alloc]initWithFrame:CGRectMake((UIScreenWidth-150)/2,UIScreenHeight-55, 150, 45)];
         [_doneBt setTitle:@"立即进入" forState:UIControlStateNormal];
-        [_doneBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_doneBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _doneBt.titleLabel.font=[UIFont systemFontOfSize:17];
         _doneBt.backgroundColor=[UIColor clearColor];
         _doneBt.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -121,7 +137,7 @@
     BasetabbarViewController *wantVC = [[BasetabbarViewController alloc]init];
     CATransition *animation = [CATransition animation];
     animation.duration = 1;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     animation.type = @"SXcameraIrisHollowOpen";
     animation.type = kCATransitionFade;
     [self.view.window.layer addAnimation:animation forKey:nil];
