@@ -129,7 +129,7 @@
                 self.replyFinish();
             }
             [self.navigationController popViewControllerAnimated:YES];
-          [EasyShowTextView showErrorText:responseObject[@"message"]];
+          [EasyShowTextView showSuccessText:responseObject[@"message"]];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];

@@ -92,6 +92,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     [self setupNpdata];//设置无数据的时候展示
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setTableViewCellHight:)  name:@"getCellHightNotification" object:nil];//更新webview cell的高度
+    
 }
 
 -(void)setupNpdata{
@@ -188,7 +189,9 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     if (self.webHeight != [[dic objectForKey:@"height"]floatValue])
     {
         self.webHeight=[[dic objectForKey:@"height"]floatValue];
-        [self.tableview reloadData];
+        [self.tableview beginUpdates];
+        [self.tableview endUpdates];
+//        [self.tableview reloadData];
     }
 }
 #pragma mark - PrivateMethod

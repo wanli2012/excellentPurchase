@@ -370,6 +370,10 @@ static NSString *eat_storeDetailInfomationTableViewCell = @"LBEat_storeDetailInf
 }
 //收藏
 -(void)userCollection{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"ADD";
     dic[@"link_id"] = self.model.store_id;

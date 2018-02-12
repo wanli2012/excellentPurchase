@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy)NSString *cate_id;
 @property (nonatomic, copy)NSString *catename;
-@property (nonatomic, copy)NSArray *cate_banners;//用户ID
+@property (nonatomic, copy)NSArray *cate_banners;//图片
 
 +(LBEat_cateModel*)defaultUser;
 @end

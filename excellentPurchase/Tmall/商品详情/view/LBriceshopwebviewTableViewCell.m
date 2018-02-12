@@ -17,15 +17,15 @@
 
 -(void)setUrlstr:(NSString *)urlstr{
     _urlstr = urlstr;
-    self.isload = YES;
     if ([NSString StringIsNullOrEmpty:urlstr] ==  NO && self.isload == NO) {
          [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlstr]]];
+        self.isload = YES;
     }
 
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    
+ 
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -34,6 +34,7 @@
     //  float height = [webView sizeThatFits:CGSizeZero].height; //此方法获取webview的高度
     float height = [[self.webview stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollHeight"]floatValue]; //此方法获取webview的内容高度（建议使用）
     //设置通知或者代理来传高度
+
     [[NSNotificationCenter defaultCenter]postNotificationName:@"getCellHightNotification" object:nil  userInfo:@{@"height":[NSNumber numberWithFloat:height]}];
 }
 
