@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UIImageView *placeHolderImageV;
 
+@property (nonatomic, strong)UIButton *rightBtn;
+
 @end
 
 @implementation GLMine_Team_UploadLicenseController
@@ -45,12 +47,17 @@
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
     button.backgroundColor = [UIColor clearColor];
+    self.rightBtn = button;
     [button addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightBtn];
 }
 
 //保存
 - (void)save{
+    if (self.imageV.image == nil) {
+        [EasyShowTextView showInfoText:@"请上传营业执照"];
+        return;
+    }
     
     [self uploadImage];
 
@@ -69,8 +76,8 @@
     dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
     dic[@"app_version"] = @"1.0.0";
     
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
-    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    self.rightBtn.enabled = NO;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 20;
     [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -88,7 +95,7 @@
         }
     
     }progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        self.rightBtn.enabled = YES;
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showSuccessText:@"上传成功"];
         
@@ -108,13 +115,12 @@
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        self.rightBtn.enabled = YES;
         [EasyShowTextView showErrorText:error.localizedDescription];
-        
         [EasyShowLodingView hidenLoding];
         
     }];
 }
-
 
 //拍照颗照片选取
 - (IBAction)choosePicType:(id)sender {

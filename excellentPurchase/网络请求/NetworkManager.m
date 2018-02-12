@@ -38,6 +38,9 @@
     
 }
 
+
+
+/////我们正在使用的post
 + (void)requestPOSTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:URL_Base]];

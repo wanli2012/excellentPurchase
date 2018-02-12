@@ -25,6 +25,8 @@
 #import "GLMine_Seller_IncomeCodeController.h"//我的二维码
 #import "LBMineCentermodifyAdressViewController.h"//收货地址列表
 
+#import "GLAddRecommderController.h"//添加推荐人
+
 @interface LBAccountManagementViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -50,7 +52,6 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     self.navigationController.navigationBar.hidden = NO;
     //请求数据
     [self postData];
-    
 }
 
 -(void)updateViewConstraints{
@@ -114,6 +115,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
+        
         [self.tableview reloadData];
         
     } enError:^(NSError *error) {
@@ -400,7 +402,14 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
         }else if(indexPath.row == 2){
             cell.valueLabel.text = self.dataDic[@"user_name"];
         }else if(indexPath.row == 3){
-            cell.valueLabel.text = self.dataDic[@"tj_username"];
+            NSString *str = self.dataDic[@"user_name"];
+            if(str.length == 0){
+                cell.valueLabel.text = @"";
+                cell.type = 1;
+            }else{
+                
+                cell.valueLabel.text = self.dataDic[@"tj_username"];
+            }
         }else if(indexPath.row == 4){
             cell.valueLabel.text = self.dataDic[@"tj_nickname"];
         }
@@ -468,24 +477,31 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
             case 4://所在地区
             {
                 
-                //                [CZHAddressPickerView areaPickerViewWithDataArr:(NSArray *) AreaDetailBlock:^(NSString *province, NSString *city, NSString *area, NSString *province_id, NSString *city_id, NSString *area_id) {
-                //
-                //                }];
-                
-                
-                //                [CZHAddressPickerView areaPickerViewWithAreaBlock:^(NSString *province, NSString *city, NSString *area) {
-                //                    [weakSelf postData];
-                //                    NSString *str = [NSString stringWithFormat:@"%@%@%@",province,city,area];
-                //
-                //                    [weakSelf.valueArr2 replaceObjectAtIndex:indexPath.row withObject:str];
-                //
-                //                    [weakSelf.tableview reloadData];
-                //                }];
             }
                 
             default:
                 break;
         }
+        
+    }else{
+        
+        WeakSelf;
+        if(indexPath.row == 3 || indexPath.row == 4){
+            
+            if (self.model.tj_username.length == 0) {
+                
+                self.hidesBottomBarWhenPushed = YES;
+                GLAddRecommderController *addVC = [[GLAddRecommderController alloc] init];
+                addVC.block = ^(NSString *recommendID) {
+                    
+                    [weakSelf postData];
+                    
+                };
+                
+                [self.navigationController pushViewController:addVC animated:YES];
+            }
+        }
+        
     }
 }
 

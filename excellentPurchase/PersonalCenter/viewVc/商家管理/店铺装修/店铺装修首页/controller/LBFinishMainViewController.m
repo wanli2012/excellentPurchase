@@ -50,6 +50,7 @@
     adjustsScrollViewInsets_NO(self.scrollView, self);
     self.navigationController.navigationBar.hidden = NO;
     
+    [EasyShowLodingView hidenLoding];
 }
 
 - (void)viewDidLoad {
