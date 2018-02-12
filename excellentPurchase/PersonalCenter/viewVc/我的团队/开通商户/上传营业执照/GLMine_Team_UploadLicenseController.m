@@ -77,7 +77,8 @@
     dic[@"app_version"] = @"1.0.0";
     
     self.rightBtn.enabled = NO;
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
+    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     manager.requestSerializer.timeoutInterval = 20;
     [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
