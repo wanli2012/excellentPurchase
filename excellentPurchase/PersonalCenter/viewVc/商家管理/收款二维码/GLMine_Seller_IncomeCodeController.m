@@ -99,8 +99,9 @@
     [qrImageFilter setDefaults];
     
     NSString *contentStr;
+    
     if(self.type == 1){
-        contentStr = [UserModel defaultUser].user_name;
+        contentStr = [NSString stringWithFormat:@"%@%@",RECOMMEND_URL,[UserModel defaultUser].user_name];
         
     }else{//商家收款码
         NSString *str = [NSString stringWithFormat:@"{\"shopuid\":%@,\"money\":%@,\"rlmoney\":%@}",[UserModel defaultUser].uid,self.moneyCount,self.noProfitMoney];

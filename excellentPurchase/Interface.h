@@ -9,12 +9,11 @@
 #ifndef Interface_h
 #define Interface_h
 
-
 #import "LLWebViewController.h"//web页面
 
 //接口需要的固定值
 #define kPORT @"3"
-#define kAPP_VERSION @"1.0.0"
+#define kAPP_VERSION @"1.1.0"
 //#define kAPP_HANDLE @"SEARCH"
 
 #define SUCCESS_CODE 200 //请求或处理成功(请求数据，获取列表、删除数据、添加数据...等操作)
@@ -47,8 +46,8 @@
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1347772440?mt=8"
 
-#define RECOMMEND_URL @"https://app.helloyogo.com/Home/User/Register?tjrid="
-
+#define RECOMMEND_URL @"https://app.helloyogo.com/index.php/Home/User/Register?tjrid="
+//https://app.helloyogo.com/index.php/Home/User/Register?tjrid=SH18426019
 //服务条款
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
 #define URL_Base @"https://app.helloyogo.com/index.php/App/"

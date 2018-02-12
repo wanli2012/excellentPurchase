@@ -215,7 +215,10 @@
     __weak typeof(self) weakself = self;
     vc.retureCode = ^(NSString *codeStr){
 
-        weakself.recommendIDTF.text = codeStr;
+        NSArray *arr = [codeStr componentsSeparatedByString:@"="];
+        if (arr.count >= 2) {
+            weakself.recommendIDTF.text = arr[1];
+        }
         
     };
     [self.navigationController pushViewController:vc animated:YES];

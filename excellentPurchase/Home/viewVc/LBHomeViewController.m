@@ -546,8 +546,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     style.animationImage = imgFullNet;
     
     [self openScanVCWithStyle:style];
-    
 }
+
 - (void)openScanVCWithStyle:(LBXScanViewStyle*)style
 {
     self.hidesBottomBarWhenPushed = YES;
@@ -573,6 +573,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         [EasyShowTextView showErrorText:@"请扫正确的二维码"];
         return;
     }
+    
     self.hidesBottomBarWhenPushed = YES;
     LBFaceToFace_PayController *vc = [LBFaceToFace_PayController new];
     vc.money  = [NSString stringWithFormat:@"%@",dic[@"money"]];
