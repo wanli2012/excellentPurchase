@@ -154,20 +154,18 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>App需要在扫码或者照相需要访问您访问相机</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App需要在获取相册需要访问您访问相机</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App需要获取您的位置来获取附近商家，及天气情况</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>App需要获取您的位置来获取附近商家，及天气情况</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App需要获取您的位置来获取附近商家，及天气情况</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App需要获取您的位置来获取附近商家，及天气情况</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App需要在获取相册需要访问您访问相机</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>么达体.ttf</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
