@@ -46,9 +46,8 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight);
-    scrollView.backgroundColor = [UIColor redColor];
+    scrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:scrollView];
-    scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.scrollView = scrollView;
     
 //    // 初始化数据
