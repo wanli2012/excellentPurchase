@@ -200,8 +200,6 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
    
 }
 
-
-
 - (instancetype)init {
    if (self = [super init]) {
       
@@ -211,8 +209,6 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
    return self;
 }
 
-
-
 - (void)czh_setView {
    
    self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
@@ -221,7 +217,6 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
    containView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, CZH_ScaleHeight(270));
    [self addSubview:containView];
    self.containView = containView;
-   
    
    UIView *toolBar = [[UIView alloc] init];
    toolBar.frame = CGRectMake(0, 0, ScreenWidth, CZH_ScaleHeight(50));
@@ -257,7 +252,7 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
 
 //获取数据
 - (void)czh_getData {
-
+   
    self.selectProvince_id = @"";
    self.selectCity_id = @"";
    self.selectArea_id = @"";
@@ -288,6 +283,13 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
 - (void)buttonClick:(UIButton *)sender {
    
    [self hideView];
+   
+   if ([NSString StringIsNullOrEmpty:self.selectArea]) {
+      self.selectArea = @"";
+   }
+   if ([NSString StringIsNullOrEmpty:self.selectArea_id]) {
+      self.selectArea_id = @"";
+   }
    
    if (sender.tag == CZHAddressPickerViewButtonTypeSure) {
       
@@ -345,63 +347,80 @@ typedef NS_ENUM(NSInteger, CZHAddressPickerViewType) {
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+
    if (component == 0) {//选择省
-      self.selectProvinceIndex = row;
+
+      self.selectProvince_id = @"";
+      self.selectCity_id = @"";
+      self.selectArea_id = @"";
+      self.selectProvince = @"";
+      self.selectCity = @"";
+      self.selectArea = @"";
       
       self.selectProvinceIndex = row;
-      self.cityArray = self.dataSource[row][@"city"];
-      self.areaArray = self.dataSource[row][@"city"][0][@"city"];
-      
       self.selectProvince = self.dataSource[row][@"name"];
-      self.selectCity = self.cityArray[0][@"name"];
       self.selectProvince_id = self.dataSource[row][@"id"];
+      
+      self.cityArray = self.dataSource[row][@"city"];
+      self.selectCity = self.cityArray[0][@"name"];
       self.selectCity_id = self.cityArray[0][@"id"];
       
-      if(self.areaArray.count != 0){
-         
+      if (self.cityArray.count > 0) {
+         self.areaArray = self.cityArray[0][@"city"];
          self.selectArea = self.areaArray[0][@"name"];
          self.selectArea_id = self.areaArray[0][@"id"];
+         
+         [pickerView selectRow:0 inComponent:2 animated:YES];
+         [pickerView selectedRowInComponent:1];
+         [pickerView reloadComponent:1];
+         [pickerView reloadComponent:2];
+      }else{
+         self.areaArray = nil;
+         [pickerView selectedRowInComponent:1];
+         [pickerView reloadComponent:1];
       }
-      
-      
-      [pickerView selectRow:0 inComponent:2 animated:YES];
       
    }
    
-   [pickerView selectedRowInComponent:1];
-   [pickerView reloadComponent:1];
-   
    if (component == 1){//选择市
+      
+     
+      self.selectCity_id = @"";
+      self.selectArea_id = @"";
+      self.selectCity = @"";
+      self.selectArea = @"";
+      
       self.selectCityIndex = row;
+      self.selectCity = self.cityArray[row][@"name"];
+      self.selectCity_id = self.cityArray[row][@"id"];
       
       self.areaArray = self.dataSource[self.selectProvinceIndex][@"city"][row][@"city"];
       
       if(self.areaArray.count > 0){
          
          [pickerView selectRow:0 inComponent:2 animated:YES];
-         
-         self.selectCity = self.cityArray[row][@"name"];
-         self.selectCity_id = self.cityArray[row][@"id"];
          self.selectArea = self.areaArray[0][@"name"];
          self.selectArea_id = self.areaArray[0][@"id"];
-         
-      }else{
          [pickerView selectRow:0 inComponent:2 animated:YES];
+         [pickerView reloadComponent:2];
+      }else{
+        
       }
       
    }
    
-   [pickerView reloadComponent:2];
    
    if (component == 2){//选择区
-      self.selectAreaIndex = row;
 
+      self.selectArea_id = @"";
+      self.selectArea = @"";
+      
+      self.selectAreaIndex = row;
       if (self.areaArray.count != 0) {
          self.selectArea = self.areaArray[row][@"name"];
          self.selectArea_id = self.areaArray[row][@"id"];
       
       }
-
    }
 }
 

@@ -65,15 +65,15 @@
     
     if([self.naviStr isEqualToString:@"修改密码"]){
         
-        dic[@"old_pass"] = self.originalPasswordTF.text;
-        dic[@"password"] = self.passwordNewTF.text;
+        dic[@"old_pass"] = [RSAEncryptor encryptString:self.originalPasswordTF.text publicKey:public_RSA];
+        dic[@"password"] = [RSAEncryptor encryptString:self.passwordNewTF.text publicKey:public_RSA];
         url = kUpdate_Password_URL;
         
     }else if([self.naviStr isEqualToString:@"重置二级密码"]){
         
-        dic[@"old_pass"] = self.originalPasswordTF.text;
-        dic[@"two_pwd"] = self.passwordNewTF.text;
-        dic[@"sure_pwd"] = self.ensurePasswordTF.text;
+        dic[@"old_pass"] = [RSAEncryptor encryptString:self.originalPasswordTF.text publicKey:public_RSA];
+        dic[@"two_pwd"] = [RSAEncryptor encryptString:self.passwordNewTF.text publicKey:public_RSA];
+        dic[@"sure_pwd"] = [RSAEncryptor encryptString:self.ensurePasswordTF.text publicKey:public_RSA];
         url = kReset_Second_Password_URL;
         
     }

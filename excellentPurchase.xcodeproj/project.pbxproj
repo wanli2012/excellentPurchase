@@ -165,7 +165,6 @@
 		4A9E18922011BD7500E1EC05 /* GLMine_Team_OpenMakerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9E18902011BD7500E1EC05 /* GLMine_Team_OpenMakerController.xib */; };
 		4A9E18962011C50D00E1EC05 /* predicateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18952011C50D00E1EC05 /* predicateModel.m */; };
 		4A9E18992011C51B00E1EC05 /* formattime.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18982011C51B00E1EC05 /* formattime.m */; };
-		4A9E18A32011CAED00E1EC05 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A9E189C2011CAED00E1EC05 /* city.plist */; };
 		4A9E18A42011CAED00E1EC05 /* CZHAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E189E2011CAED00E1EC05 /* CZHAddressPickerView.m */; };
 		4A9E18A52011CAED00E1EC05 /* UIButton+CZHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18A02011CAED00E1EC05 /* UIButton+CZHExtension.m */; };
 		4A9E18A62011CAED00E1EC05 /* UIView+CZHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E18A22011CAED00E1EC05 /* UIView+CZHExtension.m */; };
@@ -991,6 +990,7 @@
 		F97E6068200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E6067200F1F2900C9C4E7 /* LBEat_ActivityFooterView.m */; };
 		F97E606C200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97E606A200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m */; };
 		F97E606D200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97E606B200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib */; };
+		F98A02D620312A990010D49E /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F98A02D520312A990010D49E /* RSAEncryptor.m */; };
 		F98D1A15201DA3A80021D3B1 /* 天气21.png in Resources */ = {isa = PBXBuildFile; fileRef = F98D19ED201DA3A80021D3B1 /* 天气21.png */; };
 		F98D1A1C201DA3A80021D3B1 /* 天气28.png in Resources */ = {isa = PBXBuildFile; fileRef = F98D19F4201DA3A80021D3B1 /* 天气28.png */; };
 		F98D1A1F201DA3A80021D3B1 /* 天气30.png in Resources */ = {isa = PBXBuildFile; fileRef = F98D19F7201DA3A80021D3B1 /* 天气30.png */; };
@@ -1295,7 +1295,6 @@
 		4A9E18972011C51B00E1EC05 /* formattime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = formattime.h; sourceTree = "<group>"; };
 		4A9E18982011C51B00E1EC05 /* formattime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = formattime.m; sourceTree = "<group>"; };
 		4A9E189B2011CAED00E1EC05 /* AddressPickerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerHeader.h; sourceTree = "<group>"; };
-		4A9E189C2011CAED00E1EC05 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		4A9E189D2011CAED00E1EC05 /* CZHAddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZHAddressPickerView.h; sourceTree = "<group>"; };
 		4A9E189E2011CAED00E1EC05 /* CZHAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = CZHAddressPickerView.m; sourceTree = "<group>"; };
 		4A9E189F2011CAED00E1EC05 /* UIButton+CZHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CZHExtension.h"; sourceTree = "<group>"; };
@@ -2742,6 +2741,8 @@
 		F97E6069200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_Activity_TgasTableViewCell.h; sourceTree = "<group>"; };
 		F97E606A200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_Activity_TgasTableViewCell.m; sourceTree = "<group>"; };
 		F97E606B200F332B00C9C4E7 /* LBEat_Activity_TgasTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBEat_Activity_TgasTableViewCell.xib; sourceTree = "<group>"; };
+		F98A02D420312A990010D49E /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		F98A02D520312A990010D49E /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		F98D19ED201DA3A80021D3B1 /* 天气21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "天气21.png"; sourceTree = "<group>"; };
 		F98D19F4201DA3A80021D3B1 /* 天气28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "天气28.png"; sourceTree = "<group>"; };
 		F98D19F7201DA3A80021D3B1 /* 天气30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "天气30.png"; sourceTree = "<group>"; };
@@ -4142,7 +4143,6 @@
 			isa = PBXGroup;
 			children = (
 				4A9E189B2011CAED00E1EC05 /* AddressPickerHeader.h */,
-				4A9E189C2011CAED00E1EC05 /* city.plist */,
 				4A9E189D2011CAED00E1EC05 /* CZHAddressPickerView.h */,
 				4A9E189E2011CAED00E1EC05 /* CZHAddressPickerView.m */,
 				4A9E189F2011CAED00E1EC05 /* UIButton+CZHExtension.h */,
@@ -5936,6 +5936,7 @@
 		F93409F12009CF560002DBB8 /* ThreePart */ = {
 			isa = PBXGroup;
 			children = (
+				F98A02D320312A990010D49E /* RSA密钥 */,
 				F932322F2026EEC8007E669A /* 支付宝 */,
 				F923B2912020093A00DFEF7C /* LYEmptyView */,
 				F923AFA32020021C00DFEF7C /* CodeScan.bundle */,
@@ -7724,6 +7725,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		F98A02D320312A990010D49E /* RSA密钥 */ = {
+			isa = PBXGroup;
+			children = (
+				F98A02D420312A990010D49E /* RSAEncryptor.h */,
+				F98A02D520312A990010D49E /* RSAEncryptor.m */,
+			);
+			path = "RSA密钥";
+			sourceTree = "<group>";
+		};
 		F98D19DE201DA3A80021D3B1 /* 天气现象图标 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8106,7 +8116,6 @@
 				F9712CDE200474100015037A /* like.caf in Resources */,
 				4A0EDF8420189BAD0037D47A /* GLMine_Manage_Branch_DoneController.xib in Resources */,
 				4A54139F2010ADA9008A2FBD /* GLMine_Team_HistoryHeader.xib in Resources */,
-				4A9E18A32011CAED00E1EC05 /* city.plist in Resources */,
 				4AA3A1682019819800C94E49 /* GLMine_Branch_AchievementCell.xib in Resources */,
 				F97137382005DFF90033F38B /* LoginRegister.xcassets in Resources */,
 				4A9CBDC82024AB27004623C5 /* LBAddOrEditProductViewController.xib in Resources */,
@@ -8541,6 +8550,7 @@
 				4A9CBDB620246736004623C5 /* LBStoreCounterMainViewController.m in Sources */,
 				F923B27D2020021F00DFEF7C /* ZXMultiFormatWriter.m in Sources */,
 				F923B1D32020021E00DFEF7C /* ZXCGImageLuminanceSource.m in Sources */,
+				F98A02D620312A990010D49E /* RSAEncryptor.m in Sources */,
 				F923B2262020021F00DFEF7C /* ZXRSSExpandedPair.m in Sources */,
 				4AA3A22C201A21CC00C94E49 /* GLMine_MyWalletController.m in Sources */,
 				F96CF4C02018C44F0070658C /* LBFinishAmendPhotosViewController.m in Sources */,
@@ -9168,7 +9178,7 @@
 			baseConfigurationReference = 7783D9C11A5F2A3CA8CB596F /* Pods-excellentPurchase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -9192,7 +9202,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sunjun.excellentPurchase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
@@ -9203,7 +9212,7 @@
 			baseConfigurationReference = 343311FE7A0113A0A6DDC8C3 /* Pods-excellentPurchase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -9227,7 +9236,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sunjun.excellentPurchase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};

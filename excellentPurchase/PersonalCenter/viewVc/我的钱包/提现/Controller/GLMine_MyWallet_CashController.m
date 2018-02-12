@@ -216,7 +216,7 @@
     dict[@"money"] = self.moneyTF.text;
     dict[@"bank_id"] = self.bank_id;
     dict[@"agreement"] = @"1";
-    dict[@"paypswd"] = password;
+    dict[@"paypswd"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
     
     self.submitBtn.backgroundColor = [UIColor lightGrayColor];
     self.submitBtn.enabled = NO;

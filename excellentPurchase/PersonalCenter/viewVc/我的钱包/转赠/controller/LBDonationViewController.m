@@ -170,7 +170,7 @@
     dict[@"numbers"] = self.moneyTF.text;
     dict[@"type"] = @(self.type);//货币类型 1优购币 2积分
     dict[@"group_id"] = self.group_id;
-    dict[@"password"] = password;
+    dict[@"password"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
  
     self.submitBtn.backgroundColor = [UIColor lightGrayColor];
     self.submitBtn.enabled = NO;

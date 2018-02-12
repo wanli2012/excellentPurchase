@@ -589,8 +589,8 @@
     dic[@"lat"] = @(self.lat);
     dic[@"store_pre"] = @"+86";
     dic[@"store_phone"] = self.contractPhoneTF.text;
-    dic[@"password"] = self.passwordTF.text;
-    dic[@"confirmpass"] = self.ensurepwdTF.text;
+    dic[@"password"] = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
+    dic[@"confirmpass"] = [RSAEncryptor encryptString:self.ensurepwdTF.text publicKey:public_RSA];
     
     if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺
         dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺

@@ -178,7 +178,7 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
     dict[@"app_handler"] = @"SEARCH";
     dict[@"phone"] = dataDic[@"phone"];
     dict[@"group_id"] = dataDic[@"groupID"];
-    dict[@"password"] = dataDic[@"password"];
+    dict[@"password"] = [RSAEncryptor encryptString:dataDic[@"password"] publicKey:public_RSA];
 
     [EasyShowLodingView showLodingText:@"登录中..."];
     _isCanClick = NO;

@@ -213,8 +213,8 @@
     dic[@"phone"] = self.phoneTF.text;
     dic[@"group_id"] = self.group_id;
     dic[@"yzm"] = self.codeTF.text;
-    dic[@"pwd"] = self.passwordNewTF.text;
-    dic[@"sure_pwd"] = self.ensureTF.text;
+    dic[@"pwd"] = [RSAEncryptor encryptString:self.passwordNewTF.text publicKey:public_RSA];
+    dic[@"sure_pwd"] = [RSAEncryptor encryptString:self.ensureTF.text publicKey:public_RSA];
 
     self.submitBtn.enabled = NO;
     self.submitBtn.backgroundColor = [UIColor grayColor];
