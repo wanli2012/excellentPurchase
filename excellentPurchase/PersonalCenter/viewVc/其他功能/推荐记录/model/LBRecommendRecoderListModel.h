@@ -10,7 +10,7 @@
 
 @interface LBRecommendRecoderListModel : NSObject
 
-@property (copy , nonatomic)NSString *reg_content;
-@property (copy , nonatomic)NSString *reg_addtime;
+@property (copy , nonatomic)NSString *lf_log_addtime;
+@property (copy , nonatomic)NSString *lf_log_content;
 
 @end
