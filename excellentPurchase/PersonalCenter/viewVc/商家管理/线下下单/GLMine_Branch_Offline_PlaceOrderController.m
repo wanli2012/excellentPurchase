@@ -185,7 +185,6 @@
     self.submitBtn.enabled = NO;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    dic[@"app_handler"] = @"UPDATE";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"order_money"] = self.consumeTF.text;
@@ -198,7 +197,9 @@
     NSString *url;
     if(self.type == 1){//1:线下下单 2:线下订单失败 重新下单
         url = kstore_commit;
+        dic[@"app_handler"] = @"ADD";
     }else{
+        dic[@"app_handler"] = @"UPDATE";
         dic[@"line_id"] = self.line_id;
         url = kagain_commit_order;
     }
@@ -242,6 +243,11 @@
     return YES;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (range.length == 1 && string.length == 0) {
+        
+        return YES;
+    }
     
     NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
     if (![string isEqualToString:tem]) {
