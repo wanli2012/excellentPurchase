@@ -165,12 +165,15 @@
     [UserModel defaultUser].token = nil;
     [UserModel defaultUser].uid = nil;
     [usermodelachivar achive];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    BasetabbarViewController *tabVC = [[BasetabbarViewController alloc] init];
-    [UIApplication sharedApplication].keyWindow.rootViewController = tabVC;
-    [tabVC setSelectedIndex:0];
     
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    BasetabbarViewController *tabVC = [[BasetabbarViewController alloc] init];
+//    [UIApplication sharedApplication].keyWindow.rootViewController = tabVC;
+//    [tabVC setSelectedIndex:0];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"exitLogin" object:nil];
 }
+
 #pragma mark - 注册
 /**
  注册

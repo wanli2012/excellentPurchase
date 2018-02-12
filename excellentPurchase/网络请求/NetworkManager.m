@@ -38,8 +38,6 @@
     
 }
 
-
-
 /////我们正在使用的post
 + (void)requestPOSTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     
@@ -60,14 +58,33 @@
     [manager POST:urlStr1 parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if([responseObject[@"code"] integerValue] == OVERDUE_CODE){
+ 
             [EasyShowTextView showErrorText:@"登录过期,请重新登录"];
             LBLoginViewController *loginVC = [[LBLoginViewController alloc] init];
 
-            BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+            BaseNavigationViewController *nav = [[BaseNavigationViewController alloc] initWithRootViewController:loginVC];
             nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
             BasetabbarViewController *tab = (BasetabbarViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             
+            ///获取当前控制器
+            UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+            
+            while (topController.presentedViewController) {
+                topController = topController.presentedViewController;
+            }
+            
+            ///pop 动作添加动画
+            CATransition *animation = [CATransition animation];
+            animation.duration = 1;
+            animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            animation.type = @"SXcameraIrisHollowOpen";
+            animation.type = kCATransitionFade;
+            [[UIApplication sharedApplication].keyWindow.layer addAnimation:animation forKey:nil];
+            
+            [topController.navigationController popToRootViewControllerAnimated:YES];
+            
+            ///present.pop 一起调,也显得不那么突兀
             [tab presentViewController:nav animated:YES completion:nil];
             
         }else{

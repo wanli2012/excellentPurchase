@@ -13,6 +13,11 @@
 
 #import "DropMenu.h"
 #import "GLGroupModel.h"
+//扫码
+#import "LBXScanView.h"
+#import "LBXScanResult.h"
+#import "LBXScanWrapper.h"
+#import "SubLBXScanViewController.h"
 
 @interface LBRegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>
 {
@@ -32,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signBtn;//同意标志
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;//获取验证码
 @property (weak, nonatomic) IBOutlet UITextField *groupTypeTF;//身份类型
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;//注册按钮
 
 @property (nonatomic, copy)NSString *validate;//极验证
 @property(nonatomic,strong)NTESVerifyCodeManager *manager;
@@ -62,6 +68,56 @@
         self.navigation.constant = 47;
         self.logoH.constant = 92;
     }
+}
+
+#pragma mark - 扫描
+- (IBAction)scan:(id)sender {
+    //设置扫码区域参数
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    style.centerUpOffset = 60;
+    style.xScanRetangleOffset = 30;
+    
+    if ([UIScreen mainScreen].bounds.size.height <= 480 )
+    {
+        //3.5inch 显示的扫码缩小
+        style.centerUpOffset = 40;
+        style.xScanRetangleOffset = 20;
+    }
+    
+    style.alpa_notRecoginitonArea = 0.6;
+    
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 2.0;
+    style.photoframeAngleW = 16;
+    style.photoframeAngleH = 16;
+    
+    style.isNeedShowRetangle = NO;
+    
+    style.anmiationStyle = LBXScanViewAnimationStyle_NetGrid;
+    
+    //使用的支付宝里面网格图片
+    UIImage *imgFullNet = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_full_net"];
+    
+    style.animationImage = imgFullNet;
+    
+    [self openScanVCWithStyle:style];
+}
+
+- (void)openScanVCWithStyle:(LBXScanViewStyle*)style
+{
+    self.hidesBottomBarWhenPushed = YES;
+    SubLBXScanViewController *vc = [SubLBXScanViewController new];
+    vc.style = style;
+    
+    __weak typeof(self) weakself = self;
+    vc.retureCode = ^(NSString *codeStr){
+        
+        weakself.recommendTF.text = codeStr;
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 /**
@@ -208,8 +264,12 @@
     
     if (_isAgreeProtocol) {
         [self.signBtn setImage:[UIImage imageNamed:@"greetselect-y"] forState:UIControlStateNormal];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
     }else{
         [self.signBtn setImage:[UIImage imageNamed:@"greetselect-n"] forState:UIControlStateNormal];
+        self.submitBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.submitBtn.enabled = NO;
     }
 }
 
@@ -327,8 +387,13 @@
     dict[@"validate"] = self.validate;
     dict[@"group_id"] = self.group_id;
     
+    self.submitBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.submitBtn.enabled = NO;
+    
     [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
         //        [_loadV removeloadview];
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [EasyShowTextView showSuccessText:@"注册成功"];
@@ -343,7 +408,9 @@
         }
         
     } enError:^(NSError *error) {
-
+        
+        self.submitBtn.backgroundColor = MAIN_COLOR;
+        self.submitBtn.enabled = NO;
         [EasyShowTextView showErrorText:error.localizedDescription];
         
     }];

@@ -286,8 +286,11 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
 
     //创建网页内容对象
-//    UIImage *thumbURL = [UIImage imageNamed:@"ios-template-1024"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"联合优购商品分享" descr:@"点击查看详情" thumImage:self.model.thumb];
+    
+    NSString *goodsName = [NSString stringWithFormat:@"嘚瑟狗商品分享:%@",self.model.goods_name];
+    NSString *goodsInfo = self.model.goods_info;
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:goodsName descr:goodsInfo thumImage:self.model.thumb];
+    
     //设置网页地址
     shareObject.webpageUrl = [NSString stringWithFormat:@"%@%@%@",share_URL_Base,shareMalldetail,self.goods_id];
 

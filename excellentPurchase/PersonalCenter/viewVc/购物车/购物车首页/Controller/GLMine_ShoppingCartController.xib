@@ -174,7 +174,7 @@
                                 <outletCollection property="gestureRecognizers" destination="0vT-h3-rLT" appends="YES" id="iAq-eA-MJS"/>
                             </connections>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nT9-BR-UxK">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nT9-BR-UxK">
                             <rect key="frame" x="125" y="0.0" width="125" height="50"/>
                             <color key="backgroundColor" red="0.99607843137254903" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,6 +24,7 @@
                 <outlet property="phoneTF" destination="ou7-OO-qYg" id="0sr-mn-FoN"/>
                 <outlet property="recommendTF" destination="gha-PM-heI" id="eCo-Lt-bDQ"/>
                 <outlet property="signBtn" destination="4Ld-up-h7I" id="220-uu-7z9"/>
+                <outlet property="submitBtn" destination="Gef-5v-pGN" id="1LP-12-o1N"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -69,23 +71,37 @@
                                                     </constraints>
                                                 </view>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入推荐人ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gha-PM-heI">
-                                                    <rect key="frame" x="61" y="0.0" width="230" height="50"/>
+                                                    <rect key="frame" x="61" y="0.0" width="180" height="50"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBa-CQ-QkZ">
+                                                    <rect key="frame" x="241" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="PBa-CQ-QkZ" secondAttribute="height" id="gmd-PR-Yyw"/>
+                                                    </constraints>
+                                                    <state key="normal" image="RichScan"/>
+                                                    <connections>
+                                                        <action selector="scan:" destination="-1" eventType="touchUpInside" id="U6C-oD-Gr9"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="kk0-nm-u33" firstAttribute="top" secondItem="Srw-e9-Nj7" secondAttribute="top" id="3Fd-zE-vMm"/>
                                                 <constraint firstAttribute="bottom" secondItem="gha-PM-heI" secondAttribute="bottom" id="4L0-j6-dsO"/>
                                                 <constraint firstItem="pw3-4Q-P2B" firstAttribute="centerY" secondItem="Srw-e9-Nj7" secondAttribute="centerY" id="95O-0S-YPB"/>
+                                                <constraint firstItem="PBa-CQ-QkZ" firstAttribute="top" secondItem="Srw-e9-Nj7" secondAttribute="top" id="Fdu-7C-g3d"/>
                                                 <constraint firstItem="pw3-4Q-P2B" firstAttribute="leading" secondItem="Srw-e9-Nj7" secondAttribute="leading" constant="12.5" id="Lxa-CH-4Su"/>
+                                                <constraint firstAttribute="bottom" secondItem="PBa-CQ-QkZ" secondAttribute="bottom" id="Mir-TL-0oT"/>
                                                 <constraint firstAttribute="height" constant="50" id="MmC-sf-Q5h"/>
                                                 <constraint firstAttribute="bottom" secondItem="kk0-nm-u33" secondAttribute="bottom" id="Sap-Ye-VsM"/>
                                                 <constraint firstItem="kk0-nm-u33" firstAttribute="leading" secondItem="pw3-4Q-P2B" secondAttribute="trailing" constant="12.5" id="TRX-Lg-xWF"/>
                                                 <constraint firstItem="gha-PM-heI" firstAttribute="leading" secondItem="kk0-nm-u33" secondAttribute="trailing" constant="10" id="gna-sW-fdo"/>
-                                                <constraint firstAttribute="trailing" secondItem="gha-PM-heI" secondAttribute="trailing" id="xkP-Az-KYP"/>
+                                                <constraint firstItem="PBa-CQ-QkZ" firstAttribute="width" secondItem="PBa-CQ-QkZ" secondAttribute="height" id="gxd-jR-mcf"/>
+                                                <constraint firstItem="PBa-CQ-QkZ" firstAttribute="leading" secondItem="gha-PM-heI" secondAttribute="trailing" id="nSt-U3-IEw"/>
+                                                <constraint firstAttribute="trailing" secondItem="PBa-CQ-QkZ" secondAttribute="trailing" id="ovE-if-YCY"/>
                                                 <constraint firstItem="gha-PM-heI" firstAttribute="top" secondItem="Srw-e9-Nj7" secondAttribute="top" id="z2q-pR-1Vn"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -386,9 +402,9 @@
                                         <constraint firstItem="DMv-UQ-h2s" firstAttribute="leading" secondItem="6T5-X9-fbE" secondAttribute="leading" id="tN5-C7-kkb"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gef-5v-pGN">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gef-5v-pGN">
                                     <rect key="frame" x="30" y="525" width="291" height="50"/>
-                                    <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="xNw-GN-Ih3"/>
                                     </constraints>
@@ -568,6 +584,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="RichScan" width="15" height="15"/>
         <image name="account" width="20" height="22"/>
         <image name="choice" width="12" height="12"/>
         <image name="code" width="19" height="22"/>

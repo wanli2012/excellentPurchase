@@ -20,8 +20,8 @@
 
 #import <UMSocialCore/UMSocialCore.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#define WEIXI_APPKEY @"wx01b5d9da6a88048c"
-#define WEIXIN_APPSECRET @"5b3cbdab8d6d0464566ac0af66c59390"
+#define WEIXI_APPKEY @"wx63ad845caa3425b7"
+#define WEIXIN_APPSECRET @"23b692c2c9809f34e2f689259a7bf67c"
 
 @interface AppDelegate ()<BMKGeneralDelegate,WXApiDelegate>
 {

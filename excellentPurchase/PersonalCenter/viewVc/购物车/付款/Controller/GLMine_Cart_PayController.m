@@ -217,6 +217,7 @@
             req.package = responseObject[@"data"][@"wxPay"][@"package"];
             req.sign = responseObject[@"data"][@ "wxPay"][@"sign"];
             [WXApi sendReq:req];
+            
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
