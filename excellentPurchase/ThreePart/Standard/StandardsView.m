@@ -424,7 +424,7 @@
         
     }];
     
-    [[self topView] addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     [self showAnimation];
 //    self.mainImgView.alpha = 1.0;
 }

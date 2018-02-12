@@ -71,9 +71,9 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [EasyShowLodingView hidenLoding];
     
     self.navigationController.navigationBar.hidden = YES;
-    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity]) {
-         [_locationManager startUpdatingLocation];;//定位
-    }
+//    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity]) {
+//         [_locationManager startUpdatingLocation];//定位
+//    }
     //kShop_index_URL
 }
 
@@ -205,11 +205,11 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"重新定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 //        [[UIApplication sharedApplication]openURL:settingURL];
-         WeakSelf;
-         [weakSelf locatemap];//定位
+         [_locationManager startUpdatingLocation];//定位
+        [EasyShowLodingView hidenLoding];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
+        [EasyShowLodingView hidenLoding];
     }];
     [alert addAction:cancel];
     [alert addAction:ok];
@@ -421,7 +421,12 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     }
 }
 #pragma mark - 跳转消息
+
 - (IBAction)jumpMessage:(UIButton *)sender {
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showInfoText:@"请先登录"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLMine_MessageController *vc = [[GLMine_MessageController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -450,7 +455,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     }
     return 0;
 }
-
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 

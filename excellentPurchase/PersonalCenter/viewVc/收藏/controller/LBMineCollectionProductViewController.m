@@ -278,7 +278,7 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [self.dataArr removeObjectsAtIndexes:insets];
             [self.tableview deleteRowsAtIndexPaths:[self.tableview indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
+            [EasyShowTextView showSuccessText:responseObject[@"message"]];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];

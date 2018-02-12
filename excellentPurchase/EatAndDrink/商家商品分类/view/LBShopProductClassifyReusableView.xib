@@ -13,18 +13,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LBShopProductClassifyReusableView" id="U6b-Vx-4bR" customClass="LBShopProductClassifyReusableView">
-            <rect key="frame" x="0.0" y="0.0" width="315" height="228"/>
+            <rect key="frame" x="0.0" y="0.0" width="315" height="239"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKH-Xb-sfx">
-                    <rect key="frame" x="0.0" y="0.0" width="315" height="157.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="315" height="168"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="AKH-Xb-sfx" secondAttribute="height" multiplier="2/1" id="Dwx-KD-JZv"/>
+                        <constraint firstAttribute="width" secondItem="AKH-Xb-sfx" secondAttribute="height" multiplier="750/400" id="Dwx-KD-JZv"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRO-fA-CET">
-                    <rect key="frame" x="0.0" y="158" width="315" height="70"/>
+                    <rect key="frame" x="0.0" y="168.5" width="315" height="70"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PX9-ee-6Eh">
                             <rect key="frame" x="10" y="10" width="50" height="50"/>
@@ -109,7 +109,7 @@
                 <outlet property="imagev" destination="PX9-ee-6Eh" id="F2B-g7-N1r"/>
                 <outlet property="title" destination="aHf-5d-9bF" id="Yps-Ij-y9v"/>
             </connections>
-            <point key="canvasLocation" x="55.5" y="-47"/>
+            <point key="canvasLocation" x="55.5" y="-41.5"/>
         </collectionReusableView>
     </objects>
 </document>

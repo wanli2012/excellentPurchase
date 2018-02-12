@@ -87,8 +87,6 @@
     /** Step5: 开始滚动(Start scrolling!) */
     [_scrollLabelView beginScrolling];
 }
-
-
 - (void)setOrderModels:(NSArray<GLHome_ordersModel *> *)orderModels{
     _orderModels = orderModels;
     
