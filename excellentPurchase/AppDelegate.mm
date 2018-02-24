@@ -70,6 +70,7 @@
         self.window.rootViewController = [[BasetabbarViewController alloc]init];
     
     }else{
+        
         self.window.rootViewController = [[yindaotuViewController alloc]init];
     }
 

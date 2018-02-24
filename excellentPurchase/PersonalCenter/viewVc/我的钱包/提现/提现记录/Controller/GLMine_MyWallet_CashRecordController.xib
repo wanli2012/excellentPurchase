@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_MyWallet_CashRecordController">
             <connections>
+                <outlet property="bottomHeight" destination="BpJ-hU-mRC" id="anx-DI-0CG"/>
                 <outlet property="tableView" destination="LDx-DU-dYY" id="8A9-3J-gMm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

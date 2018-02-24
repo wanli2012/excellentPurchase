@@ -41,9 +41,9 @@
     cell.headimage.hidden = YES;
     cell.cacheLB.hidden = YES;
     
-    if (indexPath.row == 0) {
+    if (indexPath.row == 1) {
         cell.titleLb.text = @"推荐";
-    }else if(indexPath.row == 1){
+    }else if(indexPath.row == 0){
         cell.titleLb.text = @"收藏夹";
     }
     
@@ -74,15 +74,14 @@
     
 }
 
-
 #pragma mark - 懒加载
 
 -(NSMutableArray*)userVcArr{
     
     if (!_userVcArr) {
         _userVcArr=[NSMutableArray arrayWithObjects:
-                    @"GLMine_Seller_IncomeCodeController",
-                    @"LBMineCollectionViewController",nil];
+                    @"LBMineCollectionViewController",
+        @"GLMine_Seller_IncomeCodeController",nil];
         
     }
     

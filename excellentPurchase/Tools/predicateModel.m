@@ -173,6 +173,4 @@
     return [pred evaluateWithObject:inputString];
 }
 
-
-
 @end

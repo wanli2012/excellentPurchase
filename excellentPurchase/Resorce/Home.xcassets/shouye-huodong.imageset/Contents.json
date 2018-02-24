@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "huodong.png",
+      "filename" : "1倍图.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "huodong@2x.png",
+      "filename" : "2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "huodong@3x.png",
+      "filename" : "QQ20180213-155023.png",
       "scale" : "3x"
     }
   ],

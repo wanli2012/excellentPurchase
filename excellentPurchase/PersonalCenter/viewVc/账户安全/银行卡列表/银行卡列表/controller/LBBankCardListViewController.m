@@ -41,9 +41,7 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"添加银行卡"] style:UIBarButtonItemStylePlain target:self action:@selector(addBanCard)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    [self.tableView addSubview:self.nodataV];
-    self.nodataV.hidden = YES;
-    
+    [self setupNpdata];//设置无数据的时候展示
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
         [self postRequest:YES];
         
@@ -57,6 +55,26 @@ static NSString *bankCardListTableViewCell = @"LBBankCardListTableViewCell";
     [self postRequest:YES];
 }
 
+/**
+ 设置无数据图
+ */
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableView.tableFooterView = [UIView new];
+    
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableView.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableView.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    //emptyView内容上的点击事件监听
+    [self.tableView.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf postRequest:YES];
+    }];
+}
 #pragma mark -  请求数据
 
 - (void)postRequest:(BOOL)isRefresh{

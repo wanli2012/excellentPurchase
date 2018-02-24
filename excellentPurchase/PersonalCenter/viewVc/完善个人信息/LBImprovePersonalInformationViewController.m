@@ -164,14 +164,17 @@
         [EasyShowTextView showInfoText:@"请输入身份证号"];
         return;
     }
-    if (self.IDTF.text.length < 15 || self.IDTF.text.length > 18) {
+    
+    if (self.IDTF.text.length != 15 && self.IDTF.text.length != 18) {
         [EasyShowTextView showInfoText:@"身份证号不合法"];
         return;
     }
+    
     if (self.faceUrl.length == 0 || self.oppositeUrl.length == 0) {
         [EasyShowTextView showInfoText:@"请上传身份证正反面"];
         return;
     }
+    
     if (self.detailAddressTF.text.length == 0) {
         [EasyShowTextView showInfoText:@"请输入详细地址"];
         return;
@@ -248,6 +251,14 @@
         
         return YES;
     }
+    if (textField == self.nameTF) {
+        if ([predicateModel inputShouldLetter:string] || [predicateModel inputShouldChinese:string]) {
+            return YES;
+        }else{
+            [EasyShowTextView showInfoText:@"真实姓名输入不合法"];
+            return NO;
+        }
+    }
     
     if (textField == self.IDTF) {
         
@@ -256,12 +267,14 @@
             [EasyShowTextView showInfoText:@"身份证号只能输入数字和X,x"];
             return NO;
         }
+        
 //        if (textField.text.length > 17) {
 //            textField.text = [textField.text substringToIndex:18];
 //            [self.view endEditing:YES];
 //            [EasyShowTextView showInfoText:@"身份证号长度超过限制"];
 //            return NO;
 //        }
+        
     }
     return YES;
 }

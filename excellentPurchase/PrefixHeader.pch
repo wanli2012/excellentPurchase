@@ -63,6 +63,9 @@
 /// 底部宏，吃一见长一智吧，别写数字了
 #define SafeAreaBottomHeight (UIScreenHeight == 812.0 ? 34 : 0)
 
+#define SafeAreaBottomReallyHeight (UIScreenHeight == 812.0 ? 83 : 49)
+
+
 #define  adjustsScrollViewInsets_NO(scrollView,vc)\
 do { \
 _Pragma("clang diagnostic push") \

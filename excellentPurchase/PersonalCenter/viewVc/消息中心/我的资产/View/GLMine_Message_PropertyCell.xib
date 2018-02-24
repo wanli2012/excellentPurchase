@@ -42,7 +42,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号:7238237739737232323" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZz-Sa-HuE">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号:7238237739737232323" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZz-Sa-HuE">
                                 <rect key="frame" x="10" y="64" width="178.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,9 +81,7 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="pwb-oQ-ZtV" secondAttribute="trailing" constant="10" id="Elp-Zu-7IW"/>
                     <constraint firstAttribute="bottom" secondItem="pwb-oQ-ZtV" secondAttribute="bottom" constant="0.5" id="FvK-0B-yfA"/>
-                    <constraint firstItem="pwb-oQ-ZtV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Viu-MS-YG0"/>
                     <constraint firstItem="pwb-oQ-ZtV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="bh3-3u-Bho"/>
                     <constraint firstItem="pwb-oQ-ZtV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vUz-fH-OhY"/>
                     <constraint firstAttribute="trailing" secondItem="pwb-oQ-ZtV" secondAttribute="trailing" constant="10" id="xYz-bx-Ozr"/>

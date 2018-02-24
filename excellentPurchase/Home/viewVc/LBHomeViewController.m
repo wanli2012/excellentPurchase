@@ -98,8 +98,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
                       @{@"trade_name":@"厂家直销",@"thumb":@"Home-ziyingshangcheng"},
                       @{@"trade_name":@"自营商城",@"thumb":@"Home-ziying"},
                       @{@"trade_name":@"吃喝玩乐",@"thumb":@"Home-chihewanle"},
-                      @{@"trade_name":@"秒杀拼团",@"thumb":@"Home-miaosha"},
-                      @{@"trade_name":@"一元购",@"thumb":@"Home-yiyuangou-1"},
+//                      @{@"trade_name":@"秒杀拼团",@"thumb":@"Home-miaosha"},
+//                      @{@"trade_name":@"一元购",@"thumb":@"Home-yiyuangou-1"},
                       @{@"trade_name":@"充值中心",@"thumb":@"Home-chongzhi"}];
     
     [self.classfyHeaderV initdatasorece:self.tradeArr];
@@ -386,25 +386,25 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             self.hidesBottomBarWhenPushed = NO;
         }
             break;
+//        case 5:
+//        {
+//            self.hidesBottomBarWhenPushed = YES;
+//            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
+//            vc.titileStr = @"秒杀拼团";
+//            [self.navigationController pushViewController:vc animated:YES];
+//            self.hidesBottomBarWhenPushed = NO;
+//        }
+//            break;
+//        case 6:
+//        {
+//            self.hidesBottomBarWhenPushed = YES;
+//            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
+//            vc.titileStr = @"一元购";
+//            [self.navigationController pushViewController:vc animated:YES];
+//            self.hidesBottomBarWhenPushed = NO;
+//        }
+//            break;
         case 5:
-        {
-            self.hidesBottomBarWhenPushed = YES;
-            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
-            vc.titileStr = @"秒杀拼团";
-            [self.navigationController pushViewController:vc animated:YES];
-            self.hidesBottomBarWhenPushed = NO;
-        }
-            break;
-        case 6:
-        {
-            self.hidesBottomBarWhenPushed = YES;
-            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
-            vc.titileStr = @"一元购";
-            [self.navigationController pushViewController:vc animated:YES];
-            self.hidesBottomBarWhenPushed = NO;
-        }
-            break;
-        case 7:
         {
             if ( [UserModel defaultUser].loginstatus == NO) {
                 [EasyShowTextView showText:@"请先登录"];
@@ -595,6 +595,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         
     }];
 }
+
 //选择城市
 - (void) cityPickerController:(GYZChooseCityController *)chooseCityController
                 didSelectCity:(GYZCity *)city{

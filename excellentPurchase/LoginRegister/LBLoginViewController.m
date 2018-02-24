@@ -228,9 +228,9 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
 
-    if (UIScreenWidth == 812.0) {
-        self.navigation.constant = 47;
-        self.logoH.constant = 92;
+    if (UIScreenHeight == 812.0) {
+        self.navigation.constant = 44;
+        self.logoH.constant = 94;
     }
     
 }

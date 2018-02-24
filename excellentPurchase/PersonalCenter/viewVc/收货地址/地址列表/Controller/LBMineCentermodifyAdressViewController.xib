@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineCentermodifyAdressViewController">
             <connections>
+                <outlet property="bottomHeight" destination="W8z-WN-P2r" id="YQJ-Lz-PvX"/>
                 <outlet property="tableview" destination="oi3-pQ-VEa" id="cyr-ZW-iGf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -38,6 +39,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="-41" y="81"/>
         </view>
     </objects>
 </document>

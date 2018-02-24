@@ -40,7 +40,9 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     self.navigationController.navigationBar.hidden = YES;
+    self.navigationH.constant = SafeAreaTopHeight;
 }
 
 - (void)viewDidLoad {

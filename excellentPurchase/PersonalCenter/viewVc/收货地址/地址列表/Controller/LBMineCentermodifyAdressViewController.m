@@ -19,6 +19,7 @@
 @property (assign, nonatomic)NSInteger page;//页数默认为1
 
 @property (assign, nonatomic)NSInteger  deleteIndex;//删除下标
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
 
 @end
 
@@ -28,7 +29,7 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
-    
+    self.bottomHeight.constant = SafeAreaBottomHeight;
 }
 
 - (void)viewDidLoad {

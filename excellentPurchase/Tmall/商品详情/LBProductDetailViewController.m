@@ -670,8 +670,12 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     
     [NetworkManager requestPOSTWithURLStr:SeaShoppingNot_collect paramDic:dic finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            self.model.is_collect=0;
+            
+            self.model.is_collect = 0;
             self.collectBt.selected = NO;
+            if (self.block) {
+                self.block(self.index,NO);
+            }
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -681,6 +685,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
+
 //收藏
 -(void)userCollection{
     if ([UserModel defaultUser].loginstatus == NO) {
@@ -698,8 +703,14 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     
     [NetworkManager requestPOSTWithURLStr:SeaShoppingUser_collect paramDic:dic finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
             self.model.is_collect = [NSString stringWithFormat:@"%@",responseObject[@"data"]];
             self.collectBt.selected = YES;
+            
+            if (self.block) {
+                self.block(self.index,YES);
+            }
+            
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];

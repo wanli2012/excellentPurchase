@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+//typedef void(^refreshDataBlock)();
+
 @interface LBTmallProductListViewController : UIViewController
 @property (assign , nonatomic)NSInteger jumpType;//1 为首页跳转过来
 //淘淘商城跳转过来
@@ -17,6 +19,6 @@
 @property (assign , nonatomic)NSInteger goods_type;//1每日推荐 2精品优选
 //首页跳转过来
 
-
+@property (nonatomic, copy)void(^refreshBlock)(BOOL isCollected);
 
 @end

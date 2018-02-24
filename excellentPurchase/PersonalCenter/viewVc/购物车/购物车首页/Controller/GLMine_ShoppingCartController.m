@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV2;//选中标志(编辑)
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;//总价
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *editviewBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *clearViewBottom;
 
 @property (strong, nonatomic)NodataView *nodataV;
 
@@ -135,6 +137,14 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+    
+    if (UIScreenHeight == 812) {
+        self.clearViewBottom.constant = 34;
+        self.editviewBottom.constant = 34;
+    }else{
+        self.clearViewBottom.constant = 0;
+        self.editviewBottom.constant = 0;
+    }
 
 }
 

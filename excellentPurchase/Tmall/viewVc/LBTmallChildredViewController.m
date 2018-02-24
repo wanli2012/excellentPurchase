@@ -245,6 +245,9 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
             cell.checkMoreProducts = ^(NSInteger section) {
                 [weakSelf viewController].hidesBottomBarWhenPushed = YES;
                 LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
+                vc.refreshBlock = ^(BOOL isCollected) {
+                    [weakSelf craetDispathGroup];
+                };
                 vc.catename = @"搜索";
                 vc.goods_type = 1;
                 vc.s_type = [LBTmallFirstCalssifymodel defaultUser].type_id;
@@ -274,10 +277,14 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
                 LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
                 vc.catename = @"搜索";
                 vc.goods_type = 2;
+                vc.refreshBlock = ^(BOOL isCollected) {
+                    [weakSelf craetDispathGroup];
+                };
                 vc.s_type = [LBTmallFirstCalssifymodel defaultUser].type_id;
                 [[weakSelf viewController].navigationController pushViewController:vc animated:YES];
                 [weakSelf viewController].hidesBottomBarWhenPushed = NO;
             };
+            
             return cell;
         }else if (indexPath.row == 1){
             GLIntegralGoodsTwoCell *cell = [tableView dequeueReusableCellWithIdentifier:integralGoodsTwoCell forIndexPath:indexPath];

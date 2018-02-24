@@ -36,7 +36,7 @@
     _model = model;
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:_model.thumb] placeholderImage:nil];
     self.titileLb.text = [NSString stringWithFormat:@"%@",_model.goods_name];
-    self.pricelb.text = [NSString stringWithFormat:@"%@",_model.discount];
+    self.pricelb.text = [NSString stringWithFormat:@"¥ %@",_model.discount];
     self.ratelb.text = [NSString stringWithFormat:@"%@积分; %@购物券",_model.bonuspoints,_model.reword_coupons];
 }
 

@@ -57,18 +57,18 @@
     // 添加悬浮菜单
     [self.view addSubview:self.pageMenu];
     
-//    if ([[UserModel defaultUser].group_id integerValue] == 8) {//商家身份
+//    if ([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP) {//商家身份
         // 添加3个子控制器
         [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
         [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
         [self addChildViewController:[[LBFinancialCenterExchangeRecodervc alloc] init]];
         
-//    }else{    //除商家以外的身份
+//    }else{//除商家以外的身份
 //
 //        [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
 //        [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
 //    }
-    
+
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
     
@@ -305,19 +305,19 @@
     
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
-        _scrollView.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight - 49);
+        _scrollView.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight - SafeAreaBottomReallyHeight);
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
         
-//        if ([[UserModel defaultUser].group_id integerValue] == 8) {
+//        if ([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP) {
         
             _scrollView.contentSize = CGSizeMake(UIScreenWidth*3, 0);
 //        }else{
 //            _scrollView.contentSize = CGSizeMake(UIScreenWidth*2, 0);
 //        }
-        
+    
         _scrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
     }
     return _scrollView;
@@ -340,7 +340,7 @@
     if (!_pageMenu) {
         _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
         
-//        if([[UserModel defaultUser].group_id integerValue] == 8){
+//        if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
             [_pageMenu setItems:@[@"优购币市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
 //        }else{
 //            [_pageMenu setItems:@[@"优购币市值",@"出售记录"] selectedItemIndex:0];

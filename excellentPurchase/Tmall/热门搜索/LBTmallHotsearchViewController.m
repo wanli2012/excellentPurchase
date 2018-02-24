@@ -41,6 +41,7 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.navigationH.constant = SafeAreaTopHeight;
 }
 
 - (void)viewDidLoad {

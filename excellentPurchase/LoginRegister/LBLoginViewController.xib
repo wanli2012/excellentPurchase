@@ -384,9 +384,9 @@
                     </constraints>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVN-8u-Zgc">
-                    <rect key="frame" x="0.0" y="25" width="80" height="40"/>
+                    <rect key="frame" x="0.0" y="25" width="80" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="vUU-Uf-zOp"/>
+                        <constraint firstAttribute="height" constant="44" id="vUU-Uf-zOp"/>
                         <constraint firstAttribute="width" constant="80" id="z5z-2o-paF"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>

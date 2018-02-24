@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define isIPhoneX kScreenH==812
-#define kScrollViewBeginTopInset 320
+#define kScrollViewBeginTopInset (196 + 60 + SafeAreaTopHeight)
 
 UIKIT_EXTERN NSNotificationName const ChildScrollViewDidScrollNSNotificationFinancial;
 UIKIT_EXTERN NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial;

@@ -141,7 +141,10 @@
     animation.type = @"SXcameraIrisHollowOpen";
     animation.type = kCATransitionFade;
     [self.view.window.layer addAnimation:animation forKey:nil];
-    [self presentViewController:wantVC animated:NO completion:nil];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = wantVC;
+//
+//    [self presentViewController:wantVC animated:NO completion:nil];
     
 }
 

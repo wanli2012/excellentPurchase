@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic)NSMutableArray *models;
 @property (assign, nonatomic)NSInteger page;//页数默认为1
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
 
 @end
 
@@ -47,7 +48,7 @@ static NSString *voucherCenterRecoderTableViewCell = @"LBVoucherCenterRecoderTab
     [self postRequest:YES];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReceivingAddress) name:@"refreshReceivingAddress" object:nil];
-    
+    self.bottomHeight.constant = SafeAreaBottomHeight;
 }
 
 //刷新

@@ -140,6 +140,8 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
         if (![dic[@"userName"] isEqualToString:[UserModel defaultUser].user_name]) {
             
             [self login:self.fmdbArr[indexPath.row]];
+        }else{
+            [EasyShowTextView showInfoText:@"该账号为当前登录账号"];
         }
     }
 }
@@ -150,6 +152,7 @@ static NSString *switchAccountTableViewCell = @"LBSwitchAccountTableViewCell";
 
     return YES;
 }
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
  

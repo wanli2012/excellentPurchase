@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger, CollectionViewType) {
 @property (nonatomic, assign) NSInteger  price;//1价格升序 2价格降序
 @property (nonatomic, strong) NSString *keyWord;//关键字
 @property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
 
 @end
 
@@ -53,10 +55,20 @@ static NSString *ID = @"LBIntegralGoodsTwoCollectionViewCell";
 static NSString *ID2 = @"LBShowProductListCollectionViewCell";
 
 @implementation LBTmallProductListViewController
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     self.navigationController.navigationBar.hidden = YES;
+    self.topViewHeight.constant = SafeAreaTopHeight;
+    
+    if (UIScreenHeight == 812) {
+        self.bottomHeight.constant = 34;
+    }else{
+        self.bottomHeight.constant = 0;
+    }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
@@ -98,16 +110,16 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     self.collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
                                                             titleStr:@"暂无数据，点击重新加载"
                                                            detailStr:@""];
+    
     self.collectionView.ly_emptyView.imageSize = CGSizeMake(100, 100);
     self.collectionView.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
     self.collectionView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
     self.collectionView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
     
-    
     //emptyView内容上的点击事件监听
     [self.collectionView.ly_emptyView setTapContentViewBlock:^{
         weakSelf.page = 1;
-        [self loadData:weakSelf.page refreshDirect:YES];
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
     }];
 }
 
@@ -302,21 +314,30 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     
     return self.dataArr.count;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    WeakSelf;
     if (self.showType == LBCollectionViewTypeDefault) {
         
         LBIntegralGoodsTwoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
         cell.model = self.dataArr[indexPath.item];
         cell.refrshDatasorece = ^{
             [_collectionView reloadData];
+            if(weakSelf.refreshBlock){
+                weakSelf.refreshBlock(YES);
+            }
         };
+        
         return cell;
     }else{
         LBShowProductListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
         cell.model = self.dataArr[indexPath.item];
         cell.refrshDatasorece = ^{
             [_collectionView reloadData];
+            if(weakSelf.refreshBlock){
+                weakSelf.refreshBlock(YES);
+            }
         };
         return cell;
     }
@@ -324,16 +345,32 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
+    
     LBTmallhomepageDataStructureModel *model = self.dataArr[indexPath.item];
     self.hidesBottomBarWhenPushed = YES;
     LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
     vc.goods_id = model.goods_id;
+    vc.index = indexPath.row;
+    
+    vc.block = ^(NSInteger index, BOOL isCollected) {
+        if (isCollected) {
+            model.is_collect = @"1";
+        }else{
+            model.is_collect = @"0";
+        }
+        if (self.refreshBlock) {
+            
+            self.refreshBlock(isCollected);
+        }
+        
+        [collectionView reloadData];
+        
+    };
     [self.navigationController pushViewController:vc animated:YES];
 
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
     
     if ([string isEqualToString:@"\n"]) {
         [textField endEditing:YES];

@@ -36,7 +36,6 @@
 #define GROUP_SHOP 8 //商家
 #define GROUP_USER 9 //会员
 
-
 //captchaid的值是每个产品从后台生成的,
 #define CAPTCHAID @"f878a21255674cdcb8e3564e06e73473"
 #define USHARE_APPKEY @"5a8174dfa40fa324d70000c4"

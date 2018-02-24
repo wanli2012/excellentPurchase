@@ -8,7 +8,6 @@
 
 #import "LBFinancialCenterBaseViewController.h"
 
-
 NSNotificationName const ChildScrollViewDidScrollNSNotificationFinancial = @"ChildScrollViewDidScrollNSNotificationFinancial";
 NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"ChildScrollViewRefreshStateNSNotificationFinancial";
 
@@ -16,7 +15,6 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"
 
 
 @end
-
 
 @implementation LBFinancialCenterBaseViewController
 
@@ -68,7 +66,7 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"
 - (UITableView *)tableView {
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight- 49) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight- SafeAreaBottomReallyHeight) style:UITableViewStylePlain];
         _tableView.contentInset = UIEdgeInsetsMake(kScrollViewBeginTopInset, 0, 0, 0);
         _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kScrollViewBeginTopInset, 0, 0, 0);
         _tableView.tableFooterView = [UIView new];

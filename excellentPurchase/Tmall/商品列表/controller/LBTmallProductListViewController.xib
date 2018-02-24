@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBTmallProductListViewController">
             <connections>
+                <outlet property="bottomHeight" destination="WBw-YT-zqF" id="VeO-oa-YId"/>
                 <outlet property="collectionView" destination="Bqf-Rc-BEB" id="8fI-UQ-7iI"/>
                 <outlet property="compositeBt" destination="Ubn-DQ-h7D" id="waY-8g-rgG"/>
                 <outlet property="filtrateBt" destination="7nk-cn-EIb" id="C4d-Qn-rxd"/>
@@ -19,6 +20,7 @@
                 <outlet property="saleBt" destination="pkA-nk-4bQ" id="YdH-k8-3On"/>
                 <outlet property="searchTf" destination="hFz-mD-li8" id="Dfy-HD-nVn"/>
                 <outlet property="searchView" destination="if0-bY-zzy" id="onC-eE-3B7"/>
+                <outlet property="topViewHeight" destination="gb0-XX-qRS" id="dsl-eP-mYY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -234,7 +236,7 @@
                     </connections>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="62N-TC-MfS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0S5-mM-VNI"/>
                 <constraint firstItem="muA-pw-a4F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3E6-sc-KTd"/>

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBVoucherCenterRecoderViewController">
             <connections>
+                <outlet property="bottomHeight" destination="Meh-1r-EIw" id="TP4-Kl-ojS"/>
                 <outlet property="tableview" destination="EOr-Vr-3KB" id="dvD-yn-F0V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

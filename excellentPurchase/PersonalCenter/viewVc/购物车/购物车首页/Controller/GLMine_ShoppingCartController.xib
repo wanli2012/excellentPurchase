@@ -14,7 +14,9 @@
             <connections>
                 <outlet property="clearBtn" destination="0lT-am-Nai" id="1IF-9U-gyo"/>
                 <outlet property="clearView" destination="Jxq-Xe-hzx" id="p9i-Xk-asg"/>
+                <outlet property="clearViewBottom" destination="Zrx-rj-6NJ" id="12H-ne-1f8"/>
                 <outlet property="editView" destination="eAi-7w-Ndy" id="7ew-ix-CBG"/>
+                <outlet property="editviewBottom" destination="ymh-j8-Ioo" id="88Q-Pt-zdp"/>
                 <outlet property="signImageV" destination="atM-SJ-O9k" id="XaC-t2-Rs2"/>
                 <outlet property="signImageV2" destination="IIY-kn-zLy" id="OG5-JC-dCa"/>
                 <outlet property="tableView" destination="WEO-2Z-wT3" id="7I8-yR-g2h"/>

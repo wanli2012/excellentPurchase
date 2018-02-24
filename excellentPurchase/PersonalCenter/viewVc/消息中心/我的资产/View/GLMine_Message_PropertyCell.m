@@ -22,7 +22,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
 }
 
 - (void)setModel:(GLMine_Message_PropertyModel *)model{
@@ -32,11 +31,11 @@
     self.dateLabel.text = [formattime formateTimeOfDate4:model.log_addtime];
     self.detailLabel.text = [NSString stringWithFormat:@"%@",model.log_content];
     
-    if (model.log_num.length == 0) {
-        self.orderLabel.text = [NSString stringWithFormat:@""];
-    }else{
-        self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",model.log_num];
-    }
+//    if (model.log_num.length == 0) {
+//        self.orderLabel.text = [NSString stringWithFormat:@""];
+//    }else{
+//        self.orderLabel.text = [NSString stringWithFormat:@"订单号:%@",model.log_num];
+//    }
     
     NSString *str;
     if([model.sign integerValue] == 0){//0:资金流出 1:资金流入

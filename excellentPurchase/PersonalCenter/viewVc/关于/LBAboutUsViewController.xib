@@ -25,7 +25,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="399" height="502"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-h6-cbL">
-                            <rect key="frame" x="0.0" y="0.0" width="399" height="444"/>
+                            <rect key="frame" x="0.0" y="0.0" width="399" height="426"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="lO4-Cb-n5C">
                                     <rect key="frame" x="150" y="30" width="100" height="100"/>
@@ -34,8 +34,8 @@
                                         <constraint firstAttribute="height" constant="100" id="ejy-Mm-N5h"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="世纪优购凭借在电子商务市场积累的先进营销理念和优势技术资源。携手众多国内外知名品牌商，打造中国最大的网络导购平台，携手众多国内外知名品牌商" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXa-XY-xOn">
-                                    <rect key="frame" x="30" y="210" width="339" height="72"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="世纪优购凭借在电子商务市场积累的先进营销理念和优势技术资源。携手众多国内外知名品牌商，打造中国最大的网络导购平台" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXa-XY-xOn">
+                                    <rect key="frame" x="30" y="210" width="339" height="54"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="pnf-Vg-REu"/>
@@ -45,41 +45,41 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我们致力于" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQE-Pd-uUy">
-                                    <rect key="frame" x="161" y="362" width="77" height="18"/>
+                                    <rect key="frame" x="161" y="344" width="77" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.42348030209999998" green="0.42355769869999998" blue="0.4234754443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="关于-圆" translatesAutoresizingMaskIntoConstraints="NO" id="tbk-DT-40O">
-                                    <rect key="frame" x="148" y="369" width="5" height="5"/>
+                                    <rect key="frame" x="148" y="351" width="5" height="5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="5" id="03X-ze-qfa"/>
                                         <constraint firstAttribute="width" constant="5" id="iBb-4t-TWa"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="关于-圆" translatesAutoresizingMaskIntoConstraints="NO" id="HYi-nh-MDH">
-                                    <rect key="frame" x="238" y="368.5" width="5" height="5"/>
+                                    <rect key="frame" x="238" y="350.5" width="5" height="5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="5" id="6vm-kr-TS2"/>
                                         <constraint firstAttribute="width" constant="5" id="ZNK-Ym-QXy"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emb-1s-Hf8">
-                                    <rect key="frame" x="50" y="370.5" width="98" height="1"/>
+                                    <rect key="frame" x="50" y="352.5" width="98" height="1"/>
                                     <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="1Ej-dh-saI"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQf-ho-b7G">
-                                    <rect key="frame" x="243" y="370.5" width="106" height="1"/>
+                                    <rect key="frame" x="243" y="352.5" width="106" height="1"/>
                                     <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="eEy-X4-Zbw"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0E-7c-aGf">
-                                    <rect key="frame" x="199.5" y="410" width="0.0" height="21"/>
+                                    <rect key="frame" x="199.5" y="392" width="0.0" height="21"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="oml-Hr-YtG"/>

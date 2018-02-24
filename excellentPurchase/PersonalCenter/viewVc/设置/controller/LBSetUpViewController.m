@@ -74,7 +74,6 @@ static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCe
 {
     NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
     NSArray * files = [[ NSFileManager defaultManager ] subpathsAtPath :cachPath];
-    //NSLog ( @"cachpath = %@" , cachPath);
     for ( NSString * p in files) {
         NSError * error = nil ;
         NSString * path = [cachPath stringByAppendingPathComponent :p];
@@ -91,8 +90,6 @@ static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCe
     self.memory = [NSString stringWithFormat:@"%.2fM", [self filePath]];
     
     [self.tableview reloadData];
-    
-    //    self.momeryLb.text = [NSString stringWithFormat:@"%.2fM",self.folderSize];
     
 }
 
@@ -116,6 +113,7 @@ static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCe
     }
     return 0 ;
 }
+
 //返回多少 M
 - ( float ) folderSizeAtPath:( NSString *) folderPath{
     NSFileManager * manager = [ NSFileManager defaultManager ];
@@ -228,7 +226,9 @@ static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCe
         [alertVC addAction:ok];
         [self presentViewController:alertVC animated:YES completion:nil];
     }else{
-        [EasyShowAlertView showAlertWithTitle:@"版本检测" message:@"当前版本已是最新版本"];
+//        [EasyShowAlertView showAlertWithTitle:@"版本检测" message:@"当前版本已是最新版本"];
+        
+        [EasyShowTextView showInfoText:@"当前版本已是最新版本"];
     }
     
 }
@@ -253,7 +253,7 @@ static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCe
     LBSetUpTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:setUpTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLb.text = self.dataArr[indexPath.row];
-    
+    cell.cacheLB.text = self.memory;
     if ([self.dataArr[indexPath.row] isEqualToString:@"账户管理"]) {
         cell.headimage.hidden = YES;
         cell.arrowImage.hidden = NO;
