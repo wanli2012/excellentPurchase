@@ -31,7 +31,6 @@
  头部视图
  */
 @property (strong , nonatomic)LBMineHeaderView *headerView;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 /**

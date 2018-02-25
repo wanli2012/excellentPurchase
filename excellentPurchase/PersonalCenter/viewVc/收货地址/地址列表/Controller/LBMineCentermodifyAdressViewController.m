@@ -114,6 +114,7 @@
             if (isRefresh == YES) {
                 [self.models removeAllObjects];
             }
+            
             for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
                 GLMine_AddressModel *model = [GLMine_AddressModel mj_objectWithKeyValues:dict];
                 [self.models addObject:model];

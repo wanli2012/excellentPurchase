@@ -230,12 +230,15 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
         if (!cell) {
             cell = [[LBRiceShopTagTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:riceShopTagTableViewCell];
         }
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.dwqTagV.delegate = self;
         /** 将通过数组计算出的tagV的高度存储 */
         cell.hotSearchArr = [self.classifydataArr copy];
         self.tagViewHeight = cell.dwqTagV.frame.size.height;
+        
         return cell;
+        
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             GLIntegralHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:integralHeaderTableViewCell forIndexPath:indexPath];
@@ -245,9 +248,11 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
             cell.checkMoreProducts = ^(NSInteger section) {
                 [weakSelf viewController].hidesBottomBarWhenPushed = YES;
                 LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
+                
                 vc.refreshBlock = ^(BOOL isCollected) {
                     [weakSelf craetDispathGroup];
                 };
+                
                 vc.catename = @"搜索";
                 vc.goods_type = 1;
                 vc.s_type = self.s_type;
@@ -310,6 +315,14 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
     vc.goods_id = productid;
+    
+    WeakSelf;
+    //收藏和取消收藏,刷新界面
+    vc.block = ^(NSInteger index, BOOL isCollected) {
+        [weakSelf craetDispathGroup];
+    };
+    
+    
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
 }
@@ -319,7 +332,6 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     headerLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     return headerLabel;
-    
 }
 
 #pragma mark - 重写----设置标题和标注的高度

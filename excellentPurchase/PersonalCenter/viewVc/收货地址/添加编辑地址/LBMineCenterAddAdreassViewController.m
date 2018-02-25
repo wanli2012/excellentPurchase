@@ -68,7 +68,13 @@
         
         self.nameTf.text = self.model.truename;
         self.phoneTf.text = self.model.phone;
-        self.provinceTf.text = [NSString stringWithFormat:@"%@%@%@",self.model.address_province,self.model.address_city,self.model.address_area];
+        
+        if (self.model.chinese_area.length == 0) {
+            self.provinceTf.text = [NSString stringWithFormat:@"%@%@",self.model.chinese_province,self.model.chinese_city];
+        }else{
+            self.provinceTf.text = [NSString stringWithFormat:@"%@%@%@",self.model.chinese_province,self.model.chinese_city,self.model.chinese_area];
+        }
+        
         self.adressTf.text = self.model.address_address;
         
         if (self.isdeualt) {
@@ -99,8 +105,8 @@
     self.dataArr = [self readLocalFileWithName:@"provincesamy"];
   
     [self popAreaPicker];
-
 }
+
 // 读取本地JSON文件
 - (NSArray *)readLocalFileWithName:(NSString *)name {
     // 获取文件路径
@@ -111,10 +117,8 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 }
 
-
 #pragma mark - 弹出省市区三级列表
 - (void)popAreaPicker{
-    
     WeakSelf;
     [CZHAddressPickerView areaPickerViewWithDataArr:self.dataArr AreaDetailBlock:^(NSString *province, NSString *city, NSString *area, NSString *province_id, NSString *city_id, NSString *area_id) {
         weakSelf.provinceTf.text = [NSString stringWithFormat:@"%@%@%@",province,city,area];
