@@ -139,7 +139,6 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     }];
 }
 
-
 -(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
