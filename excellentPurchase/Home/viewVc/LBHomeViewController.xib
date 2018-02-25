@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBHomeViewController">
             <connections>
                 <outlet property="activityImage" destination="ivC-re-5Xl" id="GRJ-Ue-c91"/>
+                <outlet property="bottomHeight" destination="RKk-Ft-nvy" id="bUL-OY-Kye"/>
                 <outlet property="cityLb" destination="TVQ-W7-K10" id="09E-QN-wID"/>
                 <outlet property="navigationH" destination="QGW-0d-c3I" id="L0l-IO-MZQ"/>
                 <outlet property="navigationView" destination="bun-fc-fBf" id="zFz-BF-pTF"/>

@@ -63,7 +63,7 @@
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"nick_name"] = self.nameTF.text;
-    
+    dic[@"type"] = @"2";//1 实名认证 2.修改个人信息
     [EasyShowLodingView showLoding];
 
     [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dic finish:^(id responseObject) {

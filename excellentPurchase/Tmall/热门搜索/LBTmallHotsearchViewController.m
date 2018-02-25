@@ -109,6 +109,7 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
         dic[@"uid"] = @"";
         dic[@"token"] = @"";
     }
+    
     WeakSelf;
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:SeaShoppingGoods_search paramDic:dic finish:^(id responseObject) {

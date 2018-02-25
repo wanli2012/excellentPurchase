@@ -9,7 +9,7 @@
 #import "LBTmallViewController.h"
 #import "SPPageMenu.h"
 #import "LBTmallChildredViewController.h"
-#import "LBTmallProductListViewController.h"
+//#import "LBTmallProductListViewController.h"
 #import "LBTmallFirstCalssifymodel.h"
 #import "LBTmallHotsearchViewController.h"
 #import "NodataView.h"
@@ -71,6 +71,7 @@
             if ( self.dataArr.count > 0) {
                 [LBTmallFirstCalssifymodel defaultUser].type_id = self.dataArr[0][@"type_id"];
                 [LBTmallFirstCalssifymodel defaultUser].typeName = self.dataArr[0][@"typename"];
+                
                 [self.nodataView removeFromSuperview];
             }
     
@@ -83,7 +84,6 @@
     } enError:^(NSError *error) {
         
     }];
-    
 }
 
 -(void)addMenu{
@@ -106,9 +106,9 @@
     for (int i = 0; i < self.menuArr.count; i++) {
         if (self.controllerClassNames.count > i) {
             LBTmallChildredViewController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
-//            NSString *text = [self.pageMenu titleForItemAtIndex:i];
+            baseVc.s_type = self.dataArr[i][@"type_id"];
             [self addChildViewController:baseVc];
-            // 控制器本来自带childViewControllers,但是遗憾的是该数组的元素顺序永远无法改变，只要是addChildViewController,都是添加到最后一个，而控制器不像数组那样，可以插入或删除任意位置，所以这里自己定义可变数组，以便插入(删除)(如果没有插入(删除)功能，直接用自带的childViewControllers即可)
+
             [self.myChildViewControllers addObject:baseVc];
         }
     }
@@ -198,8 +198,8 @@
     }
     
     return _dataArr;
-    
 }
+
 -(NSMutableArray*)myChildViewControllers{
     
     if (!_myChildViewControllers) {
@@ -207,8 +207,8 @@
     }
     
     return _myChildViewControllers;
-    
 }
+
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {
@@ -216,8 +216,8 @@
     }
     
     return _controllerClassNames;
-    
 }
+
 -(NodataView*)nodataView{
     if (!_nodataView) {
         _nodataView = [[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:nil options:nil].firstObject;

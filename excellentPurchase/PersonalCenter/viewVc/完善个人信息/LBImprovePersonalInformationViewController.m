@@ -203,6 +203,7 @@
     dict[@"address"] = self.detailAddressTF.text;
     dict[@"user_sex"] = self.user_sex;
     dict[@"truename"] = self.nameTF.text;
+    dict[@"type"] = @"1";//1 实名认证 2.修改个人信息
     
     [EasyShowLodingView showLoding];
     

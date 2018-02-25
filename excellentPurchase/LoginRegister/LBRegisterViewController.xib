@@ -482,10 +482,10 @@
                                         <outletCollection property="gestureRecognizers" destination="Dt2-bR-00X" appends="YES" id="MUq-yS-lJ3"/>
                                     </connections>
                                 </view>
-                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*请再次输入正确密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsG-4I-S1E">
-                                    <rect key="frame" x="233.5" y="495" width="87.5" height="11"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*初始二级密码默认为手机号后6位" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsG-4I-S1E">
+                                    <rect key="frame" x="106.5" y="495" width="139" height="11"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                    <color key="textColor" red="0.99801069499999995" green="0.39886236190000002" blue="0.40665975209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgt-Y6-GbM">
@@ -509,7 +509,6 @@
                                 <constraint firstItem="Gef-5v-pGN" firstAttribute="leading" secondItem="rwZ-NN-fG6" secondAttribute="leading" constant="30" id="EgY-Ee-zCS"/>
                                 <constraint firstItem="lsG-4I-S1E" firstAttribute="top" secondItem="6T5-X9-fbE" secondAttribute="bottom" id="Iyt-4b-8aQ"/>
                                 <constraint firstAttribute="trailing" secondItem="Zho-VB-46m" secondAttribute="trailing" constant="30" id="MHC-J0-17Q"/>
-                                <constraint firstAttribute="trailing" secondItem="lsG-4I-S1E" secondAttribute="trailing" constant="30" id="N3E-Ax-a0P"/>
                                 <constraint firstItem="6T5-X9-fbE" firstAttribute="leading" secondItem="rwZ-NN-fG6" secondAttribute="leading" constant="30" id="RhJ-kV-G1w"/>
                                 <constraint firstItem="Zho-VB-46m" firstAttribute="top" secondItem="Gef-5v-pGN" secondAttribute="bottom" constant="10" id="dGv-WT-lr9"/>
                                 <constraint firstAttribute="trailing" secondItem="Gef-5v-pGN" secondAttribute="trailing" constant="30" id="dWL-Fr-bXf"/>
@@ -517,6 +516,7 @@
                                 <constraint firstItem="kKB-jj-hY9" firstAttribute="centerX" secondItem="rwZ-NN-fG6" secondAttribute="centerX" id="jFV-Oz-QPh"/>
                                 <constraint firstItem="zgt-Y6-GbM" firstAttribute="top" secondItem="rwZ-NN-fG6" secondAttribute="top" constant="20" id="lXm-gS-IJX"/>
                                 <constraint firstItem="doX-sb-c5D" firstAttribute="leading" secondItem="rwZ-NN-fG6" secondAttribute="leading" constant="30" id="mmO-hS-Giq"/>
+                                <constraint firstItem="lsG-4I-S1E" firstAttribute="centerX" secondItem="rwZ-NN-fG6" secondAttribute="centerX" id="tFj-IU-dtp"/>
                                 <constraint firstItem="6T5-X9-fbE" firstAttribute="top" secondItem="kKB-jj-hY9" secondAttribute="bottom" constant="30" id="uvb-dl-43R"/>
                                 <constraint firstItem="Gef-5v-pGN" firstAttribute="top" secondItem="6T5-X9-fbE" secondAttribute="bottom" constant="30" id="w6l-9z-TWW"/>
                             </constraints>

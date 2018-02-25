@@ -10,4 +10,6 @@
 
 @interface LBTmallChildredViewController : UIViewController
 
+@property (nonatomic, copy)NSString *s_type;//一级分类id
+
 @end

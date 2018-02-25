@@ -329,8 +329,8 @@
         _headerView = [[NSBundle mainBundle]loadNibNamed:@"LBFinancialCenterHeaderView" owner:self options:nil].firstObject;
         _headerView.frame = CGRectMake(0, 0, UIScreenWidth, kHeaderViewH);
         _headerView.autoresizingMask = 0;
-        [_headerView.saleBt addTarget:self action:@selector(financialSaleEvent) forControlEvents:UIControlEventTouchUpInside];
-         [_headerView.exchangeBt addTarget:self action:@selector(financialExchangeEvent) forControlEvents:UIControlEventTouchUpInside];
+        [_headerView.saleBt addTarget:self action:@selector(financialExchangeEvent) forControlEvents:UIControlEventTouchUpInside];
+         [_headerView.exchangeBt addTarget:self action:@selector(financialSaleEvent) forControlEvents:UIControlEventTouchUpInside];
     }
     return _headerView;
 }

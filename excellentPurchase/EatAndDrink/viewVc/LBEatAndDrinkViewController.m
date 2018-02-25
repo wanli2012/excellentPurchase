@@ -17,7 +17,6 @@
 #import "LBHistoryHotSerachViewController.h"
 #import "NodataView.h"
 #import "GYZChooseCityController.h"
-#import "LBSaveLocationInfoModel.h"
 #import <CoreLocation/CoreLocation.h>
 
 #define pageMenuH 50   //菜单高度
@@ -46,8 +45,8 @@
     if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity] == NO && ![[LBSaveLocationInfoModel defaultUser].currentCity isEqualToString:self.cityLb.text]) {
          self.cityLb.text =  [LBSaveLocationInfoModel defaultUser].currentCity;
     }
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.nodataView];

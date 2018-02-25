@@ -113,7 +113,7 @@
                         <constraint firstAttribute="width" constant="80" id="V3j-Uu-Rnw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="出售">
+                    <state key="normal" title="兑换">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -136,7 +136,7 @@
                         <constraint firstAttribute="height" constant="30" id="hPr-Cg-KIG"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="兑换">
+                    <state key="normal" title="出售">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>

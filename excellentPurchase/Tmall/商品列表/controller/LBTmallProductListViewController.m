@@ -171,6 +171,7 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
         }
     }else{//二级分类跳转
         urlstr = SeaShoppingGoods_search;
+        dic[@"s_type"] = self.s_type;
         if ([NSString StringIsNullOrEmpty:self.keyWord] == NO) {
             dic[@"name"] = self.keyWord;
         }else{
