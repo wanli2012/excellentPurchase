@@ -96,7 +96,7 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     [self setupNpdata];//设置无数据的时候展示
     [self setuprefrsh];//数据刷新
     
-    if (self.goods_type != 0) {//1每日推荐 2精品优选 跳转进来请求数据
+    if (self.goods_type != 0 || self.jumpType == 1) {//1每日推荐 2精品优选 或者首页
         UITapGestureRecognizer  *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpSearch)];
         [self.searchView addGestureRecognizer:tapgesture];
         self.searchTf.userInteractionEnabled = NO;
@@ -161,20 +161,29 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     }
     
     NSString *urlstr = @"";
-    if (self.goods_type != 0) {//1每日推荐 2精品优选 跳转进来请求数据
-        urlstr = SeaShoppingMore_goods;
-        dic[@"goods_type"] = @(self.goods_type);
+    
+    if (self.jumpType == 1) {
+        urlstr = SeaShoppingIndex_sea_goods;
         dic[@"s_type"] = self.s_type;
         if ([NSString StringIsNullOrEmpty:self.cate_id] == NO) {
             dic[@"cate_id"] = self.cate_id;
         }
-    }else{//二级分类跳转
-        urlstr = SeaShoppingGoods_search;
-        dic[@"s_type"] = self.s_type;
-        if ([NSString StringIsNullOrEmpty:self.keyWord] == NO) {
-            dic[@"name"] = self.keyWord;
-        }else{
-            dic[@"cate_id"] = self.cate_id;
+    }else{
+        if (self.goods_type != 0) {//1每日推荐 2精品优选 跳转进来请求数据
+            urlstr = SeaShoppingMore_goods;
+            dic[@"goods_type"] = @(self.goods_type);
+            dic[@"s_type"] = self.s_type;
+            if ([NSString StringIsNullOrEmpty:self.cate_id] == NO) {
+                dic[@"cate_id"] = self.cate_id;
+            }
+        }else{//二级分类跳转
+            urlstr = SeaShoppingGoods_search;
+            dic[@"s_type"] = self.s_type;
+            if ([NSString StringIsNullOrEmpty:self.keyWord] == NO) {
+                dic[@"name"] = self.keyWord;
+            }else{
+                dic[@"cate_id"] = self.cate_id;
+            }
         }
     }
     

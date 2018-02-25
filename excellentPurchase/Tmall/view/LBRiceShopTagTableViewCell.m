@@ -1,32 +1,78 @@
 //
 //  LBRiceShopTagTableViewCell.m
-//  Universialshare
+//  excellentPurchase
 //
-//  Created by 四川三君科技有限公司 on 2017/11/11.
-//  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
+//  Created by 四川三君科技有限公司 on 2018/2/25.
+//  Copyright © 2018年 四川三君科技有限公司. All rights reserved.
 //
 
 #import "LBRiceShopTagTableViewCell.h"
+#import "LBRiceShopTagCollectionCell.h"
+
+@interface LBRiceShopTagTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionview;
+
+@end
 
 @implementation LBRiceShopTagTableViewCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        self.dwqTagV = [[LBRiceShopTagView alloc] initWithFrame:CGRectMake(10, 15, UIScreenWidth - 20, 0)];
-        self.dwqTagV.selecindex = 0;
-        [self addSubview:self.dwqTagV];
-    }
-    return self;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.collectionview registerNib:[UINib nibWithNibName:@"LBRiceShopTagCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"LBRiceShopTagCollectionCell"];
+    
+}
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self.collectionview reloadData];
+}
+#pragma UICollectionDelegate UICollectionDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.dataArr.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LBRiceShopTagCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBRiceShopTagCollectionCell" forIndexPath:indexPath];
+    cell.model = self.dataArr[indexPath.row];
+    
+    return cell;
 }
 
--(void)setHotSearchArr:(NSArray *)hotSearchArr
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    LBTmallSeconedClassifyModel *model = self.dataArr[indexPath.item];
+    [self.delegate jumpGoodsClassify:model.cate_id cataname:model.catename];
+    
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake(45, 70);
+    
+}
+
+- (CGFloat) collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    _hotSearchArr = hotSearchArr;
+    return 0.0f;
+}
+- (CGFloat) collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10.0f;
+}
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    /** 注意cell的subView的重复创建！（内部已经做了处理了......） */
-    [self.dwqTagV setTagWithTagArray:hotSearchArr];
-    
+    return UIEdgeInsetsMake(0, 10, 0, 10);
 }
 
+-(NSArray*)dataArr{
+    
+    if (!_dataArr) {
+        _dataArr = [NSArray array];
+    }
+    return _dataArr;
+    
+}
 @end
