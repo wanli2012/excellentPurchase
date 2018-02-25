@@ -36,18 +36,19 @@
     self.navigationController.navigationBar.hidden = NO;
     
     [EasyShowLodingView hidenLoding];
+    
+    //    自定义左右按钮
+    UIBarButtonItem *letfItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"taotao-saerch"] style:UIBarButtonItemStylePlain target:self action:@selector(searchProducts)];
+    self.navigationItem.leftBarButtonItem = letfItem;
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"taotao-xiaoxi"] style:UIBarButtonItemStylePlain target:self action:@selector(messageEvent)];
+    self.navigationItem.rightBarButtonItem = rightItem;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"taotao-biaoti"]];
-//    自定义左右按钮
-    UIBarButtonItem *letfItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"taotao-saerch"] style:UIBarButtonItemStylePlain target:self action:@selector(searchProducts)];
-    self.navigationItem.leftBarButtonItem = letfItem;
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"taotao-xiaoxi"] style:UIBarButtonItemStylePlain target:self action:@selector(messageEvent)];
-    self.navigationItem.rightBarButtonItem = rightItem;
     
     [self.view addSubview:self.nodataView];
     [self loadData];//加载数据
