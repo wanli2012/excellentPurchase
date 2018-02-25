@@ -239,7 +239,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     dic[@"type"] = @"3";
     dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
     dic[@"app_version"] = @"1.0.0";
-    
+    dic[@"type"] = @"2";//1 实名认证 2.修改个人信息
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     
@@ -293,7 +293,7 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"pic"] = self.headImageUrl;
-    
+    dict[@"type"] = @"2";//1 实名认证 2.修改个人信息
     [NetworkManager requestPOSTWithURLStr:kperfect_get_info paramDic:dict finish:^(id responseObject) {
         
         [EasyShowLodingView hidenLoding];

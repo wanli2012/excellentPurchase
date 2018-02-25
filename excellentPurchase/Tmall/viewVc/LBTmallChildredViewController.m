@@ -146,7 +146,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
-    dic[@"s_type"] = [LBTmallFirstCalssifymodel defaultUser].type_id;
+    dic[@"s_type"] = self.s_type;
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
@@ -250,7 +250,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
                 };
                 vc.catename = @"搜索";
                 vc.goods_type = 1;
-                vc.s_type = [LBTmallFirstCalssifymodel defaultUser].type_id;
+                vc.s_type = self.s_type;
                 [[weakSelf viewController].navigationController pushViewController:vc animated:YES];
                 [weakSelf viewController].hidesBottomBarWhenPushed = NO;
             };
@@ -332,6 +332,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0001f;
 }
+
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -345,6 +346,8 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
     vc.cate_id = dic[@"cate_id"];
     vc.catename = dic[@"catename"];
+    vc.s_type = self.s_type;
+    
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
 }

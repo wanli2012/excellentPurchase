@@ -47,7 +47,10 @@
     
     manager.requestSerializer.timeoutInterval=20;
     // 加上这行代码，https ssl 验证。
-    [manager setSecurityPolicy:[self customSecurityPolicy]];
+    if ([URL_Base containsString:@"https"]) {
+        
+        [manager setSecurityPolicy:[self customSecurityPolicy]];
+    }
 
     NSString *urlStr1 = [NSString stringWithFormat:@"%@%@",URL_Base,urlStr];
     

@@ -47,6 +47,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImage;
 //温度
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
 
 
 //@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
@@ -81,7 +82,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [super updateViewConstraints];
     self.navigationH.constant = SafeAreaTopHeight;
     self.searchView.layer.cornerRadius = 15;
-    
+    self.bottomHeight.constant = SafeAreaBottomReallyHeight;
 }
 
 - (void)viewDidLoad {
