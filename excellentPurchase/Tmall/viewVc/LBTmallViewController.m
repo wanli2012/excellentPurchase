@@ -182,7 +182,6 @@
     
 }
 
-
 -(NSMutableArray*)menuArr{
     
     if (!_menuArr) {
@@ -190,8 +189,8 @@
     }
     
     return _menuArr;
-    
 }
+
 -(NSArray*)dataArr{
     
     if (!_dataArr) {
