@@ -17,6 +17,7 @@
 #import "LBTmallProductListViewController.h"
 #import "LBTmallViewController.h"
 #import "LBProductDetailViewController.h"
+#import "LBTmallSeconedClassifyModel.h"
 
 static NSString *integralGoodsOneCell = @"GLIntegralGoodsOneCell";
 static NSString *integralGoodsTwoCell = @"GLIntegralGoodsTwoCell";
@@ -24,7 +25,7 @@ static NSString *integralHeaderTableViewCell = @"GLIntegralHeaderTableViewCell";
 static NSString *integralGoodsAciticityTableViewCell = @"LBintegralGoodsAciticityTableViewCell";
 static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
 
-@interface LBTmallChildredViewController ()<UITableViewDelegate,UITableViewDataSource,LBRiceShopTagViewDelegate,GLIntegralGoodsTwodelegete,GLIntegralGoodsOnedelegete>
+@interface LBTmallChildredViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralGoodsTwodelegete,GLIntegralGoodsOnedelegete,LBRiceShopTagTableViewCelldelegete>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (assign , nonatomic)CGFloat productListH;//缓存商品cell高度
@@ -47,7 +48,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
      [self.tableview registerNib:[UINib nibWithNibName:integralHeaderTableViewCell bundle:nil] forCellReuseIdentifier:integralHeaderTableViewCell];
      [self.tableview registerNib:[UINib nibWithNibName:integralGoodsAciticityTableViewCell bundle:nil] forCellReuseIdentifier:integralGoodsAciticityTableViewCell];
     [self.tableview registerNib:[UINib nibWithNibName:integralGoodsOneCell bundle:nil] forCellReuseIdentifier:integralGoodsOneCell];
-    [self.tableview registerClass:[LBRiceShopTagTableViewCell class] forCellReuseIdentifier:riceShopTagTableViewCell];
+    [self.tableview registerNib:[UINib nibWithNibName:riceShopTagTableViewCell bundle:nil] forCellReuseIdentifier:riceShopTagTableViewCell];
     
     [self setupNpdata];//设置无数据的时候展示
     [self setuprefrsh];//刷新
@@ -103,8 +104,10 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [self.classifydataArr removeAllObjects];
-            [self.classifydataArr addObjectsFromArray:responseObject[@"data"]];
-            
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                LBTmallSeconedClassifyModel *model = [LBTmallSeconedClassifyModel mj_objectWithKeyValues:dic];
+                [self.classifydataArr addObject:model];
+            }
         }else{
             
         }
@@ -203,7 +206,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        return self.tagViewHeight + 30;
+        return 80;
     }else  if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             return 50;
@@ -226,15 +229,10 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0){
-        LBRiceShopTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:riceShopTagTableViewCell];
-        if (!cell) {
-            cell = [[LBRiceShopTagTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:riceShopTagTableViewCell];
-        }
+        LBRiceShopTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:riceShopTagTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.dwqTagV.delegate = self;
-        /** 将通过数组计算出的tagV的高度存储 */
-        cell.hotSearchArr = [self.classifydataArr copy];
-        self.tagViewHeight = cell.dwqTagV.frame.size.height;
+        cell.dataArr = self.classifydataArr;
+        cell.delegate = self;
         return cell;
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -326,6 +324,10 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return 1.0f;
+    }else if (section == 1){
+        if (self.dataModel.groom_goods_list.count <= 0) {
+            return 0.001f;
+        }
     }
     return 10.0f;
 }
@@ -339,13 +341,12 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     
 }
 
-#pragma mark ------LBRiceShopTagViewDelegate
--(void)LBRiceShopTagView:(UIView *)dwq fetchWordToTextFiled:(NSDictionary *)dic{
-
+#pragma mark ------LBRiceShopTagTableViewCelldelegete
+-(void)jumpGoodsClassify:(NSString *)cate_id cataname:(NSString *)catename{
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBTmallProductListViewController *vc = [[LBTmallProductListViewController alloc]init];
-    vc.cate_id = dic[@"cate_id"];
-    vc.catename = dic[@"catename"];
+    vc.cate_id = cate_id;
+    vc.catename = catename;
     vc.s_type = self.s_type;
     
     [[self viewController].navigationController pushViewController:vc animated:YES];

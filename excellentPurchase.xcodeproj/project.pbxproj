@@ -835,7 +835,6 @@
 		F95B5319200C83ED00A81954 /* LBMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B5317200C83ED00A81954 /* LBMineTableViewCell.m */; };
 		F95B531A200C83ED00A81954 /* LBMineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */; };
 		F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B531B200C8E1000A81954 /* LBRiceShopTagView.m */; };
-		F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B531E200C8E1100A81954 /* LBRiceShopTagTableViewCell.m */; };
 		F95B532A200CA1FC00A81954 /* DLNavigationTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B5329200CA1FB00A81954 /* DLNavigationTabBar.m */; };
 		F95B532E200CA23E00A81954 /* LBProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95B532C200CA23E00A81954 /* LBProductDetailViewController.m */; };
 		F95B532F200CA23E00A81954 /* LBProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B532D200CA23E00A81954 /* LBProductDetailViewController.xib */; };
@@ -1006,6 +1005,11 @@
 		F98D1A3A201DC68D0021D3B1 /* LBEat_cateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F98D1A39201DC68D0021D3B1 /* LBEat_cateModel.m */; };
 		F98D1A3D201DD1E00021D3B1 /* LBEat_cateDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F98D1A3C201DD1E00021D3B1 /* LBEat_cateDataModel.m */; };
 		F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C727B20099E4200E996FD /* taotaoShop.xcassets */; };
+		F9D31AC42042A239008707F0 /* LBTmallSeconedClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */; };
+		F9D31AC82042A3B7008707F0 /* LBRiceShopTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC62042A3B7008707F0 /* LBRiceShopTagTableViewCell.m */; };
+		F9D31AC92042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D31AC72042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib */; };
+		F9D31ACD2042A4B2008707F0 /* LBRiceShopTagCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31ACB2042A4B2008707F0 /* LBRiceShopTagCollectionCell.m */; };
+		F9D31ACE2042A4B2008707F0 /* LBRiceShopTagCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D31ACC2042A4B2008707F0 /* LBRiceShopTagCollectionCell.xib */; };
 		F9D7CAB5201B44C100C87C58 /* Label_btn.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D7CAA1201B44C100C87C58 /* Label_btn.m */; };
 		F9D7CAB6201B44C100C87C58 /* XC_label.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D7CAA3201B44C100C87C58 /* XC_label.m */; };
 		F9D7CAB7201B44C100C87C58 /* XC_labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D7CAA6201B44C100C87C58 /* XC_labelCollectionViewCell.m */; };
@@ -2496,8 +2500,6 @@
 		F95B5318200C83ED00A81954 /* LBMineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineTableViewCell.xib; sourceTree = "<group>"; };
 		F95B531B200C8E1000A81954 /* LBRiceShopTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRiceShopTagView.m; sourceTree = "<group>"; };
 		F95B531C200C8E1100A81954 /* LBRiceShopTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRiceShopTagView.h; sourceTree = "<group>"; };
-		F95B531D200C8E1100A81954 /* LBRiceShopTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRiceShopTagTableViewCell.h; sourceTree = "<group>"; };
-		F95B531E200C8E1100A81954 /* LBRiceShopTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRiceShopTagTableViewCell.m; sourceTree = "<group>"; };
 		F95B5328200CA1FB00A81954 /* DLNavigationTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNavigationTabBar.h; sourceTree = "<group>"; };
 		F95B5329200CA1FB00A81954 /* DLNavigationTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNavigationTabBar.m; sourceTree = "<group>"; };
 		F95B532B200CA23E00A81954 /* LBProductDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBProductDetailViewController.h; sourceTree = "<group>"; };
@@ -2767,6 +2769,14 @@
 		F98D1A3B201DD1E00021D3B1 /* LBEat_cateDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_cateDataModel.h; sourceTree = "<group>"; };
 		F98D1A3C201DD1E00021D3B1 /* LBEat_cateDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_cateDataModel.m; sourceTree = "<group>"; };
 		F99C727B20099E4200E996FD /* taotaoShop.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = taotaoShop.xcassets; sourceTree = "<group>"; };
+		F9D31AC22042A239008707F0 /* LBTmallSeconedClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallSeconedClassifyModel.h; sourceTree = "<group>"; };
+		F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallSeconedClassifyModel.m; sourceTree = "<group>"; };
+		F9D31AC52042A3B7008707F0 /* LBRiceShopTagTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRiceShopTagTableViewCell.h; sourceTree = "<group>"; };
+		F9D31AC62042A3B7008707F0 /* LBRiceShopTagTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBRiceShopTagTableViewCell.m; sourceTree = "<group>"; };
+		F9D31AC72042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBRiceShopTagTableViewCell.xib; sourceTree = "<group>"; };
+		F9D31ACA2042A4B2008707F0 /* LBRiceShopTagCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRiceShopTagCollectionCell.h; sourceTree = "<group>"; };
+		F9D31ACB2042A4B2008707F0 /* LBRiceShopTagCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBRiceShopTagCollectionCell.m; sourceTree = "<group>"; };
+		F9D31ACC2042A4B2008707F0 /* LBRiceShopTagCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBRiceShopTagCollectionCell.xib; sourceTree = "<group>"; };
 		F9D7CAA0201B44C100C87C58 /* Label_btn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label_btn.h; sourceTree = "<group>"; };
 		F9D7CAA1201B44C100C87C58 /* Label_btn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label_btn.m; sourceTree = "<group>"; };
 		F9D7CAA2201B44C100C87C58 /* XC_label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XC_label.h; sourceTree = "<group>"; };
@@ -6654,8 +6664,12 @@
 				F9340A232009F5220002DBB8 /* LBIntegralGoodsTwoCollectionViewCell.h */,
 				F9340A242009F5220002DBB8 /* LBIntegralGoodsTwoCollectionViewCell.m */,
 				F9340A252009F5220002DBB8 /* LBIntegralGoodsTwoCollectionViewCell.xib */,
-				F95B531D200C8E1100A81954 /* LBRiceShopTagTableViewCell.h */,
-				F95B531E200C8E1100A81954 /* LBRiceShopTagTableViewCell.m */,
+				F9D31AC52042A3B7008707F0 /* LBRiceShopTagTableViewCell.h */,
+				F9D31AC62042A3B7008707F0 /* LBRiceShopTagTableViewCell.m */,
+				F9D31AC72042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib */,
+				F9D31ACA2042A4B2008707F0 /* LBRiceShopTagCollectionCell.h */,
+				F9D31ACB2042A4B2008707F0 /* LBRiceShopTagCollectionCell.m */,
+				F9D31ACC2042A4B2008707F0 /* LBRiceShopTagCollectionCell.xib */,
 				F95B531C200C8E1100A81954 /* LBRiceShopTagView.h */,
 				F95B531B200C8E1000A81954 /* LBRiceShopTagView.m */,
 			);
@@ -6669,6 +6683,8 @@
 				F923B2C92020A54E00DFEF7C /* LBTmallFirstCalssifymodel.m */,
 				F95035F220215DE800093644 /* LBTmallhomepageDataModel.h */,
 				F95035F320215DE800093644 /* LBTmallhomepageDataModel.m */,
+				F9D31AC22042A239008707F0 /* LBTmallSeconedClassifyModel.h */,
+				F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -8044,6 +8060,7 @@
 				4AB3DCB32016C4CA00099650 /* LBMineOrderDetailViewController.xib in Resources */,
 				F9340A1B2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.xib in Resources */,
 				F95035FD2021DBEA00093644 /* LBTmallHotsearchViewController.xib in Resources */,
+				F9D31AC92042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib in Resources */,
 				4A0EDF8B2018A2E30037D47A /* shopperManagement.xcassets in Resources */,
 				4AA3A17B20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.xib in Resources */,
 				4AA3A15E20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib in Resources */,
@@ -8140,6 +8157,7 @@
 				4A20E9B320132A3300E091EA /* GLMine_Message_SystemController.xib in Resources */,
 				F95072FC2004A7620026D28F /* GLNearby_ClassifyHeaderView.xib in Resources */,
 				F9712CDE200474100015037A /* like.caf in Resources */,
+				F9D31ACE2042A4B2008707F0 /* LBRiceShopTagCollectionCell.xib in Resources */,
 				4A0EDF8420189BAD0037D47A /* GLMine_Manage_Branch_DoneController.xib in Resources */,
 				4A54139F2010ADA9008A2FBD /* GLMine_Team_HistoryHeader.xib in Resources */,
 				4AA3A1682019819800C94E49 /* GLMine_Branch_AchievementCell.xib in Resources */,
@@ -8455,7 +8473,6 @@
 				F9426B4C201ABC810054417E /* LBAddCounterView.m in Sources */,
 				F96CF44C201824540070658C /* LBMineOrderDetailPriceTableViewCell.m in Sources */,
 				F923B2012020021F00DFEF7C /* ZXDataMatrixDefaultPlacement.m in Sources */,
-				F95B5320200C8E1100A81954 /* LBRiceShopTagTableViewCell.m in Sources */,
 				F930948B202BEEB4004763A1 /* UIImage+Rotate.m in Sources */,
 				F923B2462020021F00DFEF7C /* ZXUPCEANReader.m in Sources */,
 				4AB58883201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m in Sources */,
@@ -8570,6 +8587,7 @@
 				F923B2712020021F00DFEF7C /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				F95036002021F5F800093644 /* LBTmallProductDetailModel.m in Sources */,
 				4AB5887E201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.m in Sources */,
+				F9D31ACD2042A4B2008707F0 /* LBRiceShopTagCollectionCell.m in Sources */,
 				F923B2412020021F00DFEF7C /* ZXUPCAReader.m in Sources */,
 				4AA3A1D9201A169E00C94E49 /* GLMine_Seller_OrderDetail_ExpressCell.m in Sources */,
 				4AA306ED202873EF001D223A /* GLMine_Team_MemberDataController.m in Sources */,
@@ -8884,6 +8902,7 @@
 				4AA3A20F201A218200C94E49 /* LBVoucherCenterRecoderViewController.m in Sources */,
 				F9340A1D2009E7A90002DBB8 /* LBIntegralGoodsOneCollectionViewCell.m in Sources */,
 				F9264A23201967A3000A0011 /* LBStoreInformationViewController.m in Sources */,
+				F9D31AC42042A239008707F0 /* LBTmallSeconedClassifyModel.m in Sources */,
 				F9426B6F201AF74A0054417E /* LBShopProductClassifyMenuReusableView.m in Sources */,
 				F923B21E2020021F00DFEF7C /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				4A20E9BC20132D1700E091EA /* GLMine_Message_InteractCell.m in Sources */,
@@ -8973,6 +8992,7 @@
 				F98A02DB203159840010D49E /* yindaotuViewController.m in Sources */,
 				F95B531F200C8E1100A81954 /* LBRiceShopTagView.m in Sources */,
 				4AFC0EB0201581C7004518F4 /* GLMine_ShoppingCartCell.m in Sources */,
+				F9D31AC82042A3B7008707F0 /* LBRiceShopTagTableViewCell.m in Sources */,
 				F97137552006025F0033F38B /* GLRecommendController.m in Sources */,
 				F923B2772020021F00DFEF7C /* ZXMultiDetector.m in Sources */,
 				F9F7759F20271956007FB5CD /* LBUerUnderLineOrdersCell.m in Sources */,
