@@ -153,6 +153,9 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 }
 //智能排序
 - (IBAction)intelligentSortingEvent:(UIButton *)sender {
+    if (self.currentbt == sender) {
+        return;
+    }
     self.hot = 0;
     self.nice = 0;
     sender.selected = YES;
@@ -162,7 +165,11 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 }
 //热门
 - (IBAction)hotSortingEvent:(UIButton *)sender {
+    if (self.currentbt == sender) {
+        return;
+    }
     self.hot = 2;
+    self.nice = 0;
     sender.selected = YES;
     self.currentbt.selected = NO;
     self.currentbt = sender;
@@ -170,7 +177,11 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
 }
 //好评
 - (IBAction)replaySortingEvent:(UIButton *)sender {
+    if (self.currentbt == sender) {
+        return;
+    }
     self.nice = 2;
+    self.hot = 0;
     sender.selected = YES;
     self.currentbt.selected = NO;
     self.currentbt = sender;

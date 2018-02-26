@@ -241,7 +241,9 @@ static NSString *accountManagementTableViewCell = @"LBAccountManagementTableView
     dic[@"app_version"] = @"1.0.0";
     dic[@"type"] = @"2";//1 实名认证 2.修改个人信息
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
-    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    if ([URL_Base containsString:@"https"]) {
+        [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    }
     
     manager.requestSerializer.timeoutInterval = 20;
 

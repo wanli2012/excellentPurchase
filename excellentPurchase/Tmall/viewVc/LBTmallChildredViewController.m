@@ -348,6 +348,10 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     vc.cate_id = cate_id;
     vc.catename = catename;
     vc.s_type = self.s_type;
+    WeakSelf;
+    vc.refreshBlock = ^(BOOL isCollected) {
+         [weakSelf setuprefrsh];//刷新
+    };
     
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;

@@ -314,7 +314,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     dic[@"app_version"] = kAPP_VERSION;
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
-    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    if ([URL_Base containsString:@"https"]) {
+        [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    }
     manager.requestSerializer.timeoutInterval = 20;
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
