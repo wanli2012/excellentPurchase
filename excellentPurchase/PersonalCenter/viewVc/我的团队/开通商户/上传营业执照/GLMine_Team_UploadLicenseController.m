@@ -79,7 +79,9 @@
     
     self.rightBtn.enabled = NO;
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];
-    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    if ([URL_Base containsString:@"https"]) {
+        [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    }
     manager.requestSerializer.timeoutInterval = 20;
     [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
