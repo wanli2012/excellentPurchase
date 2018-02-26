@@ -9,7 +9,6 @@
 #import "LBTmallViewController.h"
 #import "SPPageMenu.h"
 #import "LBTmallChildredViewController.h"
-//#import "LBTmallProductListViewController.h"
 #import "LBTmallFirstCalssifymodel.h"
 #import "LBTmallHotsearchViewController.h"
 #import "NodataView.h"
@@ -45,6 +44,7 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

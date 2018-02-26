@@ -49,8 +49,8 @@
 //https://app.helloyogo.com/index.php/Home/User/Register?tjrid=SH18426019
 //服务条款
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
-//#define URL_Base @"https://app.helloyogo.com/index.php/App/"
-#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
+#define URL_Base @"https://app.helloyogo.com/index.php/App/"
+//#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
 #define share_URL_Base @"https://app.helloyogo.com/index.php/"//分享
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"
