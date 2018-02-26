@@ -19,4 +19,8 @@
 @property (nonatomic, copy)NSString *address_area; //区
 @property (nonatomic, copy)NSString *address_address;//详细地址
 
+@property (nonatomic, copy)NSString *chinese_province;//省名
+@property (nonatomic, copy)NSString *chinese_city;//市名
+@property (nonatomic, copy)NSString *chinese_area;//区名
+
 @end

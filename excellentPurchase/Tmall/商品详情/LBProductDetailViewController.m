@@ -632,10 +632,12 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     dic[@"specid"] = @(self.specid);
     dic[@"itemid"] = @(self.itemid);
     dic[@"goods_option_id"] = @(self.goods_option_id);
+    
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;
     }
+    
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:UserCartAdd_cart paramDic:dic finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {

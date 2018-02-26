@@ -57,7 +57,14 @@
 - (void)setModel:(GLMine_AddressModel *)model{
     _model = model;
     self.nameLb.text = model.truename;
-    self.adressLn.text = [NSString stringWithFormat:@"%@",model.address_address];
+    
+    if (model.chinese_area.length == 0) {
+        self.adressLn.text = [NSString stringWithFormat:@"%@%@%@",model.chinese_province,model.chinese_city,model.address_address];
+    }else{
+        
+        self.adressLn.text = [NSString stringWithFormat:@"%@%@%@%@",model.chinese_province,model.chinese_city,model.chinese_area,model.address_address];
+    }
+    
     self.phoneLb.text = model.phone;
     
     if ([model.is_default integerValue] == 1) { //是否默认  1是 0否
