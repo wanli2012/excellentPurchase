@@ -40,7 +40,6 @@
     [self postRequest:YES];
 }
 
-
 /**
  设置无数据图
  */
@@ -91,6 +90,7 @@
             }
             
         }else{
+            
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
         
@@ -104,7 +104,6 @@
         [self.tableView reloadData];
         
     }];
-    
 }
 
 #pragma mark -UITableviewDelegate
@@ -127,12 +126,14 @@
     
     return 172;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_DetailController *detailVC = [[GLMine_Branch_DetailController alloc] init];
     GLMine_Manage_Branch_DoneModel *model = self.models[indexPath.row];
     detailVC.title = model.sname;
+    detailVC.sid = model.sid;
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }

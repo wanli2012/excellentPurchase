@@ -97,6 +97,7 @@
     WeakSelf;
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_UploadLicenseController *uploadVC = [[GLMine_Team_UploadLicenseController alloc] init];
+    uploadVC.firstUrl = self.proofUrl;
     
     uploadVC.block = ^(NSString *firstUrl) {
         
