@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_ManagementController">
             <connections>
                 <outlet property="IDNumberLabel" destination="0hk-BC-kQ5" id="x7V-8I-LZB"/>
+                <outlet property="branchManageBtn" destination="Zba-Ls-WOE" id="6at-ET-enF"/>
+                <outlet property="contentViewHeight" destination="DQU-eH-OC2" id="SpI-Yb-pzW"/>
                 <outlet property="contentViewWidth" destination="dad-3e-Awj" id="bZk-qB-a5g"/>
                 <outlet property="monthTotalLabel" destination="Aei-Sh-9RS" id="c5i-rh-Bl6"/>
                 <outlet property="monthView" destination="T8e-zi-4Sw" id="gl5-wZ-YYP"/>
@@ -367,7 +369,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="2yR-AI-793"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="开通分店">
+                                            <state key="normal" title="分店管理">
                                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>

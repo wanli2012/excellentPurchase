@@ -96,8 +96,6 @@
 #pragma mark - 请求数据
 -(void)postRequest:(BOOL)isRefresh{
 
-    [EasyShowLodingView showLodingText:@"数据请求中"];
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     dic[@"uid"] = [UserModel defaultUser].uid;
@@ -199,8 +197,6 @@
         
         dic[@"cart_id"] = [cart_idArr componentsJoinedByString:@","];
         dic[@"num"] = [numArr componentsJoinedByString:@","];
-        
-        [EasyShowLodingView showLoding];
         
         [NetworkManager requestPOSTWithURLStr:ksave_cart paramDic:dic finish:^(id responseObject) {
             [LBDefineRefrsh dismissRefresh:self.tableView];
@@ -324,7 +320,6 @@
         dic[@"token"] = [UserModel defaultUser].token;
     }
     
-    [EasyShowLodingView showLoding];
     self.clearBtn.backgroundColor = [UIColor lightGrayColor];
     self.clearBtn.enabled = NO;
     [NetworkManager requestPOSTWithURLStr:OrderConfirm_product_order paramDic:dic finish:^(id responseObject) {

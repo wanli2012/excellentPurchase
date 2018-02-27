@@ -26,10 +26,13 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 
+#import "IQKeyboardManager.h"
+
 @interface GLMine_Team_OpenSellerController ()<UITextFieldDelegate>
 {
     BOOL _isAgreeProtocol;
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;//手机号
 @property (weak, nonatomic) IBOutlet UITextField *codeTF;//验证码
@@ -115,8 +118,24 @@
         self.benefitViewHeight.constant = 80;
         
     }
+//    [IQKeyboardManager sharedManager].enable = NO;
+    
+    [IQKeyboardManager sharedManager].preventShowingBottomBlankSpace = NO;
+    
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+//    [IQKeyboardManager sharedManager].enable = YES;
+}
+
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    [IQKeyboardManager sharedManager].enable = YES;
+//}
+
+
 #pragma mark - 获取验证码
 - (IBAction)getCode:(id)sender {
     
@@ -490,10 +509,15 @@
     WeakSelf;
     LBBaiduMapViewController *vc = [[LBBaiduMapViewController alloc]init];
     vc.returePositon = ^(NSString *strposition, NSString *pro, NSString *city, NSString *area, CLLocationCoordinate2D coors) {
-        weakSelf.mapLoacationTF.text = strposition;
-        weakSelf.lat = coors.latitude;
-        weakSelf.lng = coors.longitude;
+        
+        if (strposition.length != 0) {
+            
+            weakSelf.mapLoacationTF.text = strposition;
+            weakSelf.lat = coors.latitude;
+            weakSelf.lng = coors.longitude;
+        }
     };
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -664,6 +688,57 @@
 }
 
 #pragma mark - UITextfieldDelegate
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//
+//    float offset = 0.0f;
+//
+//    if(textField == self.benefitTF){
+//
+//        offset = -20;
+//
+//    }
+//
+//    NSTimeInterval animationDuration = 0.30f;
+//
+//    [UIView beginAnimations:@"ResizeForKeyBoard"context:nil];
+//
+//    [UIView setAnimationDuration:animationDuration];
+//
+//    float width = self.view.frame.size.width;
+//
+//    float height = self.view.frame.size.height;
+//
+//    CGRect rect = CGRectMake(0.0f, offset , width, height);
+//
+//    self.view.frame = rect;
+//
+//    [UIView commitAnimations];
+//
+//
+//    return YES;
+//}
+//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+//    float offset = 0.0f;
+//
+//    NSTimeInterval animationDuration = 0.30f;
+//
+//    [UIView beginAnimations:@"ResizeForKeyBoard"context:nil];
+//
+//    [UIView setAnimationDuration:animationDuration];
+//
+//    float width = self.view.frame.size.width;
+//
+//    float height = self.view.frame.size.height;
+//
+//    CGRect rect = CGRectMake(0.0f, offset , width, height);
+//
+//    self.view.frame = rect;
+//
+//    [UIView commitAnimations];
+//
+//    return YES;
+//}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     if (textField == self.phoneTF) {

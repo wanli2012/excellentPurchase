@@ -103,7 +103,10 @@
 #pragma mark - 团队业绩
 - (IBAction)teamAchievement:(id)sender {
     
-    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP ||
+       [[UserModel defaultUser].group_id integerValue] == GROUP_USER ||
+       [[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+        
         [EasyShowTextView showInfoText:@"权限不足"];
         return;
     }
