@@ -621,7 +621,6 @@
     dic[@"city"] = self.cityStrId;
     dic[@"area"] = self.countryStrId;
     dic[@"type_id"] = self.stroeType_id;
-//    dic[@"brand_id"] = self.brand_id;
     dic[@"address"] = self.addressTF.text;
     dic[@"lng"] = @(self.lng);
     dic[@"lat"] = @(self.lat);
@@ -630,18 +629,22 @@
     dic[@"password"] = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
     dic[@"confirmpass"] = [RSAEncryptor encryptString:self.ensurepwdTF.text publicKey:public_RSA];
     
+    NSString *url;
     if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺 3,开通分店
         dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺 3,开通分店
+        url = kappend_shop;
     }else if(self.pushType == 2){
         dic[@"type"] = @"2";
         dic[@"accounts"] = self.recommendIDTF.text;  //type等于2传注册商铺时填写的推荐人账户
+        url = kappend_shop;
     }else if(self.pushType == 3){//1是创客开通商铺 2是注册商铺 3,开通分店
         dic[@"type"] = @"3";
         dic[@"profit_phone"] = self.benefitTF.text;//type等于3传注册商铺时填写的收益人id或电话
+        url = kappend_shop_son;
     }
    
     [EasyShowLodingView showLodingText:@"数据请求中"];
-    [NetworkManager requestPOSTWithURLStr:kappend_shop paramDic:dic finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:url paramDic:dic finish:^(id responseObject) {
         
         [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {

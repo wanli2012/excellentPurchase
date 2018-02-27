@@ -144,6 +144,7 @@
         self.editviewBottom.constant = 0;
     }
 
+    [EasyShowLodingView hidenLoding];
 }
 
 /**

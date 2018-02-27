@@ -27,9 +27,9 @@
 - (void)setModel:(GLMine_Manage_Branch_DoneModel *)model{
     _model = model;
     
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.picName] placeholderImage:[UIImage imageNamed:PlaceHolder]];
-    self.storeNameLabel.text = model.storeName;
-    self.accountLabel.text = model.account;
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.storeNameLabel.text = model.sname;
+    self.accountLabel.text = model.uname;
     self.reasonLabel.text = model.reason;
     
 }

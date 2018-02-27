@@ -88,9 +88,7 @@
         
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
-        
     }];
-    
 }
 
 /**
@@ -123,7 +121,6 @@
     self.month_OnlineLabel.text = [NSString stringWithFormat:@"¥ %@",data_month_up];
     self.month_OfflineLabel.text = [NSString stringWithFormat:@"¥ %@",data_month_earth];
     
-    
     if([self.dataDic[@"store_main"] integerValue] == 2){//商铺默认2 1主店 2分店
         self.branchManageBtn.hidden = YES;
         self.contentViewHeight.constant = 550;
@@ -144,7 +141,6 @@
             return @"0.00";
         }else{
             return @"";
-            
         }
     }else{
         return str;
@@ -166,7 +162,6 @@
     [self.navigationController pushViewController:makeOrderVC animated:YES];
     
 }
-
 
 #pragma mark - 六块主功能
 /**

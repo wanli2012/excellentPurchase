@@ -96,11 +96,11 @@
             
             if(i == 1){//申请中
                 GLMine_Manage_Branch_ApplyController *vc = (GLMine_Manage_Branch_ApplyController *)baseVc;
-                vc.type = 1; //1:申请中 0:已冻结
+                vc.type = 1; //查询的状态 1审核中 2申请失败 3已完成 4已冻结
                 
             }else if(i == 2){//已冻结
                 GLMine_Manage_Branch_ApplyController *vc = (GLMine_Manage_Branch_ApplyController *)baseVc;
-                vc.type = 0; //1:申请中 0:已冻结
+                vc.type = 4; //查询的状态 1审核中 2申请失败 3已完成 4已冻结
             }
           
             [self addChildViewController:baseVc];

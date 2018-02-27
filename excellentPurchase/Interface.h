@@ -144,6 +144,9 @@
 #define kupdate_tjr @"User/update_tjr"//修改用户推荐人
 
 #define ksave_cart @"UserCart/save_cart"//用户批量改变购物车商品数量--黄炜
+#define kstore_son_list @"Store/store_son_list"//用户批量改变购物车商品数量--黄炜
+#define kappend_shop_son @"Store/append_shop_son"//开通分店-峰-江海林
+
 
 
 
