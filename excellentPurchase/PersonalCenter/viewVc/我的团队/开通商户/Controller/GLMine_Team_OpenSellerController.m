@@ -60,6 +60,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *recommendViewHeight;//推荐人view 高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *brandNameViewHeight;//品牌名称view 高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *brandCertificateViewHeight;//品牌授权书view 高度
+@property (weak, nonatomic) IBOutlet UIView *benefitView;//收益人view
+@property (weak, nonatomic) IBOutlet UITextField *benefitTF;//收益人TF
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *benefitViewHeight;//收益人高度
 
 @property (nonatomic, strong)NSArray *areaDataArr;
 
@@ -99,10 +102,18 @@
         self.navigationItem.title = @"注册商家";
         self.recommendViewHeight.constant = 50;
         self.recommendView.hidden = NO;
-    }else{
+    }else if(self.pushType == 1){
         self.navigationItem.title = @"开通商家";
         self.recommendViewHeight.constant = 0;
         self.recommendView.hidden = YES;
+    }else if(self.pushType == 3){
+        self.navigationItem.title = @"开通分店";
+        self.recommendViewHeight.constant = 0;
+        self.recommendView.hidden = YES;
+        
+        self.benefitView.hidden = NO;
+        self.benefitViewHeight.constant = 80;
+        
     }
     
 }
@@ -171,8 +182,8 @@
         }
     });
     dispatch_resume(_timer);
-    
 }
+
 #pragma mark - 扫码
 - (IBAction)scan:(id)sender {
     //设置扫码区域参数
@@ -219,8 +230,8 @@
         if (arr.count >= 2) {
             weakself.recommendIDTF.text = arr[1];
         }
-        
     };
+    
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     
@@ -586,7 +597,7 @@
     dic[@"city"] = self.cityStrId;
     dic[@"area"] = self.countryStrId;
     dic[@"type_id"] = self.stroeType_id;
-    dic[@"brand_id"] = self.brand_id;
+//    dic[@"brand_id"] = self.brand_id;
     dic[@"address"] = self.addressTF.text;
     dic[@"lng"] = @(self.lng);
     dic[@"lat"] = @(self.lat);
@@ -595,11 +606,14 @@
     dic[@"password"] = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
     dic[@"confirmpass"] = [RSAEncryptor encryptString:self.ensurepwdTF.text publicKey:public_RSA];
     
-    if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺
-        dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺
-    }else{
+    if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺 3,开通分店
+        dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺 3,开通分店
+    }else if(self.pushType == 2){
         dic[@"type"] = @"2";
         dic[@"accounts"] = self.recommendIDTF.text;  //type等于2传注册商铺时填写的推荐人账户
+    }else if(self.pushType == 3){//1是创客开通商铺 2是注册商铺 3,开通分店
+        dic[@"type"] = @"3";
+        dic[@"profit_phone"] = self.benefitTF.text;//type等于3传注册商铺时填写的收益人id或电话
     }
    
     [EasyShowLodingView showLodingText:@"数据请求中"];

@@ -68,6 +68,8 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];

@@ -217,6 +217,7 @@
     GLMine_Seller_SetMoneyController *vc = [[GLMine_Seller_SetMoneyController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 //面对面订单
 - (IBAction)faceToFaceOrders:(UIButton *)sender {
     self.hidesBottomBarWhenPushed = YES;

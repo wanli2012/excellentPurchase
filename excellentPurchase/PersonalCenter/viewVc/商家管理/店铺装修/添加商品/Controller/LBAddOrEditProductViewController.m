@@ -216,7 +216,9 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
 - (IBAction)submit:(id)sender {
     
     [self.view endEditing:YES];
-    if(self.goodsNameTF.text.length == 0){
+    
+    NSString *str = [self.goodsNameTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(str.length == 0){
         [EasyShowTextView showInfoText:@"请填写商品名字"];
         return;
     }
@@ -687,17 +689,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return YES;
     }
     
-    if (textField == self.goodsNameTF) {
-        if ([predicateModel inputShouldLetterOrNum:string]) {
-            return YES;
-        }else if ([predicateModel IsChinese:string]) {
-            return YES;
-        }else {
-            
-            [self.view endEditing:YES];
-            [EasyShowTextView showInfoText:@"商品名只能包含汉字,数字,英文"];
-            return NO;
-        }
+    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
+    if (![string isEqualToString:tem]) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"商品名不能输入空格"];
+        return NO;
     }
     
     if (textField == self.stockTF) {

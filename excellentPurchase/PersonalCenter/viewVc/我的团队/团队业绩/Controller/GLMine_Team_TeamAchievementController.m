@@ -136,6 +136,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP ||
+       [[UserModel defaultUser].group_id integerValue] == GROUP_USER ||
+       [[UserModel defaultUser].group_id integerValue] == GROUP_TG){
+        
+        [EasyShowTextView showInfoText:@"该身份没有下级了"];
+        return;
+    }
+    
     GLMine_TeamAchievementModel *model = self.models[indexPath.row];
     
     self.hidesBottomBarWhenPushed = YES;

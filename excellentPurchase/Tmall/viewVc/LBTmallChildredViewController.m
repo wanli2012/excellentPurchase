@@ -308,6 +308,11 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
     vc.goods_id = productid;
+    WeakSelf;
+    vc.block = ^(NSInteger index, BOOL isCollected) {
+        [weakSelf craetDispathGroup];
+    };
+    
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
 }

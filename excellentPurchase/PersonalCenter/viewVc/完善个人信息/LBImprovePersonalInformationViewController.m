@@ -160,6 +160,10 @@
         [EasyShowTextView showInfoText:@"姓名请输入2-15位"];
         return;
     }
+    if(![predicateModel deptNameInputShouldChinese:self.nameTF.text]){
+        [EasyShowTextView showInfoText:@"真实姓名请输入中文"];
+        return;
+    }
     if (self.IDTF.text.length == 0) {
         [EasyShowTextView showInfoText:@"请输入身份证号"];
         return;
@@ -252,13 +256,12 @@
         
         return YES;
     }
-    if (textField == self.nameTF) {
-        if ([predicateModel inputShouldLetter:string] || [predicateModel inputShouldChinese:string]) {
-            return YES;
-        }else{
-            [EasyShowTextView showInfoText:@"真实姓名输入不合法"];
-            return NO;
-        }
+    
+    NSString *tem = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]componentsJoinedByString:@""];
+    if (![string isEqualToString:tem]) {
+        [self.view endEditing:YES];
+        [EasyShowTextView showInfoText:@"此处不能输入空格"];
+        return NO;
     }
     
     if (textField == self.IDTF) {
@@ -268,13 +271,6 @@
             [EasyShowTextView showInfoText:@"身份证号只能输入数字和X,x"];
             return NO;
         }
-        
-//        if (textField.text.length > 17) {
-//            textField.text = [textField.text substringToIndex:18];
-//            [self.view endEditing:YES];
-//            [EasyShowTextView showInfoText:@"身份证号长度超过限制"];
-//            return NO;
-//        }
         
     }
     return YES;

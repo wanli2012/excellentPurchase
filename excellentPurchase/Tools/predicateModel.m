@@ -81,12 +81,24 @@
 }
 
 +(BOOL)IsChinese:(NSString *)str {
+    
     for(int i=0; i< [str length];i++){
         int a = [str characterAtIndex:i];
-        if( a >= 0x4e00 && a <= 0x9fff)
-        { return YES;
+        if( a >= 0x4e00 && a <= 0x9fff){
+            return YES;
         }
-    } return NO;
+    }
+    return NO;
+}
+
+#pragma mark 是否全是中文
++ (BOOL)deptNameInputShouldChinese:(NSString *)str
+{
+    if (str.length == 0) return NO;
+    NSString *regex = @"[\u4e00-\u9fa5]+";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [pred evaluateWithObject:str];
+    
 }
 
 +(BOOL)judgePassWordLegal:(NSString *)pass{
@@ -98,7 +110,6 @@
         result = [pred evaluateWithObject:pass];
 
        return result;
-    
 }
 
 //直接调用这个方法就行
