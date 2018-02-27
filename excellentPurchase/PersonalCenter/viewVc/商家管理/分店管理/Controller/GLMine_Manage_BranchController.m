@@ -12,7 +12,8 @@
 #import "GLMine_Manage_Branch_DoneController.h"//已完成
 #import "GLMine_Manage_Branch_FailedController.h"//申请失败
 #import "GLMine_Manage_Branch_ApplyController.h"//申请中 , 已冻结
-#import "GLMine_Branch_OpenStoreController.h"//开通分店
+//#import "GLMine_Branch_OpenStoreController.h"//开通分店(已废弃)
+#import "GLMine_Team_OpenSellerController.h"//开通分店(开通商店)
 
 #define pageMenuH 50   //菜单高度
 
@@ -38,6 +39,7 @@
     [self setNav];
     [self addMenu];//加载菜单
 }
+
 - (void)setNav{
     
     self.navigationItem.title = @"分店管理";
@@ -60,7 +62,8 @@
     
     self.hidesBottomBarWhenPushed = YES;
 
-    GLMine_Branch_OpenStoreController *openVC= [[GLMine_Branch_OpenStoreController alloc] init];
+    GLMine_Team_OpenSellerController *openVC= [[GLMine_Team_OpenSellerController alloc] init];
+    openVC.pushType = 3;
     
     [self.navigationController pushViewController:openVC animated:YES];
     

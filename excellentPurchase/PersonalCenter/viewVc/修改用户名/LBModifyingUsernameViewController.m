@@ -19,9 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [self.nameTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    
+
     [self setNav];
 }
 
@@ -53,11 +51,14 @@
         [EasyShowTextView showInfoText:@"请输入你的新昵称"];
         return;
     }
+    
     if (self.nameTF.text.length > 8) {
         
+        self.nameTF.text = [self.nameTF.text substringToIndex:8];
         [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
         return;
     }
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"UPDATE";
     dic[@"uid"] = [UserModel defaultUser].uid;
@@ -94,20 +95,7 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-
 #pragma mark - UITextfieldDelegate
-
-//- (void)textFieldDidChange:(UITextField *)textField
-//{
-//    if (textField == self.nameTF) {
-//        if (textField.text.length > 8) {
-//            [self.view endEditing:YES];
-//            [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
-//            textField.text = [textField.text substringToIndex:8];
-//        }
-//    }
-//}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [self.view endEditing:YES];
@@ -120,22 +108,9 @@
         
         return YES;
     }
-    
-    if (textField.text.length > 8) {
-        [self.view endEditing:YES];
-        [EasyShowTextView showInfoText:@"用户名请不要超过8个字"];
-        textField.text = [textField.text substringToIndex:8];
-    }
-    
+
     return YES;
 }
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    
-    if (textField.text.length > 8) {
-        
-        textField.text = [textField.text substringToIndex:8];
-    }
-    return YES;
-}
+
 
 @end

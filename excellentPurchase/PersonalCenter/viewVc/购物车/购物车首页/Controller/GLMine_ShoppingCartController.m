@@ -96,8 +96,6 @@
 #pragma mark - 请求数据
 -(void)postRequest:(BOOL)isRefresh{
 
-    [EasyShowLodingView showLodingText:@"数据请求中"];
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     dic[@"uid"] = [UserModel defaultUser].uid;
@@ -179,6 +177,48 @@
         self.editView.hidden = NO;
         self.clearView.hidden = YES;
     }else{
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"app_handler"] = @"UPDATE";
+        dic[@"uid"] = [UserModel defaultUser].uid;
+        dic[@"token"] = [UserModel defaultUser].token;
+        
+        NSMutableArray *cart_idArr = [NSMutableArray array];
+        NSMutableArray *numArr = [NSMutableArray array];
+        
+        for (GLMine_ShoppingCartDataModel *sectionModel in self.models) {
+            
+            for (GLMine_ShoppingCartModel *model in sectionModel.goods) {
+              
+                [cart_idArr addObject:model.id];
+                [numArr addObject:model.buy_num];
+            }
+        }
+        
+        dic[@"cart_id"] = [cart_idArr componentsJoinedByString:@","];
+        dic[@"num"] = [numArr componentsJoinedByString:@","];
+        
+        [NetworkManager requestPOSTWithURLStr:ksave_cart paramDic:dic finish:^(id responseObject) {
+            [LBDefineRefrsh dismissRefresh:self.tableView];
+            [EasyShowLodingView hidenLoding];
+            
+            if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+                
+            }else{
+                
+                [EasyShowTextView showErrorText:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+
+            [EasyShowLodingView hidenLoding];
+            [EasyShowTextView showErrorText:error.localizedDescription];
+            [self.tableView reloadData];
+            
+        }];
+        
         [self.rightBtn setTitle:@"编辑" forState:UIControlStateNormal];
         self.editView.hidden = YES;
         self.clearView.hidden = NO;
@@ -195,7 +235,6 @@
                 num += 1;
                 totalPrice = totalPrice + [model.buy_num integerValue] * [model.marketprice floatValue];
             }
-            
         }
     }
  
@@ -281,7 +320,6 @@
         dic[@"token"] = [UserModel defaultUser].token;
     }
     
-    [EasyShowLodingView showLoding];
     self.clearBtn.backgroundColor = [UIColor lightGrayColor];
     self.clearBtn.enabled = NO;
     [NetworkManager requestPOSTWithURLStr:OrderConfirm_product_order paramDic:dic finish:^(id responseObject) {

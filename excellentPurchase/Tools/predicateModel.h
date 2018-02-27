@@ -21,6 +21,8 @@
 + (BOOL) IsBankCard:(NSString *)cardNumber;
 //判断是否包含汉字
 + (BOOL) IsChinese:(NSString *)str;
+//判断是否全是汉字
++ (BOOL)deptNameInputShouldChinese:(NSString *)str;
 //判断只含有数字或字母
 +(BOOL)judgePassWordLegal:(NSString *)pass;
 //判断字符串是否包含数字，字母，或混合

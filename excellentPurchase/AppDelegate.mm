@@ -17,6 +17,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 
+#import "IQKeyboardManager.h"
+
 #import <UMSocialCore/UMSocialCore.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #define WEIXI_APPKEY @"wx63ad845caa3425b7"
@@ -83,6 +85,8 @@
     [self configUSharePlatforms];
     
     [self addKeyBoardNotice];//监听键盘
+    
+    [IQKeyboardManager sharedManager].enable = YES;
 
     return YES;
 }
@@ -112,6 +116,7 @@
     //                            stringByReplacingOccurrencesOfString: @" " withString: @""];
     
 }
+
 //iOS10以下使用这个方法接收通知
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
@@ -280,10 +285,6 @@
     [EasyShowTextView showText:strMsg];
 }
 
-
-
-
-
 -(void)ListenNetWork{
     //开启网络状况的监听
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
@@ -404,4 +405,6 @@
     }
     return _keyMaskView;
 }
+
+
 @end

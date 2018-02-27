@@ -57,6 +57,7 @@
     self.groupTypeLabel.text = model.group_id;
     
 }
+
 - (void)setMemberModel:(GLMine_Team_MemberModel *)memberModel{
     _memberModel = memberModel;
     self.typeView.hidden = YES;

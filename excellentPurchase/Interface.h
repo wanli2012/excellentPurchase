@@ -49,11 +49,13 @@
 //https://app.helloyogo.com/index.php/Home/User/Register?tjrid=SH18426019
 //服务条款
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
-//#define URL_Base @"https://app.helloyogo.com/index.php/App/"
-#define URL_Base @"http://cs5.hytc.gs/index.php/App/"
+
+//#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"//个人本地
+//#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上
+#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//线下服务器
+
 #define share_URL_Base @"https://app.helloyogo.com/index.php/"//分享
 
-//#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"
 
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
 #define kREGISTER_URL @"User/register"//注册
@@ -140,6 +142,10 @@
 #define kfast_login @"User/fast_login"//店铺管理 营业额*--黄炜
 #define kstore_commit @"OrderLine/store_commit"//线下下单
 #define kupdate_tjr @"User/update_tjr"//修改用户推荐人
+
+#define ksave_cart @"UserCart/save_cart"//用户批量改变购物车商品数量--黄炜
+
+
 
 
 #endif /* Interface_h */

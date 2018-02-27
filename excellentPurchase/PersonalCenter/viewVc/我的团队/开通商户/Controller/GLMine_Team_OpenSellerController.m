@@ -26,10 +26,13 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 
+#import "IQKeyboardManager.h"
+
 @interface GLMine_Team_OpenSellerController ()<UITextFieldDelegate>
 {
     BOOL _isAgreeProtocol;
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;//手机号
 @property (weak, nonatomic) IBOutlet UITextField *codeTF;//验证码
@@ -60,6 +63,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *recommendViewHeight;//推荐人view 高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *brandNameViewHeight;//品牌名称view 高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *brandCertificateViewHeight;//品牌授权书view 高度
+@property (weak, nonatomic) IBOutlet UIView *benefitView;//收益人view
+@property (weak, nonatomic) IBOutlet UITextField *benefitTF;//收益人TF
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *benefitViewHeight;//收益人高度
 
 @property (nonatomic, strong)NSArray *areaDataArr;
 
@@ -99,13 +105,37 @@
         self.navigationItem.title = @"注册商家";
         self.recommendViewHeight.constant = 50;
         self.recommendView.hidden = NO;
-    }else{
+    }else if(self.pushType == 1){
         self.navigationItem.title = @"开通商家";
         self.recommendViewHeight.constant = 0;
         self.recommendView.hidden = YES;
+    }else if(self.pushType == 3){
+        self.navigationItem.title = @"开通分店";
+        self.recommendViewHeight.constant = 0;
+        self.recommendView.hidden = YES;
+        
+        self.benefitView.hidden = NO;
+        self.benefitViewHeight.constant = 80;
+        
     }
+//    [IQKeyboardManager sharedManager].enable = NO;
+    
+    [IQKeyboardManager sharedManager].preventShowingBottomBlankSpace = NO;
+    
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+//    [IQKeyboardManager sharedManager].enable = YES;
+}
+
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    [IQKeyboardManager sharedManager].enable = YES;
+//}
+
+
 #pragma mark - 获取验证码
 - (IBAction)getCode:(id)sender {
     
@@ -171,8 +201,8 @@
         }
     });
     dispatch_resume(_timer);
-    
 }
+
 #pragma mark - 扫码
 - (IBAction)scan:(id)sender {
     //设置扫码区域参数
@@ -219,8 +249,8 @@
         if (arr.count >= 2) {
             weakself.recommendIDTF.text = arr[1];
         }
-        
     };
+    
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     
@@ -479,10 +509,15 @@
     WeakSelf;
     LBBaiduMapViewController *vc = [[LBBaiduMapViewController alloc]init];
     vc.returePositon = ^(NSString *strposition, NSString *pro, NSString *city, NSString *area, CLLocationCoordinate2D coors) {
-        weakSelf.mapLoacationTF.text = strposition;
-        weakSelf.lat = coors.latitude;
-        weakSelf.lng = coors.longitude;
+        
+        if (strposition.length != 0) {
+            
+            weakSelf.mapLoacationTF.text = strposition;
+            weakSelf.lat = coors.latitude;
+            weakSelf.lng = coors.longitude;
+        }
     };
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -586,7 +621,7 @@
     dic[@"city"] = self.cityStrId;
     dic[@"area"] = self.countryStrId;
     dic[@"type_id"] = self.stroeType_id;
-    dic[@"brand_id"] = self.brand_id;
+//    dic[@"brand_id"] = self.brand_id;
     dic[@"address"] = self.addressTF.text;
     dic[@"lng"] = @(self.lng);
     dic[@"lat"] = @(self.lat);
@@ -595,11 +630,14 @@
     dic[@"password"] = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
     dic[@"confirmpass"] = [RSAEncryptor encryptString:self.ensurepwdTF.text publicKey:public_RSA];
     
-    if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺
-        dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺
-    }else{
+    if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺 3,开通分店
+        dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺 3,开通分店
+    }else if(self.pushType == 2){
         dic[@"type"] = @"2";
         dic[@"accounts"] = self.recommendIDTF.text;  //type等于2传注册商铺时填写的推荐人账户
+    }else if(self.pushType == 3){//1是创客开通商铺 2是注册商铺 3,开通分店
+        dic[@"type"] = @"3";
+        dic[@"profit_phone"] = self.benefitTF.text;//type等于3传注册商铺时填写的收益人id或电话
     }
    
     [EasyShowLodingView showLodingText:@"数据请求中"];
@@ -650,6 +688,57 @@
 }
 
 #pragma mark - UITextfieldDelegate
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//
+//    float offset = 0.0f;
+//
+//    if(textField == self.benefitTF){
+//
+//        offset = -20;
+//
+//    }
+//
+//    NSTimeInterval animationDuration = 0.30f;
+//
+//    [UIView beginAnimations:@"ResizeForKeyBoard"context:nil];
+//
+//    [UIView setAnimationDuration:animationDuration];
+//
+//    float width = self.view.frame.size.width;
+//
+//    float height = self.view.frame.size.height;
+//
+//    CGRect rect = CGRectMake(0.0f, offset , width, height);
+//
+//    self.view.frame = rect;
+//
+//    [UIView commitAnimations];
+//
+//
+//    return YES;
+//}
+//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+//    float offset = 0.0f;
+//
+//    NSTimeInterval animationDuration = 0.30f;
+//
+//    [UIView beginAnimations:@"ResizeForKeyBoard"context:nil];
+//
+//    [UIView setAnimationDuration:animationDuration];
+//
+//    float width = self.view.frame.size.width;
+//
+//    float height = self.view.frame.size.height;
+//
+//    CGRect rect = CGRectMake(0.0f, offset , width, height);
+//
+//    self.view.frame = rect;
+//
+//    [UIView commitAnimations];
+//
+//    return YES;
+//}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     if (textField == self.phoneTF) {
