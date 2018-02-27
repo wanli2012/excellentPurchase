@@ -127,7 +127,7 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.allCount = [responseObject[@"data"][@"count"] integerValue];
             
-            if (isDirect) {
+            if (isDirect==YES) {
                 if (self.allCount == 0) {
                     [EasyShowTextView showText:@"未找到相关信息"];
                 }
@@ -161,7 +161,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     sender.selected = YES;
     self.currentbt.selected = NO;
     self.currentbt = sender;
-      [self loadData:1 refreshDirect:YES];
+    self.page = 1;
+    [self loadData:self.page refreshDirect:YES];
 }
 //热门
 - (IBAction)hotSortingEvent:(UIButton *)sender {
@@ -173,7 +174,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     sender.selected = YES;
     self.currentbt.selected = NO;
     self.currentbt = sender;
-      [self loadData:1 refreshDirect:YES];
+    self.page = 1;
+      [self loadData:self.page refreshDirect:YES];
 }
 //好评
 - (IBAction)replaySortingEvent:(UIButton *)sender {
@@ -185,7 +187,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     sender.selected = YES;
     self.currentbt.selected = NO;
     self.currentbt = sender;
-      [self loadData:1 refreshDirect:YES];
+    self.page = 1;
+    [self loadData:self.page refreshDirect:YES];
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
