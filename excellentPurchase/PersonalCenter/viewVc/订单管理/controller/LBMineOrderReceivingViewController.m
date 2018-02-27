@@ -71,7 +71,8 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
             [EasyShowTextView showInfoText:@"没有数据了"];
             [LBDefineRefrsh dismissRefresh:weakSelf.tableview];
         }else{
-            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
+            weakSelf.page = weakSelf.page + 1;
+            [weakSelf loadData:weakSelf.page refreshDirect:NO];
         }
     }];
     

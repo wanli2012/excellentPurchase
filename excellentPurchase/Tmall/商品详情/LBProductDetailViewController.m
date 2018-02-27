@@ -599,6 +599,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     dic[@"goods_str"] = self.model.goods_id;
     dic[@"spec_str"] = @(self.goods_option_id);
     dic[@"count_str"] = @(_mystandardsView.buyNum);
+
     if ([UserModel defaultUser].loginstatus == YES) {
         dic[@"uid"] = [UserModel defaultUser].uid;
         dic[@"token"] = [UserModel defaultUser].token;

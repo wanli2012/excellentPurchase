@@ -73,7 +73,8 @@ static NSString *mineCollectionProductTableViewCell = @"LBMineCollectionProductT
             [EasyShowTextView showInfoText:@"没有数据了"];
             [LBDefineRefrsh dismissRefresh:self.tableview];
         }else{
-            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
+            weakSelf.page = weakSelf.page + 1;
+            [weakSelf loadData:weakSelf.page refreshDirect:NO];
         }
     }];
 }

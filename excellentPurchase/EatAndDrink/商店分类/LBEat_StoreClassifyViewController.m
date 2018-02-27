@@ -75,7 +75,6 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
     self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
     self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
     
-    
     //emptyView内容上的点击事件监听
     [self.tableview.ly_emptyView setTapContentViewBlock:^{
         weakSelf.page = 1;
@@ -94,7 +93,8 @@ static NSString *nearby_classifyCell = @"GLNearby_classifyCell";
             [EasyShowTextView showInfoText:@"没有数据了"];
             [LBDefineRefrsh dismissRefresh:self.tableview];
         }else{
-            [weakSelf loadData:weakSelf.page++ refreshDirect:NO];
+            weakSelf.page = weakSelf.page + 1;
+            [weakSelf loadData:weakSelf.page refreshDirect:NO];
         }
     }];
 }
