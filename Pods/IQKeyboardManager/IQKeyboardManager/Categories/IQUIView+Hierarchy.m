@@ -57,6 +57,34 @@
 
 -(UIViewController *)topMostController
 {
+//    NSMutableArray<UIViewController*> *controllersHierarchy = [[NSMutableArray alloc] init];
+//
+//    UIViewController *topController = self.window.rootViewController;
+//
+//    if (topController)
+//    {
+//        [controllersHierarchy addObject:topController];
+//    }
+//
+//    while ([topController presentedViewController]) {
+//
+//        topController = [topController presentedViewController];
+//        [controllersHierarchy addObject:topController];
+//    }
+//
+//    UIViewController *matchController = [self viewController];
+//
+//    while (matchController != nil && [controllersHierarchy containsObject:matchController] == NO)
+//    {
+//        do
+//        {
+//            matchController = (UIViewController*)[matchController nextResponder];
+//
+//        } while (matchController != nil && [matchController isKindOfClass:[UIViewController class]] == NO);
+//    }
+//
+//    return (UIViewController*)matchController;
+    
     NSMutableArray<UIViewController*> *controllersHierarchy = [[NSMutableArray alloc] init];
     
     UIViewController *topController = self.window.rootViewController;
@@ -74,16 +102,9 @@
     
     UIViewController *matchController = [self viewController];
     
-    while (matchController != nil && [controllersHierarchy containsObject:matchController] == NO)
-    {
-        do
-        {
-            matchController = (UIViewController*)[matchController nextResponder];
-            
-        } while (matchController != nil && [matchController isKindOfClass:[UIViewController class]] == NO);
-    }
-    
     return (UIViewController*)matchController;
+    
+    
 }
 
 -(UIView*)superviewOfClassType:(Class)classType

@@ -382,7 +382,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             self.hidesBottomBarWhenPushed = YES;
             LBEat_StoreClassifyViewController *vc = [[LBEat_StoreClassifyViewController alloc]init];
             vc.cate_name = @"吃喝玩乐";
-
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }

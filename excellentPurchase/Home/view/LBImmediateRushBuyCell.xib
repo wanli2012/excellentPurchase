@@ -18,23 +18,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="296" height="262.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shouye-huodong" translatesAutoresizingMaskIntoConstraints="NO" id="vdb-4o-ycr">
-                        <rect key="frame" x="20" y="20" width="256" height="222.5"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="YW6-dP-npj">
+                        <rect key="frame" x="0.0" y="0.0" width="296" height="262.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </imageView>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aMf-JB-iRe">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="yDF-2F-wix"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="EOi-Nt-Fpr"/>
+                        </connections>
+                    </collectionView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="vdb-4o-ycr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Af0-8d-esq"/>
-                    <constraint firstAttribute="bottom" secondItem="vdb-4o-ycr" secondAttribute="bottom" constant="20" id="aMY-au-zni"/>
-                    <constraint firstItem="vdb-4o-ycr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="lWa-WL-Srx"/>
-                    <constraint firstAttribute="trailing" secondItem="vdb-4o-ycr" secondAttribute="trailing" constant="20" id="tPr-1D-c4W"/>
+                    <constraint firstItem="YW6-dP-npj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5On-89-JS4"/>
+                    <constraint firstAttribute="trailing" secondItem="YW6-dP-npj" secondAttribute="trailing" id="OZl-JX-pbe"/>
+                    <constraint firstAttribute="bottom" secondItem="YW6-dP-npj" secondAttribute="bottom" id="r73-Oe-jaQ"/>
+                    <constraint firstItem="YW6-dP-npj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uEA-rO-vPd"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionView" destination="YW6-dP-npj" id="3SU-U9-Kot"/>
+            </connections>
             <point key="canvasLocation" x="14" y="133.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="shouye-huodong" width="375" height="292"/>
-    </resources>
 </document>

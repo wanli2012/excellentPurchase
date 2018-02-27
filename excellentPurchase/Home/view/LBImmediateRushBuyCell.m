@@ -10,7 +10,8 @@
 #import "LBImmediateRushBuyCollectionViewCell.h"
 
 @interface LBImmediateRushBuyCell()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (strong, nonatomic) UICollectionView *collectionView;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
