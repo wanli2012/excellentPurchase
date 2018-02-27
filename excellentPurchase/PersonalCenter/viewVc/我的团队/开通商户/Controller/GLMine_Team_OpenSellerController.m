@@ -510,7 +510,7 @@
     LBBaiduMapViewController *vc = [[LBBaiduMapViewController alloc]init];
     vc.returePositon = ^(NSString *strposition, NSString *pro, NSString *city, NSString *area, CLLocationCoordinate2D coors) {
         
-        if (strposition.length != 0) {
+        if (![NSString StringIsNullOrEmpty:strposition]) {
             
             weakSelf.mapLoacationTF.text = strposition;
             weakSelf.lat = coors.latitude;

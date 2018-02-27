@@ -27,6 +27,40 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Manage_Branch_DoneCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Manage_Branch_DoneCell"];
 }
 
+- (void)postRequest:(BOOL)isRefresh {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    //    dic[@"page"] = @(self.page);
+    
+    [NetworkManager requestPOSTWithURLStr:kaddresses paramDic:dic finish:^(id responseObject) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if (isRefresh == YES) {
+                [self.models removeAllObjects];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
+    
+}
+
 #pragma mark -UITableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
