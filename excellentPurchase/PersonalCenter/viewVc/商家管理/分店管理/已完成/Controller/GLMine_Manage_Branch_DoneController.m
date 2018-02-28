@@ -38,6 +38,18 @@
     
     self.page = 1;
     [self postRequest:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"UnfreezeAccountNotification" object:nil];
+    
+}
+
+
+- (void)refreshData{
+    [self postRequest:YES];
+}
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /**
@@ -105,6 +117,7 @@
         
     }];
 }
+
 
 #pragma mark -UITableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

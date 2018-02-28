@@ -66,7 +66,6 @@
     openVC.pushType = 3;
     
     [self.navigationController pushViewController:openVC animated:YES];
-    
 }
 
 //加载菜单

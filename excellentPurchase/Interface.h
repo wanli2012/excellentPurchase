@@ -147,6 +147,7 @@
 #define kstore_son_list @"Store/store_son_list"//用户批量改变购物车商品数量--黄炜
 #define kappend_shop_son @"Store/append_shop_son"//开通分店-峰-江海林
 #define kstore_branch_find @"Store/store_branch_find"//进入分店-江海林
+#define kstore_branch_frozen @"Store/store_branch_frozen"//(解冻/冻结)分店
 
 
 

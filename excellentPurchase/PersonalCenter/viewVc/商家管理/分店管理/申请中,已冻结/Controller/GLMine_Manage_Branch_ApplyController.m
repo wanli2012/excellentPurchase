@@ -35,6 +35,15 @@
     
     self.page = 1;
     [self postRequest:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"UnfreezeAccountNotification" object:nil];
+}
+
+- (void)refreshData{
+    [self postRequest:YES];
+}
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /**
@@ -108,9 +117,52 @@
 - (void)cancelApply:(NSInteger)index{
     NSLog(@"取消申请 --- %zd",index);
 }
+
 //解冻账号
 - (void)unfrezzAccount:(NSInteger)index{
-    NSLog(@"解冻账号 --- %zd",index);
+
+    WeakSelf;
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要解冻该账号吗?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        GLMine_Manage_Branch_DoneModel *model = weakSelf.models[index];
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"app_handler"] = @"UPDATE";
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"sid"] = model.sid;//商铺id
+        dict[@"type"] = @"1";//1解冻商铺 2冻结商户
+        
+        [EasyShowLodingView showLoding];
+        [NetworkManager requestPOSTWithURLStr:kstore_branch_frozen paramDic:dict finish:^(id responseObject) {
+            
+            [EasyShowLodingView hidenLoding];
+            if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+                
+                [EasyShowTextView showInfoText:@"解冻成功"];
+                [weakSelf postRequest:YES];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UnfreezeAccountNotification" object:nil];
+                
+            }else{
+                
+                [EasyShowTextView showErrorText:responseObject[@"message"]];
+            }
+            
+        } enError:^(NSError *error) {
+            
+            [EasyShowLodingView hidenLoding];
+            [EasyShowTextView showErrorText:error.localizedDescription];
+        }];
+        
+    }];
+    
+    [alertVC addAction:cancel];
+    [alertVC addAction:ok];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 #pragma mark -UITableviewDelegate

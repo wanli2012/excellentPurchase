@@ -136,7 +136,46 @@
  冻结账号
  */
 - (IBAction)frezzAccount:(id)sender {
-    NSLog(@"冻结账号");
+    WeakSelf;
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要冻结该账号吗?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"app_handler"] = @"UPDATE";
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"sid"] = self.sid;//商铺id
+        dict[@"type"] = @"2";//1解冻商铺 2冻结商户
+        
+        [EasyShowLodingView showLoding];
+        [NetworkManager requestPOSTWithURLStr:kstore_branch_frozen paramDic:dict finish:^(id responseObject) {
+            
+            [EasyShowLodingView hidenLoding];
+            if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+
+                [EasyShowTextView showInfoText:@"冻结成功"];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UnfreezeAccountNotification" object:nil];
+                
+            }else{
+                
+                [EasyShowTextView showErrorText:responseObject[@"message"]];
+            }
+            
+        } enError:^(NSError *error) {
+            
+            [EasyShowLodingView hidenLoding];
+            [EasyShowTextView showErrorText:error.localizedDescription];
+        }];
+        
+    }];
+    
+    [alertVC addAction:cancel];
+    [alertVC addAction:ok];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 
