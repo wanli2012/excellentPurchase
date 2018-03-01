@@ -59,6 +59,34 @@
  */
 - (IBAction)save:(id)sender {
     
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"UPDATE";
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"sid"] = self.sid;//商铺id
+    dict[@"password"] = [RSAEncryptor encryptString:self.passwordNewTF.text publicKey:public_RSA];//新密码
+    dict[@"confirmpass"] = [RSAEncryptor encryptString:self.ensureTF.text publicKey:public_RSA];//确认密码
+    dict[@"paypassword"] = [RSAEncryptor encryptString:self.secondPwdTF.text publicKey:public_RSA];//二级密码
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:kstore_branch_acc paramDic:dict finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [EasyShowTextView showInfoText:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 
 #pragma UITextFieldDelegate

@@ -190,6 +190,7 @@
 
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_QueryAchievementController *vc = [[GLMine_Branch_QueryAchievementController alloc] init];
+    vc.typeIndex = 1;//1:主点的业绩查询 2:分店的业绩查询
     [self.navigationController pushViewController:vc animated:YES];
 }
 
