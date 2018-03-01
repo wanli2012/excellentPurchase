@@ -16,7 +16,9 @@
 #import "LBMerChatFaceToFaceViewController.h"//面对面订单
 #import "GLMine_Branch_Offline_PlaceOrderController.h"//线下下单
 
-@interface GLMine_ManagementController ()
+#import "GLMine_ManagementCell.h"
+
+@interface GLMine_ManagementController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 @property (weak, nonatomic) IBOutlet UIView *todayView;//当天
@@ -35,6 +37,14 @@
 @property (nonatomic, strong)NSDictionary *dataDic;//数据源
 @property (weak, nonatomic) IBOutlet UIButton *branchManageBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
+@property (weak, nonatomic) IBOutlet UILabel *orderLabel;//线下提单label
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reasonViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *reasonView;//原因View
+
+@property (nonatomic, copy)NSArray *imageArr;
+@property (nonatomic, copy)NSArray *titleArr;
 
 @end
 
@@ -45,6 +55,7 @@
     
     self.navigationItem.title = @"商家管理";
     self.contentViewWidth.constant = UIScreenWidth * 2 - 120.0/750.0 * UIScreenWidth;
+    self.contentViewHeight.constant = 800;
     
     self.todayView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
     self.todayView.layer.shadowOffset = CGSizeMake(0,0);//
@@ -57,6 +68,8 @@
     self.monthView.layer.shadowRadius = 6;//阴影半径，默认3
 
     [self postRequest];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"GLMine_ManagementCell" bundle:nil] forCellWithReuseIdentifier:@"GLMine_ManagementCell"];
 }
 
 /**
@@ -128,6 +141,15 @@
         self.branchManageBtn.hidden = NO;
         self.contentViewHeight.constant = 620;
     }
+    
+    if([self.dataDic[@"store_auditing"] integerValue] == 1){//商铺审核状态默认1 1未审核 2审核不通过 3审核通过
+        self.orderLabel.text = @"审核中";
+    }else if([self.dataDic[@"store_auditing"] integerValue] == 2){
+        self.orderLabel.text = @"重新提交";
+    }else if([self.dataDic[@"store_auditing"] integerValue] == 3){
+        self.orderLabel.text = @"线下提单";
+    }
+    
 }
 
 //判空 给数字设置默认值
@@ -233,5 +255,53 @@
     
 }
 
+#pragma mark - UICollectionviewDelegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 8;
+}
 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    GLMine_ManagementCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GLMine_ManagementCell" forIndexPath:indexPath];
+    
+    if(indexPath.row > 3){
+        cell.lineView.hidden = YES;
+    }
+    
+    cell.picImageV.image = [UIImage imageNamed:self.imageArr[indexPath.row]];
+    cell.nameLabel.text = self.titleArr[indexPath.row];
+    
+    return cell;
+}
+//定义每个UICollectionViewCell 的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake((self.view.width - 30)/4, 105);
+}
+
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 15, 20, 15);
+}
+//每个section中不同的行之间的行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+//每个item之间的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+
+#pragma mark - 懒加载
+- (NSArray *)imageArr{
+    if (!_imageArr) {
+        _imageArr = @[@"线上订单_商家管理",@"线下订单_商家管理",@"业绩查询_商家管理",@"线下提单_商家管理",@"分店管理_商家管理",@"店铺装修_商家管理",@"面对面订单_商家管理",@"收款二维码_商家管理"];
+    }
+    return _imageArr;
+}
+- (NSArray *)titleArr{
+    if (!_titleArr) {
+        _titleArr = @[@"线上订单",@"线下订单",@"业绩查询",@"线下提单",@"分店管理",@"店铺装修",@"面对面订单家",@"收款二维码"];
+    }
+    return _titleArr;
+}
 @end

@@ -149,6 +149,9 @@
 #define kstore_branch_find @"Store/store_branch_find"//进入分店-江海林
 #define kstore_branch_frozen @"Store/store_branch_frozen"//(解冻/冻结)分店
 #define kstore_branch_acc @"Store/store_branch_acc"//修改分店密码-江海林
+#define kstore_withdraw @"Store/store_withdraw"//分店取消申请
+
+
 
 
 

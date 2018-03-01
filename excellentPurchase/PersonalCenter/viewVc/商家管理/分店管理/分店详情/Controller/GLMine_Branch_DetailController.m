@@ -108,7 +108,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_AccountManageController *manageVC = [[GLMine_Branch_AccountManageController alloc] init];
-    manageVC.sid = self.shop_uid;
+    manageVC.sid = self.sid;
     
     [self.navigationController pushViewController:manageVC animated:YES];
 }
@@ -134,7 +134,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_QueryAchievementController *VC= [[GLMine_Branch_QueryAchievementController alloc] init];
-    VC.sid = self.sid;
+    VC.shop_uid = self.shop_uid;
     VC.typeIndex = 2;//1:主点的业绩查询 2:分店的业绩查询
     [self.navigationController pushViewController:VC animated:YES];
     

@@ -61,11 +61,11 @@
     GLMine_Branch_AchievementController *onlineVC = [[GLMine_Branch_AchievementController alloc] init];
     onlineVC.typeIndex = self.typeIndex;
     onlineVC.type = 1;
-    onlineVC.sid = self.sid;
+    onlineVC.shop_uid = self.shop_uid;
     GLMine_Branch_AchievementController *offlineVC = [[GLMine_Branch_AchievementController alloc] init];
     offlineVC.type = 2;
     offlineVC.typeIndex = self.typeIndex;
-    offlineVC.sid = self.sid;
+    offlineVC.shop_uid = self.shop_uid;
     onlineVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
     offlineVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
     

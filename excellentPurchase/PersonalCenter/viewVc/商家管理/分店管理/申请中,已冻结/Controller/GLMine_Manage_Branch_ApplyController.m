@@ -116,6 +116,51 @@
 //取消申请
 - (void)cancelApply:(NSInteger)index{
     NSLog(@"取消申请 --- %zd",index);
+    //kstore_withdraw
+    
+    
+    WeakSelf;
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"你确定要取消申请吗?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        GLMine_Manage_Branch_DoneModel *model = weakSelf.models[index];
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"app_handler"] = @"DELETE";
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"sid"] = model.sid;//商铺id
+        
+        [EasyShowLodingView showLoding];
+        [NetworkManager requestPOSTWithURLStr:kstore_withdraw paramDic:dict finish:^(id responseObject) {
+            
+            [EasyShowLodingView hidenLoding];
+            if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+                
+                [EasyShowTextView showInfoText:@"取消成功"];
+                [weakSelf postRequest:YES];
+                
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"UnfreezeAccountNotification" object:nil];
+                
+            }else{
+                
+                [EasyShowTextView showErrorText:responseObject[@"message"]];
+            }
+            
+        } enError:^(NSError *error) {
+            
+            [EasyShowLodingView hidenLoding];
+            [EasyShowTextView showErrorText:error.localizedDescription];
+        }];
+        
+    }];
+    
+    [alertVC addAction:cancel];
+    [alertVC addAction:ok];
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
 }
 
 //解冻账号

@@ -12,6 +12,6 @@
 
 @property (nonatomic, assign)NSInteger typeIndex;//1:主点的业绩查询 2:分店的业绩查询
 
-@property (nonatomic, copy)NSString *sid;
+@property (nonatomic, copy)NSString *shop_uid;
 
 @end
