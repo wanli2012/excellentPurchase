@@ -10,4 +10,6 @@
 
 @interface GLMine_Branch_DetailController : UIViewController
 
+@property (nonatomic, copy)NSString *sid;
+
 @end

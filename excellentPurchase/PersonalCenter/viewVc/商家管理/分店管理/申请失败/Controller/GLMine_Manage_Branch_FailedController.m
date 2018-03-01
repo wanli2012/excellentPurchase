@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic, assign)NSInteger page;
 
 @end
 
@@ -24,6 +25,83 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Manage_Branch_FailedCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Manage_Branch_FailedCell"];
+    [self setupNpdata];//设置无数据的时候展示
+    WeakSelf;
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [weakSelf postRequest:YES];
+    } footerRefresh:^{
+        [weakSelf postRequest:NO];
+    }];
+    
+    self.page = 1;
+    [self postRequest:YES];
+}
+
+
+/**
+ 设置无数据图
+ */
+-(void)setupNpdata{
+    WeakSelf;
+    self.tableView.tableFooterView = [UIView new];
+    
+    self.tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"nodata_pic"
+                                                            titleStr:@"暂无数据，点击重新加载"
+                                                           detailStr:@""];
+    self.tableView.ly_emptyView.imageSize = CGSizeMake(100, 100);
+    self.tableView.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
+    self.tableView.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
+    self.tableView.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
+    
+    //emptyView内容上的点击事件监听
+    [self.tableView.ly_emptyView setTapContentViewBlock:^{
+        [weakSelf postRequest:YES];
+    }];
+}
+
+- (void)postRequest:(BOOL)isRefresh {
+    
+    if (isRefresh) {
+        self.page = 1;
+    }else{
+        self.page ++;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"page"] = @(self.page);
+    dic[@"status"] = @"2";//查询的状态 1审核中 2申请失败 3已完成 4已冻结
+    
+    [NetworkManager requestPOSTWithURLStr:kstore_son_list paramDic:dic finish:^(id responseObject) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if (isRefresh == YES) {
+                [self.models removeAllObjects];
+            }
+            for (NSDictionary *dict in responseObject[@"data"][@"page_data"]) {
+                GLMine_Manage_Branch_DoneModel *model = [GLMine_Manage_Branch_DoneModel mj_objectWithKeyValues:dict];
+                [self.models addObject:model];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
+    
 }
 
 #pragma mark - GLMine_Manage_Branch_ApplyCellDelegate
@@ -69,21 +147,21 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-        for (int i = 0; i < 7; i ++) {
-            
-            GLMine_Manage_Branch_DoneModel *model = [[GLMine_Manage_Branch_DoneModel alloc] init];
-            model.storeName = @"小仙女的店";
-            model.picName = [NSString stringWithFormat:@"我的店%zd",i];
-            model.account = [NSString stringWithFormat:@"100%zd",i];
-            if(i == 3){
-                
-                model.reason = @"代理费婚纱礼服经理说的奖励哈三联的返回拉师傅拉还是是的发发发";
-            }else{
-                model.reason = @"代理费婚纱礼服经理";
-            }
-            
-            [_models addObject:model];
-        }
+//        for (int i = 0; i < 7; i ++) {
+//
+//            GLMine_Manage_Branch_DoneModel *model = [[GLMine_Manage_Branch_DoneModel alloc] init];
+//            model.storeName = @"小仙女的店";
+//            model.picName = [NSString stringWithFormat:@"我的店%zd",i];
+//            model.account = [NSString stringWithFormat:@"100%zd",i];
+//            if(i == 3){
+//
+//                model.reason = @"代理费婚纱礼服经理说的奖励哈三联的返回拉师傅拉还是是的发发发";
+//            }else{
+//                model.reason = @"代理费婚纱礼服经理";
+//            }
+//
+//            [_models addObject:model];
+//        }
     }
     return _models;
 }

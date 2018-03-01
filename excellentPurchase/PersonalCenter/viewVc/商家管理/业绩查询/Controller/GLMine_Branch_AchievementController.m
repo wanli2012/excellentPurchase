@@ -74,6 +74,7 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"page"] = @(self.page);
     dic[@"time"] = self.date;
+    dic[@"shop_uid"] = [UserModel defaultUser].uid;
     
     NSString *url;
     if (self.type == 1) {////1:线上业绩  0:线下业绩
@@ -144,7 +145,11 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 165;
+    if (self.type == 1) {////1:线上业绩  2:线下业绩
+        return 165;
+    }else{
+        return 215;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

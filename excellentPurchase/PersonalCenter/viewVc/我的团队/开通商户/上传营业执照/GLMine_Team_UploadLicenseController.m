@@ -55,13 +55,13 @@
 
 //保存
 - (void)save{
+    
     if (self.imageV.image == nil) {
         [EasyShowTextView showInfoText:@"请上传营业执照"];
         return;
     }
     
     [self uploadImage];
-
 }
 
 /**
@@ -82,6 +82,7 @@
     if ([URL_Base containsString:@"https"]) {
         [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     }
+    
     manager.requestSerializer.timeoutInterval = 20;
     [EasyShowLodingView showLodingText:@"上传中"];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kappend_upload] parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

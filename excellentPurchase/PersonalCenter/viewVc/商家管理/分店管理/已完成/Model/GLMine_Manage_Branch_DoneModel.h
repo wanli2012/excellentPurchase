@@ -10,14 +10,15 @@
 
 @interface GLMine_Manage_Branch_DoneModel : NSObject
 
-@property (nonatomic, copy)NSString *storeName;//店铺名
-@property (nonatomic, copy)NSString *picName;//图片
-@property (nonatomic, copy)NSString *account;//账号
-@property (nonatomic, copy)NSString *type;//类型
-@property (nonatomic, copy)NSString *month_Money;//当月销售额
-@property (nonatomic, copy)NSString *total_Money;//累计销售额
+@property (nonatomic, copy)NSString *sname;//店铺名
+@property (nonatomic, copy)NSString *thumb;//图片
+@property (nonatomic, copy)NSString *uname;//账号
+@property (nonatomic, copy)NSString *type;//类型 收益类型 1收益自营 2其它店铺收益
+@property (nonatomic, copy)NSString *fullmoon;//当月销售额
+@property (nonatomic, copy)NSString *goodsmoney;//累计销售额
 
 @property (nonatomic, copy)NSString *reason;//失败原因
+@property (nonatomic, copy)NSString *sid;//商铺id
 
 @property (nonatomic, assign)NSInteger controllerType;//1:申请中 0:已冻结
 @property (nonatomic, assign)NSInteger index;//cell下标

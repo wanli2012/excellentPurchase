@@ -12,6 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_Branch_DetailController">
             <connections>
+                <outlet property="IDNumberLabel" destination="APg-YG-uka" id="n5x-i5-REq"/>
+                <outlet property="month_incomeLabel" destination="bUr-Ue-yBw" id="8gr-o6-BJC"/>
+                <outlet property="nameLabel" destination="F6r-ze-I8g" id="NaQ-Xg-uSw"/>
+                <outlet property="picImageV" destination="L7H-XF-XEx" id="JAb-wF-rTH"/>
+                <outlet property="total_incomeLabel" destination="3ah-ol-T9E" id="wWS-lk-Kdo"/>
+                <outlet property="typeLabel" destination="AKH-Dr-cAB" id="enU-ZW-SmW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -203,10 +209,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjI-Fj-Mot" userLabel="downView">
-                                    <rect key="frame" x="0.0" y="290" width="375" height="205"/>
+                                    <rect key="frame" x="0.0" y="290" width="375" height="255"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeV-C4-zZB">
-                                            <rect key="frame" x="187" y="0.0" width="1" height="205"/>
+                                            <rect key="frame" x="187" y="0.0" width="1" height="255"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="7O9-4j-y63"/>
@@ -233,7 +239,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="NBh-ID-lX2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" title="分店详情">
+                                            <state key="normal" title="淘淘店">
                                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
@@ -241,7 +247,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm6-mv-3pJ">
-                                            <rect key="frame" x="49.5" y="105" width="130" height="50"/>
+                                            <rect key="frame" x="49.5" y="165" width="130" height="50"/>
                                             <color key="backgroundColor" red="0.92931067940000001" green="0.92946994299999997" blue="0.92930072549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="teg-Dn-Wul"/>
@@ -268,25 +274,42 @@
                                                 <action selector="frezzAccount:" destination="-1" eventType="touchUpInside" id="aJB-8c-6EV"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekZ-Bu-Xo6">
+                                            <rect key="frame" x="49" y="105" width="130.5" height="50"/>
+                                            <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="D11-Pr-8if"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="吃喝玩乐店">
+                                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="eatAndDrink:" destination="-1" eventType="touchUpInside" id="KUV-Ni-gKf"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="AeV-C4-zZB" firstAttribute="centerX" secondItem="HjI-Fj-Mot" secondAttribute="centerX" id="1hW-fO-aE5"/>
                                         <constraint firstItem="bm6-mv-3pJ" firstAttribute="width" secondItem="U9e-YA-yHK" secondAttribute="width" id="7KA-pd-yZq"/>
                                         <constraint firstItem="z3J-fI-1cQ" firstAttribute="top" secondItem="cUw-Bs-sVS" secondAttribute="bottom" constant="15" id="7dg-v7-E5g"/>
-                                        <constraint firstAttribute="height" constant="205" id="8Yw-Ib-ffU"/>
+                                        <constraint firstAttribute="height" constant="255" id="8Yw-Ib-ffU"/>
                                         <constraint firstItem="z3J-fI-1cQ" firstAttribute="width" secondItem="U9e-YA-yHK" secondAttribute="width" id="AEK-kw-ImT"/>
                                         <constraint firstAttribute="bottom" secondItem="AeV-C4-zZB" secondAttribute="bottom" id="Apf-F4-h6u"/>
-                                        <constraint firstItem="bm6-mv-3pJ" firstAttribute="top" secondItem="U9e-YA-yHK" secondAttribute="bottom" constant="15" id="EVb-w1-CTU"/>
+                                        <constraint firstItem="bm6-mv-3pJ" firstAttribute="top" secondItem="U9e-YA-yHK" secondAttribute="bottom" constant="75" id="EVb-w1-CTU"/>
                                         <constraint firstItem="U9e-YA-yHK" firstAttribute="width" secondItem="HjI-Fj-Mot" secondAttribute="width" multiplier="130/375" id="LWP-da-ZTd"/>
                                         <constraint firstItem="cUw-Bs-sVS" firstAttribute="top" secondItem="HjI-Fj-Mot" secondAttribute="top" constant="40" id="MM2-cq-Iqh"/>
                                         <constraint firstItem="AeV-C4-zZB" firstAttribute="leading" secondItem="bm6-mv-3pJ" secondAttribute="trailing" constant="7.5" id="S5h-G2-cTP"/>
                                         <constraint firstItem="AeV-C4-zZB" firstAttribute="top" secondItem="HjI-Fj-Mot" secondAttribute="top" id="SQY-R3-6OE"/>
                                         <constraint firstItem="U9e-YA-yHK" firstAttribute="top" secondItem="HjI-Fj-Mot" secondAttribute="top" constant="40" id="TBN-ye-D61"/>
+                                        <constraint firstItem="ekZ-Bu-Xo6" firstAttribute="trailing" secondItem="U9e-YA-yHK" secondAttribute="trailing" id="Wco-6x-Rp2"/>
                                         <constraint firstItem="z3J-fI-1cQ" firstAttribute="leading" secondItem="AeV-C4-zZB" secondAttribute="trailing" constant="7.5" id="Yde-wY-xKZ"/>
                                         <constraint firstItem="AeV-C4-zZB" firstAttribute="leading" secondItem="U9e-YA-yHK" secondAttribute="trailing" constant="7.5" id="beF-Au-G3r"/>
                                         <constraint firstItem="cUw-Bs-sVS" firstAttribute="width" secondItem="U9e-YA-yHK" secondAttribute="width" id="cXV-Cx-vU7"/>
                                         <constraint firstItem="cUw-Bs-sVS" firstAttribute="leading" secondItem="AeV-C4-zZB" secondAttribute="trailing" constant="7.5" id="mbS-Cr-gx0"/>
+                                        <constraint firstItem="ekZ-Bu-Xo6" firstAttribute="top" secondItem="U9e-YA-yHK" secondAttribute="bottom" constant="15" id="rKd-Sb-3b8"/>
+                                        <constraint firstItem="ekZ-Bu-Xo6" firstAttribute="leading" secondItem="U9e-YA-yHK" secondAttribute="leading" id="tYK-mq-A2j"/>
                                     </constraints>
                                 </view>
                             </subviews>

@@ -88,6 +88,7 @@
     [self creatDispathGroup];
     
 }
+
 #pragma mark -  上传图片 操作
 -(void)creatDispathGroup{
     WeakSelf;
@@ -255,10 +256,13 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    if ([type isEqualToString:@"public.image"]) {
+//    NSString *type = [info objectForKey:UIImagePickerControllerEditedImage];
+//    if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    
+//        UIImage *image = [info UIImagePickerControllerOriginalImage];
+    
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
@@ -290,7 +294,7 @@
 
         [picker dismissViewControllerAnimated:YES completion:nil];
         
-    }
+//    }
 }
 
 #pragma mark - 相册读取
@@ -312,10 +316,13 @@
     // ipc.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     // 照相机
     // ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+
     // 4.设置代理
     ipc.delegate = self;
+    ipc.allowsEditing = YES;
     // 5.modal出这个控制器
     [self presentViewController:ipc animated:YES completion:nil];
+
 }
 
 

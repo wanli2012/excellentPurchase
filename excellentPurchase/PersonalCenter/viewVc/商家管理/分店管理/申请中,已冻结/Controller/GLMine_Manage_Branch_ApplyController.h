@@ -10,6 +10,6 @@
 
 @interface GLMine_Manage_Branch_ApplyController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;//1:申请中 0:已冻结
+@property (nonatomic, assign)NSInteger type;//1:申请中 4:已冻结
 
 @end

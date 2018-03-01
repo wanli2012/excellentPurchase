@@ -91,12 +91,12 @@
 }
 
 #pragma mark - 上传打卡款凭证
-
 - (IBAction)uploadProof:(id)sender {
 
     WeakSelf;
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_UploadLicenseController *uploadVC = [[GLMine_Team_UploadLicenseController alloc] init];
+    uploadVC.firstUrl = self.proofUrl;
     
     uploadVC.block = ^(NSString *firstUrl) {
         
@@ -145,6 +145,7 @@
         [EasyShowTextView showInfoText:@"请填写用户ID号"];
         return;
     }
+    
     if (self.consumeTF.text.length == 0) {
         [EasyShowTextView showInfoText:@"请填写消费金额"];
         return;
@@ -212,7 +213,7 @@
         self.submitBtn.enabled = YES;
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            [EasyShowTextView showSuccessText:@"提交成功"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"GLMine_RefreshNotification" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             
