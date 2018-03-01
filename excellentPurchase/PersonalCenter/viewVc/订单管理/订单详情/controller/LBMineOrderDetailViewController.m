@@ -104,6 +104,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     }
     dic[@"address_id"] = self.dataModel.address_id;
     dic[@"ord_str"] = ord_str;
+    dic[@"is_cart"] = @(0);
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:OrderAppend_order_wait_pay paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];

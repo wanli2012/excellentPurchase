@@ -97,5 +97,6 @@
 #define MoneyCenterUser_money @"MoneyCenter/user_money"//用户优购币/购物券
 #define OrderStore_face_order_list @"Order/store_face_order_list"//商家面对面订单列表
 #define SeaShoppingIndex_sea_goods @"SeaShopping/index_sea_goods"//商城首页店铺类型跳转
+#define AccessGet_logisits_info @"Access/get_logisits_info"//获取物流信息
 
 #endif /* scaleHeader_h */

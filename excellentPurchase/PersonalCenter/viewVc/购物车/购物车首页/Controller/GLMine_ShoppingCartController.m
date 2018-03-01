@@ -333,6 +333,7 @@
             self.hidesBottomBarWhenPushed = YES;
             LBMineSureOrdersViewController *sureOrderVC = [[LBMineSureOrdersViewController alloc] init];
             sureOrderVC.DataArr = responseObject[@"data"];
+            sureOrderVC.is_cart = 1;
             [self.navigationController pushViewController:sureOrderVC animated:YES];
          
         }else{

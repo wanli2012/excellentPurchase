@@ -37,7 +37,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sNB-cu-Nr6">
                                             <rect key="frame" x="10" y="10" width="60" height="60"/>
-                                            <color key="backgroundColor" red="0.97379392389999997" green="0.7777363062" blue="0.028684267770000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="PA2-Mq-cTF"/>
                                                 <constraint firstAttribute="height" constant="60" id="UQ0-g6-kRR"/>

@@ -27,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"评价";
-    self.mark = 3;
+    self.mark = 0;
+    self.starView.progress = 0;
     self.navigationController.navigationBar.hidden = NO;
     
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.goods_pic] placeholderImage:nil];
@@ -68,10 +69,18 @@
  @param sender <#sender description#>
  */
 - (IBAction)submitEvent:(UIButton *)sender {
-    
+
     if (self.replyType == 1) {
+        if (_mark == 0) {
+            [EasyShowTextView showInfoText:@"请评分商品"];
+            return;
+        }
         [self replyProducts];
     }else if (self.replyType == 2){
+        if (_mark == 0) {
+            [EasyShowTextView showInfoText:@"请评分商家"];
+            return;
+        }
         [self replyMerchant];
     }
     
