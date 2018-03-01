@@ -166,6 +166,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     dic[@"spec_str"] = spec_str;
     dic[@"remark_str"] = remarkstr;
     dic[@"address_id"] = self.addressModel.address_id;
+    dic[@"is_cart"] = @(self.is_cart);
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:OrderAppend_order paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];

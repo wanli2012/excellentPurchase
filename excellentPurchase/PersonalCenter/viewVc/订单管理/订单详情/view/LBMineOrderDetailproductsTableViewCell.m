@@ -58,5 +58,12 @@
     self.specLb.text = [NSString stringWithFormat:@"规格：%@",_orderModel.ord_spec_info];
     self.discountlb.text = [NSString stringWithFormat:@"¥ %@",_orderModel.ord_goods_price];
     self.numlb.text = [NSString stringWithFormat:@"x%@",_orderModel.ord_goods_num];
+    if ([_orderModel.is_comment isEqualToString:@"1" ]) {
+        [self.replayBt setTitle:@"已评价" forState:UIControlStateNormal];
+        self.replayBt.userInteractionEnabled = NO;
+    }else{
+        [self.replayBt setTitle:@"待评价" forState:UIControlStateNormal];
+        self.replayBt.userInteractionEnabled = YES;
+    }
 }
 @end

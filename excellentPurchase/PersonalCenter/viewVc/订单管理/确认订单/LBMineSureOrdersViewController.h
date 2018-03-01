@@ -12,4 +12,7 @@
 
 @property (strong , nonatomic)NSArray *DataArr;
 
+@property (assign , nonatomic)NSInteger is_cart;//表示从购物车过来的订单
+
+
 @end

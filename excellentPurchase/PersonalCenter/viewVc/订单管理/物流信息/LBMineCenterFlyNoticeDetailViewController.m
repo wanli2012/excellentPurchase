@@ -33,19 +33,22 @@
      [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterFlyNoticeDetailOneTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterFlyNoticeDetailOneTableViewCell"];
     
     [self setupNpdata];//设置无数据的时候展示
+    [self initdatasorce];
 
 }
 
 -(void)initdatasorce{
 
     if ([NSString StringIsNullOrEmpty:self.codestr]) {
-        [EasyShowTextView showErrorText:@"物流单号有误"];
-        return;
+        self.codestr = @"";
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
     dic[@"number"] = self.codestr;
-    [NetworkManager requestPOSTWithURLStr:OrderUser_product_order paramDic:dic finish:^(id responseObject) {
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    [NetworkManager requestPOSTWithURLStr:AccessGet_logisits_info paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.model = [LBMineCenterFlyNoticeModel mj_objectWithKeyValues:responseObject[@"data"]];
