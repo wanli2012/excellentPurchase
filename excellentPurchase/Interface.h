@@ -150,7 +150,8 @@
 #define kstore_branch_frozen @"Store/store_branch_frozen"//(解冻/冻结)分店
 #define kstore_branch_acc @"Store/store_branch_acc"//修改分店密码-江海林
 #define kstore_withdraw @"Store/store_withdraw"//分店取消申请
-
+#define kshop_reiterate_save @"Store/shop_reiterate_save"//商铺重申提交-江海林
+#define kshop_reiterate_find @"Store/shop_reiterate_find"//商铺重申-江海林
 
 
 

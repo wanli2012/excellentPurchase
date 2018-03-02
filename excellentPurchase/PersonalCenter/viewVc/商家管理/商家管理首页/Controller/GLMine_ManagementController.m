@@ -7,14 +7,16 @@
 //
 
 #import "GLMine_ManagementController.h"
-#import "GLMine_Manage_BranchController.h"//分店管理
-#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
-#import "GLMine_Branch_OnlineOrderController.h"//线上订单
-#import "GLMine_Branch_OfflineOrderController.h"//线下订单
-#import "GLMine_Seller_SetMoneyController.h"//收款二维码
-#import "LBFinishMainViewController.h"
-#import "LBMerChatFaceToFaceViewController.h"//面对面订单
-#import "GLMine_Branch_Offline_PlaceOrderController.h"//线下下单
+//#import "GLMine_Manage_BranchController.h"//分店管理
+//#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
+//#import "GLMine_Branch_OnlineOrderController.h"//线上订单
+//#import "GLMine_Branch_OfflineOrderController.h"//线下订单
+//#import "GLMine_Seller_SetMoneyController.h"//收款二维码
+//#import "LBFinishMainViewController.h"
+//#import "LBMerChatFaceToFaceViewController.h"//面对面订单
+//#import "GLMine_Branch_Offline_PlaceOrderController.h"//线下下单
+
+#import "GLMine_Management_ResubmitController.h"
 
 #import "GLMine_ManagementCell.h"
 
@@ -39,12 +41,16 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *orderLabel;//线下提单label
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *reasonViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *reasonView;//原因View
+@property (weak, nonatomic) IBOutlet UILabel *reasonLabel;//失败原因
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, copy)NSArray *imageArr;
 @property (nonatomic, copy)NSArray *titleArr;
+@property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
+
+@property (nonatomic, copy)NSString *sid;//店铺id
 
 @end
 
@@ -55,7 +61,6 @@
     
     self.navigationItem.title = @"商家管理";
     self.contentViewWidth.constant = UIScreenWidth * 2 - 120.0/750.0 * UIScreenWidth;
-    self.contentViewHeight.constant = 800;
     
     self.todayView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
     self.todayView.layer.shadowOffset = CGSizeMake(0,0);//
@@ -144,11 +149,19 @@
     
     if([self.dataDic[@"store_auditing"] integerValue] == 1){//商铺审核状态默认1 1未审核 2审核不通过 3审核通过
         self.orderLabel.text = @"审核中";
+        self.reasonView.hidden = YES;
+        self.reasonViewHeight.constant = 0;
     }else if([self.dataDic[@"store_auditing"] integerValue] == 2){
-        self.orderLabel.text = @"重新提交";
+        self.orderLabel.text = @"审核失败";
+        self.reasonView.hidden = NO;
+        self.reasonLabel.text = self.dataDic[@"store_reason"];
     }else if([self.dataDic[@"store_auditing"] integerValue] == 3){
-        self.orderLabel.text = @"线下提单";
+        self.orderLabel.hidden = NO;
+        self.reasonView.hidden = YES;
+        self.reasonViewHeight.constant = 0;
     }
+    
+    self.sid = self.dataDic[@"store_id"];
     
 }
 
@@ -177,82 +190,13 @@
 
 #pragma mark - 线下提单
 - (IBAction)markOrderOffline:(id)sender {
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Branch_Offline_PlaceOrderController *makeOrderVC = [[GLMine_Branch_Offline_PlaceOrderController alloc] init];
-    makeOrderVC.type = 1;////1:线下下单 2:线下订单失败 重新下单
-    [self.navigationController pushViewController:makeOrderVC animated:YES];
-    
-}
 
-#pragma mark - 六块主功能
-/**
- 线上订单
- */
-- (IBAction)orderOnline:(id)sender {
-    
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_Branch_OnlineOrderController *vc = [[GLMine_Branch_OnlineOrderController alloc] init];
+    GLMine_Management_ResubmitController *vc = [[GLMine_Management_ResubmitController alloc] init];
+    vc.sid = self.sid;
+
     [self.navigationController pushViewController:vc animated:YES];
-}
 
-/**
- 线下订单
- */
-- (IBAction)orderOffline:(id)sender {
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Branch_OfflineOrderController *vc = [[GLMine_Branch_OfflineOrderController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/**
- 业绩查询
-  */
-- (IBAction)queryAchievement:(id)sender {
-
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Branch_QueryAchievementController *vc = [[GLMine_Branch_QueryAchievementController alloc] init];
-    vc.typeIndex = 1;//1:主点的业绩查询 2:分店的业绩查询
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/**
- 店铺装修
-  */
-- (IBAction)storeDecorate:(id)sender {
-
-    self.hidesBottomBarWhenPushed = YES;
-    LBFinishMainViewController * vc = [[LBFinishMainViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/**
- 分店管理
-  */
-- (IBAction)branchManage:(id)sender {
-
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Manage_BranchController *vc = [[GLMine_Manage_BranchController alloc] init];
-    
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/**
- 收款二维码
-  */
-- (IBAction)incomeCode:(id)sender {
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Seller_SetMoneyController *vc = [[GLMine_Seller_SetMoneyController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-//面对面订单
-- (IBAction)faceToFaceOrders:(UIButton *)sender {
-    self.hidesBottomBarWhenPushed = YES;
-    LBMerChatFaceToFaceViewController *vc = [[LBMerChatFaceToFaceViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 #pragma mark - UICollectionviewDelegate
@@ -272,6 +216,30 @@
     
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *vcstr = self.userVcArr[indexPath.row];
+    
+//    if([vcstr isEqualToString:@"GLMine_TeamController"] || [vcstr isEqualToString:@"GLMine_ManagementController"]){//我的团队 商家管理
+//        if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
+//            [EasyShowTextView showInfoText:@"请先实名认证"];
+//            return;
+//        }else if([[UserModel defaultUser].rzstatus integerValue] == 1){
+//            [EasyShowTextView showInfoText:@"实名认证审核中"];
+//            return;
+//        }else if([[UserModel defaultUser].rzstatus integerValue] == 3){
+//            [EasyShowTextView showInfoText:@"实名认证失败"];
+//            return;
+//        }
+//    }
+    
+    Class classvc = NSClassFromString(vcstr);
+    UIViewController *vc = [[classvc alloc]init];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake((self.view.width - 30)/4, 105);
@@ -298,10 +266,29 @@
     }
     return _imageArr;
 }
+
 - (NSArray *)titleArr{
     if (!_titleArr) {
         _titleArr = @[@"线上订单",@"线下订单",@"业绩查询",@"线下提单",@"分店管理",@"店铺装修",@"面对面订单家",@"收款二维码"];
     }
     return _titleArr;
 }
+
+- (NSMutableArray *)userVcArr{
+    if (!_userVcArr) {
+
+        _userVcArr=[NSMutableArray arrayWithObjects:
+                    @"GLMine_Branch_OnlineOrderController",
+                    @"GLMine_Branch_OfflineOrderController",
+                    @"GLMine_Branch_QueryAchievementController",
+                    @"GLMine_Branch_Offline_PlaceOrderController",
+                    @"GLMine_Manage_BranchController",
+                    @"LBFinishMainViewController",
+                    @"LBMerChatFaceToFaceViewController",
+                    @"GLMine_Seller_SetMoneyController",nil];
+    }
+    return _userVcArr;
+}
+
+
 @end

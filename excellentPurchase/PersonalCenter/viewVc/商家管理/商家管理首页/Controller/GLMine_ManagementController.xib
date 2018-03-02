@@ -22,6 +22,7 @@
                 <outlet property="month_OnlineLabel" destination="Zjw-A6-XtY" id="Af0-9e-BOl"/>
                 <outlet property="orderLabel" destination="ieM-fV-fcd" id="hSS-Z5-tg3"/>
                 <outlet property="picImageV" destination="1Q0-6m-ZA6" id="nzr-cy-IuY"/>
+                <outlet property="reasonLabel" destination="bxu-rg-tEx" id="yBI-sA-Npi"/>
                 <outlet property="reasonView" destination="boK-6R-yRq" id="cIv-qT-eLL"/>
                 <outlet property="reasonViewHeight" destination="WSE-tU-9xm" id="nRo-0V-a0O"/>
                 <outlet property="todayTotalLabel" destination="Eig-3p-hfM" id="ej9-i8-d34"/>
@@ -230,7 +231,7 @@
                                                 <constraint firstItem="f8h-EF-I2E" firstAttribute="top" secondItem="fjn-Kc-AVS" secondAttribute="top" id="n6Z-Zy-xGo"/>
                                             </constraints>
                                         </scrollView>
-                                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="线下提单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieM-fV-fcd">
+                                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重新提交" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieM-fV-fcd">
                                             <rect key="frame" x="304" y="15" width="80" height="30"/>
                                             <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <gestureRecognizers/>
