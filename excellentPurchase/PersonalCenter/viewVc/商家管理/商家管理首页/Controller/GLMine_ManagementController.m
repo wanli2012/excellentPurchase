@@ -7,10 +7,9 @@
 //
 
 #import "GLMine_ManagementController.h"
-
 #import "GLMine_Management_ResubmitController.h"
-
 #import "GLMine_ManagementCell.h"
+#import "GLMine_Branch_Offline_PlaceOrderController.h"
 
 @interface GLMine_ManagementController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -38,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;//失败原因
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (nonatomic, copy)NSArray *imageArr;
 @property (nonatomic, copy)NSArray *titleArr;
 @property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
@@ -148,7 +148,7 @@
         self.reasonView.hidden = NO;
         self.reasonLabel.text = self.dataDic[@"store_reason"];
     }else if([self.dataDic[@"store_auditing"] integerValue] == 3){
-        self.orderLabel.hidden = NO;
+        self.orderLabel.hidden = YES;
         self.reasonView.hidden = YES;
         self.reasonViewHeight.constant = 0;
     }
@@ -210,6 +210,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSString *vcstr = self.userVcArr[indexPath.row];
     
 //    if([vcstr isEqualToString:@"GLMine_TeamController"] || [vcstr isEqualToString:@"GLMine_ManagementController"]){//我的团队 商家管理
@@ -227,6 +228,13 @@
     
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
+    
+    if([vcstr isEqualToString:@"GLMine_Branch_Offline_PlaceOrderController"]){
+        
+        GLMine_Branch_Offline_PlaceOrderController *offLineVC = [[GLMine_Branch_Offline_PlaceOrderController alloc] init];
+        offLineVC = (GLMine_Branch_Offline_PlaceOrderController *)vc;
+        offLineVC.type = 1;
+    }
     
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

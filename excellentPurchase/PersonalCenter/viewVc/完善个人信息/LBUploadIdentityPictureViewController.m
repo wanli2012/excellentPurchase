@@ -7,7 +7,6 @@
 //
 
 #import "LBUploadIdentityPictureViewController.h"
-
 #import "HCBasePopupViewController.h"
 #import "HCBottomPopupViewController.h"
 
@@ -86,17 +85,17 @@
     }
     
     [self creatDispathGroup];
-    
 }
 
-#pragma mark -  上传图片 操作
+#pragma mark - 上传图片 操作
+
 -(void)creatDispathGroup{
     WeakSelf;
     //信号量
     [EasyShowLodingView showLodingText:@"图片上传中"];
     
     self.saveBtn.enabled = NO;
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
     //创建全局并行
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -111,7 +110,6 @@
             dispatch_semaphore_signal(semaphore);
         }];
     });
-    
     
     UIImage *image2 = self.oppositeImageV.image;
     
@@ -128,14 +126,15 @@
       
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-      
         
         dispatch_async(dispatch_get_main_queue(), ^{//返回主线程
             [EasyShowLodingView hidenLoding];
+            
             if(weakSelf.faceUrl.length == 0){
                 [EasyShowTextView showInfoText:@"身份证正面照上传失败"];
                 return;
             }
+            
             if(weakSelf.oppositeUrl.length == 0){
                 [EasyShowTextView showInfoText:@"身份证反面照上传失败"];
                 return;

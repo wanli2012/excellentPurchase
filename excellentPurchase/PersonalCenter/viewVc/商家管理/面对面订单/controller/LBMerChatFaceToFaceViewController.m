@@ -80,6 +80,7 @@ static NSString *uerUnderLineOrdersCell = @"LBMerChatFaceToFaceCell";
     [NetworkManager requestPOSTWithURLStr:OrderStore_face_order_list paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
             self.allCount = [responseObject[@"data"][@"count"] integerValue];
             if (isDirect) {
                 [self.dataArr removeAllObjects];
@@ -91,6 +92,7 @@ static NSString *uerUnderLineOrdersCell = @"LBMerChatFaceToFaceCell";
             }
             
             [self.tableview reloadData];
+            
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -122,12 +124,10 @@ static NSString *uerUnderLineOrdersCell = @"LBMerChatFaceToFaceCell";
     
     LBMerChatFaceToFaceCell *cell = [tableView dequeueReusableCellWithIdentifier:uerUnderLineOrdersCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = self.dataArr[indexPath.row];
+    cell.model = self.dataArr[indexPath.section];
     
     return cell;
-    
 }
-
 
 #pragma mark - 重写----设置自定义的标题和标注
 -(UIView*)tableView:(UITableView*)tableView viewForFooterInSection:(NSInteger)section {
@@ -135,7 +135,6 @@ static NSString *uerUnderLineOrdersCell = @"LBMerChatFaceToFaceCell";
     headerLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     return headerLabel;
-    
 }
 
 #pragma mark - 重写----设置标题和标注的高度

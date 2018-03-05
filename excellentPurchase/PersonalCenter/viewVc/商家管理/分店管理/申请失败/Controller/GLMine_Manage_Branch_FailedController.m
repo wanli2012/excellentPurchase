@@ -106,17 +106,17 @@
 }
 
 #pragma mark - GLMine_Manage_Branch_ApplyCellDelegate  重新申请
-- (void)applyAgain:(NSInteger)index{
-
-    GLMine_Manage_Branch_DoneModel *model = self.models[index];
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Management_ResubmitController *vc = [[GLMine_Management_ResubmitController alloc] init];
-    vc.sid = model.sid;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
+//- (void)applyAgain:(NSInteger)index{
+//
+//    GLMine_Manage_Branch_DoneModel *model = self.models[index];
+//
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMine_Management_ResubmitController *vc = [[GLMine_Management_ResubmitController alloc] init];
+//    vc.sid = model.sid;
+//
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//}
 
 #pragma mark -UITableviewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -128,7 +128,6 @@
     NSLog(@"--确认订单-%zd",section);
 }
 
-
 #pragma mark -UITableviewDelegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -149,8 +148,6 @@
     
     return 170;
 }
-
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

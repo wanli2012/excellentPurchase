@@ -100,7 +100,6 @@
             if ([responseObject[@"data"][@"areaname"] length] == 0) {
                 self.areaTF.text = [NSString stringWithFormat:@"%@%@",responseObject[@"data"][@"provincename"],responseObject[@"data"][@"cityname"]];
             }else{
-                
                 self.areaTF.text = [NSString stringWithFormat:@"%@%@%@",responseObject[@"data"][@"provincename"],responseObject[@"data"][@"cityname"],responseObject[@"data"][@"areaname"]];
             }
             
@@ -155,13 +154,7 @@
         return str;
     }
 }
-/**
- 赋值
- */
-- (void)assignment{
 
-    
-}
 #pragma mark - 店铺类型选择
 - (IBAction)storeTypeChoose:(id)sender {
 
