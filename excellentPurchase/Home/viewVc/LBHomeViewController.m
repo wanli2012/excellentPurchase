@@ -27,6 +27,7 @@
 #import "LBTmallProductListViewController.h"
 #import "LBEat_StoreClassifyViewController.h"
 #import "GLMine_MessageController.h"
+#import "LBTimeLimitBuyingViewController.h"
 
 @interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,GYZChooseCityDelegate,LBHorseGroupTableViewCellDelegate,ClassifyHeaderViewdelegete>
 
@@ -503,6 +504,10 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    self.hidesBottomBarWhenPushed = YES;
+    LBTimeLimitBuyingViewController *vc = [[LBTimeLimitBuyingViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 //跳搜素
 - (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {

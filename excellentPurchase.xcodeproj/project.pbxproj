@@ -826,6 +826,14 @@
 		F955D1812008AEFD001EEC81 /* LBAddBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F955D17F2008AEFD001EEC81 /* LBAddBankCardViewController.m */; };
 		F955D1822008AEFD001EEC81 /* LBAddBankCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F955D1802008AEFD001EEC81 /* LBAddBankCardViewController.xib */; };
 		F955D1932008CABC001EEC81 /* LBChooseBankTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F955D1922008CABC001EEC81 /* LBChooseBankTypeView.m */; };
+		F958100A2048E5FB0009B261 /* LBTimeLimitHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95810092048E5FB0009B261 /* LBTimeLimitHeaderView.m */; };
+		F958100C2048E6C00009B261 /* LBTimeLimitHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F958100B2048E6C00009B261 /* LBTimeLimitHeaderView.xib */; };
+		F958100F2048EA520009B261 /* LBTimeLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = F958100E2048EA520009B261 /* LBTimeLimitView.m */; };
+		F95810132048EF470009B261 /* LBTimeLimitQinggouTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95810112048EF470009B261 /* LBTimeLimitQinggouTableViewCell.m */; };
+		F95810142048EF470009B261 /* LBTimeLimitQinggouTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95810122048EF470009B261 /* LBTimeLimitQinggouTableViewCell.xib */; };
+		F95810182049311C0009B261 /* LBTimeLimitCrazingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95810162049311B0009B261 /* LBTimeLimitCrazingTableViewCell.m */; };
+		F95810192049311C0009B261 /* LBTimeLimitCrazingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95810172049311B0009B261 /* LBTimeLimitCrazingTableViewCell.xib */; };
+		F958101D204936120009B261 /* ZDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F958101B204936100009B261 /* ZDProgressView.m */; };
 		F95A72A2202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A1202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m */; };
 		F95A72A6202AAC3A001445E6 /* LBRecommendRecoderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A5202AAC3A001445E6 /* LBRecommendRecoderModel.m */; };
 		F95A72A9202AAC57001445E6 /* LBRecommendRecoderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95A72A8202AAC57001445E6 /* LBRecommendRecoderListModel.m */; };
@@ -956,6 +964,12 @@
 		F97137502005FF280033F38B /* LBModifyingUsernameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F971374E2005FF280033F38B /* LBModifyingUsernameViewController.xib */; };
 		F97137552006025F0033F38B /* GLRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97137532006025F0033F38B /* GLRecommendController.m */; };
 		F97137562006025F0033F38B /* GLRecommendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97137542006025F0033F38B /* GLRecommendController.xib */; };
+		F97719852047FA5400D168A0 /* LBTimeLimitBuyingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97719832047FA5300D168A0 /* LBTimeLimitBuyingViewController.m */; };
+		F97719862047FA5400D168A0 /* LBTimeLimitBuyingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97719842047FA5400D168A0 /* LBTimeLimitBuyingViewController.xib */; };
+		F977198A2047FC3700D168A0 /* LBTodayTimeLimitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97719882047FC3700D168A0 /* LBTodayTimeLimitViewController.m */; };
+		F977198B2047FC3700D168A0 /* LBTodayTimeLimitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97719892047FC3700D168A0 /* LBTodayTimeLimitViewController.xib */; };
+		F977198F204803E800D168A0 /* LBTimeLimitHorseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F977198D204803E800D168A0 /* LBTimeLimitHorseTableViewCell.m */; };
+		F9771990204803E800D168A0 /* LBTimeLimitHorseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F977198E204803E800D168A0 /* LBTimeLimitHorseTableViewCell.xib */; };
 		F97CDC6B2015767F0036B8E0 /* LBFinancialCenterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CDC652015767E0036B8E0 /* LBFinancialCenterHeaderView.xib */; };
 		F97CDC6C2015767F0036B8E0 /* LBFinancialCenterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC672015767E0036B8E0 /* LBFinancialCenterHeaderView.m */; };
 		F97CDC6D2015767F0036B8E0 /* LBFinancialCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97CDC692015767F0036B8E0 /* LBFinancialCenterTableViewCell.m */; };
@@ -2483,6 +2497,19 @@
 		F955D1802008AEFD001EEC81 /* LBAddBankCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBAddBankCardViewController.xib; sourceTree = "<group>"; };
 		F955D1912008CABC001EEC81 /* LBChooseBankTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBChooseBankTypeView.h; sourceTree = "<group>"; };
 		F955D1922008CABC001EEC81 /* LBChooseBankTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBChooseBankTypeView.m; sourceTree = "<group>"; };
+		F95810082048E5FB0009B261 /* LBTimeLimitHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTimeLimitHeaderView.h; sourceTree = "<group>"; };
+		F95810092048E5FB0009B261 /* LBTimeLimitHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTimeLimitHeaderView.m; sourceTree = "<group>"; };
+		F958100B2048E6C00009B261 /* LBTimeLimitHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTimeLimitHeaderView.xib; sourceTree = "<group>"; };
+		F958100D2048EA520009B261 /* LBTimeLimitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTimeLimitView.h; sourceTree = "<group>"; };
+		F958100E2048EA520009B261 /* LBTimeLimitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTimeLimitView.m; sourceTree = "<group>"; };
+		F95810102048EF470009B261 /* LBTimeLimitQinggouTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTimeLimitQinggouTableViewCell.h; sourceTree = "<group>"; };
+		F95810112048EF470009B261 /* LBTimeLimitQinggouTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTimeLimitQinggouTableViewCell.m; sourceTree = "<group>"; };
+		F95810122048EF470009B261 /* LBTimeLimitQinggouTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTimeLimitQinggouTableViewCell.xib; sourceTree = "<group>"; };
+		F95810152049311B0009B261 /* LBTimeLimitCrazingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTimeLimitCrazingTableViewCell.h; sourceTree = "<group>"; };
+		F95810162049311B0009B261 /* LBTimeLimitCrazingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTimeLimitCrazingTableViewCell.m; sourceTree = "<group>"; };
+		F95810172049311B0009B261 /* LBTimeLimitCrazingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTimeLimitCrazingTableViewCell.xib; sourceTree = "<group>"; };
+		F958101B204936100009B261 /* ZDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDProgressView.m; sourceTree = "<group>"; };
+		F958101C204936110009B261 /* ZDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDProgressView.h; sourceTree = "<group>"; };
 		F95A72A0202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineCenterFlyNoticeModel.h; sourceTree = "<group>"; };
 		F95A72A1202A9ED0001445E6 /* LBMineCenterFlyNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterFlyNoticeModel.m; sourceTree = "<group>"; };
 		F95A72A4202AAC3A001445E6 /* LBRecommendRecoderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRecommendRecoderModel.h; sourceTree = "<group>"; };
@@ -2694,6 +2721,15 @@
 		F97137522006025E0033F38B /* GLRecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendController.h; sourceTree = "<group>"; };
 		F97137532006025F0033F38B /* GLRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendController.m; sourceTree = "<group>"; };
 		F97137542006025F0033F38B /* GLRecommendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendController.xib; sourceTree = "<group>"; };
+		F97719822047FA5300D168A0 /* LBTimeLimitBuyingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTimeLimitBuyingViewController.h; sourceTree = "<group>"; };
+		F97719832047FA5300D168A0 /* LBTimeLimitBuyingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTimeLimitBuyingViewController.m; sourceTree = "<group>"; };
+		F97719842047FA5400D168A0 /* LBTimeLimitBuyingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTimeLimitBuyingViewController.xib; sourceTree = "<group>"; };
+		F97719872047FC3700D168A0 /* LBTodayTimeLimitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTodayTimeLimitViewController.h; sourceTree = "<group>"; };
+		F97719882047FC3700D168A0 /* LBTodayTimeLimitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTodayTimeLimitViewController.m; sourceTree = "<group>"; };
+		F97719892047FC3700D168A0 /* LBTodayTimeLimitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTodayTimeLimitViewController.xib; sourceTree = "<group>"; };
+		F977198C204803E800D168A0 /* LBTimeLimitHorseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTimeLimitHorseTableViewCell.h; sourceTree = "<group>"; };
+		F977198D204803E800D168A0 /* LBTimeLimitHorseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTimeLimitHorseTableViewCell.m; sourceTree = "<group>"; };
+		F977198E204803E800D168A0 /* LBTimeLimitHorseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBTimeLimitHorseTableViewCell.xib; sourceTree = "<group>"; };
 		F97CDC652015767E0036B8E0 /* LBFinancialCenterHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFinancialCenterHeaderView.xib; sourceTree = "<group>"; };
 		F97CDC662015767E0036B8E0 /* LBFinancialCenterHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterHeaderView.h; sourceTree = "<group>"; };
 		F97CDC672015767E0036B8E0 /* LBFinancialCenterHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterHeaderView.m; sourceTree = "<group>"; };
@@ -5966,6 +6002,7 @@
 		F93409F12009CF560002DBB8 /* ThreePart */ = {
 			isa = PBXGroup;
 			children = (
+				F958101A204935FE0009B261 /* ZDProgressView */,
 				F98A02D320312A990010D49E /* RSA密钥 */,
 				F932322F2026EEC8007E669A /* 支付宝 */,
 				F923B2912020093A00DFEF7C /* LYEmptyView */,
@@ -6889,6 +6926,15 @@
 			path = "选择银行卡类型";
 			sourceTree = "<group>";
 		};
+		F958101A204935FE0009B261 /* ZDProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				F958101C204936110009B261 /* ZDProgressView.h */,
+				F958101B204936100009B261 /* ZDProgressView.m */,
+			);
+			path = ZDProgressView;
+			sourceTree = "<group>";
+		};
 		F95A729F202A9EA7001445E6 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -7468,6 +7514,7 @@
 				F95072D3200492430026D28F /* model */,
 				F95072D4200492430026D28F /* view */,
 				F95072CF200492430026D28F /* viewVc */,
+				F977197E2047F9AC00D168A0 /* 限时抢购 */,
 				F9426BA8201B33A10054417E /* 搜索 */,
 			);
 			path = Home;
@@ -7595,6 +7642,57 @@
 				F97137542006025F0033F38B /* GLRecommendController.xib */,
 			);
 			path = "我的二维码";
+			sourceTree = "<group>";
+		};
+		F977197E2047F9AC00D168A0 /* 限时抢购 */ = {
+			isa = PBXGroup;
+			children = (
+				F97719812047F9F500D168A0 /* controller */,
+				F977197F2047F9F400D168A0 /* model */,
+				F97719802047F9F400D168A0 /* view */,
+			);
+			path = "限时抢购";
+			sourceTree = "<group>";
+		};
+		F977197F2047F9F400D168A0 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F97719802047F9F400D168A0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F977198C204803E800D168A0 /* LBTimeLimitHorseTableViewCell.h */,
+				F977198D204803E800D168A0 /* LBTimeLimitHorseTableViewCell.m */,
+				F977198E204803E800D168A0 /* LBTimeLimitHorseTableViewCell.xib */,
+				F95810082048E5FB0009B261 /* LBTimeLimitHeaderView.h */,
+				F95810092048E5FB0009B261 /* LBTimeLimitHeaderView.m */,
+				F958100B2048E6C00009B261 /* LBTimeLimitHeaderView.xib */,
+				F958100D2048EA520009B261 /* LBTimeLimitView.h */,
+				F958100E2048EA520009B261 /* LBTimeLimitView.m */,
+				F95810102048EF470009B261 /* LBTimeLimitQinggouTableViewCell.h */,
+				F95810112048EF470009B261 /* LBTimeLimitQinggouTableViewCell.m */,
+				F95810122048EF470009B261 /* LBTimeLimitQinggouTableViewCell.xib */,
+				F95810152049311B0009B261 /* LBTimeLimitCrazingTableViewCell.h */,
+				F95810162049311B0009B261 /* LBTimeLimitCrazingTableViewCell.m */,
+				F95810172049311B0009B261 /* LBTimeLimitCrazingTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		F97719812047F9F500D168A0 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				F97719822047FA5300D168A0 /* LBTimeLimitBuyingViewController.h */,
+				F97719832047FA5300D168A0 /* LBTimeLimitBuyingViewController.m */,
+				F97719842047FA5400D168A0 /* LBTimeLimitBuyingViewController.xib */,
+				F97719872047FC3700D168A0 /* LBTodayTimeLimitViewController.h */,
+				F97719882047FC3700D168A0 /* LBTodayTimeLimitViewController.m */,
+				F97719892047FC3700D168A0 /* LBTodayTimeLimitViewController.xib */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 		F97CDC7D20157F220036B8E0 /* 出售 */ = {
@@ -8026,6 +8124,7 @@
 				4AFC0EB92015D4C4004518F4 /* GLMine_ShoppingCartHeader.xib in Resources */,
 				4AA3A1A32019C28F00C94E49 /* GLMine_Branch_OfflineCell.xib in Resources */,
 				4A3763FA201D9BAC00BC6A9A /* LBBankCardListTableViewCell.xib in Resources */,
+				F958100C2048E6C00009B261 /* LBTimeLimitHeaderView.xib in Resources */,
 				4AB3DC8C2016C4AA00099650 /* LBMineOrderObligationViewController.xib in Resources */,
 				F95FD421200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.xib in Resources */,
 				4AB3DC8A2016C4AA00099650 /* LBMineOrderCompletedViewController.xib in Resources */,
@@ -8061,6 +8160,7 @@
 				F9340A1B2009E7A90002DBB8 /* GLIntegralGoodsTwoCell.xib in Resources */,
 				F95035FD2021DBEA00093644 /* LBTmallHotsearchViewController.xib in Resources */,
 				F9D31AC92042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib in Resources */,
+				F95810192049311C0009B261 /* LBTimeLimitCrazingTableViewCell.xib in Resources */,
 				4A0EDF8B2018A2E30037D47A /* shopperManagement.xcassets in Resources */,
 				4AA3A17B20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.xib in Resources */,
 				4AA3A15E20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib in Resources */,
@@ -8147,6 +8247,7 @@
 				F97CDC8A201591BE0036B8E0 /* LBFinancialExchangeViewController.xib in Resources */,
 				F93409FA2009CFDD0002DBB8 /* LBTmallChildredViewController.xib in Resources */,
 				F930948A202BEEB4004763A1 /* SearchViewController.xib in Resources */,
+				F9771990204803E800D168A0 /* LBTimeLimitHorseTableViewCell.xib in Resources */,
 				F96CF49A2018AB180070658C /* LBMineEvaluateViewController.xib in Resources */,
 				4AA3A21E201A218200C94E49 /* LBSendRedPackViewController.xib in Resources */,
 				4A0B140720108F0700AC3334 /* GLMine_Team_AccountChooseCell.xib in Resources */,
@@ -8216,6 +8317,7 @@
 				4AFC0E9F2015732E004518F4 /* LBEat_StoreCommentsdetailViewController.xib in Resources */,
 				F9340A0E2009E47F0002DBB8 /* GLIntegralHeaderTableViewCell.xib in Resources */,
 				4AB03002201D7ADE000A2972 /* NodataView.xib in Resources */,
+				F97719862047FA5400D168A0 /* LBTimeLimitBuyingViewController.xib in Resources */,
 				4A79EDDA200EF5F0001F28D1 /* GLMine_TeamAchievementCell.xib in Resources */,
 				4A9CBDA220240AB3004623C5 /* LBFinishProductsCell1.xib in Resources */,
 				F955D10D200853F6001EEC81 /* LBAboutUsViewController.xib in Resources */,
@@ -8245,6 +8347,7 @@
 				F9D7CAB8201B44C100C87C58 /* XC_labelCollectionViewCell.xib in Resources */,
 				F95072EE200492DA0026D28F /* LBPersonCenterViewController.xib in Resources */,
 				4AB5887F201AF987009ADC9A /* GLMine_MyWallet_CashRecordController.xib in Resources */,
+				F95810142048EF470009B261 /* LBTimeLimitQinggouTableViewCell.xib in Resources */,
 				F9264A2620196B37000A0011 /* LBStoreInformationViewController.xib in Resources */,
 				4A9E18C72011F45100E1EC05 /* GLMine_Team_UploadLicenseController.xib in Resources */,
 				4AA3A212201A218200C94E49 /* LBVoucherCenterViewController.xib in Resources */,
@@ -8264,6 +8367,7 @@
 				F9426B41201ABC810054417E /* LBAddOrEditProductChoosecell.xib in Resources */,
 				4A0EDF8920189C060037D47A /* GLMine_Manage_Branch_DoneCell.xib in Resources */,
 				4A9CBDB920246736004623C5 /* LBStoreCounterViewController.xib in Resources */,
+				F977198B2047FC3700D168A0 /* LBTodayTimeLimitViewController.xib in Resources */,
 				F96CF44D201824540070658C /* LBMineOrderDetailPriceTableViewCell.xib in Resources */,
 				F9340A3A200A200A0002DBB8 /* LBFiltrateProductViewController.xib in Resources */,
 				F969F9F9202DAE1A000B9805 /* LBMerChatFaceToFaceCell.xib in Resources */,
@@ -8475,6 +8579,7 @@
 				F923B2012020021F00DFEF7C /* ZXDataMatrixDefaultPlacement.m in Sources */,
 				F930948B202BEEB4004763A1 /* UIImage+Rotate.m in Sources */,
 				F923B2462020021F00DFEF7C /* ZXUPCEANReader.m in Sources */,
+				F958100F2048EA520009B261 /* LBTimeLimitView.m in Sources */,
 				4AB58883201AF9F8009ADC9A /* GLMine_MyWallet_CashRecordCell.m in Sources */,
 				4AA3A1962019B8D500C94E49 /* GLMine_Branch_Online_DeliveredController.m in Sources */,
 				F9426B03201ABC200054417E /* ZLPhotoPickerCustomToolBarView.m in Sources */,
@@ -8525,6 +8630,7 @@
 				4AE556A92029983A009100B1 /* GLMine_MyWallet_CashRecordModel.m in Sources */,
 				4A0EDF8E2018A59F0037D47A /* GLMine_Manage_Branch_DoneModel.m in Sources */,
 				F923B2052020021F00DFEF7C /* ZXDataMatrixHighLevelEncoder.m in Sources */,
+				F95810132048EF470009B261 /* LBTimeLimitQinggouTableViewCell.m in Sources */,
 				F923B1A32020021E00DFEF7C /* ZXAztecDetector.m in Sources */,
 				F9426B05201ABC200054417E /* ZLPhotoPickerDatas.m in Sources */,
 				F93409F92009CFDD0002DBB8 /* LBTmallChildredViewController.m in Sources */,
@@ -8579,6 +8685,7 @@
 				4AA3A17A20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.m in Sources */,
 				4AEA55762023426B00129D9A /* GLMine_Team_StaffingCell.m in Sources */,
 				4A9A8BF2202B22C200DD54CD /* GLAccountModel.m in Sources */,
+				F97719852047FA5400D168A0 /* LBTimeLimitBuyingViewController.m in Sources */,
 				4AC971CE201F27AB00255F05 /* LBMineCentermodifyAdressTableViewCell.m in Sources */,
 				F923B1E32020021F00DFEF7C /* ZXDefaultGridSampler.m in Sources */,
 				F95FD439200DC2C300F6C523 /* ThrowLineTool.m in Sources */,
@@ -8643,6 +8750,7 @@
 				F923B2692020021F00DFEF7C /* ZXQRCodeFormatInformation.m in Sources */,
 				F923B1AF2020021E00DFEF7C /* ZXAddressBookAUResultParser.m in Sources */,
 				F923B2192020021F00DFEF7C /* ZXAI01AndOtherAIs.m in Sources */,
+				F977198F204803E800D168A0 /* LBTimeLimitHorseTableViewCell.m in Sources */,
 				F97CDC89201591BE0036B8E0 /* LBFinancialExchangeViewController.m in Sources */,
 				F923B2B320206A1E00DFEF7C /* LBEatProductDetailViewController.m in Sources */,
 				F923B2C12020742C00DFEF7C /* LBEatProductDetailModel.m in Sources */,
@@ -8678,6 +8786,7 @@
 				F9426B04201ABC200054417E /* ZLPhotoAssets.m in Sources */,
 				4AE5569C202983F7009100B1 /* GLDonationRecordModel.m in Sources */,
 				F923B28E2020035A00DFEF7C /* ScanResultViewController.m in Sources */,
+				F977198A2047FC3700D168A0 /* LBTodayTimeLimitViewController.m in Sources */,
 				F923B25D2020021F00DFEF7C /* ZXPDF417HighLevelEncoder.m in Sources */,
 				F923B23F2020021F00DFEF7C /* ZXOneDimensionalCodeWriter.m in Sources */,
 				F96971C12011849A00966E26 /* LBEat_StoreDetailViewController.m in Sources */,
@@ -8698,6 +8807,7 @@
 				F9426B0F201ABC200054417E /* ZLPhotoPickerGroupTableViewCell.m in Sources */,
 				F93D5E0F20247AC3002E8FA7 /* LBRecommendRecoderCell.m in Sources */,
 				F923B1AA2020021E00DFEF7C /* ZXAztecToken.m in Sources */,
+				F958101D204936120009B261 /* ZDProgressView.m in Sources */,
 				F923B1F22020021F00DFEF7C /* ZXInvertedLuminanceSource.m in Sources */,
 				F923B1BC2020021E00DFEF7C /* ZXISBNParsedResult.m in Sources */,
 				F9426AF2201ABC200054417E /* EasyShowTextBgView.m in Sources */,
@@ -8786,6 +8896,7 @@
 				F923B2022020021F00DFEF7C /* ZXDataMatrixEdifactEncoder.m in Sources */,
 				F96CF43C20181A880070658C /* LBMineSureOrdersViewController.m in Sources */,
 				F95FD435200DC2C300F6C523 /* StandardModel.m in Sources */,
+				F958100A2048E5FB0009B261 /* LBTimeLimitHeaderView.m in Sources */,
 				F9340A3E200A22000002DBB8 /* LBFilterMallShopCollectionViewCell.m in Sources */,
 				4AA3A19E2019C14900C94E49 /* GLMine_Branch_OfflineOrderController.m in Sources */,
 				F923B2B820206A8900DFEF7C /* LBEatProductDetailTableViewCell.m in Sources */,
@@ -8935,6 +9046,7 @@
 				F923B1CF2020021E00DFEF7C /* ZXVINResultParser.m in Sources */,
 				F95073062004BB110026D28F /* LBHorseRaceLampCell.m in Sources */,
 				F97CDC95201593B30036B8E0 /* LBEat_StoreMoreCommentsTableViewCell.m in Sources */,
+				F95810182049311C0009B261 /* LBTimeLimitCrazingTableViewCell.m in Sources */,
 				4AB3DCB62016C4CA00099650 /* LBMineOrderDetailpdiscountsTableViewCell.m in Sources */,
 				4A9CBDCB2024AB43004623C5 /* GLAddOrEditProductCateModel.m in Sources */,
 				F923B1BB2020021E00DFEF7C /* ZXGeoResultParser.m in Sources */,
