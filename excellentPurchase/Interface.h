@@ -144,10 +144,15 @@
 #define kupdate_tjr @"User/update_tjr"//修改用户推荐人
 
 #define ksave_cart @"UserCart/save_cart"//用户批量改变购物车商品数量--黄炜
-#define kstore_son_list @"Store/store_son_list"//用户批量改变购物车商品数量--黄炜
+#define kstore_son_list @"Store/store_son_list"//分店列表-峰-江海林
 #define kappend_shop_son @"Store/append_shop_son"//开通分店-峰-江海林
 #define kstore_branch_find @"Store/store_branch_find"//进入分店-江海林
 #define kstore_branch_frozen @"Store/store_branch_frozen"//(解冻/冻结)分店
+#define kstore_branch_acc @"Store/store_branch_acc"//修改分店密码-江海林
+#define kstore_withdraw @"Store/store_withdraw"//分店取消申请
+#define kshop_reiterate_save @"Store/shop_reiterate_save"//商铺重申提交-江海林
+#define kshop_reiterate_find @"Store/shop_reiterate_find"//商铺重申-江海林
+
 
 
 

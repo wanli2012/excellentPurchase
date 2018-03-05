@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *month_incomeLabel;//当月销售额
 @property (weak, nonatomic) IBOutlet UILabel *total_incomeLabel;//累计销售额
 
+@property (nonatomic, copy)NSString *shop_uid;//本店的UID
+
 @end
 
 @implementation GLMine_Branch_DetailController
@@ -80,6 +82,8 @@
     self.month_incomeLabel.text = [NSString stringWithFormat:@"¥ %@",[self judgeStringIsNull:self.dicData[@"fullmoon"] andDefault:YES]];
     self.total_incomeLabel.text = [NSString stringWithFormat:@"¥ %@",[self judgeStringIsNull:self.dicData[@"goodsmoney"] andDefault:YES]];
     
+    self.shop_uid = [NSString stringWithFormat:@"%@",[self judgeStringIsNull:self.dicData[@"uid"] andDefault:NO]];
+    
 }
 
 //判空 给数字设置默认值
@@ -99,14 +103,14 @@
     }
 }
 
-
 /**账号管理*/
 - (IBAction)accountManage:(id)sender {
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_AccountManageController *manageVC = [[GLMine_Branch_AccountManageController alloc] init];
-    [self.navigationController pushViewController:manageVC animated:YES];
+    manageVC.sid = self.sid;
     
+    [self.navigationController pushViewController:manageVC animated:YES];
 }
 
 /**
@@ -124,12 +128,16 @@
 }
 
 /**
- 历史记录
+ 历史业绩
  */
 - (IBAction)historyAchievement:(id)sender {
+    
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_QueryAchievementController *VC= [[GLMine_Branch_QueryAchievementController alloc] init];
+    VC.shop_uid = self.shop_uid;
+    VC.typeIndex = 2;//1:主点的业绩查询 2:分店的业绩查询
     [self.navigationController pushViewController:VC animated:YES];
+    
 }
 
 /**

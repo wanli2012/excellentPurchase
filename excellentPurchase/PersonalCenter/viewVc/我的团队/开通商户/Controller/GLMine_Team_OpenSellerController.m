@@ -26,8 +26,6 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 
-#import "IQKeyboardManager.h"
-
 @interface GLMine_Team_OpenSellerController ()<UITextFieldDelegate>
 {
     BOOL _isAgreeProtocol;
@@ -118,23 +116,13 @@
         self.benefitViewHeight.constant = 80;
         
     }
-//    [IQKeyboardManager sharedManager].enable = NO;
-    
-    [IQKeyboardManager sharedManager].preventShowingBottomBlankSpace = NO;
-    
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [IQKeyboardManager sharedManager].enable = YES;
+
 }
-
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [IQKeyboardManager sharedManager].enable = YES;
-//}
-
 
 #pragma mark - 获取验证码
 - (IBAction)getCode:(id)sender {

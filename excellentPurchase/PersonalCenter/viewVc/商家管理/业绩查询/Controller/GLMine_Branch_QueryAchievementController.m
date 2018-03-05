@@ -59,10 +59,13 @@
     
     // 添加子控制器
     GLMine_Branch_AchievementController *onlineVC = [[GLMine_Branch_AchievementController alloc] init];
+    onlineVC.typeIndex = self.typeIndex;
     onlineVC.type = 1;
+    onlineVC.shop_uid = self.shop_uid;
     GLMine_Branch_AchievementController *offlineVC = [[GLMine_Branch_AchievementController alloc] init];
     offlineVC.type = 2;
-    
+    offlineVC.typeIndex = self.typeIndex;
+    offlineVC.shop_uid = self.shop_uid;
     onlineVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
     offlineVC.scrollViewBeginTopInset = self.kGLMine_TeamScrollViewBeginTopInset;
     

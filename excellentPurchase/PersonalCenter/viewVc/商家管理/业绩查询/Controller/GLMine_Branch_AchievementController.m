@@ -74,7 +74,12 @@ static NSString *donationTableViewCell = @"GLMine_Branch_AchievementCell";
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"page"] = @(self.page);
     dic[@"time"] = self.date;
-    dic[@"shop_uid"] = [UserModel defaultUser].uid;
+    
+    if (self.typeIndex == 1) {//1主店的业绩查询 2:分店的业绩查询
+        dic[@"shop_uid"] = [UserModel defaultUser].uid;
+    }else{
+        dic[@"shop_uid"] = self.shop_uid;
+    }
     
     NSString *url;
     if (self.type == 1) {////1:线上业绩  0:线下业绩

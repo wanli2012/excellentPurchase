@@ -254,6 +254,7 @@
     }
 }
 
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
 //    NSString *type = [info objectForKey:UIImagePickerControllerEditedImage];

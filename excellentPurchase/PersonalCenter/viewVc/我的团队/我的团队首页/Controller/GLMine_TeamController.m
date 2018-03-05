@@ -15,17 +15,38 @@
 
 #import "GLMine_TeamModel.h"
 
-@interface GLMine_TeamController ()
+#import "GLMine_ManagementCell.h"
 
-@property (weak, nonatomic) IBOutlet UIImageView *picImageV;//头像
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;//名字
-@property (weak, nonatomic) IBOutlet UILabel *IDLabel;//ID
-@property (weak, nonatomic) IBOutlet UILabel *monthConsumeLabel;//本月消费
-@property (weak, nonatomic) IBOutlet UILabel *recommendUserConsumeLabel;//推荐用户消费
-@property (weak, nonatomic) IBOutlet UILabel *subordinatesConsumeLabel;//下属创客业绩
-@property (weak, nonatomic) IBOutlet UILabel *getRewardLabel;//获得奖励
+@interface GLMine_TeamController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+
+//@property (weak, nonatomic) IBOutlet UIImageView *picImageV;//头像
+//@property (weak, nonatomic) IBOutlet UILabel *nameLabel;//名字
+//@property (weak, nonatomic) IBOutlet UILabel *IDLabel;//ID
+//@property (weak, nonatomic) IBOutlet UILabel *monthConsumeLabel;//本月消费
+//@property (weak, nonatomic) IBOutlet UILabel *recommendUserConsumeLabel;//推荐用户消费
+//@property (weak, nonatomic) IBOutlet UILabel *subordinatesConsumeLabel;//下属创客业绩
+//@property (weak, nonatomic) IBOutlet UILabel *getRewardLabel;//获得奖励
+
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *IDLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *monthConsumeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *recommendUserConsumeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subordinatesConsumeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *getRewardLabel;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, copy)NSArray *imageArr;
+@property (nonatomic, copy)NSArray *titleArr;
+@property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
 
 @property (nonatomic, strong)GLMine_TeamModel *model;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
+@property (weak, nonatomic) IBOutlet UIView *firstView;
+@property (weak, nonatomic) IBOutlet UIView *secondView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentVWidth;
+
 
 @end
 
@@ -37,8 +58,21 @@
     self.navigationItem.title = @"我的团队";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.contentViewWidth.constant = UIScreenWidth;
+    self.contentVWidth.constant = UIScreenWidth * 2 - 120.0/750.0 * UIScreenWidth;
+    self.firstView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+    self.firstView.layer.shadowOffset = CGSizeMake(0,0);//
+    self.firstView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
+    self.firstView.layer.shadowRadius = 6;//阴影半径，默认3
+    
+    self.secondView.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+    self.secondView.layer.shadowOffset = CGSizeMake(0,0);
+    self.secondView.layer.shadowOpacity = 0.2;//阴影透明度，默认0
+    self.secondView.layer.shadowRadius = 6;//阴影半径，默认3
+    
     self.picImageV.layer.cornerRadius = self.picImageV.height / 2;
     [self postRequest];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"GLMine_ManagementCell" bundle:nil] forCellWithReuseIdentifier:@"GLMine_ManagementCell"];
 }
 
 //请求数据
@@ -100,66 +134,92 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-#pragma mark - 团队业绩
-- (IBAction)teamAchievement:(id)sender {
+
+
+#pragma mark - UICollectionviewDelegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 5;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    GLMine_ManagementCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GLMine_ManagementCell" forIndexPath:indexPath];
     
-    if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP ||
-       [[UserModel defaultUser].group_id integerValue] == GROUP_USER ||
-       [[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
+    if(indexPath.row > 3){
+        cell.lineView.hidden = YES;
+    }
+    
+    cell.picImageV.image = [UIImage imageNamed:self.imageArr[indexPath.row]];
+    cell.nameLabel.text = self.titleArr[indexPath.row];
+    
+    return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *vcstr = self.userVcArr[indexPath.row];
+    
+    //    if([vcstr isEqualToString:@"GLMine_TeamController"] || [vcstr isEqualToString:@"GLMine_ManagementController"]){//我的团队 商家管理
+    //        if([[UserModel defaultUser].rzstatus integerValue] == 0){////用户 认证状态 0没有认证 1:申请实名认证 2审核通过3失败
+    //            [EasyShowTextView showInfoText:@"请先实名认证"];
+    //            return;
+    //        }else if([[UserModel defaultUser].rzstatus integerValue] == 1){
+    //            [EasyShowTextView showInfoText:@"实名认证审核中"];
+    //            return;
+    //        }else if([[UserModel defaultUser].rzstatus integerValue] == 3){
+    //            [EasyShowTextView showInfoText:@"实名认证失败"];
+    //            return;
+    //        }
+    //    }
+    
+    Class classvc = NSClassFromString(vcstr);
+    UIViewController *vc = [[classvc alloc]init];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+//定义每个UICollectionViewCell 的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake((self.view.width - 30)/4, 105);
+}
+
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 15, 20, 15);
+}
+//每个section中不同的行之间的行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+//每个item之间的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+#pragma mark - 懒加载
+- (NSArray *)imageArr{
+    if (!_imageArr) {
+        _imageArr = @[@"团队业绩_我的团队",@"绩效管理_我的团队",@"开通下级_我的团队",@"团队成员_我的团队",@"开通商户_我的团队"];
+    }
+    return _imageArr;
+}
+
+- (NSArray *)titleArr{
+    if (!_titleArr) {
+        _titleArr = @[@"团队业绩",@"绩效管理",@"开通下级",@"团队成员",@"开通商户"];
+    }
+    return _titleArr;
+}
+- (NSMutableArray *)userVcArr{
+    if (!_userVcArr) {
         
-        [EasyShowTextView showInfoText:@"权限不足"];
-        return;
+        _userVcArr=[NSMutableArray arrayWithObjects:
+                    @"GLMine_Team_TeamAchievementController",
+                    @"GLMine_Team_AchievementManageController",
+                    @"GLMine_Team_OpenMakerController",
+                    @"GLMine_Team_MembersController",
+                    @"GLMine_Team_OpenSellerController",nil];
     }
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_TeamAchievementController *achieveVC = [[GLMine_Team_TeamAchievementController alloc] init];
-    [self.navigationController pushViewController:achieveVC animated:YES];
-    
-}
-
-#pragma mark - 绩效管理
-- (IBAction)achievementManage:(id)sender {
-    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
-        [EasyShowTextView showInfoText:@"权限不足"];
-        return;
-    }
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_AchievementManageController *achieveVC = [[GLMine_Team_AchievementManageController alloc] init];
-    [self.navigationController pushViewController:achieveVC animated:YES];
-}
-
-#pragma mark - 开通下级
-- (IBAction)openGuest:(id)sender {
-    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
-        [EasyShowTextView showInfoText:@"权限不足"];
-        return;
-    }
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_OpenMakerController *openVC = [[GLMine_Team_OpenMakerController alloc] init];
-    [self.navigationController pushViewController:openVC animated:YES];
-}
-
-#pragma mark - 团队成员
-- (IBAction)teamMember:(id)sender {
-    
-    if([[UserModel defaultUser].group_id integerValue] == GROUP_TG){//创客
-        [EasyShowTextView showInfoText:@"权限不足"];
-        return;
-    }
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_MembersController *vc = [[GLMine_Team_MembersController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
-
-#pragma mark - 开通商户
-- (IBAction)openBusiness:(id)sender {
-
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_OpenSellerController *vc = [[GLMine_Team_OpenSellerController alloc] init];
-    vc.pushType = 1;
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    return _userVcArr;
 }
 
 @end

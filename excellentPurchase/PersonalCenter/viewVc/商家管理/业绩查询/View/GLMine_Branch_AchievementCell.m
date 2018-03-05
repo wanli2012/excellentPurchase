@@ -75,7 +75,6 @@
         self.lastNameLabel.text = @"下单时间";
         self.lastLabel.text = [formattime formateTimeOfDate4:model.line_addtime];
         
-        
         self.rl_priceNameLabel.text = @"奖励金额";
         self.rl_priceLabel.text = [NSString stringWithFormat:@"¥%@",model.line_rl_money];
         

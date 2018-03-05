@@ -54,6 +54,8 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardDismiss)];
     [self.contentView addGestureRecognizer:tap];
     
+    self.payType = 1;
+    
 }
 
 - (void)keyBoardDismiss{
@@ -163,7 +165,6 @@
         self.submitBtn.enabled = NO;
     }
 }
-
 
 #pragma mark - 须知
 - (IBAction)toProtocol:(id)sender {
