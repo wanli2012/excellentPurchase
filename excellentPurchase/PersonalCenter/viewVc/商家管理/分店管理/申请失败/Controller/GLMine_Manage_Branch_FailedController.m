@@ -9,6 +9,7 @@
 #import "GLMine_Manage_Branch_FailedController.h"
 #import "GLMine_Manage_Branch_FailedCell.h"
 #import "GLMine_Manage_Branch_DoneModel.h"
+#import "GLMine_Management_ResubmitController.h"
 
 @interface GLMine_Manage_Branch_FailedController ()<GLMine_Manage_Branch_FailedCellDelegate>
 
@@ -104,10 +105,17 @@
     
 }
 
-#pragma mark - GLMine_Manage_Branch_ApplyCellDelegate
-//重新申请
+#pragma mark - GLMine_Manage_Branch_ApplyCellDelegate  重新申请
 - (void)applyAgain:(NSInteger)index{
-    NSLog(@"重新申请 --- %zd",index);
+
+    GLMine_Manage_Branch_DoneModel *model = self.models[index];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Management_ResubmitController *vc = [[GLMine_Management_ResubmitController alloc] init];
+    vc.sid = model.sid;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark -UITableviewDelegate
@@ -133,14 +141,11 @@
 //    tableView.rowHeight = UITableViewAutomaticDimension;
 //    tableView.estimatedRowHeight = 44;
 //    return tableView.rowHeight;
+    
     return 114;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    //    self.hidesBottomBarWhenPushed = YES;
-    //    GLMine_Team_MemberDataController *dataVC = [[GLMine_Team_MemberDataController alloc] init];
-    //    [self.navigationController pushViewController:dataVC animated:YES];
     
 }
 
@@ -148,21 +153,7 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-//        for (int i = 0; i < 7; i ++) {
-//
-//            GLMine_Manage_Branch_DoneModel *model = [[GLMine_Manage_Branch_DoneModel alloc] init];
-//            model.storeName = @"小仙女的店";
-//            model.picName = [NSString stringWithFormat:@"我的店%zd",i];
-//            model.account = [NSString stringWithFormat:@"100%zd",i];
-//            if(i == 3){
-//
-//                model.reason = @"代理费婚纱礼服经理说的奖励哈三联的返回拉师傅拉还是是的发发发";
-//            }else{
-//                model.reason = @"代理费婚纱礼服经理";
-//            }
-//
-//            [_models addObject:model];
-//        }
+
     }
     return _models;
 }

@@ -7,14 +7,6 @@
 //
 
 #import "GLMine_ManagementController.h"
-//#import "GLMine_Manage_BranchController.h"//分店管理
-//#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
-//#import "GLMine_Branch_OnlineOrderController.h"//线上订单
-//#import "GLMine_Branch_OfflineOrderController.h"//线下订单
-//#import "GLMine_Seller_SetMoneyController.h"//收款二维码
-//#import "LBFinishMainViewController.h"
-//#import "LBMerChatFaceToFaceViewController.h"//面对面订单
-//#import "GLMine_Branch_Offline_PlaceOrderController.h"//线下下单
 
 #import "GLMine_Management_ResubmitController.h"
 
@@ -188,7 +180,7 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-#pragma mark - 线下提单
+#pragma mark - 重新提交
 - (IBAction)markOrderOffline:(id)sender {
 
     self.hidesBottomBarWhenPushed = YES;
@@ -216,6 +208,7 @@
     
     return cell;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString *vcstr = self.userVcArr[indexPath.row];
     
@@ -248,6 +241,7 @@
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 15, 20, 15);
 }
+
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
@@ -257,7 +251,6 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
 }
-
 
 #pragma mark - 懒加载
 - (NSArray *)imageArr{
@@ -289,6 +282,5 @@
     }
     return _userVcArr;
 }
-
 
 @end
