@@ -121,6 +121,14 @@
             
             self.sid = responseObject[@"data"][@"sid"];
             
+            if (self.licenseUrl.length != 0) {
+                self.licenseTF.text = @"已上传";
+            }
+            
+            if(self.oppositeUrl.length != 0 && self.faceUrl.length != 0){
+                self.legalPersonIDTF.text = @"已上传";
+            }
+            
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
