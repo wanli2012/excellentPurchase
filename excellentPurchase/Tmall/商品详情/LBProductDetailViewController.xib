@@ -63,7 +63,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07v-Aa-2Zb">
                                             <rect key="frame" x="122.5" y="0.0" width="122.5" height="59"/>
-                                            <color key="backgroundColor" red="0.85548955202102661" green="0.3408970832824707" blue="0.34144693613052368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="立即购买">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
