@@ -7,18 +7,9 @@
 //
 
 #import "GLMine_ManagementController.h"
-//#import "GLMine_Manage_BranchController.h"//分店管理
-//#import "GLMine_Branch_QueryAchievementController.h"//业绩查询
-//#import "GLMine_Branch_OnlineOrderController.h"//线上订单
-//#import "GLMine_Branch_OfflineOrderController.h"//线下订单
-//#import "GLMine_Seller_SetMoneyController.h"//收款二维码
-//#import "LBFinishMainViewController.h"
-//#import "LBMerChatFaceToFaceViewController.h"//面对面订单
-//#import "GLMine_Branch_Offline_PlaceOrderController.h"//线下下单
-
 #import "GLMine_Management_ResubmitController.h"
-
 #import "GLMine_ManagementCell.h"
+#import "GLMine_Branch_Offline_PlaceOrderController.h"
 
 @interface GLMine_ManagementController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -46,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *reasonLabel;//失败原因
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (nonatomic, copy)NSArray *imageArr;
 @property (nonatomic, copy)NSArray *titleArr;
 @property (nonatomic, strong)NSMutableArray *userVcArr;//会员控制器数组
@@ -156,7 +148,7 @@
         self.reasonView.hidden = NO;
         self.reasonLabel.text = self.dataDic[@"store_reason"];
     }else if([self.dataDic[@"store_auditing"] integerValue] == 3){
-        self.orderLabel.hidden = NO;
+        self.orderLabel.hidden = YES;
         self.reasonView.hidden = YES;
         self.reasonViewHeight.constant = 0;
     }
@@ -188,7 +180,7 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-#pragma mark - 线下提单
+#pragma mark - 重新提交
 - (IBAction)markOrderOffline:(id)sender {
 
     self.hidesBottomBarWhenPushed = YES;
@@ -216,7 +208,9 @@
     
     return cell;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSString *vcstr = self.userVcArr[indexPath.row];
     
 //    if([vcstr isEqualToString:@"GLMine_TeamController"] || [vcstr isEqualToString:@"GLMine_ManagementController"]){//我的团队 商家管理
@@ -235,6 +229,13 @@
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
     
+    if([vcstr isEqualToString:@"GLMine_Branch_Offline_PlaceOrderController"]){
+        
+        GLMine_Branch_Offline_PlaceOrderController *offLineVC = [[GLMine_Branch_Offline_PlaceOrderController alloc] init];
+        offLineVC = (GLMine_Branch_Offline_PlaceOrderController *)vc;
+        offLineVC.type = 1;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -248,6 +249,7 @@
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 15, 20, 15);
 }
+
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
@@ -257,7 +259,6 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
 }
-
 
 #pragma mark - 懒加载
 - (NSArray *)imageArr{
@@ -289,6 +290,5 @@
     }
     return _userVcArr;
 }
-
 
 @end

@@ -43,7 +43,7 @@
         self.moneyView.hidden = NO;
         
         self.moneyLabel.text = [NSString stringWithFormat:@"¥ %@",self.moneyCount];
-        self.noprofitLabel.text = [NSString stringWithFormat:@"让利金额:¥%@",self.noProfitMoney];
+        self.noprofitLabel.text = [NSString stringWithFormat:@"奖励金额:¥%@",self.noProfitMoney];
         
     }
     

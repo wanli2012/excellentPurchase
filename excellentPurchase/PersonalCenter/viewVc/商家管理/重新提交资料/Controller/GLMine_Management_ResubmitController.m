@@ -22,11 +22,11 @@
 {
     BOOL _isAgreeProtocol;
 }
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UITextField *shopNameTF;//店铺名
 @property (weak, nonatomic) IBOutlet UITextField *storeTypeTF;//店铺类型
-
 @property (weak, nonatomic) IBOutlet UITextField *brandCertificateTF;//微商授权书
 @property (weak, nonatomic) IBOutlet UITextField *licenseTF;//营业执照
 @property (weak, nonatomic) IBOutlet UITextField *legalPersonIDTF;//法人身份证
@@ -71,7 +71,6 @@
 @property (nonatomic, assign)CGFloat lng;//经度
 @property (nonatomic, assign)CGFloat lat;//纬度
 
-
 @end
 
 @implementation GLMine_Management_ResubmitController
@@ -96,13 +95,11 @@
         [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-            
             self.shopNameTF.text = [self judgeStringIsNull:responseObject[@"data"][@"sname"] andDefault:NO];
             self.storeTypeTF.text = [self judgeStringIsNull:responseObject[@"data"][@"typename"] andDefault:NO];
             if ([responseObject[@"data"][@"areaname"] length] == 0) {
                 self.areaTF.text = [NSString stringWithFormat:@"%@%@",responseObject[@"data"][@"provincename"],responseObject[@"data"][@"cityname"]];
             }else{
-                
                 self.areaTF.text = [NSString stringWithFormat:@"%@%@%@",responseObject[@"data"][@"provincename"],responseObject[@"data"][@"cityname"],responseObject[@"data"][@"areaname"]];
             }
             
@@ -121,6 +118,14 @@
             
             self.sid = responseObject[@"data"][@"sid"];
             
+            if (self.licenseUrl.length != 0) {
+                self.licenseTF.text = @"已上传";
+            }
+            
+            if(self.oppositeUrl.length != 0 && self.faceUrl.length != 0){
+                self.legalPersonIDTF.text = @"已上传";
+            }
+            
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -132,6 +137,7 @@
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
+
 //判空 给数字设置默认值
 - (NSString *)judgeStringIsNull:(id )sender andDefault:(BOOL)isNeedDefault{
     
@@ -148,13 +154,7 @@
         return str;
     }
 }
-/**
- 赋值
- */
-- (void)assignment{
 
-    
-}
 #pragma mark - 店铺类型选择
 - (IBAction)storeTypeChoose:(id)sender {
 
