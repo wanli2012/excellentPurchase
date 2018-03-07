@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *IDNumberTF;//ID号
 @property (weak, nonatomic) IBOutlet UITextField *consumeTF;//消费金额
-@property (weak, nonatomic) IBOutlet UITextField *noProfitTF;//让利金额
+@property (weak, nonatomic) IBOutlet UITextField *noProfitTF;//奖励金额
 @property (weak, nonatomic) IBOutlet UILabel *checkCodeLabel;//校验码
 @property (weak, nonatomic) IBOutlet UIButton *buildBtn;//生成按钮
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//协议同意标志
@@ -151,7 +151,7 @@
         return;
     }
     if (self.noProfitTF.text.length == 0) {
-        [EasyShowTextView showInfoText:@"请填写让利金额"];
+        [EasyShowTextView showInfoText:@"请填写奖励金额"];
         return;
     }
     if (self.proofUrl.length == 0) {

@@ -16,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *models;
-@property (nonatomic, strong)NSMutableArray *selectArr;
+@property (nonatomic, strong)NSMutableArray *selectuidArr;
+@property (nonatomic, strong)NSMutableArray *selectNameArr;
 
 @end
 
@@ -30,13 +31,65 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Team_AccountChooseCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Team_AccountChooseCell"];
     
     self.navigationItem.title = @"账号选择";
+    
+    WeakSelf;
+    
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [weakSelf postRequest:YES];
+    }];
+    
+    [self postRequest:YES];
+    
 }
+
+//请求数据
+-(void)postRequest:(BOOL)isRefresh{
+  
+    [EasyShowLodingView showLodingText:@"数据请求中"];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"group_id"] = [UserModel defaultUser].group_id;
+    
+    [NetworkManager requestPOSTWithURLStr:keamset_list paramDic:dic finish:^(id responseObject) {
+        
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                GLMine_Team_AccountChooseModel *model = [GLMine_Team_AccountChooseModel mj_objectWithKeyValues:dict];
+                [self.models addObject:model];
+            }
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
+}
+
 
 /**
  保存
  */
 - (IBAction)save:(id)sender {
-    
+    if (self.selectuidArr.count <= 0) {
+        [EasyShowTextView showInfoText:@"请选择帐号"];
+        return;
+    }
+    if (self.retureSelecteArr) {
+        self.retureSelecteArr(self.selectuidArr,self.selectNameArr);
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -46,24 +99,27 @@
  */
 - (IBAction)selectAll:(UIButton *)sender {
     if(self.models.count == 0){
-        //[MBProgressHUD showError:@"暂无可选商品"];
         return;
     }
     sender.selected = !sender.selected;
-//    float  num = 0;
-    [self.selectArr removeAllObjects];
+    [self.selectuidArr removeAllObjects];
+    [self.selectNameArr removeAllObjects];
     
     if (sender.selected) {
         for (int i = 0; i < self.models.count; i++) {
             GLMine_Team_AccountChooseModel *model = self.models[i];
             model.isSelected = YES;
-//            num = num + [model.marketprice floatValue] * [model.num floatValue];
-            
+            [self.selectuidArr addObject:model.uid];
+            if ([NSString StringIsNullOrEmpty:model.truename]) {
+                 [self.selectNameArr addObject:model.nickname];
+            }else{
+                 [self.selectNameArr addObject:model.truename];
+            }
         }
         [self.selectAllBtn setImage:[UIImage imageNamed:@"MyTeam_Select-y2"] forState:UIControlStateNormal];
     }else{
         [self.selectAllBtn setImage:[UIImage imageNamed:@"MyTeam_select-n2"] forState:UIControlStateNormal];
-        [self.selectArr removeAllObjects];
+        [self.selectuidArr removeAllObjects];
         
         if (self.models.count == 0) {
             
@@ -74,8 +130,6 @@
             model.isSelected = NO;
         }
     }
-    
-//    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
     
     [self.tableView reloadData];
 }
@@ -88,15 +142,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLMine_Team_AccountChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Team_AccountChooseCell" forIndexPath:indexPath];
-    
-//    GLMine_Team_AccountChooseModel *model = self.models[indexPath.row];
-//    if (indexPath.row == self.selectIndex) {
-//        model.isSelected = YES;
-//    }
-    
-    cell.model = self.models[indexPath.row];
-    cell.selectionStyle = 0;
-    
+        cell.selectionStyle = 0;
+        cell.model = self.models[indexPath.row];
+
     return cell;
 }
 
@@ -108,13 +156,11 @@
     
     GLMine_Team_AccountChooseModel *model = self.models[indexPath.row];
     model.isSelected = !model.isSelected;
-//
-//    [self.tableView reloadData];
-    
-    [self.selectArr removeAllObjects];
+
+    [self.selectuidArr removeAllObjects];
+    [self.selectNameArr removeAllObjects];
     
     BOOL  b = NO;
-//    float  num = 0;
     
     for (int i = 0; i < self.models.count; i++) {
         GLMine_Team_AccountChooseModel *model = self.models[i];
@@ -123,8 +169,12 @@
             b = YES;
             
         }else{
-//            num = num + [model.marketprice floatValue] * [model.num floatValue];
-            [self.selectArr addObject:model];
+            [self.selectuidArr addObject:model.uid];
+            if ([NSString StringIsNullOrEmpty:model.truename]) {
+                [self.selectNameArr addObject:model.nickname];
+            }else{
+                [self.selectNameArr addObject:model.truename];
+            }
         }
     }
     
@@ -137,9 +187,6 @@
         self.selectAllBtn.selected = YES;
         [self.selectAllBtn setImage:[UIImage imageNamed:@"MyTeam_Select-y2"] forState:UIControlStateNormal];
     }
-//    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
-    
-//    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:indexPath.row inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
     
     [self.tableView reloadData];
 
@@ -150,31 +197,21 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
-        
-        NSArray *arr = @[@"全部",@"会员",@"商家",@"城市创客",@"大区创客",@"省级服务中心",@"市级服务中心",@"区级服务中心"];
-        
-        for (int i = 0; i < 8 ; i ++) {
-            GLMine_Team_AccountChooseModel *model = [[GLMine_Team_AccountChooseModel alloc] init];
-            
-            model.account = arr[i];
-            
-            model.idNumber = [NSString stringWithFormat:@"DY102300%zd",i];
-            
-            model.isSelected = NO;
-            
-            [_models addObject:model];
-        }
     }
     return _models;
 }
 
-- (NSMutableArray *)selectArr {
-    if (_selectArr == nil) {
-        _selectArr = [NSMutableArray array];
+- (NSMutableArray *)selectuidArr {
+    if (_selectuidArr == nil) {
+        _selectuidArr = [NSMutableArray array];
     }
-    return _selectArr;
+    return _selectuidArr;
 }
-
-
+- (NSMutableArray *)selectNameArr {
+    if (_selectNameArr == nil) {
+        _selectNameArr = [NSMutableArray array];
+    }
+    return _selectNameArr;
+}
 
 @end

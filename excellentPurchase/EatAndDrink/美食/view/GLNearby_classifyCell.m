@@ -40,7 +40,7 @@
 -(void)setModel:(LBEat_cateDataModel *)model{
     _model = model;
     
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_model.store_thumb] placeholderImage:nil];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_model.store_thumb] placeholderImage:[UIImage imageNamed:@"shangpinxiangqing"]];
     self.nameLabel.text = [NSString stringWithFormat:@"%@",_model.store_name];
     self.starLb.text = [NSString stringWithFormat:@"%@分",_model.store_score];
     self.starRateView.currentScore = [_model.store_score floatValue];

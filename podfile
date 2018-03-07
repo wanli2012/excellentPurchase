@@ -25,5 +25,5 @@ target 'excellentPurchase' do
     pod 'UMengUShare/Social/Sina'
     # U-Share SDK UI模块（分享面板，建议添加）
     pod 'UMengUShare/UI'
-    pod 'JPush' 
+    pod 'JPush'
 end

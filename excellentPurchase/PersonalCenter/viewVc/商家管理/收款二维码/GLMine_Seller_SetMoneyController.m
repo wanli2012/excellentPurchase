@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *ensureBtn;//确定按钮
 @property (weak, nonatomic) IBOutlet UITextField *moneyTF;//金额
-@property (weak, nonatomic) IBOutlet UITextField *noProfitTF;//让利金额
+@property (weak, nonatomic) IBOutlet UITextField *noProfitTF;//奖励金额
 
 @property (nonatomic, assign)BOOL isHaveDian;
 

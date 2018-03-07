@@ -224,7 +224,7 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
 
 #pragma mark --- LBStoreCounterdelegete
 /**
- 下架
+ 下架 重新上架
  */
 -(void)saleOutProduct:(NSInteger)index{
     
@@ -237,15 +237,27 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
     dic[@"conid"] = self.store_id;
     dic[@"goodsid"] = model.goods_id;
     
+    if ([model.sh_status integerValue] == 2) {//商品审核状态 1审核失败 2审核成功 3未审核
+        if([model.status integerValue] == 1){////商品上下架状态 1上架，2下架
+            dic[@"status"] = @"1";
+        }else{
+            dic[@"status"] = @"2";
+        }
+    }
+
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:kcontainer_goods_lower paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            
-            [EasyShowTextView showSuccessText:@"下架成功"];
-            model.status = @"2";
-            
+            if([model.status integerValue] == 1){////商品上下架状态 1上架，2下架
+                [EasyShowTextView showSuccessText:@"下架成功"];
+                model.status = @"2";
+            }else{
+                [EasyShowTextView showSuccessText:@"上架成功"];
+                model.status = @"1";
+            }
+
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }

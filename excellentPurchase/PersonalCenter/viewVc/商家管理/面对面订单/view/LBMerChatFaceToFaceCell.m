@@ -28,7 +28,7 @@
     }
     
     self.timelb.text = [NSString stringWithFormat:@"支付时间: %@",[formattime formateTimeOfDate3:_model.face_addtime]];
-    self.ratelb.text = [NSString stringWithFormat:@"让利金额: %@",_model.face_rl_money];
+    self.ratelb.text = [NSString stringWithFormat:@"奖励金额: %@",_model.face_rl_money];
      self.paylb.text = [NSString stringWithFormat:@"支付金额: %@",_model.face_money];
     switch ([_model.face_paytype integerValue]) {
         case 201:

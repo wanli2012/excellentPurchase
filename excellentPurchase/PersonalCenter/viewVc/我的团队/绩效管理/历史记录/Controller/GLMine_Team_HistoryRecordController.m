@@ -94,8 +94,18 @@
     [GLMine_Team_HistoryDateChooseView showDateChooseViewWith:^(NSString *dateStr) {
         
         weakSelf.headerView.dateLabel.text = dateStr;
-        
         ///查询方法
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy年MM月"];
+        NSDate *date = [dateFormatter dateFromString:dateStr];
+        
+        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+        [dateFormatter2 setDateFormat:@"yyyy-MM"];
+        
+        NSString *strDate = [dateFormatter2 stringFromDate:date];
+        
+        ///此处调 数据更新方法
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GLMine_Team_AchieveDoneController" object:nil userInfo:@{@"month":strDate}];
         
     }];
 }

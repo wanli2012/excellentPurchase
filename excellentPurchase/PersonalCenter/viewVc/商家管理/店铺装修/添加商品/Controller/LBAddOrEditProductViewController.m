@@ -41,7 +41,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *attrTF;//属性
 @property (weak, nonatomic) IBOutlet UITextField *priceTF;//价格
 @property (weak, nonatomic) IBOutlet UITextField *stockTF;//库存
-@property (weak, nonatomic) IBOutlet UITextField *discountTF;//让利金额
+@property (weak, nonatomic) IBOutlet UITextField *discountTF;//奖励金额
 
 @property (nonatomic, copy)NSString *brand_id;
 @property (nonatomic, strong)NSMutableArray *labe_idArr;
@@ -229,7 +229,7 @@ static NSString *ID = @"LBStoreAmendPhotosCell";
     }
     
     if(self.discountTF.text.length == 0){
-        [EasyShowTextView showInfoText:@"请填写商品让利金额"];
+        [EasyShowTextView showInfoText:@"请填写商品奖励金额"];
         return;
     }
 

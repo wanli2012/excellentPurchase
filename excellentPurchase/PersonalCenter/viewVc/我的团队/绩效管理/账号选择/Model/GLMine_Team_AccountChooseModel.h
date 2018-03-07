@@ -10,8 +10,12 @@
 
 @interface GLMine_Team_AccountChooseModel : NSObject
 
-@property (nonatomic, copy)NSString *account;
-@property (nonatomic, copy)NSString *idNumber;
+@property (nonatomic, copy)NSString *group_id;
+@property (nonatomic, copy)NSString *uid;
+@property (nonatomic, copy)NSString *user_name;
+@property (nonatomic, copy)NSString *truename;
+@property (nonatomic, copy)NSString *nickname;
+@property (nonatomic, copy)NSString *group_name;
 
 @property (nonatomic, assign)BOOL isSelected;
 

@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GLMine_Team_AchieveManageModel.h"
 #import "GLMine_Team_MemberModel.h"
+#import "LBMine_Team_ResultModel.h"
 
 @interface GLMine_Team_AchieveManageCell : UITableViewCell
 
 @property (nonatomic, strong)GLMine_Team_AchieveManageModel *model;
 @property (nonatomic, strong)GLMine_Team_MemberModel *memberModel;
+@property (nonatomic, strong)LBMine_Team_ResultModel *resultModel;
 
 @end

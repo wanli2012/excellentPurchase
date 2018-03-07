@@ -13,18 +13,28 @@
 #import "LBLoginViewController.h"//登录注册
 #import "Reachability.h"//网络监测
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
-
+//支付宝 微信
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 
 #import "IQKeyboardManager.h"
-
+//友盟分享
 #import <UMSocialCore/UMSocialCore.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
+//极光
+#import <JPUSHService.h>
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+// 如果需要使用idfa功能所需要引入的头文件（可选）
+#import <AdSupport/AdSupport.h>
+
 #define WEIXI_APPKEY @"wx63ad845caa3425b7"
 #define WEIXIN_APPSECRET @"23b692c2c9809f34e2f689259a7bf67c"
+#define JPush_appKey @"1e08383df5fc8f0aef13bebc"
 
-@interface AppDelegate ()<BMKGeneralDelegate,WXApiDelegate>
+@interface AppDelegate ()<BMKGeneralDelegate,WXApiDelegate,JPUSHRegisterDelegate>
 {
 @private  Reachability *hostReach;
 }
@@ -45,8 +55,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
     [self ListenNetWork];//监听网络
+    [self regsiterJpush:launchOptions];//注册极光推送
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:@"HFg81pQ2m97GLX0DCudONsWmmKhl9Pdc" generalDelegate:self];
@@ -91,6 +101,33 @@
     return YES;
 }
 
+-(void)regsiterJpush:(NSDictionary *)launchOptions{
+    //Required
+    //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    
+    // Optional
+    // 获取IDFA
+    // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
+    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    
+    // Required
+    // init Push
+    // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
+    // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+    [JPUSHService setupWithOption:launchOptions appKey:JPush_appKey
+                          channel:@"App Store"
+                 apsForProduction:NO
+            advertisingIdentifier:advertisingId];
+}
+
 - (void)configUSharePlatforms
 {
     /*
@@ -109,6 +146,9 @@
 {
     // 1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
 //    [UMessage registerDeviceToken:deviceToken];
+    
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
    
     //        NSString * token = [[[[deviceToken description]
     //                              stringByReplacingOccurrencesOfString: @"<" withString: @""]
@@ -363,6 +403,27 @@
     [alertc addAction:cancelAction];
     [self.window.rootViewController presentViewController:alertc animated:YES completion:nil];
 }
+#pragma mark- JPUSHRegisterDelegate
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
 
 -(void)addKeyBoardNotice{
     //监听当键盘将要出现时

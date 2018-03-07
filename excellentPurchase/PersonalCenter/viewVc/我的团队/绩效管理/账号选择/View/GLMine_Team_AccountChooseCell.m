@@ -26,8 +26,11 @@
 - (void)setModel:(GLMine_Team_AccountChooseModel *)model{
     _model = model;
     
-    self.accountLabel.text = model.account;
-    self.IDLabel.text = model.idNumber;
+    self.accountLabel.text = model.truename;
+    if ([NSString StringIsNullOrEmpty:model.truename]) {
+        self.accountLabel.text = model.nickname;
+    }
+    self.IDLabel.text = model.user_name;
     if (model.isSelected) {
         self.signImageV.image = [UIImage imageNamed:@"MyTeam_Select-y2"];
     }else{

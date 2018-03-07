@@ -10,4 +10,6 @@
 
 @interface GLMine_Team_AccountChooseController : UIViewController
 
+@property (copy , nonatomic)void(^retureSelecteArr)(NSMutableArray *uidarr,NSMutableArray *namearr);
+
 @end

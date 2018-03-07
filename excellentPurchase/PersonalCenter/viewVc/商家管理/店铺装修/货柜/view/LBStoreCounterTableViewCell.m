@@ -71,7 +71,7 @@
         }else{
             
             self.statusLabel.text = [NSString stringWithFormat:@"状态:下架"];
-            [self.offShelfBtn setTitle:@"已下架" forState:UIControlStateNormal];
+            [self.offShelfBtn setTitle:@"重新上架" forState:UIControlStateNormal];
             [self.offShelfBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             self.offShelfBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
 //            self.editBtn.hidden = YES;

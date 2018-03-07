@@ -76,6 +76,41 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subScrollViewDidScroll:) name:GLMine_Team_ChildScrollViewDidScrollNSNotification  object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshState:) name:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil];
     
+    [self getpersonInfo];//请求数据
+    
+}
+
+-(void)getpersonInfo{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"group_id"] = [UserModel defaultUser].group_id;
+    
+    [EasyShowLodingView showLodingText:@"数据请求中"];
+    [NetworkManager requestPOSTWithURLStr:kteam_appraisals paramDic:dic finish:^(id responseObject) {
+        
+        [EasyShowLodingView hidenLoding];
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [self.headerView.headImage sd_setImageWithURL:[NSURL URLWithString:responseObject[@"data"][@"pic"]] placeholderImage:[UIImage imageNamed:@"shangpinxiangqing"]];
+            self.headerView.namelb.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            if ([NSString StringIsNullOrEmpty:self.headerView.namelb.text] == YES) {
+                self.headerView.namelb.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"nickname"]];
+            }
+            self.headerView.uidtsr.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"user_name"]];
+            self.headerView.planlb.text = [NSString stringWithFormat:@"¥%@",responseObject[@"data"][@"set_money"]];
+            self.headerView.donelb.text = [NSString stringWithFormat:@"¥%@",responseObject[@"data"][@"done_money"]];
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
 }
 
 #pragma mark - 导航栏设置
@@ -94,8 +129,7 @@
     [button addTarget:self action:@selector(historyRecord) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
-    
-    
+
 }
 
 #pragma mark - 历史记录

@@ -16,6 +16,12 @@
 
 @interface GLMine_Team_AchieveManageHeader : UIView
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImage;
+@property (weak, nonatomic) IBOutlet UILabel *namelb;
+@property (weak, nonatomic) IBOutlet UILabel *uidtsr;
+@property (weak, nonatomic) IBOutlet UILabel *planlb;
+@property (weak, nonatomic) IBOutlet UILabel *donelb;
+
 @property (nonatomic, weak)id <GLMine_Team_AchieveManageHeaderDelegate> delegate;
 
 @end

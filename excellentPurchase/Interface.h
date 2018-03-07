@@ -127,6 +127,7 @@
 #define kleaguer_info @"Team/leaguer_info"//成员资料--黄炜
 #define kmen_achievement @"Team/men_achievement"//下级团队业绩列表-王凯
 #define kteam_achievement @"Team/team_achievement"//团队列表-王凯
+#define kteam_appraisals @"Team/team_appraisals"//团队绩效管理页面
 #define kuser_cart_data @"UserCart/user_cart_data"//用户购物车数据
 #define kdel_user_cart @"UserCart/del_user_cart"//用户删除购物车
 #define kuser_recharge @"UserRecharge/user_recharge"//用户余额充值-江海林
@@ -152,10 +153,8 @@
 #define kstore_withdraw @"Store/store_withdraw"//分店取消申请
 #define kshop_reiterate_save @"Store/shop_reiterate_save"//商铺重申提交-江海林
 #define kshop_reiterate_find @"Store/shop_reiterate_find"//商铺重申-江海林
-
-
-
-
-
+#define kmeber_appraisals_set @"Team/meber_appraisals_set"//团队成员绩效历史记录
+#define keamset_list @"Team/set_list"//未设置绩效金额成员列表
+#define keamset_money @"Team/set_money"//设置成员绩效金额
 
 #endif /* Interface_h */

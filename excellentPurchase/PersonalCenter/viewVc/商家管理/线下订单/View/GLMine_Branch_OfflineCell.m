@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;//日期
 @property (weak, nonatomic) IBOutlet UILabel *IDNumberLabel;//ID号
 @property (weak, nonatomic) IBOutlet UILabel *consumeLabel;//消费金额
-@property (weak, nonatomic) IBOutlet UILabel *noProfitLabel;//让利金额
+@property (weak, nonatomic) IBOutlet UILabel *noProfitLabel;//奖励金额
 
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//是否可以点击标志
 

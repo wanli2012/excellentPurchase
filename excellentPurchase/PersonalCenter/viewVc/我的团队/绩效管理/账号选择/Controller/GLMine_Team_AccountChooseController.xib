@@ -41,7 +41,7 @@
                                     <constraint firstAttribute="width" constant="100" id="w4u-W4-EZI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="全选" image="MyTeam_select-n2">
+                                <state key="normal" title=" 全选" image="MyTeam_select-n2">
                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -70,7 +70,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Sqm-Jc-V2B"/>
                     </constraints>
-                    <state key="normal" title="保存"/>
+                    <state key="normal" title="确 定"/>
                     <connections>
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="vwq-yf-sVc"/>
                     </connections>

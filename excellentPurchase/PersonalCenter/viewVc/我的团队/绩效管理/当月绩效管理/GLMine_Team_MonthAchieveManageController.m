@@ -12,7 +12,6 @@
 
 @interface GLMine_Team_MonthAchieveManageController ()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *IDLabel;//身份
 @property (weak, nonatomic) IBOutlet UILabel *accountLabel;//账号
 @property (weak, nonatomic) IBOutlet UITextField *achieveMoneyTF;//绩效金额
 
@@ -33,24 +32,45 @@
 
 #pragma mark - 提交
 - (IBAction)submit:(id)sender {
-    NSLog(@"提交");
-}
 
-#pragma mark - 身份选择
-- (IBAction)IdentityChoose:(id)sender {
+    if ([NSString StringIsNullOrEmpty:self.group_id]) {
+        [EasyShowTextView showInfoText:@"请选择帐号"];
+        return;
+    }
+    if ([NSString StringIsNullOrEmpty:self.achieveMoneyTF.text]) {
+        [EasyShowTextView showInfoText:@"请输入绩效金额"];
+        return;
+    }
     
-    self.hidesBottomBarWhenPushed = YES;
-    GLIdentifySelectController *idVC = [[GLIdentifySelectController alloc] init];
+    if ([self.achieveMoneyTF.text floatValue] <= 0) {
+        [EasyShowTextView showInfoText:@"输入绩效金额不能小于等于0"];
+        return;
+    }
     
-    idVC.selectIndex = [self.group_id integerValue];
-    __weak typeof(self) weakSelf = self;
-    idVC.block = ^(NSString *name, NSString *group_id,NSInteger selectIndex) {
-        weakSelf.IDLabel.text = name;
-        weakSelf.group_id = group_id;
-        weakSelf.selectIndex = selectIndex;
-    };
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"set_uid"] = self.group_id;
+    dic[@"money"] = self.achieveMoneyTF.text;
     
-    [self.navigationController pushViewController:idVC animated:YES];
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:keamset_money paramDic:dic finish:^(id responseObject) {
+
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+
+    } enError:^(NSError *error) {
+       
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
+    
 }
 
 #pragma mark - 账号选择
@@ -58,6 +78,10 @@
     
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Team_AccountChooseController *accountVC = [[GLMine_Team_AccountChooseController alloc] init];
+    accountVC.retureSelecteArr = ^(NSMutableArray *uidarr,NSMutableArray *namearr) {
+        self.accountLabel.text = [namearr componentsJoinedByString:@" "];
+        self.group_id = [uidarr componentsJoinedByString:@","];
+    };
     [self.navigationController pushViewController:accountVC animated:YES];
     
 }

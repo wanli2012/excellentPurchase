@@ -13,6 +13,6 @@
 @property (nonatomic, assign)NSInteger type;//1:个人资料界面跳转过来的 2:商家收款
 
 @property (nonatomic, copy)NSString *moneyCount;//金额
-@property (nonatomic, copy)NSString *noProfitMoney;//让利金额
+@property (nonatomic, copy)NSString *noProfitMoney;//奖励金额
 
 @end

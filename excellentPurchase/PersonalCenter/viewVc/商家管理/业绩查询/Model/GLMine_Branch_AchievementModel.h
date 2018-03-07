@@ -17,7 +17,7 @@
 @property (nonatomic, copy)NSString *line_updatetime;//立返时间
 @property (nonatomic, copy)NSString *phone;//用户联系电话
 @property (nonatomic, copy)NSString *user_name;//用户名
-@property (nonatomic, copy)NSString *line_rl_money;//让利金额
+@property (nonatomic, copy)NSString *line_rl_money;//奖励金额
 
 
 @property (nonatomic, assign)NSInteger type;//1:线上业绩 2:线下业绩

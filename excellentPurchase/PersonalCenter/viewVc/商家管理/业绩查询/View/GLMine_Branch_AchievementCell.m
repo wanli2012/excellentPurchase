@@ -17,8 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;//备注 或 提单时间
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceLabelTop;//价格总价顶部约束
-@property (weak, nonatomic) IBOutlet UILabel *rl_priceLabel;//让利金额 值
-@property (weak, nonatomic) IBOutlet UILabel *rl_priceNameLabel;//让利金额 名字
+@property (weak, nonatomic) IBOutlet UILabel *rl_priceLabel;//奖励金额 值
+@property (weak, nonatomic) IBOutlet UILabel *rl_priceNameLabel;//奖励金额 名字
 
 @property (weak, nonatomic) IBOutlet UILabel *firstLabel;//第一个label
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;//联系电话

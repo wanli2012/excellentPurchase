@@ -1020,6 +1020,7 @@
 		F98D1A37201DBB6D0021D3B1 /* LBDefineRefrsh.m in Sources */ = {isa = PBXBuildFile; fileRef = F98D1A36201DBB6D0021D3B1 /* LBDefineRefrsh.m */; };
 		F98D1A3A201DC68D0021D3B1 /* LBEat_cateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F98D1A39201DC68D0021D3B1 /* LBEat_cateModel.m */; };
 		F98D1A3D201DD1E00021D3B1 /* LBEat_cateDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F98D1A3C201DD1E00021D3B1 /* LBEat_cateDataModel.m */; };
+		F98F9F0B204E7B63002C40DF /* LBMine_Team_ResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F98F9F0A204E7B63002C40DF /* LBMine_Team_ResultModel.m */; };
 		F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C727B20099E4200E996FD /* taotaoShop.xcassets */; };
 		F9D31AC42042A239008707F0 /* LBTmallSeconedClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */; };
 		F9D31AC82042A3B7008707F0 /* LBRiceShopTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC62042A3B7008707F0 /* LBRiceShopTagTableViewCell.m */; };
@@ -2809,6 +2810,9 @@
 		F98D1A39201DC68D0021D3B1 /* LBEat_cateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_cateModel.m; sourceTree = "<group>"; };
 		F98D1A3B201DD1E00021D3B1 /* LBEat_cateDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEat_cateDataModel.h; sourceTree = "<group>"; };
 		F98D1A3C201DD1E00021D3B1 /* LBEat_cateDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEat_cateDataModel.m; sourceTree = "<group>"; };
+		F98F9F08204E5DE3002C40DF /* excellentPurchase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = excellentPurchase.entitlements; sourceTree = "<group>"; };
+		F98F9F09204E7B63002C40DF /* LBMine_Team_ResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMine_Team_ResultModel.h; sourceTree = "<group>"; };
+		F98F9F0A204E7B63002C40DF /* LBMine_Team_ResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMine_Team_ResultModel.m; sourceTree = "<group>"; };
 		F99C727B20099E4200E996FD /* taotaoShop.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = taotaoShop.xcassets; sourceTree = "<group>"; };
 		F9D31AC22042A239008707F0 /* LBTmallSeconedClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallSeconedClassifyModel.h; sourceTree = "<group>"; };
 		F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallSeconedClassifyModel.m; sourceTree = "<group>"; };
@@ -4246,6 +4250,8 @@
 			children = (
 				4A9E18BA2011E10E00E1EC05 /* GLMine_Team_AchieveManageModel.h */,
 				4A9E18BB2011E10E00E1EC05 /* GLMine_Team_AchieveManageModel.m */,
+				F98F9F09204E7B63002C40DF /* LBMine_Team_ResultModel.h */,
+				F98F9F0A204E7B63002C40DF /* LBMine_Team_ResultModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7432,6 +7438,7 @@
 		F9712C80200460030015037A /* excellentPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				F98F9F08204E5DE3002C40DF /* excellentPurchase.entitlements */,
 				F9309478202BEEB3004763A1 /* 地图 */,
 				F923B2852020035A00DFEF7C /* 扫码 */,
 				F97137312005DF3F0033F38B /* LoginRegister */,
@@ -8086,6 +8093,11 @@
 					F9712C7D200460030015037A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					F9712C95200460040015037A = {
 						CreatedOnToolsVersion = 9.2;
@@ -8525,6 +8537,7 @@
 				F923B1EE2020021F00DFEF7C /* ZXDecodeHints.m in Sources */,
 				4A20E9982013094700E091EA /* GLMine_Message_PropertyCell.m in Sources */,
 				F96CF424201818A50070658C /* LBMineCollectionProductViewController.m in Sources */,
+				F98F9F0B204E7B63002C40DF /* LBMine_Team_ResultModel.m in Sources */,
 				F923B27C2020021F00DFEF7C /* ZXMultiFormatReader.m in Sources */,
 				F97E605C200EF1DB00C9C4E7 /* XHStarRateView.m in Sources */,
 				4A20E9AA2013235E00E091EA /* GLMine_Message_TrendsCell.m in Sources */,
@@ -9365,6 +9378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = excellentPurchase/excellentPurchase.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
@@ -9378,7 +9392,7 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9403,6 +9417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = excellentPurchase/excellentPurchase.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
@@ -9416,7 +9431,7 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/excellentPurchase/PrefixHeader.pch";
 				INFOPLIST_FILE = excellentPurchase/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

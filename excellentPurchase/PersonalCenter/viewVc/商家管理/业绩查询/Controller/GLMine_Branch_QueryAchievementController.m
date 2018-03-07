@@ -107,7 +107,7 @@
         NSString *strDate = [dateFormatter2 stringFromDate:date];
        
         ///此处调 数据更新方法
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"AchievementNotification" object:nil userInfo:@{@"month":strDate}];;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AchievementNotification" object:nil userInfo:@{@"month":strDate}];
         
     }];
 }

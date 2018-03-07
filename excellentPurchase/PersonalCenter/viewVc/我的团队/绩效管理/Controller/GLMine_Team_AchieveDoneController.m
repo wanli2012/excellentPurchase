@@ -12,7 +12,10 @@
 
 @interface GLMine_Team_AchieveDoneController ()<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, assign) NSInteger rowCount;
+@property (strong, nonatomic)NSMutableArray *models;
+@property (assign, nonatomic)NSInteger page;//页数默认为1
+@property (strong, nonatomic)NodataView *nodataV;
+@property (strong, nonatomic)NSString *confromTimespStr;
 
 @end
 
@@ -28,35 +31,81 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     self.tableView.delegate = self;
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:donationTableViewCell bundle:nil] forCellReuseIdentifier:donationTableViewCell];
+    
+    WeakSelf;
+   
+    [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
+        [weakSelf postRequest:YES];
+    }];
+    
+    self.page = 1;
+    // 时间戳转时间
+    self.confromTimespStr = [self getNowTimeTimestamp];
+    [self postRequest:YES];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshDatasoure:) name:@"GLMine_Team_AchieveDoneController" object:nil];
 }
 
+//刷新
+-(void)refreshDatasoure:(NSNotification *)noti{
+    
+    self.confromTimespStr = noti.userInfo[@"month"];
+    
+    [self postRequest:YES];
+    
+}
 
-// 下拉刷新
-- (void)downPullUpdateData {
-    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(YES)}];
-    // 模拟网络请求，1秒后结束刷新
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.rowCount = 20;
+//请求数据
+-(void)postRequest:(BOOL)isRefresh{
+    if(isRefresh){
+        self.page = 1;
+    }else{
+        self.page = self.page + 1;
+    }
+    
+    [EasyShowLodingView showLodingText:@"数据请求中"];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"group_id"] = [UserModel defaultUser].group_id;
+//    dic[@"page"] = @(self.page);
+    dic[@"state"] = @(1);
+    dic[@"t_time"] = self.confromTimespStr;
+    
+    [NetworkManager requestPOSTWithURLStr:kmeber_appraisals_set paramDic:dic finish:^(id responseObject) {
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(NO)}];
-    });
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            if (isRefresh == YES) {
+                [self.models removeAllObjects];
+            }
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                LBMine_Team_ResultModel *model = [LBMine_Team_ResultModel mj_objectWithKeyValues:dict];
+                [self.models addObject:model];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [LBDefineRefrsh dismissRefresh:self.tableView];
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        [self.tableView reloadData];
+        
+    }];
 }
 
-// 上拉加载
-- (void)upPullLoadMoreData {
-    self.rowCount = 30;
-    [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(YES)}];
-    // 模拟网络请求，1秒后结束刷新
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.rowCount = 20;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:GLMine_Team_ChildScrollViewRefreshStateNSNotification object:nil userInfo:@{@"isRefreshing":@(NO)}];
-    });
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 15;
+    return self.models.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -66,6 +115,7 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GLMine_Team_AchieveManageCell *cell = [tableView dequeueReusableCellWithIdentifier:donationTableViewCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.resultModel = self.models[indexPath.row];
     return cell;
 }
 
@@ -76,4 +126,36 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+//获取当前时间戳有两种方法(以秒为单位)
+
+-(NSString *)getNowTimeTimestamp{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    //设置时区,这个对于时间的处理有时很重要
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+    
+    return timeSp;
+    
+}
+
+-(NSMutableArray *)models{
+    if (!_models) {
+        _models = [NSMutableArray array];
+    }
+    return _models;
+}
 @end

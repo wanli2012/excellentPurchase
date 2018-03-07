@@ -78,5 +78,29 @@
     
 }
 
+-(void)setResultModel:(LBMine_Team_ResultModel *)resultModel{
+    _resultModel = resultModel;
+    self.dateLabel.hidden = YES;
+    self.typeView.hidden = NO;
+    self.attributeNameLabel.text = @"布置绩效:";
+    self.attributeNameLabel2.text = @"已完成:";
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_resultModel.pic] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.nameLabel.text = _resultModel.truename;
+    if ([NSString StringIsNullOrEmpty:self.nameLabel.text] == YES) {
+        self.nameLabel.text = _resultModel.nickname;
+    }
+    self.IDNumberLabel.text = _resultModel.user_name;
+    self.groupTypeLabel.text = _resultModel.group_name;
+    self.valueLabel.text = _resultModel.team_done_money;
+    self.valueLabel2.text = _resultModel.team_set_money;
+    
+    if ([NSString StringIsNullOrEmpty:self.valueLabel.text] == YES) {
+        self.valueLabel.text = @"0";
+    }
+    
+    if ([NSString StringIsNullOrEmpty:self.valueLabel2.text] == YES) {
+        self.valueLabel2.text = @"0";
+    }
+}
 
 @end
