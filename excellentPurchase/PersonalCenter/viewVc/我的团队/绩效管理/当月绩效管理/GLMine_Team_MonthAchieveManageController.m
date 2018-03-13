@@ -48,7 +48,7 @@
     }
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
+    dic[@"app_handler"] = @"ADD";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"set_uid"] = self.group_id;

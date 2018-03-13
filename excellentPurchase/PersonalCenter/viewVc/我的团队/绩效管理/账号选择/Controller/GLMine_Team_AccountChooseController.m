@@ -33,13 +33,11 @@
     self.navigationItem.title = @"账号选择";
     
     WeakSelf;
-    
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
         [weakSelf postRequest:YES];
     }];
     
     [self postRequest:YES];
-    
 }
 
 //请求数据
@@ -59,10 +57,15 @@
         [EasyShowLodingView hidenLoding];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
+            if(isRefresh){
+                [self.models removeAllObjects];
+            }
+            
             for (NSDictionary *dict in responseObject[@"data"]) {
                 GLMine_Team_AccountChooseModel *model = [GLMine_Team_AccountChooseModel mj_objectWithKeyValues:dict];
                 [self.models addObject:model];
             }
+            
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }

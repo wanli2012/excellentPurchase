@@ -187,6 +187,7 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
 }
 
 -(void)initInterFace{
+    
     [self addSubview:self.headimage];
     [self addSubview:self.starRateView];
     [self addSubview:self.nameLb];
@@ -200,8 +201,8 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
     
     [self.nameLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.trailing.equalTo(self.starRateView.mas_leading).offset(-10);
-        make.leading.equalTo(self.headimage.mas_trailing).offset(10);
+        make.right.equalTo(self.starRateView.mas_left).offset(-10);
+        make.left.equalTo(self.headimage.mas_right).offset(10);
         make.top.equalTo(self.headimage.mas_top).offset(0);
         
     }];
@@ -215,11 +216,11 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
     }];
     
     [self.ord_spec_info mas_makeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.trailing.equalTo(self).offset(-10);
         make.leading.equalTo(self.headimage.mas_trailing).offset(10);
         make.top.equalTo(self.identifyLb.mas_bottom).offset(0);
-
+        
     }];
     
     [self.contentLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -229,11 +230,12 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
         make.top.equalTo(self.ord_spec_info.mas_bottom).offset(13);
         
     }];
+    
     [self.timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.leading.equalTo(self.headimage.mas_trailing).offset(10);
         make.top.equalTo(self.contentLb.mas_bottom).offset(13);
-
+        
     }];
     
     [self.replaytableview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -244,12 +246,12 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
         
     }];
     
-        [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.replayBt mas_makeConstraints:^(MASConstraintMaker *make) {
     
-            make.trailing.equalTo(self).offset(-10);
-            make.centerY.equalTo(self.timeLb);
+        make.trailing.equalTo(self).offset(-10);
+        make.centerY.equalTo(self.timeLb);
     
-        }];
+    }];
     
 }
 
@@ -258,6 +260,7 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
         _nameLb = [[UILabel alloc]init];
         _nameLb.textColor = LBHexadecimalColor(0x666666);
         _nameLb.font = [UIFont systemFontOfSize:13];
+     
     }
     return _nameLb;
 }

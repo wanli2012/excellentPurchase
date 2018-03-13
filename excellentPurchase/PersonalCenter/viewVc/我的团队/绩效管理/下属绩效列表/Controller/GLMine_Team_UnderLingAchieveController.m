@@ -52,6 +52,7 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
+        
         for (int i = 0; i < 9 ; i ++) {
             GLMine_Team_UnderlingAchieveModel *model = [[GLMine_Team_UnderlingAchieveModel alloc] init];
             model.money = [NSString stringWithFormat:@"100%zd",i];

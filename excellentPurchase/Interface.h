@@ -51,8 +51,8 @@
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"//个人本地
-//#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上
-#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//线下服务器
+#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上
+//#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//线下服务器
 
 #define share_URL_Base @"https://app.helloyogo.com/index.php/"//分享
 
