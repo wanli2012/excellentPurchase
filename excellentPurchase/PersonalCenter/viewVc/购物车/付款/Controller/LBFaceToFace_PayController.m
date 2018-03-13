@@ -249,8 +249,8 @@
     dic[@"payment_type"] = @"105";
     dic[@"money"] = self.money;
     dic[@"rl_money"] = self.rlmoney;
-     dic[@"pass"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
-     dic[@"shop_uid"] = self.shopuid;
+    dic[@"pass"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
+    dic[@"shop_uid"] = self.shopuid;
     
     [NetworkManager requestPOSTWithURLStr:PayFace_pay paramDic:dic finish:^(id responseObject) {
         

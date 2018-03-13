@@ -234,7 +234,7 @@
                                 <constraint firstAttribute="width" constant="100" id="lne-k4-Rna"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="确认发货(2)"/>
+                            <state key="normal" title="确认发货"/>
                             <connections>
                                 <action selector="ensureDelivery:" destination="-1" eventType="touchUpInside" id="1A3-pk-9k2"/>
                             </connections>
