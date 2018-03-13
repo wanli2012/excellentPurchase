@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LBHomeViewActivityHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新揭晓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-0H-I8b">
+                    <rect key="frame" x="10" y="10" width="57.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hz7-kB-2CC">
+                    <rect key="frame" x="10" y="37" width="355" height="153"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="skQ-vH-3KY">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="nUc-xJ-iRR"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="dmb-eF-oeG"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="KwM-0H-I8b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="0hM-8f-n3E"/>
+                <constraint firstItem="hz7-kB-2CC" firstAttribute="top" secondItem="KwM-0H-I8b" secondAttribute="bottom" constant="10" id="O0a-vH-sdu"/>
+                <constraint firstItem="hz7-kB-2CC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="TNs-hz-bOd"/>
+                <constraint firstAttribute="trailing" secondItem="hz7-kB-2CC" secondAttribute="trailing" constant="10" id="VLQ-IY-GAh"/>
+                <constraint firstAttribute="bottom" secondItem="hz7-kB-2CC" secondAttribute="bottom" constant="10" id="vye-C7-n9n"/>
+                <constraint firstItem="KwM-0H-I8b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yZk-OU-Ais"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionview" destination="hz7-kB-2CC" id="dnV-61-YBx"/>
+            </connections>
+        </view>
+    </objects>
+</document>

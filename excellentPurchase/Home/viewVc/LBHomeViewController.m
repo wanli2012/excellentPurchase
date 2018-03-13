@@ -73,10 +73,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [EasyShowLodingView hidenLoding];
     
     self.navigationController.navigationBar.hidden = YES;
-//    if ([NSString StringIsNullOrEmpty:[LBSaveLocationInfoModel defaultUser].currentCity]) {
-//         [_locationManager startUpdatingLocation];//定位
-//    }
-    //kShop_index_URL
+
 }
 
 -(void)updateViewConstraints{
@@ -89,7 +86,8 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self locatemap];//定位
-    
+    //同步城市选择
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCityData) name:@"LBHomeViewController" object:nil];
      [self.tableview registerNib:[UINib nibWithNibName:immediateRushBuyCell bundle:nil] forCellReuseIdentifier:immediateRushBuyCell];
     
     adjustsScrollViewInsets_NO(self.tableview, self);
@@ -101,7 +99,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
                       @{@"trade_name":@"自营商城",@"thumb":@"Home-ziying"},
                       @{@"trade_name":@"吃喝玩乐",@"thumb":@"Home-chihewanle"},
 //                      @{@"trade_name":@"秒杀拼团",@"thumb":@"Home-miaosha"},
-//                      @{@"trade_name":@"一元购",@"thumb":@"Home-yiyuangou-1"},
+                      @{@"trade_name":@"一元购",@"thumb":@"Home-yiyuangou-1"},
                       @{@"trade_name":@"充值中心",@"thumb":@"Home-chongzhi"}];
     
     [self.classfyHeaderV initdatasorece:self.tradeArr];
@@ -396,16 +394,16 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 //            self.hidesBottomBarWhenPushed = NO;
 //        }
 //            break;
-//        case 6:
-//        {
-//            self.hidesBottomBarWhenPushed = YES;
-//            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
-//            vc.titileStr = @"一元购";
-//            [self.navigationController pushViewController:vc animated:YES];
-//            self.hidesBottomBarWhenPushed = NO;
-//        }
-//            break;
         case 5:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
+            vc.titileStr = @"一元购";
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 6:
         {
             if ( [UserModel defaultUser].loginstatus == NO) {
                 [EasyShowTextView showText:@"请先登录"];
@@ -588,8 +586,6 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
      self.hidesBottomBarWhenPushed = NO;
     
 }
-
-
 //选择城市列表
 - (IBAction)chooseCityGesture:(UITapGestureRecognizer *)sender {
     
@@ -621,6 +617,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.latitude).stringValue;
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
             [self getWeatherInfo];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"LBEatAndDrinkViewController" object:nil];
         }else
         {
             NSLog(@"错误");
@@ -630,6 +627,11 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+-(void)refreshCityData{
+    self.cityLb.text = [LBSaveLocationInfoModel defaultUser].currentCity;
+    [self getWeatherInfo];
 }
 //取消
 - (void) cityPickerControllerDidCancel:(GYZChooseCityController *)chooseCityController{

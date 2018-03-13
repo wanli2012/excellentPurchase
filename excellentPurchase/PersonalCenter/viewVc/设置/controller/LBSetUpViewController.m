@@ -56,7 +56,7 @@ static NSString *closeTabbarMusicTableViewCell = @"LBCloseTabbarMusicTableViewCe
     CFShow((__bridge CFTypeRef)(infoDictionary));
     // app版本
     _app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-
+    self.versionLb.text = [NSString stringWithFormat:@"当前版本号: %@",_app_Version];
     
 }
 

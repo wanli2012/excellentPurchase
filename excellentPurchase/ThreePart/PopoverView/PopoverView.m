@@ -38,6 +38,7 @@ float PopoverViewDegreesToRadians(float angle)
 {
     if (!(self = [super initWithFrame:frame])) return nil;
     [self initialize];
+    
     return self;
 }
 

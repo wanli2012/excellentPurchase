@@ -92,6 +92,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     [self setupNpdata];//设置无数据的时候展示
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setTableViewCellHight:)  name:@"getCellHightNotification" object:nil];//更新webview cell的高度
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popself) name:@"standardHide" object:nil];
     
 }
 
@@ -106,7 +107,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     self.tableview.ly_emptyView.titleLabTextColor = YYSRGBColor(109, 109, 109, 1);
     self.tableview.ly_emptyView.titleLabFont = [UIFont fontWithName:@"MDT_1_95969" size:15];
     self.tableview.ly_emptyView.detailLabFont = [UIFont fontWithName:@"MDT_1_95969" size:13];
-    
     
     //emptyView内容上的点击事件监听
     [self.tableview.ly_emptyView setTapContentViewBlock:^{

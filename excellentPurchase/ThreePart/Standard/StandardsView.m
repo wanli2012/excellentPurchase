@@ -65,7 +65,7 @@
     if (self) {
         tempImgViewtag = 0;
         [self buildViews];
-        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismiss) name:@"standardHide" object:nil];
     }
     return self;
 }

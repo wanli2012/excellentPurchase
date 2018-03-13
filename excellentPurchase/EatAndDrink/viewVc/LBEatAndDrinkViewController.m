@@ -50,6 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.nodataView];
+    //同步城市选择
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCityData) name:@"LBEatAndDrinkViewController" object:nil];
     [self loadData];//加载数据
     WeakSelf;
     _nodataView.cancekBlock = ^{
@@ -222,6 +224,7 @@
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
             self.cityLb.text = city.cityName;
             [self loadData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"LBHomeViewController" object:nil];
         }else
         {
             NSLog(@"错误");
@@ -231,6 +234,11 @@
     [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+-(void)refreshCityData{
+    self.cityLb.text = [LBSaveLocationInfoModel defaultUser].currentCity;
+    [self loadData];
 }
 //取消
 - (void) cityPickerControllerDidCancel:(GYZChooseCityController *)chooseCityController{

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LBHomeViewActivityCollectionViewCell" id="gTV-IL-0wX" customClass="LBHomeViewActivityCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="132" height="177"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="132" height="177"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3yQ-MJ-x88">
+                        <rect key="frame" x="10" y="10" width="112" height="112"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3yQ-MJ-x88" secondAttribute="height" id="l5f-Yb-bpH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等待开奖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvJ-we-TmE">
+                        <rect key="frame" x="10" y="132" width="112" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.36078431370000003" green="0.01176470588" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等待开奖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmC-sY-7gm">
+                        <rect key="frame" x="10" y="154" width="112" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pvJ-we-TmE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="03Q-NQ-LlQ"/>
+                <constraint firstItem="3yQ-MJ-x88" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="5FB-EN-CYk"/>
+                <constraint firstItem="lmC-sY-7gm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Pzc-tI-hnU"/>
+                <constraint firstAttribute="trailing" secondItem="pvJ-we-TmE" secondAttribute="trailing" constant="10" id="TSD-7y-LXY"/>
+                <constraint firstAttribute="trailing" secondItem="3yQ-MJ-x88" secondAttribute="trailing" constant="10" id="a2k-lH-ir7"/>
+                <constraint firstItem="3yQ-MJ-x88" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="a4N-zf-pGj"/>
+                <constraint firstItem="lmC-sY-7gm" firstAttribute="top" secondItem="pvJ-we-TmE" secondAttribute="bottom" constant="5" id="d4z-DA-q7X"/>
+                <constraint firstAttribute="trailing" secondItem="lmC-sY-7gm" secondAttribute="trailing" constant="10" id="jur-9u-eOS"/>
+                <constraint firstItem="pvJ-we-TmE" firstAttribute="top" secondItem="3yQ-MJ-x88" secondAttribute="bottom" constant="10" id="rGZ-zt-DRC"/>
+            </constraints>
+            <size key="customSize" width="132" height="177"/>
+            <point key="canvasLocation" x="66" y="7.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

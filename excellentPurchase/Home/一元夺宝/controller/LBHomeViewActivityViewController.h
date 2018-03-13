@@ -11,4 +11,5 @@
 @interface LBHomeViewActivityViewController : UIViewController
 
 @property (strong , nonatomic)NSString *titileStr;
+
 @end

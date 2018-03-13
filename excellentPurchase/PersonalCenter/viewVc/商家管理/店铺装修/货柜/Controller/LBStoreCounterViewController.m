@@ -239,9 +239,9 @@ static NSString *ID = @"LBStoreCounterTableViewCell";
     
     if ([model.sh_status integerValue] == 2) {//商品审核状态 1审核失败 2审核成功 3未审核
         if([model.status integerValue] == 1){////商品上下架状态 1上架，2下架
-            dic[@"status"] = @"1";
-        }else{
             dic[@"status"] = @"2";
+        }else{
+            dic[@"status"] = @"1";
         }
     }
 
