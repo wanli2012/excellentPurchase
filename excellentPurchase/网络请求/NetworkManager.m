@@ -65,7 +65,7 @@
     [manager POST:urlStr1 parameters:newDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if([responseObject[@"code"] integerValue] == OVERDUE_CODE){
- 
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"standardHide" object:nil];//隐藏规格弹窗
             [EasyShowTextView showErrorText:@"登录过期,请重新登录"];
             LBLoginViewController *loginVC = [[LBLoginViewController alloc] init];
 
