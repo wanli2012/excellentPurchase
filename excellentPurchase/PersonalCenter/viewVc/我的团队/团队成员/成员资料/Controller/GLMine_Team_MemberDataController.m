@@ -47,10 +47,11 @@
         [weakSelf postListRequest:YES];
     }];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Team_AchieveManageCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Team_AchieveManageCell"];
+    
     [self postRequest];
     [self postListRequest:YES];
 }
-
 
 /**
  设置无数据图
@@ -149,7 +150,6 @@
     }];
 }
 
-
 //赋值
 - (void)assignment{
     
@@ -163,7 +163,6 @@
         self.signLabel.text = @"审核中";
     }else if([self.model.tg_status integerValue] == 2){
         self.signLabel.text = @"失败";
-        
     }
     
     self.IDNumberLabel.text = self.model.user_name;

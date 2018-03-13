@@ -182,6 +182,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     }
     return 0; //返回值是多少既有几个分区
 }
+
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //分别设置每个分组上面显示的单元格个数
@@ -316,6 +317,7 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
     [[self viewController].navigationController pushViewController:vc animated:YES];
     [self viewController].hidesBottomBarWhenPushed = NO;
 }
+
 #pragma mark - 重写----设置自定义的标题和标注
 -(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];

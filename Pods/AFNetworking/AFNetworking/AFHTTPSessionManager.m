@@ -109,9 +109,10 @@
             case AFSSLPinningModePublicKey:   pinningMode = @"AFSSLPinningModePublicKey"; break;
         }
         NSString *reason = [NSString stringWithFormat:@"A security policy configured with `%@` can only be applied on a manager with a secure base URL (i.e. https)", pinningMode];
+        
         @throw [NSException exceptionWithName:@"Invalid Security Policy" reason:reason userInfo:nil];
     }
-
+  
     [super setSecurityPolicy:securityPolicy];
 }
 

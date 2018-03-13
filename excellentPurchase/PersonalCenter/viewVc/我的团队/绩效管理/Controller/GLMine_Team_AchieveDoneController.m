@@ -33,7 +33,6 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     [self.tableView registerNib:[UINib nibWithNibName:donationTableViewCell bundle:nil] forCellReuseIdentifier:donationTableViewCell];
     
     WeakSelf;
-   
     [LBDefineRefrsh defineRefresh:self.tableView headerrefresh:^{
         [weakSelf postRequest:YES];
     }];
@@ -57,11 +56,11 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
 
 //请求数据
 -(void)postRequest:(BOOL)isRefresh{
-    if(isRefresh){
-        self.page = 1;
-    }else{
-        self.page = self.page + 1;
-    }
+//    if(isRefresh){
+//        self.page = 1;
+//    }else{
+//        self.page = self.page + 1;
+//    }
     
     [EasyShowLodingView showLodingText:@"数据请求中"];
     

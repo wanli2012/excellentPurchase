@@ -94,15 +94,14 @@
     //信号量
     [EasyShowLodingView showLodingText:@"图片上传中"];
     
-    self.saveBtn.enabled = NO;
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
+//    self.saveBtn.enabled = NO;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     //创建全局并行
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     //创建任务
     UIImage *image = self.faceImageV.image;
-    
     dispatch_group_async(group, queue, ^{
         [weakSelf uploadImageV:image type:1 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
             
@@ -111,8 +110,8 @@
         }];
     });
     
-    UIImage *image2 = self.oppositeImageV.image;
     
+    UIImage *image2 = self.oppositeImageV.image;
     dispatch_group_async(group, queue, ^{
         [weakSelf uploadImageV:image2 type:2 block:^(){ //这个block是此网络任务异步请求结束时调用的,代表着网络请求的结束.
             
