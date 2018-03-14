@@ -46,17 +46,10 @@
     // 添加悬浮菜单
     [self.view addSubview:self.pageMenu];
     
-    //    if ([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP) {//商家身份
     // 添加3个子控制器
     [self addChildViewController:[[LBDolphinDetailCategrayoneController alloc] init]];
     [self addChildViewController:[[LBDolphinDetailCategraytwoController alloc] init]];
     [self addChildViewController:[[LBDolphinDetailCategraythreeController alloc] init]];
-    
-    //    }else{//除商家以外的身份
-    //
-    //        [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
-    //        [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
-    //    }
     
     // 先将第一个子控制的view添加到scrollView上去
     [self.scrollView addSubview:self.childViewControllers[0].view];
@@ -224,20 +217,13 @@
     
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
-        _scrollView.frame = CGRectMake(0, 0, UIScreenWidth, UIScreenHeight);
+        _scrollView.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight);
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
-        
-        //        if ([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP) {
-        
         _scrollView.contentSize = CGSizeMake(UIScreenWidth*3, 0);
-        //        }else{
-        //            _scrollView.contentSize = CGSizeMake(UIScreenWidth*2, 0);
-        //        }
-        
-        _scrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
+        _scrollView.backgroundColor = [UIColor redColor];
     }
     return _scrollView;
 }
@@ -260,12 +246,13 @@
     return _pageMenu;
 }
 
-
 -(LBHomeOneDolphinDetailHeaderView*)headview{
     if (!_headview) {
-        _headview = [[NSBundle mainBundle]loadNibNamed:@"LBHomeOneDolphinDetailHeaderView" owner:nil options:nil].firstObject;
+        _headview = [[NSBundle mainBundle]loadNibNamed:@"LBHomeOneDolphinDetailHeaderView" owner:self options:nil].firstObject;
         _headview.frame = CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, kHeaderViewH);
-        _headview.userInteractionEnabled = NO;
+        _headview.autoresizingMask = 0;
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerAction:)];
+        [_headview addGestureRecognizer:pan];
     }
     return _headview;
 }
