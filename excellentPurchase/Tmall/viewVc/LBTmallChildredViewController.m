@@ -172,7 +172,6 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
         finish();
         
     }];
-    
 }
 
 #pragma mark - 重写----设置有groupTableView有几个分区
