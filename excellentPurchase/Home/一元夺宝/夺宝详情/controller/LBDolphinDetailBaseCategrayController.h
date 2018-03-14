@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define isIPhoneX kScreenH==812
-#define kScrollViewBeginTopInset ((410 + UIScreenWidth) + 60 + SafeAreaTopHeight)
+#define kScrollViewBeginTopInset ((410 + UIScreenWidth) + 60 )
 
 UIKIT_EXTERN NSNotificationName const ChildScrollViewDidScrollNSNotificationDolphindetail;
 UIKIT_EXTERN NSNotificationName const ChildScrollViewRefreshStateNSNotificationDolphindetail;
