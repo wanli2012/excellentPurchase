@@ -21,11 +21,6 @@
 #define ERROR_CODE 400//参数错误
 #define OVERDUE_CODE 401//登录过期，或其他未经认证的请求
 
-/*以下状态码为错误状态码-将不会返回任何实体数据，它会将错误返回在http响应头*/
-//#define LOGIC_ERROR_CODE 403// 被禁止的 服务器上文件或目录的权限导致
-//#define LOGIC_ERROR_CODE 404  //未找到资源
-//#define LOGIC_ERROR_CODE 405  //请求方法不被允许(验证post和get或其他方式的请求)
-//#define LOGIC_ERROR_CODE 500  //服务器内部错误
 
 #define GROUP_SD 2 //省代
 #define GROUP_CD 3 //市代
@@ -51,8 +46,8 @@
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
 
 //#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"//个人本地
-#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上
-//#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//线下服务器
+//#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上
+#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//线下服务器
 
 #define share_URL_Base @"https://app.helloyogo.com/index.php/"//分享
 

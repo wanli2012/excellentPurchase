@@ -32,7 +32,13 @@
     self.storeNameLabel.text = [NSString stringWithFormat:@"店铺名:%@", model.sname];
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolder]];
     self.accountLabel.text =[NSString stringWithFormat:@"账号:%@",model.uname];
-    self.typeLabel.text = [NSString stringWithFormat:@"类型:%@",model.type];
+    
+    if([model.type integerValue] == 1){
+        self.typeLabel.text = @"类型:收益自营";
+    }else if ([model.type integerValue] == 2){
+        self.typeLabel.text = @"类型:其他店铺收益";
+    }
+    
     self.monthMoneyLabel.text = [NSString stringWithFormat:@"¥ %@",model.fullmoon];
     self.totalMoneyLabel.text = [NSString stringWithFormat:@"¥ %@",model.goodsmoney];
     
