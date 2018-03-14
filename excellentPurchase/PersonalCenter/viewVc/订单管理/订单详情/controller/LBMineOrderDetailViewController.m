@@ -161,6 +161,8 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
     vc.codestr = self.dataModel.odd_num;
+    LBMyOrdersDetailGoodsListModel *model = self.dataModel.goods_info[0];
+    vc.imageStr = model.thumb;
     [self.navigationController pushViewController:vc animated:YES];
 }
 //待评论

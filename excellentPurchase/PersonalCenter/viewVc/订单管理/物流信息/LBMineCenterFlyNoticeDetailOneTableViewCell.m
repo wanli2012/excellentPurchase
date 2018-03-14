@@ -20,6 +20,9 @@
 -(void)setModel:(LBMineCenterFlyNoticeDetailModel *)model{
     _model = model;
     self.contentlb.text = [NSString stringWithFormat:@"%@",_model.status];
+    if ([NSString StringIsNullOrEmpty:self.contentlb.text]) {
+        self.contentlb.text = @"暂无物流消息";
+    }
     self.timelb.text = [NSString stringWithFormat:@"%@",_model.time];
 }
 

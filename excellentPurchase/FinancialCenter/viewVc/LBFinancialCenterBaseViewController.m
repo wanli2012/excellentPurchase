@@ -62,7 +62,6 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"
     self.lastContentOffset = scrollView.contentOffset;
 }
 
-
 - (UITableView *)tableView {
     
     if (!_tableView) {
@@ -76,6 +75,5 @@ NSNotificationName const ChildScrollViewRefreshStateNSNotificationFinancial = @"
     }
     return _tableView;
 }
-
 
 @end

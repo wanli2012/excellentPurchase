@@ -255,7 +255,8 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
-    vc.codestr = model.odd_num;
+    vc.codestr = model.ord_odd_num;
+    vc.imageStr = model.store_thumb;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

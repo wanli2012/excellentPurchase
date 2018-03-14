@@ -53,7 +53,6 @@
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.model = [LBMineCenterFlyNoticeModel mj_objectWithKeyValues:responseObject[@"data"]];
         }else{
-            
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
         [self.tableview reloadData];
@@ -109,6 +108,7 @@
         LBMineCenterFlyNoticeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterFlyNoticeDetailTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.model;
+        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:self.imageStr]];
         return cell;
     }else{
         LBMineCenterFlyNoticeDetailOneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterFlyNoticeDetailOneTableViewCell" forIndexPath:indexPath];

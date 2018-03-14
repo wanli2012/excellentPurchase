@@ -10,14 +10,15 @@
 @class LBMineOrderObligationGoodsmodel;
 @interface LBMineOrderObligationmodel : NSObject
 
-@property (copy , nonatomic)NSString *order_id;
+@property (copy , nonatomic)NSString *ord_order_id;
 @property (copy , nonatomic)NSString *ord_shop_uid;
 @property (copy , nonatomic)NSString *shop_name;
 @property (copy , nonatomic)NSString *time;
 @property (copy , nonatomic)NSString *send_price;
 @property (copy , nonatomic)NSString *order_price;
 @property (copy , nonatomic)NSString *goods_num;
-@property (copy , nonatomic)NSString *odd_num;//订单号
+@property (copy , nonatomic)NSString *ord_odd_num;//订单号
+@property (copy , nonatomic)NSString *store_thumb;
 @property (copy , nonatomic)NSString *ord_cancel_reason;
 @property (assign , nonatomic)BOOL iselect;//是否被选中
 @property (copy , nonatomic)NSArray<LBMineOrderObligationGoodsmodel*> *goods_data;

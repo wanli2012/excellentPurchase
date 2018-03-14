@@ -878,6 +878,7 @@
 		F9633D8D200C6698001B545A /* 消息提醒.gif in Resources */ = {isa = PBXBuildFile; fileRef = F9633D8C200C6698001B545A /* 消息提醒.gif */; };
 		F9633D91200C7061001B545A /* LBMineDataCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9633D8F200C7061001B545A /* LBMineDataCollectionViewCell.m */; };
 		F9633D92200C7061001B545A /* LBMineDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9633D90200C7061001B545A /* LBMineDataCollectionViewCell.xib */; };
+		F965810B205905460095BA4F /* LBHomeDolphinDetailSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F965810A205905460095BA4F /* LBHomeDolphinDetailSectionHeader.m */; };
 		F96971C12011849A00966E26 /* LBEat_StoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F969719C2011849900966E26 /* LBEat_StoreDetailViewController.m */; };
 		F96971C22011849A00966E26 /* LBEat_StoreDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F969719D2011849900966E26 /* LBEat_StoreDetailViewController.xib */; };
 		F96971C32011849A00966E26 /* LBEat_storeDetailInfodiscountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F96971A12011849900966E26 /* LBEat_storeDetailInfodiscountTableViewCell.m */; };
@@ -1041,10 +1042,6 @@
 		F9948E512056573200899E7E /* LBDolphinDetailOneHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9948E502056573200899E7E /* LBDolphinDetailOneHeaderView.xib */; };
 		F9948E5420566D5500899E7E /* LBDolphinDetailTwoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9948E5320566D5500899E7E /* LBDolphinDetailTwoHeaderView.m */; };
 		F9948E5620566D7600899E7E /* LBDolphinDetailTwoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9948E5520566D7600899E7E /* LBDolphinDetailTwoHeaderView.xib */; };
-		F9948E59205677C700899E7E /* LBDolphinDetailBaseCategrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9948E58205677C700899E7E /* LBDolphinDetailBaseCategrayController.m */; };
-		F9948E5C2056780200899E7E /* LBDolphinDetailCategrayoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9948E5B2056780200899E7E /* LBDolphinDetailCategrayoneController.m */; };
-		F9948E5F2056781300899E7E /* LBDolphinDetailCategraytwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9948E5E2056781300899E7E /* LBDolphinDetailCategraytwoController.m */; };
-		F9948E622056782A00899E7E /* LBDolphinDetailCategraythreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9948E612056782A00899E7E /* LBDolphinDetailCategraythreeController.m */; };
 		F99C727C20099E4200E996FD /* taotaoShop.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C727B20099E4200E996FD /* taotaoShop.xcassets */; };
 		F9D31AC42042A239008707F0 /* LBTmallSeconedClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */; };
 		F9D31AC82042A3B7008707F0 /* LBRiceShopTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC62042A3B7008707F0 /* LBRiceShopTagTableViewCell.m */; };
@@ -2610,6 +2607,8 @@
 		F9633D8E200C7061001B545A /* LBMineDataCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBMineDataCollectionViewCell.h; sourceTree = "<group>"; };
 		F9633D8F200C7061001B545A /* LBMineDataCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBMineDataCollectionViewCell.m; sourceTree = "<group>"; };
 		F9633D90200C7061001B545A /* LBMineDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBMineDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		F9658109205905460095BA4F /* LBHomeDolphinDetailSectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBHomeDolphinDetailSectionHeader.h; sourceTree = "<group>"; };
+		F965810A205905460095BA4F /* LBHomeDolphinDetailSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBHomeDolphinDetailSectionHeader.m; sourceTree = "<group>"; };
 		F969719B2011849900966E26 /* LBEat_StoreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBEat_StoreDetailViewController.h; sourceTree = "<group>"; };
 		F969719C2011849900966E26 /* LBEat_StoreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBEat_StoreDetailViewController.m; sourceTree = "<group>"; };
 		F969719D2011849900966E26 /* LBEat_StoreDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBEat_StoreDetailViewController.xib; sourceTree = "<group>"; };
@@ -2870,14 +2869,6 @@
 		F9948E5220566D5500899E7E /* LBDolphinDetailTwoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDolphinDetailTwoHeaderView.h; sourceTree = "<group>"; };
 		F9948E5320566D5500899E7E /* LBDolphinDetailTwoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDolphinDetailTwoHeaderView.m; sourceTree = "<group>"; };
 		F9948E5520566D7600899E7E /* LBDolphinDetailTwoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBDolphinDetailTwoHeaderView.xib; sourceTree = "<group>"; };
-		F9948E57205677C700899E7E /* LBDolphinDetailBaseCategrayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDolphinDetailBaseCategrayController.h; sourceTree = "<group>"; };
-		F9948E58205677C700899E7E /* LBDolphinDetailBaseCategrayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDolphinDetailBaseCategrayController.m; sourceTree = "<group>"; };
-		F9948E5A2056780200899E7E /* LBDolphinDetailCategrayoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDolphinDetailCategrayoneController.h; sourceTree = "<group>"; };
-		F9948E5B2056780200899E7E /* LBDolphinDetailCategrayoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDolphinDetailCategrayoneController.m; sourceTree = "<group>"; };
-		F9948E5D2056781300899E7E /* LBDolphinDetailCategraytwoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDolphinDetailCategraytwoController.h; sourceTree = "<group>"; };
-		F9948E5E2056781300899E7E /* LBDolphinDetailCategraytwoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDolphinDetailCategraytwoController.m; sourceTree = "<group>"; };
-		F9948E602056782A00899E7E /* LBDolphinDetailCategraythreeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDolphinDetailCategraythreeController.h; sourceTree = "<group>"; };
-		F9948E612056782A00899E7E /* LBDolphinDetailCategraythreeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDolphinDetailCategraythreeController.m; sourceTree = "<group>"; };
 		F99C727B20099E4200E996FD /* taotaoShop.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = taotaoShop.xcassets; sourceTree = "<group>"; };
 		F9D31AC22042A239008707F0 /* LBTmallSeconedClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallSeconedClassifyModel.h; sourceTree = "<group>"; };
 		F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallSeconedClassifyModel.m; sourceTree = "<group>"; };
@@ -7041,14 +7032,6 @@
 			children = (
 				F95614D12052777400B9E4A7 /* LBHomeOneDolphinDetailController.h */,
 				F95614D72052782700B9E4A7 /* LBHomeOneDolphinDetailController.m */,
-				F9948E57205677C700899E7E /* LBDolphinDetailBaseCategrayController.h */,
-				F9948E58205677C700899E7E /* LBDolphinDetailBaseCategrayController.m */,
-				F9948E5A2056780200899E7E /* LBDolphinDetailCategrayoneController.h */,
-				F9948E5B2056780200899E7E /* LBDolphinDetailCategrayoneController.m */,
-				F9948E5D2056781300899E7E /* LBDolphinDetailCategraytwoController.h */,
-				F9948E5E2056781300899E7E /* LBDolphinDetailCategraytwoController.m */,
-				F9948E602056782A00899E7E /* LBDolphinDetailCategraythreeController.h */,
-				F9948E612056782A00899E7E /* LBDolphinDetailCategraythreeController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -7072,6 +7055,8 @@
 				F9948E5220566D5500899E7E /* LBDolphinDetailTwoHeaderView.h */,
 				F9948E5320566D5500899E7E /* LBDolphinDetailTwoHeaderView.m */,
 				F9948E5520566D7600899E7E /* LBDolphinDetailTwoHeaderView.xib */,
+				F9658109205905460095BA4F /* LBHomeDolphinDetailSectionHeader.h */,
+				F965810A205905460095BA4F /* LBHomeDolphinDetailSectionHeader.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -8792,7 +8777,6 @@
 				4AA3A1922019AE7700C94E49 /* GLMine_Branch_OnlineFooter.m in Sources */,
 				F923B1C42020021E00DFEF7C /* ZXSMSTOMMSTOResultParser.m in Sources */,
 				F923B2302020021F00DFEF7C /* ZXCodaBarWriter.m in Sources */,
-				F9948E5C2056780200899E7E /* LBDolphinDetailCategrayoneController.m in Sources */,
 				F9F775A320271EF5007FB5CD /* LBUerUnderLineOrderModel.m in Sources */,
 				F96971D22011849A00966E26 /* LJCollectionViewFlowLayout.m in Sources */,
 				4AA3A1A62019C2EE00C94E49 /* GLMine_Branch_OfflineStatusController.m in Sources */,
@@ -8887,7 +8871,6 @@
 				4A79EDCD200EE469001F28D1 /* GLMine_TeamController.m in Sources */,
 				F923B2122020021F00DFEF7C /* ZXAbstractExpandedDecoder.m in Sources */,
 				F923B1F12020021F00DFEF7C /* ZXErrors.m in Sources */,
-				F9948E59205677C700899E7E /* LBDolphinDetailBaseCategrayController.m in Sources */,
 				F955D11C20087C82001EEC81 /* LBChangePasswordViewController.m in Sources */,
 				F97137412005F6D10033F38B /* LBForgetSecretViewController.m in Sources */,
 				F96CF428201818A50070658C /* LBMineCollectionViewController.m in Sources */,
@@ -8910,7 +8893,6 @@
 				4A9CBDA120240AB3004623C5 /* LBFinishProductsCell1.m in Sources */,
 				F923B2292020021F00DFEF7C /* ZXAbstractRSSReader.m in Sources */,
 				F9340A39200A200A0002DBB8 /* LBFiltrateProductViewController.m in Sources */,
-				F9948E622056782A00899E7E /* LBDolphinDetailCategraythreeController.m in Sources */,
 				4AA3A17A20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.m in Sources */,
 				4AEA55762023426B00129D9A /* GLMine_Team_StaffingCell.m in Sources */,
 				4A9A8BF2202B22C200DD54CD /* GLAccountModel.m in Sources */,
@@ -9046,7 +9028,6 @@
 				F923B1F22020021F00DFEF7C /* ZXInvertedLuminanceSource.m in Sources */,
 				F923B1BC2020021E00DFEF7C /* ZXISBNParsedResult.m in Sources */,
 				F9426AF2201ABC200054417E /* EasyShowTextBgView.m in Sources */,
-				F9948E5F2056781300899E7E /* LBDolphinDetailCategraytwoController.m in Sources */,
 				F9F7759A20271917007FB5CD /* LBUerUnderlineOrdersViewController.m in Sources */,
 				4A9CBDB820246736004623C5 /* LBStoreCounterViewController.m in Sources */,
 				F923B2582020021F00DFEF7C /* ZXPDF417.m in Sources */,
@@ -9152,6 +9133,7 @@
 				F969F9F3202DADAC000B9805 /* LBMerChatFaceToFaceViewController.m in Sources */,
 				4AA3A1BD2019FDCB00C94E49 /* GLMine_Seller_OrderDetailController.m in Sources */,
 				4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */,
+				F965810B205905460095BA4F /* LBHomeDolphinDetailSectionHeader.m in Sources */,
 				4A9E18C62011F45100E1EC05 /* GLMine_Team_UploadLicenseController.m in Sources */,
 				F923B2592020021F00DFEF7C /* ZXPDF417BarcodeMatrix.m in Sources */,
 				F923B2472020021F00DFEF7C /* ZXUPCEANWriter.m in Sources */,

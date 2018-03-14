@@ -11,5 +11,6 @@
 @interface LBMineCenterFlyNoticeDetailViewController : UIViewController
 
 @property (strong , nonatomic)NSString *codestr;
+@property (strong , nonatomic)NSString *imageStr;
 
 @end

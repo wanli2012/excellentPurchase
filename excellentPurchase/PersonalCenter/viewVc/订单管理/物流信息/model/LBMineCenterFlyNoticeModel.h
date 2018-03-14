@@ -13,13 +13,13 @@
 
 @property (copy , nonatomic)NSString *wl_status;
 @property (copy , nonatomic)NSString *wl_num;
-@property (copy , nonatomic)NSArray *wl_info;
+@property (copy , nonatomic)NSArray<LBMineCenterFlyNoticeDetailModel*> *wl_info;
 
 @end
 
 @interface LBMineCenterFlyNoticeDetailModel : NSObject
 
 @property (copy , nonatomic)NSString *time;
-@property (copy , nonatomic)NSArray *status;
+@property (copy , nonatomic)NSString *status;
 
 @end
