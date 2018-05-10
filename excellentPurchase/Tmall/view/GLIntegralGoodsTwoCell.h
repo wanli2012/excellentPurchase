@@ -11,7 +11,7 @@
 
 @protocol GLIntegralGoodsTwodelegete <NSObject>
 
--(void)clickCheckGoodsinfo:(NSString*)goodid;
+-(void)clickCheckGoodsinfo:(NSString*)goodid is_active_challenge:(NSString*)is_active_challenge;
 
 @end
 @interface GLIntegralGoodsTwoCell : UITableViewCell

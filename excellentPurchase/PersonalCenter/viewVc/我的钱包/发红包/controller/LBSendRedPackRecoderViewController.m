@@ -13,6 +13,7 @@
 #import "LBSendRedPackRecoderSendVc.h"
 #import "LBSendRedPackRecoderBasevc.h"
 #import "SPPageMenu.h"
+#import "LBSendRedPackViewController.h"
 
 #define kHeaderViewH 150  //headerview的高度
 #define kPageMenuH 60 //菜单的高度
@@ -35,12 +36,15 @@
 
 @implementation LBSendRedPackRecoderViewController
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    self.navigationItem.title = @"我的红包";
     adjustsScrollViewInsets_NO(self.scrollView, self);
     self.navigationController.navigationBar.hidden = NO;
-    
     self.lastPageMenuY = kHeaderViewH + SafeAreaTopHeight;
     
     // 添加一个全屏的scrollView
@@ -62,6 +66,28 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subScrollViewDidScroll:) name:ChildScrollViewDidScrollNSNotification  object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshState:) name:ChildScrollViewRefreshStateNSNotification object:nil];
 
+    
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//右对齐
+    [button setTitle:@"发红包" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(sendRedpack) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+}
+
+-(void)sendRedpack{
+    self.hidesBottomBarWhenPushed = YES;
+    LBSendRedPackViewController *vc = [[LBSendRedPackViewController alloc]init];
+    WeakSelf;
+    vc.refreshdata = ^{
+        [weakSelf refreshRequest];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"rfreshRedPack" object:nil];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - 通知
@@ -218,6 +244,74 @@
    
 }
 
+#pragma mark - 刷新接口
+- (void)refreshRequest{
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"app_handler"] = @"SEARCH";
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    [NetworkManager requestPOSTWithURLStr:krefresh paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            [UserModel defaultUser].phone = [self judgeStringIsNull:responseObject[@"data"][@"phone"] andDefault:NO];
+            [UserModel defaultUser].user_name = [self judgeStringIsNull:responseObject[@"data"][@"user_name"] andDefault:NO];
+            [UserModel defaultUser].truename = [self judgeStringIsNull:responseObject[@"data"][@"truename"] andDefault:NO];
+            [UserModel defaultUser].tg_status = [self judgeStringIsNull:responseObject[@"data"][@"tg_status"] andDefault:NO];
+            [UserModel defaultUser].del = [self judgeStringIsNull:responseObject[@"data"][@"del"] andDefault:NO];
+            [UserModel defaultUser].pic = [self judgeStringIsNull:responseObject[@"data"][@"pic"] andDefault:NO];
+            [UserModel defaultUser].group_id = [self judgeStringIsNull:responseObject[@"data"][@"group_id"] andDefault:NO];
+            [UserModel defaultUser].group_name = [self judgeStringIsNull:responseObject[@"data"][@"group_name"] andDefault:NO];
+            [UserModel defaultUser].nick_name = [self judgeStringIsNull:responseObject[@"data"][@"nick_name"] andDefault:NO];
+            [UserModel defaultUser].rzstatus = [self judgeStringIsNull:responseObject[@"data"][@"rzstatus"] andDefault:NO];
+            [UserModel defaultUser].tjr_name = [self judgeStringIsNull:responseObject[@"data"][@"tjr_name"] andDefault:NO];
+            [UserModel defaultUser].tjr_group = [self judgeStringIsNull:responseObject[@"data"][@"tjr_group"] andDefault:NO];
+            [UserModel defaultUser].voucher_ratio = [self judgeStringIsNull:responseObject[@"data"][@"voucher_ratio"] andDefault:NO];
+            [UserModel defaultUser].mark = [self judgeStringIsNull:responseObject[@"data"][@"mark"] andDefault:YES];
+            [UserModel defaultUser].balance = [self judgeStringIsNull:responseObject[@"data"][@"balance"] andDefault:YES];
+            [UserModel defaultUser].shopping_voucher = [self judgeStringIsNull:responseObject[@"data"][@"shopping_voucher"] andDefault:YES];
+            [UserModel defaultUser].keti_bean = [self judgeStringIsNull:responseObject[@"data"][@"keti_bean"] andDefault:YES];
+            [UserModel defaultUser].currency = [self judgeStringIsNull:responseObject[@"data"][@"currency"] andDefault:YES];
+            [UserModel defaultUser].Total_money = [self judgeStringIsNull:responseObject[@"data"][@"Total_money"] andDefault:YES];
+            [UserModel defaultUser].Total_mark = [self judgeStringIsNull:responseObject[@"data"][@"Total_mark"] andDefault:YES];
+            [UserModel defaultUser].Total_currency = [self judgeStringIsNull:responseObject[@"data"][@"Total_currency"] andDefault:YES];
+            [UserModel defaultUser].money_sum = [self judgeStringIsNull:responseObject[@"data"][@"money_sum"] andDefault:YES];
+            
+            [usermodelachivar achive];
+            
+            self.headerView.integrallb.text = [UserModel defaultUser].mark;
+            self.headerView.blessinglb.text = [UserModel defaultUser].keti_bean;
+            
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
+}
+//判空 给数字设置默认值
+- (NSString *)judgeStringIsNull:(id )sender andDefault:(BOOL)isNeedDefault{
+    
+    NSString *str = [NSString stringWithFormat:@"%@",sender];
+    
+    if ([NSString StringIsNullOrEmpty:str]) {
+        
+        if (isNeedDefault) {
+            return @"0.00";
+        }else{
+            return @"";
+            
+        }
+    }else{
+        return str;
+    }
+}
 - (UIScrollView *)scrollView {
     
     if (!_scrollView) {
@@ -236,6 +330,8 @@
     
     if (!_headerView) {
         _headerView = [[LBSendRedPackHeaderV alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, kHeaderViewH)];
+        _headerView.integrallb.text = [UserModel defaultUser].mark;
+        _headerView.blessinglb.text = [UserModel defaultUser].keti_bean;
     }
     return _headerView;
 }

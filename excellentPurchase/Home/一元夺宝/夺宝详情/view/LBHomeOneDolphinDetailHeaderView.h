@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBHomeOneDolphinDetailmodel.h"
+
+@protocol LBHomeOneDolphinDetailHeaderdelegete <NSObject>
+
+-(void)checkPictureWord;
+-(void)sharegoodsinfo;
+-(void)calculateEvent;
+
+@end
 
 @interface LBHomeOneDolphinDetailHeaderView : UIView
+
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
+@property (strong , nonatomic)LBHomeOneDolphinDetailmodel *model;
+@property (assign , nonatomic)id<LBHomeOneDolphinDetailHeaderdelegete> delegete;
 
 @end

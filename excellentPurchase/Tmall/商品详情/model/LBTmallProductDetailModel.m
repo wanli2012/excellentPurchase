@@ -95,4 +95,9 @@
 
 @end
 
+@implementation LBTmallProductDetailActivegoodsSpecModel
+
+
+@end
+
 

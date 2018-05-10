@@ -12,6 +12,8 @@
 
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
+#import "ValuePickerView.h"
+#import "GLIdentifySelectModel.h"
 
 @interface LBVoucherCenterViewController ()<UITextFieldDelegate>
 {
@@ -29,8 +31,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @property (nonatomic, assign)NSInteger payType;//1微信支付 2支付宝支付
-
+@property (nonatomic, strong)ValuePickerView *pickerView;
+@property (nonatomic, strong)NSMutableArray *groupArr;//身份类型
+@property (nonatomic, copy)NSString *group_id;//被转赠人group_id
+@property (nonatomic, assign)BOOL isverification;//是否验证
 @property (nonatomic, assign)BOOL isHaveDian;
+@property (weak, nonatomic) IBOutlet UITextField *receiveManGroupTypeTF;
 
 @end
 
@@ -198,7 +204,7 @@
     dict[@"app_handler"] = @"ADD";
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"account"] = self.accountTF.text;
+    dict[@"account"] = self.group_id;
     dict[@"money"] = self.moneyTF.text;
     dict[@"type"] = @(self.payType);//1微信支付 2支付宝支付
     
@@ -272,6 +278,88 @@
     }];
     
 }
+//验证
+- (IBAction)clickVerificationBt:(UIButton *)sender {
+    if ([NSString StringIsNullOrEmpty:self.accountTF.text]) {
+        [EasyShowTextView showInfoText:@"请填写账号"];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"info"] = self.accountTF.text;
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    self.isverification = NO;
+    [self.groupArr removeAllObjects];
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kUserquery_info paramDic:dic finish:^(id responseObject) {
+        self.isverification = YES;
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showSuccessText:@"验证成功"];
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                GLIdentifySelectModel *model = [GLIdentifySelectModel mj_objectWithKeyValues:dict];
+                [self.groupArr addObject:model];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+}
+//选择身份
+- (IBAction)chooseIdentityBt:(id)sender {
+    [self.view endEditing:YES];
+    
+    if (self.isverification == NO) {
+        [EasyShowTextView showInfoText:@"请验证你的身份"];
+        return;
+    }else{
+        if(self.groupArr.count != 0){
+            [self popIdentifyChoose];
+        }else{
+            [EasyShowTextView showInfoText:@"暂无身份信息"];
+        }
+    }
+}
+- (void)popIdentifyChoose{
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (GLIdentifySelectModel *model in self.groupArr) {
+        [arrM addObject:[NSString stringWithFormat:@"%@(%@)",model.truename,model.group_name]];
+    }
+    
+    self.pickerView.dataSource = arrM;
+    
+    self.pickerView.pickerTitle = @"身份类型";
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.pickerView.valueDidSelect = ^(NSString *value){
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
+        NSInteger index = [stateArr[1] integerValue];
+        
+        if (index >= 1) {
+            
+            GLIdentifySelectModel *model = weakSelf.groupArr[index - 1];
+            weakSelf.group_id = model.user_name;
+        }else{
+            weakSelf.group_id = @"";
+        }
+        
+        weakSelf.receiveManGroupTypeTF.text = stateArr[0];
+        
+    };
+    
+    [self.pickerView show];
+}
+
 
 #pragma mark - UITextfieldDelegate
 
@@ -366,6 +454,19 @@
     
     return YES;
 }
-
+-(NSMutableArray *)groupArr{
+    
+    if (!_groupArr) {
+        _groupArr = [NSMutableArray array];
+    }
+    
+    return _groupArr;
+}
+- (ValuePickerView *)pickerView{
+    if (!_pickerView) {
+        _pickerView = [[ValuePickerView alloc] init];
+    }
+    return _pickerView;
+}
 
 @end

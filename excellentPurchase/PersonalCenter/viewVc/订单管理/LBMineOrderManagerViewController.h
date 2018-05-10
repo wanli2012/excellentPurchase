@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBMineOrderObligationmodel.h"
 
 @interface LBMineOrderManagerViewController : UIViewController
+
 
 @end

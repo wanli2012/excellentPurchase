@@ -21,6 +21,7 @@
                 <outlet property="signImageV2" destination="IIY-kn-zLy" id="OG5-JC-dCa"/>
                 <outlet property="tableView" destination="WEO-2Z-wT3" id="7I8-yR-g2h"/>
                 <outlet property="totalPriceLabel" destination="vRg-vn-wUb" id="ZCS-6U-p2X"/>
+                <outlet property="totalSendprice" destination="q4L-7q-h8j" id="Y7r-3R-yPE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,8 +30,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="WEO-2Z-wT3">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="WEO-2Z-wT3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Swd-I2-O00"/>
@@ -38,7 +39,7 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jxq-Xe-hzx" userLabel="clearView">
-                    <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="603" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lT-am-Nai">
                             <rect key="frame" x="295" y="0.0" width="80" height="50"/>
@@ -93,14 +94,14 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRg-vn-wUb">
-                                    <rect key="frame" x="50.5" y="10" width="154.5" height="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text=" ¥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRg-vn-wUb">
+                                    <rect key="frame" x="40.5" y="10" width="164.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="含运费:¥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4L-7q-h8j">
-                                    <rect key="frame" x="10" y="31" width="62" height="12"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="含运费: ¥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4L-7q-h8j">
+                                    <rect key="frame" x="10" y="31" width="65" height="12"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -114,7 +115,7 @@
                                 <constraint firstItem="q4L-7q-h8j" firstAttribute="top" secondItem="p1w-aC-5tl" secondAttribute="bottom" constant="5" id="G8o-xm-eNx"/>
                                 <constraint firstItem="p1w-aC-5tl" firstAttribute="leading" secondItem="KVT-tk-UhZ" secondAttribute="leading" constant="10" id="h9F-m5-Yjt"/>
                                 <constraint firstItem="vRg-vn-wUb" firstAttribute="centerY" secondItem="p1w-aC-5tl" secondAttribute="centerY" id="q91-OJ-buK"/>
-                                <constraint firstItem="vRg-vn-wUb" firstAttribute="leading" secondItem="p1w-aC-5tl" secondAttribute="trailing" constant="10" id="vFj-th-7y1"/>
+                                <constraint firstItem="vRg-vn-wUb" firstAttribute="leading" secondItem="p1w-aC-5tl" secondAttribute="trailing" id="vFj-th-7y1"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -134,7 +135,7 @@
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAi-7w-Ndy" userLabel="editView">
-                    <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="603" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-9Z-qsE">
                             <rect key="frame" x="250" y="0.0" width="125" height="50"/>
@@ -211,11 +212,11 @@
                 <constraint firstAttribute="trailing" secondItem="eAi-7w-Ndy" secondAttribute="trailing" id="CzH-SP-KRZ"/>
                 <constraint firstItem="eAi-7w-Ndy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GPN-qL-dRw"/>
                 <constraint firstAttribute="trailing" secondItem="Jxq-Xe-hzx" secondAttribute="trailing" id="SrY-Ah-XFN"/>
-                <constraint firstAttribute="bottom" secondItem="Jxq-Xe-hzx" secondAttribute="bottom" id="Zrx-rj-6NJ"/>
+                <constraint firstAttribute="bottom" secondItem="Jxq-Xe-hzx" secondAttribute="bottom" constant="-50" id="Zrx-rj-6NJ"/>
                 <constraint firstItem="Jxq-Xe-hzx" firstAttribute="top" secondItem="WEO-2Z-wT3" secondAttribute="bottom" id="k9m-AY-Dev"/>
                 <constraint firstItem="Jxq-Xe-hzx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vYK-Bg-WCr"/>
                 <constraint firstItem="WEO-2Z-wT3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="w1D-8o-Xhn"/>
-                <constraint firstAttribute="bottom" secondItem="eAi-7w-Ndy" secondAttribute="bottom" id="ymh-j8-Ioo"/>
+                <constraint firstAttribute="bottom" secondItem="eAi-7w-Ndy" secondAttribute="bottom" constant="-50" id="ymh-j8-Ioo"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <point key="canvasLocation" x="33.5" y="54.5"/>

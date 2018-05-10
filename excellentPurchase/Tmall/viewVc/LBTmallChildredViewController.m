@@ -18,6 +18,7 @@
 #import "LBTmallViewController.h"
 #import "LBProductDetailViewController.h"
 #import "LBTmallSeconedClassifyModel.h"
+#import "LBSnapUpDetailViewController.h"
 
 static NSString *integralGoodsOneCell = @"GLIntegralGoodsOneCell";
 static NSString *integralGoodsTwoCell = @"GLIntegralGoodsTwoCell";
@@ -298,23 +299,32 @@ static NSString *riceShopTagTableViewCell = @"LBRiceShopTagTableViewCell";
 }
 
 #pragma mark - GLIntegralGoodsTwodelegete,GLIntegralGoodsOnedelegete
--(void)clickGoodsdetail:(NSString *)goodsid{
-    [self jumpProductDetail:goodsid];
+-(void)clickGoodsdetail:(NSString *)goodsid is_active_challenge:(NSString*)is_active_challenge{
+    [self jumpProductDetail:goodsid is_active_challenge:is_active_challenge];
 }
--(void)clickCheckGoodsinfo:(NSString *)goodid{
-    [self jumpProductDetail:goodid];
+-(void)clickCheckGoodsinfo:(NSString *)goodid is_active_challenge:(NSString*)is_active_challenge{
+    [self jumpProductDetail:goodid is_active_challenge:is_active_challenge];
 }
--(void)jumpProductDetail:(NSString*)productid{//商品详情
-    [self viewController].hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-    vc.goods_id = productid;
-    WeakSelf;
-    vc.block = ^(NSInteger index, BOOL isCollected) {
-        [weakSelf craetDispathGroup];
-    };
+-(void)jumpProductDetail:(NSString*)productid is_active_challenge:(NSString*)is_active_challenge{//商品详情
     
-    [[self viewController].navigationController pushViewController:vc animated:YES];
-    [self viewController].hidesBottomBarWhenPushed = NO;
+    if ([is_active_challenge integerValue] == 1) {
+        [self viewController].hidesBottomBarWhenPushed = YES;
+        LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+        vc.goods_id = productid;
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+        [self viewController].hidesBottomBarWhenPushed = NO;
+    }else{
+        [self viewController].hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = productid;
+        WeakSelf;
+        vc.block = ^(NSInteger index, BOOL isCollected) {
+            [weakSelf craetDispathGroup];
+        };
+        
+        [[self viewController].navigationController pushViewController:vc animated:YES];
+        [self viewController].hidesBottomBarWhenPushed = NO;
+    }
 }
 
 #pragma mark - 重写----设置自定义的标题和标注

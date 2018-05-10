@@ -10,6 +10,6 @@
 
 @interface LBFinancialCenetrSaleViewController : UIViewController
 
-@property (strong , nonatomic)NSString *yougoubi;// 优购币
+@property (strong , nonatomic)NSString *yougoubi;// 福宝
 
 @end

@@ -20,6 +20,7 @@
 #import "GLMine_Cart_PayController.h"//支付界面
 #import "GLMine_AddressModel.h"
 #import "LBProductDetailViewController.h"
+#import "NSMutableAttributedString+LBSpecialAttributedString.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -38,6 +39,8 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 @property (strong, nonatomic) NSMutableArray *modelArr;
 @property (strong, nonatomic) GLMine_AddressModel *addressModel;
 @property (assign, nonatomic) CGFloat totallPrice;// 总价
+@property (assign, nonatomic) CGFloat totallSendPrice;// 总运费
+@property (assign, nonatomic) CGFloat offset_coupons;// 总抵扣券
 
 @property (strong, nonatomic) NSMutableArray *goods_Arr;// 商品id
 @property (strong, nonatomic) NSMutableArray *count_arr;// 数量
@@ -68,6 +71,8 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     for (NSDictionary *dic in self.DataArr) {
       LBMineSureOrdersModel  *model = [LBMineSureOrdersModel mj_objectWithKeyValues:dic];
         self.totallPrice = [model.money floatValue] + self.totallPrice;
+        self.totallSendPrice = [model.send_price floatValue] + self.totallSendPrice;
+        self.offset_coupons = [model.offset_coupons floatValue] + self.offset_coupons;
         for (int i = 0; i < model.goods_info.count; i++) {
             LBMineSureOrdersGoodInfoModel *pmodel = model.goods_info[i];
             [self.goods_Arr addObject:pmodel.goods_id];
@@ -77,8 +82,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         [_remarkdic setObject:@"" forKey:model.shop_uid];
         [self.modelArr addObject:model];
     }
-    self.allPrice.text = [NSString stringWithFormat:@"合计: ¥%.2f",self.totallPrice];
     
+    self.allPrice.text = [NSString stringWithFormat:@"合计: ¥%.1f(含运费)",self.totallPrice + self.totallSendPrice - self.offset_coupons];
+    self.allPrice.attributedText = [NSMutableAttributedString addoriginstr:[NSString stringWithFormat:@"合计: ¥%.1f(含运费)",self.totallPrice + self.totallSendPrice - self.offset_coupons] specilstr:@[[NSString stringWithFormat:@"%.1f",self.totallPrice + self.totallSendPrice  - self.offset_coupons]] strFont:[UIFont systemFontOfSize:15] strColor:MAIN_COLOR];
 }
 
 -(void)registertableviewcell{
@@ -101,6 +107,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         dic[@"token"] = [UserModel defaultUser].token;
     }
     
+    self.addressModel = nil;
     [NetworkManager requestPOSTWithURLStr:kaddresses paramDic:dic finish:^(id responseObject) {
         
         [LBDefineRefrsh dismissRefresh:self.tableview];
@@ -244,6 +251,10 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             cell.adresslb.text = [NSString stringWithFormat:@"收货地址：%@",_addressModel.address_address];
             cell.phonelb.text = [NSString stringWithFormat:@"%@",_addressModel.phone];
             cell.namelb.text = [NSString stringWithFormat:@"收货人：%@",_addressModel.truename];
+        }else{
+            cell.adresslb.text = [NSString stringWithFormat:@"收货地址："];
+            cell.phonelb.text = @"";
+            cell.namelb.text = [NSString stringWithFormat:@"收货人："];
         }
         
         return cell;
@@ -367,7 +378,6 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     
-   
 }
 
 -(NSArray*)titileArr{

@@ -12,6 +12,7 @@
 #import "LBMineOrderReceivingViewController.h"
 #import "LBMineOrderCompletedViewController.h"
 #import "LBMineOrderCanceledViewController.h"
+#import "LBMineOrderRefuseViewController.h"
 
 #define pageMenuH 50   //菜单高度
 
@@ -41,11 +42,11 @@
 -(void)addMenu{
     
     // trackerStyle:跟踪器的样式
-    SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
+    SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
     // 传递数组，默认选中第1个
     [pageMenu setItems:self.menuArr selectedItemIndex:0];
     pageMenu.showFuntionButton = NO;
-    pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+    pageMenu.permutationWay = SPPageMenuPermutationWayScrollAdaptContent;
     
     // 设置代理
     pageMenu.delegate = self;
@@ -116,7 +117,7 @@
 -(NSArray*)menuArr{
     
     if (!_menuArr) {
-        _menuArr = [NSArray arrayWithObjects:@"待付款",@"待收货",@"已完成",@"已取消",nil];
+        _menuArr = [NSArray arrayWithObjects:@"全部",@"已完成",@"待付款",@"待收货",@"退款/售后",nil];
     }
     
     return _menuArr;
@@ -134,7 +135,7 @@
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {
-        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBMineOrderObligationViewController",@"LBMineOrderReceivingViewController",@"LBMineOrderCompletedViewController",@"LBMineOrderCanceledViewController", nil];
+        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBMineOrderObligationViewController",@"LBMineOrderCompletedViewController",@"LBMineOrderReceivingViewController",@"LBMineOrderCanceledViewController",@"LBMineOrderRefuseViewController", nil];
     }
     
     return _controllerClassNames;

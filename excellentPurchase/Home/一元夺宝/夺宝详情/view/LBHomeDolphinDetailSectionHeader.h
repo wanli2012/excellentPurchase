@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LBHomeDolphinDetailSectionHeader : UITableViewHeaderFooterView
+@interface LBHomeDolphinDetailSectionHeader : UIView
 
 @property (copy , nonatomic)void(^refreshDataosurce)(NSInteger index);
 

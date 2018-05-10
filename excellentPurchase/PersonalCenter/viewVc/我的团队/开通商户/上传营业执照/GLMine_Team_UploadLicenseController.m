@@ -75,7 +75,7 @@
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"type"] = @"3";
     dic[@"port"] = @"3";//端口 1.pc 2.安卓 3.ios 4.H5手机网站
-    dic[@"app_version"] = @"1.0.0";
+    dic[@"app_version"] = kAPP_VERSION;
     
     self.rightBtn.enabled = NO;
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager manager]initWithBaseURL:[NSURL URLWithString:URL_Base]];

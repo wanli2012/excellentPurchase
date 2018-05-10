@@ -19,5 +19,7 @@
 @property (nonatomic,strong) UIColor *noColor;
 @property (nonatomic,strong) UIColor *prsColor;
 
+@property (nonatomic,strong) UILabel *oneLabel;
+@property (nonatomic,strong) UILabel *twoLabel;
 
 @end

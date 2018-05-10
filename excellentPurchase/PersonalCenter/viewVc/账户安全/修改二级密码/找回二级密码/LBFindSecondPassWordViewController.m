@@ -10,12 +10,7 @@
 
 @interface LBFindSecondPassWordViewController ()<UITextFieldDelegate>
 
-/**
- 距离视图顶部的距离
- */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstrait;
-
-@property (weak, nonatomic) IBOutlet UITextField *phoneTF;//手机号
 @property (weak, nonatomic) IBOutlet UITextField *codeTF;//验证码
 @property (weak, nonatomic) IBOutlet UITextField *passwordNewTF;//密码
 @property (weak, nonatomic) IBOutlet UITextField *ensureTF;//确认密码
@@ -29,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.navigationItem.title = @"找回二级密码";
     self.navigationController.navigationBar.hidden = NO;
 }
@@ -44,22 +38,11 @@
  */
 - (IBAction)getCode:(id)sender {
     
-    
-    if (self.phoneTF.text.length <=0 ) {
-        [EasyShowTextView showInfoText:@"请输入手机号码"];
-        return;
-    }else{
-        if (![predicateModel valiMobile:self.phoneTF.text]) {
-            [EasyShowTextView showInfoText:@"手机号格式不对"];
-            return;
-        }
-    }
-    
     [self startTime];//获取倒计时
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
-    dic[@"phone"] = self.phoneTF.text;
+    dic[@"phone"] = [UserModel defaultUser].phone;
     
     [NetworkManager requestPOSTWithURLStr:kGETCODE_URL paramDic:dic finish:^(id responseObject) {
         
@@ -81,7 +64,7 @@
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
     dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){ //倒计时结束，关闭
+        if(timeout==0){ //倒计时结束，关闭
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
@@ -108,20 +91,9 @@
     
 }
 
-
 - (IBAction)submit:(id)sender {
     
     [self.view endEditing:YES];
-    
-    if(self.phoneTF.text.length == 0){
-        [EasyShowTextView showInfoText:@"请输入手机号"];
-        return;
-    }else {
-        if (![predicateModel valiMobile:self.phoneTF.text]) {
-            [EasyShowTextView showInfoText:@"手机号格式不对"];
-            return;
-        }
-    }
     
     if(self.codeTF.text.length == 0){
         [EasyShowTextView showInfoText:@"请输入验证码"];
@@ -180,9 +152,7 @@
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    if (textField == self.phoneTF) {
-        [self.codeTF becomeFirstResponder];
-    }else if(textField == self.codeTF){
+  if(textField == self.codeTF){
         [self.passwordNewTF becomeFirstResponder];
     }else if(textField == self.passwordNewTF){
         [self.ensureTF becomeFirstResponder];

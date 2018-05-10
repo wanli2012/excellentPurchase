@@ -8,43 +8,63 @@
 
 #import <Foundation/Foundation.h>
 
+//活动属性
+@interface GLMine_ShoppingActiveCartModel : NSObject
+
+@property (copy , nonatomic)NSString *active_type;
+@property (copy , nonatomic)NSString *active_id;
+@property (copy , nonatomic)NSString *active_status;
+@property (copy , nonatomic)NSString *active_start_time;
+@property (copy , nonatomic)NSString *active_end_time;
+@property (copy , nonatomic)NSString *remain_allow_count;
+@property (copy , nonatomic)NSString *u_count;
+
+@end
+//商品属性
+@interface GLMine_ShoppingPropertyCartModel : NSObject
+
+@property (copy , nonatomic)NSString *specification_id;
+@property (copy , nonatomic)NSString *uid;
+@property (copy , nonatomic)NSString *thumb;
+@property (copy , nonatomic)NSString *goods_id;
+@property (copy , nonatomic)NSString *goods_name;
+@property (copy , nonatomic)NSString *buy_num;
+@property (copy , nonatomic)NSString *store_phone;
+@property (copy , nonatomic)NSString *addtime;
+@property (copy , nonatomic)NSString *goods_option_id;
+@property (copy , nonatomic)NSString *store_id;
+@property (copy , nonatomic)NSString *status;
+@property (copy , nonatomic)NSString *title;
+@property (copy , nonatomic)NSString *marketprice;
+@property (copy , nonatomic)NSString *rewardspoints;
+@property (copy , nonatomic)NSString *stock;
+@property (copy , nonatomic)NSString *costprice;
+@property (copy , nonatomic)NSString *challenge_max_count;
+@property (copy , nonatomic)NSString *challenge_alowd_num;
+@property (copy , nonatomic)NSString *challenge_rewardspoints;
+@property (copy , nonatomic)NSString *reward_coupons;
+@property (copy , nonatomic)NSString *discount;
+@property (copy , nonatomic)NSString *send_price;
+@property (strong , nonatomic)GLMine_ShoppingActiveCartModel *active;
+@property (strong , nonatomic)GLMine_ShoppingActiveCartModel *coupons_active;
+@property (assign , nonatomic)BOOL  isSelect;//是否被选中
+@property (assign , nonatomic)BOOL  isEdit;//是否在编辑
+
+@end
+
+
 @interface GLMine_ShoppingCartModel : NSObject
 
-@property (nonatomic, copy)NSString *id;//购物车ID
-@property (nonatomic, copy)NSString *uid;//用户ID
-@property (nonatomic, copy)NSString *goods_id;//商品ID
-@property (nonatomic, copy)NSString *goods_name;//商品名称
-@property (nonatomic, copy)NSString *thumb;//商品展示图
-@property (nonatomic, copy)NSString *buy_num;//数量
-@property (nonatomic, copy)NSString *addtime;//加入购物车时间
-@property (nonatomic, copy)NSString *goods_option_id;//规格ID
-@property (nonatomic, copy)NSString *store_id;//店铺ID
-@property (nonatomic, copy)NSString *title;//规格名称
-@property (nonatomic, copy)NSString *marketprice;//销售价格
-@property (nonatomic, copy)NSString *rewardspoints;//获得积分
-@property (nonatomic, copy)NSString *reward_coupons;//获得购物券
-@property (nonatomic, copy)NSString *one_title;//规格名名称
-@property (nonatomic, copy)NSString *two_title;//规格项名称
-@property (nonatomic, copy)NSString *stock;//库存
-
-
-@property (nonatomic, assign)BOOL isSelected;//是否被选中
-@property (nonatomic, assign)BOOL isEdit;//是否是完成状态 NO:完成  YES:编辑状态
-@property (nonatomic, assign)NSInteger index;//cell下标
-@property (nonatomic, assign)NSInteger section;//组 下标
-
-@property (nonatomic, assign)BOOL isDel;//删除标志
+@property (copy , nonatomic)NSString *store_id;
+@property (copy , nonatomic)NSString *store_name;
+@property (copy , nonatomic)NSArray<GLMine_ShoppingPropertyCartModel *> *goods;
+@property (assign , nonatomic)BOOL  isSelect;
 
 @end
 
 @interface GLMine_ShoppingCartDataModel : NSObject
 
-@property (nonatomic, copy)NSString *store_name;//商店名
-@property (nonatomic, copy)NSString *store_id;//商店id
-@property (nonatomic, copy)NSArray<GLMine_ShoppingCartModel *> *goods;//商品数组
-
-@property (nonatomic, assign)BOOL shopIsSelected;//是否被选中
-
-@property (nonatomic, assign)NSInteger shopSection;//header下标
+@property (nonatomic, copy)NSArray<GLMine_ShoppingCartModel *> *cart_data;//商品数组
+@property (nonatomic, copy)NSArray<GLMine_ShoppingCartModel *> *abate_data;//失效商品数组
 
 @end

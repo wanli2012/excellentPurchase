@@ -153,7 +153,6 @@
                 //设置界面的按钮显示 根据自己需求设置
                 [self.getCodeBtn setTitle:@"重发验证码" forState:UIControlStateNormal];
                 self.getCodeBtn.userInteractionEnabled = YES;
-                self.getCodeBtn.backgroundColor = [UIColor whiteColor];
                 self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
             });
             
@@ -164,7 +163,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.getCodeBtn setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
                 self.getCodeBtn.userInteractionEnabled = NO;
-                self.getCodeBtn.backgroundColor = [UIColor whiteColor];
                 self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:11];
             });
             timeout--;

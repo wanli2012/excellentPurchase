@@ -9,6 +9,9 @@
 #import "LBTimeLimitBuyingViewController.h"
 #import "SPPageMenu.h"
 #import "LBTodayTimeLimitViewController.h"
+#import "LBAfterTomrrowTimeLimitViewController.h"
+#import "LBTomrrowTimeLimitViewController.h"
+#import "CountDown.h"
 
 @interface LBTimeLimitBuyingViewController ()<SPPageMenuDelegate,UIScrollViewDelegate>
 
@@ -17,6 +20,7 @@
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) NSMutableArray *controllerClassNames;
+@property (nonatomic, strong) CountDown *countDown;
 
 @end
 
@@ -29,7 +33,12 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"限时抢购";
     [self addMenu];//加载菜单
+     [self addBavigationItem];
     
+    [self.countDown countDownWithPER_SECBlock:^{
+
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"countDown" object:nil];
+    }];
 }
 -(void)addMenu{
     
@@ -51,7 +60,7 @@
     
     for (int i = 0; i < self.menuArr.count; i++) {
         if (self.controllerClassNames.count > i) {
-            LBTodayTimeLimitViewController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
+            UIViewController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
             [self addChildViewController:baseVc];
             [self.myChildViewControllers addObject:baseVc];
         }
@@ -103,6 +112,23 @@
     
 }
 
+-(void)addBavigationItem{
+    //    返回按钮
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 70, 40)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//左对齐
+    [button setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(10, -5, 10, 65)];
+    button.backgroundColor=[UIColor clearColor];
+    [button addTarget:self action:@selector(popself) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = ba;
+}
+
+-(void)popself{
+    [self.countDown destoryTimer];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(NSMutableArray*)menuArr{
     
     if (!_menuArr) {
@@ -125,11 +151,17 @@
 -(NSMutableArray*)controllerClassNames{
     
     if (!_controllerClassNames) {
-        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBTodayTimeLimitViewController",@"LBTodayTimeLimitViewController",@"LBTodayTimeLimitViewController", nil];
+        _controllerClassNames = [NSMutableArray arrayWithObjects:@"LBTodayTimeLimitViewController",@"LBTomrrowTimeLimitViewController",@"LBAfterTomrrowTimeLimitViewController", nil];
     }
     
     return _controllerClassNames;
 }
 
+-(CountDown*)countDown{
+    if (!_countDown) {
+        _countDown = [[CountDown alloc]init];
+    }
+    return _countDown;
+}
 
 @end

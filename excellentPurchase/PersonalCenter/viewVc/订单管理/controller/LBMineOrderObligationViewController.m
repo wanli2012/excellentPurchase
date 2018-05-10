@@ -8,18 +8,19 @@
 
 
 #import "LBMineOrderObligationViewController.h"
-#import "LBMineOrdersHeaderViewTableViewCell.h"
 #import "LBMineOrderDetailViewController.h"
-#import "LBMineOrderDetailViewController.h"
-#import "LBMineOrderObligationmodel.h"
-#import "LBMineOrdersHeaderViewOneCell.h"
-#import "LBMineOrdersFooterViewCell.h"
+#import "LBPanicBuyingOdersModel.h"
+#import "LBPanicBuyingOdersTableViewCell.h"
+#import "LBPanicOrdersHeaderrView.h"
+#import "LBMineCenterFlyNoticeDetailViewController.h"
+#import "LBMineEvaluateViewController.h"
+#import "LBEatShopProdcutClassifyViewController.h"
+#import "LBProductDetailViewController.h"
+#import "LBApplyRefundViewController.h"
 
-static NSString *mineOrdersHeaderViewTableViewCell = @"LBMineOrdersHeaderViewTableViewCell";
-static NSString *mineOrdersHeaderViewOneCell = @"LBMineOrdersHeaderViewOneCell";
-static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
+static NSString *panicBuyingOdersTableViewCell = @"LBPanicBuyingOdersTableViewCell";
 
-@interface LBMineOrderObligationViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBMineOrderObligationViewController ()<UITableViewDelegate,UITableViewDataSource,LBPanicBuyingOdersdelegete>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomView;
@@ -37,9 +38,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
-     [self.tableview registerNib:[UINib nibWithNibName:mineOrdersHeaderViewTableViewCell bundle:nil] forCellReuseIdentifier:mineOrdersHeaderViewTableViewCell];
-     [self.tableview registerNib:[UINib nibWithNibName:mineOrdersHeaderViewOneCell bundle:nil] forCellReuseIdentifier:mineOrdersHeaderViewOneCell];
-     [self.tableview registerNib:[UINib nibWithNibName:mineOrdersFooterViewCell bundle:nil] forCellReuseIdentifier:mineOrdersFooterViewCell];
+     [self.tableview registerNib:[UINib nibWithNibName:panicBuyingOdersTableViewCell bundle:nil] forCellReuseIdentifier:panicBuyingOdersTableViewCell];
     
     [self setupNpdata];//设置无数据的时候展示
     [self setuprefrsh];//刷新
@@ -78,7 +77,6 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
             [weakSelf loadData:weakSelf.page refreshDirect:NO];
         }
     }];
-    
 }
 
 -(void)loadData:(NSInteger)page refreshDirect:(BOOL)isDirect{
@@ -88,7 +86,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     dic[@"page"] = @(page);
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"status"] = @"1";
+    dic[@"status"] = @"0";
     [NetworkManager requestPOSTWithURLStr:OrderUser_product_order paramDic:dic finish:^(id responseObject) {
         [LBDefineRefrsh dismissRefresh:self.tableview];
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
@@ -96,9 +94,8 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
             if (isDirect) {
                 [self.dataArr removeAllObjects];
             }
-            
             for (NSDictionary *dic in responseObject[@"data"][@"page_data"]) {
-                LBMineOrderObligationmodel *model = [LBMineOrderObligationmodel mj_objectWithKeyValues:dic];
+                LBPanicBuyingOdersModel *model = [LBPanicBuyingOdersModel mj_objectWithKeyValues:dic];
                 [self.dataArr addObject:model];
             }
             if (self.dataArr.count <= 0) {
@@ -114,9 +111,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
         [EasyShowTextView showErrorText:error.localizedDescription];
         [LBDefineRefrsh dismissRefresh:self.tableview];
     }];
-    
 }
-
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return self.dataArr.count; //返回值是多少既有几个分区
@@ -124,76 +119,55 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
 #pragma mark - 重写----设置每个分区有几个单元格
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //分别设置每个分组上面显示的单元格个数
-    LBMineOrderObligationmodel *model = self.dataArr[section];
-    return model.goods_data.count + 2;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LBMineOrderObligationmodel *model = self.dataArr[indexPath.section];
-    if (indexPath.row == 0) {
-        return  50;
-    }else if (indexPath.row == model.goods_data.count + 1){
-         return 90;
-    }else{
-         return 95;
-    }
-    return 0;
+
+    tableView.estimatedRowHeight = 80;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    return UITableViewAutomaticDimension;
 }
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LBMineOrderObligationmodel *model = self.dataArr[indexPath.section];
-    if (indexPath.row == 0) {
-        LBMineOrdersHeaderViewOneCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrdersHeaderViewOneCell forIndexPath:indexPath];
-        cell.model = model;
-        WeakSelf;
-        cell.refreshfata = ^(NSIndexPath *indexpath) {
-            [weakSelf choosePayOrders:indexPath];
-        };
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else if (indexPath.row == model.goods_data.count + 1){
-        LBMineOrdersFooterViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrdersFooterViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.button1.backgroundColor = YYSRGBColor(164, 164, 164, 1);
-        cell.button2.backgroundColor = MAIN_COLOR;
-        [cell.button1 setTitle:@"取消订单" forState:UIControlStateNormal];
-        [cell.button2 setTitle:@"去付款" forState:UIControlStateNormal];
-        cell.button2.userInteractionEnabled = NO;
-        cell.indexpath = indexPath;
-        cell.model = model;
-        WeakSelf;
-        cell.clickbuttonOneEvent = ^(NSIndexPath *indexpath) {//取消订单
-            [weakSelf cancelorders:indexPath];
-        };
-        cell.clickbuttonTwoEvent = ^(NSIndexPath *indexpath) {//去支付
-            
-        };
-        return cell;
-    }else{
-        LBMineOrdersHeaderViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrdersHeaderViewTableViewCell forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-         LBMineOrderObligationGoodsmodel *goodmodel = model.goods_data[indexPath.row-1];
-        cell.model = goodmodel;
-        cell.stausLb.text = @"订单状态: 待付款";
-        return cell;
-    }
     
+    LBPanicBuyingOdersModel *model = self.dataArr[indexPath.section];
+    LBPanicBuyingOdersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBPanicBuyingOdersTableViewCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.jumpType = 1;
+    cell.model = model.goods_data;
+    cell.delegete = self;
+    cell.indexpath = indexPath;
+    return cell;
 }
 
 #pragma mark - 重写----设置自定义的标题和标注
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-    label.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    return label;
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NSString *ID = @"LBPanicOrdersHeaderrView";
+    LBPanicBuyingOdersModel *model = self.dataArr[section];
+    LBPanicOrdersHeaderrView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:ID];
+    if (!headerview) {
+        headerview = [[LBPanicOrdersHeaderrView alloc]initWithReuseIdentifier:ID];
+    }
+    
+    headerview.model = model.goods_data;
+    WeakSelf;
+    headerview.jumpmerchat = ^(NSString *store_id) {
+        weakSelf.hidesBottomBarWhenPushed = YES;
+        LBEatShopProdcutClassifyViewController *vc = [[LBEatShopProdcutClassifyViewController alloc]init];
+        vc.store_id = store_id;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    return headerview;
 }
 
 #pragma mark - 重写----设置标题和标注的高度
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.0001f;
+    return 30.0f;
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
-    return 10;
+    return 0.0001f;
 }
 #pragma mark - 重写----设置哪个单元格被选中的方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -203,19 +177,20 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
 }
 //跳转订单详情
 -(void)jumpOrdersDetail:(NSIndexPath*)indexpath{
-    LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
-    NSMutableArray *goodidArr = [NSMutableArray array];
-    for (int i = 0; i < model.goods_data.count; i++) {
-        LBMineOrderObligationGoodsmodel  *gmodel = model.goods_data[i];
-        [goodidArr addObject:gmodel.ord_id];
-    }
-    
-    NSString *ord_str = [goodidArr componentsJoinedByString:@"_"];
+    LBPanicBuyingOdersModel *model = self.dataArr[indexpath.section];
     self.hidesBottomBarWhenPushed = YES;
     LBMineOrderDetailViewController *vc = [[LBMineOrderDetailViewController alloc]init];
-    vc.ord_str = ord_str;
-    vc.typeindex = 1;
-    vc.shop_uid = model.ord_shop_uid;
+    vc.ord_str = model.goods_data.ord_id;
+    vc.typeindex = [model.goods_data.ord_status integerValue];
+    vc.shop_uid = model.goods_data.ord_shop_uid;
+    vc.active_status =  [model.goods_data.active.active_status integerValue];
+    vc.model = model;
+    vc.is_comment = model.goods_data.is_comment;
+    WeakSelf;
+    vc.refreshDatasource = ^{
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -225,58 +200,99 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
  @param indexpath 第几列
  */
 -(void)choosePayOrders:(NSIndexPath*)indexpath{
-    LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
-    if (model.iselect == YES) {//被选中
-        [self.selectSets addObject:model];
-        self.pricepay = self.pricepay + [model.order_price floatValue];
-    }else{//取消选中
-        [self.selectSets removeObject:model];
-        self.pricepay = self.pricepay - [model.order_price floatValue];
-    }
-    
-    if (self.selectSets.count <= 0) {
-        self.bottomView.constant = -50;
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-    }else{
-        if (self.bottomView.constant == -50) {
-            self.bottomView.constant = 0;
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.view layoutIfNeeded];
-            }];
-        }
-    }
-    
-    self.allpricelb.attributedText=[self addoriginstr: [NSString stringWithFormat:@"合计：%f",self.pricepay] specilstr:@[@(self.pricepay)]];
-    
-    [_tableview reloadData];
+//    LBPanicBuyingOdersModel *model = self.dataArr[indexpath.section];
+//    if (model.iselect == YES) {//被选中
+//        [self.selectSets addObject:model];
+//        self.pricepay = self.pricepay + [model.order_price floatValue];
+//    }else{//取消选中
+//        [self.selectSets removeObject:model];
+//        self.pricepay = self.pricepay - [model.order_price floatValue];
+//    }
+//
+//    if (self.selectSets.count <= 0) {
+//        self.bottomView.constant = -50;
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self.view layoutIfNeeded];
+//        }];
+//    }else{
+//        if (self.bottomView.constant == -50) {
+//            self.bottomView.constant = 0;
+//            [UIView animateWithDuration:0.5 animations:^{
+//                [self.view layoutIfNeeded];
+//            }];
+//        }
+//    }
+//
+//    self.allpricelb.attributedText=[self addoriginstr: [NSString stringWithFormat:@"合计：%f",self.pricepay] specilstr:@[@(self.pricepay)]];
+//
+//    [_tableview reloadData];
     
 }
 
-/**
- 取消订单
-
- @param indexpath 第几列
- */
--(void)cancelorders:(NSIndexPath*)indexpath{
-    LBMineOrderObligationmodel *model = self.dataArr[indexpath.section];
-    NSMutableArray *arr = [[NSMutableArray alloc]init];
-    for (int i = 0; i< model.goods_data.count; i++) {
-        LBMineOrderObligationGoodsmodel *goodmdel = model.goods_data[i];
-        [arr addObject:goodmdel.ord_id];
-    }
-    
-    NSString *ord_str = [arr componentsJoinedByString:@"_"];
+#pragma mark - LBPanicBuyingOdersdelegete
+//取消订单
+-(void)cancelOrders:(NSString *)ord_id{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"UPDATE";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"ord_str"] = ord_str;
+    dic[@"ord_str"] = ord_id;
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_cancel_order paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.page = 1;
+            [self loadData:self.page refreshDirect:YES];
+             [EasyShowTextView showSuccessText:@"订单取消成功"];
+        }else{
+            
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        [EasyShowLodingView hidenLoding];
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+-(void)GoPayOrders:(NSIndexPath *)indexpath{
+    LBPanicBuyingOdersModel *model = self.dataArr[indexpath.section];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineOrderDetailViewController *vc = [[LBMineOrderDetailViewController alloc]init];
+    vc.ord_str = model.goods_data.ord_id;
+    vc.typeindex = [model.goods_data.ord_status integerValue];
+    vc.shop_uid = model.goods_data.ord_shop_uid;
+    vc.active_status =  [model.goods_data.active.active_status integerValue];
+    vc.model = model;
+    vc.is_comment = model.goods_data.is_comment;
+    WeakSelf;
+    vc.refreshDatasource = ^{
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+-(void)checklogistics:(NSIndexPath *)indexpath{
+    LBPanicBuyingOdersModel *model = self.dataArr[indexpath.section];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
+    vc.codestr = model.goods_data.ord_odd_num;
+    vc.imageStr = model.goods_data.thumb;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)sureReciveGoods:(NSIndexPath *)indexpath{
+    LBPanicBuyingOdersModel *model = self.dataArr[indexpath.section];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"UPDATE";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"ord_str"] = model.goods_data.ord_id;
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_order_confirm_get paramDic:dic finish:^(id responseObject) {
+        
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.page = 1;
             [self loadData:self.page refreshDirect:YES];
@@ -292,27 +308,33 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     }];
 }
 
--(void)repayOders:(NSIndexPath*)indexpath{
+-(void)Goevaluate:(NSIndexPath *)indexpath{
+    LBPanicBuyingOdersModel *model = self.dataArr[indexpath.section];
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineEvaluateViewController *vc = [[LBMineEvaluateViewController alloc]init];
+    vc.goods_id = model.goods_data.goods_id;
+    vc.order_goods_id = model.goods_data.ord_id;
+    vc.replyType = 1;
+    vc.goods_name = model.goods_data.goods_name;
+    vc.goods_pic = model.goods_data.thumb;
+    vc.replyFinish = ^{
+        model.goods_data.is_comment = @"1";
+        [_tableview reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
     
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    dic[@"app_handler"] = @"SEARCH";
-//    dic[@"uid"] = [UserModel defaultUser].uid;
-//    dic[@"token"] = [UserModel defaultUser].token;
-//    dic[@"ord_str"] = ord_str;
-//
-//    [NetworkManager requestPOSTWithURLStr:OrderHandlerUser_cancel_order paramDic:dic finish:^(id responseObject) {
-//
-//        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-//            self.page = 1;
-//            [self loadData:self.page refreshDirect:YES];
-//        }else{
-//
-//            [EasyShowTextView showErrorText:responseObject[@"message"]];
-//        }
-//
-//    } enError:^(NSError *error) {
-//        [EasyShowTextView showErrorText:error.localizedDescription];
-//    }];
+}
+//申请退款
+-(void)applyRefund:(NSIndexPath *)indexpath{
+    self.hidesBottomBarWhenPushed = YES;
+    LBApplyRefundViewController *vc = [[LBApplyRefundViewController alloc]init];
+    vc.model = self.dataArr[indexpath.section];
+    WeakSelf;
+    vc.refreshdata = ^(NSString *ord_refund_money){
+        weakSelf.page = 1;
+        [weakSelf loadData:weakSelf.page refreshDirect:YES];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
@@ -325,6 +347,7 @@ static NSString *mineOrdersFooterViewCell = @"LBMineOrdersFooterViewCell";
     }
     return noteStr;
 }
+
 
 -(NSMutableArray*)dataArr{
     if (!_dataArr) {

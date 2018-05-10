@@ -11,7 +11,7 @@
 @interface LBFinancialCenterTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;//时间
-@property (weak, nonatomic) IBOutlet UILabel *radioLabel;//优购币市值
+@property (weak, nonatomic) IBOutlet UILabel *radioLabel;//福宝市值
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;//进度条
 
 @end

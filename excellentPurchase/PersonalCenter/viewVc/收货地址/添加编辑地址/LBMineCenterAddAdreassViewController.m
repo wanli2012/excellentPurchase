@@ -209,7 +209,12 @@
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshReceivingAddress" object:nil];
-            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            if (_isEdit) {//编辑
+                [EasyShowTextView showSuccessText:@"编辑成功"];
+            }else{//添加
+                [EasyShowTextView showSuccessText:@"添加成功"];
+            }
+
             [self.navigationController popViewControllerAnimated:YES];
             
         }else{

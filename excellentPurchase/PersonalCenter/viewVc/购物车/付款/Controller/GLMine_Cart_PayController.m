@@ -112,7 +112,7 @@
  const PAY_TYPE_WEB    = 102;//手机网页调起支付
  const PAY_TYPE_SCAN   = 103;//扫码支付
  const PAY_TYPE_INSIDE = 104;//第三方内部调起支付(微信jsApi)
- const PAY_TYPE_SELF   = 105;//平台自定义支付 余额、优购币...
+ const PAY_TYPE_SELF   = 105;//平台自定义支付 余额、福宝...
  注:带微信支付宝时就不能传105，然后自己找到对应的方式传过来就行了
  */
 
@@ -275,11 +275,11 @@
             [passwordView paySuccess];
             [self pushsucessVc];
         }else{
-            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+            [passwordView payFailureWithPasswordError:YES withErrorLimit:2 message:responseObject[@"message"]];
         }
 
     } enError:^(NSError *error) {
-         [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+         [passwordView payFailureWithPasswordError:YES withErrorLimit:2 message:error.localizedDescription];
     
     }];
     

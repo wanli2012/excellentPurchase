@@ -11,10 +11,9 @@
 @interface ZDProgressView()
 
 @property (nonatomic,strong) UIView *oneView;
-@property (nonatomic,strong) UILabel *oneLabel;
 
 @property (nonatomic,strong) UIView *twoView;
-@property (nonatomic,strong) UILabel *twoLabel;
+
 
 @end
 

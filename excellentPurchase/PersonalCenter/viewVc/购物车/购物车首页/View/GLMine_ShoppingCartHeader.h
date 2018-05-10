@@ -20,10 +20,12 @@
 
 @property (nonatomic, weak)id <GLMine_ShoppingCartHeaderDelegate>delegate;
 
-
-
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;
 
-@property (nonatomic, strong)GLMine_ShoppingCartDataModel *model;
+@property (nonatomic, strong)GLMine_ShoppingCartModel *model;
+
+@property (assign , nonatomic)BOOL  ishidesignImageV;
+
+@property (nonatomic, assign)NSInteger section;
 
 @end

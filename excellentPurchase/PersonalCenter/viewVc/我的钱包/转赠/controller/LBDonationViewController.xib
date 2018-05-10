@@ -80,8 +80,8 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优购币" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NJ-es-pGU">
-                                                            <rect key="frame" x="78.5" y="58.5" width="37" height="14.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="福宝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NJ-es-pGU">
+                                                            <rect key="frame" x="84.5" y="58.5" width="25" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -201,7 +201,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入接收人ID号或手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ecC-Gs-mqn">
-                                                    <rect key="frame" x="73.5" y="0.0" width="332.5" height="49"/>
+                                                    <rect key="frame" x="73.5" y="0.0" width="252.5" height="49"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -209,18 +209,40 @@
                                                         <outlet property="delegate" destination="-1" id="RgC-VK-JkV"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ae-9j-D3y">
+                                                    <rect key="frame" x="336" y="10" width="70" height="30"/>
+                                                    <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="E8O-Tr-zNM"/>
+                                                        <constraint firstAttribute="width" constant="70" id="fIH-R3-kdn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="验证">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="verificationEvent:" destination="-1" eventType="touchUpInside" id="jZp-sh-7UR"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="6H5-v8-5Mm" firstAttribute="top" secondItem="ecC-Gs-mqn" secondAttribute="bottom" id="1uo-q4-dRj"/>
                                                 <constraint firstItem="6H5-v8-5Mm" firstAttribute="leading" secondItem="ckw-4F-BWH" secondAttribute="leading" id="3iF-xe-fLC"/>
                                                 <constraint firstItem="y1N-U4-Nsr" firstAttribute="leading" secondItem="ckw-4F-BWH" secondAttribute="leading" constant="10" id="8gK-LX-n60"/>
-                                                <constraint firstAttribute="trailing" secondItem="ecC-Gs-mqn" secondAttribute="trailing" constant="10" id="A1N-tN-V63"/>
                                                 <constraint firstItem="ecC-Gs-mqn" firstAttribute="top" secondItem="ckw-4F-BWH" secondAttribute="top" id="IRw-YX-Htu"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Ae-9j-D3y" secondAttribute="trailing" constant="10" id="IpF-Ws-bI9"/>
+                                                <constraint firstItem="7Ae-9j-D3y" firstAttribute="centerY" secondItem="y1N-U4-Nsr" secondAttribute="centerY" id="KOq-RL-3pO"/>
                                                 <constraint firstAttribute="bottom" secondItem="6H5-v8-5Mm" secondAttribute="bottom" id="ReB-yF-BVB"/>
                                                 <constraint firstAttribute="trailing" secondItem="6H5-v8-5Mm" secondAttribute="trailing" id="TZ6-Tv-dkl"/>
                                                 <constraint firstItem="y1N-U4-Nsr" firstAttribute="centerY" secondItem="ckw-4F-BWH" secondAttribute="centerY" id="WCa-Zh-Qmq"/>
                                                 <constraint firstAttribute="height" constant="50" id="i9B-Yt-WFh"/>
+                                                <constraint firstItem="7Ae-9j-D3y" firstAttribute="leading" secondItem="ecC-Gs-mqn" secondAttribute="trailing" constant="10" id="lfh-iE-bPw"/>
                                                 <constraint firstItem="ecC-Gs-mqn" firstAttribute="leading" secondItem="y1N-U4-Nsr" secondAttribute="trailing" constant="10" id="pgz-TL-xTN"/>
                                             </constraints>
                                         </view>

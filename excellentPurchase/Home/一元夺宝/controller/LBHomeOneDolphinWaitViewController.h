@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBHomeOneDolphinBaseViewController.h"
 
-@interface LBHomeOneDolphinWaitViewController : LBHomeOneDolphinBaseViewController
+@interface LBHomeOneDolphinWaitViewController : UIViewController
 
 @end

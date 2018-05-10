@@ -38,6 +38,7 @@
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:_model.thumb] placeholderImage:nil];
     self.namelb.text = [NSString stringWithFormat:@"%@",_model.goods_name];
     self.specLb.text = [NSString stringWithFormat:@"规格：%@",_model.title];
+    
     self.discountlb.text = [NSString stringWithFormat:@"¥ %@",_model.marketprice];
     self.numlb.text = [NSString stringWithFormat:@"x%@",_model.goods_num];
 }

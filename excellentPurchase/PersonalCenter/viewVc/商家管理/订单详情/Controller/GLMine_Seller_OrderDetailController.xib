@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="bottomHeight" destination="IoG-lo-2IN" id="nht-6b-wbY"/>
                 <outlet property="bottomView" destination="JEP-1l-aUe" id="GWG-bY-CqF"/>
+                <outlet property="buttonViewH" destination="JfW-Dz-2ss" id="2fJ-iZ-7MU"/>
                 <outlet property="cancelOrderBtn" destination="9cL-jG-dAU" id="ypa-eB-ULD"/>
                 <outlet property="dateLabel" destination="Qee-hQ-bEy" id="w6T-h3-GCR"/>
                 <outlet property="ensureDeliveryBtn" destination="O5e-jM-SUo" id="Q36-hs-WcZ"/>
@@ -31,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1fZ-5w-cnX">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="Krp-pU-0bO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
@@ -184,7 +185,7 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEP-1l-aUe">
-                    <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="603" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-U5-x5q">
                             <rect key="frame" x="285" y="10" width="80" height="30"/>
@@ -259,7 +260,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="1fZ-5w-cnX" secondAttribute="trailing" id="IUq-DK-r5R"/>
-                <constraint firstAttribute="bottom" secondItem="JEP-1l-aUe" secondAttribute="bottom" id="JfW-Dz-2ss"/>
+                <constraint firstAttribute="bottom" secondItem="JEP-1l-aUe" secondAttribute="bottom" constant="-50" id="JfW-Dz-2ss"/>
                 <constraint firstItem="1fZ-5w-cnX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Tap-Rl-Dff"/>
                 <constraint firstItem="JEP-1l-aUe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZgD-cO-eXm"/>
                 <constraint firstItem="1fZ-5w-cnX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZvN-XX-nDr"/>

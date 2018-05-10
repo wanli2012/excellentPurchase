@@ -26,7 +26,7 @@
 /**
  首页底部图片比例
  */
-#define bottomScale   240 / 750.0
+#define bottomScale   460 / 750.0
 
 /**
  吃喝玩乐-精品推荐图片比例
@@ -94,9 +94,28 @@
 #define UserGroomGroom_gain @"UserGroom/groom_gain"//查看推荐收益
 #define DataNew_data @"Data/new_data"//请求H5首页跑马灯详情
 #define shareMalldetail @"Home/SeaMall/MallDetail/goods_id/"//分享店铺
-#define MoneyCenterUser_money @"MoneyCenter/user_money"//用户优购币/购物券
+#define shareRegister @"Home/User/Register.html?userid="//分享注册
+#define MoneyCenterUser_money @"MoneyCenter/user_money"//用户福宝/购物券
 #define OrderStore_face_order_list @"Order/store_face_order_list"//商家面对面订单列表
 #define SeaShoppingIndex_sea_goods @"SeaShopping/index_sea_goods"//商城首页店铺类型跳转
 #define AccessGet_logisits_info @"Access/get_logisits_info"//获取物流信息
+#define kchallenge_order_list @"Challenge/challenge_order_list"//抢购活动订单
+#define korder_refund_reason_list @"OrderRefund/order_refund_reason_list"//退款原因列表
+#define kOrderRefundorder_refund @"OrderRefund/order_refund"//订单退款申请
+#define kAccessget_sky_air @"Access/get_sky_air"//天气接口
+#define kIndianaindiana_main @"Indiana/indiana_main"//夺宝首页
+#define kIndianaindiana_list @"Indiana/indiana_list"//夺宝记录
+#define kIndianalucky_number_detail @"Indiana/lucky_number_detail"//我的幸运号码
+#define kIndianabuy_detail @"Indiana/buy_detail"//夺宝购买详情
+#define kIndianacreate_indiana_order @"Indiana/create_indiana_order"//夺宝下单
+#define kIndianaindiana_goods_detail @"Indiana/indiana_goods_detail"//夺宝详情
+#define kIndianaindiana_goods_record @"Indiana/indiana_goods_record"//本期参与记录
+#define kIndianaindiana_reward_history @"Indiana/indiana_reward_history"//往期记录
+#define kIndianaindiana_slide_history @"Indiana/indiana_slide_history"//商品详情晒图记录
+#define kIndianaindiana_detail @"Indiana/indiana_detail"//夺宝计算详情
+#define kPayindiana_pay @"Pay/indiana_pay"//夺宝支付
+#define kIndianaget_lucky_number @"Indiana/get_lucky_number"//获取夺宝订单的幸运号码
+#define kIndianaindiana_wait_slide @"Indiana/indiana_wait_slide"//用户待晒单
+#define kIndianaindiana_slide_list @"Indiana/indiana_slide_list"//晒单列表
 
 #endif /* scaleHeader_h */

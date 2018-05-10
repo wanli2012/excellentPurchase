@@ -9,6 +9,8 @@
 #import "GLMine_Branch_DetailController.h"
 #import "GLMine_Branch_AccountManageController.h"//账号管理
 #import "GLMine_Branch_QueryAchievementController.h"//业绩查询
+#import "LBEat_StoreDetailViewController.h"
+#import "LBEatShopProdcutClassifyViewController.h"
 
 @interface GLMine_Branch_DetailController ()
 
@@ -109,7 +111,6 @@
     self.hidesBottomBarWhenPushed = YES;
     GLMine_Branch_AccountManageController *manageVC = [[GLMine_Branch_AccountManageController alloc] init];
     manageVC.sid = self.sid;
-    
     [self.navigationController pushViewController:manageVC animated:YES];
 }
 
@@ -117,14 +118,22 @@
  淘淘店
  */
 - (IBAction)branchDetail:(id)sender {
-    NSLog(@" 淘淘店");
+    self.hidesBottomBarWhenPushed = YES;
+    LBEatShopProdcutClassifyViewController *vc = [[LBEatShopProdcutClassifyViewController alloc]init];
+    vc.store_id = self.sid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
  吃喝玩乐店
  */
 - (IBAction)eatAndDrink:(id)sender {
-    NSLog(@" 吃喝玩乐店");
+    self.hidesBottomBarWhenPushed = YES;
+    LBEat_StoreDetailViewController *manageVC = [[LBEat_StoreDetailViewController alloc] init];
+    manageVC.store_id = self.sid;
+    manageVC.isSelf = YES;
+    manageVC.titilestr = self.navigationItem.title;
+    [self.navigationController pushViewController:manageVC animated:YES];
 }
 
 /**

@@ -22,6 +22,7 @@
 #import "LBSwitchAccountViewController.h"//切换账号
 #import "GLMine_ManagementController.h"//商家管理
 #import "GLMine_MyWalletController.h"//我的钱包
+#import "GLMine_Seller_IncomeCodeController.h"
 
 #define kInitHeaderViewOriginY 0
 #define kInitHeaderViewHeight 190 + SafeAreaTopHeight  //tableheaderview高度
@@ -117,18 +118,18 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
         self.headerView.nicknameLabel.text = [UserModel defaultUser].nick_name;
     }
     
-    self.headerView.IDNumberLabel.text = [UserModel defaultUser].user_name;
+    self.headerView.IDNumberLabel.text = [UserModel defaultUser].phone;
     self.headerView.groupTypeLabel.text = [UserModel defaultUser].group_name;
     
     self.headerView.noticeArr = @[@"你",@"号",@"啊"];
     self.headerView.valueArr = @[[UserModel defaultUser].mark,//用户积分
                                 [UserModel defaultUser].balance,//用户余额
                                 [UserModel defaultUser].shopping_voucher,//用户购物券
-                                [UserModel defaultUser].keti_bean,//用户优购币
-                                [UserModel defaultUser].currency,//优购币单价
+                                [UserModel defaultUser].keti_bean,//用户福宝
+                                [UserModel defaultUser].currency,//福宝单价
                                 [UserModel defaultUser].Total_money,//平台昨日营业额总量
                                 [UserModel defaultUser].Total_mark,//平台昨日新增积分总量
-                                [UserModel defaultUser].Total_currency,//平台昨日优购币新增
+                                [UserModel defaultUser].Total_currency,//平台昨日福宝新增
                               ];
     
 }
@@ -227,6 +228,11 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
     Class classvc = NSClassFromString(vcstr);
     UIViewController *vc = [[classvc alloc]init];
     
+    if([vcstr isEqualToString:@"GLMine_Seller_IncomeCodeController"]){
+        GLMine_Seller_IncomeCodeController *incomeVc = (GLMine_Seller_IncomeCodeController *)vc;
+        incomeVc.type = 1;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
@@ -258,21 +264,21 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
         switch ([[UserModel defaultUser].group_id integerValue]) {
             case GROUP_SHOP://商家
             {
-                _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"mine-set",@"mine-news", nil];
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine_merchant",@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"注册分享",@"mine-set",@"mine-news", nil];
             }
                 break;
             case GROUP_USER://会员
             {
-                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"mine-set",@"mine-news", nil];
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"otherFunction",@"注册分享",@"mine-set",@"mine-news", nil];
             }
                 break;
             case GROUP_TG://创客
             {
-                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"注册分享",@"mine-set",@"mine-news", nil];
             }
             case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
             {
-                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"mine-set",@"mine-news", nil];
+                _imageArr = [NSMutableArray arrayWithObjects:@"mine-shoping",@"mine-orderform",@"mine-pay",@"mine-team",@"otherFunction",@"注册分享",@"mine-set",@"mine-news", nil];
             }
                 break;
                 
@@ -287,28 +293,28 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
 -(NSMutableArray*)titleArr{
     if (!_titleArr) {
         
-        _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+        _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其它功能",@"分享",@"设置",@"消息", nil];
         
         switch ([[UserModel defaultUser].group_id integerValue]) {
             case GROUP_SHOP://商家
             {
-                _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"其他功能",@"设置",@"消息", nil];
+                _titleArr = [NSMutableArray arrayWithObjects:@"商家管理",@"购物车",@"订单管理",@"我的钱包",@"其它功能",@"分享",@"设置",@"消息", nil];
 
             }
                 break;
             case GROUP_USER://会员
             {
-                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"其他功能",@"设置",@"消息", nil];
+                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"其它功能",@"分享",@"设置",@"消息", nil];
   
             }
                 break;
             case GROUP_TG://创客
             {
-                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其它功能",@"分享",@"设置",@"消息", nil];
             }
             case GROUP_GJTG:case GROUP_DQ:case GROUP_QY:case GROUP_CD:case GROUP_SD://高级创客 创客中心 区代 市代 省代
             {
-                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其他功能",@"设置",@"消息", nil];
+                _titleArr = [NSMutableArray arrayWithObjects:@"购物车",@"订单管理",@"我的钱包",@"我的团队",@"其它功能",@"分享",@"设置",@"消息", nil];
 
             }
                 break;
@@ -327,7 +333,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
         _headerView.autoresizingMask = 0;
     }
     
-    NSArray *arr = @[@"积分",@"余额",@"购物券",@"优购币",@"优购币单价",@"平台昨日营业额总量",@"平台新增积分总量",@"平台昨日优购币转化"];
+    NSArray *arr = @[@"积分",@"余额",@"购物券",@"福宝",@"福宝单价",@"平台昨日营业额总量",@"平台新增积分总量",@"平台昨日福宝转化"];
     
     _headerView.titleArr = arr;
  
@@ -349,6 +355,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                             @"LBMineOrderManagerViewController",
                             @"GLMine_MyWalletController",
                             @"LBMineOtherFunctionViewController",
+                            @"GLMine_Seller_IncomeCodeController",
                             @"LBSetUpViewController",
                             @"GLMine_MessageController",nil];
                 
@@ -361,6 +368,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                             @"LBMineOrderManagerViewController",
                             @"GLMine_MyWalletController",
                             @"LBMineOtherFunctionViewController",
+                            @"GLMine_Seller_IncomeCodeController",
                             @"LBSetUpViewController",
                             @"GLMine_MessageController",nil];
                 
@@ -374,6 +382,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                             @"GLMine_MyWalletController",
                             @"GLMine_TeamController",
                             @"LBMineOtherFunctionViewController",
+                            @"GLMine_Seller_IncomeCodeController",
                             @"LBSetUpViewController",
                             @"GLMine_MessageController",nil];
             }
@@ -385,6 +394,7 @@ static NSString *mineTableViewCell = @"LBMineTableViewCell";
                             @"GLMine_MyWalletController",
                             @"GLMine_TeamController",
                             @"LBMineOtherFunctionViewController",
+                            @"GLMine_Seller_IncomeCodeController",
                             @"LBSetUpViewController",
                             @"GLMine_MessageController",nil];
             }

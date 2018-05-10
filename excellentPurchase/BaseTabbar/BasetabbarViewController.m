@@ -73,10 +73,10 @@
     BaseNavigationViewController *tmallNav = [[BaseNavigationViewController alloc] initWithRootViewController:tmallVC];
     tmallNav.tabBarItem = [self barTitle:@"海淘商城" image:@"store" selectImage:@"choicestore"];
     
-    //理财中心
+    //福宝中心
     LBFinancialCenterViewController *financialVC = [[LBFinancialCenterViewController alloc] init];
     BaseNavigationViewController *financialNav = [[BaseNavigationViewController alloc] initWithRootViewController:financialVC];
-    financialNav.tabBarItem = [self barTitle:@"理财中心" image:@"managemoney" selectImage:@"choicemanagemoney"];
+    financialNav.tabBarItem = [self barTitle:@"福宝中心" image:@"managemoney" selectImage:@"choicemanagemoney"];
     
     //个人中心
     LBPersonCenterViewController *personVC = [[LBPersonCenterViewController alloc] init];

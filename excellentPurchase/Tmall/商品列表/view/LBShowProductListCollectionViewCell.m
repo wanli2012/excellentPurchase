@@ -76,6 +76,9 @@
         case 5:
             self.typeImage.image = [UIImage imageNamed:@"自营商城"];
             break;
+        case 6:
+            self.typeImage.image = [UIImage imageNamed:@"顺道商城"];
+            break;
         default:
             break;
     }

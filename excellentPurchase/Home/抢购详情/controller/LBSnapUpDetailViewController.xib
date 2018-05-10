@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBSnapUpDetailViewController">
+            <connections>
+                <outlet property="collectBt" destination="nRL-eh-GiK" id="oik-dQ-uNd"/>
+                <outlet property="merchatW" destination="U8b-oc-Yx5" id="wPv-wY-rIz"/>
+                <outlet property="merchetBt" destination="I3Z-m0-eIF" id="eHu-Kt-fPY"/>
+                <outlet property="muneViewY" destination="CXx-kj-4AP" id="539-Nn-Mkx"/>
+                <outlet property="serviceBt" destination="kS9-rV-Ecr" id="Abf-AP-9Ea"/>
+                <outlet property="tableview" destination="dGs-mZ-wMH" id="TuH-p0-J1w"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9r2-0V-Gbq">
+                    <rect key="frame" x="0.0" y="667" width="375" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3Z-m0-eIF">
+                            <rect key="frame" x="10" y="0.0" width="50" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="U8b-oc-Yx5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="商家" image="taotao-shangjia">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="jionmerchat:" destination="-1" eventType="touchUpInside" id="p0f-Vj-LEg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRL-eh-GiK">
+                            <rect key="frame" x="70" y="0.0" width="50" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="sqK-hG-EOi"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="收藏" image="taotao-collect-n">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected" image="taotao-collect-y"/>
+                            <connections>
+                                <action selector="collectionEevnt:" destination="-1" eventType="touchUpInside" id="Nil-gM-tzr"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kS9-rV-Ecr">
+                            <rect key="frame" x="130" y="0.0" width="0.0" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" id="Q62-TX-C1a"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="商家" image="taotao-shangjia">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="customerService:" destination="-1" eventType="touchUpInside" id="bS4-ig-3Ig"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GiR-Cr-37k">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Otc-hJ-a4X"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Od-AT-DUy">
+                            <rect key="frame" x="140" y="1" width="235" height="59"/>
+                            <color key="backgroundColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="立即购买">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ImmediatelyBuy:" destination="-1" eventType="touchUpInside" id="m0U-rI-a52"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="nRL-eh-GiK" firstAttribute="top" secondItem="9r2-0V-Gbq" secondAttribute="top" id="1MA-Vi-TYX"/>
+                        <constraint firstAttribute="trailing" secondItem="GiR-Cr-37k" secondAttribute="trailing" id="2It-pd-I5g"/>
+                        <constraint firstAttribute="bottom" secondItem="nRL-eh-GiK" secondAttribute="bottom" id="3yT-I8-mn0"/>
+                        <constraint firstItem="I3Z-m0-eIF" firstAttribute="leading" secondItem="9r2-0V-Gbq" secondAttribute="leading" constant="10" id="9vj-dc-lcM"/>
+                        <constraint firstItem="I3Z-m0-eIF" firstAttribute="top" secondItem="9r2-0V-Gbq" secondAttribute="top" id="AiC-MK-buv"/>
+                        <constraint firstAttribute="bottom" secondItem="I3Z-m0-eIF" secondAttribute="bottom" id="Cgb-b9-RaH"/>
+                        <constraint firstAttribute="bottom" secondItem="kS9-rV-Ecr" secondAttribute="bottom" id="Ff8-0F-3UC"/>
+                        <constraint firstAttribute="bottom" secondItem="5Od-AT-DUy" secondAttribute="bottom" id="HkC-6e-S9F"/>
+                        <constraint firstItem="GiR-Cr-37k" firstAttribute="top" secondItem="9r2-0V-Gbq" secondAttribute="top" id="MDN-cA-llg"/>
+                        <constraint firstItem="5Od-AT-DUy" firstAttribute="top" secondItem="GiR-Cr-37k" secondAttribute="bottom" id="PIS-hd-bcf"/>
+                        <constraint firstItem="5Od-AT-DUy" firstAttribute="leading" secondItem="kS9-rV-Ecr" secondAttribute="trailing" constant="10" id="VFa-AS-UYI"/>
+                        <constraint firstItem="kS9-rV-Ecr" firstAttribute="top" secondItem="9r2-0V-Gbq" secondAttribute="top" id="aNf-hr-65u"/>
+                        <constraint firstItem="kS9-rV-Ecr" firstAttribute="leading" secondItem="nRL-eh-GiK" secondAttribute="trailing" constant="10" id="ee3-jE-CVG"/>
+                        <constraint firstItem="GiR-Cr-37k" firstAttribute="leading" secondItem="9r2-0V-Gbq" secondAttribute="leading" id="mqv-sn-4ND"/>
+                        <constraint firstItem="nRL-eh-GiK" firstAttribute="leading" secondItem="I3Z-m0-eIF" secondAttribute="trailing" constant="10" id="oxd-8m-lls"/>
+                        <constraint firstAttribute="trailing" secondItem="5Od-AT-DUy" secondAttribute="trailing" id="vXg-At-7zx"/>
+                        <constraint firstAttribute="height" constant="60" id="yXh-W9-KLh"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dGs-mZ-wMH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="y7U-iE-d3L"/>
+                        <outlet property="delegate" destination="-1" id="6sT-jz-Ns8"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dGs-mZ-wMH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9VH-vo-zWD"/>
+                <constraint firstItem="9r2-0V-Gbq" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="60" id="CXx-kj-4AP"/>
+                <constraint firstItem="9r2-0V-Gbq" firstAttribute="top" secondItem="dGs-mZ-wMH" secondAttribute="bottom" id="J7U-Cp-ZyD"/>
+                <constraint firstItem="9r2-0V-Gbq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VO6-aN-Svs"/>
+                <constraint firstAttribute="trailing" secondItem="dGs-mZ-wMH" secondAttribute="trailing" id="bfD-J8-xqq"/>
+                <constraint firstItem="dGs-mZ-wMH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dzx-XX-Oqo"/>
+                <constraint firstAttribute="trailing" secondItem="9r2-0V-Gbq" secondAttribute="trailing" id="wsC-tS-tvL"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="taotao-collect-n" width="22" height="20"/>
+        <image name="taotao-collect-y" width="22" height="20"/>
+        <image name="taotao-shangjia" width="23" height="20"/>
+    </resources>
+</document>

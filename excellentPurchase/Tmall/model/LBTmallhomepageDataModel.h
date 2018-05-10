@@ -34,6 +34,6 @@
 @property (copy , nonatomic)NSString *channel;
 
 @property (copy , nonatomic)NSString *is_collect;
-
+@property (copy , nonatomic)NSString *is_active_challenge;//1表示活动中  0表示没有活动
 
 @end

@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBProductDetailViewController">
             <connections>
                 <outlet property="collectBt" destination="gic-Jr-XDm" id="Z6z-tw-68m"/>
+                <outlet property="merchatW" destination="Zm3-od-EBL" id="9jE-qi-bVQ"/>
                 <outlet property="merchetBt" destination="Cwd-su-Ogb" id="8wE-Uv-JqI"/>
                 <outlet property="muneViewY" destination="0sK-De-b8k" id="bS9-Rx-Hzz"/>
                 <outlet property="navagationH" destination="eWV-qX-kGL" id="A0q-gv-qkQ"/>

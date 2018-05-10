@@ -12,6 +12,7 @@
 #import "GLMine_PayFailedView.h"
 #import "LBTmallhomepageDataModel.h"
 #import "LBProductDetailViewController.h"
+#import "LBSnapUpDetailViewController.h"
 
 @interface GLMine_PaySucessController ()<GLMine_PayFailedViewDelegate,GLMine_PaySuccessViewDelegate>
 
@@ -148,11 +149,18 @@
 //选择了某个cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //在这里进行点击cell后的操作
-    
-    self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-    vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    //活动跳转活动详情
+    if ([((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).is_active_challenge integerValue] == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+        vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 

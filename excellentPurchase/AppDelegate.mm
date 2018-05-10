@@ -56,6 +56,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self ListenNetWork];//监听网络
+     [self Postpath:GET_VERSION];//检查是否有更新版本
     [self regsiterJpush:launchOptions];//注册极光推送
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
@@ -124,7 +125,7 @@
     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
     [JPUSHService setupWithOption:launchOptions appKey:JPush_appKey
                           channel:@"App Store"
-                 apsForProduction:NO
+                 apsForProduction:YES
             advertisingIdentifier:advertisingId];
 }
 
@@ -156,13 +157,12 @@
     //                            stringByReplacingOccurrencesOfString: @" " withString: @""];
     
 }
-
 //iOS10以下使用这个方法接收通知
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
 //    [UMessage didReceiveRemoteNotification:userInfo];
-    
+
     self.userInfo = userInfo;
     //定制自定的的弹出框
     NSString *str = [NSString stringWithFormat:@"%@",userInfo[@"nim"]];
@@ -196,7 +196,11 @@
     
     return NO;
 }
-
+//点击App图标，使App从后台恢复至前台
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [application setApplicationIconBadgeNumber:0];
+    [JPUSHService setBadge:0];
+}
 // 支持所有iOS系统
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
@@ -410,6 +414,8 @@
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [JPUSHService setBadge:0];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
@@ -420,6 +426,8 @@
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [JPUSHService setBadge:0];
     }
     completionHandler();  // 系统要求执行这个方法
 }
@@ -457,6 +465,78 @@
 -(void)dissmissKeyBoard{
     [self.window endEditing:YES];
 }
+
+#pragma mark - 检查更新
+
+-(void)Postpath:(NSString *)path
+{
+    
+    NSURL *url = [NSURL URLWithString:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    //    NSOperationQueue *queue = [NSOperationQueue new];
+    
+    // 3.获得会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    // 4.根据会话对象，创建一个Task任务
+    NSURLSessionDataTask *sessionDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSMutableDictionary *receiveStatusDic=[[NSMutableDictionary alloc]init];
+        if (data) {
+            
+            NSDictionary *receiveDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if ([[receiveDic valueForKey:@"resultCount"] intValue] > 0) {
+                
+                [receiveStatusDic setValue:@"1" forKey:@"status"];
+                [receiveStatusDic setValue:[[[receiveDic valueForKey:@"results"] objectAtIndex:0] valueForKey:@"version"]   forKey:@"version"];
+            }else{
+                
+                [receiveStatusDic setValue:@"-1" forKey:@"status"];
+            }
+        }else{
+            [receiveStatusDic setValue:@"-1" forKey:@"status"];
+        }
+        
+        [self performSelectorOnMainThread:@selector(receiveData:) withObject:receiveStatusDic waitUntilDone:NO];
+        
+    }];
+    
+    [sessionDataTask resume];
+    
+}
+
+-(void)receiveData:(id)sender
+{
+    NSString  *Newversion = [NSString stringWithFormat:@"%@",sender[@"version"]];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    if (![([infoDictionary objectForKey:@"CFBundleShortVersionString"]) isEqualToString:Newversion]) {
+        
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"更新提示" message:@"发现新版本是否更新" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DOWNLOAD_URL] options:@{} completionHandler:nil];
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DOWNLOAD_URL]];
+            }
+        }];
+        
+        [alertVC addAction:cancel];
+        [alertVC addAction:ok];
+        [self.window.rootViewController presentViewController:alertVC animated:YES completion:nil];
+    }else{
+      
+    }
+    
+}
+
+
 -(UIView*)keyMaskView{
     if (!_keyMaskView) {
         _keyMaskView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, UIScreenHeight)];

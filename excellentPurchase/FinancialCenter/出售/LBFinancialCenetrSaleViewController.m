@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *payTwoBt;//T+3
 @property (weak, nonatomic) IBOutlet UIButton *payThreeBt;//T+7
 
-@property (weak, nonatomic) IBOutlet UILabel *myCoinLabel;//我的优购币
+@property (weak, nonatomic) IBOutlet UILabel *myCoinLabel;//我的福宝
 @property (weak, nonatomic) IBOutlet UIImageView *bankIconV;//银行图标
 @property (weak, nonatomic) IBOutlet UILabel *bankNameLabel;//银行名
 @property (weak, nonatomic) IBOutlet UILabel *bankNumberLabel;//卡号

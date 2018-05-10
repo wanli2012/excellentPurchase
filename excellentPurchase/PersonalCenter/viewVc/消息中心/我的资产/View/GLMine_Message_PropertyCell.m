@@ -43,7 +43,7 @@
     }else{
         str = @"+";
     }
-    switch (model.infoType) {////1:积分 2:余额 3:优购币  4:购物券
+    switch (model.infoType) {////1:积分 2:余额 3:福宝  4:购物券
         case 1://1:积分
         {
             self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_mark];
@@ -54,7 +54,7 @@
             self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_money];
         }
             break;
-        case 3://3:优购币
+        case 3://3:福宝
         {
             self.amountLabel.text = [NSString stringWithFormat:@"%@%@",str,model.log_money];
         }

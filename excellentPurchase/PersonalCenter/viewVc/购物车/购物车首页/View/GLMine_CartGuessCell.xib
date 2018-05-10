@@ -104,6 +104,6 @@
     </objects>
     <resources>
         <image name="taotao-collect-y" width="22" height="20"/>
-        <image name="taotao-fan" width="17" height="17"/>
+        <image name="taotao-fan" width="13" height="13"/>
     </resources>
 </document>

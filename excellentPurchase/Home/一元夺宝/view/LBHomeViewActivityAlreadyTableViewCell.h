@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBHomeViewActivityListModel.h"
 
 @interface LBHomeViewActivityAlreadyTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBHomeViewActivityListModel *model;
 
 @end

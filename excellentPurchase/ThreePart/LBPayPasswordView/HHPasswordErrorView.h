@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIButton *onceButton;
 @property (nonatomic, strong) UIButton *forgetPwdButton;
 @property (nonatomic, assign) NSInteger limit;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 - (void)showInView:(UIView *)view;
 - (void)hide;

@@ -18,5 +18,6 @@
 @property (copy , nonatomic)NSString *discount;
 @property (copy , nonatomic)NSString *bonuspoints;
 @property (copy , nonatomic)NSString *reword_coupons;
+@property (copy , nonatomic)NSString *is_active_challenge;
 
 @end

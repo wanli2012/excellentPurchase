@@ -10,10 +10,9 @@
 #import "LBHorseRaceLampModel.h"
 #import "TXScrollLabelView.h"
 
-@interface LBTimeLimitHorseTableViewCell ()<TXScrollLabelViewDelegate>
+@interface LBTimeLimitHorseTableViewCell ()
 
 @property (nonatomic, copy)NSArray *dataSource;
-@property (nonatomic, strong)TXScrollLabelView *scrollLabelView;
 
 @end
 
@@ -21,6 +20,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _dataSource = @[@" "];
      [self initDataFace];
 }
 
@@ -32,16 +32,11 @@
 - (void)addWith:(TXScrollLabelViewType)type velocity:(CGFloat)velocity isArray:(BOOL)isArray {
     /** Step1: 滚动文字 */
     
-    NSArray *scrollTexts = @[@"唯独 vvv 的 v 额度部分呗"];
-    
     /** Step2: 创建 ScrollLabelView */
     _scrollLabelView = nil;
     if (isArray) {
-        _scrollLabelView = [TXScrollLabelView scrollWithTextArray:scrollTexts type:type velocity:velocity options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
+        _scrollLabelView = [TXScrollLabelView scrollWithTextArray:_dataSource type:type velocity:velocity options:UIViewAnimationOptionCurveEaseInOut inset:UIEdgeInsetsZero];
     }
-    
-    /** Step3: 设置代理进行回调 */
-    _scrollLabelView.scrollLabelViewDelegate = self;
     _scrollLabelView.frame = CGRectMake(90, 5, UIScreenWidth  - 100, 40);
     [self addSubview:_scrollLabelView];
     /** Step4: 布局(Required) */
@@ -60,7 +55,11 @@
     [_scrollLabelView beginScrolling];
 }
 
-- (void)scrollLabelView:(TXScrollLabelView *)scrollLabelView didClickWithText:(NSString *)text atIndex:(NSInteger)index{
-
+-(void)setDataArr:(NSArray *)dataArr{
+    _dataArr = dataArr;
+    _scrollLabelView.dataArr = _dataArr;
+    [_scrollLabelView beginScrolling];
+    
 }
+
 @end

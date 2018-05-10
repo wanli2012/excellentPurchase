@@ -7,7 +7,6 @@
 //
 
 #import "LBRegisterViewController.h"
-#import <VerifyCode/NTESVerifyCodeManager.h>
 #import "GLMine_Team_OpenSellerController.h"//商家注册
 #import "LLWebViewController.h"//web页面
 
@@ -19,7 +18,7 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 
-@interface LBRegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>
+@interface LBRegisterViewController ()<UITextFieldDelegate>
 {
     BOOL _isAgreeProtocol;
 }
@@ -39,8 +38,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *groupTypeTF;//身份类型
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;//注册按钮
 
-@property (nonatomic, copy)NSString *validate;//极验证
-@property(nonatomic,strong)NTESVerifyCodeManager *manager;
 @property (nonatomic, copy)NSString *group_id;
 @property (nonatomic, strong)NSMutableArray *groupModels;//身份类型数组
 
@@ -357,26 +354,8 @@
         return;
     }
     
-//    NSString *encryptsecret = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
-    self.manager = [NTESVerifyCodeManager sharedInstance];
-    if (self.manager) {
-        
-        // 如果需要了解组件的执行情况,则实现回调
-        self.manager.delegate = self;
-        
-        // captchaid的值是每个产品从后台生成的,比如 @"a05f036b70ab447b87cc788af9a60974"
-        NSString *captchaid = CAPTCHAID;
-        [self.manager configureVerifyCode:captchaid timeout:10.0];
-        
-        // 设置透明度
-        self.manager.alpha = 0.7;
-        
-        // 设置frame
-        self.manager.frame = CGRectNull;
-        
-        // 显示验证码
-        [self.manager openVerifyCodeView:nil];
-    }
+     [self sureSubmit];
+    
 }
 
 //确认注册
@@ -388,7 +367,6 @@
     dict[@"yzm"] = self.codeTF.text;
     dict[@"app_handler"] = @"ADD";
     dict[@"user_name"] = self.recommendTF.text;
-    dict[@"validate"] = self.validate;
     dict[@"group_id"] = self.group_id;
     
     self.submitBtn.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -470,57 +448,7 @@
     return YES;
 }
 
-#pragma mark - NTESVerifyCodeManagerDelegate
-/**
- * 验证码组件初始化完成
- */
-- (void)verifyCodeInitFinish{
-    
-}
 
-/**
- * 验证码组件初始化出错
- *
- * @param message 错误信息
- */
-- (void)verifyCodeInitFailed:(NSString *)message{
-    [EasyShowTextView showErrorText:message];
-}
-
-/**
- * 完成验证之后的回调
- *
- * @param result 验证结果 BOOL:YES/NO
- * @param validate 二次校验数据，如果验证结果为false，validate返回空
- * @param message 结果描述信息
- *
- */
-- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message{
-    
-    if (result == YES) {
-        self.validate = validate;
-        [self sureSubmit];
-    }
-    
-}
-
-/**
- * 关闭验证码窗口后的回调
- */
-- (void)verifyCodeCloseWindow{
-    //用户关闭验证后执行的方法
-    
-}
-
-/**
- * 网络错误
- *
- * @param error 网络错误信息
- */
-- (void)verifyCodeNetError:(NSError *)error{
-    //用户关闭验证后执行的方法
-    [EasyShowTextView showErrorText:error.localizedDescription];
-}
 
 -(NSMutableAttributedString*)addoriginstr:(NSString*)originstr specilstr:(NSArray*)specilstrArr{
     

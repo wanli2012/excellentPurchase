@@ -9,6 +9,17 @@
 #import "LBTimeLimitHeaderView.h"
 #import "LBTimeLimitView.h"
 
+@interface LBTimeLimitHeaderView()
+
+@property (strong , nonatomic)LBTimeLimitView *timeLimitView;
+
+@property(nonatomic,strong)NSString *time;
+@property(nonatomic,strong)NSString *buyingsecond;
+
+@property(nonatomic,assign)NSInteger section;
+
+@end
+
 @implementation LBTimeLimitHeaderView
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -37,6 +48,72 @@
         make.bottom.equalTo(self).offset(0);
     }];
     
+    self.timeLimitView = view;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notificationCenterEvent:)
+                                                 name:TimeCellNotification
+                                               object:nil];
+    
 }
+
+- (void)notificationCenterEvent:(NSNotification*)noti{
+
+    
+    if (self.isDisplay) {
+            self.time = [NSString stringWithFormat:@"%ld",[self.time integerValue] - 1];
+            self.buyingsecond = [NSString stringWithFormat:@"%ld",[self.buyingsecond integerValue] + 1];
+            [self setSecond:self.time row:self.section buyingsecond:self.buyingsecond];
+    }
+    
+}
+
+-(void)setSecond:(NSString *)second row:(NSInteger)section buyingsecond:(NSString *)buyingsecond{
+    
+    self.section = section;
+    self.time = second;
+    self.buyingsecond = buyingsecond;
+    if (_status == 1) {
+        self.timeLimitView.image.image = [UIImage imageNamed:@"home-qianggou"];
+        self.timeLimitView.timelb.textColor = LBHexadecimalColor(0xff6666);
+        self.timeLimitView.statusLb.text = @"距结束";
+        
+        NSTimeInterval interval    =[buyingsecond doubleValue];
+        NSDate *date               = [NSDate dateWithTimeIntervalSince1970:interval];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        NSString *dateString       = [formatter stringFromDate: date];
+        self.timeLimitView.timelb.text = [NSString stringWithFormat:@"%@正在疯抢",dateString];
+    }else{
+        self.timeLimitView.image.image = [UIImage imageNamed:@"home-time"];
+        self.timeLimitView.timelb.textColor = LBHexadecimalColor(0x5C02FF);
+        self.timeLimitView.timelb.text = [NSString stringWithFormat:@"%@等待疯抢",_waitmodel.start];
+        self.timeLimitView.statusLb.text = @"距开始";
+    }
+    
+    [self timeFormatted:[second intValue]];
+    
+}
+
+- (void)timeFormatted:(int)totalSeconds
+{
+    
+    int seconds = totalSeconds % 60;
+    int minutes = (totalSeconds / 60) % 60;
+    int hours = totalSeconds / 3600;
+
+    if (hours <= 0 && minutes <=0 && seconds <= 0) {
+        [self.timeLimitView.hourBt setTitle:[NSString stringWithFormat:@"00"] forState:UIControlStateNormal];
+        [self.timeLimitView.minuteBt setTitle:[NSString stringWithFormat:@"00"] forState:UIControlStateNormal];
+        [self.timeLimitView.secondBt setTitle:[NSString stringWithFormat:@"00"] forState:UIControlStateNormal];
+        return;
+    }
+    [self.timeLimitView.hourBt setTitle:[NSString stringWithFormat:@"%02d",hours] forState:UIControlStateNormal];
+    [self.timeLimitView.minuteBt setTitle:[NSString stringWithFormat:@"%02d", minutes] forState:UIControlStateNormal];
+    [self.timeLimitView.secondBt setTitle:[NSString stringWithFormat:@"%02d",seconds] forState:UIControlStateNormal];
+    
+}
+
 
 @end

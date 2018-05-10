@@ -82,6 +82,7 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
             if (isRefresh == YES) {
                 [self.models removeAllObjects];
             }
+            
             for (NSDictionary *dict in responseObject[@"data"]) {
                 LBMine_Team_ResultModel *model = [LBMine_Team_ResultModel mj_objectWithKeyValues:dict];
                 [self.models addObject:model];
@@ -120,9 +121,9 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //获取当前时间戳有两种方法(以秒为单位)

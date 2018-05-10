@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;//订单号
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;//总价
 @property (weak, nonatomic) IBOutlet UILabel *freightLabel;//运费
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonViewH;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;//底部view
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
@@ -50,18 +51,18 @@
     
     self.pickerView = [[ValuePickerView alloc]init];
     
-    if(self.type == 1){;//查询状态 2.待发货 3.已发货 11.已取消
-        self.navigationItem.title = @"确认订单";
+    if(self.type == 11){;//查询状态 2.待发货 3.已发货 11.已取消
+        self.navigationItem.title = @"订单详情";
         self.ensureDeliveryBtn.hidden = YES;
         self.ensureOrderBtn.hidden = NO;
         self.cancelOrderBtn.hidden = NO;
     }else if(self.type == 2){
-        self.navigationItem.title = @"确认发货";
+        self.navigationItem.title = @"订单详情";
         self.ensureDeliveryBtn.hidden = NO;
         self.ensureOrderBtn.hidden = YES;
         self.cancelOrderBtn.hidden = YES;
     }else if(self.type == 3){
-        self.navigationItem.title = @"已发货详情";
+        self.navigationItem.title = @"订单详情";
         self.bottomHeight.constant = 0;
         self.ensureDeliveryBtn.hidden = YES;
         self.ensureOrderBtn.hidden = YES;

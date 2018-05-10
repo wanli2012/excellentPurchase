@@ -21,6 +21,8 @@
 #import "GLMine_Cart_PayController.h"
 #import "LBMineEvaluateViewController.h"
 #import "LBMineCenterFlyNoticeDetailViewController.h"
+#import "LBSnapUpDetailViewController.h"
+#import "LBApplyRefundViewController.h"
 
 static NSString *mineOrderDetailAdressTableViewCell = @"LBMineOrderDetailAdressTableViewCell";
 static NSString *mineOrderDetailproductsTableViewCell = @"LBMineOrderDetailproductsTableViewCell";
@@ -40,6 +42,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewThreeTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomVH;
 
+@property (weak, nonatomic) IBOutlet UIButton *flyBt;
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;//订单金额
 
 @property (strong, nonatomic) LBMyOrdersDetailModel *dataModel;//数据模型
@@ -53,7 +56,6 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     self.navigationItem.title = @"订单详情";
     [self registertableviewcell];//注册cell
     [self loadData];//加载数据
-
 }
 
 -(void)loadData{
@@ -68,7 +70,11 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     [NetworkManager requestPOSTWithURLStr:OrderUser_product_order_detail paramDic:dic finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             self.dataModel = [LBMyOrdersDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
-            self.orderMoney.attributedText = [self addoriginstr:[NSString stringWithFormat:@"合计：¥%@",self.dataModel.money] specilstr:@[self.dataModel.money]];
+            NSString * moenyall = [NSString stringWithFormat:@"%.1f",[self.dataModel.money floatValue] + [self.dataModel.send_price floatValue] - [self.dataModel.coupons floatValue]];
+            if ([moenyall floatValue] <= 0) {
+                moenyall = @"0";
+            }
+            self.orderMoney.attributedText = [self addoriginstr:[NSString stringWithFormat:@"合计：¥%@",moenyall] specilstr:@[moenyall]];
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
@@ -105,6 +111,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     dic[@"address_id"] = self.dataModel.address_id;
     dic[@"ord_str"] = ord_str;
     dic[@"is_cart"] = @(0);
+    
     [EasyShowLodingView showLoding];
     [NetworkManager requestPOSTWithURLStr:OrderAppend_order_wait_pay paramDic:dic finish:^(id responseObject) {
         [EasyShowLodingView hidenLoding];
@@ -114,10 +121,9 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             payVC.datadic = responseObject[@"data"];
             [self.navigationController pushViewController:payVC animated:YES];
         }else{
-            
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
-        
+
     } enError:^(NSError *error) {
         [EasyShowLodingView hidenLoding];
         [EasyShowTextView showErrorText:error.localizedDescription];
@@ -158,12 +164,29 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
 }
 //查看物流
 - (IBAction)checkfly:(UIButton *)sender {
-    self.hidesBottomBarWhenPushed = YES;
-    LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
-    vc.codestr = self.dataModel.odd_num;
-    LBMyOrdersDetailGoodsListModel *model = self.dataModel.goods_info[0];
-    vc.imageStr = model.thumb;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.typeindex == 2) {//申请退款
+        self.hidesBottomBarWhenPushed = YES;
+        LBApplyRefundViewController *vc = [[LBApplyRefundViewController alloc]init];
+        vc.model = self.model;
+        WeakSelf;
+        vc.refreshdata = ^(NSString *ord_refund_money) {
+            weakSelf.typeindex = 7;
+            self.dataModel.goods_info[0].ord_refund_money = ord_refund_money;
+            [weakSelf updateViewConstraints];
+            [weakSelf.tableview reloadData];
+            if (weakSelf.refreshDatasource) {
+                weakSelf.refreshDatasource();
+            }
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{//查看物流
+        self.hidesBottomBarWhenPushed = YES;
+        LBMineCenterFlyNoticeDetailViewController *vc = [[LBMineCenterFlyNoticeDetailViewController alloc]init];
+        vc.codestr = self.dataModel.odd_num;
+        LBMyOrdersDetailGoodsListModel *model = self.dataModel.goods_info[0];
+        vc.imageStr = model.thumb;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 //待评论
 -(void)replayComment:(NSIndexPath*)indexpath{
@@ -182,6 +205,12 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
+//申请退款
+- (IBAction)applyRefuseEvent:(UIButton *)sender {
+    
+    
+}
+
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     if (self.dataModel) {
@@ -195,7 +224,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     if (section == 0) {
         return 1;
     }else{
-        return 6 + self.dataModel.goods_info.count;
+        return 7 + self.dataModel.goods_info.count;
     }
     return 0;
 }
@@ -211,19 +240,26 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             return 90;
         }else if ((indexPath.row >= self.dataModel.goods_info.count) && (indexPath.row < self.dataModel.goods_info.count + 2)){
             return 60;
-        }else if ((indexPath.row >= self.dataModel.goods_info.count+2) && (indexPath.row < self.dataModel.goods_info.count + 4)){
+        }else if ((indexPath.row >= self.dataModel.goods_info.count+2) && (indexPath.row < self.dataModel.goods_info.count + 5)){
             if (self.typeindex == 3 && indexPath.row == self.dataModel.goods_info.count + 3) {
                 return 80;
             }
+            if (indexPath.row == self.dataModel.goods_info.count + 4) {
+                if (self.typeindex == 7 || self.typeindex == 8 || self.typeindex == 9) {
+                    return 50;
+                }else{
+                    return 0;
+                }
+            }
             return 50;
-        }else if (indexPath.row == self.dataModel.goods_info.count+4){
+        }else if (indexPath.row == self.dataModel.goods_info.count+5){
             if ([NSString StringIsNullOrEmpty:self.dataModel.remark]) {
                 return 0;
             }
             tableView.estimatedRowHeight = 20;
             tableView.rowHeight = UITableViewAutomaticDimension;
             return UITableViewAutomaticDimension;
-        }else if (indexPath.row == self.dataModel.goods_info.count+5){
+        }else if (indexPath.row == self.dataModel.goods_info.count+6){
             tableView.estimatedRowHeight = 40;
             tableView.rowHeight = UITableViewAutomaticDimension;
             return UITableViewAutomaticDimension;
@@ -271,7 +307,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
                 cell.valueLb.text = [NSString stringWithFormat:@"¥%@",self.dataModel.money];
             }
             return cell;
-        }else if ((indexPath.row >= self.dataModel.goods_info.count+2) && (indexPath.row < self.dataModel.goods_info.count + 4)){
+        }else if ((indexPath.row >= self.dataModel.goods_info.count+2) && (indexPath.row < self.dataModel.goods_info.count + 5)){
             if (self.typeindex == 3 && indexPath.row == self.dataModel.goods_info.count + 3) {
                 LBMineOrderDetailpdiscountsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailpdiscountsTableViewCell forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -289,9 +325,31 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
                     cell.valuelb.text = [NSString stringWithFormat:@"¥%@",self.dataModel.coupons];
                 }
                 
+                 if (indexPath.row == self.dataModel.goods_info.count+4){
+                    if (self.typeindex == 7 || self.typeindex == 8 || self.typeindex == 9) {
+                        cell.hidden = NO;
+                        cell.valuelb.attributedText = [self addoriginstr:[NSString stringWithFormat:@"¥%@",self.dataModel.goods_info[0].ord_refund_money] specilstr:@[[NSString stringWithFormat:@"¥%@",self.dataModel.goods_info[0].ord_refund_money]]];
+                        switch (self.typeindex) {
+                            case 7:
+                                cell.titile.text = @"待退款";
+                                break;
+                            case 8:
+                                cell.titile.text = @"已退款";
+                                break;
+                            case 9:
+                                cell.titile.text = @"退款失败";
+                                break;
+                            default:
+                                break;
+                        }
+                    }else{
+                        cell.hidden = YES;
+                    }
+                }
+                
                 return cell;
             }
-        }else if (indexPath.row == self.dataModel.goods_info.count+4){
+        }else if (indexPath.row == self.dataModel.goods_info.count+5){
             LBMineOrderDetailpmessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderDetailpmessageTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if ([NSString StringIsNullOrEmpty:self.dataModel.remark]) {
@@ -299,7 +357,7 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
             }
             cell.remark.text = [NSString stringWithFormat:@"留言：%@",self.dataModel.remark];
             return cell;
-        }else if (indexPath.row == self.dataModel.goods_info.count+5){
+        }else if (indexPath.row == self.dataModel.goods_info.count+6){
             LBMineOrderNumbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:mineOrderNumbersTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.wuliuBt.hidden = YES;
@@ -324,8 +382,22 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         headerview.model = self.dataModel;
         if (self.typeindex == 1) {
             headerview.statusLb.text = @"等待买家付款";
+        }else if (self.typeindex == 2){
+            headerview.statusLb.text = @"待发货";
         }else if (self.typeindex == 3){
             headerview.statusLb.text = @"待收货";
+        }else if (self.typeindex == 5){
+            if ([self.is_comment integerValue] == 1) {
+                headerview.statusLb.text = @"已完成";
+            }else{
+                headerview.statusLb.text = @"待评价";
+            }
+        }else if (self.typeindex == 7){
+            headerview.statusLb.text = @"退款中";
+        }else if (self.typeindex == 8){
+            headerview.statusLb.text = @"退款成功";
+        }else if (self.typeindex == 9){
+            headerview.statusLb.text = @"退款失败";
         }
         
         return headerview;
@@ -364,10 +436,17 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         if (indexPath.row >= 0 && indexPath.row < self.dataModel.goods_info.count) {
-            self.hidesBottomBarWhenPushed = YES;
-            LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-            vc.goods_id = ((LBMyOrdersDetailGoodsListModel*)self.dataModel.goods_info[indexPath.row]).ord_goods_id;
-            [self.navigationController pushViewController:vc animated:YES];
+            if (self.active_status  == 1 || self.active_status  == 2) {
+                self.hidesBottomBarWhenPushed = YES;
+                LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+                vc.goods_id = ((LBMyOrdersDetailGoodsListModel*)self.dataModel.goods_info[indexPath.row]).ord_goods_id;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                self.hidesBottomBarWhenPushed = YES;
+                LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+                vc.goods_id = ((LBMyOrdersDetailGoodsListModel*)self.dataModel.goods_info[indexPath.row]).ord_goods_id;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
 }
@@ -377,11 +456,18 @@ static NSString *mineOrderDetailPriceTableViewCell = @"LBMineOrderDetailPriceTab
     
     if (self.typeindex == 1) {
         self.viewoneTop.constant = 0;
+    }else if (self.typeindex == 2){
+        self.flyBt.layer.borderWidth = 1;
+        self.flyBt.layer.borderColor =YYSRGBColor(188, 188, 188, 1).CGColor;
+        [self.flyBt setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
+        self.flyBt.backgroundColor = [UIColor whiteColor];
+        [self.flyBt setTitle:@"申请退款" forState:UIControlStateNormal];
+        self.viewThreeTop.constant = 0;
     }else if (self.typeindex == 3){
         self.viewTwoTop.constant = 0;
     }else if (self.typeindex == 5){
          self.viewThreeTop.constant = 0;
-    }else if (self.typeindex == 10){
+    }else{
         self.bottomVH.constant = 0;
     }
 }

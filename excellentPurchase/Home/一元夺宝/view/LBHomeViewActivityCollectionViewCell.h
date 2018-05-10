@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBHomeViewActivityHistoryModel.h"
 
 @interface LBHomeViewActivityCollectionViewCell : UICollectionViewCell
 
+@property (strong , nonatomic)LBHomeViewActivityHistoryModel *model;
 @end

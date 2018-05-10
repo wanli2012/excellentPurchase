@@ -109,7 +109,6 @@
             LBTmallChildredViewController *baseVc = [[NSClassFromString(self.controllerClassNames[i]) alloc] init];
             baseVc.s_type = self.dataArr[i][@"type_id"];
             [self addChildViewController:baseVc];
-
             [self.myChildViewControllers addObject:baseVc];
         }
     }

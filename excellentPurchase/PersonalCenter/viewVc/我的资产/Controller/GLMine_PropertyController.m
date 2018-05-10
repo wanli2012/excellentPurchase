@@ -28,26 +28,22 @@
     
     self.totalSumLabel.text = [UserModel defaultUser].money_sum;
 
-    self.titlesArr = @[@"积分",@"余额",@"购物券",@"优购币",@"优购币单价",@"平台昨日营业额总量",@"平台新增积分总量",@"平台昨日优购币转化"];
+    self.titlesArr = @[@"积分",@"余额",@"购物券",@"福宝",@"福宝单价",@"平台昨日营业额总量",@"平台新增积分总量",@"平台昨日福宝转化"];
     self.valuesArr = @[[UserModel defaultUser].mark,//用户积分
                        [UserModel defaultUser].balance,//用户余额
                        [UserModel defaultUser].shopping_voucher,//用户购物券
-                       [UserModel defaultUser].keti_bean,//用户优购币
-                       [UserModel defaultUser].currency,//优购币单价
+                       [UserModel defaultUser].keti_bean,//用户福宝
+                       [UserModel defaultUser].currency,//福宝单价
                        [UserModel defaultUser].Total_money,//平台昨日营业额总量
                        [UserModel defaultUser].Total_mark,//平台昨日新增积分总量
-                       [UserModel defaultUser].Total_currency,//平台昨日优购币新增
+                       [UserModel defaultUser].Total_currency,//平台昨日福宝新增
                        ];
-    
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PropertyCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PropertyCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     self.navigationController.navigationBar.hidden = NO;
-    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource

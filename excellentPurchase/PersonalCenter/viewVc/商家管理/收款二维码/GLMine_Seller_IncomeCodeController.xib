@@ -33,10 +33,14 @@
                     <subviews>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ppz-Uf-Nzz">
                             <rect key="frame" x="78" y="120" width="160" height="160"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="160" id="BLG-JO-OKI"/>
                                 <constraint firstAttribute="width" secondItem="Ppz-Uf-Nzz" secondAttribute="height" id="hQo-xA-g7Q"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="QJC-GK-Mig" appends="YES" id="bFW-Z8-BZV"/>
+                            </connections>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZ1-5j-v68">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="110"/>
@@ -142,6 +146,11 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <point key="canvasLocation" x="38.5" y="54.5"/>
         </view>
+        <tapGestureRecognizer id="QJC-GK-Mig">
+            <connections>
+                <action selector="tapgesturelongtouchimage:" destination="-1" id="hi1-c9-Bof"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="商家管理_虚线" width="1" height="1"/>

@@ -9,6 +9,8 @@
 #import "LBMineOrderManagerViewController.h"
 #import "LBMineOrderMainViewController.h"
 #import "LBUerUnderlineOrdersViewController.h"
+#import "LBPanicBuyingOdersViewController.h"
+#import "LBDolphinRecoderViewController.h"
 
 @interface LBMineOrderManagerViewController ()
 
@@ -46,5 +48,22 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+/**
+ *限时抢购订单
+ */
+- (IBAction)flashSaleOrders:(UITapGestureRecognizer *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBPanicBuyingOdersViewController *vc =[[LBPanicBuyingOdersViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+//夺宝记录
+- (IBAction)tapgestureindiana:(UITapGestureRecognizer *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBDolphinRecoderViewController *vc =[[LBDolphinRecoderViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end

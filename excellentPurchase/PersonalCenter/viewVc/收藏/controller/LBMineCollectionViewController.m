@@ -105,9 +105,10 @@
     [_navigationBt addTarget:self action:@selector(navigationBtEvent:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _navigationBt;
     
-    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
     [button setTitle:@"管理" forState:UIControlStateNormal];
     [button setTitle:@"完成" forState:UIControlStateSelected];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [button setTitleColor:LBHexadecimalColor(0x333333) forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15];
     [button addTarget:self action:@selector(managerEvent:) forControlEvents:UIControlEventTouchUpInside];

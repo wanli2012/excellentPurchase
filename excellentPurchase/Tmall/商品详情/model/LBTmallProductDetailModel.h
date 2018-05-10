@@ -12,6 +12,7 @@
 @class LBTmallhomepageDataStructureModel;
 @class LBTmallProductDetailgoodsSpecModel;
 @class LBTmallProductDetailgoodsCommentModel;
+@class LBTmallProductDetailActivegoodsSpecModel;
 
 @interface LBTmallProductDetailModel : NSObject
 
@@ -32,6 +33,8 @@
 @property (copy , nonatomic)NSString *addtime;
 @property (copy , nonatomic)NSString *is_collect;
 @property (copy , nonatomic)NSString *comment_count;
+@property (copy , nonatomic)NSString *send_price;
+@property (strong , nonatomic)LBTmallProductDetailActivegoodsSpecModel *active;
 @property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsSpecModel*> *goods_spec;//规格
 @property (copy , nonatomic)NSArray<LBTmallProductDetailgoodsCommentModel*> *comment_list;//评论
 @property (copy , nonatomic)NSArray<LBTmallhomepageDataStructureModel*> *love;//喜欢
@@ -44,6 +47,7 @@
 @property (copy , nonatomic)NSString *optionid;
 @property (copy , nonatomic)NSString *title;
 @property (copy , nonatomic)NSString *marketprice;
+@property (copy , nonatomic)NSString *costprice;
 @property (copy , nonatomic)NSString *stock;
 @property (copy , nonatomic)NSString *rewardspoints;
 @property (copy , nonatomic)NSString *reword_coupons;
@@ -70,4 +74,16 @@
 
 @end
 
+//规格
+@interface LBTmallProductDetailActivegoodsSpecModel : NSObject
+
+@property (copy , nonatomic)NSString *active_end_time;
+@property (copy , nonatomic)NSString *active_id;
+@property (copy , nonatomic)NSString *active_start_time;
+@property (copy , nonatomic)NSString *active_status;
+@property (copy , nonatomic)NSString *active_type;
+@property (copy , nonatomic)NSString *remain_allow_count;
+@property (copy , nonatomic)NSString *u_count;
+
+@end
 

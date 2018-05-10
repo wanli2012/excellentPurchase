@@ -52,7 +52,7 @@ static NSString *ID = @"LBIntegralGoodsOneCollectionViewCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self.delegete clickGoodsdetail:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).goods_id];
+    [self.delegete clickGoodsdetail:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).goods_id is_active_challenge:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).is_active_challenge];
  
 }
 

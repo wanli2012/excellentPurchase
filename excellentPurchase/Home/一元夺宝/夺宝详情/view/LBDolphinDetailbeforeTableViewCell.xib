@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="KGk-i7-Jjw" customClass="LBDolphinDetailbeforeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="336" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="336" height="88"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-ix-sdb">
+                        <rect key="frame" x="0.0" y="0.0" width="336" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第40期 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXf-WR-lvi">
+                                <rect key="frame" x="10" y="9.5" width="36.5" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开奖时间:2018-01-01" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-pK-mBi">
+                                <rect key="frame" x="226" y="9" width="100" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c7X-pK-mBi" firstAttribute="centerY" secondItem="Dpk-ix-sdb" secondAttribute="centerY" id="0RZ-aZ-2gK"/>
+                            <constraint firstItem="BXf-WR-lvi" firstAttribute="centerY" secondItem="Dpk-ix-sdb" secondAttribute="centerY" id="MGZ-bC-xhY"/>
+                            <constraint firstAttribute="height" constant="30" id="qqV-MJ-KII"/>
+                            <constraint firstItem="BXf-WR-lvi" firstAttribute="leading" secondItem="Dpk-ix-sdb" secondAttribute="leading" constant="10" id="w3E-E2-oXc"/>
+                            <constraint firstAttribute="trailing" secondItem="c7X-pK-mBi" secondAttribute="trailing" constant="10" id="yLe-iq-YBz"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqa-66-cV3">
+                        <rect key="frame" x="0.0" y="31" width="336" height="51.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangpinxiangqing" translatesAutoresizingMaskIntoConstraints="NO" id="5KE-7E-rYC">
+                                <rect key="frame" x="10" y="7.5" width="35" height="35"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="bHj-MW-2BX"/>
+                                    <constraint firstAttribute="width" constant="35" id="w87-Ag-Nc4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蜗牛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9g-E6-uAy">
+                                <rect key="frame" x="55" y="7" width="271" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期参与:10人/次      获奖号码: 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPY-Mk-ytm">
+                                <rect key="frame" x="55" y="30.5" width="271" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QPY-Mk-ytm" firstAttribute="bottom" secondItem="5KE-7E-rYC" secondAttribute="bottom" id="DHJ-F3-7ag"/>
+                            <constraint firstItem="G9g-E6-uAy" firstAttribute="top" secondItem="5KE-7E-rYC" secondAttribute="top" id="Kw5-bX-fId"/>
+                            <constraint firstAttribute="trailing" secondItem="QPY-Mk-ytm" secondAttribute="trailing" constant="10" id="RXv-BZ-LNa"/>
+                            <constraint firstItem="5KE-7E-rYC" firstAttribute="leading" secondItem="Bqa-66-cV3" secondAttribute="leading" constant="10" id="S6Q-K6-2Hp"/>
+                            <constraint firstAttribute="trailing" secondItem="G9g-E6-uAy" secondAttribute="trailing" constant="10" id="VmY-b8-TaX"/>
+                            <constraint firstItem="G9g-E6-uAy" firstAttribute="leading" secondItem="5KE-7E-rYC" secondAttribute="trailing" constant="10" id="XUD-SD-Xkf"/>
+                            <constraint firstItem="QPY-Mk-ytm" firstAttribute="leading" secondItem="5KE-7E-rYC" secondAttribute="trailing" constant="10" id="odB-x3-D2S"/>
+                            <constraint firstItem="5KE-7E-rYC" firstAttribute="centerY" secondItem="Bqa-66-cV3" secondAttribute="centerY" id="rzH-ZH-fAf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Dpk-ix-sdb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="73G-5d-hHH"/>
+                    <constraint firstItem="Bqa-66-cV3" firstAttribute="top" secondItem="Dpk-ix-sdb" secondAttribute="bottom" constant="1" id="9r2-Ju-TVv"/>
+                    <constraint firstAttribute="bottom" secondItem="Bqa-66-cV3" secondAttribute="bottom" constant="5" id="G7l-V6-iXx"/>
+                    <constraint firstAttribute="trailing" secondItem="Bqa-66-cV3" secondAttribute="trailing" id="IpE-2v-e7E"/>
+                    <constraint firstItem="Bqa-66-cV3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mja-uj-p0a"/>
+                    <constraint firstAttribute="trailing" secondItem="Dpk-ix-sdb" secondAttribute="trailing" id="sUB-ox-xDl"/>
+                    <constraint firstItem="Dpk-ix-sdb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wPm-68-Exe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <connections>
+                <outlet property="imagev" destination="5KE-7E-rYC" id="C96-Qu-dvV"/>
+                <outlet property="infolb" destination="QPY-Mk-ytm" id="uVG-ah-bSY"/>
+                <outlet property="namelb" destination="G9g-E6-uAy" id="FUr-F2-IbR"/>
+                <outlet property="periodslb" destination="BXf-WR-lvi" id="7eD-iJ-SgT"/>
+                <outlet property="timelb" destination="c7X-pK-mBi" id="N5m-rr-PRK"/>
+            </connections>
+            <point key="canvasLocation" x="42" y="76"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="shangpinxiangqing" width="375" height="375"/>
+    </resources>
+</document>

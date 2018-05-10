@@ -240,14 +240,13 @@
             [self.navigationController popViewControllerAnimated:YES];
             
         }else{
-            
-            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+            [passwordView payFailureWithPasswordError:YES withErrorLimit:2 message:responseObject[@"message"]];
         }
         
     } enError:^(NSError *error) {
         self.submitBtn.backgroundColor = MAIN_COLOR;
         self.submitBtn.enabled = YES;
-        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+        [passwordView payFailureWithPasswordError:YES withErrorLimit:2 message:error.localizedDescription];
     }];
 }
 -(void)actionSure:(NSString *)password{

@@ -14,6 +14,7 @@
 #import "LBStoreInfoModel.h"
 #import "LBTmallhomepageDataModel.h"
 #import "LBProductDetailViewController.h"
+#import "LBSnapUpDetailViewController.h"
 
 @interface LBEatShopProdcutClassifyViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -243,11 +244,18 @@
 
 //选择cell时
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-    vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    //活动跳转活动详情
+    if ([((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).is_active_challenge integerValue] == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+        vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = ((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.row]).goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 

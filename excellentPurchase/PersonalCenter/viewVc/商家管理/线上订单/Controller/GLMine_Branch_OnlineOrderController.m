@@ -139,7 +139,7 @@
 -(NSArray*)menuArr{
     
     if (!_menuArr) {
-        _menuArr = [NSArray arrayWithObjects:@"已取消",@"待发货",@"已发货",nil];
+        _menuArr = [NSArray arrayWithObjects:@"待付款",@"待发货",@"已发货",nil];
     }
     
     return _menuArr;

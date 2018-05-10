@@ -10,4 +10,6 @@
 
 @interface LBHomeOneDolphinDetailController : UIViewController
 
+@property (strong , nonatomic)NSString *indiana_id;
+
 @end

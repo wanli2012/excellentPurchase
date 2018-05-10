@@ -26,7 +26,6 @@
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     self.tableview.tableFooterView = [UIView new];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterFlyNoticeDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterFlyNoticeDetailTableViewCell"];
     

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTodayTimeLimitModel.h"
 
 @interface LBTimeLimitCrazingTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBTodayBuyingListTimeLimitActiveModel *model;
 
 @end

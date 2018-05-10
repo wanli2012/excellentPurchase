@@ -15,6 +15,7 @@
 #import "LBEat_WholeClassifyView.h"
 #import "LBTmallHotsearchViewController.h"
 #import "LBProductDetailViewController.h"
+#import "LBSnapUpDetailViewController.h"
 
 typedef NS_ENUM(NSInteger, CollectionViewType) {
     LBCollectionViewTypeDefault ,   // 默认一排两个item
@@ -357,26 +358,34 @@ static NSString *ID2 = @"LBShowProductListCollectionViewCell";
     [self.view endEditing:YES];
     
     LBTmallhomepageDataStructureModel *model = self.dataArr[indexPath.item];
-    self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-    vc.goods_id = model.goods_id;
-    vc.index = indexPath.row;
-    
-    vc.block = ^(NSInteger index, BOOL isCollected) {
-        if (isCollected) {
-            model.is_collect = @"1";
-        }else{
-            model.is_collect = @"0";
-        }
-        if (self.refreshBlock) {
+    //活动跳转活动详情
+    if ([model.is_active_challenge integerValue] == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+        vc.goods_id = model.goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = model.goods_id;
+        vc.index = indexPath.row;
+        
+        vc.block = ^(NSInteger index, BOOL isCollected) {
+            if (isCollected) {
+                model.is_collect = @"1";
+            }else{
+                model.is_collect = @"0";
+            }
+            if (self.refreshBlock) {
+                
+                self.refreshBlock(isCollected);
+            }
             
-            self.refreshBlock(isCollected);
-        }
-        
-        [collectionView reloadData];
-        
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+            [collectionView reloadData];
+            
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 
 }
 

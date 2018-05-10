@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBTodayTimeLimitModel.h"
 
 @interface LBTimeLimitQinggouTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)LBTodayTimeLimitActiveModel *model;
+@property (copy , nonatomic)void(^refreshdata)(void);
 
 @end

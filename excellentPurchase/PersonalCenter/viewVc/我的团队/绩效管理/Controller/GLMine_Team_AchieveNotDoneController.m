@@ -68,7 +68,7 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     dic[@"token"] = [UserModel defaultUser].token;
     dic[@"group_id"] = [UserModel defaultUser].group_id;
 //    dic[@"page"] = @(self.page);
-    dic[@"state"] = @(1);
+    dic[@"state"] = @(2);
     dic[@"t_time"] = self.confromTimespStr;
     
     [NetworkManager requestPOSTWithURLStr:kmeber_appraisals_set paramDic:dic finish:^(id responseObject) {
@@ -115,9 +115,9 @@ static NSString *donationTableViewCell = @"GLMine_Team_AchieveManageCell";
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMine_Team_UnderLingAchieveController *vc = [[GLMine_Team_UnderLingAchieveController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //获取当前时间戳有两种方法(以秒为单位)

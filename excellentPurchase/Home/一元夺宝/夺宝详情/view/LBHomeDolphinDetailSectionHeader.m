@@ -18,12 +18,22 @@
 
 @implementation LBHomeDolphinDetailSectionHeader
 
--(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithReuseIdentifier:reuseIdentifier];
+//-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+//    self = [super initWithReuseIdentifier:reuseIdentifier];
+//    if (self) {
+//        self.contentView.backgroundColor = [UIColor whiteColor];
+//        [self initInterFace];//初始化界面
+//    }
+//    return self;
+//}
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor whiteColor];
         [self initInterFace];//初始化界面
     }
+    
     return self;
 }
 
@@ -61,15 +71,13 @@
         self.currentBt = sender;
     }
     NSInteger H = sender.tag  -10;
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         _lineview.frame =CGRectMake(UIScreenWidth/3.0 * H, 58, UIScreenWidth/3.0, 2);
     } completion:^(BOOL finished) {
         if (self.refreshDataosurce) {
             self.refreshDataosurce(sender.tag);
         }
     }];
-    
-    
 }
 
 -(NSArray*)arr{

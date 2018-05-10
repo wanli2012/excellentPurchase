@@ -9,7 +9,6 @@
 #import "LBHomeViewController.h"
 #import "GLNearby_ClassifyHeaderView.h"
 #import "LBHorseGroupTableViewCell.h"
-#import "LBImmediateRushBuyCell.h"
 #import "UIImage+GIF.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LBTmallHotsearchViewController.h"
@@ -28,6 +27,9 @@
 #import "LBEat_StoreClassifyViewController.h"
 #import "GLMine_MessageController.h"
 #import "LBTimeLimitBuyingViewController.h"
+#import "LBHomeActivityTableViewCell.h"
+#import "LBTodayTimeLimitModel.h"
+#import "LBSnapUpDetailViewController.h"
 
 @interface LBHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,GYZChooseCityDelegate,LBHorseGroupTableViewCellDelegate,ClassifyHeaderViewdelegete>
 
@@ -58,12 +60,12 @@
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, strong)NodataView *nodataV;
 @property (nonatomic, strong)GLHomeModel *model;
-
+@property (nonatomic, strong)LBTodayTimeLimitModel *modelActivity;
 
 @end
 
 static NSString *horseGroupTableViewCell = @"LBHorseGroupTableViewCell";
-static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
+static NSString *homeActivityTableViewCell = @"LBHomeActivityTableViewCell";
 
 @implementation LBHomeViewController
 
@@ -88,7 +90,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     [self locatemap];//定位
     //同步城市选择
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCityData) name:@"LBHomeViewController" object:nil];
-     [self.tableview registerNib:[UINib nibWithNibName:immediateRushBuyCell bundle:nil] forCellReuseIdentifier:immediateRushBuyCell];
+     [self.tableview registerNib:[UINib nibWithNibName:homeActivityTableViewCell bundle:nil] forCellReuseIdentifier:homeActivityTableViewCell];
     
     adjustsScrollViewInsets_NO(self.tableview, self);
     self.tableview.tableHeaderView = self.classfyHeaderV;
@@ -98,35 +100,22 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
                       @{@"trade_name":@"厂家直销",@"thumb":@"Home-ziyingshangcheng"},
                       @{@"trade_name":@"自营商城",@"thumb":@"Home-ziying"},
                       @{@"trade_name":@"吃喝玩乐",@"thumb":@"Home-chihewanle"},
-//                      @{@"trade_name":@"秒杀拼团",@"thumb":@"Home-miaosha"},
-                      @{@"trade_name":@"一元购",@"thumb":@"Home-yiyuangou-1"},
+                      @{@"trade_name":@"限时抢购",@"thumb":@"Home-miaosha"},
+                      @{@"trade_name":@"今日好运来",@"thumb":@"Home-yiyuangou-1"},
                       @{@"trade_name":@"充值中心",@"thumb":@"Home-chongzhi"}];
     
     [self.classfyHeaderV initdatasorece:self.tradeArr];
-    //   底部视图高度
-//    self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
     self.tableview.tableFooterView.height = 10;
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        // 处理耗时操作的代码块...
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"activity" ofType:@"gif"];
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        UIImage *image = [UIImage sd_animatedGIFWithData:data];
-        //通知主线程刷新
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //回调或者说是通知主线程刷新，
-            weakSelf.activityImage.image = image;
-        });
-        
-    });
-    
+    self.activityImage.hidden = YES;
     [LBDefineRefrsh defineRefresh:self.tableview headerrefresh:^{
         [weakSelf postRequest:YES];
+         [weakSelf postRequestActivity];
          [_locationManager startUpdatingLocation];//定位
     }];
     
     self.page = 1;
     [self postRequest:YES];
+    [self postRequestActivity];
 }
 
 #pragma mark -  请求数据
@@ -182,6 +171,39 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         [EasyShowLodingView hidenLoding];
         [self.tableview reloadData];
         [EasyShowTextView showErrorText:error.localizedDescription];
+        
+    }];
+}
+
+//请求活动数据
+-(void)postRequestActivity{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"type"] = @(1);
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    
+    [NetworkManager requestPOSTWithURLStr:ChallengeChallenge_list paramDic:dic finish:^(id responseObject) {
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.modelActivity = [LBTodayTimeLimitModel mj_objectWithKeyValues:responseObject[@"data"]];
+            if (self.modelActivity.buying.data.count <= 0) {
+                self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
+                self.activityImage.hidden = NO;
+            }else{
+                self.tableview.tableFooterView.height = 10;
+                self.activityImage.hidden = YES;
+            }
+            [self.tableview reloadData];
+            
+        }else{
+            self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
+            self.activityImage.hidden = NO;
+        }
+        
+    } enError:^(NSError *error) {
+        self.tableview.tableFooterView.height = UIScreenWidth * bottomScale + 20 ;
+        self.activityImage.hidden = NO;
         
     }];
 }
@@ -251,67 +273,24 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 -(void)getWeatherInfo{
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
-    manager.requestSerializer.timeoutInterval=20;
-
- //NSString *urlStr1 = [NSString stringWithFormat:@"http://wthrcdn.etouch.cn/weather_mini?"];
-//    NSMutableDictionary  *newDic = [NSMutableDictionary dictionary];
-//    newDic[@"city"] = [LBSaveLocationInfoModel defaultUser].currentCity;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"lng"] = [LBSaveLocationInfoModel defaultUser].strLongitude;
+    dic[@"lat"] = [LBSaveLocationInfoModel defaultUser].strLatitude;
+   
+    [NetworkManager requestPOSTWithURLStr:kAccessget_sky_air paramDic:dic finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            self.temperatureLb.text = [NSString stringWithFormat:@"%@℃",responseObject[@"data"][@"temp"]];
+            [self.weatherImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"https://app.helloyogo.com",responseObject[@"data"][@"icon"]]] placeholderImage:[UIImage imageNamed:@"weather"]];
+            
+        }else{
     
-    NSString *url = [NSString stringWithFormat:@"https://api.thinkpage.cn/v3/weather/daily.json?key=osoydf7ademn8ybv&location=%@&language=zh-Hans&start=0&days=3",[LBSaveLocationInfoModel defaultUser].currentCity];
-    url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
-    
-    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (responseObject) {
-            self.temperatureLb.text = [NSString stringWithFormat:@"%@℃~%@℃",responseObject[@"results"][0][@"daily"][0][@"low"],responseObject[@"results"][0][@"daily"][0][@"high"]];
-            [self addAnimationWithType:responseObject[@"results"][0][@"daily"][0][@"code_day"]];
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+    } enError:^(NSError *error) {
+
     }];
     
-}
-
-//添加动画
-- (void)addAnimationWithType:(NSString *)weatherType{
-    
-   
-    NSInteger type = [weatherType integerValue];
-    if (type >= 0 && type < 4) { //晴天
-        self.weatherImage.image = [UIImage imageNamed:@"天气38"];
-    }
-    else if (type >= 4 && type < 10) { //多云
-       self.weatherImage.image = [UIImage imageNamed:@"天气8"];
-    }
-    else if (type >= 10 && type < 20) { //雨
-      self.weatherImage.image = [UIImage imageNamed:@"组2拷贝@3x(1)"];
-    }
-    else if (type >= 20 && type < 26) { //雪
-       self.weatherImage.image = [UIImage imageNamed:@"天气37"];
-    }
-    else if (type >= 26 && type < 30) { //沙尘暴
-        self.weatherImage.image = [UIImage imageNamed:@"天气28"];
-    }
-    else if (type >= 30 && type < 32) { //雾霾
-        self.weatherImage.image = [UIImage imageNamed:@"天气30"];
-    }
-    else if (type >= 32 && type < 37) { //风
-       self.weatherImage.image = [UIImage imageNamed:@"天气32"];
-        
-    }
-    else if (type == 37) { //冷
-        self.weatherImage.image = [UIImage imageNamed:@"天气21"];
-        
-    }
-    else if (type == 38) { //热
-        self.weatherImage.image = [UIImage imageNamed:@"天气38"];
-        
-    }else{
- 
-    }
 }
 
 #pragma mark - LBHorseGroupTableViewCellDelegate
@@ -385,16 +364,15 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             self.hidesBottomBarWhenPushed = NO;
         }
             break;
-//        case 5:
-//        {
-//            self.hidesBottomBarWhenPushed = YES;
-//            LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
-//            vc.titileStr = @"秒杀拼团";
-//            [self.navigationController pushViewController:vc animated:YES];
-//            self.hidesBottomBarWhenPushed = NO;
-//        }
-//            break;
         case 5:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBTimeLimitBuyingViewController *vc = [[LBTimeLimitBuyingViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
+        }
+            break;
+        case 6:
         {
             self.hidesBottomBarWhenPushed = YES;
             LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
@@ -403,7 +381,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             self.hidesBottomBarWhenPushed = NO;
         }
             break;
-        case 6:
+        case 7:
         {
             if ( [UserModel defaultUser].loginstatus == NO) {
                 [EasyShowTextView showText:@"请先登录"];
@@ -434,7 +412,10 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 
 #pragma mark - 重写----设置有groupTableView有几个分区
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 2; //返回值是多少既有几个分区
+    if (self.modelActivity && self.modelActivity.buying.data.count > 0) {
+         return 2;
+    }
+    return 1; //返回值是多少既有几个分区
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //分别设置每个分组上面显示的单元格个数
@@ -450,7 +431,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
     if (indexPath.section == 0) {
         return bannerHeiget;
     }else if (indexPath.section == 1){
-        return UIScreenWidth * HomeActivityH;
+        return 130;
     }
     return 0;
 }
@@ -476,8 +457,20 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
         
         return cell;
     }else if (indexPath.section == 1){
-        LBImmediateRushBuyCell *cell = [tableView dequeueReusableCellWithIdentifier:immediateRushBuyCell forIndexPath:indexPath];
+        LBHomeActivityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:homeActivityTableViewCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.model = self.modelActivity.buying.data[indexPath.row];
+        WeakSelf;
+        cell.rightnowBuy = ^(NSString *good_id) {
+            weakSelf.hidesBottomBarWhenPushed = YES;
+            LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+            vc.goods_id = good_id;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            weakSelf.hidesBottomBarWhenPushed = NO;
+        };
+        cell.refreshData = ^{
+            [weakSelf postRequestActivity];
+        };
         return cell;
     }
    
@@ -501,11 +494,12 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    self.hidesBottomBarWhenPushed = YES;
-    LBTimeLimitBuyingViewController *vc = [[LBTimeLimitBuyingViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    if (indexPath.section == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBTimeLimitBuyingViewController *vc = [[LBTimeLimitBuyingViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
 }
 //跳搜素
 - (IBAction)tapgestureSearch:(UITapGestureRecognizer *)sender {
@@ -615,7 +609,7 @@ static NSString *immediateRushBuyCell = @"LBImmediateRushBuyCell";
             CLPlacemark *pl = [placemarks firstObject];
             [LBSaveLocationInfoModel defaultUser].currentCity = pl.locality;
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.latitude).stringValue;
-            [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
+            [LBSaveLocationInfoModel defaultUser].strLongitude = @(pl.location.coordinate.longitude).stringValue;
             [self getWeatherInfo];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"LBEatAndDrinkViewController" object:nil];
         }else

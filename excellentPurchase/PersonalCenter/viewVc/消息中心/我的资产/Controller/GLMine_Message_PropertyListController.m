@@ -93,7 +93,7 @@
     dic[@"page"] = @(self.page);
     
     NSString *url;
-    switch (self.infoType) {////1:积分 2:余额 3:优购币  4:购物券
+    switch (self.infoType) {////1:积分 2:余额 3:福宝  4:购物券
         case 1://1:积分
         {
             url = kget_integral_log_list;
@@ -105,7 +105,7 @@
             url = kget_balance_log_list;
         }
             break;
-        case 3://3:优购币
+        case 3://3:福宝
         {
             url = kget_assets_log_list;
         }

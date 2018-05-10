@@ -10,4 +10,12 @@
 
 @interface LBTimeLimitView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *timelb;
+@property (weak, nonatomic) IBOutlet UIButton *hourBt;
+@property (weak, nonatomic) IBOutlet UIButton *minuteBt;
+@property (weak, nonatomic) IBOutlet UIButton *secondBt;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *statusLb;
+
+
 @end

@@ -12,6 +12,7 @@
 #import "LBDonationViewController.h"//转赠
 #import "LBVoucherCenterViewController.h"//充值中心
 #import "GLMine_MyWallet_CashController.h"//提现
+#import "LBSendRedPackRecoderViewController.h"//红包
 
 @interface GLMine_MyWalletController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -47,9 +48,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
-        return 3;
+        return 4;
     }else{
-        return 2;
+        return 3;
     }
 
 }
@@ -60,13 +61,24 @@
     cell.selectionStyle = 0;
     cell.headimage.hidden = YES;
     cell.cacheLB.hidden = YES;
-    
-    if (indexPath.row == 0) {
-        cell.titleLb.text = @"转赠";
-    }else if(indexPath.row == 1){
-        cell.titleLb.text = @"充值";
+    if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
+        if (indexPath.row == 0) {
+            cell.titleLb.text = @"转赠";
+        }else if(indexPath.row == 1){
+            cell.titleLb.text = @"充值";
+        }else if(indexPath.row == 2){
+            cell.titleLb.text = @"提现";
+        }else{
+            cell.titleLb.text = @"红包";
+        }
     }else{
-        cell.titleLb.text = @"提现";
+        if (indexPath.row == 0) {
+            cell.titleLb.text = @"转赠";
+        }else if(indexPath.row == 1){
+            cell.titleLb.text = @"充值";
+        }else{
+            cell.titleLb.text = @"红包";
+        }
     }
 
     return cell;
@@ -112,11 +124,13 @@
             _userVcArr=[NSMutableArray arrayWithObjects:
                         @"LBDonationViewController",
                         @"LBVoucherCenterViewController",
-                        @"GLMine_MyWallet_CashController",nil];
+                        @"GLMine_MyWallet_CashController",
+                        @"LBSendRedPackRecoderViewController",nil];
         }else{
             _userVcArr=[NSMutableArray arrayWithObjects:
                         @"LBDonationViewController",
-                        @"LBVoucherCenterViewController",nil];
+                        @"LBVoucherCenterViewController",
+                        @"LBSendRedPackRecoderViewController",nil];
         }
     }
     

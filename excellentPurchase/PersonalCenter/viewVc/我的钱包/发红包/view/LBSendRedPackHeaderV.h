@@ -10,4 +10,8 @@
 
 @interface LBSendRedPackHeaderV : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *integrallb;
+@property (weak, nonatomic) IBOutlet UILabel *blessinglb;
+
+
 @end

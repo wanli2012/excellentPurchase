@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineOrderDetailViewController">
             <connections>
                 <outlet property="bottomVH" destination="lc6-iZ-fKa" id="Atx-Kb-Emg"/>
+                <outlet property="flyBt" destination="Rdw-pY-jmy" id="1MS-Sr-ezg"/>
                 <outlet property="orderMoney" destination="uLg-Xq-W1F" id="hDc-Ph-r2T"/>
                 <outlet property="tableview" destination="GqL-RS-u0B" id="6Xj-J2-PhW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -101,7 +102,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dk-Rf-acc">
-                                    <rect key="frame" x="185" y="9.5" width="80" height="30"/>
+                                    <rect key="frame" x="190" y="9.5" width="80" height="30"/>
                                     <color key="backgroundColor" red="0.97379392385482788" green="0.77773630619049072" blue="0.028684267774224281" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="HJM-dR-8lI"/>
@@ -120,12 +121,40 @@
                                         <action selector="checkfly:" destination="-1" eventType="touchUpInside" id="4WR-93-ghu"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzh-sf-Shh">
+                                    <rect key="frame" x="85" y="9" width="90" height="30"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="DTv-Zl-Fni"/>
+                                        <constraint firstAttribute="width" constant="90" id="W8p-WM-Ydd"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="申请退款">
+                                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                            <color key="value" red="0.73725490199999999" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderUIWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="applyRefuseEvent:" destination="-1" eventType="touchUpInside" id="cVJ-O7-AmI"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="4dk-Rf-acc" firstAttribute="centerY" secondItem="Tzh-sf-Shh" secondAttribute="centerY" id="521-Ms-hNM"/>
                                 <constraint firstAttribute="height" constant="49" id="5kE-w6-U7j"/>
+                                <constraint firstItem="4dk-Rf-acc" firstAttribute="leading" secondItem="Tzh-sf-Shh" secondAttribute="trailing" constant="15" id="6Qq-cL-y5g"/>
                                 <constraint firstItem="Sb4-cS-TFv" firstAttribute="centerY" secondItem="4dk-Rf-acc" secondAttribute="centerY" id="Fqi-TO-9RW"/>
-                                <constraint firstItem="Sb4-cS-TFv" firstAttribute="leading" secondItem="4dk-Rf-acc" secondAttribute="trailing" constant="20" id="ImD-Ql-7Yt"/>
+                                <constraint firstItem="Sb4-cS-TFv" firstAttribute="leading" secondItem="4dk-Rf-acc" secondAttribute="trailing" constant="15" id="ImD-Ql-7Yt"/>
                                 <constraint firstAttribute="trailing" secondItem="Sb4-cS-TFv" secondAttribute="trailing" constant="10" id="bKj-Fp-vNl"/>
                                 <constraint firstItem="Sb4-cS-TFv" firstAttribute="centerY" secondItem="yBY-ds-D7b" secondAttribute="centerY" id="jTH-zj-vcs"/>
                             </constraints>

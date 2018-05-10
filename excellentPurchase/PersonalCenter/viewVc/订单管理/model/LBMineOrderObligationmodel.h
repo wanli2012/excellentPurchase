@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class LBMineOrderObligationGoodsmodel;
+
 @interface LBMineOrderObligationmodel : NSObject
 
 @property (copy , nonatomic)NSString *ord_order_id;
@@ -39,4 +40,6 @@
 @property (copy , nonatomic)NSString *ord_odd_num;//物流单号
 @property (copy , nonatomic)NSString *is_comment;//是否评论 1是0否
 @property (copy , nonatomic)NSString *ord_cancel_reason;//取消订单原因
+@property (copy , nonatomic)NSString *order_status_eng;//订单状态  2 待发货 3 待收货
+
 @end

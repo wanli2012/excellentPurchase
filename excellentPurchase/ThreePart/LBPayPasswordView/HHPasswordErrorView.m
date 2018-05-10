@@ -13,7 +13,6 @@
 
 @interface HHPasswordErrorView()
 @property (nonatomic, strong) UIView *backView;
-@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *horizontalLine;
 @property (nonatomic, strong) UIView *verticalLine;
 @end
@@ -45,7 +44,6 @@
 }
 - (void)setLimit:(NSInteger )limit{
     _limit = limit;
-    self.titleLabel.text = [NSString stringWithFormat:@"支付密码不正确,或者网络请求失败,请重新输入"];
 }
 - (void)showInView:(UIView *)view{
     [view addSubview:self];

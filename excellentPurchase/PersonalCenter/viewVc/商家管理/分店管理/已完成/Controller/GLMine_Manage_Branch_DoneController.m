@@ -148,9 +148,7 @@
     detailVC.title = model.sname;
     detailVC.sid = model.sid;
     [self.navigationController pushViewController:detailVC animated:YES];
-    
 }
-
 #pragma mark -懒加载
 - (NSMutableArray *)models{
     if (!_models) {

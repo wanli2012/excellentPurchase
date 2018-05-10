@@ -82,7 +82,7 @@
     [self.cancelBtn addTarget:self action:@selector(canceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [self.cancelBtn setTitleColor:self.tintColor forState:UIControlStateNormal];
-//    [self.controllerToolBar addSubview:_cancelBtn];
+    [self.controllerToolBar addSubview:_cancelBtn];
     
     //标题
     self.titleLabel = [[UILabel alloc] init];

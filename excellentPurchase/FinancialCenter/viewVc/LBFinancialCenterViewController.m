@@ -120,7 +120,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
-//更新购物券 和 优购币
+//更新购物券 和 福宝
 -(void)loadData{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"SEARCH";
@@ -341,9 +341,9 @@
         _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
         
 //        if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
-            [_pageMenu setItems:@[@"优购币市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
+            [_pageMenu setItems:@[@"福宝市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
 //        }else{
-//            [_pageMenu setItems:@[@"优购币市值",@"出售记录"] selectedItemIndex:0];
+//            [_pageMenu setItems:@[@"福宝市值",@"出售记录"] selectedItemIndex:0];
 //        }
         _pageMenu.delegate = self;
         _pageMenu.itemTitleFont = [UIFont systemFontOfSize:15];

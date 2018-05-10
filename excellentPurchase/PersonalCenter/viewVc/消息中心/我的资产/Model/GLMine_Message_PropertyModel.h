@@ -30,6 +30,6 @@
 @property (nonatomic, copy)NSString *log_mark;//积分数量
 @property (nonatomic, copy)NSString *log_coupons;//购物券数量
 
-@property (nonatomic, assign)NSInteger infoType;///1:积分 2:余额 3:优购币  4:购物券
+@property (nonatomic, assign)NSInteger infoType;///1:积分 2:余额 3:福宝  4:购物券
 
 @end

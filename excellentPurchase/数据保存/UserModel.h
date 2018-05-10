@@ -32,15 +32,15 @@
 @property (nonatomic, copy)NSString *tjr_name;//推荐人分组名
 @property (nonatomic, copy)NSString *mark;//用户积分
 @property (nonatomic, copy)NSString *balance;//用户余额
-@property (nonatomic, copy)NSString *keti_bean;//用户优购币
+@property (nonatomic, copy)NSString *keti_bean;//用户福宝
 @property (nonatomic, copy)NSString *shopping_voucher;//用户购物券
-@property (nonatomic, copy)NSString *cion_price;//优购币出售市值
+@property (nonatomic, copy)NSString *cion_price;//福宝出售市值
 @property (nonatomic, copy)NSString *voucher_ratio;//购物券兑换比例
 @property (nonatomic, copy)NSString *tg_status;//创客审核状态 1 通过 2审核中 3失败
-@property (nonatomic, copy)NSString *currency;//优购币单价
+@property (nonatomic, copy)NSString *currency;//福宝单价
 @property (nonatomic, copy)NSString *Total_money;//平台昨日营业额总量
 @property (nonatomic, copy)NSString *Total_mark;//平台昨日新增积分总量
-@property (nonatomic, copy)NSString *Total_currency;//平台昨日优购币新增
+@property (nonatomic, copy)NSString *Total_currency;//平台昨日福宝新增
 @property (nonatomic, copy)NSString *money_sum;//总收益
 
 @property (nonatomic, copy)NSString *checkCode;//唯一校验码

@@ -96,17 +96,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationController.navigationBar.hidden = NO;
     
     if(self.pushType == 2){//1:开通商户 2:注册页跳转过来的
         self.navigationItem.title = @"注册商家";
         self.recommendViewHeight.constant = 50;
         self.recommendView.hidden = NO;
-    }else if(self.pushType == 1){
-        self.navigationItem.title = @"开通商家";
-        self.recommendViewHeight.constant = 0;
-        self.recommendView.hidden = YES;
     }else if(self.pushType == 3){
         self.navigationItem.title = @"开通分店";
         self.recommendViewHeight.constant = 0;
@@ -115,6 +110,10 @@
         self.benefitView.hidden = NO;
         self.benefitViewHeight.constant = 80;
         
+    }else{
+        self.navigationItem.title = @"开通商家";
+        self.recommendViewHeight.constant = 0;
+        self.recommendView.hidden = YES;
     }
     
 }
@@ -618,10 +617,7 @@
     dic[@"confirmpass"] = [RSAEncryptor encryptString:self.ensurepwdTF.text publicKey:public_RSA];
     
     NSString *url;
-    if (self.pushType == 1) {//1是创客开通商铺 2是注册商铺 3,开通分店
-        dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺 3,开通分店
-        url = kappend_shop;
-    }else if(self.pushType == 2){
+    if(self.pushType == 2){
         dic[@"type"] = @"2";
         dic[@"accounts"] = self.recommendIDTF.text;  //type等于2传注册商铺时填写的推荐人账户
         url = kappend_shop;
@@ -629,6 +625,9 @@
         dic[@"type"] = @"3";
         dic[@"profit_phone"] = self.benefitTF.text;//type等于3传注册商铺时填写的收益人id或电话
         url = kappend_shop_son;
+    }else{
+        dic[@"type"] = @"1";//1是创客开通商铺 2是注册商铺 3,开通分店
+        url = kappend_shop;
     }
    
     [EasyShowLodingView showLodingText:@"数据请求中"];

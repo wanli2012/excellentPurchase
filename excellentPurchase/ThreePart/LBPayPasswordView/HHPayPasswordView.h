@@ -41,6 +41,6 @@
 
 - (void)paySuccess;
 
-- (void)payFailureWithPasswordError:(BOOL)passwordError withErrorLimit:(NSInteger)limit;
+- (void)payFailureWithPasswordError:(BOOL)passwordError withErrorLimit:(NSInteger)limit message:(NSString*)message;
 
 @end

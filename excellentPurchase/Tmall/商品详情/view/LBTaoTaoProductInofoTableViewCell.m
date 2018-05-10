@@ -41,7 +41,7 @@
     _model = model;
     self.namelb.text = [NSString stringWithFormat:@"%@",_model.goods_name];
     self.pricelb.text = [NSString stringWithFormat:@"¥%@",_model.discount];
-    self.expressLb.text = [NSString stringWithFormat:@"快递：¥%@",_model.discount];
+    self.expressLb.text = [NSString stringWithFormat:@"快递：¥%@",_model.send_price];
     self.monthSale.text = [NSString stringWithFormat:@"月售%@笔",_model.month_salenum];
     self.allsale.text = [NSString stringWithFormat:@"已成交%@笔",_model.salenum];
     

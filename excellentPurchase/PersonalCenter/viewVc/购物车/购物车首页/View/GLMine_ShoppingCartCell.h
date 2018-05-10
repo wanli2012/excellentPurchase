@@ -20,7 +20,7 @@
 
 @interface GLMine_ShoppingCartCell : UITableViewCell
 
-@property (nonatomic, strong)GLMine_ShoppingCartModel *model;
+@property (nonatomic, strong)GLMine_ShoppingPropertyCartModel *model;
 
 @property (nonatomic, weak)id <GLMine_ShoppingCartCellDelegate> delegate;
 

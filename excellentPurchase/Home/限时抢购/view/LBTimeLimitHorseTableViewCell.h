@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TXScrollLabelView.h"
 
 @interface LBTimeLimitHorseTableViewCell : UITableViewCell
+
+@property (strong , nonatomic)NSArray *dataArr;
+@property (weak, nonatomic) IBOutlet UILabel *titilelb;
+@property (nonatomic, strong)TXScrollLabelView *scrollLabelView;
 
 @end

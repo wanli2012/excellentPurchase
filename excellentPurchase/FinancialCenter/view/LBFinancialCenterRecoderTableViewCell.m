@@ -10,7 +10,7 @@
 
 @interface LBFinancialCenterRecoderTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *sellLabel;//出售优购币
+@property (weak, nonatomic) IBOutlet UILabel *sellLabel;//出售福宝
 @property (weak, nonatomic) IBOutlet UILabel *valueDay;//当日市值
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;//售出总价
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;//状态
@@ -36,13 +36,13 @@
     _model = model;
     
     if (model.cellType == 2) {
-        self.nameLabel1.text = @"出售优购币";
+        self.nameLabel1.text = @"出售福宝";
         self.nameLabel2.text = @"当日市值";
         self.nameLabel3.text = @"售出总价";
     }else if(model.cellType == 3) {
         self.nameLabel1.text = @"兑换购物券";
         self.nameLabel2.text = @"当日比例";
-        self.nameLabel3.text = @"已兑换优购币";
+        self.nameLabel3.text = @"已兑换福宝";
     }
     
     self.sellLabel.text = [NSString stringWithFormat:@"%@",model.sell_num];

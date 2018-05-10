@@ -26,6 +26,7 @@
 #import <UShareUI/UShareUI.h>
 #import "GLMine_MessageController.h"//消息
 #import "GLMine_ShoppingCartController.h"//购物车
+#import "LBSnapUpDetailViewController.h"
 
 @interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete,SDCycleScrollViewDelegate>
 @property(nonatomic,strong)NSArray *subViewControllers;
@@ -34,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *collectBt;//收藏
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *muneViewY;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *merchatW;
 
 @property (nonatomic ,assign) CGFloat webHeight;//商品详情网页加载高度
 @property (nonatomic ,assign) CGFloat shiftGoodsH;//推荐商品cell的高度
@@ -58,6 +60,7 @@
 @property (nonatomic ,assign) NSInteger buy_num;//商品数量
 
 @property (nonatomic ,assign) BOOL isShowSpec;//是否展示规格
+@property (nonatomic, assign)BOOL isRootPop;//是否退出到控制器的最外层 当点击猜你喜欢的时候设置为YES
 
 @property (strong, nonatomic)SDCycleScrollView *cycleScrollView;//banner
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *navagationH;
@@ -132,10 +135,12 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
             
             self.collectBt.selected = [self.model.is_collect integerValue]==0?NO:YES;//收藏状态
             
-            if (self.ptype == 5) {
+            if (self.ptype == 5 || self.ptype == 6) {
                 self.merchetBt.hidden = YES;
+                self.merchatW.constant = 0;
             }else{
                  self.merchetBt.hidden = NO;
+                self.merchatW.constant = 50;
             }
             self.muneViewY.constant = 0;
             [UIView animateWithDuration:0.5 animations:^{
@@ -189,9 +194,8 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     if (self.webHeight != [[dic objectForKey:@"height"]floatValue])
     {
         self.webHeight=[[dic objectForKey:@"height"]floatValue];
-        [self.tableview beginUpdates];
-        [self.tableview endUpdates];
-//        [self.tableview reloadData];
+
+        [self.tableview reloadData];
     }
 }
 #pragma mark - PrivateMethod
@@ -218,7 +222,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 #pragma mark - 加入购物车
 - (IBAction)addShopCar:(UIButton *)sender {
     
-
         [self chooseSpecification];
     
 }
@@ -239,11 +242,20 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     
 }
 //跳转商品详情
--(void)clickCheckGoodsinfo:(NSString *)goodid{
-    self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-    vc.goods_id = goodid;
-    [self.navigationController pushViewController:vc animated:YES];
+-(void)clickCheckGoodsinfo:(NSString *)goodid is_active_challenge:(NSString*)is_active_challenge{
+    //活动跳转活动详情
+    if ([is_active_challenge integerValue] == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+        vc.goods_id = goodid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = goodid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+     self.isRootPop = YES;
 }
 #pragma mark - tableview滚动联动导航栏标签
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -270,7 +282,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 #pragma mark - 分享
 -(void)shareInfo{
     
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]];
     
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作
@@ -386,9 +398,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
             LBTmallProductDetailgoodsSpecModel *model1 = self.model.goods_spec[index];
             if ([NSString StringIsNullOrEmpty:model1.marketprice] == NO) {
                 _mystandardsView.priceLab.text = [NSString stringWithFormat:@"¥%@",model1.marketprice];
-            }
-            if ([NSString StringIsNullOrEmpty:model1.title] == NO) {
-                _mystandardsView.tipLab.text = [NSString stringWithFormat:@"%@",model1.title];
             }
             if ([NSString StringIsNullOrEmpty:model1.stock] == NO) {
                 _mystandardsView.goodNum.text =  [NSString stringWithFormat:@"库存 %@",model1.stock];
@@ -526,7 +535,6 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
             [cell refreshdataSource:self.model.love];
             self.shiftGoodsH = cell.beautfHeight;
             cell.delegate = self;
-
             return cell;
         }
     }
@@ -643,7 +651,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
     [NetworkManager requestPOSTWithURLStr:UserCartAdd_cart paramDic:dic finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             [_mystandardsView ThrowGoodTo:CGPointMake(200, 100) andDuration:1.6 andHeight:150 andScale:20];
-            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -731,6 +739,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.navagationH.constant = SafeAreaTopHeight;
+    
 }
 -(void)popself{
     if (self.isShowComment == YES) {//展示的评论界面
@@ -739,7 +748,11 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
         [self.commentView hideView];
         self.isShowComment = NO;
     }else{
-         [self.navigationController popViewControllerAnimated:YES];
+        if (self.isRootPop) {
+             [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+             [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 
 }

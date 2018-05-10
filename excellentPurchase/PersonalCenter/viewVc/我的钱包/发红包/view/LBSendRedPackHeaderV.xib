@@ -59,8 +59,8 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优购币" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekn-ym-Vy7">
-                                            <rect key="frame" x="68.5" y="61" width="37" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="福宝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekn-ym-Vy7">
+                                            <rect key="frame" x="74.5" y="61" width="25" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -110,6 +110,10 @@
                 <constraint firstItem="JuY-Rv-7w1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="KkN-u8-qFS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="blessinglb" destination="UjD-gF-6E7" id="NXB-EX-XIE"/>
+                <outlet property="integrallb" destination="jLf-4J-BxH" id="ZbY-78-nkl"/>
+            </connections>
             <point key="canvasLocation" x="24.5" y="26"/>
         </view>
     </objects>

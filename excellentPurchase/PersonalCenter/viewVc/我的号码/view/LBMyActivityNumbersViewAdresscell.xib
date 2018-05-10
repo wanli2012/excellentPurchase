@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="118" id="KGk-i7-Jjw" customClass="LBMyActivityNumbersViewAdresscell">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="118"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="340" height="117.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUm-pB-94u">
+                        <rect key="frame" x="0.0" y="10" width="340" height="97.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zla-mC-WD8">
+                                <rect key="frame" x="10" y="8.5" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="94E-8o-r80"/>
+                                    <constraint firstAttribute="height" constant="80" id="Fo3-Wa-7pU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="唯独额外分" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWy-jb-DiM">
+                                <rect key="frame" x="100" y="8.5" width="230" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fme-Q1-Z5e">
+                                <rect key="frame" x="100" y="41.5" width="230" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="sWy-jb-DiM" secondAttribute="trailing" constant="10" id="71Z-Fc-yu4"/>
+                            <constraint firstItem="sWy-jb-DiM" firstAttribute="top" secondItem="Zla-mC-WD8" secondAttribute="top" id="SCY-ds-lVY"/>
+                            <constraint firstItem="Fme-Q1-Z5e" firstAttribute="top" secondItem="sWy-jb-DiM" secondAttribute="bottom" constant="15" id="WZE-Ba-glG"/>
+                            <constraint firstAttribute="trailing" secondItem="Fme-Q1-Z5e" secondAttribute="trailing" constant="10" id="YlO-vr-Hb6"/>
+                            <constraint firstItem="Zla-mC-WD8" firstAttribute="centerY" secondItem="XUm-pB-94u" secondAttribute="centerY" id="dZ1-OW-cvD"/>
+                            <constraint firstItem="Zla-mC-WD8" firstAttribute="leading" secondItem="XUm-pB-94u" secondAttribute="leading" constant="10" id="ggF-83-iXX"/>
+                            <constraint firstItem="Fme-Q1-Z5e" firstAttribute="leading" secondItem="Zla-mC-WD8" secondAttribute="trailing" constant="10" id="hlJ-xJ-SOl"/>
+                            <constraint firstItem="sWy-jb-DiM" firstAttribute="leading" secondItem="Zla-mC-WD8" secondAttribute="trailing" constant="10" id="k5W-f6-0Dy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="XUm-pB-94u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Ckr-wt-pge"/>
+                    <constraint firstAttribute="trailing" secondItem="XUm-pB-94u" secondAttribute="trailing" id="Dtw-iz-yHg"/>
+                    <constraint firstItem="XUm-pB-94u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SGa-gR-jWF"/>
+                    <constraint firstAttribute="bottom" secondItem="XUm-pB-94u" secondAttribute="bottom" constant="10" id="xXW-H6-gYw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imagev" destination="Zla-mC-WD8" id="ezZ-bQ-cHt"/>
+                <outlet property="namelb" destination="sWy-jb-DiM" id="NHP-km-0Ec"/>
+                <outlet property="numbers" destination="Fme-Q1-Z5e" id="fQX-ML-Qak"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="89"/>
+        </tableViewCell>
+    </objects>
+</document>

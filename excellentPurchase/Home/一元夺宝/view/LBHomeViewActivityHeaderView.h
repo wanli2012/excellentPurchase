@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBHomeViewActivityHistoryModel.h"
 
 @interface LBHomeViewActivityHeaderView : UIView
+
+@property (strong , nonatomic)NSArray<LBHomeViewActivityHistoryModel*> *dataArr;
+@property (copy , nonatomic)void(^jumpactivitydetail)(LBHomeViewActivityHistoryModel *model);
 
 @end

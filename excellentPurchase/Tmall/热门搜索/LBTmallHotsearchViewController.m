@@ -12,6 +12,7 @@
 #import "LBIntegralGoodsTwoCollectionViewCell.h"
 #import "LBProductDetailViewController.h"
 #import "LBHistoryHotSerachDataBase.h"
+#import "LBSnapUpDetailViewController.h"
 
 @interface LBTmallHotsearchViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,selectHotOrHistoryDelegate,UITextFieldDelegate>
 
@@ -215,10 +216,18 @@ static NSString *nearby_classifyCell = @"LBIntegralGoodsTwoCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     LBTmallhomepageDataStructureModel *model = self.dataSource[indexPath.item];
-    self.hidesBottomBarWhenPushed = YES;
-    LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
-    vc.goods_id = model.goods_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    //活动跳转活动详情
+    if ([model.is_active_challenge integerValue] == 1) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBSnapUpDetailViewController *vc = [[LBSnapUpDetailViewController alloc]init];
+        vc.goods_id = model.goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBProductDetailViewController  *vc =[[LBProductDetailViewController alloc]init];
+        vc.goods_id = model.goods_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
    
 }
 

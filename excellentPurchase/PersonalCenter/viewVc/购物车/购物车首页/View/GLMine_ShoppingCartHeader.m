@@ -11,7 +11,8 @@
 @interface GLMine_ShoppingCartHeader()
 
 @property (weak, nonatomic) IBOutlet UIView *selectView;
-@property (nonatomic, assign)NSInteger section;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingImage;
+@property (weak, nonatomic) IBOutlet UILabel *namelb;
 
 
 @end
@@ -62,16 +63,43 @@
     }
 }
 
-- (void)setModel:(GLMine_ShoppingCartDataModel *)model{
-    
-    if (model.shopIsSelected) {
-        self.signImageV.image = [UIImage imageNamed:@"pay-select-y"];
+- (void)setModel:(GLMine_ShoppingCartModel *)model{
+    _model = model;
+    if (self.ishidesignImageV) {
+        self.signImageV.hidden = YES;
+        self.leadingImage.constant = 10;
     }else{
-        self.signImageV.image = [UIImage imageNamed:@"pay-select-n"];
+        self.signImageV.hidden = NO;
+        self.leadingImage.constant = 35;
+        if (_model.isSelect) {
+            self.signImageV.image = [UIImage imageNamed:@"pay-select-y"];
+        }else{
+            self.signImageV.image = [UIImage imageNamed:@"pay-select-n"];
+        }
     }
     
-    self.section = model.shopSection;
+    self.namelb.text = [NSString stringWithFormat:@"%@",_model.store_name];
+    if ([NSString StringIsNullOrEmpty:self.namelb.text]) {
+        self.namelb.text = @"店铺名";
+    }
+    
     
 }
+
+- (IBAction)cntactTheMerchant:(UIButton *)sender {
+    
+    GLMine_ShoppingPropertyCartModel  *model =  _model.goods[0];
+    if ([NSString StringIsNullOrEmpty:model.store_phone]) {
+        [EasyShowTextView showErrorText:@"商家未预留电话号码"];
+    }else{
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",model.store_phone];
+
+        /// 大于等于10.0系统使用此openURL方法
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
+        
+    }
+    
+}
+
 
 @end

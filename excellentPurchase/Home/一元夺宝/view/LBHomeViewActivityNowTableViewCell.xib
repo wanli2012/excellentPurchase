@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="334" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="334" height="109"/>
+                <rect key="frame" x="0.0" y="0.0" width="334" height="108.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGw-Zl-SuV">
@@ -29,13 +29,13 @@
                                     <constraint firstAttribute="width" constant="90" id="ol1-Tf-xZY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="而各人各人各人各人天而各人各人各人各人天" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc4-vo-xzq">
-                                <rect key="frame" x="110" y="9" width="214" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc4-vo-xzq">
+                                <rect key="frame" x="110" y="9" width="214" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAd-J0-771">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAd-J0-771">
                                 <rect key="frame" x="249" y="74" width="75" height="25"/>
                                 <color key="backgroundColor" red="0.99801856279373169" green="0.39901572465896606" blue="0.39816218614578247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -90,8 +90,12 @@
                     <constraint firstItem="tGw-Zl-SuV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yEc-tg-jh6"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
+                <outlet property="imagv" destination="dYe-uY-o9b" id="ML0-XD-cpE"/>
                 <outlet property="progressView" destination="z5u-gc-ej7" id="yXo-pu-W6W"/>
+                <outlet property="progresslb" destination="vjd-4T-YMk" id="dz7-tk-kbs"/>
+                <outlet property="titlelb" destination="vc4-vo-xzq" id="YjT-Ry-2FP"/>
             </connections>
             <point key="canvasLocation" x="33" y="84.5"/>
         </tableViewCell>

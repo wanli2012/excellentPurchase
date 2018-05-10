@@ -221,7 +221,7 @@
             CLPlacemark *pl = [placemarks firstObject];
             [LBSaveLocationInfoModel defaultUser].currentCity = pl.locality;
             [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.latitude).stringValue;
-            [LBSaveLocationInfoModel defaultUser].strLatitude = @(pl.location.coordinate.longitude).stringValue;
+            [LBSaveLocationInfoModel defaultUser].strLongitude = @(pl.location.coordinate.longitude).stringValue;
             self.cityLb.text = city.cityName;
             [self loadData];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"LBHomeViewController" object:nil];

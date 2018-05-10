@@ -15,6 +15,8 @@
 #import "GLAccountModel.h"//数据库模型
 #import "DropMenu.h"
 #import "GLGroupModel.h"
+//极光
+#import <JPUSHService.h>
 
 @interface LBLoginViewController ()<UITextFieldDelegate>
 {
@@ -282,7 +284,7 @@
         
         if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
             
-            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            [EasyShowTextView showSuccessText:@"登录成功"];
             
             [UserModel defaultUser].loginstatus = YES;
             
@@ -335,6 +337,10 @@
                 [_projiectmodel deleteAllDataOfFMDB];
                 [_projiectmodel insertOfFMWithDataArray:arr];
             }
+            //设置极光推送
+            [JPUSHService setAlias:[UserModel defaultUser].uid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                
+            } seq:1];
     
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshInterface" object:nil];
             

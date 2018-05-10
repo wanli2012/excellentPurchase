@@ -14,6 +14,10 @@
 
 @property (nonatomic, copy)NSString *group_id;
 
+@property (nonatomic, copy)NSString *truename;
+
+@property (nonatomic, copy)NSString *user_name;
+
 @property (nonatomic, assign)BOOL isSelected;
 
 @end

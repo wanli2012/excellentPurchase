@@ -194,6 +194,7 @@
     }
     footerView.delegate = self;
     footerView.section = section;
+    footerView.hidden = YES;
     
     return footerView;
     
@@ -204,7 +205,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 55;
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

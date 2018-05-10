@@ -101,9 +101,9 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
         }];
         
         //更新约束
-        [UIView animateWithDuration:0.5 animations:^{
-            [self layoutIfNeeded];
-        }];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self layoutIfNeeded];
+//        }];
         self.ord_spec_info.text = @"";
     
     }else{
@@ -113,9 +113,9 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
         }];
         
         //更新约束
-        [UIView animateWithDuration:0.5 animations:^{
-            [self layoutIfNeeded];
-        }];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self layoutIfNeeded];
+//        }];
         self.ord_spec_info.text = [NSString stringWithFormat:@"规格：%@",_model.ord_spec_info];
         
     }
@@ -128,9 +128,9 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
             make.height.equalTo(@0);
         }];
         //更新约束
-        [UIView animateWithDuration:0.5 animations:^{
-            [self layoutIfNeeded];
-        }];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self layoutIfNeeded];
+//        }];
         
     }else{//有回复
         NSString  *str  = [NSString stringWithFormat:@"商家回复：%@",[self.model.reply stringByRemovingPercentEncoding]];
@@ -146,9 +146,9 @@ static NSString *eat_StoreCommentsTableViewCell = @"LBEat_StoreCommentsTableView
             make.height.equalTo(@(repalycellH));
         }];
         //更新约束
-        [UIView animateWithDuration:0.5 animations:^{
-            [self layoutIfNeeded];
-        }];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self layoutIfNeeded];
+//        }];
         
     }
     

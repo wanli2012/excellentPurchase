@@ -48,7 +48,7 @@
                                         <constraint firstAttribute="width" constant="20" id="0G9-Ag-Ndv"/>
                                         <constraint firstAttribute="height" constant="20" id="rc7-M0-FYN"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                     <state key="normal" title="00">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -73,7 +73,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Cp-ny-qT1">
                                     <rect key="frame" x="30" y="2.5" width="20" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                     <state key="normal" title="00">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -98,7 +98,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wua-9h-HUj">
                                     <rect key="frame" x="60" y="2.5" width="20" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                     <state key="normal" title="00">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -151,6 +151,14 @@
                 <constraint firstAttribute="trailing" secondItem="LrZ-bz-mym" secondAttribute="trailing" id="gbP-k8-G0B"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="hourBt" destination="VP0-9W-dwt" id="WS3-3S-2uO"/>
+                <outlet property="image" destination="5Yj-ZY-eOF" id="e6V-np-Lo9"/>
+                <outlet property="minuteBt" destination="0Cp-ny-qT1" id="sVH-UM-fn3"/>
+                <outlet property="secondBt" destination="Wua-9h-HUj" id="5Wh-xg-HYl"/>
+                <outlet property="statusLb" destination="NEN-LB-VxM" id="mb7-to-AT0"/>
+                <outlet property="timelb" destination="k9C-VO-Dhj" id="rhb-WU-Yp0"/>
+            </connections>
             <point key="canvasLocation" x="18.5" y="31"/>
         </view>
     </objects>

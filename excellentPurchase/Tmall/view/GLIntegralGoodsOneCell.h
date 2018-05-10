@@ -11,7 +11,7 @@
 
 @protocol GLIntegralGoodsOnedelegete <NSObject>
 
--(void)clickGoodsdetail:(NSString*)goodsid;
+-(void)clickGoodsdetail:(NSString*)goodsid is_active_challenge:(NSString*)is_active_challenge;
 
 @end
 @interface GLIntegralGoodsOneCell : UITableViewCell

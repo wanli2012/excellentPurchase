@@ -12,7 +12,7 @@
 @interface GLIntegralGoodsTwoCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionV;
-
+@property (assign, nonatomic)BOOL isrefresh;//判断是否刷新过，以防滚动的时候一直刷新，出现卡顿
 
 @end
 
@@ -43,7 +43,7 @@ static NSString *integralGoodsTwoCollectionViewCell = @"LBIntegralGoodsTwoCollec
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self.delegate clickCheckGoodsinfo:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).goods_id];
+    [self.delegate clickCheckGoodsinfo:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).goods_id is_active_challenge:((LBTmallhomepageDataStructureModel*)self.dataArr[indexPath.item]).is_active_challenge];
 
 }
 
@@ -72,11 +72,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 -(void)refreshdataSource:(NSArray *)arr{
     
-    self.dataArr = arr;
-    if (arr.count > 0) {
-        self.beautfHeight =  ((UIScreenWidth - 35)/2.0 + 110) * ((arr.count + 1)/2);
+    if (self.isrefresh == NO) {
+        self.dataArr = arr;
+        if (arr.count > 0) {
+            self.beautfHeight =  ((UIScreenWidth - 35)/2.0 + 110) * ((arr.count + 1)/2);
+        }
+        [self.collectionV reloadData];
+        self.isrefresh = YES;
     }
-    [self.collectionV reloadData];
+    
 
 }
 

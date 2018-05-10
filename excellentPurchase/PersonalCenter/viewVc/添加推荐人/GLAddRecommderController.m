@@ -7,12 +7,18 @@
 //
 
 #import "GLAddRecommderController.h"
+#import "GLIdentifySelectModel.h"
+#import "ValuePickerView.h"
 
 @interface GLAddRecommderController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstrait;
 @property (weak, nonatomic) IBOutlet UITextField *recommendTF;
-
+@property (weak, nonatomic) IBOutlet UITextField *receiveManGroupTypeTF;//接收人身份
+@property (nonatomic, assign)BOOL isverification;//是否验证
+@property (nonatomic, copy)NSString *group_id;//被转赠人group_id
+@property (nonatomic, strong)NSMutableArray *groupArr;//身份类型
+@property (nonatomic, strong)ValuePickerView *pickerView;
 @end
 
 @implementation GLAddRecommderController
@@ -59,7 +65,7 @@
     dic[@"app_handler"] = @"UPDATE";
     dic[@"uid"] = [UserModel defaultUser].uid;
     dic[@"token"] = [UserModel defaultUser].token;
-    dic[@"user_name"] = self.recommendTF.text;
+    dic[@"user_name"] = self.group_id;
     
     [EasyShowLodingView showLoding];
     
@@ -88,6 +94,92 @@
     
 }
 
+//验证
+- (IBAction)verificationEvent:(UIButton *)sender {
+    
+    if ([NSString StringIsNullOrEmpty:self.recommendTF.text]) {
+        [EasyShowTextView showInfoText:@"请填写接收人"];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"info"] = self.recommendTF.text;
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    self.isverification = NO;
+    [self.groupArr removeAllObjects];
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kUserquery_info paramDic:dic finish:^(id responseObject) {
+        self.isverification = YES;
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showSuccessText:@"验证成功"];
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                GLIdentifySelectModel *model = [GLIdentifySelectModel mj_objectWithKeyValues:dict];
+                [self.groupArr addObject:model];
+            }
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
+#pragma mark - 身份类型选择
+- (IBAction)group_TypeChoose:(id)sender {
+    
+    [self.view endEditing:YES];
+    
+    if (self.isverification == NO) {
+        [EasyShowTextView showInfoText:@"请验证你的身份"];
+        return;
+    }else{
+        if(self.groupArr.count != 0){
+            [self popIdentifyChoose];
+        }else{
+            [EasyShowTextView showInfoText:@"暂无身份信息"];
+        }
+    }
+    
+}
+
+- (void)popIdentifyChoose{
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (GLIdentifySelectModel *model in self.groupArr) {
+        [arrM addObject:[NSString stringWithFormat:@"%@(%@)",model.truename,model.group_name]];
+    }
+    
+    self.pickerView.dataSource = arrM;
+    
+    self.pickerView.pickerTitle = @"身份类型";
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.pickerView.valueDidSelect = ^(NSString *value){
+        NSArray * stateArr = [value componentsSeparatedByString:@"-"];
+        NSInteger index = [stateArr[1] integerValue];
+        
+        if (index >= 1) {
+            
+            GLIdentifySelectModel *model = weakSelf.groupArr[index - 1];
+            weakSelf.group_id = model.user_name;
+        }else{
+            weakSelf.group_id = @"";
+        }
+        
+        weakSelf.receiveManGroupTypeTF.text = stateArr[0];
+        
+    };
+    
+    [self.pickerView show];
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -113,6 +205,20 @@
     return YES;
 }
 
+-(NSMutableArray *)groupArr{
+    
+    if (!_groupArr) {
+        _groupArr = [NSMutableArray array];
+    }
+    
+    return _groupArr;
+}
+- (ValuePickerView *)pickerView{
+    if (!_pickerView) {
+        _pickerView = [[ValuePickerView alloc] init];
+    }
+    return _pickerView;
+}
 
 
 @end

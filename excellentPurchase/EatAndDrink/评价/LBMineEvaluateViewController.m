@@ -107,7 +107,7 @@
                 self.replyFinish();
             }
             [self.navigationController popViewControllerAnimated:YES];
-            [EasyShowTextView showSuccessText:responseObject[@"message"]];
+            [EasyShowTextView showSuccessText:@"评价成功"];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -138,7 +138,7 @@
                 self.replyFinish();
             }
             [self.navigationController popViewControllerAnimated:YES];
-          [EasyShowTextView showSuccessText:responseObject[@"message"]];
+          [EasyShowTextView showSuccessText:@"评价成功"];
         }else{
             
             [EasyShowTextView showErrorText:responseObject[@"message"]];

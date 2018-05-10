@@ -120,7 +120,7 @@
 -(NSArray*)menuArr{
     
     if (!_menuArr) {
-        _menuArr = [NSArray arrayWithObjects:@"积分",@"余额",@"优购币",@"购物券",nil];
+        _menuArr = [NSArray arrayWithObjects:@"积分",@"余额",@"福宝",@"购物券",nil];
     }
     
     return _menuArr;

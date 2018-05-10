@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//是否同意标志
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;//提交
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;//积分
-@property (weak, nonatomic) IBOutlet UILabel *coinLabel;//优购币
+@property (weak, nonatomic) IBOutlet UILabel *coinLabel;//福宝
 
 @property (weak, nonatomic) IBOutlet UITextField *receiveManTF;//接收人TF
 @property (weak, nonatomic) IBOutlet UITextField *moneyTF;//金额
@@ -35,9 +35,10 @@
 
 
 @property (nonatomic, assign)BOOL isHaveDian;
+@property (nonatomic, assign)BOOL isverification;//是否验证
 
 @property (nonatomic, copy)NSString *group_id;//被转赠人group_id
-@property (nonatomic, assign)NSInteger type;//货币类型 1优购币 2积分
+@property (nonatomic, assign)NSInteger type;//货币类型 1福宝 2积分
 
 @property (nonatomic, strong)NSMutableArray *donationTypeArr;//转赠类型
 @property (nonatomic, strong)NSMutableArray *groupArr;//身份类型
@@ -98,6 +99,44 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+//验证
+- (IBAction)verificationEvent:(UIButton *)sender {
+    
+    if ([NSString StringIsNullOrEmpty:self.receiveManTF.text]) {
+        [EasyShowTextView showInfoText:@"请填写接收人"];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"SEARCH";
+    dic[@"info"] = self.receiveManTF.text;
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    
+    self.isverification = NO;
+    [self.groupArr removeAllObjects];
+    [EasyShowLodingView showLodingText:@"正在请求数据"];
+    [NetworkManager requestPOSTWithURLStr:kUserquery_info paramDic:dic finish:^(id responseObject) {
+         self.isverification = YES;
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            [EasyShowTextView showSuccessText:@"验证成功"];
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                GLIdentifySelectModel *model = [GLIdentifySelectModel mj_objectWithKeyValues:dict];
+                [self.groupArr addObject:model];
+            }
+
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+    
+}
 
 #pragma mark - 确认转赠
 - (IBAction)submit:(id)sender {
@@ -133,7 +172,7 @@
     if (self.type == 1) {
         
         if ([self.coinLabel.text floatValue] < [self.moneyTF.text floatValue]) {
-            [EasyShowTextView showInfoText:@"优购币不足"];
+            [EasyShowTextView showInfoText:@"福宝不足"];
             return;
         }
         
@@ -168,7 +207,7 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"obtain_user"] = self.receiveManTF.text;
     dict[@"numbers"] = self.moneyTF.text;
-    dict[@"type"] = @(self.type);//货币类型 1优购币 2积分
+    dict[@"type"] = @(self.type);//货币类型 1福宝 2积分
     dict[@"group_id"] = self.group_id;
     dict[@"password"] = [RSAEncryptor encryptString:password publicKey:public_RSA];
  
@@ -182,14 +221,14 @@
             
             [passwordView paySuccess];
 
-            if (self.type == 1) {//货币类型 1优购币 2积分’,
+            if (self.type == 1) {//货币类型 1福宝 2积分’,
                 
                 CGFloat shopping_voucher = [self.moneyTF.text floatValue];
                 CGFloat voucher = [[UserModel defaultUser].keti_bean floatValue];
                 NSString *str = [NSString stringWithFormat:@"%.2f",voucher - shopping_voucher];
                 [UserModel defaultUser].keti_bean = str;
                 
-            }else if(self.type == 2) {//货币类型 1优购币 2积分’,
+            }else if(self.type == 2) {//货币类型 1福宝 2积分’,
                 
                 CGFloat shopping_voucher = [self.moneyTF.text floatValue];
                 CGFloat voucher = [[UserModel defaultUser].mark floatValue];
@@ -203,13 +242,13 @@
             
         }else{
             
-            [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+            [passwordView payFailureWithPasswordError:YES withErrorLimit:2 message:responseObject[@"message"]];
         }
         
     } enError:^(NSError *error) {
         self.submitBtn.backgroundColor = MAIN_COLOR;
         self.submitBtn.enabled = YES;
-        [passwordView payFailureWithPasswordError:YES withErrorLimit:2];
+        [passwordView payFailureWithPasswordError:YES withErrorLimit:2 message:error.localizedDescription];
     }];
 }
 -(void)actionSure:(NSString *)password{
@@ -250,14 +289,14 @@
     
     NSMutableArray *arrM = [NSMutableArray array];
     
-    [arrM addObject:@"优购币"];
+    [arrM addObject:@"福宝"];
     [arrM addObject:@"积分"];
     
     self.pickerView.dataSource = arrM;
     
     self.pickerView.pickerTitle = @"转赠类型";
     
-    __weak typeof(self) weakSelf = self;//货币类型 1优购币 2积分
+    __weak typeof(self) weakSelf = self;//货币类型 1福宝 2积分
     
     self.pickerView.valueDidSelect = ^(NSString *value){
         
@@ -278,42 +317,24 @@
     
     [self.view endEditing:YES];
     
-    if(self.groupArr.count != 0){
-        [self popIdentifyChoose];
+    if (self.isverification == NO) {
+        [EasyShowTextView showInfoText:@"请验证你的身份"];
         return;
-    }
-    
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"app_handler"] = @"SEARCH";
-    dic[@"type"] = @"1";//1:获取全部用户身份(除副总) 2:会员/商家
-    
-    [EasyShowLodingView showLodingText:@"正在请求数据"];
-    [NetworkManager requestPOSTWithURLStr:kGet_GroupList_URL paramDic:dic finish:^(id responseObject) {
-        
-        [EasyShowLodingView hidenLoding];
-        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
-            for (NSDictionary *dict in responseObject[@"data"]) {
-                
-                GLIdentifySelectModel *model = [GLIdentifySelectModel mj_objectWithKeyValues:dict];
-                [self.groupArr addObject:model];
-                
-            }
+    }else{
+        if(self.groupArr.count != 0){
             [self popIdentifyChoose];
         }else{
-            [EasyShowTextView showErrorText:responseObject[@"message"]];
-        }
-        
-    } enError:^(NSError *error) {
-        [EasyShowLodingView hidenLoding];
-        [EasyShowTextView showErrorText:error.localizedDescription];
-    }];
+             [EasyShowTextView showInfoText:@"暂无身份信息"];
+            }
+    }
+    
 }
 
 - (void)popIdentifyChoose{
     
     NSMutableArray *arrM = [NSMutableArray array];
     for (GLIdentifySelectModel *model in self.groupArr) {
-        [arrM addObject:model.group_name];
+        [arrM addObject:[NSString stringWithFormat:@"%@(%@)",model.truename,model.group_name]];
     }
     
     self.pickerView.dataSource = arrM;
@@ -323,7 +344,6 @@
     __weak typeof(self) weakSelf = self;
     
     self.pickerView.valueDidSelect = ^(NSString *value){
-        
         NSArray * stateArr = [value componentsSeparatedByString:@"-"];
         NSInteger index = [stateArr[1] integerValue];
         

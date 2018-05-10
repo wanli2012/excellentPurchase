@@ -9,7 +9,6 @@
 #import "LBDolphinDetailOneHeaderView.h"
 
 @interface LBDolphinDetailOneHeaderView()
-@property (weak, nonatomic) IBOutlet UIView *baseview;
 
 @end
 
@@ -34,6 +33,17 @@
     borderLayer.fillColor = [UIColor clearColor].CGColor;
     borderLayer.strokeColor = [UIColor redColor].CGColor;
     [self.baseview.layer addSublayer:borderLayer];
+    
+    CAShapeLayer *otherborderLayer = [CAShapeLayer layer];
+    otherborderLayer.frame = CGRectMake(0, 0, viewWidth, viewHeight);
+    //    borderLayer.position = CGPointMake(CGRectGetMidX(self.baseview.bounds), CGRectGetMidY(self.baseview.bounds));
+    otherborderLayer.path = [UIBezierPath bezierPathWithRoundedRect:borderLayer.bounds cornerRadius:4].CGPath;
+    otherborderLayer.lineWidth = 1. / [[UIScreen mainScreen] scale];
+    //虚线边框
+    otherborderLayer.lineDashPattern = @[@3, @3];
+    otherborderLayer.fillColor = [UIColor clearColor].CGColor;
+    otherborderLayer.strokeColor = [UIColor redColor].CGColor;
+    [self.otherView.layer addSublayer:otherborderLayer];
     
 }
 

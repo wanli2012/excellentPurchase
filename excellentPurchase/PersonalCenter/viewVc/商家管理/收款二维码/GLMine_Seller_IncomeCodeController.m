@@ -8,6 +8,7 @@
 
 #import "GLMine_Seller_IncomeCodeController.h"
 #import "LBRecommendRecoderViewController.h"
+#import <UShareUI/UShareUI.h>
 
 @interface GLMine_Seller_IncomeCodeController ()
 
@@ -31,12 +32,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.hidden = NO;
     if(self.type == 1){
         self.navigationItem.title = @"我的二维码";
-        self.moneyViewHeight.constant = 0;
-        self.moneyView.hidden = YES;
-        
+        self.moneyViewHeight.constant = 45;
+        self.moneyView.hidden = NO;
+        self.moneyLabel.text = @"用嘚瑟狗扫码,推荐好友加入";
+        self.noprofitLabel.text = @"点击二维码推荐给您的好友";
+        self.noprofitLabel.textColor = MAIN_COLOR;
     }else{
         self.navigationItem.title = @"商家收款二维码";
         self.moneyViewHeight.constant = 45;
@@ -87,6 +90,50 @@
 - (IBAction)setMoney:(id)sender {
     NSLog(@" 设置金额");
     
+}
+//长按二维码分享
+- (IBAction)tapgesturelongtouchimage:(UITapGestureRecognizer *)sender {
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]];
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        [self shareWebPageToPlatformType:platformType];
+    }];
+}
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    
+    NSString *goodsName = @"嘚瑟狗注册分享";
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:goodsName descr:@"赶快注册吧！惊喜不断" thumImage:[UIImage imageNamed:@"Icon-share"]];
+    
+    //设置网页地址
+    shareObject.webpageUrl = [NSString stringWithFormat:@"%@%@",RECOMMEND_URL,[UserModel defaultUser].user_name];
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+        
+    }];
 }
 
 //MARK: 二维码中间内置图片,可以是公司logo

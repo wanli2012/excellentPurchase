@@ -164,10 +164,15 @@ static CGFloat const kDotWith_height = 10;
     self.tipLabel.hidden = YES;
 }
 // 弹出密码错误视图
-- (void)showPasswordErrorWithLimit:(NSInteger )limit{
+- (void)showPasswordErrorWithLimit:(NSInteger )limit message:(NSString *)message{
     [self stopLoading];
     self.errorView = [[HHPasswordErrorView alloc] init];
     self.errorView.limit = limit;
+    if ([NSString StringIsNullOrEmpty:message]) {
+         self.errorView.titleLabel.text = @"请求失败";
+    }else{
+         self.errorView.titleLabel.text = message;
+    }
     [self.errorView.onceButton addTarget:self action:@selector(clickOnceButton) forControlEvents:UIControlEventTouchUpInside];
     [self.errorView.forgetPwdButton addTarget:self action:@selector(clickForgetPwd) forControlEvents:UIControlEventTouchUpInside];
     [self.errorView showInView:self.backView];
@@ -179,10 +184,10 @@ static CGFloat const kDotWith_height = 10;
     [self.loadingImgView.layer removeAllAnimations];
 }
 #pragma mark - 支付失败 密码错误
-- (void)payFailureWithPasswordError:(BOOL)passwordError withErrorLimit:(NSInteger)limit{
+- (void)payFailureWithPasswordError:(BOOL)passwordError withErrorLimit:(NSInteger)limit message:(NSString *)message{
     self.loadingImgView.hidden = YES;
     if (passwordError) {
-        [self showPasswordErrorWithLimit:limit];
+        [self showPasswordErrorWithLimit:limit message:message];
     }
 }
 

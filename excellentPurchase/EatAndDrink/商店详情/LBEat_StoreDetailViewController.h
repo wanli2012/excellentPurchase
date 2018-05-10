@@ -12,4 +12,5 @@
 
 @property (strong , nonatomic)NSString *store_id;
 @property (strong , nonatomic)NSString *titilestr;
+@property (assign , nonatomic)BOOL  isSelf;//是否是自己店里跳转过来
 @end

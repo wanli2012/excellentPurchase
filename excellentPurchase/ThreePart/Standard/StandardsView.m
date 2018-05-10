@@ -364,6 +364,8 @@
     NSArray *tempArr = self.standardBtnArr[(sender.tag & 0x0000ffff)/100 ];
     
     for (UIButton *tempBtn in tempArr) {
+        
+        
         if(tempBtn.tag == sender.tag)
         {
             continue;
@@ -373,19 +375,20 @@
 //        [tempBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
         tempBtn.selected = NO;
     }
+    
     NSString *tagStr = [NSString stringWithFormat:@"%ld",(unsigned long)(sender.tag & 0xffff0000)>>16];
     
     [self.standardBtnClickDict removeAllObjects];//移除全部选项 只剩选中一个
     
     [self.standardBtnClickDict setObject:tagStr forKey:[NSString stringWithFormat:@"%ld",(sender.tag & 0x0000ffff)/100]];
-    
+
     if([self.delegate respondsToSelector:@selector(Standards:SelectBtnClick:andSelectID:andStandName:andIndex:)])
     {
-        [self.delegate Standards:self SelectBtnClick:sender andSelectID:tagStr andStandName:self.standardArr[(sender.tag & 0x0000ffff)/100].standardName andIndex:(sender.tag & 0x0000ffff)/100];
+        [self.delegate Standards:self SelectBtnClick:sender andSelectID:tagStr andStandName:self.standardArr[(sender.tag & 0x0000ffff)/100].standardName andIndex:(sender.tag & 0x0000ffff)%100];
     }
     
-    [self.mainTableView reloadData];
-
+//    [self.mainTableView reloadData];
+    [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)clickAction:(UIButton *)sender
@@ -873,7 +876,7 @@
                 
                 btn.tag = indexPath.row*100 + i/*低16位 cell行数*/ | ([specArr[i].standardClassId intValue] << 16) /*高16位  分类id*/;
                 
-                NSString *key = [NSString stringWithFormat:@"%ld",indexPath.row];
+                NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
                 
                 if ([specArr[i].standardClassId intValue] == [self.standardBtnClickDict[key] intValue]) {
                     btn.backgroundColor = MAIN_COLOR;
@@ -980,8 +983,6 @@
                 Btnx = btnGap;
             }
             
-            
-            
             Btnx =Btnx + btnWidth + btnGap;
             
         }
@@ -1004,8 +1005,6 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
     NSLog(@"click cell section : %ld row : %ld",(long)indexPath.section,(long)indexPath.row);
-    
-    
 }
 
 

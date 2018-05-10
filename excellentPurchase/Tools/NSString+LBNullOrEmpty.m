@@ -12,7 +12,14 @@
 
 + (BOOL)StringIsNullOrEmpty:(NSString *)str
 {
-    return (str == nil || [str isKindOfClass:[NSNull class]] || str.length == 0);
+    
+    return (str == nil || [str isKindOfClass:[NSNull class]] || [self replacestr:str]);
+}
+
++(BOOL)replacestr:(NSString*)str{
+    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return str.length==0;
+    
 }
 
 @end

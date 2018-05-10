@@ -13,7 +13,7 @@
 
 //接口需要的固定值
 #define kPORT @"3"
-#define kAPP_VERSION @"1.1.0"
+#define kAPP_VERSION @"2.0.1"
 //#define kAPP_HANDLE @"SEARCH"
 
 #define SUCCESS_CODE 200 //请求或处理成功(请求数据，获取列表、删除数据、添加数据...等操作)
@@ -21,12 +21,11 @@
 #define ERROR_CODE 400//参数错误
 #define OVERDUE_CODE 401//登录过期，或其他未经认证的请求
 
-
 #define GROUP_SD 2 //省代
 #define GROUP_CD 3 //市代
 #define GROUP_QY 4 //区代
 #define GROUP_DQ 5 //创客中心
-#define GROUP_GJTG 6 //高级创客
+#define GROUP_GJTG 6 //高级创客z
 #define GROUP_TG 7 //创客
 #define GROUP_SHOP 8 //商家
 #define GROUP_USER 9 //会员
@@ -45,12 +44,11 @@
 //服务条款
 #define kProtocol_URL @"https://app.helloyogo.com/H5/all_agreement.html"
 
-//#define URL_Base @"http://192.168.0.171/yogo_dz/htdocs/index.php/App"//个人本地
+//#define URL_Base @"http://192.168.0.20/yogo_dz/htdocs/index.php/App/"//个人本地
 //#define URL_Base @"https://app.helloyogo.com/index.php/App/"//线上
-#define URL_Base @"http://cs5.hytc.gs/index.php/App/"//线下服务器
+#define URL_Base @"http://cs1.diruikai.cn/index.php/App/"//线下服务器
 
 #define share_URL_Base @"https://app.helloyogo.com/index.php/"//分享
-
 
 #define kGETCODE_URL @"Access/get_verify_code"//获取验证码
 #define kREGISTER_URL @"User/register"//注册
@@ -83,15 +81,15 @@
 
 //#define kget_city_list @"Areas/get_city_list"///三级联动列表-峰
 
-#define kget_assets_log_list @"Assets/get_assets_log_list"///优购币消息记录-王凯
+#define kget_assets_log_list @"Assets/get_assets_log_list"///福宝消息记录-王凯
 #define kget_coupons_log_list @"Assets/get_coupons_log_list"///购物券变更记录-王凯
 #define kget_integral_log_list @"Assets/get_integral_log_list"///个人积分变更-王凯
 #define kget_balance_log_list @"Assets/get_balance_log_list"///余额消息记录-王凯
 
-#define kget_money_list @"MoneyCenter/get_money_list"///优购币市值列表
-#define kget_back_list @"MoneyCenter/get_back_list"///优购币出售记录
+#define kget_money_list @"MoneyCenter/get_money_list"///福宝市值列表
+#define kget_back_list @"MoneyCenter/get_back_list"///福宝出售记录
 #define kget_mark_list @"MoneyCenter/get_mark_list"///购物券兑换记录
-#define kwithdraw_cash @"MoneyCenter/withdraw_cash"///优购币出售
+#define kwithdraw_cash @"MoneyCenter/withdraw_cash"///福宝出售
 #define ksell_mark @"MoneyCenter/sell_mark"///购物券兑换
 
 #define kstore_type_list @"StoreType/store_type_list"///获取商铺类型-江海林
@@ -151,5 +149,12 @@
 #define kmeber_appraisals_set @"Team/meber_appraisals_set"//团队成员绩效历史记录
 #define keamset_list @"Team/set_list"//未设置绩效金额成员列表
 #define keamset_money @"Team/set_money"//设置成员绩效金额
+#define ChallengeChallenge_list @"Challenge/challenge_list"//限时抢购列表
+#define kChallenge_add_notice @"Challenge/challenge_add_notice"//预约提醒
+#define kChallenge_trailer_info @"Challenge/challenge_trailer_info"//抢购预告
+#define kUserquery_info @"User/query_info"//用户信息资料查询
+#define kRedEnvelopered_list @"RedEnvelope/red_list"//发红包记录
+#define kRedEnvelopesend_red_gift @"RedEnvelope/send_red_gift"//发红包
+#define kIndianasetIndianaAddress @"Indiana/setIndianaAddress"//夺宝选择收货地址
 
 #endif /* Interface_h */

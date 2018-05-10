@@ -31,11 +31,11 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RbJ-Lf-Ma1">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="kb2-6i-cee">
+                    <view key="tableFooterView" contentMode="scaleToFill" id="kb2-6i-cee">
                         <rect key="frame" x="0.0" y="896.5" width="375" height="120"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ivC-re-5Xl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeActivity" translatesAutoresizingMaskIntoConstraints="NO" id="ivC-re-5Xl">
                                 <rect key="frame" x="0.0" y="10" width="375" height="100"/>
                             </imageView>
                         </subviews>
@@ -218,6 +218,7 @@
     <resources>
         <image name="RichScan" width="15" height="15"/>
         <image name="down" width="10" height="7"/>
+        <image name="homeActivity" width="750" height="460"/>
         <image name="news" width="22" height="22"/>
         <image name="search" width="15" height="15"/>
         <image name="weather" width="22" height="20"/>

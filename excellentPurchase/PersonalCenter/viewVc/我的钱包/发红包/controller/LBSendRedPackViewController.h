@@ -10,4 +10,5 @@
 
 @interface LBSendRedPackViewController : UIViewController
 
+@property (copy , nonatomic)void(^refreshdata)(void);
 @end
