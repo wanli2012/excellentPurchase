@@ -48,7 +48,13 @@
     pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
     
     // 传递数组，默认选中第1个
-    [pageMenu setItems:self.menuArr selectedItemIndex:0];
+    if (self.type == 1) {
+        [pageMenu setItems:self.menuArr selectedItemIndex:1];
+    }else if (self.type == 2){
+        [pageMenu setItems:self.menuArr selectedItemIndex:2];
+    }else{
+        [pageMenu setItems:self.menuArr selectedItemIndex:0];
+    }
     pageMenu.needTextColorGradients = NO;
     // 设置代理
     pageMenu.delegate = self;

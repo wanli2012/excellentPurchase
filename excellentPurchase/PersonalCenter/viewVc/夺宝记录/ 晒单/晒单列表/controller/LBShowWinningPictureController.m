@@ -12,6 +12,9 @@
 #import "LBNotShowWinningPicturemodel.h"
 #import "LBShowWinningPicturemodel.h"
 #import "LBSendShowPictureViewController.h"
+#import "UIImage+ZLPhotoLib.h"
+#import "ZLPhoto.h"
+#import "UIImage+ZLPhotoLib.h"
 
 @interface LBShowWinningPictureController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -130,17 +133,21 @@ static NSString *notShowWinningPictureCell = @"LBNotShowWinningPictureCell";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
     if (section == 0) {
-        return 2;
+        return self.dataArr.count;
     }
-    return 5;
+    return self.dataoneArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        tableView.estimatedRowHeight = 113;
-        tableView.rowHeight = UITableViewAutomaticDimension;
-        return UITableViewAutomaticDimension;
+        if (self.dataArr.count > 0) {
+            tableView.estimatedRowHeight = 113;
+            tableView.rowHeight = UITableViewAutomaticDimension;
+            return UITableViewAutomaticDimension;
+        }else{
+            return 0;
+        }
     }
    
     tableView.estimatedRowHeight = 166;
@@ -150,21 +157,29 @@ static NSString *notShowWinningPictureCell = @"LBNotShowWinningPictureCell";
 
 #pragma mark - 重写----设置每个分组单元格中显示的内容
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    WeakSelf;
     if (indexPath.section == 0) {
         LBNotShowWinningPictureCell *cell = [tableView dequeueReusableCellWithIdentifier:notShowWinningPictureCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        WeakSelf;
+        cell.model = self.dataArr[indexPath.row];
         cell.jumpShowpic = ^(LBNotShowWinningPicturemodel *model) {
             weakSelf.hidesBottomBarWhenPushed = YES;
             LBSendShowPictureViewController *vc = [[LBSendShowPictureViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            vc.indiana_id = model.indiana_id;
+            vc.uploadsucess = ^{
+                [weakSelf requestDatasorce];
+                [weakSelf requestDatasorceone:YES];
+            };
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         return cell;
     }else{
         LBShowWinningPictureCell *cell = [tableView dequeueReusableCellWithIdentifier:showWinningPictureCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        cell.model = self.dataoneArr[indexPath.row];
+        cell.bigpicture = ^(NSInteger index, NSArray *imagerr) {
+            [weakSelf tapBrowser:index imagerr:imagerr];
+        };
         return cell;
     }
     
@@ -172,7 +187,7 @@ static NSString *notShowWinningPictureCell = @"LBNotShowWinningPictureCell";
 #pragma mark - 重写----设置自定义的标题和标注
 -(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
     
-    if (section == 0) {
+    if (section == 0 && self.dataArr.count > 0) {
         UIView *headerview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UIScreenWidth, 30)];
         headerview.backgroundColor = [UIColor whiteColor];
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, UIScreenWidth - 20, 30)];
@@ -191,9 +206,9 @@ static NSString *notShowWinningPictureCell = @"LBNotShowWinningPictureCell";
 #pragma mark - 重写----设置标题和标注的高度
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
 
-    if (section == 0) {
+    if (section == 0 && self.dataArr.count > 0) {
          return 30.0f;
-    }else{
+    }else if(section == 1){
          return 10.0f;
     }
     return 0.0001f;
@@ -206,6 +221,31 @@ static NSString *notShowWinningPictureCell = @"LBNotShowWinningPictureCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
+}
+
+- (void)tapBrowser:(NSInteger)index imagerr:(NSArray *)imagerr{
+    // 图片游览器
+    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
+    // 淡入淡出效果
+    pickerBrowser.status = UIViewAnimationAnimationStatusFade;
+    // 数据源/delegate
+    pickerBrowser.editing = NO;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    for (id photo in imagerr) {
+        ZLPhotoPickerBrowserPhoto *photoNew = [[ZLPhotoPickerBrowserPhoto alloc] init];
+        
+        photoNew = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:photo];
+        
+        [arrM addObject:photoNew];
+    }
+    
+    pickerBrowser.photos = arrM;
+    // 当前选中的值
+    pickerBrowser.currentIndex = index;
+    // 展示控制器
+    [pickerBrowser showPickerVc:self];
 }
 
 -(NSMutableArray*)dataArr{

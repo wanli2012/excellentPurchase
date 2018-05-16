@@ -19,6 +19,9 @@
 #import "LBHomeOneDolphinPictureDetailController.h"
 #import <UShareUI/UShareUI.h>
 #import "LBDolphinDetailJoinheaderTableViewCell.h"
+#import "LBindianaParticipationView.h"
+#import "LBindiana_PayController.h"
+#import "LBHomeViewActivityViewController.h"
 
 #define kHeaderViewH (155 + UIScreenWidth)
 
@@ -42,7 +45,7 @@
 
 @property (nonatomic, strong) UIButton *joinBt;
 @property (nonatomic, strong) UIView *bottomview;
-
+@property (strong , nonatomic)LBindianaParticipationView *Participationview;
 
 @end
 
@@ -81,6 +84,23 @@ static NSString *ID = @"LBHomeDolphinDetailSectionHeader";
     }];
     
 }
+
+-(void)rightNowJionview{
+    _Participationview = [[NSBundle mainBundle]loadNibNamed:@"LBindianaParticipationView" owner:nil options:nil].firstObject;
+    _Participationview.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
+    _Participationview.frame = self.view.frame;
+    [self.view addSubview:_Participationview];
+    _Participationview.hidden = YES;
+    _Participationview.indiana_remainder_count =  [NSString stringWithFormat:@"%zd",[self.model.indiana_everyone_max_count integerValue] - [self.model.start.buy_count integerValue]];
+    WeakSelf;
+    _Participationview.cancelEvent = ^{
+        weakSelf.Participationview.hidden = YES;
+    };
+    
+    _Participationview.sureEvent = ^(NSString *num) {
+        [weakSelf sureAdd:num];
+    };
+}
 -(void)requestDatsource{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -109,6 +129,8 @@ static NSString *ID = @"LBHomeDolphinDetailSectionHeader";
             }else{
                 [self.view addSubview:self.bottomview];
             }
+            
+            [self rightNowJionview];
         }else{
             [EasyShowTextView showErrorText:responseObject[@"message"]];
         }
@@ -226,14 +248,56 @@ static NSString *ID = @"LBHomeDolphinDetailSectionHeader";
         [EasyShowTextView showErrorText:error.localizedDescription];
     }];
 }
+//立即参与
+-(void)sureAdd:(NSString*)num{
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [EasyShowTextView showErrorText:@"请先登录"];
+        return;
+    }
+    if ([num integerValue] > [self.model.indiana_remainder_count integerValue]) {
+        [EasyShowTextView showInfoText:@"已超人数"];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"app_handler"] = @"ADD";
+    dic[@"uid"] = [UserModel defaultUser].uid;
+    dic[@"token"] = [UserModel defaultUser].token;
+    dic[@"indiana_id"] = self.indiana_id;
+    dic[@"count"] = num;
+    
+    [EasyShowLodingView showLoding];
+    [NetworkManager requestPOSTWithURLStr:kIndianacreate_indiana_order paramDic:dic finish:^(id responseObject) {
+        [EasyShowLodingView hidenLoding];
+        if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
+            
+            self.hidesBottomBarWhenPushed = YES;
+            LBindiana_PayController *vc = [[LBindiana_PayController alloc]init];
+            vc.datadic = responseObject[@"data"];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }else{
+            [EasyShowTextView showErrorText:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [EasyShowLodingView hidenLoding];
+        [EasyShowTextView showErrorText:error.localizedDescription];
+    }];
+    
+}
 #pragma make ----- LBHomeOneDolphinDetailHeaderdelegete
 -(void)checkPictureWord{//图文详情
     self.hidesBottomBarWhenPushed = YES;
     LBHomeOneDolphinPictureDetailController *vc = [[LBHomeOneDolphinPictureDetailController alloc]init];
     vc.good_id = self.model.indiana_goods_id;
     vc.indiana_id = self.model.indiana_id;
+    vc.indiana_remainder_count = [NSString stringWithFormat:@"%zd",[self.model.indiana_everyone_max_count integerValue] - [self.model.start.buy_count integerValue]];
     [[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:@"OrderDeail"];//1 表示从订单过去 2 表示从详情过去 之后会在支付成功退回到相应的界面
     [self.navigationController pushViewController:vc animated:YES];
+}
+//立即参与
+-(void)immeditlyJion{
+    _Participationview.hidden = NO;
 }
 
 -(void)sharegoodsinfo{//分享
@@ -419,7 +483,26 @@ static NSString *ID = @"LBHomeDolphinDetailSectionHeader";
 }
 
 -(void)immeditlyjumpEvent{
-    [self.navigationController popViewControllerAnimated:NO];
+    
+    BOOL b = NO;
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[LBHomeViewActivityViewController class]]) {//表示从活动页挑到详情
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"selectDoingActivity" object:nil];
+            [self.navigationController popViewControllerAnimated:NO];
+        }else{
+            b = YES;
+        }
+    }
+    //表示从其他页挑到详情
+    if (b == YES) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
+        vc.titileStr = @"今日好运来";
+        vc.selectindex = 1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+   
 }
 
 -(UITableView*)tableview{
@@ -473,7 +556,7 @@ static NSString *ID = @"LBHomeDolphinDetailSectionHeader";
         [_joinBt setTitle:@"立即参与" forState:UIControlStateNormal];
         [_joinBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _joinBt.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_joinBt addTarget:self action:@selector(checkPictureWord) forControlEvents:UIControlEventTouchUpInside];
+        [_joinBt addTarget:self action:@selector(immeditlyJion) forControlEvents:UIControlEventTouchUpInside];
     }
     return _joinBt;
 }

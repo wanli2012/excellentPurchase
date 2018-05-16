@@ -136,10 +136,20 @@ static NSString *Mine_PayActivitySucesscell = @"LBMine_PayActivitySucesscell";
 }
 
 -(void)popselfone{
-    
+    BOOL b = NO;
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[LBDolphinRecoderViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
+        }else{
+            b = YES;
+        }
+    }
+    //无限循环跳的时候
+    if (b == YES) {
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[LBHomeOneDolphinDetailController class]]) {
+                [self.navigationController popToViewController:controller animated:YES];
+            }
         }
     }
 }

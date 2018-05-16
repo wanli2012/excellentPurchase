@@ -19,6 +19,7 @@
 @property (strong, nonatomic) GLMine_AddressModel *addressModel;
 @property (assign, nonatomic) BOOL  refreshAdress;//是否需要更新地址
 @property (strong, nonatomic)NSString *remark;//备注
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topconstrait;
 
 @end
 
@@ -181,6 +182,11 @@
         };
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    self.topconstrait.constant = SafeAreaTopHeight;
 }
 
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *rwardPeoplelb;
 @property (weak, nonatomic) IBOutlet UILabel *luckyNumbers;
 @property (weak, nonatomic) IBOutlet UILabel *peoplejionlb;
+@property (weak, nonatomic) IBOutlet UIImageView *rewardimage;
 
 
 @end
@@ -48,6 +49,17 @@
     self.rwardPeoplelb.text = [NSString stringWithFormat:@"获奖者: %@",_model.user_name];
     self.luckyNumbers.text = [NSString stringWithFormat:@"幸运号码: %@",_model.lucky_number];
     self.peoplejionlb.text = [NSString stringWithFormat:@"本次参与: %d",[_model.indiana_reward_count intValue] -  [_model.sy_count intValue] ];
+    
+    if ([_model.indiana_status integerValue] == 3) {
+        self.rewardimage.hidden = NO;
+        if ([_model.indiana_uid isEqualToString:[UserModel defaultUser].uid]) {//中奖
+            self.rewardimage.image = [UIImage imageNamed:@"夺宝中奖"];
+        }else{
+            self.rewardimage.image = [UIImage imageNamed:@"夺宝未中奖"];
+        }
+    }else{
+        self.rewardimage.hidden = YES;
+    }
 }
 
 @end

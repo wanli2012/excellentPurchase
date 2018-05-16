@@ -26,6 +26,15 @@
      [self.collectionview registerNib:[UINib nibWithNibName:@"LBDolphinDetailShowPicCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"LBDolphinDetailShowPicCollectionCell"];
 }
 
+-(void)setModel:(LBShowWinningPicturemodel *)model{
+    _model = model;
+    self.contentlb.text = _model.indiana_slide_content;
+    self.infolb.text = [NSString stringWithFormat:@"%@    %@    期号 : %@",[formattime formateTime:_model.indiana_slide_time],_model.indiana_goods_spec_name,_model.indiana_slide_indiana_number];
+    self.imagearr = _model.indiana_slide_thumb;
+    [self.collectionview reloadData];
+    
+}
+
 #pragma UICollectionDelegate UICollectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -42,6 +51,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (self.bigpicture) {
+        self.bigpicture(indexPath.row,self.imagearr);
+    }
     
 }
 

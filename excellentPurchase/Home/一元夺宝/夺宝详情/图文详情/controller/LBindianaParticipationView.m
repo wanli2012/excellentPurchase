@@ -7,6 +7,7 @@
 //
 
 #import "LBindianaParticipationView.h"
+#import "IQKeyboardManager.h"
 
 @interface LBindianaParticipationView()<UITextFieldDelegate>
 
@@ -50,6 +51,7 @@
 //    }
     
     self.num = self.numtf.text;
+    [IQKeyboardManager sharedManager].enable = YES;
 }
 
 -(void)choosenumevent:(UIButton*)button{
@@ -117,13 +119,21 @@
 - (IBAction)divideEvent:(UIButton *)sender {
     
     if ([self.numtf.text integerValue] <=  1) {
+        self.numtf.text = @"1";
+        self.num = @"1";
         [EasyShowTextView showInfoText:@"至少选择1人次"];
+        return;
     }
     self.numtf.text = [NSString stringWithFormat:@"%zd",[self.numtf.text integerValue] - 1];
     self.num = self.numtf.text;
 }
 
 - (IBAction)addEvent:(UIButton *)sender {
+    
+    if (([self.numtf.text integerValue] + 1) > [self.indiana_remainder_count integerValue]) {
+        [EasyShowTextView showInfoText:@"已超人数"];
+        return;
+    }
     
     self.numtf.text = [NSString stringWithFormat:@"%zd",[self.numtf.text integerValue] + 1];
     self.num = self.numtf.text;
@@ -142,6 +152,12 @@
     }
     
     return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    
+     self.num = self.numtf.text;
+   
 }
 
 -(NSArray*)titleArr{

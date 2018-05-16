@@ -68,7 +68,7 @@ static NSString *homeViewActivityAlreadyTableViewCell = @"LBHomeViewActivityAlre
         LBHomeViewActivityListModel *model = self.models[i];
         NSInteger second = [model.active_reward_time integerValue];
         second = second - 1;
-        model.active_reward_time = [NSString stringWithFormat:@"%ld",second];
+        model.active_reward_time = [NSString stringWithFormat:@"%zd",second];
     }
     [[NSNotificationCenter defaultCenter]postNotificationName:OneDolphinTimeCellNotification object:nil];
 }

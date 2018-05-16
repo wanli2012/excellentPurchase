@@ -10,4 +10,5 @@
 
 @interface GLMine_Message_PropertyController : UIViewController
 
+@property (assign , nonatomic)NSInteger type;//默认从消息跳转 1，出售成功之后跳转过来 2，兑换成功之后跳转过来
 @end

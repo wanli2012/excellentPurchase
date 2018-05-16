@@ -32,6 +32,9 @@
 
 -(void)setModel:(LBNotShowWinningPicturemodel *)model{
     _model = model;
+    [self.iamgev sd_setImageWithURL:[NSURL URLWithString:_model.indiana_goods_thumb] placeholderImage:[UIImage imageNamed:PlaceHolder]];
+    self.namelb.text = _model.indiana_goods_name;
+    self.numbers.text = [NSString stringWithFormat:@"期号: %@",_model.indiana_number];
     
 }
 

@@ -58,6 +58,10 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:@"countDownoneDolphin" object:nil];
     }];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(selectDoingActivity) name:@"selectDoingActivity" object:nil];
+}
+-(void)selectDoingActivity{
+    [_pageMenu setItems:self.menuArr selectedItemIndex:1];
 }
 -(void)requestDataSorce{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -101,7 +105,7 @@
         pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, SafeAreaTopHeight, UIScreenWidth, kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
     }
     // 传递数组，默认选中第1个
-    [pageMenu setItems:self.menuArr selectedItemIndex:0];
+    [pageMenu setItems:self.menuArr selectedItemIndex:self.selectindex];
     pageMenu.showFuntionButton = NO;
     pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
     
@@ -112,7 +116,6 @@
     pageMenu.unSelectedItemTitleColor = YYSRGBColor(118, 118, 118, 1);
     pageMenu.dividingLine.backgroundColor = [UIColor clearColor];
     pageMenu.tracker.backgroundColor = YYSRGBColor(251, 73, 80, 1);
-    self.pageMenu.selectedItemIndex = 0;
     [self.view addSubview:pageMenu];
     _pageMenu = pageMenu;
     

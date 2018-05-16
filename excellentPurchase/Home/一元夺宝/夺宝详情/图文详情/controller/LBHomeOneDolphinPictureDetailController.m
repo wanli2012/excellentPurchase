@@ -14,6 +14,7 @@
 
 @property (strong , nonatomic)LBindianaParticipationView *Participationview;
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topconstrait;
 
 @end
 
@@ -25,6 +26,7 @@
     _Participationview = [[NSBundle mainBundle]loadNibNamed:@"LBindianaParticipationView" owner:nil options:nil].firstObject;
     _Participationview.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
     _Participationview.frame = self.view.frame;
+    _Participationview.indiana_remainder_count = self.indiana_remainder_count;
     [self.view addSubview:_Participationview];
     _Participationview.hidden = YES;
     WeakSelf;
@@ -54,6 +56,12 @@
         [EasyShowTextView showErrorText:@"请先登录"];
         return;
     }
+    
+    if ([num integerValue] > [self.indiana_remainder_count integerValue]) {
+        [EasyShowTextView showInfoText:@"已超人数"];
+        return;
+    }
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"app_handler"] = @"ADD";
     dic[@"uid"] = [UserModel defaultUser].uid;
@@ -93,6 +101,11 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [EasyShowLodingView hidenLoding];
     [EasyShowTextView showErrorText:error.localizedDescription];
+}
+
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    self.topconstrait.constant = SafeAreaTopHeight;
 }
 
 @end

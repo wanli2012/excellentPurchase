@@ -23,6 +23,7 @@
                 <outlet property="payThreeBt" destination="kV6-UL-8Ym" id="ZlJ-Lv-6lm"/>
                 <outlet property="payTwoBt" destination="YhV-qG-jXF" id="2YM-1g-DQ6"/>
                 <outlet property="saleKonw" destination="h6I-Pb-R1S" id="V6q-iQ-oh2"/>
+                <outlet property="scrollerview" destination="cDL-Jg-UCs" id="ilU-NO-9hn"/>
                 <outlet property="sellNumTF" destination="PhC-Hy-rpi" id="XcD-f4-x2N"/>
                 <outlet property="signImageV" destination="BD6-pz-eKp" id="ghI-xu-cFD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

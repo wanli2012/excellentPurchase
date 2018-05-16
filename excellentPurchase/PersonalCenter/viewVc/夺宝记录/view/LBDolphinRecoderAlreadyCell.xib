@@ -85,6 +85,13 @@
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="夺宝未中奖" translatesAutoresizingMaskIntoConstraints="NO" id="vVs-nA-UjY">
+                                <rect key="frame" x="236" y="22" width="100" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="MMb-yy-boz"/>
+                                    <constraint firstAttribute="width" constant="100" id="lDj-6j-kWD"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -96,7 +103,9 @@
                             <constraint firstAttribute="height" constant="115" id="Xni-sE-liK"/>
                             <constraint firstItem="Z8a-cI-kiI" firstAttribute="trailing" secondItem="PPi-uG-s2h" secondAttribute="trailing" id="ZDt-yH-8fI"/>
                             <constraint firstItem="3Ln-Iu-eKT" firstAttribute="leading" secondItem="XOX-Tf-Bhf" secondAttribute="trailing" constant="10" id="ZrL-ML-PSe"/>
+                            <constraint firstAttribute="trailing" secondItem="vVs-nA-UjY" secondAttribute="trailing" constant="10" id="a1z-8s-x1h"/>
                             <constraint firstItem="Z8a-cI-kiI" firstAttribute="leading" secondItem="XOX-Tf-Bhf" secondAttribute="trailing" constant="10" id="a4d-CO-kIl"/>
+                            <constraint firstItem="vVs-nA-UjY" firstAttribute="centerY" secondItem="FnL-sO-7E8" secondAttribute="centerY" id="b44-MO-faH"/>
                             <constraint firstItem="3Ln-Iu-eKT" firstAttribute="baseline" secondItem="XOX-Tf-Bhf" secondAttribute="baseline" id="caN-q2-W4m"/>
                             <constraint firstItem="XOX-Tf-Bhf" firstAttribute="top" secondItem="FnL-sO-7E8" secondAttribute="top" constant="10" id="d4f-Km-mQr"/>
                             <constraint firstItem="Z8a-cI-kiI" firstAttribute="leading" secondItem="PPi-uG-s2h" secondAttribute="leading" id="dhz-9V-6PT"/>
@@ -119,18 +128,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4l-K7-d27">
-                                <rect key="frame" x="10" y="35" width="326" height="31"/>
+                                <rect key="frame" x="10" y="35" width="326" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幸运号码:1000000001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vj-7r-06G">
-                                        <rect key="frame" x="10" y="7" width="306" height="17"/>
+                                        <rect key="frame" x="10" y="14" width="306" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.99801856280000001" green="0.39901572470000002" blue="0.39816218609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVu-1q-P71">
+                                        <rect key="frame" x="0.0" y="0.0" width="326" height="1"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="qiZ-Vz-YEX"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="35l-EM-GXH"/>
+                                    <constraint firstAttribute="trailing" secondItem="lVu-1q-P71" secondAttribute="trailing" id="4fz-3j-aQG"/>
+                                    <constraint firstItem="lVu-1q-P71" firstAttribute="leading" secondItem="t4l-K7-d27" secondAttribute="leading" id="En6-o5-OWl"/>
+                                    <constraint firstItem="lVu-1q-P71" firstAttribute="top" secondItem="t4l-K7-d27" secondAttribute="top" id="MeH-f2-OFM"/>
                                     <constraint firstItem="5Vj-7r-06G" firstAttribute="leading" secondItem="t4l-K7-d27" secondAttribute="leading" constant="10" id="PgL-UD-7DZ"/>
                                     <constraint firstItem="5Vj-7r-06G" firstAttribute="centerY" secondItem="t4l-K7-d27" secondAttribute="centerY" id="Z6r-cK-EeE"/>
                                     <constraint firstAttribute="trailing" secondItem="5Vj-7r-06G" secondAttribute="trailing" constant="10" id="wvP-Mf-BrY"/>
@@ -141,6 +159,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="3Cw-3l-7mF"/>
                             <constraint firstItem="t4l-K7-d27" firstAttribute="leading" secondItem="iL9-2Y-cRP" secondAttribute="leading" constant="10" id="94b-k0-m32"/>
+                            <constraint firstAttribute="bottom" secondItem="t4l-K7-d27" secondAttribute="bottom" id="F75-YX-nvZ"/>
                             <constraint firstItem="7df-hp-56I" firstAttribute="top" secondItem="iL9-2Y-cRP" secondAttribute="top" constant="10" id="Gx4-ZJ-6GW"/>
                             <constraint firstItem="BLL-he-Kd6" firstAttribute="leading" secondItem="7df-hp-56I" secondAttribute="trailing" constant="30" id="Q2j-7y-XuU"/>
                             <constraint firstItem="BLL-he-Kd6" firstAttribute="centerY" secondItem="7df-hp-56I" secondAttribute="centerY" id="WXh-EY-j8q"/>
@@ -170,6 +189,7 @@
                 <outlet property="mypeoplelb" destination="3Ln-Iu-eKT" id="lCz-SI-WMV"/>
                 <outlet property="numberslb" destination="Rb6-q9-LTJ" id="B8m-WP-hYB"/>
                 <outlet property="peoplejionlb" destination="BLL-he-Kd6" id="oQy-U4-Q0I"/>
+                <outlet property="rewardimage" destination="vVs-nA-UjY" id="QKo-U9-8ba"/>
                 <outlet property="rwardPeoplelb" destination="7df-hp-56I" id="f6N-bb-tEJ"/>
                 <outlet property="sypeoplelb" destination="Z8a-cI-kiI" id="zTo-pa-FoN"/>
                 <outlet property="titlelb" destination="SXJ-wz-igb" id="8Hn-Xv-ssA"/>
@@ -179,5 +199,6 @@
     </objects>
     <resources>
         <image name="shangpinxiangqing" width="375" height="375"/>
+        <image name="夺宝未中奖" width="106" height="71"/>
     </resources>
 </document>

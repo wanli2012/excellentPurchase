@@ -11,5 +11,6 @@
 @interface LBHomeViewActivityViewController : UIViewController
 
 @property (strong , nonatomic)NSString *titileStr;
+@property (assign , nonatomic)NSInteger selectindex;//默认为0 选中
 
 @end

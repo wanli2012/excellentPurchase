@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 //    self.webview.delegate = self;
+    
 }
 
 -(void)setUrlstr:(NSString *)urlstr{

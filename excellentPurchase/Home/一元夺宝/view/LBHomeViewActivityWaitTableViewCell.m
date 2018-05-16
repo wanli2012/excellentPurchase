@@ -52,8 +52,8 @@
 - (void)notificationCenterEvent:(NSNotification*)noti{
     
     if (self.isDisplay) {
-        self.time = [NSString stringWithFormat:@"%ld",[self.time integerValue] - 1];
-        self.buyingsecond = [NSString stringWithFormat:@"%ld",[self.buyingsecond integerValue] + 1];
+        self.time = [NSString stringWithFormat:@"%zd",[self.time integerValue] - 1];
+        self.buyingsecond = [NSString stringWithFormat:@"%zd",[self.buyingsecond integerValue] + 1];
         [self setSecond:self.time row:self.section buyingsecond:self.buyingsecond];
     }
     
@@ -62,8 +62,8 @@
 - (void)notificationCenterEventone:(NSNotification*)noti{
     
     if (self.isDisplayone) {
-        self.timeone = [NSString stringWithFormat:@"%ld",[self.timeone integerValue] - 1];
-        self.buyingsecondone = [NSString stringWithFormat:@"%ld",[self.buyingsecondone integerValue] + 1];
+        self.timeone = [NSString stringWithFormat:@"%zd",[self.timeone integerValue] - 1];
+        self.buyingsecondone = [NSString stringWithFormat:@"%zd",[self.buyingsecondone integerValue] + 1];
         [self setSecondone:self.timeone row:self.sectionone buyingsecond:self.buyingsecondone];
     }
     
@@ -117,6 +117,8 @@
     }
     
 }
+
+
 
 -(void)setModel:(LBHomeViewActivityListModel *)model{
     _model = model;

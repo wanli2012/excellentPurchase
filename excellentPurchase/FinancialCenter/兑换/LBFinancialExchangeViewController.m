@@ -7,6 +7,8 @@
 //
 
 #import "LBFinancialExchangeViewController.h"
+#import "LBDiffrentStatusView.h"
+#import "GLMine_Message_PropertyController.h"
 
 @interface LBFinancialExchangeViewController ()<UITextFieldDelegate>
 {
@@ -18,9 +20,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *exchangeNumTF;//兑换数量
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;//标志
 @property (weak, nonatomic) IBOutlet UIButton *ensureBtn;//确认兑换
-
+@property (strong, nonatomic)LBDiffrentStatusView *diffrentStatusView;
 @property (nonatomic, assign)BOOL isHaveDian;//是否有小数点了
-
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollerview;
 @end
 
 @implementation LBFinancialExchangeViewController
@@ -31,6 +33,9 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"兑换";
     self.sumLabel.text = self.coupon;
+    
+    [self.view addSubview:self.diffrentStatusView];
+    self.diffrentStatusView.hidden = YES;
 }
 
 /**
@@ -65,8 +70,8 @@
             [EasyShowLodingView hidenLoding];
             if ([responseObject[@"code"] integerValue] == SUCCESS_CODE) {
                 
-                [EasyShowTextView showSuccessText:responseObject[@"message"]];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                self.diffrentStatusView.hidden = NO;
+                self.scrollerview.hidden = YES;
                 
             }else{
                 [EasyShowTextView showErrorText:responseObject[@"message"]];
@@ -206,6 +211,24 @@
     }
     
     return YES;
+}
+-(void)jumpFinancialMannager{
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_Message_PropertyController *vc = [[GLMine_Message_PropertyController alloc]init];
+    vc.type = 2;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(LBDiffrentStatusView*)diffrentStatusView{
+    if (!_diffrentStatusView) {
+        _diffrentStatusView = [[NSBundle mainBundle]loadNibNamed:@"LBDiffrentStatusView" owner:self options:nil].firstObject;
+        _diffrentStatusView.frame = self.view.frame;
+        [_diffrentStatusView.surebt addTarget:self action:@selector(jumpFinancialMannager) forControlEvents:UIControlEventTouchUpInside];
+        _diffrentStatusView.titilelb.text = @"兑换成功";
+        _diffrentStatusView.describeLb.text = @"可在“我的资产“ 查看优购币";
+        _diffrentStatusView.imagev.image = [UIImage imageNamed:@"duihuanchenggong"];
+    }
+    return _diffrentStatusView;
 }
 
 @end

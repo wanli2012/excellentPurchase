@@ -176,7 +176,7 @@
     // 如果已经加载过，就不再加载
     if ([targetViewController isViewLoaded]) return;
     
-    targetViewController.view.frame = CGRectMake(UIScreenWidth * toIndex, 0, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH);
+    targetViewController.view.frame = CGRectMake(UIScreenWidth * toIndex, 0, UIScreenWidth, UIScreenHeight - SafeAreaTopHeight - pageMenuH - 49);
     [_scrollView addSubview:targetViewController.view];
     
 }

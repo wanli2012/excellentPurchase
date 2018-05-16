@@ -143,8 +143,9 @@
             LBHomeOneDolphinPictureDetailController *vc = [[LBHomeOneDolphinPictureDetailController alloc]init];
             vc.good_id = model.indiana_goods_id;
             vc.indiana_id = model.indiana_id;
+            vc.indiana_remainder_count = [NSString stringWithFormat:@"%zd",[model.indiana_everyone_max_count integerValue] - [model.sy_count integerValue]];
             [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"OrderDeail"];//1 表示从订单过去 2 表示从详情过去 之后会在支付成功退回到相应的界面
-            [self.navigationController pushViewController:vc animated:YES];
+            [[self viewController].navigationController pushViewController:vc animated:YES];
         };
         return cell;
     }else if ([model.indiana_status integerValue] == 2) {
@@ -156,7 +157,7 @@
             weakSelf.hidesBottomBarWhenPushed = YES;
             LBMyActivityNumbersViewController *vc = [[LBMyActivityNumbersViewController alloc]init];
             vc.model = model;
-            [self.navigationController pushViewController:vc animated:YES];
+            [[self viewController].navigationController pushViewController:vc animated:YES];
         };
         return cell;
     }else if ([model.indiana_status integerValue] == 3) {
@@ -172,7 +173,7 @@
                 weakSelf.page = 1;
                 [weakSelf loadData:weakSelf.page refreshDirect:YES];
             };
-            [self.navigationController pushViewController:vc animated:YES];
+            [[self viewController].navigationController pushViewController:vc animated:YES];
         };
         return cell;
     }
@@ -201,7 +202,7 @@
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBHomeOneDolphinDetailController *vc = [[LBHomeOneDolphinDetailController alloc]init];
     vc.indiana_id = model.indiana_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    [[self viewController].navigationController pushViewController:vc animated:YES];
    
     
 }

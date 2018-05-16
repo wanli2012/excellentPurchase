@@ -13,5 +13,6 @@
 
 @property (strong , nonatomic)NSString *indiana_id;
 @property (strong , nonatomic)NSString *good_id;
+@property (strong , nonatomic)NSString *indiana_remainder_count;
 
 @end

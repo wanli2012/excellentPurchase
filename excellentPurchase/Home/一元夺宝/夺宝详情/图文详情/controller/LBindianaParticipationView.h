@@ -12,5 +12,6 @@
 
 @property (copy , nonatomic)void(^cancelEvent)(void);
 @property (copy , nonatomic)void(^sureEvent)(NSString *num);
+@property (strong , nonatomic)NSString *indiana_remainder_count;//每人剩余购买人数
 
 @end

@@ -156,5 +156,6 @@
 #define kRedEnvelopered_list @"RedEnvelope/red_list"//发红包记录
 #define kRedEnvelopesend_red_gift @"RedEnvelope/send_red_gift"//发红包
 #define kIndianasetIndianaAddress @"Indiana/setIndianaAddress"//夺宝选择收货地址
+#define kIndianaindiana_slide @"Indiana/indiana_slide"//添加晒图
 
 #endif /* Interface_h */

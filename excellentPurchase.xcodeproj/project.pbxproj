@@ -635,6 +635,8 @@
 		F9288252201C7C8D000B0474 /* GYZCityGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824C201C7C8C000B0474 /* GYZCityGroupCell.m */; };
 		F9288253201C7C8D000B0474 /* GYZCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */; };
 		F929D20F20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */; };
+		F92B899920A4126700369C4F /* LBSendShowinfoViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92B899720A4126700369C4F /* LBSendShowinfoViewcell.xib */; };
+		F92B89A320A414A800369C4F /* LBSendShowinfoViewcell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B89A120A414A700369C4F /* LBSendShowinfoViewcell.m */; };
 		F9309485202BEEB4004763A1 /* LBBaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F930947A202BEEB3004763A1 /* LBBaiduMapViewController.m */; };
 		F9309486202BEEB4004763A1 /* LBBaiduMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F930947B202BEEB3004763A1 /* LBBaiduMapViewController.xib */; };
 		F9309487202BEEB4004763A1 /* RouteAnnotation.mm in Sources */ = {isa = PBXBuildFile; fileRef = F930947D202BEEB3004763A1 /* RouteAnnotation.mm */; };
@@ -1166,6 +1168,28 @@
 		F9A5E16220A14CCC003BF5E2 /* LBDolphinDetailRulecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5E16020A14CCC003BF5E2 /* LBDolphinDetailRulecell.xib */; };
 		F9A5E16620A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A5E16420A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.m */; };
 		F9A5E16720A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5E16520A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.xib */; };
+		F9B94D5E20A417C7001A96F8 /* LBSendShowPicturecell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D5B20A417C6001A96F8 /* LBSendShowPicturecell.m */; };
+		F9B94D5F20A41815001A96F8 /* LBSendShowPicturecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B94D5A20A417C5001A96F8 /* LBSendShowPicturecell.xib */; };
+		F9B94D6320A4195B001A96F8 /* LBSendShowPictureCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D6120A4195B001A96F8 /* LBSendShowPictureCollectionCell.m */; };
+		F9B94D6420A4195B001A96F8 /* LBSendShowPictureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B94D6220A4195B001A96F8 /* LBSendShowPictureCollectionCell.xib */; };
+		F9B94D6720A44A58001A96F8 /* LBFinancialCenterMarketinechartController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D6620A44A58001A96F8 /* LBFinancialCenterMarketinechartController.m */; };
+		F9B94D6B20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D6920A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.m */; };
+		F9B94D6C20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B94D6A20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.xib */; };
+		F9B94D7520A4507F001A96F8 /* ZFCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D7020A4507E001A96F8 /* ZFCircle.m */; };
+		F9B94D7620A4507F001A96F8 /* ZFLine.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D7220A4507E001A96F8 /* ZFLine.m */; };
+		F9B94D7720A4507F001A96F8 /* ZFLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D7420A4507E001A96F8 /* ZFLineChart.m */; };
+		F9B94D7B20A450E6001A96F8 /* ZFGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D7A20A450E5001A96F8 /* ZFGenericChart.m */; };
+		F9B94D8520A45149001A96F8 /* ZFLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D7E20A45149001A96F8 /* ZFLabel.m */; };
+		F9B94D8620A45149001A96F8 /* ZFPopoverLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D8020A45149001A96F8 /* ZFPopoverLabel.m */; };
+		F9B94D8720A45149001A96F8 /* ZFXAxisLine.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D8220A45149001A96F8 /* ZFXAxisLine.m */; };
+		F9B94D8820A45149001A96F8 /* ZFYAxisLine.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D8420A45149001A96F8 /* ZFYAxisLine.m */; };
+		F9B94D9920A45163001A96F8 /* ZFConst.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D8D20A45162001A96F8 /* ZFConst.m */; };
+		F9B94D9A20A45163001A96F8 /* ZFMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D8F20A45162001A96F8 /* ZFMethod.m */; };
+		F9B94D9B20A45163001A96F8 /* NSString+Zirkfied.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D9220A45163001A96F8 /* NSString+Zirkfied.m */; };
+		F9B94D9C20A45163001A96F8 /* UIBezierPath+Zirkfied.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D9420A45163001A96F8 /* UIBezierPath+Zirkfied.m */; };
+		F9B94D9D20A45163001A96F8 /* UIColor+Zirkfied.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D9620A45163001A96F8 /* UIColor+Zirkfied.m */; };
+		F9B94D9E20A45163001A96F8 /* UIView+Zirkfied.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94D9820A45163001A96F8 /* UIView+Zirkfied.m */; };
+		F9B94DA220A451AF001A96F8 /* ZFGenericAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B94DA120A451AE001A96F8 /* ZFGenericAxis.m */; };
 		F9D31AC42042A239008707F0 /* LBTmallSeconedClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */; };
 		F9D31AC82042A3B7008707F0 /* LBRiceShopTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D31AC62042A3B7008707F0 /* LBRiceShopTagTableViewCell.m */; };
 		F9D31AC92042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D31AC72042A3B7008707F0 /* LBRiceShopTagTableViewCell.xib */; };
@@ -2326,6 +2350,9 @@
 		F928824E201C7C8C000B0474 /* GYZCityHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYZCityHeaderView.m; sourceTree = "<group>"; };
 		F929D20D20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallDetailgoodsCommentFrameModel.h; sourceTree = "<group>"; };
 		F929D20E20230B2200B5D11A /* LBTmallDetailgoodsCommentFrameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallDetailgoodsCommentFrameModel.m; sourceTree = "<group>"; };
+		F92B899720A4126700369C4F /* LBSendShowinfoViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBSendShowinfoViewcell.xib; sourceTree = "<group>"; };
+		F92B89A120A414A700369C4F /* LBSendShowinfoViewcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSendShowinfoViewcell.m; sourceTree = "<group>"; };
+		F92B89A220A414A700369C4F /* LBSendShowinfoViewcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSendShowinfoViewcell.h; sourceTree = "<group>"; };
 		F9309479202BEEB3004763A1 /* LBBaiduMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBaiduMapViewController.h; sourceTree = "<group>"; };
 		F930947A202BEEB3004763A1 /* LBBaiduMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBaiduMapViewController.m; sourceTree = "<group>"; };
 		F930947B202BEEB3004763A1 /* LBBaiduMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBaiduMapViewController.xib; sourceTree = "<group>"; };
@@ -3186,6 +3213,49 @@
 		F9A5E16320A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDolphinDetailJoinheaderTableViewCell.h; sourceTree = "<group>"; };
 		F9A5E16420A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDolphinDetailJoinheaderTableViewCell.m; sourceTree = "<group>"; };
 		F9A5E16520A190D3003BF5E2 /* LBDolphinDetailJoinheaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBDolphinDetailJoinheaderTableViewCell.xib; sourceTree = "<group>"; };
+		F9B94D5A20A417C5001A96F8 /* LBSendShowPicturecell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSendShowPicturecell.xib; sourceTree = "<group>"; };
+		F9B94D5B20A417C6001A96F8 /* LBSendShowPicturecell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSendShowPicturecell.m; sourceTree = "<group>"; };
+		F9B94D5C20A417C7001A96F8 /* LBSendShowPicturecell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSendShowPicturecell.h; sourceTree = "<group>"; };
+		F9B94D6020A4195B001A96F8 /* LBSendShowPictureCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBSendShowPictureCollectionCell.h; sourceTree = "<group>"; };
+		F9B94D6120A4195B001A96F8 /* LBSendShowPictureCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBSendShowPictureCollectionCell.m; sourceTree = "<group>"; };
+		F9B94D6220A4195B001A96F8 /* LBSendShowPictureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBSendShowPictureCollectionCell.xib; sourceTree = "<group>"; };
+		F9B94D6520A44A58001A96F8 /* LBFinancialCenterMarketinechartController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterMarketinechartController.h; sourceTree = "<group>"; };
+		F9B94D6620A44A58001A96F8 /* LBFinancialCenterMarketinechartController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterMarketinechartController.m; sourceTree = "<group>"; };
+		F9B94D6820A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBFinancialCenterMarketinechartcell.h; sourceTree = "<group>"; };
+		F9B94D6920A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBFinancialCenterMarketinechartcell.m; sourceTree = "<group>"; };
+		F9B94D6A20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LBFinancialCenterMarketinechartcell.xib; sourceTree = "<group>"; };
+		F9B94D6F20A4507E001A96F8 /* ZFCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCircle.h; sourceTree = "<group>"; };
+		F9B94D7020A4507E001A96F8 /* ZFCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCircle.m; sourceTree = "<group>"; };
+		F9B94D7120A4507E001A96F8 /* ZFLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLine.h; sourceTree = "<group>"; };
+		F9B94D7220A4507E001A96F8 /* ZFLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLine.m; sourceTree = "<group>"; };
+		F9B94D7320A4507E001A96F8 /* ZFLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLineChart.h; sourceTree = "<group>"; };
+		F9B94D7420A4507E001A96F8 /* ZFLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLineChart.m; sourceTree = "<group>"; };
+		F9B94D7920A450E5001A96F8 /* ZFGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFGenericChart.h; sourceTree = "<group>"; };
+		F9B94D7A20A450E5001A96F8 /* ZFGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFGenericChart.m; sourceTree = "<group>"; };
+		F9B94D7D20A45149001A96F8 /* ZFLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLabel.h; sourceTree = "<group>"; };
+		F9B94D7E20A45149001A96F8 /* ZFLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLabel.m; sourceTree = "<group>"; };
+		F9B94D7F20A45149001A96F8 /* ZFPopoverLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPopoverLabel.h; sourceTree = "<group>"; };
+		F9B94D8020A45149001A96F8 /* ZFPopoverLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPopoverLabel.m; sourceTree = "<group>"; };
+		F9B94D8120A45149001A96F8 /* ZFXAxisLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFXAxisLine.h; sourceTree = "<group>"; };
+		F9B94D8220A45149001A96F8 /* ZFXAxisLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFXAxisLine.m; sourceTree = "<group>"; };
+		F9B94D8320A45149001A96F8 /* ZFYAxisLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFYAxisLine.h; sourceTree = "<group>"; };
+		F9B94D8420A45149001A96F8 /* ZFYAxisLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFYAxisLine.m; sourceTree = "<group>"; };
+		F9B94D8A20A45162001A96F8 /* ZFChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFChart.h; sourceTree = "<group>"; };
+		F9B94D8B20A45162001A96F8 /* ZFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFColor.h; sourceTree = "<group>"; };
+		F9B94D8C20A45162001A96F8 /* ZFConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFConst.h; sourceTree = "<group>"; };
+		F9B94D8D20A45162001A96F8 /* ZFConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFConst.m; sourceTree = "<group>"; };
+		F9B94D8E20A45162001A96F8 /* ZFMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFMethod.h; sourceTree = "<group>"; };
+		F9B94D8F20A45162001A96F8 /* ZFMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFMethod.m; sourceTree = "<group>"; };
+		F9B94D9120A45163001A96F8 /* NSString+Zirkfied.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Zirkfied.h"; sourceTree = "<group>"; };
+		F9B94D9220A45163001A96F8 /* NSString+Zirkfied.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Zirkfied.m"; sourceTree = "<group>"; };
+		F9B94D9320A45163001A96F8 /* UIBezierPath+Zirkfied.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Zirkfied.h"; sourceTree = "<group>"; };
+		F9B94D9420A45163001A96F8 /* UIBezierPath+Zirkfied.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Zirkfied.m"; sourceTree = "<group>"; };
+		F9B94D9520A45163001A96F8 /* UIColor+Zirkfied.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Zirkfied.h"; sourceTree = "<group>"; };
+		F9B94D9620A45163001A96F8 /* UIColor+Zirkfied.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Zirkfied.m"; sourceTree = "<group>"; };
+		F9B94D9720A45163001A96F8 /* UIView+Zirkfied.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Zirkfied.h"; sourceTree = "<group>"; };
+		F9B94D9820A45163001A96F8 /* UIView+Zirkfied.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Zirkfied.m"; sourceTree = "<group>"; };
+		F9B94DA020A451AE001A96F8 /* ZFGenericAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFGenericAxis.h; sourceTree = "<group>"; };
+		F9B94DA120A451AE001A96F8 /* ZFGenericAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFGenericAxis.m; sourceTree = "<group>"; };
 		F9D31AC22042A239008707F0 /* LBTmallSeconedClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBTmallSeconedClassifyModel.h; sourceTree = "<group>"; };
 		F9D31AC32042A239008707F0 /* LBTmallSeconedClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTmallSeconedClassifyModel.m; sourceTree = "<group>"; };
 		F9D31AC52042A3B7008707F0 /* LBRiceShopTagTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBRiceShopTagTableViewCell.h; sourceTree = "<group>"; };
@@ -6510,6 +6580,7 @@
 				F97E6059200EF1DB00C9C4E7 /* XHStarRateView */,
 				F95FD42C200DC2C300F6C523 /* Standard */,
 				F95B533F200CAA0000A81954 /* PopoverView */,
+				F9B94D6D20A45055001A96F8 /* ZFChart */,
 				F93409F22009CF680002DBB8 /* SPPageMenu */,
 			);
 			path = ThreePart;
@@ -6707,6 +6778,15 @@
 		F941364920A3DDBA00DC1EF7 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F92B89A220A414A700369C4F /* LBSendShowinfoViewcell.h */,
+				F92B89A120A414A700369C4F /* LBSendShowinfoViewcell.m */,
+				F92B899720A4126700369C4F /* LBSendShowinfoViewcell.xib */,
+				F9B94D5C20A417C7001A96F8 /* LBSendShowPicturecell.h */,
+				F9B94D5B20A417C6001A96F8 /* LBSendShowPicturecell.m */,
+				F9B94D5A20A417C5001A96F8 /* LBSendShowPicturecell.xib */,
+				F9B94D6020A4195B001A96F8 /* LBSendShowPictureCollectionCell.h */,
+				F9B94D6120A4195B001A96F8 /* LBSendShowPictureCollectionCell.m */,
+				F9B94D6220A4195B001A96F8 /* LBSendShowPictureCollectionCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -7176,6 +7256,8 @@
 				F97CDC70201576A10036B8E0 /* LBFinancialCenterMarketvalueViewController.xib */,
 				F97CDC75201576A20036B8E0 /* LBFinancialCenterSaleRecoderViewController.h */,
 				F97CDC71201576A10036B8E0 /* LBFinancialCenterSaleRecoderViewController.m */,
+				F9B94D6520A44A58001A96F8 /* LBFinancialCenterMarketinechartController.h */,
+				F9B94D6620A44A58001A96F8 /* LBFinancialCenterMarketinechartController.m */,
 			);
 			path = viewVc;
 			sourceTree = "<group>";
@@ -7192,6 +7274,9 @@
 				F96CF4A92018B51D0070658C /* LBFinancialCenterRecoderTableViewCell.h */,
 				F96CF4A82018B51C0070658C /* LBFinancialCenterRecoderTableViewCell.m */,
 				F96CF4AA2018B51D0070658C /* LBFinancialCenterRecoderTableViewCell.xib */,
+				F9B94D6820A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.h */,
+				F9B94D6920A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.m */,
+				F9B94D6A20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -8878,6 +8963,94 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		F9B94D6D20A45055001A96F8 /* ZFChart */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94D9F20A451AE001A96F8 /* ZFGenericAxis */,
+				F9B94D9020A45163001A96F8 /* Category */,
+				F9B94D8920A45162001A96F8 /* Other */,
+				F9B94D7C20A45149001A96F8 /* Component */,
+				F9B94D7820A450E5001A96F8 /* ZFGenericChart */,
+				F9B94D6E20A4507E001A96F8 /* ZFLineChart */,
+			);
+			name = ZFChart;
+			path = excellentPurchase/ThreePart/ZFChart;
+			sourceTree = SOURCE_ROOT;
+		};
+		F9B94D6E20A4507E001A96F8 /* ZFLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94D6F20A4507E001A96F8 /* ZFCircle.h */,
+				F9B94D7020A4507E001A96F8 /* ZFCircle.m */,
+				F9B94D7120A4507E001A96F8 /* ZFLine.h */,
+				F9B94D7220A4507E001A96F8 /* ZFLine.m */,
+				F9B94D7320A4507E001A96F8 /* ZFLineChart.h */,
+				F9B94D7420A4507E001A96F8 /* ZFLineChart.m */,
+			);
+			path = ZFLineChart;
+			sourceTree = "<group>";
+		};
+		F9B94D7820A450E5001A96F8 /* ZFGenericChart */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94D7920A450E5001A96F8 /* ZFGenericChart.h */,
+				F9B94D7A20A450E5001A96F8 /* ZFGenericChart.m */,
+			);
+			path = ZFGenericChart;
+			sourceTree = "<group>";
+		};
+		F9B94D7C20A45149001A96F8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94D7D20A45149001A96F8 /* ZFLabel.h */,
+				F9B94D7E20A45149001A96F8 /* ZFLabel.m */,
+				F9B94D7F20A45149001A96F8 /* ZFPopoverLabel.h */,
+				F9B94D8020A45149001A96F8 /* ZFPopoverLabel.m */,
+				F9B94D8120A45149001A96F8 /* ZFXAxisLine.h */,
+				F9B94D8220A45149001A96F8 /* ZFXAxisLine.m */,
+				F9B94D8320A45149001A96F8 /* ZFYAxisLine.h */,
+				F9B94D8420A45149001A96F8 /* ZFYAxisLine.m */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		F9B94D8920A45162001A96F8 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94D8A20A45162001A96F8 /* ZFChart.h */,
+				F9B94D8B20A45162001A96F8 /* ZFColor.h */,
+				F9B94D8C20A45162001A96F8 /* ZFConst.h */,
+				F9B94D8D20A45162001A96F8 /* ZFConst.m */,
+				F9B94D8E20A45162001A96F8 /* ZFMethod.h */,
+				F9B94D8F20A45162001A96F8 /* ZFMethod.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		F9B94D9020A45163001A96F8 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94D9120A45163001A96F8 /* NSString+Zirkfied.h */,
+				F9B94D9220A45163001A96F8 /* NSString+Zirkfied.m */,
+				F9B94D9320A45163001A96F8 /* UIBezierPath+Zirkfied.h */,
+				F9B94D9420A45163001A96F8 /* UIBezierPath+Zirkfied.m */,
+				F9B94D9520A45163001A96F8 /* UIColor+Zirkfied.h */,
+				F9B94D9620A45163001A96F8 /* UIColor+Zirkfied.m */,
+				F9B94D9720A45163001A96F8 /* UIView+Zirkfied.h */,
+				F9B94D9820A45163001A96F8 /* UIView+Zirkfied.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		F9B94D9F20A451AE001A96F8 /* ZFGenericAxis */ = {
+			isa = PBXGroup;
+			children = (
+				F9B94DA020A451AE001A96F8 /* ZFGenericAxis.h */,
+				F9B94DA120A451AE001A96F8 /* ZFGenericAxis.m */,
+			);
+			path = ZFGenericAxis;
+			sourceTree = "<group>";
+		};
 		F9D7CA9F201B44C100C87C58 /* XC_Label */ = {
 			isa = PBXGroup;
 			children = (
@@ -9089,6 +9262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B94D5F20A41815001A96F8 /* LBSendShowPicturecell.xib in Resources */,
 				F97C6ECA20A2CE2200E8F599 /* LBMine_PayActivitySucessController.xib in Resources */,
 				F971374A2005FD910033F38B /* personCenter.xcassets in Resources */,
 				4AB3DCB52016C4CA00099650 /* LBMineOrderDetailAdressTableViewCell.xib in Resources */,
@@ -9179,6 +9353,7 @@
 				4AA3A17B20199B7500C94E49 /* GLMine_Branch_OnlineOrderController.xib in Resources */,
 				4AA3A15E20197F4000C94E49 /* GLMine_Branch_QueryAchievementController.xib in Resources */,
 				4A79EE12200F42CA001F28D1 /* GLMine_Team_AchieveManageHeader.xib in Resources */,
+				F9B94D6420A4195B001A96F8 /* LBSendShowPictureCollectionCell.xib in Resources */,
 				F95FD426200D9D3600F6C523 /* LBProductDetailWebTitleTableViewCell.xib in Resources */,
 				F932FEF22060E29E00E5DB7F /* LBDolphinRecoderAllViewController.xib in Resources */,
 				4A20E9BD20132D1700E091EA /* GLMine_Message_InteractCell.xib in Resources */,
@@ -9307,6 +9482,7 @@
 				F992B7F6205F5475005DA96D /* LBDolphinDetailJoinTableViewCell.xib in Resources */,
 				4AA3A216201A218200C94E49 /* LBSendRedPackRecoderBasevc.xib in Resources */,
 				4A19C3A320173B6600D15D82 /* pay.xcassets in Resources */,
+				F92B899920A4126700369C4F /* LBSendShowinfoViewcell.xib in Resources */,
 				4A0EDFAF2018C8A70037D47A /* GLMine_Branch_DetailController.xib in Resources */,
 				F9F775912027099B007FB5CD /* LBDiffrentStatusView.xib in Resources */,
 				F97137302005D9680033F38B /* activity.gif in Resources */,
@@ -9344,6 +9520,7 @@
 				4AA3A214201A218200C94E49 /* LBVoucherCenterRecoderTableViewCell.xib in Resources */,
 				4A02ABEF20174F8B009213AD /* GLMine_PayFailedView.xib in Resources */,
 				4AA3A218201A218200C94E49 /* LBSendRedPackRecoderReciveVc.xib in Resources */,
+				F9B94D6C20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.xib in Resources */,
 				4A22671A202AAAF30029D71B /* GLMine_Seller_SetMoneyController.xib in Resources */,
 				F98CE00D2091C9DE00BD5726 /* LBSendRedPackCell.xib in Resources */,
 				F97137482005FB410033F38B /* LBImprovePersonalInformationViewController.xib in Resources */,
@@ -9526,6 +9703,7 @@
 				F934DC0C206B6CFA009AB1DF /* LBTodayTimeLimitModel.m in Sources */,
 				F9F7759220270CDB007FB5CD /* LBDiffrentStatusView.m in Sources */,
 				4AB3DCC82017050000099650 /* GLMine_Cart_PayController.m in Sources */,
+				F9B94D9D20A45163001A96F8 /* UIColor+Zirkfied.m in Sources */,
 				F93D5DFD20247883002E8FA7 /* LBMineOtherFunctionViewController.m in Sources */,
 				F9426BA7201B33390054417E /* HHTextField.m in Sources */,
 				F923B26B2020021F00DFEF7C /* ZXQRCodeVersion.m in Sources */,
@@ -9548,6 +9726,7 @@
 				F9712CD72004671F0015037A /* BaseNavigationViewController.m in Sources */,
 				F980735F2060D75A005A337B /* LBDolphincalculateDetailTitileCell.m in Sources */,
 				F923B1EE2020021F00DFEF7C /* ZXDecodeHints.m in Sources */,
+				F9B94D7720A4507F001A96F8 /* ZFLineChart.m in Sources */,
 				4A20E9982013094700E091EA /* GLMine_Message_PropertyCell.m in Sources */,
 				F96CF424201818A50070658C /* LBMineCollectionProductViewController.m in Sources */,
 				F98F9F0B204E7B63002C40DF /* LBMine_Team_ResultModel.m in Sources */,
@@ -9573,6 +9752,7 @@
 				4A20E98F2012EA0500E091EA /* GLMine_Message_LogisticsModel.m in Sources */,
 				F93D48EB2028006F0053F8EF /* LBMineOrdersFooterReasonViewCell.m in Sources */,
 				F932FEF12060E29E00E5DB7F /* LBDolphinRecoderAllViewController.m in Sources */,
+				F9B94D9E20A45163001A96F8 /* UIView+Zirkfied.m in Sources */,
 				F923B18E2020021E00DFEF7C /* LBXScanLineAnimation.m in Sources */,
 				F953CADA209ABE72002DEAC9 /* LBHomeViewActivityHistoryModel.m in Sources */,
 				4A226719202AAAF30029D71B /* GLMine_Seller_SetMoneyController.m in Sources */,
@@ -9699,6 +9879,7 @@
 				F992B808205FAE0C005DA96D /* LBDolphinDetailThreeHeaderView.m in Sources */,
 				F95B5347200CAA0000A81954 /* PopoverView.m in Sources */,
 				F96971D32011849A00966E26 /* NSObject+Property.m in Sources */,
+				F9B94D9B20A45163001A96F8 /* NSString+Zirkfied.m in Sources */,
 				4AE556A92029983A009100B1 /* GLMine_MyWallet_CashRecordModel.m in Sources */,
 				4A0EDF8E2018A59F0037D47A /* GLMine_Manage_Branch_DoneModel.m in Sources */,
 				F923B2052020021F00DFEF7C /* ZXDataMatrixHighLevelEncoder.m in Sources */,
@@ -9744,6 +9925,7 @@
 				4AB5888E201B04D4009ADC9A /* usermodelachivar.m in Sources */,
 				4A0EDFA52018BC640037D47A /* GLMine_Manage_Branch_ApplyCell.m in Sources */,
 				F93D5E0A20247A9F002E8FA7 /* LBRecommendRecoderViewController.m in Sources */,
+				F9B94D6720A44A58001A96F8 /* LBFinancialCenterMarketinechartController.m in Sources */,
 				F923B280202002C700DFEF7C /* LBEat_StoreDetailDataModel.m in Sources */,
 				4A54139D2010AD77008A2FBD /* GLMine_Team_HistoryHeader.m in Sources */,
 				F9426AFF201ABC200054417E /* ZLPhotoPickerBrowserViewController.m in Sources */,
@@ -9805,6 +9987,7 @@
 				F923B1DD2020021F00DFEF7C /* ZXBitMatrix.m in Sources */,
 				F95FD420200D9A9300F6C523 /* LBriceshopwebviewTableViewCell.m in Sources */,
 				F9426A92201ABB530054417E /* HCBottomPopupAction.m in Sources */,
+				F92B89A320A414A800369C4F /* LBSendShowinfoViewcell.m in Sources */,
 				F923B1F52020021F00DFEF7C /* ZXResult.m in Sources */,
 				F923B1AC2020021E00DFEF7C /* ZXAztecReader.m in Sources */,
 				F923B1B12020021E00DFEF7C /* ZXAddressBookParsedResult.m in Sources */,
@@ -9856,6 +10039,7 @@
 				4AFC0EC22015E637004518F4 /* GLMine_CartGuessCell.m in Sources */,
 				4A3763F9201D9BAC00BC6A9A /* LBBankCardListTableViewCell.m in Sources */,
 				F923B2322020021F00DFEF7C /* ZXCode128Writer.m in Sources */,
+				F9B94D8620A45149001A96F8 /* ZFPopoverLabel.m in Sources */,
 				F923B2482020021F00DFEF7C /* ZXUPCEReader.m in Sources */,
 				4A9CBD9B20240AB3004623C5 /* LBBaseFinishProductsViewController.m in Sources */,
 				4A9CBDC72024AB27004623C5 /* LBAddOrEditProductViewController.m in Sources */,
@@ -9899,6 +10083,7 @@
 				F923B1BA2020021E00DFEF7C /* ZXGeoParsedResult.m in Sources */,
 				4A20E9C020132E2000E091EA /* GLMine_Message_InteractModel.m in Sources */,
 				F9D7CAB6201B44C100C87C58 /* XC_label.m in Sources */,
+				F9B94D9A20A45163001A96F8 /* ZFMethod.m in Sources */,
 				4AA3A228201A218200C94E49 /* LBDonationTableViewCell.m in Sources */,
 				F9426B0F201ABC200054417E /* ZLPhotoPickerGroupTableViewCell.m in Sources */,
 				F93D5E0F20247AC3002E8FA7 /* LBRecommendRecoderCell.m in Sources */,
@@ -9911,6 +10096,7 @@
 				F9F7759A20271917007FB5CD /* LBUerUnderlineOrdersViewController.m in Sources */,
 				4A9CBDB820246736004623C5 /* LBStoreCounterViewController.m in Sources */,
 				F923B2582020021F00DFEF7C /* ZXPDF417.m in Sources */,
+				F9B94D6B20A44B8D001A96F8 /* LBFinancialCenterMarketinechartcell.m in Sources */,
 				F923B1B02020021E00DFEF7C /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				F9426B0C201ABC200054417E /* ZLPhotoPickerCollectionView.m in Sources */,
 				4AB48EE72030816C0025CB32 /* GLMine_Branch_Offline_PlaceOrderController.m in Sources */,
@@ -9943,6 +10129,7 @@
 				4AB3DC8D2016C4AA00099650 /* LBMineOrderReceivingViewController.m in Sources */,
 				4AFC0EA8201573AF004518F4 /* LB_Eat'commentDataModel.m in Sources */,
 				F923B2CA2020A54E00DFEF7C /* LBTmallFirstCalssifymodel.m in Sources */,
+				F9B94DA220A451AF001A96F8 /* ZFGenericAxis.m in Sources */,
 				F923B1C12020021E00DFEF7C /* ZXResultParser.m in Sources */,
 				4AE543172020784000B34BCB /* GLMine_Seller_IncomeCodeController.m in Sources */,
 				F984070720512CB700B2B25C /* LBHomeViewActivityWaitTableViewCell.m in Sources */,
@@ -9989,6 +10176,7 @@
 				F95035F72021B1C400093644 /* LBTmallProductListModel.m in Sources */,
 				4AFC0EB420158B67004518F4 /* GLMine_ShoppingCartModel.m in Sources */,
 				F9340A4D200A2ACA0002DBB8 /* LBFilterMailShopHeader1ViewReusableView.m in Sources */,
+				F9B94D7B20A450E6001A96F8 /* ZFGenericChart.m in Sources */,
 				F923B2402020021F00DFEF7C /* ZXOneDReader.m in Sources */,
 				F923B2792020021F00DFEF7C /* ZXQRCodeMultiReader.m in Sources */,
 				F9698EB32074AF2100E48408 /* LBPanicBuyingOdersModel.m in Sources */,
@@ -10022,6 +10210,7 @@
 				F969F9F3202DADAC000B9805 /* LBMerChatFaceToFaceViewController.m in Sources */,
 				4AA3A1BD2019FDCB00C94E49 /* GLMine_Seller_OrderDetailController.m in Sources */,
 				4AFC0E9A20157229004518F4 /* LBEat_StoreCommentFooterView.m in Sources */,
+				F9B94D7520A4507F001A96F8 /* ZFCircle.m in Sources */,
 				F9798BF7206357B5002E83DB /* LBSnapUpDetailViewMarkCell.m in Sources */,
 				F965810B205905460095BA4F /* LBHomeDolphinDetailSectionHeader.m in Sources */,
 				4A9E18C62011F45100E1EC05 /* GLMine_Team_UploadLicenseController.m in Sources */,
@@ -10034,6 +10223,7 @@
 				F923B2312020021F00DFEF7C /* ZXCode128Reader.m in Sources */,
 				F923B1B82020021E00DFEF7C /* ZXExpandedProductParsedResult.m in Sources */,
 				F923B1DE2020021F00DFEF7C /* ZXBitSource.m in Sources */,
+				F9B94D9920A45163001A96F8 /* ZFConst.m in Sources */,
 				F97E6058200EF18900C9C4E7 /* GLNearby_classifyCell.m in Sources */,
 				4AB3DC8B2016C4AA00099650 /* LBMineOrderMainViewController.m in Sources */,
 				4AB5888D201B04D4009ADC9A /* UserModel.m in Sources */,
@@ -10090,6 +10280,8 @@
 				F923B2202020021F00DFEF7C /* ZXRSSExpandedDecodedInformation.m in Sources */,
 				4A9CBDAD20242D02004623C5 /* GLFinishGoodsDetailModel.m in Sources */,
 				F992B7FF205F57F1005DA96D /* LBDolphinDetailShowPicTableViewCell.m in Sources */,
+				F9B94D9C20A45163001A96F8 /* UIBezierPath+Zirkfied.m in Sources */,
+				F9B94D7620A4507F001A96F8 /* ZFLine.m in Sources */,
 				4AA3A1C7201A06EC00C94E49 /* GLMine_Seller_OrderDetail_DiscountCell.m in Sources */,
 				F923B1F32020021F00DFEF7C /* ZXLuminanceSource.m in Sources */,
 				F9426B4F201ABC810054417E /* LBCounterStutasView.m in Sources */,
@@ -10100,6 +10292,7 @@
 				F9426B01201ABC200054417E /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */,
 				F923B29B2020093A00DFEF7C /* LYEmptyBaseView.m in Sources */,
 				F9340A262009F5220002DBB8 /* LBIntegralGoodsTwoCollectionViewCell.m in Sources */,
+				F9B94D8720A45149001A96F8 /* ZFXAxisLine.m in Sources */,
 				F9633D87200C4D78001B545A /* CALayer+LBBorderLayer.m in Sources */,
 				F9426B11201ABC200054417E /* LCStarRatingView.m in Sources */,
 				F923B2632020021F00DFEF7C /* ZXQRCodeDataBlock.m in Sources */,
@@ -10176,6 +10369,7 @@
 				F923B1CF2020021E00DFEF7C /* ZXVINResultParser.m in Sources */,
 				F95073062004BB110026D28F /* LBHorseRaceLampCell.m in Sources */,
 				F97CDC95201593B30036B8E0 /* LBEat_StoreMoreCommentsTableViewCell.m in Sources */,
+				F9B94D8520A45149001A96F8 /* ZFLabel.m in Sources */,
 				F95810182049311C0009B261 /* LBTimeLimitCrazingTableViewCell.m in Sources */,
 				4AB3DCB62016C4CA00099650 /* LBMineOrderDetailpdiscountsTableViewCell.m in Sources */,
 				F941365F20A3EFCB00DC1EF7 /* LBNotShowWinningPicturemodel.m in Sources */,
@@ -10191,6 +10385,7 @@
 				4A8DE862201F41A1002585B2 /* LBMineCenterAddAdreassViewController.m in Sources */,
 				F96CF44020181A880070658C /* LBMineCenterFlyNoticeDetailTableViewCell.m in Sources */,
 				4AE556A5202985E9009100B1 /* GLDonationRecordListController.m in Sources */,
+				F9B94D8820A45149001A96F8 /* ZFYAxisLine.m in Sources */,
 				F923B22C2020021F00DFEF7C /* ZXRSSFinderPattern.m in Sources */,
 				4A79EDD9200EF5F0001F28D1 /* GLMine_TeamAchievementCell.m in Sources */,
 				F95B5319200C83ED00A81954 /* LBMineTableViewCell.m in Sources */,
@@ -10273,7 +10468,9 @@
 				F96CF447201822760070658C /* LBMineCollectionStoreTableViewCell.m in Sources */,
 				F9712C83200460030015037A /* AppDelegate.mm in Sources */,
 				4A5413A32010CBD3008A2FBD /* GLMine_Team_HistoryRecordController.m in Sources */,
+				F9B94D6320A4195B001A96F8 /* LBSendShowPictureCollectionCell.m in Sources */,
 				4A1DE6072026E271000BBF75 /* GLMine_Branch_OrderModel.m in Sources */,
+				F9B94D5E20A417C7001A96F8 /* LBSendShowPicturecell.m in Sources */,
 				F969F9FC202DB081000B9805 /* LBMerChatFaceToFacemodel.m in Sources */,
 				F97CDC8120157FAD0036B8E0 /* LBFinancialCenetrSaleViewController.m in Sources */,
 				F969F9F8202DAE1A000B9805 /* LBMerChatFaceToFaceCell.m in Sources */,

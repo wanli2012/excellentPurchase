@@ -135,7 +135,7 @@
             weakSelf.page = 1;
             [weakSelf loadData:weakSelf.page refreshDirect:YES];
         };
-        [self.navigationController pushViewController:vc animated:YES];
+        [[self viewController].navigationController pushViewController:vc animated:YES];
     };
         return cell;
 }
@@ -162,7 +162,7 @@
     [self viewController].hidesBottomBarWhenPushed = YES;
     LBHomeOneDolphinDetailController *vc = [[LBHomeOneDolphinDetailController alloc]init];
     vc.indiana_id = model.indiana_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    [[self viewController].navigationController pushViewController:vc animated:YES];
     
     
 }

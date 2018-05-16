@@ -27,6 +27,7 @@
 #import "GLMine_MessageController.h"//消息
 #import "GLMine_ShoppingCartController.h"//购物车
 #import "LBSnapUpDetailViewController.h"
+#import "IQKeyboardManager.h"
 
 @interface LBProductDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LBTaoTaoProductInofoDelegate,StandardsViewDelegate,LBCheckMoreCommentsDelegate,GLIntegralGoodsTwodelegete,SDCycleScrollViewDelegate>
 @property(nonatomic,strong)NSArray *subViewControllers;
@@ -79,6 +80,7 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [IQKeyboardManager sharedManager].enable = YES;
     [EasyShowLodingView hidenLoding];
 }
 - (void)viewDidLoad {
@@ -200,6 +202,10 @@ static NSString *goodsDetailRecommendListCell = @"GLIntegralGoodsTwoCell";
 }
 #pragma mark - PrivateMethod
 - (void)navigationDidSelectedControllerIndex:(NSInteger)index {
+    
+    if (self.model == nil) {
+        return;
+    }
     
     self.isTapMenu = YES;
     

@@ -28,5 +28,6 @@
 @property (copy , nonatomic)NSString *indiana_wl_ord_number;
 @property (copy , nonatomic)NSString *indiana_address_id;
 @property (copy , nonatomic)NSString *indiana_uid;
+@property (copy , nonatomic)NSString *indiana_everyone_max_count;
 
 @end

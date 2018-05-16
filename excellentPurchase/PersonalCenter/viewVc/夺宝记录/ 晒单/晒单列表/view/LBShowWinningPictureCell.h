@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBShowWinningPicturemodel.h"
 
 @interface LBShowWinningPictureCell : UITableViewCell
+
+@property (strong , nonatomic)LBShowWinningPicturemodel *model;
+@property (copy , nonatomic)void(^bigpicture)(NSInteger index,NSArray *imagerr);
 
 @end

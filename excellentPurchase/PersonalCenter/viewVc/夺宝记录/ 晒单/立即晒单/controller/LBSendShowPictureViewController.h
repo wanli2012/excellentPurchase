@@ -10,4 +10,8 @@
 
 @interface LBSendShowPictureViewController : UIViewController
 
+@property (strong , nonatomic)NSString *indiana_id;
+
+@property (copy , nonatomic)void(^uploadsucess)(void);
+
 @end

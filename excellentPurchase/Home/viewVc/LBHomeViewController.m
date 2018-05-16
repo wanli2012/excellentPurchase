@@ -376,7 +376,7 @@ static NSString *homeActivityTableViewCell = @"LBHomeActivityTableViewCell";
         {
             self.hidesBottomBarWhenPushed = YES;
             LBHomeViewActivityViewController *vc = [[LBHomeViewActivityViewController alloc]init];
-            vc.titileStr = @"一元购";
+            vc.titileStr = @"今日好运来";
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed = NO;
         }

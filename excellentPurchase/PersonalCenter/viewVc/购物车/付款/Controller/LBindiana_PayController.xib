@@ -22,9 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="awz-iq-t5K">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="awz-iq-t5K">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <color key="backgroundColor" red="0.95664197210000002" green="0.96078699830000003" blue="0.96479767559999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="Bhb-0b-JZO" userLabel="header">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -134,6 +133,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="awz-iq-t5K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="H0b-sY-kbV"/>
+                <constraint firstAttribute="trailing" secondItem="awz-iq-t5K" secondAttribute="trailing" id="Vun-xC-vrf"/>
+                <constraint firstItem="awz-iq-t5K" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aa2-Z1-Wzv"/>
+                <constraint firstAttribute="bottom" secondItem="awz-iq-t5K" secondAttribute="bottom" id="cA7-pl-T5l"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

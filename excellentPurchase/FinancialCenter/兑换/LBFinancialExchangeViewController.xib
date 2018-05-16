@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="ensureBtn" destination="qtd-t5-Le8" id="g0A-b3-9DJ"/>
                 <outlet property="exchangeNumTF" destination="CGc-j5-zUy" id="Vp3-oy-OdY"/>
+                <outlet property="scrollerview" destination="i4n-Or-pFi" id="ahH-Td-Bb7"/>
                 <outlet property="signImageV" destination="Ydy-D7-2LY" id="Ijo-VH-nV0"/>
                 <outlet property="sumLabel" destination="QCe-L9-btg" id="gPz-9P-RaM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

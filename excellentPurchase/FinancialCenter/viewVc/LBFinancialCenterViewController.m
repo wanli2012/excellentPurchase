@@ -15,6 +15,7 @@
 #import "LBFinancialCenterExchangeRecodervc.h"
 #import "LBFinancialCenetrSaleViewController.h"
 #import "LBFinancialExchangeViewController.h"
+#import "LBFinancialCenterMarketinechartController.h"
 
 #define kHeaderViewH (196 + SafeAreaTopHeight) //headerview的高度
 #define kPageMenuH 60 //菜单的高度
@@ -59,6 +60,7 @@
     
 //    if ([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP) {//商家身份
         // 添加3个子控制器
+        [self addChildViewController:[[LBFinancialCenterMarketinechartController alloc] init]];
         [self addChildViewController:[[LBFinancialCenterMarketvalueViewController alloc] init]];
         [self addChildViewController:[[LBFinancialCenterSaleRecoderViewController alloc] init]];
         [self addChildViewController:[[LBFinancialCenterExchangeRecodervc alloc] init]];
@@ -313,7 +315,7 @@
         
 //        if ([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP) {
         
-            _scrollView.contentSize = CGSizeMake(UIScreenWidth*3, 0);
+            _scrollView.contentSize = CGSizeMake(UIScreenWidth*4, 0);
 //        }else{
 //            _scrollView.contentSize = CGSizeMake(UIScreenWidth*2, 0);
 //        }
@@ -341,12 +343,16 @@
         _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), UIScreenWidth, kPageMenuH) trackerStyle:SPPageMenuTrackerStyleLineLongerThanItem];
         
 //        if([[UserModel defaultUser].group_id integerValue] == GROUP_SHOP){
-            [_pageMenu setItems:@[@"福宝市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
+            [_pageMenu setItems:@[@"福宝走势",@"福宝市值",@"出售记录",@"兑换记录"] selectedItemIndex:0];
 //        }else{
 //            [_pageMenu setItems:@[@"福宝市值",@"出售记录"] selectedItemIndex:0];
 //        }
         _pageMenu.delegate = self;
-        _pageMenu.itemTitleFont = [UIFont systemFontOfSize:15];
+        if (UIScreenWidth <=  320) {//iphone5
+            _pageMenu.itemTitleFont = [UIFont systemFontOfSize:12];
+        }else{
+            _pageMenu.itemTitleFont = [UIFont systemFontOfSize:15];
+        }
         _pageMenu.selectedItemTitleColor = YYSRGBColor(251, 77, 83, 1);
         _pageMenu.unSelectedItemTitleColor = [UIColor colorWithWhite:0 alpha:0.6];
         _pageMenu.tracker.backgroundColor = YYSRGBColor(251, 77, 83, 1);

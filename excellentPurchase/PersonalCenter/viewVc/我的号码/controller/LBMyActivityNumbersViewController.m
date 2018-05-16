@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, collectionViewType) {
     LBMyActivityNumbersTypeOne,      // 我的号码
 };
 
-@interface LBMyActivityNumbersViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface LBMyActivityNumbersViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (assign, nonatomic) collectionViewType showType;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -113,9 +113,8 @@ typedef NS_ENUM(NSInteger, collectionViewType) {
     if (self.showType == LBMyActivityNumbersTypeDefault) {
         
         LBMyactivityTimeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBMyactivityTimeCollectionViewCell" forIndexPath:indexPath];
-        
-        cell.timelb.text = [formattime formateTime:self.onceArr[indexPath.item][@"indiana_order_paytime"]];
-        cell.onecelb.text = [NSString stringWithFormat:@"%@人/次",self.onceArr[indexPath.item][@"indiana_order_person_count"]];
+            cell.timelb.text = [formattime formateTime:self.onceArr[indexPath.item][@"indiana_order_paytime"]];
+            cell.onecelb.text = [NSString stringWithFormat:@"%@人/次",self.onceArr[indexPath.item][@"indiana_order_person_count"]];
         
         return cell;
     }else{
@@ -129,7 +128,10 @@ typedef NS_ENUM(NSInteger, collectionViewType) {
 //执行的 headerView 代理  返回 headerView 的高度
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(UIScreenWidth, 135);
+    if (section == 0) {
+        return CGSizeMake(UIScreenWidth, 177);
+    }
+    return  CGSizeMake(0, 0);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -147,8 +149,14 @@ typedef NS_ENUM(NSInteger, collectionViewType) {
             headview.model = self.model;
             headview.changeCollectionType = ^{
 
-             weakSelf.showType =  weakSelf.showType == LBMyActivityNumbersTypeDefault?LBMyActivityNumbersTypeOne:LBMyActivityNumbersTypeDefault;
-            weakSelf.collectionView.collectionViewLayout = weakSelf.showType == LBMyActivityNumbersTypeDefault?weakSelf.tableFlowLayout:weakSelf.collectionFlowyout;
+                if (weakSelf.showType == LBMyActivityNumbersTypeDefault) {
+                    weakSelf.showType = LBMyActivityNumbersTypeOne;
+
+                }else if (weakSelf.showType == LBMyActivityNumbersTypeOne){
+                    weakSelf.showType = LBMyActivityNumbersTypeDefault;
+
+                }
+                
                 wheader.timelb.text = weakSelf.showType == LBMyActivityNumbersTypeDefault?@"参与时间":@"我的号码";
                 wheader.peoplelb.hidden = weakSelf.showType == LBMyActivityNumbersTypeDefault?NO:YES;
                 
@@ -185,14 +193,20 @@ typedef NS_ENUM(NSInteger, collectionViewType) {
     return nil;
 }
 
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.showType == LBMyActivityNumbersTypeDefault) {
+        return CGSizeMake(UIScreenWidth, 40);
+    }else{
+        return CGSizeMake((UIScreenWidth)/3.0, 30);
+    }
+}
+
 
 -(UICollectionViewFlowLayout *)tableFlowLayout{
     
     if (_tableFlowLayout == nil) {
         
         _tableFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-        
-        _tableFlowLayout.itemSize = CGSizeMake(UIScreenWidth, 40);
         
         _tableFlowLayout.minimumInteritemSpacing = 0;
         
@@ -209,8 +223,6 @@ typedef NS_ENUM(NSInteger, collectionViewType) {
     if (_collectionFlowyout == nil) {
         
         _collectionFlowyout = [[UICollectionViewFlowLayout alloc] init];
-        
-        _collectionFlowyout.itemSize = CGSizeMake((UIScreenWidth)/3.0, 30);
         
         _collectionFlowyout.minimumLineSpacing = 0;
         
